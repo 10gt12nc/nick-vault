@@ -307,7 +307,7 @@ Code repo:
 - 若這條 flow 目前只掃到後台 / 前端，請優先建議去讀真正後端 / 下游 code，而不是硬轉履歷
 ```
 
-## 4. Decision Notes：技術硬底子與決策比較
+## 補充 A：Decision Notes 技術硬底子與決策比較
 
 用途：已經看懂一條 flow 後，補足 Senior / Owner 需要的技術判斷力。
 
@@ -350,7 +350,7 @@ Code repo:
 projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 ```
 
-## 5. Architecture Map：大專案 / 子專案地圖
+## 補充 B：Architecture Map 大專案 / 子專案地圖
 
 用途：不知道 repo 關係、子專案責任、flow 入口時使用。地圖只做到能定位 flow，不要取代 flow 深挖。
 
@@ -383,7 +383,7 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 - projects/{domain}/{project}/architecture-map.md
 ```
 
-## 3.1 Level 3 極限深掃提示詞
+## 補充 C：Level 3 極限深掃提示詞
 
 ```text
 請對這條 flow 做 Level 3 極限深掃。
@@ -414,7 +414,7 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 7. 下一批只推薦一件事
 ```
 
-## 3.2 AI 自動判斷深掃等級
+## 補充 D：AI 自動判斷深掃等級
 
 ```text
 在開始前請先判斷本次掃描等級：

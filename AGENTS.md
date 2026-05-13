@@ -55,8 +55,12 @@
 ```text
 projects/{domain}/{project}/
   README.md
+  architecture-map.md
   flows/{flow-name}/flow.md
   flows/{flow-name}/evidence.md
+  flows/{flow-name}/decision-notes.md
+  flows/{flow-name}/interview.md
+  flows/{flow-name}/claim-boundary.md
   career-interview.md
 ```
 
