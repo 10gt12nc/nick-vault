@@ -248,7 +248,7 @@ Step: 3 重整
 下一步只推薦一件事:
 
 ```text
-iwin payment Step 1
+app_bi admin-config-redis-sync Step 3
 ```
 
 原因:
@@ -256,6 +256,7 @@ iwin payment Step 1
 - Step 3 已重整，且 `decision-notes.md` 已補。
 - Step 4 已轉成保守面試 case。
 - Step 5 已在 `claim-boundary.md` 判定不更新正式履歷 / 自傳。
-- 下一步應轉去第一條完整後端 flow，優先從 payment repo 找 payment callback / money correctness 類 flow。
+- 這只代表 `point-control-admin-operation` 這條 flow 完成，不代表整個 `app_bi` 完成。
+- 下一步應回到 `app_bi` candidate ranking，選下一條未完成且仍有分析價值的 flow。
 
 不更新履歷。

@@ -161,11 +161,12 @@ Step 5 已在 `claim-boundary.md` 判定:
 下一步只推薦一件事:
 
 ```text
-iwin payment Step 1
+app_bi admin-config-redis-sync Step 3
 ```
 
 原因:
 
 - `app_bi` 這條 flow 已完成 Step 1-5。
-- 若要往 Senior / Platform Backend / Owner 更有履歷價值的方向走，下一條應讀真正後端 repo。
-- `payment` 比 `app_bi` 更可能產出 money correctness、callback、state transition、retry / compensation 類 case。
+- 這不代表整個 `app_bi` project 結束。
+- 下一步要回到 `app_bi` Step 2 ranking，選下一條未完成 flow。
+- `admin-config-redis-sync` 是 `app_bi` 內下一條較適合的 control plane / Redis projection 題。

@@ -17,19 +17,20 @@
 
 ## 下一步
 
-### 1. iwin payment Step 1
+### 1. app_bi admin-config-redis-sync Step 3
 
 建議下一步：
 
 ```text
-iwin payment Step 1
+app_bi admin-config-redis-sync Step 3
 ```
 
 原因：
 
 - `app_bi point-control-admin-operation` 已完成 Step 1-5。
-- 因為只確認到後台 / control plane 發送端，所以不適合繼續硬包裝履歷。
-- 下一條應轉去真正後端 repo，優先找 payment callback / order state / wallet side effect / money correctness 類 flow。
+- 單條 flow 完成不代表整個 `app_bi` project 完成。
+- 應回到 `app_bi` Step 2 ranking，選下一條未完成且仍有價值的 flow。
+- `payment-order-status-repair` 價值高，但只靠 `app_bi` 不適合深挖；若留在 `app_bi`，下一條較適合做 `admin-config-redis-sync`。
 
 ### 2. 再做第一條完整後端 flow
 
@@ -59,10 +60,10 @@ iwin payment Step 1
 ## 下一個 prompt
 
 ```text
-iwin payment Step 1
+app_bi admin-config-redis-sync Step 3
 ```
 
-AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。
+AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試最低門檻
 

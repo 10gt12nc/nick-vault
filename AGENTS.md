@@ -29,6 +29,8 @@
   - `/Users/nick/Git/antplay/math-workspace`
 - 參考其他 workspace 只能用來學防呆、索引、KB 治理與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo 規則到 `nick-vault`。
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
+- 一條 flow 完成 Step 5 後，不代表整個 project 完成。若同 project 的 Step 1 / Step 2 還有未完成 candidate flows，下一步要回到同 project 選下一條 flow；不要自行跳到其他 project，除非 Nick 明確說要換專案。
+- `senior-owner-playbook/01~16` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~16。flow Step 固定只有 Step 1~5。
 
 ## Senior / Owner 原則
 
@@ -55,6 +57,7 @@
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
+- 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
 - 每次 Step 都要在 `evidence.md` 或對應文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
 - 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。

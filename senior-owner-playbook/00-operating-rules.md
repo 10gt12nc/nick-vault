@@ -83,6 +83,33 @@ flow.md = 研究分析報告主文
 
 AI 不准因為 Nick 問「研究分析報告在哪」就另創 `research-analysis-report.md` 或額外 README 造成重複與混亂。應直接回答：主報告在 `flow.md`。
 
+### Flow 完成後的下一步
+
+一條 flow 做到 Step 5，只代表這一條 flow 的固定主線完成，不代表整個 project 完成。
+
+正確判斷順序：
+
+1. 先看同 project 的 Step 1 / Step 2 candidate ranking。
+2. 如果同 project 還有未完成且值得做的 candidate flow，下一步回到同 project 選下一條 flow 做 Step 3。
+3. 如果同 project 的剩餘 candidate 都不值得做，或需要更高價值後端 evidence，才建議換 project。
+4. 換 project 必須講清楚原因；若 Nick 沒要求換 project，不要自行把下一步改成其他 project。
+
+例：
+
+```text
+app_bi point-control-admin-operation Step 5 完成
+-> 回到 app_bi Step 2 ranking
+-> 選 app_bi 下一條最值得做的 flow
+```
+
+不應直接跳：
+
+```text
+iwin payment Step 1
+```
+
+除非 Nick 明確說要轉去 payment，或目前同 project 沒有值得繼續的 flow。
+
 ### 規格不可任意改
 
 參考其他 workspace 時，AI 只能先做評估，不得直接改 `nick-vault` 規格。
@@ -105,6 +132,24 @@ AI 不准因為 Nick 問「研究分析報告在哪」就另創 `research-analys
 ```
 
 取得 Nick 明確同意後才改。
+
+### playbook 編號不是 flow Step
+
+`senior-owner-playbook/01~16` 是文件編號，用來分類工具箱、規則、學習路線、面試、履歷與能力矩陣。
+
+它不是 project flow 的 Step 1~16。
+
+project flow 的 Step 固定只有：
+
+```text
+Step 1：找 candidate flows
+Step 2：比較 candidate flows
+Step 3：單條 flow 深挖
+Step 4：轉面試 case
+Step 5：檢查是否更新履歷 / 自傳
+```
+
+AI 不准把 playbook 檔名編號解讀成 flow 進度，也不准回答成「還有 Step 6~16」。
 
 ### 參考 workspace 邊界
 
@@ -179,6 +224,7 @@ AI 可以在 Step 3 內補 `evidence.md`、`claim-boundary.md`、`decision-notes
 - 如果上一個 Step 不乾淨，先建議重整上一個 Step。
 - 如果 Nick 明確說「補 evidence」、「補 decision-notes」、「下游定位」、「架構圖」，才做該補充任務。
 - 如果 Nick 只問「下一步」，且目前 Step 3 已完成，預設回答 Step 4。
+- 如果某條 flow 已完成 Step 5，預設回到同 project 的 candidate ranking，選下一條未完成 flow；不要直接跳其他 project。
 
 ## 不複製舊檔
 
