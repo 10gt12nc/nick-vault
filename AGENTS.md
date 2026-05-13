@@ -28,6 +28,8 @@
 - 每次只做一條 flow。
 - 每次 Nick 下 `project stepN`、`某 flow Step N`、`下一步`、`繼續` 時，AI 必須自動重讀本 vault KB、既有專案文件與相關 code 最新狀態，不需要 Nick 另外提醒「重讀 KB / 重讀 code」。
 - 自動重讀至少包含：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、該 project 既有 README / Step 文件 / flow 文件、相關 code repo 的 branch / log / 關鍵入口。
+- 自動重讀後，AI 必須主動檢查既有 Step / flow 文件是否是舊規則、舊格式、舊 evidence 或不符合目前 KB；如果發現不一致，要先標出「需重整 / 需補 evidence / 可沿用」，不能等 Nick 追問。
+- 如果既有 Step 已存在但品質不足，下一步建議必須優先指向「重整既有 Step」或「補齊舊文件邊界」，而不是直接跳到下一個 Step。
 - 每次產出或更新後，AI 也要自動維護對應共用索引 / 規則 / project README / Step 文件的連動關係；如果判斷不該更新，需簡短說明原因。
 - 每條 flow 要分清楚已確認、推測、待確認。
 - 核心關注：money correctness、transaction consistency、state transition、idempotency、retry / compensation、reconciliation、observability、owner decision。
@@ -63,6 +65,7 @@ projects/{domain}/{project}/
 更新後檢查：
 
 - 是否已自動重讀 KB、既有文件與相關 code 最新狀態？
+- 是否已檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB？
 - 是否只動 `nick-vault`？
 - 是否沒有動公司專案？
 - 是否沒有新增 code？

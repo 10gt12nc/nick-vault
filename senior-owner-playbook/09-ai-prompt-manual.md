@@ -11,6 +11,7 @@
 - 每次只跑一個 step。
 - 每次只完成一條 flow。
 - 每次 Step 開始前，AI 必須自動重讀 KB、該 project 既有文件與相關 code 最新狀態；Nick 不需要每次提醒。
+- 每次重讀後，AI 必須自己檢查舊 Step / 舊 flow 文件是否符合目前 KB；若不符合，要主動建議重整或直接補 evidence，不能等 Nick 追問。
 - 不確定就標示「已確認 / 推測 / 待確認」。
 - 只輸出整理後的新內容，不複製舊檔。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
@@ -80,6 +81,7 @@ Code repo:
 - 已重讀什麼
 - 未重讀什麼
 - 未重讀原因
+- 既有 Step / flow 狀態：可沿用 / 需補 evidence / 需重整 / 應暫停往下
 ```
 
 ## 0.2 每次任務的自動維護 Checklist
@@ -91,6 +93,7 @@ Code repo:
 - Step 文件是否要更新？
 - flow evidence 是否要補掃描範圍？
 - claim-boundary 是否要補不能誇大的地方？
+- 舊 Step / 舊 flow 是否不符合目前 KB，需要重整後再往下？
 - senior-owner-playbook 的共用規則是否有新增通用原則？
 - 是否需要更新 todo / 下一步？
 
@@ -98,6 +101,31 @@ Code repo:
 - 本次只是比較，不改 flow。
 - 本次只補 evidence，不動履歷。
 - 本次是 project 局部規則，不需要改共用 KB。
+```
+
+## 0.3 舊文件狀態判斷提示詞
+
+```text
+請先檢查既有 Step / flow 文件是否符合目前 KB。
+
+請輸出：
+
+1. 既有文件清單
+2. 每份狀態：
+   - 可沿用
+   - 需補 evidence
+   - 需重整
+   - 應暫停往下
+3. 原因：
+   - 是否有掃描等級
+   - 是否有已掃 / 未掃 / 待確認
+   - 是否有 branch / log / path-specific history
+   - 是否把後台入口誇大成完整後端 flow
+   - 是否有履歷 claim 風險
+4. 下一步只推薦一件事。
+
+如果上一個 Step 不乾淨，請不要直接建議下一個 Step。
+請先建議重整上一個 Step 或補 evidence。
 ```
 
 ## 1. Step 1：找 Flow

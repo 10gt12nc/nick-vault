@@ -17,6 +17,15 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code」。
 
 沒有重讀到的部分，必須在 evidence 裡標出。
 
+重讀後也要檢查既有 flow 文件是否符合目前 KB：
+
+- `可沿用`：格式、evidence、邊界都清楚。
+- `需補 evidence`：內容方向可用，但掃描範圍、branch / log / 下游未掃邊界不足。
+- `需重整`：舊規則產物，推測過多、格式不乾淨或 claim 有誇大風險。
+- `應暫停往下`：上一個 Step 不乾淨，直接做下一 Step 會讓錯誤擴大。
+
+若既有 Step 3 不合格，要先重整 Step 3，不要直接跳 Step 4。
+
 ## 自動維護
 
 每次建立或更新 flow 後，AI 必須自動判斷是否要同步維護：
@@ -107,6 +116,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 
 - 只推薦一件事。
 - 如果 flow 尚未完整，優先建議繼續補同一條 flow。
+- 如果上一個 Step 是舊規則產物或 evidence 不乾淨，優先建議重整上一個 Step。
 - Step 3 後通常建議補 failure scenarios / consistency / idempotency / retry / compensation / reconciliation。
 - 面試 case 完成前，不急著更新履歷。
 - 如果目前只看到後台 / 前端 / BI 操作入口，優先建議補讀真正後端 / 下游 repo。

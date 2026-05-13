@@ -66,8 +66,10 @@ app_bi step2
 AI 必須自動：
 
 - 重讀 KB、project 既有文件與相關 code 最新狀態。
+- 檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB。
 - 判斷本次是 Level 1 / Level 2 / Level 3。
 - 寫清楚已掃、未掃、推測與待確認。
+- 如果上一個 Step 不乾淨，先建議重整，不直接跳下一步。
 - 自動判斷是否要維護 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB。
 - 自動給下一步建議。
 
