@@ -159,6 +159,7 @@
 ### 1. `point-control-admin-operation`
 
 中文名稱: 單點控制 / 營運控制操作
+狀態: 已完成 Step 1-5，不更新履歷
 
 為什麼重要:
 
@@ -230,6 +231,7 @@ production 風險:
 ### 3. `admin-config-redis-sync`
 
 中文名稱: 後台設定同步 Redis
+狀態: 已完成 Step 3，下一步 Step 4
 
 為什麼重要:
 
@@ -319,22 +321,23 @@ production 風險:
 
 ## Step 1 結論
 
-目前最適合先重整的是:
+目前進度:
 
 ```text
-point-control-admin-operation
+point-control-admin-operation 已完成 Step 1-5
+admin-config-redis-sync 已完成 Step 3
 ```
 
 原因:
 
-- 它是 `app_bi` 內 evidence 最完整的 flow。
-- 它能練 control plane、runtime side effect、DB / Redis / GM command / audit log 一致性。
-- 但目前只能說確認到 `app_bi` 發送端與後台操作面，不能說完整後端 flow 已掃完。
+- `point-control-admin-operation` 已整理成完整面試分析 case，但不更新正式履歷。
+- `admin-config-redis-sync` 已完成單條 flow 深挖，確認是後台設定同步 Redis 的 control plane / projection flow。
+- 目前兩條都只確認到 `app_bi` 發送端與部分讀取端，不能說完整後端 runtime flow 已掃完。
 
 下一步:
 
 ```text
-app_bi Step 2 重整
+app_bi admin-config-redis-sync Step 4
 ```
 
 不更新履歷。

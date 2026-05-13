@@ -7,6 +7,7 @@
 先讀：
 
 - [CONVENTIONS.md](CONVENTIONS.md)
+- [source-repo-inventory.md](source-repo-inventory.md)
 
 規則：
 
@@ -45,6 +46,8 @@ projects/ugsoft/ugsoft-connector-api/
 projects/antplay/antplay-slot-game-api/
 projects/devops/primestar/
 ```
+
+來源 repo 清單只放索引，不當成 evidence。真正分析仍要在每次 Step 前重讀 code repo 的 branch、log、path-specific history 與主要入口。
 
 跨專案通用的方法論、提示詞、學習路線、履歷與自傳，放在：
 

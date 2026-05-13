@@ -63,6 +63,7 @@
 ### 1. `point-control-admin-operation`
 
 中文名稱: 單點控制 / 營運控制操作
+狀態: 已完成 Step 1-5，不更新履歷
 
 推薦程度: 最高，先重整 Step 3
 
@@ -132,6 +133,7 @@
 ### 3. `admin-config-redis-sync`
 
 中文名稱: 後台設定同步 Redis
+狀態: 已完成 Step 3，下一步 Step 4
 
 推薦程度: 中高，適合之後作 control plane 第二條
 
@@ -283,26 +285,22 @@
 
 ## Step 2 結論
 
-最適合先做成 case study 的仍是:
+目前已完成:
 
 ```text
-point-control-admin-operation
+point-control-admin-operation Step 1-5
+admin-config-redis-sync Step 3
 ```
-
-但下一步不是 Step 4，也不是履歷。
 
 下一步應該做:
 
 ```text
-point-control-admin-operation Step 3 重整
+app_bi admin-config-redis-sync Step 4
 ```
 
 要更新:
 
-- `flows/point-control-admin-operation/flow.md`
-- `flows/point-control-admin-operation/evidence.md`
-- `flows/point-control-admin-operation/interview.md`
-- `flows/point-control-admin-operation/claim-boundary.md`
+- `flows/admin-config-redis-sync/interview.md`
 
 不做:
 

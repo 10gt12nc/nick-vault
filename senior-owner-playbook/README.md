@@ -18,7 +18,7 @@
 ## 目前檔案
 
 - [00-operating-rules.md](00-operating-rules.md)：這套資料以後怎麼維護，避免再次變亂。
-- [01-senior-owner-flow-inventory.md](01-senior-owner-flow-inventory.md)：高價值 flow inventory，依產品與專案分類。
+- [01-senior-owner-flow-inventory.md](01-senior-owner-flow-inventory.md)：flow dashboard，記錄目前 Step、下一步、履歷邊界與近期 queue。
 - [02-learning-roadmap.md](02-learning-roadmap.md)：從 0 開始讀的順序，不一次吞 189 條。
 - [03-flow-learning-package-template.md](03-flow-learning-package-template.md)：每條 flow 要怎麼做成完整學習包。
 - [04-interview-casebook.md](04-interview-casebook.md)：Senior / Lead / Architect 面試案例與問答方向。
