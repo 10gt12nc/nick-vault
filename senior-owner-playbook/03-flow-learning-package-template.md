@@ -64,6 +64,7 @@ projects/{domain}/{project}/flows/{flow-name}/
   evidence.md
   interview.md
   claim-boundary.md
+  decision-notes.md
 ```
 
 Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 flow 後，才依 `projects/CONVENTIONS.md` 建立完整資料夾。
@@ -128,6 +129,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - `evidence.md`：code path、commit / branch / grep evidence、已確認、合理推論、待確認。不得貼出密碼、token、內網 IP、production URL 或客戶機密。
 - `interview.md`：3 分鐘講法、Senior 追問、Lead / Architect 追問、可用問答。
 - `claim-boundary.md`：履歷可寫、只能說分析 / 參與、不能說主導、待補 evidence。
+- `decision-notes.md`：技術硬底子、技術選型差異、trade-off、owner decision。只補與本 flow 直接相關的底層知識，不寫成教科書大全。
 
 ## 輸出格式
 

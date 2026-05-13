@@ -52,10 +52,12 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
 ```text
 projects/{domain}/{project}/
   README.md
+  architecture-map.md
   flows/
     {flow-name}/
       flow.md
       evidence.md
+      decision-notes.md
       interview.md
       claim-boundary.md
   career-interview.md
@@ -133,12 +135,25 @@ projects/{domain}/{project}/
 
 專案層級的履歷與面試素材，只能由完成的 flows 彙整，不可憑空寫。
 
+### architecture-map.md
+
+專案 / 子專案地圖，只用來定位 repo、module、入口、上下游與候選 flow。
+
+地圖不是主線，不要畫沒有 evidence 的大架構。當地圖已足夠定位 flow，就回到單條 flow 深挖。
+
+### decision-notes.md
+
+單條 flow 的技術硬底子與決策比較。
+
+只補和該 flow 直接相關的技術選型、trade-off、owner decision、外部通用模式。不要寫成技術大全，也不要當成 Nick 已做過的 evidence。
+
 ## Flow 完成定義
 
 一條 flow 完成，必須同時具備：
 
 - `flow.md`
 - `evidence.md`
+- `decision-notes.md`
 - `interview.md`
 - `claim-boundary.md`
 

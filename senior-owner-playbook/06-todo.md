@@ -7,26 +7,29 @@
 - 建立新入口、維護規則、flow inventory、學習路線、flow 模板、面試案例與唯一履歷自傳。
 - 已建立全 vault 共用自動維護規則：每次 project / flow / Step 任務前自動重讀 KB、既有文件與相關 code 最新狀態，完成後自動判斷是否維護 README、Step 文件、evidence、claim boundary、todo 或共用 KB。
 - 已補上舊文件自動排查規則：AI 必須自己檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB；上一個 Step 不乾淨時，優先重整舊文件，不直接跳下一步。
+- 已補上技術硬底子與決策比較模組：每條高價值 flow 可新增 `decision-notes.md`，整理技術選型、差異比較、trade-off、owner decision 與面試追問。
+- 已補上大專案 / 子專案地圖規則：地圖只用來定位 repo 與 flow，不取代 production flow。
+- 已補上初階到資深的軟硬實力矩陣：作為定期檢查表，不作為新的發散學習主線。
 
 ## 下一步
 
-### 1. 做第一條完整 flow
+### 1. 先把 app_bi 既有 Step 3 重整乾淨
 
-建議第一條：
+目前最近在做的是：
 
 ```text
-payment-provider-callback
+app_bi point-control-admin-operation Step 3 重整
 ```
 
 原因：
 
-- 金流 callback 是 Senior 面試高價值題。
-- 涉及簽章、狀態機、冪等、MQ、副作用、補償、對帳。
-- 可轉成履歷與面試案例，但要保持保守。
+- Step 3 已存在，但屬於舊規則第一版。
+- 需要補掃描範圍、未掃下游、claim boundary。
+- 不應直接跳 Step 4。
 
-### 2. 每次只做一條
+### 2. 再做第一條完整後端 flow
 
-順序：
+建議後端主線：
 
 1. `payment-provider-callback`
 2. `transfer-wallet-transfer-in-out`
@@ -52,10 +55,10 @@ payment-provider-callback
 ## 下一個 prompt
 
 ```text
-payment step1
+app_bi point-control-admin-operation Step 3 重整
 ```
 
-AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。
+AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試最低門檻
 
@@ -69,6 +72,7 @@ AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git
 
 - `flow.md`
 - `evidence.md`
+- `decision-notes.md`
 - 3 分鐘面試說法
 - 5 個追問
 - 履歷保守 bullet

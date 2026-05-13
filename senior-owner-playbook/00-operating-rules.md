@@ -25,6 +25,7 @@ AI 需要自動維護：
 - 自動避免履歷誇大。
 - 自動給下一步建議。
 - 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
+- 自動判斷是否需要補 `decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 
 AI 不會做的事：
 
@@ -39,6 +40,28 @@ AI 不會做的事：
 - `senior-owner-playbook/`：通用方法論、提示詞、學習路線、面試與履歷。
 - `projects/`：之後各專案整理後的新分析。
 - `archive/`：舊資料、舊中間稿、原始匯入、待分析、待刪與重複筆記，日後由 Nick 人工審查是否刪除。
+
+## 主軸與輔助層
+
+本 vault 的主軸不能偏掉。
+
+主軸永遠是：
+
+```text
+production flow
+-> evidence
+-> failure / consistency
+-> owner decision
+-> interview / resume
+```
+
+輔助層只能用來服務主軸：
+
+- 大專案 / 子專案地圖：用來知道 flow 在整個產品的位置，不是拿來畫一堆抽象架構圖。
+- `decision-notes.md`：用來補單條 flow 需要的技術硬底子，不是通用技術大全。
+- 職涯能力矩陣：用來檢查初階 / 中階 / 資深 / Lead 缺口，不是每天發散的新學習清單。
+
+如果輔助層開始讓文件變多、讀不完、或偏離 production flow，AI 必須主動收斂，回到「下一條最值得做的 flow」。
 
 ## 不複製舊檔
 
@@ -124,6 +147,7 @@ AI 不能只照 Nick 當下問的 Step 往後跳。每次重讀既有 project / 
 8. 面試怎麼講。
 9. 履歷怎麼保守寫。
 10. 哪些不能誇大。
+11. 這條 flow 牽涉哪些技術硬底子與技術選型差異。
 
 ## Code 掃描與分支證據規則
 
@@ -259,16 +283,19 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
 - 要說清楚是否需要 commit / push；預設不 commit、不 push，除非 Nick 明確要求。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
+- 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，下一步優先建議補 `decision-notes.md`，而不是繼續產更多 flow。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。
 
 建議順序：
 
+0. 若還沒有 domain / project 地圖：先補最小地圖，定位 repo 與 flow，不做過度架構圖。
 1. Step 1 完成後：建議做 Step 2，比較 candidate flows。
 2. Step 2 完成後：建議挑排名最高且 evidence 足夠的單一 flow 做 Step 3。
 3. Step 3 完成後：建議補 failure scenarios、consistency、idempotency、retry、compensation、reconciliation。
-4. failure / consistency 補完後：建議轉面試 case，讓 Nick 能用 3 分鐘講清楚。
-5. 面試 case 完成後：建議檢查 claim boundary，再決定是否更新履歷。
-6. 履歷 evidence 不足時：建議先補 MR / ticket / commit / 實際參與證據，不更新履歷。
+4. failure / consistency 補完後：若技術硬底子不足，補 `decision-notes.md`。
+5. decision-notes 或面試 case 完成後：轉面試 case，讓 Nick 能用 3 分鐘講清楚。
+6. 面試 case 完成後：建議檢查 claim boundary，再決定是否更新履歷。
+7. 履歷 evidence 不足時：建議先補 MR / ticket / commit / 實際參與證據，不更新履歷。
 
 ## Senior / Lead / Architect 對標
 

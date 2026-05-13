@@ -31,6 +31,9 @@
 - [11-senior-interview-readiness.md](11-senior-interview-readiness.md)：檢查是否已具備 10 萬以上 Senior / Owner 面試準備度。
 - [12-role-target-readiness-matrix.md](12-role-target-readiness-matrix.md)：Senior / Platform / Owner / Lead-Architect 四種目標職缺對標矩陣。
 - [13-code-capability-map.md](13-code-capability-map.md)：根據 `/Users/nick/Git` 高階掃描建立的本地專案能力地圖與外部案例標注規則。
+- [14-technical-decision-hard-skills.md](14-technical-decision-hard-skills.md)：技術硬底子、決策比較、技術選型與 trade-off 教學模板。
+- [15-project-architecture-map-system.md](15-project-architecture-map-system.md)：大專案 / 子專案地圖與跨 repo 架構圖規則。
+- [16-career-skill-matrix.md](16-career-skill-matrix.md)：初階到資深、Lead 候選的軟硬實力檢查表。
 
 ## 讀法
 
@@ -48,6 +51,11 @@
 10. `11-senior-interview-readiness.md`
 11. `12-role-target-readiness-matrix.md`
 12. `13-code-capability-map.md`
+13. `14-technical-decision-hard-skills.md`
+14. `15-project-architecture-map-system.md`
+15. `16-career-skill-matrix.md`
+
+主軸仍然是 production flow。`14`、`15`、`16` 是輔助層：卡住或要補全局 / 硬底子 / 職涯缺口時再讀，不要拿來取代 flow。
 
 ## AI 自動維護規則
 

@@ -25,10 +25,14 @@
 ```text
 projects/{domain}/{project}/
   README.md
+  architecture-map.md
   flows/
     {flow-name}/
       flow.md
       evidence.md
+      decision-notes.md
+      interview.md
+      claim-boundary.md
   career-interview.md
 ```
 

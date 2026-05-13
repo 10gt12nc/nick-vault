@@ -19,6 +19,8 @@
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
+- Flow 讀懂後，若需要補技術硬底子，要用 `decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
+- 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
 
@@ -90,9 +92,11 @@ Code repo:
 完成後請自動判斷是否需要維護：
 
 - project README 是否要更新？
+- architecture-map / integration-map 是否需要最小補齊，用來定位 flow？
 - Step 文件是否要更新？
 - flow evidence 是否要補掃描範圍？
 - claim-boundary 是否要補不能誇大的地方？
+- decision-notes 是否要補技術硬底子與決策比較？
 - 舊 Step / 舊 flow 是否不符合目前 KB，需要重整後再往下？
 - senior-owner-playbook 的共用規則是否有新增通用原則？
 - 是否需要更新 todo / 下一步？
@@ -301,6 +305,82 @@ Code repo:
 - 是否會更新履歷；預設不更新
 - 是否需要 commit / push；預設不需要
 - 若這條 flow 目前只掃到後台 / 前端，請優先建議去讀真正後端 / 下游 code，而不是硬轉履歷
+```
+
+## 4. Decision Notes：技術硬底子與決策比較
+
+用途：已經看懂一條 flow 後，補足 Senior / Owner 需要的技術判斷力。
+
+```text
+請針對這條 flow 補 decision-notes.md。
+
+請先重讀：
+- flow.md
+- evidence.md
+- interview.md
+- claim-boundary.md
+- 相關 code path
+
+請不要重寫 flow。
+請不要更新履歷。
+請不要寫成教科書大全。
+
+請只補和本 flow 直接相關的技術硬底子，例如：
+- transaction boundary
+- consistency
+- idempotency
+- retry / compensation
+- DB index / lock
+- Redis cache / projection
+- Kafka / MQ reliability
+- observability
+- rollback / recovery
+- 技術選型差異與 trade-off
+
+請輸出：
+1. 本 flow 牽涉哪些硬底子
+2. 專案 code 已確認 evidence
+3. 專案未確認
+4. 外部通用模式，必須標明不是專案事實
+5. Option A / Option B 技術比較
+6. Senior / Owner 會怎麼判斷
+7. 面試追問與回答
+
+請輸出到：
+projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
+```
+
+## 5. Architecture Map：大專案 / 子專案地圖
+
+用途：不知道 repo 關係、子專案責任、flow 入口時使用。地圖只做到能定位 flow，不要取代 flow 深挖。
+
+```text
+請建立最小可用的大專案 / 子專案地圖。
+
+請深掃：
+- /Users/nick/Git/{domain 或 project}
+- nick-vault 既有 projects/{domain}
+- archive 相關舊資料
+
+只能動 nick-vault。
+公司專案只能讀，不能改。
+不要寫 secret、token、內網 IP、production URL、客戶資料。
+
+請輸出：
+1. domain / project 定位
+2. repo / module 清單與中文名稱
+3. repo / module 類型
+4. 上下游關係
+5. 核心 production flows 候選
+6. 已確認 / 推測 / 待確認
+7. 哪些只是後台 / 前端 / deploy / workspace，不可誇大
+8. 下一步只推薦一條 flow
+
+請輸出到：
+- projects/{domain}/architecture-map.md
+- projects/{domain}/integration-map.md
+或
+- projects/{domain}/{project}/architecture-map.md
 ```
 
 ## 3.1 Level 3 極限深掃提示詞
