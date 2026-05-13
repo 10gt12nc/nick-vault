@@ -1,309 +1,411 @@
 # iwin app_bi Step 2：候選 Flow 技術點與風險比較
 
-## 範圍
+更新時間: 2026-05-13
+掃描等級: Level 1 Flow 掃描 / 候選 flow 比較
+
+## 自動重讀紀錄
+
+已重讀 KB:
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+
+已重讀 vault:
+
+- `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step2-flow-comparison.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+
+已重讀 code repo:
+
+- `/Users/nick/Git/iwin/app_bi`
+- 目前 branch: `main`
+- 遠端 branch 清單
+- 近期 git log
+- keyword git log
+- route / controller / service / admin page 相關入口
+
+未重讀:
+
+- 沒有 checkout 每個遠端分支。
+- 沒有逐 commit diff。
+- 沒有掃 `game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api`。
+
+## 本次掃描等級判斷
+
+建議等級: Level 1
+
+原因:
+
+- Step 2 的任務是比較 Step 1 candidate flows，不是深挖單一 flow。
+- 不應建立新的 `flows/{flow-name}/`。
+- 不應逐檔逐行或逐 commit diff。
+- `app_bi` 多數線索是後台 / BI / control plane 入口，若要強 evidence，要到下游後端 repo 補。
+
+## 範圍與規則
 
 本文件承接 `README.md` 的 Step 1 候選 flow 盤點。
 
-規則：
+規則:
 
 - 不深挖單一 flow。
-- 不建立 `flows/{flow-name}/`。
+- 不建立新的 flow folder。
 - 不更新履歷與自傳。
 - 不把 `app_bi` 包裝成 Nick 主開發成果。
 - 只比較 Senior / Platform Backend / System Owner 價值。
+- 後台 / BI / admin 入口只能作入口參考，沒有下游 evidence 前不得寫履歷 claim。
 
 ## Flow Ranking
 
 ### 1. `point-control-admin-operation`
 
-中文名稱：單點控制 / 營運控制 flow
+中文名稱: 單點控制 / 營運控制操作
 
-推薦程度：最高，建議第一條 Step 3。
+推薦程度: 最高，建議繼續補同一條 flow
 
-理由：
+理由:
 
-- 後台操作會直接影響玩家 runtime 行為，不只是查詢或報表。
-- 已確認有 route、controller、DB、Redis、GM command、Mongo operation log。
-- 具備明確 state transition：新增 / 編輯控制、啟用 / 取消控制、完成狀態、剩餘額度。
-- failure window 清楚：DB、Redis、GM command、Mongo log 任一環節失敗都可能造成狀態不一致。
-- 最適合練 Senior / Owner 的「後台控制面如何安全影響 production runtime」。
+- 已有完整 Step 3 初版學習包，延續成本最低。
+- 後台操作會寫 DB、Redis，並送 GM command，具備 runtime 影響。
+- 已確認有 MySQL `point_control`、Redis `playerControl:playerControls:data`、Mongo `log_point_control`、`sendGmCommand()`。
+- 最符合 Senior / Owner 要看的 control plane 風險: state transition、consistency、retry、compensation、audit。
 
-核心風險：
+核心風險:
 
-- DB 寫入成功但 Redis 或 GM command 失敗。
-- Redis 更新成功但 runtime 沒收到 GM command。
-- GM command 成功但 Mongo operation log 失敗，造成稽核不完整。
-- 批次新增 / 編輯時部分資料成功、部分失敗。
-- 後台人員誤操作造成玩家控制狀態錯誤。
+- DB transaction 管不到 Redis、GM command、Mongo log。
+- Redis 已寫但 GM command 失敗，可能出現 DB rollback 但 Redis 留存。
+- GM command 成功但 audit log 失敗，可能操作成功但稽核不足。
+- 批量新增 / 修改可能 partial success。
+- 下游 runtime consumer 未確認，不能說完整後端 flow 已掃完。
 
-只能算推測：
+只能算推測:
 
-- GM command 具體送到哪個後端服務。
-- runtime consumer 如何讀 Redis control hash。
-- 這條 flow 是否為 Nick 實際參與過。
+- GM command 具體接收端。
+- runtime consumer 如何讀 Redis。
+- Nick 是否實際維護或主導此 flow。
 
-下一步 evidence：
+下一步 evidence:
 
-- `sendGmCommand()` 定義與通訊方式。
-- `DbConfig::getGameServerRedis()` 實際用途。
-- game server / GM command 接收端 repo。
-- Nick 相關 MR / ticket / commit / 本人確認。
+- 補 `evidence.md` 的掃描範圍與未確認邊界。
+- 定位 GM command receiver / runtime consumer。
+- 後續再決定是否需要 Level 2 / Level 3。
 
-### 2. `admin-config-redis-sync`
+履歷適合度:
 
-中文名稱：後台設定同步到 Redis
+- 目前中等。可作學習與面試素材。
+- 未補 Nick 實際參與 evidence 前，不更新履歷。
 
-推薦程度：高，適合第二條或與 point-control 串成 control plane 主題。
+### 2. `payment-order-status-repair`
 
-理由：
+中文名稱: 充值 / 提現訂單狀態修正
 
-- 這是典型 control plane -> Redis projection -> runtime consumer flow。
-- 已確認 `RedisSynchronize.php` 集中處理支付、商戶、VIP、活動、遊戲列表、渠道等設定同步。
-- 適合討論 cache consistency、設定發布、回滾、操作 log、同步失敗與 runtime 設定不一致。
-- 比純報表更接近 Platform Backend / System Owner。
+推薦程度: 高，但不建議只在 `app_bi` 深挖
 
-核心風險：
+理由:
+
+- 涉及充值、提現、訂單狀態修正，是 money correctness 高風險入口。
+- git log 有 `RD-142`、`payment_order_search`、`RD-371` 這類訂單修復、跨月查詢、redis lock 線索。
+- Senior / Owner 價值很高，但真正核心應在 `payment` 或錢包 / 訂單後端，不該停在 PHP 後台。
+
+核心風險:
+
+- 後台誤修訂單狀態造成入帳 / 出款錯誤。
+- 跨月查詢或修復錯表。
+- 修正與 payment source of truth 不一致。
+- 人工修正缺少 audit、approval、reconciliation。
+- redis lock 或審核 lock 若使用不當，可能重複處理或卡單。
+
+只能算推測:
+
+- 修正後是否觸發錢包、通知、對帳或補償。
+- `payment` repo 是否有真正狀態機與 callback flow。
+- Nick 是否參與相關修復。
+
+下一步 evidence:
+
+- `/Users/nick/Git/iwin/payment` Step 1 / Step 2。
+- 查 payment callback、order state machine、wallet update、manual repair、audit log。
+- 查 `RD-142` / `RD-371` 對應 diff 與後續收斂。
+
+履歷適合度:
+
+- 潛力高，但目前不能寫。
+- 需先轉去後端 repo 補 evidence。
+
+### 3. `admin-config-redis-sync`
+
+中文名稱: 後台設定同步 Redis
+
+推薦程度: 高，適合做 control plane 第二條
+
+理由:
+
+- `RedisSynchronize.php` 集中處理大量 `save*ToRedis()`。
+- 後台設定同步到 Redis 是典型 control plane -> runtime projection。
+- 適合練 cache consistency、設定發布、回滾、版本、同步失敗、runtime consumer。
+
+核心風險:
 
 - DB 設定已改，但 Redis 未同步。
-- Redis 同步成功，但 runtime service 尚未讀到或讀到舊設定。
-- 多 channel 設定同步時部分 channel 成功、部分失敗。
-- 缺少版本號、審核、回滾或同步結果追蹤時，production 問題難定位。
+- Redis 同步成功，但 runtime service 讀到舊值。
+- 多 channel / 多設定同步 partial success。
+- 缺少同步結果、版本、審核、rollback，會讓 production 問題難排。
 
-只能算推測：
+只能算推測:
 
 - 每個 Redis key 的實際 consumer。
-- 是否有 wait sync / retry / 補償機制。
-- 是否有完整操作審核或 rollback。
+- 是否有 retry / wait sync / compensation。
+- 是否有完整操作審核。
 
-下一步 evidence：
+下一步 evidence:
 
-- 各同步方法寫入的 Redis key 與 field。
-- runtime service 讀取這些 key 的 repo / class。
-- 操作權限與操作紀錄位置。
+- 列出各 `save*ToRedis()` 寫入 key / field。
+- 找對應 runtime service consumer。
+- 查是否有 operation log、retry、rollback。
 
-### 3. `daily-game-record-summary`
+履歷適合度:
 
-中文名稱：每日遊戲紀錄 / RTP 彙總
+- 中等。需要 consumer evidence 才能轉成強 case。
 
-推薦程度：中高，適合第三條，或在讀 `game_job` 後再做。
+### 4. `daily-game-record-summary`
 
-理由：
+中文名稱: 每日遊戲資料彙總 / RTP 查詢
 
-- 遊戲投注、派彩、RTP、局紀錄是博弈平台核心資料。
-- 已確認 `GameData.php` 會同時讀 Redis 即時資料與歷史 daily table。
-- 很適合討論 projection、資料延遲、跨日查詢、今日即時資料與歷史資料合併。
-- 但如果只讀 `app_bi`，容易停在報表展示層；需要串 `game_job` 或資料產生端才完整。
+推薦程度: 中高，但需搭配 producer repo
 
-核心風險：
+理由:
 
-- Redis 今日資料與歷史表資料重複或漏算。
-- daily table 產生延遲，造成後台看到的數字與交易真相不一致。
-- RTP / bet / win 金額單位轉換錯誤。
-- 跨 channel / game / cps 篩選條件不一致。
+- 遊戲投注、派彩、RTP、留存與 daily summary 是博弈平台核心資料。
+- `GameData.php` 讀 `daily_rtp_total`、今日資料與歷史資料；git log 有多筆 `daily_game_record_summary`。
+- 很適合討論 projection、資料延遲、跨日、Redis 今日資料與歷史表合併。
 
-只能算推測：
+核心風險:
 
-- Redis `gameData` 寫入來源。
-- `daily_rtp_total` 產生排程。
-- 報表是否用於正式對帳或只是營運觀察。
+- Redis 今日資料與 daily table 重複或漏算。
+- daily summary job 延遲，後台數字與交易真相不一致。
+- 金額倍率轉換錯誤。
+- report 被誤用成 source of truth。
 
-下一步 evidence：
+只能算推測:
 
-- `game_job` 或其他 aggregation job。
-- Redis `gameData` producer。
-- `daily_rtp_total` 寫入端。
+- Redis 今日資料 producer。
+- `daily_rtp_total` / `log_game_daily_record` 寫入端。
+- 是否有正式 reconciliation。
 
-### 4. `game-round-record-query`
+下一步 evidence:
 
-中文名稱：遊戲局紀錄查詢
+- `/Users/nick/Git/iwin/game_job`
+- `daily_rtp_total` producer。
+- `log_game_daily_record` producer。
+- 今日 Redis 與歷史 table 合併規則。
 
-推薦程度：中，適合排查故事，但不建議第一條。
+履歷適合度:
 
-理由：
+- 中等。只讀 `app_bi` 不夠。
 
-- 已確認大量後台頁面會查 `GameRound` controller。
-- `_getGameInfo()` 會依玩家、局號、serial id、時間區間查 daily log table。
-- `_getRecord()` 解析 `common_data`，轉成投注、派彩、餘額、離線狀態等展示欄位。
-- 適合講 production troubleshooting：玩家申訴、局號查詢、派彩查核。
+### 5. `game-round-record-query`
 
-核心風險：
+中文名稱: 遊戲局紀錄查詢 / production troubleshooting 入口
 
-- 查詢條件不足或時間區間過大造成查詢壓力。
-- daily table 分表與跨日查詢造成漏資料。
-- `common_data` 解析邏輯與遊戲實際資料格式不一致。
-- 第三方遊戲與自研遊戲的局資料格式不同。
+推薦程度: 中，適合排查故事
 
-只能算推測：
+理由:
 
-- `log_reel_{Y_n_j}` 寫入端。
-- 第三方 ANTPLAY / PG 資料是否與本地遊戲同一套 source of truth。
-- Nick 是否曾用這條 flow 排查 production issue。
+- 大量 `public/admin/gameRound/*.html` 與 `GameRound.php` 形成遊戲局查詢入口。
+- 可用於玩家申訴、派彩爭議、局號查詢、第三方遊戲排查。
+- git log 有 PG / GSC / ANTPLAY / RD-146 等 provider 查詢修正線索。
 
-下一步 evidence：
+核心風險:
 
-- `slotsLogDBV()` 連線來源。
-- `log_reel_*` 寫入服務。
-- 第三方遊戲局資料同步或落地流程。
+- 查詢時間區間過大造成 DB 壓力。
+- `log_reel_*` daily table 跨日漏查。
+- `common_data` 解析與實際 game log schema 不一致。
+- 第三方 provider 與自研遊戲資料格式不同。
 
-### 5. `app-bi-report-export`
+只能算推測:
 
-中文名稱：BI 報表查詢與匯出
+- `log_reel_*` 寫入端。
+- third-party provider record sync 的 truth source。
+- Nick 是否用這條 flow 排查過 production issue。
 
-推薦程度：中，價值高但不宜第一條。
+下一步 evidence:
 
-理由：
+- `iwin_gameserver` / `third_games_api` / `game_api` 的 log writer。
+- provider record sync / callback / settle path。
 
-- BI 報表對營運、對帳、觀察趨勢有價值。
-- 已確認有支付、提現、遊戲資料、Excel 匯出等入口。
-- 但只讀 `app_bi` 容易變成「查詢頁整理」，Senior / Owner 深度要靠資料產生端、匯出壓力與對帳邊界補足。
+履歷適合度:
 
-核心風險：
+- 中低到中。適合面試排查故事，不適合單獨當強履歷 bullet。
+
+### 6. `app-bi-report-export`
+
+中文名稱: BI 報表查詢與匯出
+
+推薦程度: 中
+
+理由:
+
+- 報表與匯出對營運有價值。
+- `PayData.php`、`WithdrawalData.php`、`DataReportService.php`、多個 admin page 有查詢 / 匯出入口。
+- 但只讀 `app_bi` 容易變成報表 CRUD / Excel 匯出整理。
+
+核心風險:
 
 - 報表資料被誤認為交易真相。
 - 大範圍匯出拖垮 PHP / DB / Mongo。
-- 分頁與匯出結果不一致。
-- 報表延遲造成營運誤判。
+- 分頁查詢與匯出結果不一致。
+- BI log producer 延遲或漏資料。
 
-只能算推測：
+只能算推測:
 
-- 匯出是否有背景任務或限流。
-- 報表資料是否作為正式對帳依據。
-- BI log 由哪個服務產生。
+- 匯出是否有限流或背景任務。
+- BI log producer。
+- 報表是否用於正式對帳。
 
-下一步 evidence：
+下一步 evidence:
 
-- Mongo BI log producer。
-- Excel 匯出限制與生成方式。
-- 報表與正式交易表的對帳規則。
+- BI / Mongo log producer。
+- 匯出限制、row limit、背景任務。
+- 對帳規則。
 
-### 6. `admin-rbac-permission-check`
+履歷適合度:
 
-中文名稱：後台 RBAC / 權限判斷
+- 低到中。除非有實際優化或事故處理 evidence。
 
-推薦程度：中低，重要但不適合作為第一條 Senior case。
+### 7. `admin-rbac-permission-check`
 
-理由：
+中文名稱: 後台 RBAC / 權限判斷
 
-- 權限是後台控制面的安全邊界。
-- 已確認有 `auth/permission`、role、role_menu、auth_role、members、Redis / DB 權限資料。
-- 但目前 evidence 比較偏後台管理功能，面試價值不如直接影響 runtime 的 point-control。
+推薦程度: 中低
 
-核心風險：
+理由:
 
-- 權限 cache 與 DB 不一致。
-- 前端只做 menu 隱藏，後端未完整阻擋。
-- 角色刪除、menu 更新、user role 更新後 cache 未失效。
-- 高風險操作沒有二次確認或稽核。
+- RBAC 是所有 admin operation 的安全邊界。
+- `Auth.php` 有 role / menu / permission 相關邏輯。
+- 但本次只確認到後台權限入口，不足以形成強 production flow。
 
-只能算推測：
+核心風險:
 
-- 所有後台操作是否都經過 `auth/permission`。
+- 前端 hide menu 但後端未阻擋。
+- 權限 DB / cache 不一致。
+- 角色異動後 session / cache 未失效。
+- 高風險操作沒有二次確認或 audit。
+
+只能算推測:
+
+- 所有 controller 是否都經過後端權限防護。
 - 權限 cache invalidation 是否完整。
-- Nick 是否實際維護過 RBAC。
+- Nick 是否維護過 RBAC。
 
-下一步 evidence：
+下一步 evidence:
 
 - Login / session / middleware。
-- 前端權限檢查呼叫點。
-- 每個 controller 是否有後端權限防護。
+- 前端 permission call path。
+- 高風險 controller 是否有後端防護。
+
+履歷適合度:
+
+- 中低。除非有明確修權限或安全邊界 evidence。
 
 ## 維度比較
 
 | Flow | Data Consistency | Transaction Boundary | State Transition | Idempotency | Retry / Compensation | Cache Consistency | MQ / Async | Downstream / Callback | Observability | Manual Recovery | Interview Value | Resume Value |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `point-control-admin-operation` | 高 | 高 | 高 | 中 | 高 | 高 | 低 | 高 | 中 | 高 | 高 | 中高 |
+| `point-control-admin-operation` | 高 | 高 | 高 | 中 | 高 | 高 | 低 | 高 | 中 | 高 | 高 | 中 |
+| `payment-order-status-repair` | 高 | 高 | 高 | 中 | 高 | 中 | 低 | 中高 | 高 | 高 | 高 | 高待補 |
 | `admin-config-redis-sync` | 中高 | 中 | 中 | 中 | 中高 | 高 | 低 | 中 | 中 | 高 | 高 | 中 |
 | `daily-game-record-summary` | 高 | 中 | 中 | 低 | 中 | 中高 | 中 | 中 | 中 | 中 | 中高 | 中 |
-| `game-round-record-query` | 中高 | 低 | 中 | 低 | 低 | 低 | 低 | 中 | 中 | 高 | 中 | 中 |
+| `game-round-record-query` | 中高 | 低 | 中 | 低 | 低 | 低 | 低 | 中 | 中 | 高 | 中 | 中低 |
 | `app-bi-report-export` | 中 | 低 | 低 | 低 | 低 | 低 | 低 | 低 | 低中 | 中 | 中 | 低中 |
-| `admin-rbac-permission-check` | 中 | 中 | 中 | 中 | 低 | 中高 | 低 | 低 | 中 | 中 | 中 | 中 |
+| `admin-rbac-permission-check` | 中 | 中 | 中 | 中 | 低 | 中高 | 低 | 低 | 中 | 中 | 中 | 中低 |
 
 ## 最適合先做成 Case Study
 
-第一選擇：
+第一選擇:
 
 ```text
 point-control-admin-operation
 ```
 
-原因：
+原因:
 
-- 它是目前 `app_bi` 裡最像 production owner 的 flow。
-- 不是單純查詢，而是「後台操作 -> DB / Redis -> GM command -> runtime effect -> operation log」。
-- 可以自然追問一致性、失敗補償、人工恢復、權限、操作稽核。
-- 即使最後確認 Nick 只是對接 / 分析，也能保守包裝成「理解與分析後台控制面如何影響 runtime」。
+- 已經有 Step 3 文件，最符合「慢慢讀、同一條補完整」。
+- 在 `app_bi` 內 evidence 最完整。
+- 能練習後台控制面如何安全影響 runtime。
+- 但下一步要先補「下游未掃 / 掃描邊界」，不能硬寫履歷。
 
-第二選擇：
+第二選擇:
+
+```text
+payment-order-status-repair
+```
+
+原因:
+
+- 金流訂單修正的 Senior 價值很高。
+- 但不建議繼續只掃 `app_bi`；應轉去 `payment` repo。
+
+第三選擇:
 
 ```text
 admin-config-redis-sync
 ```
 
-原因：
+原因:
 
-- 它可以訓練 Platform Backend 的 cache projection 與 runtime 設定一致性。
-- 但要補 Redis consumer evidence 才能完整。
+- 可以形成 control plane 主題。
+- 需要補 Redis consumer evidence。
 
-第三選擇：
+## 哪些 Flow 只看到後台 / BI 入口
 
-```text
-daily-game-record-summary
-```
+目前不適合直接寫履歷:
 
-原因：
-
-- 它有報表與遊戲數據價值。
-- 但要先找到資料產生端，否則會停在 BI 展示層。
-
-## 不建議先做的 Flow
-
-暫不建議先做：
-
-- `app-bi-report-export`：容易變成報表 CRUD / Excel 匯出整理。
-- `game-round-record-query`：很適合排查，但需要先串 log 寫入端。
-- `admin-rbac-permission-check`：重要，但單獨當第一個 case 的 production impact 不如 point-control 直接。
+- `point-control-admin-operation`: 只確認到 `app_bi` 發送端，尚未確認 GM receiver / runtime consumer。
+- `payment-order-status-repair`: 只確認到人工修正入口，尚未確認 payment source of truth。
+- `daily-game-record-summary`: 只確認到查詢 / 展示端，尚未確認 producer。
+- `game-round-record-query`: 只確認到查詢端，尚未確認 log writer。
+- `app-bi-report-export`: 只確認到報表 consumer，尚未確認 BI log producer。
+- `admin-rbac-permission-check`: 只確認到權限入口，尚未確認完整 middleware / backend enforcement。
 
 ## 下一步要補的 Evidence
 
-如果做 `point-control-admin-operation`，下一步先補：
+如果繼續 `point-control-admin-operation`，下一步只補一件事:
 
-1. `sendGmCommand()` 定義、參數、錯誤處理。
-2. GM command 接收端 repo / service。
-3. Redis player control hash 的 consumer。
-4. `point_control` DB schema 與狀態欄位意義。
-5. `log_point_control` Mongo operation log 是否有查詢 / 補償入口。
-6. batch add / edit 的部分成功處理方式。
-7. Nick 實際參與 evidence：MR / ticket / commit / 本人確認。
+```text
+補掃描範圍與未確認邊界
+```
 
-如果做 `admin-config-redis-sync`，下一步先補：
+要更新:
 
-1. 各同步方法寫入的 Redis key / field。
-2. 對應 runtime service consumer。
-3. 同步失敗時是否進 wait sync / retry。
-4. 設定更新是否有審核 / 回滾 / 操作 log。
+- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
+- 必要時同步微調 `flow.md` 的「待確認 / 下游未掃」敘述。
 
-如果做 `daily-game-record-summary`，下一步先補：
+不做:
 
-1. Redis `gameData` producer。
-2. `daily_rtp_total` producer。
-3. 今日 Redis 與歷史 daily table 的切換 / 合併規則。
-4. 是否作為正式對帳或只是營運觀察。
+- 不更新履歷。
+- 不 commit / push，除非 Nick 要求。
+- 不把後台入口包裝成完整後端 owner。
 
 ## Claim Boundary
 
-可以說：
+可以說:
 
-- Step 2 已比較 `app_bi` 候選 flow，確認第一優先是 `point-control-admin-operation`。
-- `app_bi` 可作為後台控制面、BI 查詢與 production 排查入口來讀。
-- 後續若深挖，應以後端資料流與 runtime 影響為主，而不是 PHP 後台頁面本身。
+- Step 2 已重新比較 `app_bi` 候選 flow。
+- `point-control-admin-operation` 仍是 `app_bi` 內最值得先補完整的一條。
+- `payment-order-status-repair` 很有 Senior 價值，但應轉到 `payment` repo 才能深挖。
 
-只能說分析 / 參與：
+只能說分析 / 參與:
 
 - 在沒有 Nick 本人確認或 MR / ticket 前，只能說「分析 app_bi 後台入口與 production flow 候選」。
 
-不能說：
+不能說:
 
 - 不能寫 Nick 主導 `app_bi`。
-- 不能寫 Nick 主導 point-control、Redis sync、BI 報表。
+- 不能寫 Nick 主導 point-control、Redis sync、BI 報表或 payment repair。
 - 不能把 Step 2 ranking 寫進履歷。
 

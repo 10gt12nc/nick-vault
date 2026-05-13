@@ -36,17 +36,44 @@
 
 先讀：
 
-1. `07-core-positioning.md`
-2. `00-operating-rules.md`
-3. `02-learning-roadmap.md`
-4. `04-interview-casebook.md`
-5. `05-resume-master-zh.md`
-6. `08-application-autobiography-zh.md`
-7. `09-ai-prompt-manual.md`
-8. `10-vault-structure-plan.md`
-9. `11-senior-interview-readiness.md`
-10. `12-role-target-readiness-matrix.md`
-11. `13-code-capability-map.md`
+1. `00-operating-rules.md`
+2. `09-ai-prompt-manual.md`
+3. `03-flow-learning-package-template.md`
+4. `07-core-positioning.md`
+5. `02-learning-roadmap.md`
+6. `04-interview-casebook.md`
+7. `05-resume-master-zh.md`
+8. `08-application-autobiography-zh.md`
+9. `10-vault-structure-plan.md`
+10. `11-senior-interview-readiness.md`
+11. `12-role-target-readiness-matrix.md`
+12. `13-code-capability-map.md`
+
+## AI 自動維護規則
+
+這套規則是全 vault 共用，不是單一專案專用。
+
+Nick 之後只要下 project / flow / Step 任務，例如：
+
+```text
+payment step1
+app_bi step2
+某 flow Step 3
+下一步
+繼續
+```
+
+AI 必須自動：
+
+- 重讀 KB、project 既有文件與相關 code 最新狀態。
+- 判斷本次是 Level 1 / Level 2 / Level 3。
+- 寫清楚已掃、未掃、推測與待確認。
+- 自動判斷是否要維護 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB。
+- 自動給下一步建議。
+
+Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護規則」。
+
+AI 不會背景定期自動掃 repo，也不會自動 commit / push，除非 Nick 明確要求或本對話已要求推送。
 
 暫時不要讀全部 flow。先挑一條做完整，例如：
 

@@ -4,10 +4,13 @@
 
 核心原則：
 
+- 這份提示詞手冊是全 vault 共用，不是單一專案專用。
+- 任何 project / flow / Step 任務都要自動套用本手冊，不需要 Nick 每次重貼規則。
 - 不要一次叫 AI 產很多。
 - 不要叫 AI 平均整理全部 class。
 - 每次只跑一個 step。
 - 每次只完成一條 flow。
+- 每次 Step 開始前，AI 必須自動重讀 KB、該 project 既有文件與相關 code 最新狀態；Nick 不需要每次提醒。
 - 不確定就標示「已確認 / 推測 / 待確認」。
 - 只輸出整理後的新內容，不複製舊檔。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
@@ -36,6 +39,7 @@
 - 只能動 nick-vault。
 - 公司專案只能讀，不能改。
 - archive/ 只能當參考來源。
+- 每次 Step / flow 任務開始前，請自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不要等 Nick 說「重讀」。
 - 新內容要重新整理、去重、結合、優化，不要複製舊檔。
 - 不要產生 code。
 - 不要寫 secret、token、內網 IP、production URL、客戶資料。
@@ -47,6 +51,53 @@
 
 目標：
 把專案 code / 舊資料 / 待刪區參考內容，整理成 Senior Java Backend / Platform Backend / System Owner 可讀、可面試、可轉履歷的學習資料。
+```
+
+## 0.1 每次任務的自動重讀 Checklist
+
+```text
+開始前請自動重讀，不需要 Nick 另外提醒。此規則適用所有 project / flow / Step：
+
+KB:
+- AGENTS.md
+- senior-owner-playbook/00-operating-rules.md
+- senior-owner-playbook/09-ai-prompt-manual.md
+- senior-owner-playbook/03-flow-learning-package-template.md
+
+Vault:
+- projects/{domain}/{project}/README.md
+- projects/{domain}/{project}/step*.md
+- projects/{domain}/{project}/flows/{flow-name}/*.md
+
+Code repo:
+- 目前 branch
+- 遠端 / 近期 branch 清單
+- 近期 git log
+- path-specific git log
+- route / controller / service / repository / model / config / job / consumer / admin page
+
+輸出時要寫清楚：
+- 已重讀什麼
+- 未重讀什麼
+- 未重讀原因
+```
+
+## 0.2 每次任務的自動維護 Checklist
+
+```text
+完成後請自動判斷是否需要維護：
+
+- project README 是否要更新？
+- Step 文件是否要更新？
+- flow evidence 是否要補掃描範圍？
+- claim-boundary 是否要補不能誇大的地方？
+- senior-owner-playbook 的共用規則是否有新增通用原則？
+- 是否需要更新 todo / 下一步？
+
+如果不更新，請說明原因，例如：
+- 本次只是比較，不改 flow。
+- 本次只補 evidence，不動履歷。
+- 本次是 project 局部規則，不需要改共用 KB。
 ```
 
 ## 1. Step 1：找 Flow

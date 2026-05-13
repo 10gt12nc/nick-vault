@@ -2,7 +2,7 @@
 
 這裡放未來各專案整理後的新分析。
 
-目前先只建立規範，還不開始寫個別 project case。
+所有 project 都套用同一套共用維護規則，不需要 Nick 每次重複提醒「重讀 KB / 重讀 code」。
 
 先讀：
 
@@ -14,6 +14,8 @@
 - 不複製舊檔。
 - 不搬公司專案 code。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
+- 每次開始前，AI 必須自動重讀 KB、project 既有文件與相關 code 最新狀態。
+- 每次完成後，AI 必須自動判斷是否要維護 README、Step 文件、flow evidence、claim boundary 或共用 KB。
 - 每次只做一條 flow。
 - 做新 flow 前，先檢查 `projects/**/flows/` 是否已有同名或相近 flow。
 - 尚未完成 evidence 的 flow，不更新履歷 master。

@@ -2,7 +2,33 @@
 
 這份是 `projects/` 開工前的硬規則。
 
-目前先建立規範，不開始寫個別 project case。
+本規範適用所有 `projects/{domain}/{project}`。不是單一專案專用。
+
+## 自動維護共用規則
+
+Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
+
+每次處理任何 project / flow / Step 前，AI 必須自動：
+
+- 重讀 `AGENTS.md`。
+- 重讀 `senior-owner-playbook/00-operating-rules.md`。
+- 重讀 `senior-owner-playbook/09-ai-prompt-manual.md`。
+- 重讀 `senior-owner-playbook/03-flow-learning-package-template.md`。
+- 重讀該 project 既有 `README.md`、Step 文件、flow 文件。
+- 重讀相關 code repo 的 branch、log、path-specific log 與主要入口。
+- 判斷本次是 Level 1 / Level 2 / Level 3。
+- 寫清楚已掃、未掃、待確認。
+
+每次完成後，AI 必須自動判斷是否需要同步維護：
+
+- project README
+- Step 文件
+- flow evidence
+- claim boundary
+- project-level career/interview 素材
+- 共用 KB
+
+不需要更新時，也要簡短說明原因。
 
 ## 目的
 

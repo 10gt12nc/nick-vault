@@ -2,6 +2,34 @@
 
 每次只建立一條 flow。不要一次產很多。
 
+本模板是全 `projects/` 共用模板，適用所有 domain / project / flow，不是單一專案專用。
+
+## 自動重讀
+
+每次建立或更新 flow 學習包前，AI 必須自動重讀：
+
+- KB 規則
+- 該 project 既有 Step 文件
+- 該 flow 既有文件
+- 相關 code path 與 git log
+
+Nick 不需要每次提醒「重讀 KB / 重讀 code」。
+
+沒有重讀到的部分，必須在 evidence 裡標出。
+
+## 自動維護
+
+每次建立或更新 flow 後，AI 必須自動判斷是否要同步維護：
+
+- project README
+- Step 文件
+- `evidence.md`
+- `claim-boundary.md`
+- project-level `career-interview.md`
+- 共用 playbook 規則
+
+預設不更新履歷 master；只有 evidence 足夠且 Nick 明確要求時才更新。
+
 ## 深掃等級
 
 Flow 學習包預設使用 Level 2 Flow 深掃。

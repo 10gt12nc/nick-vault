@@ -104,20 +104,41 @@ projects/{domain}/{project}/
 
 ## AI 會不會自動維護？
 
-不會。
+分兩種。
 
-AI 不會自己定期整理，也不會在你沒有要求時自動掃 repo。
+### 不會背景自動跑
 
-但只要你之後用 `09-ai-prompt-manual.md` 的提示詞開新任務，AI 就能依規則維護：
+AI 不會自己定期整理，也不會在 Nick 沒有要求時背景自動掃 repo。
+
+如果要「定期自動跑」，那要另外建立 automation。現在先不建議，因為 Nick 目前更需要慢慢讀、人工確認，而不是讓 AI 自動產一堆消化不了的文件。
+
+### 會在每次任務中自動維護
+
+只要 Nick 下任何 project / flow / Step 任務，例如：
+
+```text
+app_bi step2
+payment step1
+point-control-admin-operation Step 3
+下一步
+繼續
+```
+
+AI 必須自動套用共用規則：
 
 - 先讀規則
 - 再讀 playbook
-- 再讀指定專案
+- 再讀指定 project 既有文件
+- 再讀相關 code 最新狀態
+- 判斷掃描等級
 - 只整理一條 flow
-- 產出新分析
-- 必要時更新履歷或面試資料
+- 產出或更新新分析
+- 自動判斷是否要更新 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB
+- 自動給下一步建議
 
-如果你要「定期自動跑」，那要另外建立 automation。現在先不建議，因為你目前更需要慢慢讀、人工確認，而不是讓 AI 自動產一堆你消化不了的文件。
+Nick 不需要每次重複提醒「重讀 KB / 重讀 code / 維護規則」。
+
+這條是全 vault 共用行為，適用所有 `projects/`，不需要每個專案各自再寫一次。
 
 ## 建議工作節奏
 

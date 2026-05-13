@@ -1,5 +1,36 @@
 # 維護規則
 
+## 全 vault 共用規則
+
+本文件是整個 `nick-vault` 的共用維護規則，適用所有專案、所有 flow、所有 Step。
+
+不是只有 `app_bi` 適用。之後不管 Nick 下：
+
+- `iwin payment step1`
+- `ugsoft-admin-api step2`
+- `antplay-slot-game-api 某 flow Step 3`
+- `DevOps step1`
+- `下一步`
+
+AI 都必須套用同一套規則。
+
+AI 需要自動維護：
+
+- 自動重讀 KB。
+- 自動重讀該 project 既有文件。
+- 自動重讀相關 code 最新狀態。
+- 自動判斷掃描等級。
+- 自動標示已掃 / 未掃 / 待確認。
+- 自動避免履歷誇大。
+- 自動給下一步建議。
+- 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
+
+AI 不會做的事：
+
+- 不會在 Nick 沒有要求時背景定期掃 repo。
+- 不會自動 commit / push，除非 Nick 明確要求或本對話已要求推送。
+- 不會把後台入口硬包裝成後端成果。
+
 ## 只保留新資料
 
 外層只保留新的長期結構：
@@ -17,6 +48,41 @@
 - 更保守 claim
 - 更容易讀
 - 更適合面試與履歷
+
+## 每次 Step 前的自動重讀規則
+
+Nick 不需要每次提醒「重讀 KB」或「重讀 code」。只要 Nick 下達以下任一類請求，AI 必須自動重讀：
+
+- `{project} step1 / step2 / step3`
+- `{project} {flow} Step N`
+- `下一步`
+- `繼續`
+- `重做`
+- `深掃`
+- `補 evidence`
+- `轉面試`
+
+每次開始前至少要重讀：
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+- 該 project 既有 README / Step 文件 / flow 文件
+- 相關 code repo 的目前分支、近期 log、相關 path-specific log、主要入口
+
+如果是 Step 1 / Step 2：
+
+- 重讀既有 Step 1 / Step 2，避免產生重複或過期 ranking。
+- 重讀 code repo 的 branch / log / route / controller / service / job / config。
+
+如果是 Step 3 之後：
+
+- 重讀該 flow 既有 `flow.md`、`evidence.md`、`interview.md`、`claim-boundary.md`。
+- 重讀相關 code path 與 path-specific git log。
+- 檢查是否有下游 repo 尚未定位。
+
+如果沒有重讀到某項，必須在輸出中標明「未重讀 / 原因」，不能假裝已讀。
 
 ## 每條 flow 的完成標準
 

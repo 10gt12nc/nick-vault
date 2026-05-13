@@ -5,6 +5,7 @@
 - 已將外層舊整理資料歸入 `archive/` 參考區，之後可由 Nick 人工審查是否刪除。
 - 從待刪區重新建立 `senior-owner-playbook/`。
 - 建立新入口、維護規則、flow inventory、學習路線、flow 模板、面試案例與唯一履歷自傳。
+- 已建立全 vault 共用自動維護規則：每次 project / flow / Step 任務前自動重讀 KB、既有文件與相關 code 最新狀態，完成後自動判斷是否維護 README、Step 文件、evidence、claim boundary、todo 或共用 KB。
 
 ## 下一步
 
@@ -32,25 +33,28 @@ payment-provider-callback
 4. `settled-bets-kafka`
 5. `observability-pipeline`
 
-### 3. 每條完成後更新
+### 3. 每條完成後自動判斷是否更新
 
+每條 flow 完成後，AI 要自動判斷是否需要更新：
+
+- project README
+- Step 文件
+- flow evidence / claim-boundary
 - `01-senior-owner-flow-inventory.md`
 - `04-interview-casebook.md`
 - `05-resume-master-zh.md`
+- `08-application-autobiography-zh.md`
+- `06-todo.md`
 
 但不要把履歷寫太滿。只有完成 flow 並補 evidence 後，才升級履歷說法。
 
 ## 下一個 prompt
 
 ```text
-先只做一條 flow：payment-provider-callback。
-
-請深掃 nick-vault/archive 與 /Users/nick/Git/iwin/payment。
-只能動 nick-vault。
-不要複製舊文，請重寫成新的完整學習包。
-不要腦補，沒有 evidence 就寫待確認。
-請依 senior-owner-playbook/03-flow-learning-package-template.md 產出。
+payment step1
 ```
+
+AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試最低門檻
 
