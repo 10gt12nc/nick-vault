@@ -248,13 +248,13 @@ Step: 3 重整
 下一步只推薦一件事:
 
 ```text
-app_bi point-control-admin-operation Step 4
+app_bi point-control-admin-operation Step 5
 ```
 
 原因:
 
 - Step 3 已重整，且 `decision-notes.md` 已補。
-- 下游 GM receiver / runtime consumer 是待確認 evidence，不是新的下一步名稱。
-- 下一步應照主線轉成面試 case。
+- Step 4 已轉成保守面試 case。
+- 下一步應照主線檢查是否更新履歷 / 自傳。
 
 不更新履歷。

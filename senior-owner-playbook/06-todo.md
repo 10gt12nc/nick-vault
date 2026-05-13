@@ -12,22 +12,23 @@
 - 已補上初階到資深的軟硬實力矩陣：作為定期檢查表，不作為新的發散學習主線。
 - 已重整 `app_bi` Step 1 / Step 2 / Step 3，並補上 `point-control-admin-operation` 的 `decision-notes.md`。
 - 已修正 Step 主線規則：AI 不可自行把「下游定位 / 補 evidence / 補 decision-notes / 架構圖」升級成新下一步；Step 3 乾淨後預設進 Step 4。
+- 已完成 `app_bi point-control-admin-operation Step 4`，轉成保守面試 case，未更新履歷。
 
 ## 下一步
 
-### 1. app_bi point-control Step 4
+### 1. app_bi point-control Step 5
 
 建議下一步：
 
 ```text
-app_bi point-control-admin-operation Step 4
+app_bi point-control-admin-operation Step 5
 ```
 
 原因：
 
-- Step 1 / Step 2 / Step 3 已重整。
-- 下游 GM receiver / runtime consumer 是 Step 3 evidence 的待確認，不是新 Step。
-- 下一步應照主線把這條 flow 轉成面試 case。
+- Step 1 / Step 2 / Step 3 / Step 4 已重整。
+- Step 4 已把 flow 轉成保守面試 case。
+- Step 5 應檢查是否更新履歷 / 自傳；依目前 evidence，預期是不更新正式履歷，只保留候選句與 claim boundary。
 
 ### 2. 再做第一條完整後端 flow
 
@@ -57,7 +58,7 @@ app_bi point-control-admin-operation Step 4
 ## 下一個 prompt
 
 ```text
-app_bi point-control-admin-operation Step 4
+app_bi point-control-admin-operation Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。
