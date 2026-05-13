@@ -27,6 +27,10 @@ AI 需要自動維護：
 - 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
 - 自動判斷是否需要補 `decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 
+但「自動維護」不能改變 Step 主線。
+
+除非 Nick 明確指定，AI 不可以自行創造新的任務名稱或插入新流程，例如「下游定位」、「補硬底子」、「架構圖補完」作為下一步。這些只能作為目前 Step 內的待確認、補充文件或 evidence 項目。
+
 AI 不會做的事：
 
 - 不會在 Nick 沒有要求時背景定期掃 repo。
@@ -62,6 +66,28 @@ production flow
 - 職涯能力矩陣：用來檢查初階 / 中階 / 資深 / Lead 缺口，不是每天發散的新學習清單。
 
 如果輔助層開始讓文件變多、讀不完、或偏離 production flow，AI 必須主動收斂，回到「下一條最值得做的 flow」。
+
+## Step 主線不可改寫
+
+專案 flow 的預設主線固定為：
+
+```text
+Step 1：找 candidate flows
+Step 2：比較 candidate flows
+Step 3：單條 flow 深挖
+Step 4：轉面試 case
+Step 5：檢查是否更新履歷 / 自傳
+```
+
+AI 可以在 Step 3 內補 `evidence.md`、`claim-boundary.md`、`decision-notes.md`，也可以把下游 repo、runtime consumer、GM receiver 標成待確認。
+
+但 AI 不可以把這些補充項目升級成新的下一步名稱，除非 Nick 明確要求。
+
+例外:
+
+- 如果上一個 Step 不乾淨，先建議重整上一個 Step。
+- 如果 Nick 明確說「補 evidence」、「補 decision-notes」、「下游定位」、「架構圖」，才做該補充任務。
+- 如果 Nick 只問「下一步」，且目前 Step 3 已完成，預設回答 Step 4。
 
 ## 不複製舊檔
 
@@ -283,17 +309,17 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
 - 要說清楚是否需要 commit / push；預設不 commit、不 push，除非 Nick 明確要求。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
-- 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，下一步優先建議補 `decision-notes.md`，而不是繼續產更多 flow。
+- 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成，預設仍建議 Step 4，不要把 `decision-notes.md` 變成新 Step。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。
 
 建議順序：
 
-0. 若還沒有 domain / project 地圖：先補最小地圖，定位 repo 與 flow，不做過度架構圖。
+0. 若 Nick 明確要求地圖，才補最小地圖；否則不要插入新流程。
 1. Step 1 完成後：建議做 Step 2，比較 candidate flows。
 2. Step 2 完成後：建議挑排名最高且 evidence 足夠的單一 flow 做 Step 3。
 3. Step 3 完成後：建議補 failure scenarios、consistency、idempotency、retry、compensation、reconciliation。
-4. failure / consistency 補完後：若技術硬底子不足，補 `decision-notes.md`。
-5. decision-notes 或面試 case 完成後：轉面試 case，讓 Nick 能用 3 分鐘講清楚。
+4. Step 3 文件已乾淨後：建議 Step 4，轉面試 case。
+5. Step 4 完成後：建議檢查 claim boundary，再決定是否進 Step 5。
 6. 面試 case 完成後：建議檢查 claim boundary，再決定是否更新履歷。
 7. 履歷 evidence 不足時：建議先補 MR / ticket / commit / 實際參與證據，不更新履歷。
 

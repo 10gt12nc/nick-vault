@@ -248,12 +248,13 @@ Step: 3 重整
 下一步只推薦一件事:
 
 ```text
-app_bi point-control-admin-operation 補 decision-notes
+app_bi point-control-admin-operation Step 4
 ```
 
 原因:
 
-- Step 3 重整後，flow 與 evidence 邊界已清楚。
-- 這條 flow 很適合補技術硬底子: transaction boundary、Redis consistency、GM command idempotency、batch partial failure、audit / reconcile。
+- Step 3 已重整，且 `decision-notes.md` 已補。
+- 下游 GM receiver / runtime consumer 是待確認 evidence，不是新的下一步名稱。
+- 下一步應照主線轉成面試 case。
 
 不更新履歷。

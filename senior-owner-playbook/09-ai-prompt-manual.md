@@ -21,6 +21,7 @@
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
+- 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
 
@@ -299,7 +300,7 @@ Code repo:
 
 完成後請自動補：
 - 目前這條 flow 完成到哪裡
-- 下一步只推薦一件事
+- 下一步只推薦一件事；如果 Step 3 已乾淨，預設推薦 Step 4
 - 為什麼現在做它
 - 會更新哪些檔案
 - 是否會更新履歷；預設不更新
@@ -310,6 +311,8 @@ Code repo:
 ## 補充 A：Decision Notes 技術硬底子與決策比較
 
 用途：已經看懂一條 flow 後，補足 Senior / Owner 需要的技術判斷力。
+
+注意：這是 Step 3 的補充文件，不是新的 Step。除非 Nick 明確要求補 `decision-notes.md`，否則不要把它當成「下一步」來打斷 Step 4。
 
 ```text
 請針對這條 flow 補 decision-notes.md。
@@ -353,6 +356,8 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 ## 補充 B：Architecture Map 大專案 / 子專案地圖
 
 用途：不知道 repo 關係、子專案責任、flow 入口時使用。地圖只做到能定位 flow，不要取代 flow 深挖。
+
+注意：這是輔助工具，不是 flow 主線。除非 Nick 明確要求地圖，不要自行插入到 Step 1-5 之間。
 
 ```text
 請建立最小可用的大專案 / 子專案地圖。
@@ -514,6 +519,14 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 
 ```text
 下一步建議：{只推薦一件事}
+
+規則：
+- 不自行創造新 Step。
+- 如果 Step 1 完成，下一步是 Step 2。
+- 如果 Step 2 完成，下一步是 Step 3。
+- 如果 Step 3 完成且文件乾淨，下一步是 Step 4。
+- 如果 Step 4 完成，下一步才檢查 Step 5 / 履歷。
+- evidence / 下游 / decision-notes / 架構圖只能作為補充或待確認，不能取代 Step 主線。
 
 原因：
 - {為什麼現在最適合做這件事}

@@ -42,6 +42,8 @@
 - 若 AI 判斷目前不值得 Level 3，要大方說明原因，例如後台只是入口、下游未定位、履歷 claim 不足、或先讀後端 repo 更有價值。
 - 每次完成 Step 或 flow 更新後，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
+- 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
+- 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
 - 每次 Step 都要在 `evidence.md` 或對應文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
 - 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。
