@@ -77,7 +77,7 @@ projects/{domain}/{project}/
 
 ### flow.md
 
-只寫一條 flow：
+只寫一條 flow。`flow.md` 就是這條 flow 的研究分析報告主文，不要另外新增重複的 `research-analysis-report.md`：
 
 - 業務問題
 - 系統位置
@@ -90,7 +90,7 @@ projects/{domain}/{project}/
 
 ### evidence.md
 
-只放可驗證證據：
+只放可驗證證據。它是 `flow.md` 的證據附錄，不是另一份研究報告：
 
 - repo path
 - class / method / config 名稱
@@ -111,7 +111,7 @@ projects/{domain}/{project}/
 
 ### interview.md
 
-把 flow 轉成面試可講內容：
+把 flow 轉成面試可講內容。它是面試稿附錄，不取代 `flow.md`：
 
 - 30 秒摘要
 - 3 分鐘版本

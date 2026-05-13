@@ -1,7 +1,7 @@
 # Claim Boundary - point-control-admin-operation
 
 用途: 限制履歷與面試說法，避免誇大
-狀態: 已依新版 KB 重整
+狀態: Step 5 已檢查，不更新正式履歷 / 自傳
 
 ## 可以確認
 
@@ -64,6 +64,37 @@
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
+
+## Step 5 判定
+
+結論: `不更新正式履歷 / 自傳`。
+
+原因:
+
+- 目前只確認到 `app_bi` 後台操作面與 GM command 發送端。
+- 未掃下游 GM receiver / runtime Redis consumer。
+- 未確認 Nick 實際參與範圍、MR、ticket、commit 或 production issue。
+- 正式履歷 master 已有較泛化且保守的「參與後台控制面與營運工具維護」說法，不需要為此 flow 新增更強 claim。
+- 自傳目前只寫 production flow 思維與後台營運系統背景，沒有把本 flow 包裝成已主導成果，維持不動。
+
+本 flow 可用位置:
+
+- 面試中作為 code reading / production risk analysis case。
+- 用來練習 control plane、cross-resource consistency、audit、permission boundary。
+- 留作未來補 Nick evidence 後的候選履歷素材。
+
+本 flow 不可用位置:
+
+- 不放入 `05-resume-master-zh.md` 的正式 bullet。
+- 不放入 `08-application-autobiography-zh.md`。
+- 不放入「主導 / owner / production incident / 改善百分比」類說法。
+
+若未來要升級為履歷素材，最低需要補:
+
+- Nick 實際負責的任務範圍。
+- MR / ticket / commit / 上線紀錄其中至少一種 evidence。
+- 是否有實際修過 DB / Redis / GM command / Mongo log / 權限 / 批量操作問題。
+- 是否有下游 runtime repo evidence，能證明不只是後台入口。
 
 ## 需要 Nick 補充
 

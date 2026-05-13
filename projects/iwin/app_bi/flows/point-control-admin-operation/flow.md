@@ -248,13 +248,14 @@ Step: 3 重整
 下一步只推薦一件事:
 
 ```text
-app_bi point-control-admin-operation Step 5
+iwin payment Step 1
 ```
 
 原因:
 
 - Step 3 已重整，且 `decision-notes.md` 已補。
 - Step 4 已轉成保守面試 case。
-- 下一步應照主線檢查是否更新履歷 / 自傳。
+- Step 5 已在 `claim-boundary.md` 判定不更新正式履歷 / 自傳。
+- 下一步應轉去第一條完整後端 flow，優先從 payment repo 找 payment callback / money correctness 類 flow。
 
 不更新履歷。

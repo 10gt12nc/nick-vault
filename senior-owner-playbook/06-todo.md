@@ -13,22 +13,23 @@
 - 已重整 `app_bi` Step 1 / Step 2 / Step 3，並補上 `point-control-admin-operation` 的 `decision-notes.md`。
 - 已修正 Step 主線規則：AI 不可自行把「下游定位 / 補 evidence / 補 decision-notes / 架構圖」升級成新下一步；Step 3 乾淨後預設進 Step 4。
 - 已完成 `app_bi point-control-admin-operation Step 4`，轉成保守面試 case，未更新履歷。
+- 已完成 `app_bi point-control-admin-operation Step 5`，判定不更新正式履歷 / 自傳，只保留為面試分析 case 與候選履歷素材。
 
 ## 下一步
 
-### 1. app_bi point-control Step 5
+### 1. iwin payment Step 1
 
 建議下一步：
 
 ```text
-app_bi point-control-admin-operation Step 5
+iwin payment Step 1
 ```
 
 原因：
 
-- Step 1 / Step 2 / Step 3 / Step 4 已重整。
-- Step 4 已把 flow 轉成保守面試 case。
-- Step 5 應檢查是否更新履歷 / 自傳；依目前 evidence，預期是不更新正式履歷，只保留候選句與 claim boundary。
+- `app_bi point-control-admin-operation` 已完成 Step 1-5。
+- 因為只確認到後台 / control plane 發送端，所以不適合繼續硬包裝履歷。
+- 下一條應轉去真正後端 repo，優先找 payment callback / order state / wallet side effect / money correctness 類 flow。
 
 ### 2. 再做第一條完整後端 flow
 
@@ -58,10 +59,10 @@ app_bi point-control-admin-operation Step 5
 ## 下一個 prompt
 
 ```text
-app_bi point-control-admin-operation Step 5
+iwin payment Step 1
 ```
 
-AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。
+AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試最低門檻
 

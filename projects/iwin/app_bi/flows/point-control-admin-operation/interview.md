@@ -150,16 +150,22 @@ partial success。批量會依 center 分組送 GM command，如果部分 center
 
 它目前不能作為正式履歷主成果，因為缺 Nick 實際參與 evidence，也缺下游 runtime evidence。
 
-## 下一步
+## Step 5 後續
+
+Step 5 已在 `claim-boundary.md` 判定:
+
+- 不更新正式履歷 / 自傳。
+- 本 flow 留作面試分析 case。
+- 未補 Nick evidence 前，不升級成正式履歷 claim。
 
 下一步只推薦一件事:
 
 ```text
-app_bi point-control-admin-operation Step 5
+iwin payment Step 1
 ```
 
 原因:
 
-- Step 4 已轉成保守面試 case。
-- Step 5 要檢查是否能更新履歷 / 自傳。
-- 依目前 evidence，預期結論大概率是不更新正式履歷，只保留候選句與不能誇大邊界。
+- `app_bi` 這條 flow 已完成 Step 1-5。
+- 若要往 Senior / Platform Backend / Owner 更有履歷價值的方向走，下一條應讀真正後端 repo。
+- `payment` 比 `app_bi` 更可能產出 money correctness、callback、state transition、retry / compensation 類 case。

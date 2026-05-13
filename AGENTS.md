@@ -19,6 +19,17 @@
 - 不要新增 `ai-notes/`、`docs/`、`.claude/`、`.codex/`、`resources/` 作為長期資料位置。
 - 密鑰與 token 只能放本機 `.env`，不得寫入 Markdown 或 commit。
 
+## 近期排查防錯紀錄
+
+- 「不要維護流水帳」的意思是：不要建立或保留「今天做什麼、昨天做什麼、某次操作紀錄、records、operation-log、work-report」這類時間序列工作日誌。不是要改掉現有 `flow.md / evidence.md / interview.md / claim-boundary.md` 的分析結構。
+- `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
+- `evidence.md`、`decision-notes.md`、`interview.md`、`claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告。
+- 參考 workspace 正確路徑：
+  - `/Users/nick/Git/iwin/iwin-workspace`
+  - `/Users/nick/Git/antplay/math-workspace`
+- 參考其他 workspace 只能用來學防呆、索引、KB 治理與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo 規則到 `nick-vault`。
+- 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
+
 ## Senior / Owner 原則
 
 - 以下規則是全 vault 共用規則，適用所有 `projects/{domain}/{project}`、所有 flow、所有 Step；不是只適用 `app_bi`。

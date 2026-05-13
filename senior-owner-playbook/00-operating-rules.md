@@ -37,6 +37,97 @@ AI 不會做的事：
 - 不會自動 commit / push，除非 Nick 明確要求或本對話已要求推送。
 - 不會把後台入口硬包裝成後端成果。
 
+## 防再犯規則：流水帳、研究報告與規格變更
+
+本段是 2026-05-13 排查後補上的防錯規則。
+
+### 流水帳定義
+
+Nick 說「不要維護流水帳」時，指的是不要維護這類文件：
+
+- 今天做了什麼。
+- 昨天做了什麼。
+- 某次操作記錄。
+- `records/`
+- `operation-log`
+- `work-report`
+- `branch-log`
+- `decision-log` 若只是按時間堆事件，也視為流水帳。
+
+`nick-vault` 的事實來源應是：
+
+- `flow.md`
+- `evidence.md`
+- `decision-notes.md`
+- `interview.md`
+- `claim-boundary.md`
+- project README / architecture map
+- git log
+
+不要為了記錄 AI 做過什麼而新增時間序列日誌。
+
+### 研究分析報告定義
+
+在每條 flow 資料夾內：
+
+```text
+flow.md = 研究分析報告主文
+```
+
+其他檔案是附錄：
+
+- `evidence.md`：證據附錄。
+- `decision-notes.md`：技術決策附錄。
+- `interview.md`：面試稿附錄。
+- `claim-boundary.md`：履歷邊界附錄。
+
+AI 不准因為 Nick 問「研究分析報告在哪」就另創 `research-analysis-report.md` 或額外 README 造成重複與混亂。應直接回答：主報告在 `flow.md`。
+
+### 規格不可任意改
+
+參考其他 workspace 時，AI 只能先做評估，不得直接改 `nick-vault` 規格。
+
+除非 Nick 明確說「更新規則 / 維護 KB / 幫調整規格」，否則不准改：
+
+- Step 主線。
+- `projects/` 目錄規格。
+- flow 檔案責任。
+- 長期資料位置。
+- README / INDEX 的角色。
+
+若 AI 判斷規格需要調整，必須先說：
+
+```text
+我建議改哪裡
+為什麼
+會影響哪些檔案
+是否要我更新規則
+```
+
+取得 Nick 明確同意後才改。
+
+### 參考 workspace 邊界
+
+正確參考路徑：
+
+- `/Users/nick/Git/iwin/iwin-workspace`
+- `/Users/nick/Git/antplay/math-workspace`
+
+可參考：
+
+- approval / 防呆規則。
+- secrets redaction。
+- docs / KB 導航。
+- 不保留 records / operation-log / work-report 流水帳。
+- 以 git log 保留操作歷史。
+
+不可照搬：
+
+- iwin 的 deploy、JumpServer、k3s、Harbor、`.work/<service>` 規則。
+- math 的新遊戲開發 / GDD / RTP / JAR 模組規則。
+- 任何公司 workspace 的複雜開發型 docs 結構。
+- 個人路徑、內部 host、token、密碼或環境細節。
+
 ## 只保留新資料
 
 外層只保留新的長期結構：
