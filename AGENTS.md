@@ -28,6 +28,19 @@
 - 每條 flow 要分清楚已確認、推測、待確認。
 - 核心關注：money correctness、transaction consistency、state transition、idempotency、retry / compensation、reconciliation、observability、owner decision。
 - 履歷與面試不得誇大。沒有 evidence 前，不寫主導、獨立完成、改善 X%、正式架構師或全權 owner。
+- 「深掃」不是只 grep 幾個關鍵字；它至少要讀入口、主要 module、主要資料流、相關 commit log、path-specific history 與重要 diff。
+- 如果 Nick 明確說「極限深度」、「逐檔逐行」、「每個 commit diff 都看」，AI 要改用極限深掃：逐 module、逐檔、逐重要 commit diff 追修改原因、bug context、風險與最後收斂結果。
+- 若時間或範圍不適合一次做完極限深掃，必須明確切成批次，並標出已掃、未掃、下一批，不可假裝完成。
+- AI 必須主動判斷本次任務需要 Level 1 / Level 2 / Level 3 哪種掃描深度，並告訴 Nick 建議理由。
+- 若 Nick 沒指定深度，AI 要依目標自動建議：找 flow 用 Level 1、單條 flow 深挖用 Level 2、要寫成強 evidence 或追 bug history 才建議 Level 3。
+- 若 AI 判斷目前不值得 Level 3，要大方說明原因，例如後台只是入口、下游未定位、履歷 claim 不足、或先讀後端 repo 更有價值。
+- 每次完成 Step 或 flow 更新後，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。
+- 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
+- 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
+- 每次 Step 都要在 `evidence.md` 或對應文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
+- 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。
+- 後台、前端、BI、admin 類專案若不是 Nick 主開發，只能作為理解入口與對接 flow；履歷自傳應簡單帶過，不得硬包裝成主導後台或完整系統 owner。
+- 沒有實際 evidence 的技術點可以寫「略」、「不展開」、「建議補讀外部文章 / 官方文件」，不要為了湊滿格式而腦補。
 
 ## Flow 格式
 

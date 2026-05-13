@@ -12,6 +12,11 @@
 - 只輸出整理後的新內容，不複製舊檔。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
+- 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
+- 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
+- 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
+- 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
+- AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
 
 ## 0. 開新對話時的總提示詞
 
@@ -35,6 +40,10 @@
 - 不要產生 code。
 - 不要寫 secret、token、內網 IP、production URL、客戶資料。
 - 所有履歷說法要保守，沒有證據不要寫主導、獨立完成、改善百分比。
+- 每次完成後，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。
+- 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
+- 如果 Nick 說「深掃」，至少使用 Level 2；如果 Nick 說「極限深度 / 逐檔逐行 / 每個 commit diff」，使用 Level 3，並分批完成。
+- 如果 Nick 沒說深度，請依任務主動建議 Level 1 / 2 / 3；若不建議 Level 3，要說明原因。
 
 目標：
 把專案 code / 舊資料 / 待刪區參考內容，整理成 Senior Java Backend / Platform Backend / System Owner 可讀、可面試、可轉履歷的學習資料。
@@ -96,6 +105,12 @@
    - 待確認
 4. 建議第一條深挖 flow
 5. 下一步要讀的 code path
+6. 本次掃描範圍與未掃範圍
+   - 已看分支
+   - 未看分支
+   - 已看 repo
+   - 相關但未看 repo
+   - 只作入口參考、不作履歷 claim 的部分
 
 請只整理跟 Senior / Owner 有關的 flow，不要寫 class summary。
 ```
@@ -129,6 +144,7 @@
 4. 為什麼
 5. 哪些只能算推測
 6. 下一步要補的 evidence
+7. 哪些 flow 只看到後台 / 前端 / BI 入口，尚未看到後端實作，因此不適合直接寫履歷
 ```
 
 ## 3. Step 3：單條 Flow 深挖
@@ -162,6 +178,10 @@
 
 不要擴散到其他功能。
 
+深掃等級：
+- 預設使用 Level 2 Flow 深掃。
+- 如果 Nick 明確要求極限深度，使用 Level 3 極限深掃。
+
 請依 senior-owner-playbook/03-flow-learning-package-template.md 產出完整學習包。
 
 必須包含：
@@ -179,6 +199,9 @@
 - claim boundary
 - evidence
 - related files
+- 本次實際掃描範圍
+- 未掃描範圍與原因
+- 相關但尚未讀到的後端 / 下游 repo
 
 每個重要判斷都要標示：
 - 已確認
@@ -190,6 +213,65 @@
 - 誇大 Nick 實際貢獻
 - 寫 secret / token / internal IP / production URL
 - 把 class summary 當成 flow analysis
+
+完成後請自動補：
+- 目前這條 flow 完成到哪裡
+- 下一步只推薦一件事
+- 為什麼現在做它
+- 會更新哪些檔案
+- 是否會更新履歷；預設不更新
+- 是否需要 commit / push；預設不需要
+- 若這條 flow 目前只掃到後台 / 前端，請優先建議去讀真正後端 / 下游 code，而不是硬轉履歷
+```
+
+## 3.1 Level 3 極限深掃提示詞
+
+```text
+請對這條 flow 做 Level 3 極限深掃。
+
+要求：
+- 逐 module 建立掃描清單。
+- 逐檔逐行讀與 flow 有關的 code。
+- 每個相關 commit diff 都要看。
+- 每個重要 commit 要整理：
+  - commit hash
+  - 修改檔案
+  - 修改內容
+  - 從 diff 推測的 bug / 需求
+  - 對 flow、資料狀態、failure window 的影響
+  - 是否有 revert / follow-up / 收斂 commit
+- 比對主分支與近期相關分支。
+- 查 route / controller / service / repository / model / config / job / consumer / MQ / Redis / DB / external API / log / audit。
+- 沒看完就標未掃，不要寫完整。
+- 不知道原因就寫「從 diff 推測」，不要當成事實。
+
+輸出：
+1. 已掃 module 清單
+2. 未掃 module 清單
+3. commit timeline
+4. diff-backed flow changes
+5. failure / consistency matrix
+6. 待確認問題
+7. 下一批只推薦一件事
+```
+
+## 3.2 AI 自動判斷深掃等級
+
+```text
+在開始前請先判斷本次掃描等級：
+
+- Level 1：只找 candidate flows。
+- Level 2：單條 flow 深挖，建立 flow / evidence / interview / claim-boundary。
+- Level 3：要追 bug history、每個相關 commit diff、逐檔逐行、準備強面試或履歷 evidence。
+
+請輸出：
+1. 建議等級
+2. 為什麼
+3. 本次會掃什麼
+4. 本次不掃什麼
+5. 如果需要 Level 3，如何分批
+
+如果你判斷不值得 Level 3，請直接說，不要硬湊。
 ```
 
 ## 4. Step 4：轉面試 Case
@@ -267,4 +349,23 @@
 7. 是否有檢查這條 flow 以前是否讀過？
 8. 是否有更新 README 或 todo？
 9. 下一步只推薦一件事。
+```
+
+## 8. 自動下一步建議格式
+
+```text
+下一步建議：{只推薦一件事}
+
+原因：
+- {為什麼現在最適合做這件事}
+
+會更新：
+- {預計更新的檔案或資料夾}
+
+不會做：
+- 不更新履歷，除非 evidence 足夠且 Nick 明確要求。
+- 不 commit / push，除非 Nick 明確要求。
+
+建議提示詞：
+{Nick 下一句可以直接貼的短 prompt}
 ```

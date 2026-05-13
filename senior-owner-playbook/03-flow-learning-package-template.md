@@ -2,6 +2,23 @@
 
 每次只建立一條 flow。不要一次產很多。
 
+## 深掃等級
+
+Flow 學習包預設使用 Level 2 Flow 深掃。
+
+- Level 1 Flow 掃描：找 candidate flows，不逐檔逐行。
+- Level 2 Flow 深掃：單條 flow 追完整 code path、資料流、相關 commit log、重要 diff、failure window。
+- Level 3 極限深掃：Nick 明確要求時才啟用，逐 module、逐檔逐行、逐相關 commit diff，追每筆改動原因、bug context、後續 revert / follow-up / 收斂。
+
+若沒有完成 Level 3，不得說「完整逐檔逐行已掃」。
+
+AI 需要主動判斷深度：
+
+- 不確定 flow 值不值得做時，先 Level 1。
+- 已選定 flow 時，先 Level 2。
+- 需要強 evidence、bug history、履歷 claim 或 owner decision 時，再建議 Level 3。
+- 如果目前只是後台入口，且真正後端 / 下游未定位，先建議去定位後端 repo，不要直接把後台做 Level 3。
+
 ## 檔案位置
 
 ```text
@@ -51,7 +68,21 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 11. 履歷保守 bullet
 12. 不能誇大的邊界
 13. 下一步要查的 evidence
+14. 本次實際掃描範圍與未掃描範圍
 ```
+
+## 完成後必須給下一步建議
+
+每次完成 flow 學習包或其中一個 Step 後，AI 必須自動告訴 Nick 下一步建議。
+
+規則：
+
+- 只推薦一件事。
+- 如果 flow 尚未完整，優先建議繼續補同一條 flow。
+- Step 3 後通常建議補 failure scenarios / consistency / idempotency / retry / compensation / reconciliation。
+- 面試 case 完成前，不急著更新履歷。
+- 如果目前只看到後台 / 前端 / BI 操作入口，優先建議補讀真正後端 / 下游 repo。
+- 沒有 Nick 明確要求，不 commit、不 push。
 
 ## 拆檔規則
 
@@ -77,6 +108,18 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 ### 3. Code 路徑
 
 只列可確認的路徑，不列猜測。
+
+### 3.1 掃描範圍
+
+每份 evidence 都要寫：
+
+- 已看 repo：
+- 已看分支：
+- 已看 code path：
+- 已看 git log：
+- 相關但未看 repo：
+- 未看分支 / 未看原因：
+- 本 flow 是否只確認到後台 / 前端入口：
 
 ### 4. 正常流程
 
