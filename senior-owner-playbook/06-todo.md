@@ -10,22 +10,23 @@
 - 已補上技術硬底子與決策比較模組：每條高價值 flow 可新增 `decision-notes.md`，整理技術選型、差異比較、trade-off、owner decision 與面試追問。
 - 已補上大專案 / 子專案地圖規則：地圖只用來定位 repo 與 flow，不取代 production flow。
 - 已補上初階到資深的軟硬實力矩陣：作為定期檢查表，不作為新的發散學習主線。
+- 已重整 `app_bi` Step 1 / Step 2 / Step 3，並補上 `point-control-admin-operation` 的 `decision-notes.md`。
 
 ## 下一步
 
-### 1. 先把 app_bi 既有 Step 3 重整乾淨
+### 1. 定位 point-control 下游
 
-目前最近在做的是：
+建議下一步：
 
 ```text
-app_bi point-control-admin-operation Step 3 重整
+app_bi point-control-admin-operation 下游定位
 ```
 
 原因：
 
-- Step 3 已存在，但屬於舊規則第一版。
-- 需要補掃描範圍、未掃下游、claim boundary。
-- 不應直接跳 Step 4。
+- `app_bi` 目前只確認到後台發送端。
+- 要讓這條 flow 更完整，下一步應定位 GM command receiver / runtime Redis consumer。
+- 不應先更新履歷。
 
 ### 2. 再做第一條完整後端 flow
 
@@ -55,7 +56,7 @@ app_bi point-control-admin-operation Step 3 重整
 ## 下一個 prompt
 
 ```text
-app_bi point-control-admin-operation Step 3 重整
+app_bi point-control-admin-operation 下游定位
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。

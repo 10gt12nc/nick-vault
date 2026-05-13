@@ -2,54 +2,104 @@
 
 更新時間: 2026-05-13
 掃描等級: Level 1 Flow 掃描
+狀態: 已依新版 KB 重整
 
-## 本次掃描等級判斷
+## 自動重讀紀錄
 
-建議等級: Level 1
+已重讀 KB:
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+
+已重讀 vault:
+
+- `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step2-flow-comparison.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+
+已重讀 code repo:
+
+- `/Users/nick/Git/iwin/app_bi`
+- 目前分支: `main`
+- 遠端分支清單
+- 近期主線 log
+- path-specific log
+- route / controller / service / model / public admin page / migration / crontab 入口
+
+未重讀:
+
+- 沒有 checkout 每個遠端分支。
+- 沒有逐 commit diff。
+- 沒有掃下游 repo: `game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api`。
+
+## 舊文件狀態判斷
+
+| 文件 | 狀態 | 判斷 |
+| --- | --- | --- |
+| `README.md` | 需重整 | 舊版已有 Step 1，但需要補新版 KB 的舊文件狀態、主軸 / 輔助邊界、下游未掃說明 |
+| `step2-flow-comparison.md` | 需重整 | 排名可沿用，但需強化「後台入口不等於後端成果」 |
+| `flows/point-control-admin-operation/*` | 需補 evidence | Step 3 已存在，但 `evidence.md` 掃描範圍與未掃邊界不夠新版 KB 標準 |
+
+結論:
+
+- 不直接跳 Step 4。
+- 先重整 Step 1 / Step 2 / Step 3。
+- 不更新履歷。
+
+## 掃描等級判斷
+
+本次 Step 1 使用 Level 1。
 
 原因:
 
-- 這次任務是 `app_bi Step 1`，目標是找 candidate flows，不是深挖單一 flow。
-- Step 1 不應逐檔逐行拆完整 repo，也不應逐 commit diff 追每筆修改。
-- `app_bi` 是 PHP / ThinkPHP 後台與 BI 類專案，很多 flow 只是操作入口或查詢入口；若要寫成強 evidence，需要後續回到實際後端 / 下游 repo 深挖。
+- Step 1 任務是找 candidate flows，不是深挖單一 flow。
+- `app_bi` 是 PHP / ThinkPHP 後台與 BI 專案，多數內容是 control plane / reporting plane。
+- 若要形成強面試或履歷 evidence，必須回到實際後端 / 下游 repo。
 
-本次會掃:
+本次會做:
 
-- vault 內既有 `app_bi` 文件與已完成 flow。
-- `app_bi` 主分支、遠端分支清單、近期 git log。
-- route、controller、business service、crontab、public admin page 入口。
-- path-specific / keyword git log，用來找可能有價值的 production flow。
+- 找出 `app_bi` 中最有 Senior / Owner 價值的候選 flow。
+- 標清楚已確認、推測、待確認。
+- 標清楚哪些只是後台入口，不能直接寫履歷。
 
-本次不掃:
+本次不做:
 
-- 不逐檔逐行拆完整 repo。
-- 不逐 commit diff 追每筆修改原因。
-- 不掃下游 GM command receiver / game server / Java 後端。
-- 不更新履歷、自傳或 master resume。
+- 不逐檔逐行拆整個 repo。
+- 不逐 commit diff。
+- 不更新履歷、自傳。
+- 不把 `app_bi` 包裝成 Nick 主開發成果。
 
-## 重複 Flow 檢查
+## 專案定位
 
 已確認:
 
-- `projects/iwin/app_bi/flows/point-control-admin-operation/` 已存在，已有:
-  - `flow.md`
-  - `evidence.md`
-  - `interview.md`
-  - `claim-boundary.md`
-- `projects/iwin/app_bi/step2-flow-comparison.md` 已存在，承接舊版 Step 1 做過候選 flow 比較。
-- `senior-owner-playbook/01-senior-owner-flow-inventory.md` 有 app_bi / iwin 類高階候選名稱，例如:
-  - `app-bi-report-export`
-  - `daily-game-record-summary`
-  - `point-control-operations`
-  - `third-game-provider-reporting`
-  - `admin-reporting-reconciliation`
-  - `admin-rbac-operations`
+- `app_bi` 是 iwin 下的 PHP / ThinkPHP 後台與 BI 專案。
+- 主要能力包含:
+  - 後台 admin operation
+  - BI / 報表查詢
+  - 金流 / 提現查詢與人工修正入口
+  - 遊戲局紀錄查詢
+  - 每日遊戲資料彙總查詢
+  - Redis 設定同步
+  - 單點控制後台操作
+  - RBAC / 權限判斷
+  - Excel 匯出
 
-判斷:
+推測:
 
-- 可以重做 Step 1，因為 KB 已更新，需要補掃描等級、分支邊界與後台 / 下游邊界。
-- 不應刪掉已存在的 `point-control-admin-operation` flow。
-- 不應把 Step 1 直接升級成履歷 claim。
+- `app_bi` 多數 flow 是後台入口、查詢入口或設定同步入口。
+- 真正交易 truth source、runtime consumer、遊戲結算、金流 callback 可能在其他後端 repo。
+
+待確認:
+
+- Nick 實際參與過哪些 `app_bi` 功能。
+- 哪些 flow 有 MR / ticket / commit / production issue evidence。
+- `point-control` GM command handler 與 runtime Redis consumer 在哪個 repo。
 
 ## 本次掃描範圍
 
@@ -61,146 +111,48 @@
 已看分支:
 
 - 本地目前分支: `main`
-- 遠端分支清單已看，包含:
+- 遠端分支清單包含:
   - `origin/main`
-  - `origin/coupontrade`
   - `origin/beta`
-  - `origin/feature/PG`
+  - `origin/coupontrade`
   - `origin/feature/GSC`
-  - `origin/feature/merchantSettingToRedis`
+  - `origin/feature/PG`
   - `origin/feature/RD-152`
   - `origin/feature/RD-89`
-  - 其他較舊 feature branches
+  - `origin/feature/merchantSettingToRedis`
+  - 其他較舊 feature / ci 分支
 
 已看 git log:
 
-- `git log --oneline --decorate -30`
-- keyword log: `daily_game_record_summary`、`game_summary`、`point`、`control`、`merchantSetting`、`redis`、`PG`、`GSC`、`RD-146`、`RD-152`、`RD-142`、`pay`、`order`、`coupon`
-- path-specific log:
-  - `PointControlController.php`
-  - `RedisSynchronize.php`
-  - `GameData.php`
-  - `GameRound.php`
-  - `DataListService.php`
-  - `DataReportService.php`
-  - `app/route.php`
+- 近期主線 log。
+- `PointControlController.php` / `DataListService.php` / `app/common.php` / `app/route.php` path-specific log。
+- 關鍵字線索: `point-control`、`PointControl`、`sendGmCommand`、`RedisSynchronize`、`daily_game_record_summary`、`GameRound`、`repairOrder`、`permission`。
 
 已看 code path:
 
 - `app/route.php`
 - `app/common.php`
-- `app/admin/controller/*`
-- `app/business/*`
-- `app/api/controller/v1/*`
-- `app/validateService/*`
-- `crontab/crontab.txt`
-- `public/admin/**/*.html`
-- `db/migrations/*`
-- `.gitlab-ci.yml`
-
-未掃範圍:
-
-- 沒有逐檔逐行讀完整 repo。
-- 沒有逐一 checkout 每個遠端分支做 diff。
-- 沒有掃 `game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api` 等下游後端 repo。
-- 沒有掃 DevOps CI template 內容；`.gitlab-ci.yml` 只確認有引用外部 template。
-
-只作入口參考、不作履歷 claim:
-
-- 後台頁面、BI 查詢、Excel 匯出、RBAC、point-control 後台操作入口。
-- 沒有 Nick 本人確認或 MR / ticket / commit 前，不寫 Nick 主導 `app_bi`。
-
-## 專案定位
-
-已確認:
-
-- `app_bi` 是 ThinkPHP / PHP 後台與 BI 專案。
-- 主要內容包含:
-  - 後台 admin controller
-  - BI / 報表查詢
-  - 支付 / 提現查詢與狀態修正入口
-  - 遊戲局紀錄查詢
-  - 每日遊戲資料彙總查詢
-  - Redis 設定同步
-  - 單點控制後台操作
-  - 後台 RBAC / 權限管理
-  - Excel 匯出
-  - 少量 API endpoint
-  - crontab 觸發活動或 IP 資料更新
-
-推測:
-
-- `app_bi` 多數 flow 是 control plane / reporting plane，不一定是交易 truth source。
-- 真正 runtime 生效、遊戲結算、金流 callback、資料彙總 producer 可能在其他後端 repo。
-
-待確認:
-
-- Nick 實際維護過哪些 `app_bi` flow。
-- 哪些 flow 有對應 MR / ticket / commit。
-- 哪些 flow 的下游實作在 `game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api`。
-
-## 核心入口
-
-### HTTP / Admin route
-
-已確認:
-
-- `app/route.php` 有明確 route:
-  - game pool: `GamePoolController`
-  - game goldcoin: `GameGoldcoinController`
-  - point-control: `PointControlController`
-  - point-control allowlist: `PointControlAllowlistController`
-  - point-control switch: `PointControlSwitchController`
-  - auth permission: `Auth::permission`
-
-### Admin controller
-
-已確認:
-
-- `app/admin/controller/` 有大量後台 controller，例如:
-  - `PayData.php`
-  - `WithdrawalData.php`
-  - `GameData.php`
-  - `GameRound.php`
-  - `RedisSynchronize.php`
-  - `PointControlController.php`
-  - `Auth.php`
-  - `UserCurrency.php`
-  - `ActivityManage.php`
-  - `GamePoolController.php`
-  - `GameGoldcoinController.php`
-
-### Business service
-
-已確認:
-
+- `app/common/controller/Base.php`
+- `app/admin/controller/PointControlController.php`
+- `app/admin/controller/RedisSynchronize.php`
+- `app/admin/controller/GameData.php`
+- `app/admin/controller/GameRound.php`
+- `app/admin/controller/UserCurrency.php`
+- `app/admin/controller/Auth.php`
 - `app/business/DataListService.php`
 - `app/business/DataReportService.php`
 - `app/business/GameRoundService.php`
-- `app/business/ValidateService.php`
+- `public/admin/gm/dandian/**`
+- `public/admin/gameRound/**`
+- `db/migrations/**`
+- `crontab/crontab.txt`
 
-### API controller
+未掃範圍:
 
-已確認:
-
-- `app/api/controller/v1/Pay.php`
-- `app/api/controller/v1/Bill.php`
-- `app/api/controller/v1/Bind.php`
-
-判斷:
-
-- API controller 存在，但本次 Step 1 未深挖其是否為前台正式 API。
-
-### Scheduled job
-
-已確認:
-
-- `crontab/crontab.txt` 有定時呼叫 `Timer/activity`。
-- 同檔另有 IP 資料更新指令。
-
-安全處理:
-
-- 不記錄任何 internal URL、IP、token 或實際 production endpoint。
+- 未逐檔逐行掃完整 repo。
+- 未逐一 checkout 遠端分支比對 diff。
+- 未掃 `game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api`。
+- 未確認 Nick 個人 commit / MR / ticket。
 
 ## Top Candidate Flows
 
@@ -210,205 +162,128 @@
 
 為什麼重要:
 
-- 後台操作會寫 DB、Redis，並透過 GM command 影響 runtime 狀態。
-- 比單純報表更接近 Senior / Owner 要看的 production control plane。
-- 已經有 Step 3 flow 文件，可以繼續補 failure / consistency / 下游 evidence。
+- 後台操作會寫 MySQL、Redis，並透過 `sendGmCommand()` 通知下游。
+- 這不是單純列表 CRUD，而是後台 control plane 影響 runtime state。
+- 已有 Step 3 舊版文件，適合先重整乾淨。
 
 production 風險:
 
-- DB、Redis、GM command、Mongo log 之間不一致。
-- 後台批量操作部分成功、部分失敗。
-- 操作 audit log 不完整。
-- 下游 GM command timeout 或重送造成狀態不一致。
+- MySQL transaction 管不到 Redis、GM command、Mongo log。
+- Redis 寫入後 GM command 失敗，可能留下 DB rollback 但 Redis 已變更的狀態。
+- 批量操作可能 partial success。
+- GM command receiver / runtime consumer 未確認。
 
 已確認 evidence:
 
-- `app/route.php` 有 `point-control` 系列 route。
+- `app/route.php` 有 `point-control` routes。
 - `PointControlController.php` 有 `storeOrUpdate()`、`updateStatus()`、`batchControllerAdd()`、`batchControllerEdit()`。
-- `app/common.php` 有 `sendGmCommand()`，會從 Redis `settings.center_http` 取下游 HTTP endpoint 再送 command。
-- `DataListService.php` 有 point control 批量校驗、匯出、Mongo log 寫入。
-- 已有 `projects/iwin/app_bi/flows/point-control-admin-operation/`。
+- `app/common.php` 有 `sendGmCommand()`。
+- `DataListService.php` 有 point-control 批量校驗、Mongo log、匯出。
+- `Base.php` 有登入與權限檢查框架。
 
 推測:
 
-- 這條 flow 的下游生效邏輯在 game server / Java / GM command receiver，不在 `app_bi`。
+- runtime 生效邏輯在下游遊戲 / GM / Java service。
 
 待確認:
 
-- GM command handler 所在 repo。
-- runtime consumer 如何讀 Redis key。
-- Nick 是否實際參與維護此功能。
+- GM command handler。
+- runtime 是否直接讀 Redis key。
+- GM command 是否 idempotent。
+- Nick 是否實際維護過此 flow。
 
 履歷邊界:
 
-- 目前只可作學習與面試分析素材。
-- 不可直接寫 Nick 主導單點控制。
+- 目前只作學習 / 面試分析素材。
+- 不寫 Nick 主導單點控制。
 
-### 2. `admin-config-redis-sync`
-
-中文名稱: 後台設定同步 Redis
-
-為什麼重要:
-
-- 後台設定同步到 Redis 是典型 control plane -> runtime projection。
-- 設定錯或同步漏掉，可能造成支付、商戶、VIP、渠道、活動、遊戲列表等 runtime 設定不一致。
-
-production 風險:
-
-- DB 設定更新但 Redis 未同步。
-- Redis 同步後下游服務未讀到或讀到舊值。
-- 多 channel / 多設定部分同步成功。
-- 沒有版本、回滾、同步結果紀錄時，問題難查。
-
-已確認 evidence:
-
-- `RedisSynchronize.php` 有多個 `save*ToRedis()`:
-  - `saveSettingToRedis`
-  - `savePayClientSettingToRedis`
-  - `saveMerchantSettingToRedis`
-  - `saveLayerToRedis`
-  - `saveConvenientPaySettingToRedis`
-  - `saveVipPaySettingToRedis`
-  - `savePayTypeSettingToRedis`
-  - `saveChannelToRedis`
-  - `saveGameListToRedis`
-  - `saveSettingsV2ToRedis`
-- git log 有 Redis 設定同步相關 commit:
-  - `feature/merchantSettingToRedis`
-  - `RD-152`
-  - `RD-89`
-  - `bugs/channel_publish`
-
-推測:
-
-- `app_bi` 負責寫 Redis projection，真正讀取者在其他後端或 runtime service。
-
-待確認:
-
-- 每個 Redis key 的下游 consumer。
-- 是否有 retry / wait sync / reconcile。
-- 是否有操作 log 與 rollback。
-
-履歷邊界:
-
-- 若 Nick 沒有實際參與，只能說「分析後台設定同步模式」，不能說主導設定中心。
-
-### 3. `daily-game-record-summary`
-
-中文名稱: 每日遊戲資料彙總 / RTP 查詢
-
-為什麼重要:
-
-- 遊戲投注、派彩、RTP、留存與 daily summary 是博弈平台核心觀測資料。
-- 這條適合訓練 projection、資料延遲、跨日、Redis 今日資料與歷史表合併。
-
-production 風險:
-
-- 今日 Redis 與 daily table 重複或漏算。
-- 金額倍率轉換錯誤。
-- report 被誤用成交易 truth source。
-- daily summary job 延遲導致營運誤判。
-
-已確認 evidence:
-
-- `GameData.php` 有:
-  - `getTodaySingleGameData`
-  - `getTodayAllGameData`
-  - 遊戲彙總與 daily / history 相關查詢
-- `DataReportService.php` 有 daily / player bet / export 相關方法。
-- git log 有多筆 `daily_game_record_summary`、`game_summary_note` 相關 commit。
-
-推測:
-
-- `app_bi` 主要讀取與展示結果，資料 producer 可能在 `game_job` 或其他統計 job。
-
-待確認:
-
-- `daily_rtp_total`、`log_game_daily_record` 等資料產生端。
-- Redis 今日資料寫入端。
-- 是否有正式 reconciliation。
-
-履歷邊界:
-
-- 只讀 `app_bi` 不足以寫 Nick 做遊戲資料彙總後端；要先讀 producer。
-
-### 4. `game-round-record-query`
-
-中文名稱: 遊戲局紀錄查詢 / production troubleshooting 入口
-
-為什麼重要:
-
-- 玩家申訴、派彩爭議、局號查詢、第三方遊戲排查都會用到。
-- 適合練「後台查詢入口 -> log table -> record parse -> production issue 排查」。
-
-production 風險:
-
-- 查詢時間區間過大造成 DB 壓力。
-- daily table 分表跨日漏查。
-- `common_data` 解析與實際 game log schema 不一致。
-- 第三方遊戲與自研遊戲資料格式不一致。
-
-已確認 evidence:
-
-- `public/admin/gameRound/*.html` 有大量局紀錄查詢頁。
-- `GameRound.php` 有多個 `{game}GameRound()` 類方法。
-- `GameRoundService.php` 存在。
-- git log 有 PG / GSC / ANTPLAY 局查詢與 reason / status 相關 commit，例如 `feature/PG`、`feature/GSC`、`RD-146`。
-
-推測:
-
-- `app_bi` 是查詢與排查入口，真實局紀錄產生端在 game server、third game API 或 log writer。
-
-待確認:
-
-- `log_reel_*` 寫入端。
-- third-party provider record sync 的 source of truth。
-- Nick 是否實際用這條 flow 排查 production。
-
-履歷邊界:
-
-- 可作「排查入口理解」；不能直接寫遊戲結算 owner。
-
-### 5. `payment-order-status-repair`
+### 2. `payment-order-status-repair`
 
 中文名稱: 充值 / 提現訂單狀態修正
 
 為什麼重要:
 
-- 金流訂單狀態修正是高風險後台操作。
-- 只要涉及充值 / 提現 / 訂單狀態，Senior 要關注 money correctness、audit、權限、補償與不可逆操作。
+- 金流訂單人工修正具備高 money correctness 風險。
+- 但 `app_bi` 只確認到後台修正入口，不是 payment source of truth。
 
 production 風險:
 
-- 訂單狀態誤修造成入帳或出款錯誤。
-- 跨月資料查詢 / 修正錯誤。
-- 操作紀錄不足導致追查困難。
-- 與真正 payment service 狀態不一致。
+- 人工修錯狀態造成入帳 / 出款錯誤。
+- 與 payment repo 的訂單狀態機不一致。
+- audit、approval、reconciliation 不足。
 
 已確認 evidence:
 
-- `public/admin/conversion/tixian.html` 有訂單修正入口。
-- `public/admin/conversion/onlinepay*.html` 有充值訂單查詢、匯出、狀態變更入口。
-- `DataListService.php` 有 `repairOrderService()`。
-- `UserCurrency.php` 有 `repairOrder()`。
-- git log 有:
-  - `RD-142` 訂單修復 / 提现状态修正列表
-  - `payment_order_search` 跨月資料整合 / 查詢修正
-  - `RD-371` 訂單審核 redis lock
-
-推測:
-
-- 真正 payment callback / ledger / wallet 可能不在 `app_bi`，`app_bi` 是人工修正入口。
+- `DataListService::repairOrderService()`。
+- `UserCurrency::repairOrder()`。
+- `public/admin/conversion/*` 有充值 / 提現查詢與修正入口。
+- git log 有 `RD-142`、`payment_order_search`、`RD-371` 相關線索。
 
 待確認:
 
-- `payment` repo 的訂單狀態主流程。
-- 修正後是否觸發錢包、對帳、通知或補償。
-- 審核 redis lock 實際 code path。
+- `/Users/nick/Git/iwin/payment` 的 callback / order state machine / wallet update。
 
 履歷邊界:
 
-- 這條很有價值，但只讀 `app_bi` 不能寫金流 owner；應優先轉去 `payment` repo 做 Level 2 / Level 3。
+- 潛力高，但不能只靠 `app_bi` 寫履歷。
+
+### 3. `admin-config-redis-sync`
+
+中文名稱: 後台設定同步 Redis
+
+為什麼重要:
+
+- 典型 control plane -> runtime projection。
+- 設定同步錯誤可能造成 runtime stale config。
+
+已確認 evidence:
+
+- `RedisSynchronize.php` 有多個 `save*ToRedis()`。
+- migration 裡有同步 Redis 類 menu。
+- git log 有 `feature/merchantSettingToRedis`、`RD-152`、`bugs/channel_publish`。
+
+待確認:
+
+- 每個 Redis key 的 runtime consumer。
+- 是否有 retry / rollback / reconcile。
+
+### 4. `daily-game-record-summary`
+
+中文名稱: 每日遊戲資料彙總 / RTP 查詢
+
+為什麼重要:
+
+- 可訓練 projection、跨日統計、報表與交易 truth source 的分離。
+
+已確認 evidence:
+
+- `GameData.php`
+- `DataReportService.php`
+- git log 有 `daily_game_record_summary` 相關 commit。
+
+待確認:
+
+- producer repo，可能在 `game_job` 或其他後端。
+
+### 5. `game-round-record-query`
+
+中文名稱: 遊戲局紀錄查詢 / production troubleshooting 入口
+
+為什麼重要:
+
+- 適合當玩家申訴、派彩爭議、局號排查入口。
+
+已確認 evidence:
+
+- `GameRound.php`
+- `GameRoundService.php`
+- `public/admin/gameRound/**`
+- migrations 有大量牌局查詢 menu。
+
+待確認:
+
+- game log writer。
+- third-party provider record sync。
 
 ### 6. `app-bi-report-export`
 
@@ -416,36 +291,13 @@ production 風險:
 
 為什麼重要:
 
-- 報表是營運決策與問題排查入口。
-- Senior 價值在於資料來源、延遲、projection vs truth source、匯出壓力與查詢邊界。
-
-production 風險:
-
-- 報表資料被誤認成交易真相。
-- 大範圍匯出拖垮 PHP / DB / Mongo。
-- 分頁結果與匯出結果不一致。
-- BI log producer 延遲或資料缺漏。
-
-已確認 evidence:
-
-- `PayData.php`、`WithdrawalData.php` 有支付 / 提現曲線與統計。
-- `DataReportService.php` 有 export daily data / player bet data。
-- `public/admin/conversion/*onlinepay*.html` 有 Excel 匯出入口。
-- 多個 controller 使用 `Excel::down()`。
-
-推測:
-
-- `app_bi` 多半是 reporting consumer；資料 producer 可能在其他 job / backend。
+- 可練 report projection、查詢壓力、匯出邊界。
 
 待確認:
 
-- BI log / Mongo log producer。
-- 匯出 row limit、背景任務或限流。
-- 報表是否用於正式 reconciliation。
-
-履歷邊界:
-
-- 可說理解 BI 報表查詢與匯出風險；不宜當第一個強履歷 case。
+- BI log producer。
+- 匯出限制與 background job。
+- 是否用於正式 reconciliation。
 
 ### 7. `admin-rbac-permission-check`
 
@@ -453,83 +305,36 @@ production 風險:
 
 為什麼重要:
 
-- 後台控制面若權限錯誤，會造成營運誤操作或越權操作。
-- 對所有高風險 admin operation 都是前置安全邊界。
-
-production 風險:
-
-- 前端 hide menu 但後端未攔。
-- 權限 cache / DB 不一致。
-- 角色異動後 session / cache 未失效。
-- 高風險操作沒有二次確認或 audit。
+- 是所有高風險後台操作的安全前置邊界。
 
 已確認 evidence:
 
-- `app/route.php` 有 `auth/permission` route。
-- `Auth.php` 有 role、role menu、members 與 `permission()`。
-
-推測:
-
-- 這可能是後台通用權限檢查，但本次 Step 1 未確認所有 controller 是否都經此檢查。
+- `Base::_initialize()` 會做登入與權限檢查。
+- `app/route.php` 有 `auth/permission`。
+- `Auth.php` 有 role / menu / permission 相關邏輯。
 
 待確認:
 
-- Login / middleware / frontend call path。
-- 每個高風險操作是否都有後端權限防護。
+- 每個高風險 operation 是否完整走後端權限。
 
-履歷邊界:
+## Step 1 結論
 
-- 除非有實際維護 evidence，否則不寫 RBAC 主導。
-
-## 建議第一條深挖 Flow
-
-建議:
+目前最適合先重整的是:
 
 ```text
 point-control-admin-operation
 ```
 
-理由:
+原因:
 
-- 已經有 Step 3 學習包，可在同一條 flow 上補齊，不需要再開新線。
-- 這條最符合 Senior / Owner: 後台操作影響 runtime、跨 DB / Redis / GM command / Mongo log。
-- 但目前仍有重大邊界: 只確認到 `app_bi` 後台與 GM command 發送端，尚未確認下游接收端與 runtime consumer。
+- 它是 `app_bi` 內 evidence 最完整的 flow。
+- 它能練 control plane、runtime side effect、DB / Redis / GM command / audit log 一致性。
+- 但目前只能說確認到 `app_bi` 發送端與後台操作面，不能說完整後端 flow 已掃完。
 
-## 下一步要讀的 Code Path
+下一步:
 
-如果繼續 `point-control-admin-operation`，下一步不是更新履歷，而是補 evidence 邊界:
+```text
+app_bi Step 2 重整
+```
 
-- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
-- `/Users/nick/Git/iwin/app_bi/app/common.php`
-- `/Users/nick/Git/iwin/app_bi/app/admin/controller/PointControlController.php`
-- `/Users/nick/Git/iwin/app_bi/app/business/DataListService.php`
-- 下游候選 repo:
-  - `/Users/nick/Git/iwin/game_api`
-  - `/Users/nick/Git/iwin/game_job`
-  - `/Users/nick/Git/iwin/iwin_gameserver`
-
-如果要改選金流方向:
-
-- `payment-order-status-repair` 應轉去 `/Users/nick/Git/iwin/payment` 做 Step 1 / Step 2。
-
-## Step 1 結論
-
-已確認:
-
-- `app_bi` 適合作為後台操作入口、BI 查詢入口、production troubleshooting 入口來讀。
-- 最值得延續的是 `point-control-admin-operation`，但它目前仍不是完整後端 flow，因為下游 runtime 未掃。
-- `admin-config-redis-sync`、`daily-game-record-summary`、`payment-order-status-repair` 都有價值，但都需要回到後端 / producer repo 才能成為強 case。
-
-不可誇大:
-
-- 不能說 Nick 主導 `app_bi`。
-- 不能說 Nick 主導 point-control、Redis sync、daily summary、payment repair。
-- 不能把後台查詢入口包裝成交易一致性設計成果。
-- 不能把 BI 報表 projection 當成 source of truth。
-
-待補:
-
-- Nick 實際參與的 MR / ticket / commit。
-- 下游 repo 的真實 code path。
-- 每條高價值 flow 的 source of truth 與 failure boundary。
-
+不更新履歷。
