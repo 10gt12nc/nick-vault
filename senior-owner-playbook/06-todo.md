@@ -10,28 +10,30 @@
 - 已補上技術硬底子與決策比較模組：每條高價值 flow 可新增 `decision-notes.md`，整理技術選型、差異比較、trade-off、owner decision 與面試追問。
 - 已補上大專案 / 子專案地圖規則：地圖只用來定位 repo 與 flow，不取代 production flow。
 - 已補上初階到資深的軟硬實力矩陣：作為定期檢查表，不作為新的發散學習主線。
-- 已重整 `app_bi` Step 1 / Step 2 / Step 3，並補上 `point-control-admin-operation` 的 `decision-notes.md`。
+- 已重整 `app_bi` Step 1 / Step 2，並把已完成 flow 收斂成新版 `flow.md + career-interview.md + materials/` 結構。
 - 已修正 Step 主線規則：AI 不可自行把「下游定位 / 補 evidence / 補 decision-notes / 架構圖」升級成新下一步；Step 3 乾淨後預設進 Step 4。
 - 已完成 `app_bi point-control-admin-operation Step 4`，轉成保守面試 case，未更新履歷。
 - 已完成 `app_bi point-control-admin-operation Step 5` 的「不更新履歷 / 自傳」判定；這不是履歷深掃，也不是 Nick 開發痕跡確認。未補 Nick 本人 MR / ticket / commit / production issue 前，只保留為面試分析 case，不放入正式履歷。
-- 已完成 `app_bi admin-config-redis-sync Step 3`，建立 `flow.md`、`evidence.md`、`decision-notes.md`、`claim-boundary.md`；目前只作後台設定同步 Redis 的分析，不更新履歷。
+- 已完成 `app_bi admin-config-redis-sync Step 1-5`，已遷移為新版結構；目前只作後台設定同步 Redis 的分析與面試素材，不更新履歷。
+- 已完成 `app_bi point-control-admin-operation Step 1-5`，已遷移為新版結構；目前只作後台控制操作的分析與面試素材，不更新履歷。
 - 已新增 `projects/source-repo-inventory.md`，記錄本機來源 repo 索引；這只是導航，不是 code evidence 或履歷 claim。
 - 已重整 `01-senior-owner-flow-inventory.md` 為 flow dashboard，避免下一步亂跳；完整分析仍放各 flow 的 `flow.md`。
 
 ## 下一步
 
-### 1. app_bi admin-config-redis-sync Step 4
+### 1. app_bi daily-game-record-summary Step 3
 
 建議下一步：
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- `app_bi admin-config-redis-sync` 已完成 Step 3 單條 flow 深挖。
-- Step 4 要把這條 flow 轉成保守面試 case。
+- `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
+- `admin-config-redis-sync` 已完成 Step 5，且不更新履歷 / 自傳。
+- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
 - 目前沒有下游 runtime consumer evidence，不更新履歷。
 - flow dashboard 已把這件事列為唯一推薦下一步。
 
@@ -63,7 +65,7 @@ app_bi admin-config-redis-sync Step 4
 ## 下一個 prompt
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi daily-game-record-summary Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。
@@ -79,12 +81,11 @@ AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git
 每條都要有：
 
 - `flow.md`
-- `evidence.md`
-- `decision-notes.md`
-- 3 分鐘面試說法
-- 5 個追問
-- 履歷保守 bullet
-- claim boundary
+- `career-interview.md`
+- `materials/evidence.md`
+- `materials/decision-notes.md`
+- `materials/interview.md`
+- `materials/claim-boundary.md`
 
 詳細檢查看：
 

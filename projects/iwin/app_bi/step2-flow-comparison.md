@@ -73,8 +73,8 @@ Step 2 重新排序後，結論分兩層：
 | `README.md` | 需同步 | Step 2 已重整，下一步不再是 Step 2 |
 | `step1-candidate-flows.md` | 可沿用 | 已有掃描範圍、證據層級、候選 flow |
 | `step2-flow-comparison.md` | 本次已重整 | 舊版 ranking 以 `point-control` 為首，已改成價值排序 / 下一步排序分開 |
-| `flows/point-control-admin-operation/*` | 舊平鋪格式 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
-| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
+| `flows/point-control-admin-operation/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
+| `flows/admin-config-redis-sync/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
 
 ## 比較前提
 

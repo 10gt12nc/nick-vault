@@ -9,7 +9,8 @@
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-4. 舊平鋪格式的 `evidence.md` / `decision-notes.md` / `interview.md` / `claim-boundary.md`：目前仍可讀，之後重整時再遷移到 `materials/`。
+4. `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
+5. `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 
 ## 目前狀態
 
@@ -17,8 +18,8 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
-| `flows/point-control-admin-operation/` | Step 5，舊平鋪格式 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
-| `flows/admin-config-redis-sync/` | Step 5，舊平鋪格式 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
+| `flows/point-control-admin-operation/` | Step 5，新版結構 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
+| `flows/admin-config-redis-sync/` | Step 5，新版結構 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
 
 ## 專案定位
 

@@ -20,10 +20,11 @@
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/decision-notes.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/career-interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/evidence.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/decision-notes.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/claim-boundary.md`
 
 已讀 code repo：
 
@@ -94,8 +95,9 @@
 
 已補讀：
 
-- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/career-interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/claim-boundary.md`
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`

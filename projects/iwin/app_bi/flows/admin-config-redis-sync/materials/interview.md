@@ -4,7 +4,7 @@
 Step：4 轉面試 case
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：舊平鋪格式可沿用，尚未遷移到 `materials/`
+格式狀態：新版結構；本文件為 `materials/interview.md` 詳細面試稿附錄
 
 ## 本次結論
 
@@ -176,10 +176,11 @@ Step 5 已完成履歷 / 自傳更新判定：
 目前定位：
 
 - `flow.md`：主研究報告。
-- `evidence.md`：code / commit evidence。
-- `decision-notes.md`：技術硬底子與設計選項。
-- `claim-boundary.md`：不能誇大的邊界。
-- `interview.md`：本 Step 4 面試素材。
+- `career-interview.md`：Nick 預設閱讀的保守面試 / 履歷素材。
+- `materials/evidence.md`：code / commit evidence。
+- `materials/decision-notes.md`：技術硬底子與設計選項。
+- `materials/claim-boundary.md`：不能誇大的邊界。
+- `materials/interview.md`：本 Step 4 詳細面試稿附錄。
 
 下一步只推薦一件事：
 

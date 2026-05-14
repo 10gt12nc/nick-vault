@@ -17,7 +17,7 @@
 - `projects/iwin/app_bi/README.md`
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
-- 本 flow 的 `flow.md`、`interview.md`、`claim-boundary.md`
+- 本 flow 的 `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md`
 
 已補查 source repo：
 
@@ -49,9 +49,10 @@ Step 5 判定：
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/admin-config-redis-sync/flow.md`
-- `projects/iwin/app_bi/flows/admin-config-redis-sync/evidence.md`
-- `projects/iwin/app_bi/flows/admin-config-redis-sync/decision-notes.md`
-- `projects/iwin/app_bi/flows/admin-config-redis-sync/claim-boundary.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/career-interview.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/materials/evidence.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/materials/decision-notes.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/materials/claim-boundary.md`
 
 已讀 code repo：
 

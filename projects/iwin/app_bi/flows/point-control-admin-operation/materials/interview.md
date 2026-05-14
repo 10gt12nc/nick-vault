@@ -4,7 +4,7 @@
 Step：4 轉面試 case 重整
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：舊平鋪格式可沿用，尚未遷移到 `materials/`
+格式狀態：新版結構；本文件為 `materials/interview.md` 詳細面試稿附錄
 
 ## 本次結論
 
@@ -42,10 +42,11 @@ Step：4 轉面試 case 重整
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - 本 flow 的 `flow.md`
-- 本 flow 的 `evidence.md`
-- 本 flow 的 `decision-notes.md`
-- 本 flow 的舊 `interview.md`
-- 本 flow 的舊 `claim-boundary.md`
+- 本 flow 的 `career-interview.md`
+- 本 flow 的 `materials/evidence.md`
+- 本 flow 的 `materials/decision-notes.md`
+- 本 flow 的 `materials/interview.md`
+- 本 flow 的 `materials/claim-boundary.md`
 
 已重讀 code repo：
 
@@ -230,10 +231,11 @@ Step：4 轉面試 case 重整
 目前定位：
 
 - `flow.md`：主研究報告。
-- `evidence.md`：code / commit evidence。
-- `decision-notes.md`：技術硬底子與設計選項。
-- `claim-boundary.md`：Step 5 履歷 / 自傳邊界，已判定不更新正式履歷 / 自傳。
-- `interview.md`：本 Step 4 面試素材。
+- `career-interview.md`：Nick 預設閱讀的保守面試 / 履歷素材。
+- `materials/evidence.md`：code / commit evidence。
+- `materials/decision-notes.md`：技術硬底子與設計選項。
+- `materials/claim-boundary.md`：Step 5 履歷 / 自傳邊界，已判定不更新正式履歷 / 自傳。
+- `materials/interview.md`：本 Step 4 詳細面試稿附錄。
 
 下一步只推薦一件事：
 

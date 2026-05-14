@@ -4,7 +4,7 @@
 Step：5 履歷 / 自傳更新判定重整
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：舊平鋪格式可沿用，尚未遷移到 `materials/`
+格式狀態：新版結構；本文件為 `materials/claim-boundary.md` 履歷邊界附錄
 
 ## Step 5 結論
 
@@ -38,9 +38,10 @@ Step：5 履歷 / 自傳更新判定重整
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
-- 舊版 `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/career-interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/evidence.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/claim-boundary.md`
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`

@@ -4,7 +4,7 @@
 Step：5 已完成；本文件為 Step 3 主研究報告
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：舊平鋪格式可沿用，尚未遷移到 `materials/`
+格式狀態：已遷移為新版結構；`flow.md` 為唯一主研究報告
 
 ## 本次重整結論
 
@@ -46,10 +46,11 @@ Step：5 已完成；本文件為 Step 3 主研究報告
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - 本 flow 既有 `flow.md`
-- 本 flow 既有 `evidence.md`
-- 本 flow 既有 `decision-notes.md`
-- 本 flow 既有 `interview.md`
-- 本 flow 既有 `claim-boundary.md`
+- 本 flow `career-interview.md`
+- 本 flow `materials/evidence.md`
+- 本 flow `materials/decision-notes.md`
+- 本 flow `materials/interview.md`
+- 本 flow `materials/claim-boundary.md`
 
 已看 source repo：
 
@@ -75,15 +76,16 @@ Step：5 已完成；本文件為 Step 3 主研究報告
 - 未確認 Nick 本人 MR / ticket / commit / production issue。
 - 未做 Level 3 每個相關 commit diff 的完整時間線。
 
-## 舊文件狀態判斷
+## 文件狀態判斷
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
 | `flow.md` | 本次重整 | 舊版方向可用，但 Level 2-lite、下一步與完成狀態不乾淨 |
-| `evidence.md` | 需同步 | 要補 2026-05-14 實際重讀、commit 作者與未掃邊界 |
-| `decision-notes.md` | 可沿用但待 Step 4 前再檢查 | 技術方向正確，仍是舊平鋪格式 |
-| `interview.md` | Step 4 已重整 | 已依新版 Step 3 轉成保守面試 case |
-| `claim-boundary.md` | Step 5 已重整 | 已判定不更新正式履歷 / 自傳 |
+| `career-interview.md` | 已建立 | Nick 看面試 / 履歷素材時讀這份 |
+| `materials/evidence.md` | 已遷移 | 掃描範圍、commit / path evidence 與已確認 / 待確認 |
+| `materials/decision-notes.md` | 已遷移 | 技術硬底子與 owner decision 附錄 |
+| `materials/interview.md` | 已遷移 | 詳細面試稿附錄 |
+| `materials/claim-boundary.md` | 已遷移 | Step 5 履歷 / 自傳邊界，已判定不更新正式履歷 / 自傳 |
 
 ## 系統位置
 

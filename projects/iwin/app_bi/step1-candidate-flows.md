@@ -33,12 +33,14 @@
 - `projects/iwin/app_bi/README.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/evidence.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/career-interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/evidence.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/materials/claim-boundary.md`
 - `projects/iwin/app_bi/flows/admin-config-redis-sync/flow.md`
-- `projects/iwin/app_bi/flows/admin-config-redis-sync/evidence.md`
-- `projects/iwin/app_bi/flows/admin-config-redis-sync/claim-boundary.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/career-interview.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/materials/evidence.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/materials/claim-boundary.md`
 
 已重讀 code repo：
 
@@ -63,8 +65,8 @@
 | `README.md` | 已重整 | 已從 Step 1 報告改回專案入口 |
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
 | `step2-flow-comparison.md` | 需小幅重整 | ranking 可沿用，但需同步本文件的新候選與證據層級 |
-| `flows/point-control-admin-operation/*` | 舊平鋪格式 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
-| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
+| `flows/point-control-admin-operation/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
+| `flows/admin-config-redis-sync/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
 
 ## 掃描等級判斷
 
