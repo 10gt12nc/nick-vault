@@ -1,9 +1,38 @@
 # Evidence - app_bi admin-config-redis-sync
 
 更新時間：2026-05-14
-狀態：Step 3 evidence，已依新規定同步
+狀態：Step 5 evidence 已同步
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 5 補掃紀錄
+
+本次 Step 5 只判斷是否更新履歷 / 自傳，不重新深挖下游 code。
+
+已補讀：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+- `senior-owner-playbook/04-interview-casebook.md`
+- `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step1-candidate-flows.md`
+- `projects/iwin/app_bi/step2-flow-comparison.md`
+- 本 flow 的 `flow.md`、`interview.md`、`claim-boundary.md`
+
+已補查 source repo：
+
+- `/Users/nick/Git/iwin/app_bi` 工作區乾淨。
+- 目前分支：`main`。
+- 已看遠端分支清單，但未 checkout 逐一比對。
+- 已重看近期主線 log。
+- 已重看 `RedisSynchronize.php`、`Base.php`、`Pay.php`、`NewPay.php`、`Server.php`、`Channel.php` 相關 path-specific log。
+- 已查 `--all` path-specific log，相關同步 commit 作者主要為 `gill` 或初始 commit 作者，不是 Nick。
+
+Step 5 判定：
+
+- 不更新 `05-resume-master-zh.md`。
+- 不更新 `08-application-autobiography-zh.md`。
+- 保留為面試分析素材，不作 Nick 個人實作成果。
 
 ## 本次實際掃描範圍
 

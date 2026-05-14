@@ -468,16 +468,28 @@ MySQL 設定已修改
 - code 功能存在：`專案存在 / code-backed`
 - Nick 個人貢獻：`待確認`
 
+## Step 5 狀態
+
+已完成 Step 5 履歷 / 自傳更新判定。
+
+結論：
+
+- 不更新正式履歷 / 自傳。
+- 本 flow 保留為面試分析素材。
+- Nick 個人實作貢獻仍是 `待確認`。
+- 若未來要寫入履歷，必須先補 Nick 本人 MR / ticket / commit / production issue / 本人確認。
+
 ## 下一步
 
 只推薦一件事：
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 3 已重新依新規定整理，主報告已標明掃描範圍、未掃下游與履歷邊界。
-- Step 4 才是把本 flow 轉成保守面試 case。
-- 不更新正式履歷 / 自傳。
+- `admin-config-redis-sync` 已完成 Step 5。
+- 同 project 仍有未完成 candidate flow。
+- `daily-game-record-summary` 可練報表 projection、truth source、資料延遲與補跑邊界。
+- 預期不更新履歷，除非補到 Nick 本人 evidence。

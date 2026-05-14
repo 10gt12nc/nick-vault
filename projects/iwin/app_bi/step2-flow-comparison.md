@@ -12,7 +12,7 @@
 Step 2 重新排序後，結論分兩層：
 
 1. 最高 Senior / Owner 價值是 `payment-order-status-repair`，但它不適合只在 `app_bi` 深挖，必須回到 `payment` repo 找 source of truth。
-2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `admin-config-redis-sync Step 4`，因為 Step 3 已有主線，能保守轉成面試 case，而且不需要腦補下游。
+2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `daily-game-record-summary Step 3`，因為前兩條 `app_bi` flow 已完成 Step 5，下一條應回到候選 ranking 而不是自動跨 project。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -74,7 +74,7 @@ Step 2 重新排序後，結論分兩層：
 | `step1-candidate-flows.md` | 可沿用 | 已有掃描範圍、證據層級、候選 flow |
 | `step2-flow-comparison.md` | 本次已重整 | 舊版 ranking 以 `point-control` 為首，已改成價值排序 / 下一步排序分開 |
 | `flows/point-control-admin-operation/*` | 舊平鋪格式 / 可沿用 | 已 Step 5，不更新履歷；之後若重整再遷移 `materials/` |
-| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | Step 3 主線足夠，下一步可做 Step 4 |
+| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
 
 ## 比較前提
 
@@ -96,8 +96,8 @@ Step 2 重新排序後，結論分兩層：
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history | `payment` source of truth 未掃 | 後續轉 `payment Step 1`，不在 `app_bi` 硬挖 |
 | 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | 已 Step 5；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃 | 先保留，不更新履歷 |
-| 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | Step 4 已完成；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 下一步做 Step 5 |
-| 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢 / 報表入口與近期 SQL 修正 history | producer / 補跑機制未掃 | 之後轉 `game_job` 或資料 producer |
+| 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
+| 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢 / 報表入口與近期 SQL 修正 history | producer / 補跑機制未掃 | 下一步做 Step 3 |
 | 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | 查詢入口與多 provider record 頁面 | log writer 未掃 | 適合後續 troubleshooting case |
 | 6 | `admin-rbac-permission-check` | 後台 RBAC / 權限判斷 | 中 | `Base::_initialize()` / `Auth::permission()` 有權限框架 | 高風險 controller enforcement 未逐條確認 | 作為輔助邊界，不單獨優先 |
 | 7 | `coupon-trade-admin-operation` | 兌換碼 / Coupon Trade 營運操作 | 中低到中 | 近期主線有 `coupon trade` code 與 UI | 使用端 / wallet side effect 未掃 | 暫列候選，不優先 |
@@ -107,17 +107,17 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-1. `app_bi admin-config-redis-sync Step 5`
-   - 原因：Step 4 已完成，下一步檢查是否更新履歷 / 自傳。
-   - 產出：履歷 / 自傳是否更新的保守判定。
-   - 是否更新履歷：目前預期否，除非補到 Nick 本人 evidence。
+1. `app_bi daily-game-record-summary Step 3`
+   - 原因：`point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5；同 project 下一條值得做的是報表 projection flow。
+   - 產出：報表查詢端的 truth source / latency / reconciliation 邊界。
+   - 是否更新履歷：否。
 2. `payment Step 1`
    - 原因：`payment-order-status-repair` 價值最高，但強 evidence 不在 `app_bi`。
    - 產出：金流 repo 的 candidate flows，不把 app_bi 人工入口硬當完整 payment owner。
    - 是否更新履歷：否，至少等 payment flow Step 4 / Step 5。
-3. `app_bi daily-game-record-summary Step 3`
-   - 原因：報表 projection 有 Senior 價值，但仍要補 producer。
-   - 產出：報表查詢端的 truth source / latency / reconciliation 邊界。
+3. `app_bi game-round-record-query Step 3`
+   - 原因：可作 troubleshooting case，但要先承認只看到查詢端。
+   - 產出：遊戲局查詢入口、log writer 待確認、查詢效能與爭議排查邊界。
    - 是否更新履歷：否。
 
 本輪只推薦第一項，避免跨 project 跳太快。
@@ -199,7 +199,7 @@ Senior / Owner 價值：
 
 中文名稱：後台設定同步 Redis
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-狀態：Step 4，下一步 Step 5
+狀態：已完成 Step 5
 
 已確認：
 
@@ -232,6 +232,7 @@ Senior / Owner 價值：
 
 - 不更新履歷。
 - Step 4 可轉成保守面試 case，重點放「我如何分析設定同步風險」而不是「我主導設定中心」。
+- Step 5 已判定不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
 
 ### 4. `daily-game-record-summary`
 
@@ -425,7 +426,7 @@ Senior / Owner 價值：
 
 ```text
 point-control-admin-operation Step 1-5
-admin-config-redis-sync Step 3
+admin-config-redis-sync Step 1-5
 ```
 
 本次 Step 2 已補齊：
@@ -439,11 +440,11 @@ admin-config-redis-sync Step 3
 下一步只推薦一件事：
 
 ```text
-app_bi admin-config-redis-sync Step 5
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 4 已完成保守面試 case。
-- Step 5 應檢查是否更新履歷 / 自傳。
-- 目前預期仍是不更新，除非補到 Nick 本人 evidence。
+- `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5。
+- 同 project 下一條未完成且有價值的是 `daily-game-record-summary`。
+- 這條可練報表 projection、truth source、資料延遲與補跑邊界；預期不更新履歷。

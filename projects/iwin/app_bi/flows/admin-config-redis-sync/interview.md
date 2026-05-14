@@ -163,9 +163,15 @@ MySQL 設定已修改
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 
-## Step 4 結論
+## Step 4 / Step 5 結論
 
 這條 flow 已可作為保守面試 case。
+
+Step 5 已完成履歷 / 自傳更新判定：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 保留為面試分析素材，不包裝成 Nick 個人實作成果。
 
 目前定位：
 
@@ -178,11 +184,12 @@ MySQL 設定已修改
 下一步只推薦一件事：
 
 ```text
-app_bi admin-config-redis-sync Step 5
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 4 已把 flow 轉成面試 case。
-- Step 5 應檢查是否更新履歷 / 自傳。
-- 目前預期結果仍是不更新正式履歷，除非補到 Nick 本人 evidence。
+- `admin-config-redis-sync` 已完成 Step 5。
+- 同 project 下一條未完成且值得做的是 `daily-game-record-summary`。
+- 產出會是報表 projection、truth source、資料延遲與補跑邊界。
+- 預期不更新履歷，除非後續補到 Nick 本人 evidence。

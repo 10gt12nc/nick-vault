@@ -13,7 +13,7 @@
 
 1. `payment-order-status-repair`：金流訂單人工修正入口，價值最高，但必須轉去 `payment` repo 補 source of truth。
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；目前仍只確認到 `app_bi` 發送端。
-3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 4 面試素材；下一步 Step 5 檢查是否更新履歷 / 自傳。
+3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
 4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，需補 producer repo。
 5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
 
@@ -64,7 +64,7 @@
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
 | `step2-flow-comparison.md` | 需小幅重整 | ranking 可沿用，但需同步本文件的新候選與證據層級 |
 | `flows/point-control-admin-operation/*` | 舊平鋪格式 / 可沿用但需補 evidence | 已有 Step 5，不更新履歷；之後再遷移到 `materials/` |
-| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用但需補 Step 5 | Step 4 已完成，下一步檢查履歷 / 自傳是否更新 |
+| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
 
 ## 掃描等級判斷
 
@@ -438,11 +438,12 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi Step 2 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 1 已從 README 拆成獨立文件。
-- Step 2 需要同步本文件的新候選排序、`coupon-trade-admin-operation`、證據層級與後台入口邊界。
+- Step 1 / Step 2 已重整。
+- `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5。
+- 同 project 下一條未完成 candidate flow 是 `daily-game-record-summary`。
 - 不更新履歷。
