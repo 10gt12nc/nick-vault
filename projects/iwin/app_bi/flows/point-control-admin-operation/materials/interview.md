@@ -61,7 +61,7 @@
 | Step | 狀態 | 判斷 |
 | --- | --- | --- |
 | Step 1 | 可沿用 | 已列 candidate flows，並標明 app_bi 主要是後台 / BI / control plane 入口 |
-| Step 2 | 可沿用但需同步狀態 | 已把 `point-control-admin-operation` 排在 app_bi 內優先，但有舊狀態需修正 |
+| Step 2 | 可沿用 | 已同步 app_bi candidate ranking 與下一步排序 |
 | Step 3 | 已完成 | 已重整 `flow.md` / `materials/evidence.md` |
 | Step 4 | 已完成 | 已轉成保守面試 case |
 | Step 5 | 已重整 | 已判定不更新正式履歷 / 自傳 |

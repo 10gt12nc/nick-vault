@@ -64,7 +64,7 @@
 | --- | --- | --- |
 | `README.md` | 已重整 | 已從 Step 1 報告改回專案入口 |
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
-| `step2-flow-comparison.md` | 需小幅重整 | ranking 可沿用，但需同步本文件的新候選與證據層級 |
+| `step2-flow-comparison.md` | 可沿用 | 已同步本文件的新候選、證據層級與下一步排序 |
 | `flows/point-control-admin-operation/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
 | `flows/admin-config-redis-sync/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
 
