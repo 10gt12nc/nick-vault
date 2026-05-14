@@ -26,6 +26,7 @@ AI 需要自動維護：
 - 自動給下一步建議。
 - 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
+- 有實際改檔時，完成後自動做全掃確認、commit，並等待 Nick approval 後才 push。
 
 但「自動維護」不能改變 Step 主線。
 
@@ -34,8 +35,31 @@ AI 需要自動維護：
 AI 不會做的事：
 
 - 不會在 Nick 沒有要求時背景定期掃 repo。
-- 不會自動 commit / push，除非 Nick 明確要求或本對話已要求推送。
+- 不會未經 Nick approval 直接 push。改檔後可以自動 commit，但 push 必須等 Nick 明確說 `approval`、`push`、`可以推` 或等價確認。
 - 不會把後台入口硬包裝成後端成果。
+
+## 改檔後自查、commit、push approval 規則
+
+之後只要 AI 有實際修改 `nick-vault` 檔案，收尾流程固定如下：
+
+1. 自行再全掃確認一次，不等 Nick 追問。
+2. 全掃確認至少包含：
+   - 重讀本次改過的檔案。
+   - 重讀受影響的共用規則 / prompt / README / index。
+   - 檢查新規則是否和既有 KB 衝突。
+   - 跑 `git diff --check`。
+   - 跑 `git status --short` 確認只動 `nick-vault` 預期檔案。
+   - 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+   - 檢查履歷 / 面試 claim 沒有誇大，且已標示 evidence 層級。
+3. 自查通過後，自動 commit。
+4. commit 後回報 commit hash 與摘要。
+5. push 一律需要 Nick 明確 approval；Nick 未說 approval 前，只能停在已 commit 狀態。
+
+例外：
+
+- Nick 明確說「不要 commit」、「先不要動 git」、「只改檔不提交」時，以 Nick 當下要求為準。
+- 若 git 狀態有非本次修改且會混入 commit，AI 必須先說明並只 stage 本次相關檔案；不確定時先停下來問。
+- 若自查發現問題，先修正再 commit，不可把明知有問題的狀態提交。
 
 ## 防再犯規則：流水帳、研究報告與規格變更
 
@@ -478,7 +502,7 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚為什麼現在做它。
 - 要說清楚會產出哪些檔案或更新哪些既有檔案。
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
-- 要說清楚是否需要 commit / push；預設不 commit、不 push，除非 Nick 明確要求。
+- 要說清楚 commit / push 狀態；有改檔時自查通過後自動 commit，push 等 Nick approval。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
 - 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。
