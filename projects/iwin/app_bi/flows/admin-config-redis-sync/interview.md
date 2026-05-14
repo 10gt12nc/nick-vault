@@ -184,12 +184,12 @@ Step 5 已完成履歷 / 自傳更新判定：
 下一步只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 4 重整
+app_bi point-control-admin-operation Step 5 重整
 ```
 
 原因：
 
-- `point-control-admin-operation` 已於 2026-05-14 重新完成 Step 3。
-- 舊 Step 4 / Step 5 暫不視為最新完成。
-- 下一步應先把同一條 flow 轉成新版保守面試 case。
-- 不更新履歷。
+- `point-control-admin-operation` 已於 2026-05-14 重新完成 Step 4。
+- 舊 Step 5 暫不視為最新完成。
+- 下一步應重新檢查是否更新履歷 / 自傳。
+- 目前預期不更新履歷，除非補到 Nick 本人 evidence。

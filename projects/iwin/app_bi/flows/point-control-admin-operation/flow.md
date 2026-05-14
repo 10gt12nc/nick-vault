@@ -82,8 +82,8 @@ Step：3 單條 flow 深挖重整
 | `flow.md` | 本次重整 | 舊版方向可用，但 Level 2-lite、下一步與完成狀態不乾淨 |
 | `evidence.md` | 需同步 | 要補 2026-05-14 實際重讀、commit 作者與未掃邊界 |
 | `decision-notes.md` | 可沿用但待 Step 4 前再檢查 | 技術方向正確，仍是舊平鋪格式 |
-| `interview.md` | 舊 Step 4 稿，暫不視為最新完成 | Step 3 重整後需重新確認才能算 Step 4 |
-| `claim-boundary.md` | 舊 Step 5 稿，暫不視為最新完成 | Step 3 重整後需重新確認才能算 Step 5 |
+| `interview.md` | Step 4 已重整 | 已依新版 Step 3 轉成保守面試 case |
+| `claim-boundary.md` | 舊 Step 5 稿，暫不視為最新完成 | Step 4 重整後需重新確認才能算 Step 5 |
 
 ## 系統位置
 
@@ -484,12 +484,13 @@ Owner 風險：
 只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 4 重整
+app_bi point-control-admin-operation Step 5 重整
 ```
 
 原因：
 
 - Step 3 已重新依新 KB 重整。
-- 舊 Step 4 / Step 5 不能再視為最新完成，需依新版 Step 3 重跑。
-- Step 4 產出會是保守面試 case，不更新履歷。
+- Step 4 已把新版 Step 3 轉成保守面試 case。
+- 舊 Step 5 不能再視為最新完成，需重新檢查是否更新履歷 / 自傳。
+- 目前預期不更新履歷，除非補到 Nick 本人 evidence。
 - 需要 commit；push 等 Nick approval。
