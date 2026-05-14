@@ -1,10 +1,11 @@
 # Interview - point-control-admin-operation
 
 更新時間：2026-05-14
-Step：4 轉面試 case 重整
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/interview.md` 詳細面試稿附錄
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：新版結構；本文件為 `materials/interview.md` 詳細面試稿附錄
+格式狀態：新版結構
 
 ## 本次結論
 
@@ -61,8 +62,8 @@ Step：4 轉面試 case 重整
 | --- | --- | --- |
 | Step 1 | 可沿用 | 已列 candidate flows，並標明 app_bi 主要是後台 / BI / control plane 入口 |
 | Step 2 | 可沿用但需同步狀態 | 已把 `point-control-admin-operation` 排在 app_bi 內優先，但有舊狀態需修正 |
-| Step 3 | 可沿用 | 2026-05-14 已重整 `flow.md` / `evidence.md` |
-| Step 4 | 本次重整 | 舊稿不再視為最新完成 |
+| Step 3 | 已完成 | 已重整 `flow.md` / `materials/evidence.md` |
+| Step 4 | 已完成 | 已轉成保守面試 case |
 | Step 5 | 已重整 | 已判定不更新正式履歷 / 自傳 |
 
 本次不做：

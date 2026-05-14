@@ -2,7 +2,8 @@
 
 更新時間: 2026-05-13
 用途: 技術硬底子與決策比較
-狀態: 初版，承接 Step 3 重整
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/decision-notes.md` 技術決策附錄
 
 ## 本 flow 牽涉的硬底子
 

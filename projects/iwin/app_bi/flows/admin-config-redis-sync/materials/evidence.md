@@ -1,7 +1,8 @@
 # Evidence - app_bi admin-config-redis-sync
 
 更新時間：2026-05-14
-狀態：Step 5 evidence 已同步
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/evidence.md` 證據附錄
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 

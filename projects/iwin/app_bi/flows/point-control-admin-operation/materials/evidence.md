@@ -1,7 +1,8 @@
 # Evidence - point-control-admin-operation
 
 更新時間：2026-05-14
-狀態：Step 5 已完成；本文件為 evidence 附錄
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/evidence.md` 證據附錄
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -79,8 +80,7 @@
 
 原因：
 
-- Nick 指定 `point-control-admin-operation Step 3 重整`，這是單條 flow 深挖。
-- Step 3 需要追 route、controller、service、Redis、GM command、Mongo log、path-specific history。
+- 本證據附錄承接單條 flow 深挖，需要追 route、controller、service、Redis、GM command、Mongo log、path-specific history。
 - 目前尚未定位下游 GM receiver / runtime consumer，直接做 Level 3 逐檔逐 commit 的成本高但履歷 evidence 仍不足。
 
 本次不宣稱：
@@ -125,7 +125,7 @@ Step 5 判定：
 
 判斷：
 
-- 本次 Step 3 主線是控制名單新增 / 修改 / 狀態切換 / 批量操作。
+- 本次主線是控制名單新增 / 修改 / 狀態切換 / 批量操作。
 - allowlist / switch 是相關 extension，不作本次主線。
 
 ## Controller evidence

@@ -1,10 +1,11 @@
 # Claim Boundary - point-control-admin-operation
 
 更新時間：2026-05-14
-Step：5 履歷 / 自傳更新判定重整
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/claim-boundary.md` 履歷 / 自傳邊界附錄
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
-格式狀態：新版結構；本文件為 `materials/claim-boundary.md` 履歷邊界附錄
+格式狀態：新版結構
 
 ## Step 5 結論
 

@@ -1,6 +1,7 @@
 # Decision Notes - app_bi 後台設定同步 Redis
 
-狀態: Step 3 技術硬底子補充
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/decision-notes.md` 技術決策附錄
 
 ## 這條 flow 要學的技術點
 

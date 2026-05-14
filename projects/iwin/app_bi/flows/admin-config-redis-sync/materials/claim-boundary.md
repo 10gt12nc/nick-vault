@@ -1,6 +1,7 @@
 # Claim Boundary - app_bi 後台設定同步 Redis
 
-狀態: Step 5 履歷 / 自傳更新判定
+完成狀態：所屬 flow 已完成 Step 5
+文件角色：`materials/claim-boundary.md` 履歷 / 自傳邊界附錄
 
 ## Step 5 結論
 

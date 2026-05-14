@@ -1,7 +1,8 @@
 # app_bi - point-control-admin-operation
 
 更新時間：2026-05-14
-Step：5 已完成；本文件為 Step 3 主研究報告
+完成狀態：Step 5 已完成
+文件角色：`flow.md` 主研究報告
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 格式狀態：已遷移為新版結構；`flow.md` 為唯一主研究報告
@@ -80,7 +81,7 @@ Step：5 已完成；本文件為 Step 3 主研究報告
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `flow.md` | 本次重整 | 舊版方向可用，但 Level 2-lite、下一步與完成狀態不乾淨 |
+| `flow.md` | Step 5 已完成 | 本文件是主研究報告，不代表停在 Step 3 |
 | `career-interview.md` | 已建立 | Nick 看面試 / 履歷素材時讀這份 |
 | `materials/evidence.md` | 已遷移 | 掃描範圍、commit / path evidence 與已確認 / 待確認 |
 | `materials/decision-notes.md` | 已遷移 | 技術硬底子與 owner decision 附錄 |
