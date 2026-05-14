@@ -13,6 +13,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 每次只做一條 flow。
 - 已完成 Step 5 只代表單條 flow 完成，不代表整個 project 完成。
 - 履歷欄位只表示「能不能考慮」，不代表已寫進 `05-resume-master-zh.md`。
+- 證據欄位要分清楚：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - 沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不寫主導、獨立完成、改善百分比。
 - 只看到後台 / 前端 / BI 入口的 flow，優先當面試分析素材，不急著寫履歷。
 - Source repo 清單看 `projects/source-repo-inventory.md`；真正做 flow 前仍要重讀 code branch / log / path-specific history。
@@ -31,10 +32,10 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 ## 目前進度
 
-| Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 履歷 | 下一步 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 | 否 | `app_bi admin-config-redis-sync Step 4` |
+| Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
+| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 4` |
 
 ## 下一步推薦
 

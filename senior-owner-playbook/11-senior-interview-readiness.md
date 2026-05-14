@@ -24,7 +24,7 @@
 ### 尚未完成
 
 - `projects/` 尚未有任何完成的 production flow。
-- 尚未有 `flow.md + evidence.md` 的實際專案 case。
+- 尚未有 `flow.md + materials/evidence.md` 的實際專案 case。
 - 尚未完成 3-5 條可面試案例。
 - 尚未把已完成 case 轉成 3 分鐘面試說法。
 - 尚未依 evidence 最終更新履歷 bullet。
@@ -49,7 +49,8 @@ Senior 面試內容尚未完成。
 每條都必須有：
 
 - `flow.md`
-- `evidence.md`
+- `materials/evidence.md`
+- `career-interview.md`
 - 3 分鐘面試說法
 - 5 個可能追問
 - 履歷保守 bullet

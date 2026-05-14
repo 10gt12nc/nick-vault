@@ -137,7 +137,7 @@
 
 高階掃描時已發現部分專案配置檔可能含敏感設定或環境資訊。
 
-因此未來 `projects/**/evidence.md`：
+因此未來 `projects/**/flows/**/materials/evidence.md`：
 
 - 可以列檔案路徑。
 - 可以描述「有 secret/config/env 類風險」。

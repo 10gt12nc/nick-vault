@@ -49,6 +49,8 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
 
 ## 固定結構
 
+以下是新建或重整後的固定結構。既有 `projects/iwin/...` 若仍是舊平鋪格式，先標註「舊格式 / 待遷移」，不要在 Nick 未要求時批量搬檔。
+
 ```text
 projects/{domain}/{project}/
   README.md
@@ -56,12 +58,20 @@ projects/{domain}/{project}/
   flows/
     {flow-name}/
       flow.md
-      evidence.md
-      decision-notes.md
-      interview.md
-      claim-boundary.md
+      career-interview.md
+      materials/
+        evidence.md
+        decision-notes.md
+        interview.md
+        claim-boundary.md
   career-interview.md
 ```
+
+閱讀順序：
+
+1. Nick 預設只需要讀 `flow.md`。
+2. 若要看這條 flow 可以怎麼轉面試 / 履歷，再讀同層 `career-interview.md`。
+3. 要查 code evidence、技術比較、面試稿細節、不可誇大邊界時，才進 `materials/`。
 
 ## 檔案責任
 
@@ -77,7 +87,7 @@ projects/{domain}/{project}/
 
 ### flow.md
 
-只寫一條 flow。`flow.md` 就是這條 flow 的研究分析報告主文，不要另外新增重複的 `research-analysis-report.md`：
+只寫一條 flow。`flow.md` 就是這條 flow 的研究分析報告主文，也是唯一預設閱讀入口，不要另外新增重複的 `research-analysis-report.md`：
 
 - 業務問題
 - 系統位置
@@ -87,8 +97,19 @@ projects/{domain}/{project}/
 - DB / Redis / MQ / external API
 - failure window
 - owner decision
+- 證據層級標註：真實開發過 / 專案存在 / 分析素材 / 外部案例
 
-### evidence.md
+### flows/{flow-name}/career-interview.md
+
+單條 flow 對應的保守履歷 / 面試素材。它不是正式履歷 master，只能當候選素材：
+
+- 這條 flow 可以怎麼面試講
+- 可安全使用的履歷 bullet
+- 只能說分析 / 參與 / 對接的地方
+- 不可寫成主導或 owner 的地方
+- 證據層級與待補證據
+
+### materials/evidence.md
 
 只放可驗證證據。它是 `flow.md` 的證據附錄，不是另一份研究報告：
 
@@ -109,7 +130,7 @@ projects/{domain}/{project}/
 - 客戶資料
 - 完整商業機密規格
 
-### interview.md
+### materials/interview.md
 
 把 flow 轉成面試可講內容。它是面試稿附錄，不取代 `flow.md`：
 
@@ -120,7 +141,7 @@ projects/{domain}/{project}/
 - Lead / Architect 延伸追問
 - 保守回答方式
 
-### claim-boundary.md
+### materials/claim-boundary.md
 
 明確分：
 
@@ -131,7 +152,7 @@ projects/{domain}/{project}/
 - 不可寫進履歷
 - 需要本人確認 / MR / commit / ticket / metric
 
-### career-interview.md
+### project-level career-interview.md
 
 專案層級的履歷與面試素材，只能由完成的 flows 彙整，不可憑空寫。
 
@@ -141,7 +162,7 @@ projects/{domain}/{project}/
 
 地圖不是主線，不要畫沒有 evidence 的大架構。當地圖已足夠定位 flow，就回到單條 flow 深挖。
 
-### decision-notes.md
+### materials/decision-notes.md
 
 單條 flow 的技術硬底子與決策比較。
 
@@ -152,10 +173,11 @@ projects/{domain}/{project}/
 一條 flow 完成，必須同時具備：
 
 - `flow.md`
-- `evidence.md`
-- `decision-notes.md`
-- `interview.md`
-- `claim-boundary.md`
+- `career-interview.md`
+- `materials/evidence.md`
+- `materials/decision-notes.md`
+- `materials/interview.md`
+- `materials/claim-boundary.md`
 
 且每份都要分清楚：
 
@@ -163,10 +185,32 @@ projects/{domain}/{project}/
 - 推測
 - 待確認
 
+並且每條履歷 / 面試相關說法都要標註證據層級：
+
+| 標籤 | 意義 | 可否進履歷 |
+| --- | --- | --- |
+| `真實開發過` | 有 Nick 本人 MR / ticket / commit / production issue / 本人確認 | 可考慮，但仍要保守 |
+| `專案存在 / code-backed` | code 確認有這條線，但 Nick 貢獻未確認 | 不直接寫成 Nick 成果 |
+| `分析素材 / learning-only` | AI 讀 code 後整理成學習或面試理解 | 不寫進正式履歷 |
+| `外部案例 / non-local` | 網路案例、官方文件、通用設計模式 | 只能補理解與面試追問 |
+| `待確認` | 目前證據不足 | 不寫進履歷 |
+
 未完成前，不得更新：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
+
+## 履歷與自傳最終更新門檻
+
+`senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 不是每條 flow 做完就急著改。
+
+只有在同一批專案資料整理到足夠完整，且 Nick 明確要求更新正式版時，AI 才能開始最終整合。更新前必須：
+
+- 深度掃描相關 code repo 的主分支、近期分支、path-specific history 與重要 diff。
+- 深度掃描 `projects/` 既有 flow、project-level `career-interview.md`、`archive/` 舊履歷自傳與所有 KB 履歷素材。
+- 去重、合併、降誇大。
+- 每條 claim 標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`。
+- 沒有 evidence 的內容只可保留在素材或待確認，不寫進正式投遞語句。
 
 ## 外部案例使用規則
 
@@ -222,14 +266,16 @@ projects/{domain}/{project}/
 
 能講清楚 trade-off、migration risk、rollback plan、observability、team maintenance。
 
-## 不開始動工前的允許檔案
+## 新專案開工前的允許檔案
 
-目前允許先存在：
+尚未由 Nick 指定的 project，先不要預建資料夾。已經開工過的 project 可保留既有資料，之後再依本規則逐步重整。
+
+最小允許先存在：
 
 - `projects/README.md`
 - `projects/CONVENTIONS.md`
 
-還不要建立：
+未指定前不要新增：
 
 - `projects/iwin/...`
 - `projects/ugsoft/...`

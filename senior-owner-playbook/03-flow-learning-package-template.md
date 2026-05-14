@@ -32,8 +32,9 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code」。
 
 - project README
 - Step 文件
-- `evidence.md`
-- `claim-boundary.md`
+- `materials/evidence.md`
+- `materials/claim-boundary.md`
+- flow-level `career-interview.md`
 - project-level `career-interview.md`
 - 共用 playbook 規則
 
@@ -61,13 +62,19 @@ AI 需要主動判斷深度：
 ```text
 projects/{domain}/{project}/flows/{flow-name}/
   flow.md
-  evidence.md
-  interview.md
-  claim-boundary.md
-  decision-notes.md
+  career-interview.md
+  materials/
+    evidence.md
+    interview.md
+    claim-boundary.md
+    decision-notes.md
 ```
 
 Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 flow 後，才依 `projects/CONVENTIONS.md` 建立完整資料夾。
+
+`flow.md` 是唯一主報告與預設閱讀入口。`career-interview.md` 是該 flow 的保守履歷 / 面試素材。`materials/` 只放證據、技術決策、面試稿細節與不可誇大邊界。
+
+既有舊平鋪格式可以先沿用，但要標註「舊格式 / 待遷移」。未經 Nick 要求，不批量搬動既有 `iwin` 資料。
 
 ## Prompt
 
@@ -88,9 +95,10 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 
 請輸出到：
 - projects/{domain}/{project}/flows/{flow-name}/flow.md
-- projects/{domain}/{project}/flows/{flow-name}/evidence.md
-- projects/{domain}/{project}/flows/{flow-name}/interview.md
-- projects/{domain}/{project}/flows/{flow-name}/claim-boundary.md
+- projects/{domain}/{project}/flows/{flow-name}/career-interview.md
+- projects/{domain}/{project}/flows/{flow-name}/materials/evidence.md
+- projects/{domain}/{project}/flows/{flow-name}/materials/interview.md
+- projects/{domain}/{project}/flows/{flow-name}/materials/claim-boundary.md
 
 請產出：
 1. 業務問題
@@ -107,6 +115,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 12. 不能誇大的邊界
 13. 下一步要查的 evidence
 14. 本次實際掃描範圍與未掃描範圍
+15. 每條履歷 / 面試說法的證據層級：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
 ```
 
 ## 完成後必須給下一步建議
@@ -126,10 +135,11 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 ## 拆檔規則
 
 - `flow.md`：業務問題、系統位置、正常流程、資料與狀態、failure window、owner decision。
-- `evidence.md`：code path、commit / branch / grep evidence、已確認、合理推論、待確認。不得貼出密碼、token、內網 IP、production URL 或客戶機密。
-- `interview.md`：3 分鐘講法、Senior 追問、Lead / Architect 追問、可用問答。
-- `claim-boundary.md`：履歷可寫、只能說分析 / 參與、不能說主導、待補 evidence。
-- `decision-notes.md`：技術硬底子、技術選型差異、trade-off、owner decision。只補與本 flow 直接相關的底層知識，不寫成教科書大全。
+- `career-interview.md`：該 flow 的保守履歷 / 面試素材、可說與不可說、證據層級。
+- `materials/evidence.md`：code path、commit / branch / grep evidence、已確認、合理推論、待確認。不得貼出密碼、token、內網 IP、production URL 或客戶機密。
+- `materials/interview.md`：3 分鐘講法、Senior 追問、Lead / Architect 追問、可用問答。
+- `materials/claim-boundary.md`：履歷可寫、只能說分析 / 參與、不能說主導、待補 evidence。
+- `materials/decision-notes.md`：技術硬底子、技術選型差異、trade-off、owner decision。只補與本 flow 直接相關的底層知識，不寫成教科書大全。
 
 ## 輸出格式
 

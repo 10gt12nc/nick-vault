@@ -90,9 +90,16 @@ projects/{domain}/{project}/
   flows/
     {flow-name}/
       flow.md
-      evidence.md
+      career-interview.md
+      materials/
+        evidence.md
+        decision-notes.md
+        interview.md
+        claim-boundary.md
   career-interview.md
 ```
+
+`flow.md` 是唯一主報告與預設閱讀入口；`career-interview.md` 是該 flow 的保守履歷 / 面試素材；`materials/` 放證據、技術決策、面試稿細節與 claim 邊界。既有舊平鋪格式先不批量搬，等 Nick 指定重整時再遷移。
 
 ### archive/
 
@@ -148,9 +155,10 @@ Nick 不需要每次重複提醒「重讀 KB / 重讀 code / 維護規則」。
 2. 先檢查是否已有相同或相近 flow。
 3. 跑 Step 1 找 flow。
 4. 只挑一條 flow。
-5. 深挖成 `flow.md` + `evidence.md`。
-6. 轉成面試 case。
-7. 判斷是否更新履歷。
+5. 深挖成 `flow.md` + `materials/evidence.md`。
+6. 把 evidence / decision / interview / claim 邊界收進 `materials/`。
+7. 轉成該 flow 的 `career-interview.md`。
+8. 判斷是否更新履歷。
 
 不要一次掃全部專案。
 

@@ -16,10 +16,11 @@
 - 不搬公司專案 code。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 每次開始前，AI 必須自動重讀 KB、project 既有文件與相關 code 最新狀態。
-- 每次完成後，AI 必須自動判斷是否要維護 README、Step 文件、flow evidence、claim boundary 或共用 KB。
+- 每次完成後，AI 必須自動判斷是否要維護 README、Step 文件、flow `materials/evidence.md`、`materials/claim-boundary.md` 或共用 KB。
 - 每次只做一條 flow。
 - 做新 flow 前，先檢查 `projects/**/flows/` 是否已有同名或相近 flow。
 - 尚未完成 evidence 的 flow，不更新履歷 master。
+- 新建或重整後，Nick 預設只讀 `flow.md`；該 flow 的履歷 / 面試素材放 `career-interview.md`，其他素材放 `materials/`。
 
 建議結構：
 
@@ -30,10 +31,12 @@ projects/{domain}/{project}/
   flows/
     {flow-name}/
       flow.md
-      evidence.md
-      decision-notes.md
-      interview.md
-      claim-boundary.md
+      career-interview.md
+      materials/
+        evidence.md
+        decision-notes.md
+        interview.md
+        claim-boundary.md
   career-interview.md
 ```
 

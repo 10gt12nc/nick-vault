@@ -19,7 +19,9 @@
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
-- Flow 讀懂後，若需要補技術硬底子，要用 `decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
+- Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
+- 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
+- flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。
 - 單條 flow 做到 Step 5 只代表該 flow 完成，不代表整個 project 完成；下一步要先回同 project 的 candidate ranking 選下一條未完成 flow，不要自行跨 project。
@@ -73,7 +75,10 @@ KB:
 Vault:
 - projects/{domain}/{project}/README.md
 - projects/{domain}/{project}/step*.md
-- projects/{domain}/{project}/flows/{flow-name}/*.md
+- projects/{domain}/{project}/flows/{flow-name}/flow.md
+- projects/{domain}/{project}/flows/{flow-name}/career-interview.md
+- projects/{domain}/{project}/flows/{flow-name}/materials/*.md
+- 若既有 flow 是舊平鋪格式，也要讀同層 `evidence.md` / `interview.md` / `claim-boundary.md` / `decision-notes.md`，並標註待遷移
 
 Code repo:
 - 目前 branch
@@ -149,7 +154,7 @@ Code repo:
 
 如果發現類似或同名 flow，請先回報：
 - 已讀過的位置
-- 完成狀態：只有 Step 1 / 已有 flow.md / 已有 evidence.md / 已轉面試 case / 已更新履歷
+- 完成狀態：只有 Step 1 / 已有 flow.md / 已有 materials/evidence.md 或舊格式 evidence.md / 已轉面試 case / 已更新履歷
 - 是否建議重讀
 - 建議原因：code 有新分支、evidence 不足、面試案例不足、履歷尚未更新，或不建議重讀
 
@@ -248,7 +253,7 @@ Code repo:
 
 如果已經做過，請先回報：
 - 已有檔案位置
-- 已完成哪些內容：flow.md / evidence.md / career-interview.md / 面試案例 / 履歷 bullet
+- 已完成哪些內容：flow.md / materials/evidence.md 或舊格式 evidence.md / career-interview.md / 面試案例 / 履歷 bullet
 - 缺什麼
 - 是否建議重讀
 
@@ -284,6 +289,7 @@ Code repo:
 - resume conservative bullet
 - claim boundary
 - evidence
+- claim source label：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
 - related files
 - 本次實際掃描範圍
 - 未掃描範圍與原因
@@ -314,16 +320,18 @@ Code repo:
 
 用途：已經看懂一條 flow 後，補足 Senior / Owner 需要的技術判斷力。
 
-注意：這是 Step 3 的補充文件，不是新的 Step。除非 Nick 明確要求補 `decision-notes.md`，否則不要把它當成「下一步」來打斷 Step 4。
+注意：這是 Step 3 的補充文件，不是新的 Step。除非 Nick 明確要求補 `materials/decision-notes.md` 或舊格式 `decision-notes.md`，否則不要把它當成「下一步」來打斷 Step 4。
 
 ```text
 請針對這條 flow 補 decision-notes.md。
 
 請先重讀：
 - flow.md
-- evidence.md
-- interview.md
-- claim-boundary.md
+- career-interview.md
+- materials/evidence.md
+- materials/interview.md
+- materials/claim-boundary.md
+- 若是舊格式，讀同層舊檔並標註待遷移
 - 相關 code path
 
 請不要重寫 flow。
@@ -352,7 +360,7 @@ Code repo:
 7. 面試追問與回答
 
 請輸出到：
-projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
+projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 ```
 
 ## 補充 B：Architecture Map 大專案 / 子專案地圖
@@ -459,6 +467,12 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 8. 對應履歷 bullet
 
 語氣要真實，不要像背稿。
+
+請輸出到：
+- `projects/{domain}/{project}/flows/{flow-name}/career-interview.md`
+- `projects/{domain}/{project}/flows/{flow-name}/materials/interview.md`
+
+每條可用說法都要標註證據層級；沒有 Nick 本人 evidence 時，不得寫成真實開發成果。
 ```
 
 ## 5. Step 5：履歷 / 自傳更新
@@ -475,6 +489,8 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 - 不寫主導、獨立完成、改善 X%，除非有明確證據。
 - 可以寫參與、維護、分析、梳理、協助、優化、提出改善方向。
 - 履歷只補高價值且能面試講清楚的內容。
+- 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / `archive/` / KB 所有履歷自傳素材。
+- 每條履歷 claim 都要標註證據層級：真實開發過 / 專案存在 / 分析素材 / 待確認。
 
 請先列：
 1. 可補內容
@@ -495,7 +511,10 @@ projects/{domain}/{project}/flows/{flow-name}/decision-notes.md
 請建立：
 - README.md
 - flows/{flow-name}/flow.md
-- flows/{flow-name}/evidence.md
+- flows/{flow-name}/career-interview.md
+- flows/{flow-name}/materials/evidence.md
+- flows/{flow-name}/materials/interview.md
+- flows/{flow-name}/materials/claim-boundary.md
 - career-interview.md
 
 如果 flow 尚未完成，不要寫進履歷 master。

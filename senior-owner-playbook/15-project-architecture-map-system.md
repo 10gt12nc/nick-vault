@@ -38,10 +38,12 @@ projects/{domain}/
     flows/
       {flow-name}/
         flow.md
-        evidence.md
-        decision-notes.md
-        interview.md
-        claim-boundary.md
+        career-interview.md
+        materials/
+          evidence.md
+          decision-notes.md
+          interview.md
+          claim-boundary.md
 ```
 
 ## Domain 地圖

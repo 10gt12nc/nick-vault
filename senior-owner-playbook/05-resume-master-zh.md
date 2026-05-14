@@ -2,6 +2,8 @@
 
 > 這是唯一履歷 / 自傳 master。來源是待刪區舊履歷、專案 flow、career material 與 code-backed analysis 重新整理後的保守版。正式投遞前，所有「主導、獨立完成、改善百分比」都必須再由 Nick 本人確認或補 MR / commit / ticket / metric。
 
+> 目前證據狀態：保守母稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔前，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；每條 claim 需標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`，不得腦補。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）

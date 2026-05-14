@@ -3,6 +3,8 @@
 這份是正式投遞履歷時使用的自傳版本，不取代 `05-resume-master-zh.md`。  
 `05-resume-master-zh.md` 是母稿，這份是從母稿濃縮後的投遞版。
 
+> 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔前，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。
+
 ## 使用原則
 
 - 不寫人生流水帳。

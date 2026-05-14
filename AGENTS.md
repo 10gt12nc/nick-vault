@@ -23,7 +23,9 @@
 
 - 「不要維護流水帳」的意思是：不要建立或保留「今天做什麼、昨天做什麼、某次操作紀錄、records、operation-log、work-report」這類時間序列工作日誌。不是要改掉現有 `flow.md / evidence.md / interview.md / claim-boundary.md` 的分析結構。
 - `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
-- `evidence.md`、`decision-notes.md`、`interview.md`、`claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告。
+- `materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告；舊平鋪格式的同名檔先視為待遷移舊格式。
+- 新建或重整後的 flow 資料夾，預設只讓 Nick 直接讀 `flow.md` 與該 flow 的 `career-interview.md`；其他 evidence、decision、interview、claim 邊界要收在 `materials/`，避免主閱讀面混亂。既有 `iwin` 舊資料夾這輪先不搬，等 Nick 明確要求再遷移。
+- flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
 - 參考 workspace 正確路徑：
   - `/Users/nick/Git/iwin/iwin-workspace`
   - `/Users/nick/Git/antplay/math-workspace`
@@ -59,26 +61,32 @@
 - 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
-- 每次 Step 都要在 `evidence.md` 或對應文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
+- 每次 Step 都要在 `materials/evidence.md` 或舊格式對應 evidence 文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
 - 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。
 - 後台、前端、BI、admin 類專案若不是 Nick 主開發，只能作為理解入口與對接 flow；履歷自傳應簡單帶過，不得硬包裝成主導後台或完整系統 owner。
 - 沒有實際 evidence 的技術點可以寫「略」、「不展開」、「建議補讀外部文章 / 官方文件」，不要為了湊滿格式而腦補。
+- `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
 
 ## Flow 格式
 
-未來專案分析建議放：
+未來新建或重整後的專案分析建議放：
 
 ```text
 projects/{domain}/{project}/
   README.md
   architecture-map.md
-  flows/{flow-name}/flow.md
-  flows/{flow-name}/evidence.md
-  flows/{flow-name}/decision-notes.md
-  flows/{flow-name}/interview.md
-  flows/{flow-name}/claim-boundary.md
+  flows/{flow-name}/
+    flow.md
+    career-interview.md
+    materials/
+      evidence.md
+      decision-notes.md
+      interview.md
+      claim-boundary.md
   career-interview.md
 ```
+
+`flow.md` 是唯一主報告；`career-interview.md` 是該 flow 對應的保守履歷 / 面試素材；`materials/` 是證據與輔助材料。若既有資料仍是舊平鋪格式，先標為舊格式可沿用 / 需遷移，不要未經 Nick 同意批量搬檔。
 
 ## 檢查
 
