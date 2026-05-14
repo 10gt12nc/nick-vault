@@ -1,7 +1,7 @@
 # Evidence - point-control-admin-operation
 
 更新時間：2026-05-14
-狀態：Step 3 evidence 已重整
+狀態：Step 5 已完成；本文件為 evidence 附錄
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -87,7 +87,24 @@
 - 完整逐檔逐行。
 - 完整後端 runtime flow。
 - Nick 真實開發過。
-- flow 已完成 Step 4 / Step 5。
+
+## Step 5 補掃紀錄
+
+已於 2026-05-14 重新判定履歷 / 自傳邊界。
+
+已補讀：
+
+- `projects/iwin/app_bi/flows/point-control-admin-operation/interview.md`
+- `projects/iwin/app_bi/flows/point-control-admin-operation/claim-boundary.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+
+Step 5 判定：
+
+- 不更新 `05-resume-master-zh.md`。
+- 不更新 `08-application-autobiography-zh.md`。
+- 原因是目前只有專案存在 / code-backed evidence，沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
 
 ## Route evidence
 
@@ -323,4 +340,3 @@
 - 已確認此 flow 有完整 idempotency / retry / reconcile。
 - 已確認 `app_bi` 是 truth source。
 - 已確認可以寫入履歷 master。
-- 已完成最新 Step 4 / Step 5。

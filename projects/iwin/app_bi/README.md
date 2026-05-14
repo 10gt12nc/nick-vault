@@ -17,7 +17,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
-| `flows/point-control-admin-operation/` | Step 4 已重整，舊平鋪格式 | 已轉成保守面試 case；下一步重整 Step 5 檢查履歷 / 自傳 |
+| `flows/point-control-admin-operation/` | Step 5，舊平鋪格式 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
 | `flows/admin-config-redis-sync/` | Step 5，舊平鋪格式 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
 
 ## 專案定位
@@ -58,12 +58,13 @@
 只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 5 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
 - Step 1 / Step 2 已重整乾淨。
-- `point-control-admin-operation` Step 4 已重整成保守面試 case。
-- 舊 Step 5 不能再視為最新完成。
-- 下一步應重新檢查是否更新履歷 / 自傳；目前預期不更新，除非補到 Nick 本人 evidence。
+- `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- `admin-config-redis-sync` 已完成 Step 5。
+- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
+- 預期仍只作報表 / projection 分析素材，不更新履歷；若要變成強 evidence，之後要補 producer repo。

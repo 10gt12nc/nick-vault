@@ -12,7 +12,7 @@
 目前最值得延伸的候選 flow：
 
 1. `payment-order-status-repair`：金流訂單人工修正入口，價值最高，但必須轉去 `payment` repo 補 source of truth。
-2. `point-control-admin-operation`：後台控制操作，Step 4 已重整；舊 Step 5 暫不視為最新完成，目前仍只確認到 `app_bi` 發送端。
+2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；不更新履歷 / 自傳，目前仍只確認到 `app_bi` 發送端。
 3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
 4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，需補 producer repo。
 5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
@@ -63,7 +63,7 @@
 | `README.md` | 已重整 | 已從 Step 1 報告改回專案入口 |
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
 | `step2-flow-comparison.md` | 需小幅重整 | ranking 可沿用，但需同步本文件的新候選與證據層級 |
-| `flows/point-control-admin-operation/*` | 舊平鋪格式 / 已重整 Step 4 | 舊 Step 5 暫不視為最新完成；下一步重整 Step 5 |
+| `flows/point-control-admin-operation/*` | 舊平鋪格式 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
 | `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
 
 ## 掃描等級判斷
@@ -233,7 +233,7 @@ source repo 狀態：
 ### 3. `admin-config-redis-sync`
 
 中文名稱：後台設定同步 Redis
-狀態：Step 4，下一步 Step 5
+狀態：已完成 Step 5，不更新履歷 / 自傳
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 為什麼重要：
@@ -438,13 +438,13 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 5 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
 - Step 1 / Step 2 已重整。
-- `point-control-admin-operation` Step 4 已於 2026-05-14 重整。
-- 舊 Step 5 不再視為最新完成。
-- 下一步應重新檢查是否更新履歷 / 自傳。
+- `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
+- `admin-config-redis-sync` 已完成 Step 5。
+- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
 - 不更新履歷。

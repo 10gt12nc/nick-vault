@@ -62,7 +62,7 @@ Step：4 轉面試 case 重整
 | Step 2 | 可沿用但需同步狀態 | 已把 `point-control-admin-operation` 排在 app_bi 內優先，但有舊狀態需修正 |
 | Step 3 | 可沿用 | 2026-05-14 已重整 `flow.md` / `evidence.md` |
 | Step 4 | 本次重整 | 舊稿不再視為最新完成 |
-| Step 5 | 待重整 | 舊 `claim-boundary.md` 只能暫作參考，下一步重新判定履歷 / 自傳 |
+| Step 5 | 已重整 | 已判定不更新正式履歷 / 自傳 |
 
 本次不做：
 
@@ -232,17 +232,17 @@ Step：4 轉面試 case 重整
 - `flow.md`：主研究報告。
 - `evidence.md`：code / commit evidence。
 - `decision-notes.md`：技術硬底子與設計選項。
-- `claim-boundary.md`：舊 Step 5 稿，下一步需重新判定。
+- `claim-boundary.md`：Step 5 履歷 / 自傳邊界，已判定不更新正式履歷 / 自傳。
 - `interview.md`：本 Step 4 面試素材。
 
 下一步只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 5 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 4 已把新版 Step 3 轉成保守面試 case。
-- Step 5 應重新檢查是否更新履歷 / 自傳。
-- 目前預期仍是不更新，除非補到 Nick 本人 evidence。
+- 本 flow 已完成 Step 1-5。
+- Step 5 已判定不更新正式履歷 / 自傳。
+- 下一步應回到同 project candidate ranking，選下一條未完成 flow。

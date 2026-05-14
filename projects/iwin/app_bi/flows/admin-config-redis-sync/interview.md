@@ -184,12 +184,12 @@ Step 5 已完成履歷 / 自傳更新判定：
 下一步只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 5 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- `point-control-admin-operation` 已於 2026-05-14 重新完成 Step 4。
-- 舊 Step 5 暫不視為最新完成。
-- 下一步應重新檢查是否更新履歷 / 自傳。
-- 目前預期不更新履歷，除非補到 Nick 本人 evidence。
+- `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- 下一步應回到同 project candidate ranking，選下一條未完成 flow。
+- `daily-game-record-summary` 是同 project 下一條仍有 Senior / Owner 價值的候選 flow。

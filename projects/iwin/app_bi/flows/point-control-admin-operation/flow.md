@@ -1,7 +1,7 @@
 # app_bi - point-control-admin-operation
 
 更新時間：2026-05-14
-Step：3 單條 flow 深挖重整
+Step：5 已完成；本文件為 Step 3 主研究報告
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 格式狀態：舊平鋪格式可沿用，尚未遷移到 `materials/`
@@ -83,7 +83,7 @@ Step：3 單條 flow 深挖重整
 | `evidence.md` | 需同步 | 要補 2026-05-14 實際重讀、commit 作者與未掃邊界 |
 | `decision-notes.md` | 可沿用但待 Step 4 前再檢查 | 技術方向正確，仍是舊平鋪格式 |
 | `interview.md` | Step 4 已重整 | 已依新版 Step 3 轉成保守面試 case |
-| `claim-boundary.md` | 舊 Step 5 稿，暫不視為最新完成 | Step 4 重整後需重新確認才能算 Step 5 |
+| `claim-boundary.md` | Step 5 已重整 | 已判定不更新正式履歷 / 自傳 |
 
 ## 系統位置
 
@@ -458,7 +458,7 @@ Owner 風險：
 
 ## 面試與履歷邊界
 
-目前可以作為 Step 4 面試素材的基礎：
+目前可以作為面試素材的基礎：
 
 - 我如何從後台 route 追到 MySQL / Redis / GM command / Mongo log。
 - 我如何辨識 DB transaction 之外的 side effect。
@@ -479,18 +479,19 @@ Owner 風險：
 - code 功能存在：`專案存在 / code-backed`
 - Nick 個人貢獻：`待確認`
 
-## 下一步
+## Step 5 結論與下一步
 
 只推薦一件事：
 
 ```text
-app_bi point-control-admin-operation Step 5 重整
+app_bi daily-game-record-summary Step 3
 ```
 
 原因：
 
-- Step 3 已重新依新 KB 重整。
-- Step 4 已把新版 Step 3 轉成保守面試 case。
-- 舊 Step 5 不能再視為最新完成，需重新檢查是否更新履歷 / 自傳。
-- 目前預期不更新履歷，除非補到 Nick 本人 evidence。
+- 本 flow 已完成 Step 1-5。
+- Step 5 判定不更新正式履歷 / 自傳。
+- `admin-config-redis-sync` 也已完成 Step 5。
+- 下一步應回到同 project candidate ranking，選下一條未完成 flow。
+- `daily-game-record-summary` 是同 project 下一條仍有 Senior / Owner 價值的候選 flow。
 - 需要 commit；push 等 Nick approval。
