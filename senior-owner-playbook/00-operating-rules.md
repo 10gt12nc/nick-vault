@@ -27,7 +27,7 @@ AI 需要自動維護：
 - 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 - 自動確認 `flow.md` 是否有初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明。沒有這一層時，不能只補 Senior / Owner 風險分析就算完成。
-- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；push 一律等待 Nick approval。
+- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；若本輪需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不得只停在本地文字回報。
 
 但「自動維護」不能改變 Step 主線。
 
@@ -36,7 +36,7 @@ AI 需要自動維護：
 AI 不會做的事：
 
 - 不會在 Nick 沒有要求時背景定期掃 repo。
-- 不會未經 Nick approval 直接 push。改檔後可以依風險等級自動 commit，但 push 必須等 Nick 明確說 `approval`、`push`、`可以推` 或等價確認。
+- 不會未經 Nick approval 直接 push。改檔後可以依風險等級自動 commit；若本輪需要推送，AI 要直接執行 `git push` 讓系統跳出 approval 視窗，由 Nick 按 Yes / No。不要只在 final 寫舊式「本地已提交、等待你再要求推送」的文字。
 - 不會把後台入口硬包裝成後端成果。
 
 ## 改檔後自查、commit、push approval 規則
@@ -83,7 +83,25 @@ AI 不會做的事：
 
 自查通過後，自動 commit，並回報 commit hash 與摘要。
 
-push 一律需要 Nick 明確 approval；Nick 未說 approval 前，只能停在已 commit 狀態。
+push 一律需要 Nick approval，但正確做法是由 AI 直接執行 `git push` 觸發 approval 視窗，讓 Nick 在視窗按 Yes / No。
+
+禁止的舊流程：
+
+```text
+commit 完
+-> final 只回覆本地已提交，要求 Nick 另外再說推送
+```
+
+正確流程：
+
+```text
+commit 完
+-> 若本輪需要推送，直接執行 git push with approval
+-> Nick 在 approval 視窗按 Yes / No
+-> push 成功後回報結果
+```
+
+只有在 Nick 明確說「不要 push」、「只 commit」、「先停在本地」時，才停在已 commit 狀態。
 
 例外：
 
@@ -573,7 +591,7 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚為什麼現在做它。
 - 要說清楚會產出哪些檔案或更新哪些既有檔案。
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
-- 要說清楚 commit / push 狀態；小修輕量自查後 commit，重大改動全掃確認後 commit，push 等 Nick approval。
+- 要說清楚 commit / push 狀態；小修輕量自查後 commit，重大改動全掃確認後 commit；若需要 push，直接觸發 `git push` approval 視窗。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
 - 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。

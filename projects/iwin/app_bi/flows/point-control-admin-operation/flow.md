@@ -607,4 +607,4 @@ app_bi daily-game-record-summary Step 3
 - `admin-config-redis-sync` 也已完成 Step 5。
 - 下一步應回到同 project candidate ranking，選下一條未完成 flow。
 - `daily-game-record-summary` 是同 project 下一條仍有 Senior / Owner 價值的候選 flow。
-- 需要 commit；push 等 Nick approval。
+- 若本次有改檔，完成自查後 commit；若需要 push，直接觸發 `git push` approval 視窗。

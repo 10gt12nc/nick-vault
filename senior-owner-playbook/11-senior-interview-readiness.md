@@ -20,11 +20,11 @@
 - 唯一履歷 master 已整理。
 - 投遞用自傳已整理。
 - 未來專案資料夾 `projects/` 已建立。
+- 已有 `app_bi` 兩條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`。但它們目前仍屬於後台 / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
 
 ### 尚未完成
 
-- `projects/` 尚未有任何完成的 production flow。
-- 尚未有 `flow.md + materials/evidence.md` 的實際專案 case。
+- 尚未完成 3-5 條高價值後端 production flow，例如 payment callback、wallet transfer、Kafka settlement、game settlement。
 - 尚未完成 3-5 條可面試案例。
 - 尚未把已完成 case 轉成 3 分鐘面試說法。
 - 尚未依 evidence 最終更新履歷 bullet。
@@ -33,7 +33,8 @@
 
 ```text
 準備系統已完成。
-Senior 面試內容尚未完成。
+已有 app_bi 入門 case。
+Senior 面試主力內容尚未完成。
 ```
 
 ## 能投 10 萬以上職缺前的最低門檻
