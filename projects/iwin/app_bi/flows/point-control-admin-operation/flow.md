@@ -7,6 +7,116 @@
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 格式狀態：已遷移為新版結構；`flow.md` 為唯一主研究報告
 
+## 0. 閱讀定位
+
+- Flow 中文名稱：單點控制 / 營運控制操作
+- Flow slug：`point-control-admin-operation`
+- 完成狀態：Step 5 已完成
+- 證據層級：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
+- 本 flow 類型：後台 control plane / 營運操作入口
+- 是否只確認到入口：不是只有 UI；已確認 `app_bi` 寫 MySQL、Redis、Mongo 並送 GM command，但下游 GM receiver / runtime consumer 未掃
+
+## 1. 白話導讀
+
+這條 flow 是後台給營運或管理員使用的「玩家單點控制」功能。白話說，就是把某些玩家放進控制名單，設定控制類型、額度、難度或狀態，讓後端 runtime 之後能依這份名單做對應控制。
+
+它不只是後台新增一筆資料。一次操作至少會碰到四件事：
+
+1. 後台把控制設定寫進 MySQL。
+2. 同步一份 runtime 可能會讀的 Redis projection。
+3. 透過 `sendGmCommand()` 通知下游服務套用或取消控制。
+4. 寫 Mongo 操作紀錄，讓之後能查誰操作過。
+
+最直覺的風險是：MySQL 成功、Redis 成功、GM command 成功、Mongo log 成功，這幾件事不是同一個 transaction。只要其中一段失敗，就可能出現「後台看起來成功，但 runtime 沒套用」或「DB rollback 了，但 Redis 已經被改過」這類中間狀態。
+
+## 2. 初中階 Code 分層對照
+
+| 分層 | 本 flow 對應 | 狀態 |
+| --- | --- | --- |
+| Route / API | `app/route.php` 的 `point-control` routes | 已確認 |
+| Controller | `app/admin/controller/PointControlController.php` | 已確認 |
+| Service / Business | `app/business/DataListService.php`，負責批量校驗、匯出、Mongo log 組裝 | 已確認 |
+| Model / DAO | `PointControl`、`PointControlSwitch`、`PointControlAllowlist`、`PointControlAllowlistLog` | 已確認 |
+| SQL / Table | `point_control` 為主；周邊有 switch / allowlist tables | 已確認 |
+| Redis | `playerControl:playerControls:data`、`settings.center_http` | 已確認 |
+| MQ / Kafka / 下游通知 | 無 MQ evidence；用 `sendGmCommand()` HTTP 通知下游 | 已確認 sender，receiver 待確認 |
+| External API | `sendGmCommand()` 送 GM command | 已確認 sender |
+| Log / Audit | Mongo `log_point_control`、`opLog` | 已確認 |
+| Config | Redis DB / channel / center 相關設定 | 部分確認 |
+
+如果用 Java 後端的語言理解，可以把它想成：
+
+```text
+Controller 接後台請求
+-> Service 做校驗與批量處理
+-> Repository / Model 寫 MySQL
+-> RedisTemplate 更新 projection
+-> HTTP client 通知下游
+-> Audit repository 寫操作紀錄
+```
+
+## 3. 最小架構圖
+
+```mermaid
+flowchart LR
+  Admin["後台管理員"]
+  UI["app_bi 後台頁面"]
+  Controller["PointControlController"]
+  Service["DataListService"]
+  MySQL["MySQL: point_control"]
+  Redis["Redis: playerControl:playerControls:data"]
+  GM["sendGmCommand()"]
+  Runtime["下游 GM / runtime consumer（待確認）"]
+  Mongo["Mongo: log_point_control"]
+
+  Admin --> UI
+  UI --> Controller
+  Controller --> Service
+  Controller --> MySQL
+  Controller --> Redis
+  Controller --> GM
+  GM --> Runtime
+  Controller --> Mongo
+  Service --> Mongo
+```
+
+## 4. 正常流程圖
+
+```mermaid
+sequenceDiagram
+  participant A as Admin
+  participant C as PointControlController
+  participant D as MySQL point_control
+  participant R as Redis playerControls
+  participant G as sendGmCommand
+  participant M as Mongo log_point_control
+  participant X as Runtime 待確認
+
+  A->>C: 新增 / 修改 / 停用 / 批量操作
+  C->>C: 驗證玩家、額度、難度、狀態
+  C->>D: 開啟 transaction 並寫 point_control
+  C->>R: hSet / hDel 控制資料
+  C->>G: SET_PLAYER_CONTROL / DELETE_PLAYER_CONTROL
+  G-->>X: 通知下游套用（receiver 待確認）
+  G-->>C: 回傳結果
+  C->>D: commit 或 rollback
+  C->>M: 寫操作紀錄
+```
+
+## 5. 正常流程逐步說明
+
+1. 管理員從後台進入 point-control 頁面。
+2. 後台打到 `PointControlController` 對應 action。
+3. Controller 驗證玩家是否存在、額度與難度是否合法。
+4. 單筆操作直接處理；批量操作先交給 `DataListService` 做 xlsx 檢查與資料整理。
+5. 開啟 MySQL transaction，寫入或更新 `point_control`。
+6. 同步 Redis `playerControl:playerControls:data`。
+7. 組 `SET_PLAYER_CONTROL` 或 `DELETE_PLAYER_CONTROL` GM command。
+8. 呼叫 `sendGmCommand()` 通知下游。
+9. 單筆流程 GM 成功才 commit DB；失敗則 rollback DB。
+10. commit 後寫 Mongo `log_point_control` 與部分 `opLog`。
+11. 列表查詢時會再讀 Redis remain，並可能反寫 MySQL status。
+
 ## 本次重整結論
 
 `point-control-admin-operation` 是 `app_bi` 後台對玩家單點控制名單做新增、修改、停用、批量操作、查詢與操作紀錄的 control plane flow。

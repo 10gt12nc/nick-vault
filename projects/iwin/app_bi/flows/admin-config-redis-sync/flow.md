@@ -7,6 +7,116 @@
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 格式狀態：已遷移為新版結構；`flow.md` 為唯一主研究報告
 
+## 0. 閱讀定位
+
+- Flow 中文名稱：後台設定同步 Redis
+- Flow slug：`admin-config-redis-sync`
+- 完成狀態：Step 5 已完成
+- 證據層級：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
+- 本 flow 類型：後台 control plane / 設定 projection / runtime config sync
+- 是否只確認到入口：不只 UI；已確認 `app_bi` 從 MySQL 讀設定並寫 Redis，部分會送 GM reload command；但下游 runtime consumer 未掃
+
+## 1. 白話導讀
+
+這條 flow 是後台把「資料庫裡的設定」同步成「線上服務會讀的 Redis 設定」。白話說，後台改完支付、商戶、活動、遊戲或渠道設定後，管理員按同步，系統會重新整理一份 runtime 用的 Redis projection。
+
+它的重點不是「按一下同步按鈕」而已，而是：
+
+1. MySQL 是設定來源。
+2. Redis 是線上服務或 API 可能會讀的快取 / 投影。
+3. 有些設定同步完 Redis 還要通知 runtime reload。
+4. 後台顯示同步成功，不一定等於所有 runtime 都已套用。
+
+最直覺的風險是：DB 有新設定、Redis 還是舊設定；或 Redis 已更新，但 runtime 還沒 reload；或只同步了部分 channel / key，造成線上不同渠道看到不同設定。
+
+## 2. 初中階 Code 分層對照
+
+| 分層 | 本 flow 對應 | 狀態 |
+| --- | --- | --- |
+| Route / API | 多個後台頁面呼叫 `RedisSynchronize/*ToRedis` | 已確認 |
+| Controller | `app/admin/controller/RedisSynchronize.php` | 已確認 |
+| Service / Business | 多數同步邏輯在 controller 內；共用 helper 在 `Base.php` | 已確認 |
+| Model / DAO | ThinkPHP DB / model 查詢多種設定表 | 已確認 |
+| SQL / Table | payment / merchant / settings / activity / game / channel 類設定表 | 已確認但分散 |
+| Redis | `settings`、`clientSettings`、`serviceSettings`、`channel:{code}`、`activity:conf:*`、`Game:*` | 已確認 |
+| MQ / Kafka / 下游通知 | 無 MQ evidence；部分 flow 用 `sendGmCommand()` reload | 已確認 sender，receiver 待確認 |
+| External API | GM reload command | 已確認 sender |
+| Log / Audit | `opLog`、`waitSyn`、錯誤 log | 已確認 |
+| Config | Redis DB、channel、settings key 命名 | 部分確認 |
+
+如果用 Java 後端的語言理解，可以把它想成：
+
+```text
+Admin Controller 接同步請求
+-> 查 MySQL 設定表
+-> 組 runtime 需要的 DTO / JSON / hash
+-> RedisTemplate 寫 projection key
+-> 視設定類型通知 runtime reload
+-> 記錄操作與移除待同步狀態
+```
+
+## 3. 最小架構圖
+
+```mermaid
+flowchart LR
+  Admin["後台管理員"]
+  UI["app_bi 設定頁面"]
+  Sync["RedisSynchronize controller"]
+  MySQL["MySQL 設定表"]
+  Base["Base::addSettings / Redis helper"]
+  Redis["Redis projection keys"]
+  GM["sendGmCommand() reload"]
+  Runtime["API / game / payment runtime consumer（待確認）"]
+  Audit["waitSyn / opLog / error log"]
+
+  Admin --> UI
+  UI --> Sync
+  Sync --> MySQL
+  Sync --> Base
+  Base --> Redis
+  Sync --> GM
+  GM --> Runtime
+  Redis --> Runtime
+  Sync --> Audit
+```
+
+## 4. 正常流程圖
+
+```mermaid
+sequenceDiagram
+  participant A as Admin
+  participant S as RedisSynchronize
+  participant D as MySQL settings
+  participant R as Redis
+  participant G as sendGmCommand
+  participant X as Runtime 待確認
+  participant O as waitSyn / opLog
+
+  A->>S: 按同步到正式服
+  S->>D: 讀支付 / 商戶 / 活動 / 遊戲設定
+  S->>S: 組 Redis projection
+  S->>R: 寫 settings / clientSettings / Game:* 等 key
+  alt 需要 reload
+    S->>G: 發送 RELOADCLIENT 類 command
+    G-->>X: 通知 runtime reload（receiver 待確認）
+  end
+  S->>O: removeWaitSync / opLog / error log
+  S-->>A: 回傳同步成功或失敗
+```
+
+## 5. 正常流程逐步說明
+
+1. 後台設定被新增、修改或停用。
+2. 系統可能用 `waitSyn` 標記這些設定需要同步到 Redis。
+3. 管理員在後台按「同步到正式服」或類似按鈕。
+4. 前端呼叫 `RedisSynchronize` 對應 method。
+5. Controller 從 MySQL 查出支付、商戶、活動、遊戲或渠道設定。
+6. 程式把 DB 欄位整理成 runtime 需要的 Redis key / hash / JSON。
+7. 寫入 Redis，例如 `settings`、`clientSettings`、`serviceSettings`、`channel:{code}`、`activity:conf:*`、`Game:*`。
+8. 部分設定會再呼叫 `sendGmCommand()` 通知 runtime reload。
+9. 成功後寫 `opLog`，並移除部分待同步狀態。
+10. 若失敗，部分 method 會回同步失敗；但部分 reload 失敗仍可能回成功，因此要拆開看「Redis 已寫入」與「runtime 已套用」。
+
 ## 本次重整結論
 
 `admin-config-redis-sync` 是 `app_bi` 後台把 MySQL 設定投影到 Redis 的 control plane flow。它不是單純按鈕或 CRUD，而是：

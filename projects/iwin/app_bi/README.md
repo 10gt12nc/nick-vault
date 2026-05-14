@@ -18,8 +18,8 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
-| `flows/point-control-admin-operation/` | Step 5，新版結構 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
-| `flows/admin-config-redis-sync/` | Step 5，新版結構 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
+| `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
+| `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 
 ## 專案定位
 
