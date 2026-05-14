@@ -130,7 +130,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - Step 3 後通常建議補 failure scenarios / consistency / idempotency / retry / compensation / reconciliation。
 - 面試 case 完成前，不急著更新履歷。
 - 如果目前只看到後台 / 前端 / BI 操作入口，優先建議補讀真正後端 / 下游 repo。
-- 沒有 Nick 明確要求，不 commit、不 push。
+- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；push 等 Nick approval。
 
 ## 拆檔規則
 

@@ -33,7 +33,8 @@
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
 - 一條 flow 完成 Step 5 後，不代表整個 project 完成。若同 project 的 Step 1 / Step 2 還有未完成 candidate flows，下一步要回到同 project 選下一條 flow；不要自行跳到其他 project，除非 Nick 明確說要換專案。
 - `senior-owner-playbook/01~16` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~16。flow Step 固定只有 Step 1~5。
-- 之後凡是 AI 有實際改檔，完成後必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。
+- 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
+- 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
 - 改檔自查通過後，AI 要自動 commit。push 必須等 Nick 明確 approval，例如「approval」、「push」、「可以推」，不得未經確認直接推送。
 
 ## Senior / Owner 原則
@@ -104,5 +105,5 @@ projects/{domain}/{project}/
 - 是否有避免履歷誇大？
 - 是否有更新 README 或 todo？
 - 是否已自行全掃確認已改檔案與相關規則？
-- 是否已 commit？
+- 是否已依改動大小完成輕量自查或全掃確認，並 commit？
 - 是否已等待 Nick approval 後才 push？

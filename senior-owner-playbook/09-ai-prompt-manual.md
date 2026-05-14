@@ -28,7 +28,7 @@
 - `senior-owner-playbook/01~16` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
-- 有實際改檔時，完成後必須自行再全掃確認一次，確認通過後自動 commit；push 必須等 Nick 明確 approval。
+- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；push 必須等 Nick 明確 approval。
 
 ## 0. 開新對話時的總提示詞
 
@@ -54,7 +54,7 @@
 - 不要寫 secret、token、內網 IP、production URL、客戶資料。
 - 所有履歷說法要保守，沒有證據不要寫主導、獨立完成、改善百分比。
 - 每次完成後，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。
-- 如果本次有實際改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；push 必須等 Nick 明確 approval。
+- 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；push 必須等 Nick 明確 approval。
 - 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
 - 如果 Nick 說「深掃」，至少使用 Level 2；如果 Nick 說「極限深度 / 逐檔逐行 / 每個 commit diff」，使用 Level 3，並分批完成。
 - 如果 Nick 沒說深度，請依任務主動建議 Level 1 / 2 / 3；若不建議 Level 3，要說明原因。
@@ -120,7 +120,15 @@ Code repo:
 ## 0.2.1 改檔後自查 / commit / push approval Checklist
 
 ```text
-如果本次有實際改檔，完成後請固定執行：
+如果本次是小型 / 低風險改檔：
+
+1. 重讀改過的檔案片段。
+2. 跑 git diff --check。
+3. 跑 git status --short，確認只動預期檔案。
+4. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+5. 自查通過後直接 commit。
+
+如果本次是重大 / 實質改檔：
 
 1. 重讀本次改過的檔案。
 2. 重讀受影響的共用規則 / prompt / README / index。
@@ -331,7 +339,7 @@ Code repo:
 - 為什麼現在做它
 - 會更新哪些檔案
 - 是否會更新履歷；預設不更新
-- 是否需要 commit / push；預設不需要
+- 是否需要 commit / push；小型 / 低風險改檔輕量自查後 commit，重大 / 實質改檔全掃確認後 commit，push 等 approval
 - 若這條 flow 目前只掃到後台 / 前端，請優先建議去讀真正後端 / 下游 code，而不是硬轉履歷
 ```
 
@@ -553,7 +561,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 7. 是否有檢查這條 flow 以前是否讀過？
 8. 是否有更新 README 或 todo？
 9. 是否已自行全掃確認？
-10. 是否已自動 commit？
+10. 是否已依改動大小完成輕量自查或全掃確認，並自動 commit？
 11. 是否等待 Nick approval 後才 push？
 12. 下一步只推薦一件事。
 ```
@@ -579,7 +587,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 
 不會做：
 - 不更新履歷，除非 evidence 足夠且 Nick 明確要求。
-- 有改檔會自動 commit；push 等 Nick approval。
+- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；push 等 Nick approval。
 
 建議提示詞：
 {Nick 下一句可以直接貼的短 prompt}
