@@ -1,32 +1,36 @@
-# Evidence - app_bi 後台設定同步 Redis
+# Evidence - app_bi admin-config-redis-sync
 
-狀態: Step 3 evidence
-掃描等級: Level 2 Flow 深掃
+更新時間：2026-05-14
+狀態：Step 3 evidence，已依新規定同步
+掃描等級：Level 2 Flow 深掃
+證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次實際掃描範圍
 
-已重讀 KB:
+已重讀 KB：
 
 - `AGENTS.md`
 - `senior-owner-playbook/00-operating-rules.md`
 - `senior-owner-playbook/09-ai-prompt-manual.md`
 - `senior-owner-playbook/03-flow-learning-package-template.md`
-- `projects/CONVENTIONS.md`
 
-已重讀 vault:
+已重讀 vault：
 
 - `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
-- `projects/iwin/app_bi/flows/point-control-admin-operation/*`
-- `senior-owner-playbook/06-todo.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/flow.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/evidence.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/decision-notes.md`
+- `projects/iwin/app_bi/flows/admin-config-redis-sync/claim-boundary.md`
 
-已讀 code repo:
+已讀 code repo：
 
 - `/Users/nick/Git/iwin/app_bi`
 
-已看 branch / log:
+已看 branch / log：
 
-- 目前分支: `main`
+- 目前分支：`main`
 - 近期主線 log
 - 遠端分支清單
 - `RedisSynchronize.php` / `NewPay.php` / `Server.php` / `Channel.php` / views / migrations 相關 path-specific log
@@ -36,12 +40,19 @@
   - `8ea905d feat(#RD-152): 商户列表管理同步 新增redis key 无内嵌商户list`
   - `ea9bf27 feat(#saveMerchantSettingToRedis): MerchantSettingToRedis 改成只存status = 1`
 
-已讀 workspace 參考:
+已讀 code path：
 
-- `/Users/nick/Git/iwin/iwin-workspace/docs/專案分析/app-bi-同步到正式服按鈕對照.md`
-- `/Users/nick/Git/iwin/iwin-workspace/docs/專案分析/app_bi/kb/catalog/appbi-configuration.md`
+- `app/admin/controller/RedisSynchronize.php`
+- `app/common/controller/Base.php`
+- `app/api/controller/v1/Pay.php`
+- `app/admin/controller/NewPay.php`
+- `app/admin/controller/Server.php`
+- `app/admin/controller/Channel.php`
+- `public/views/newPay/**`
+- `public/views/settings/**`
+- `public/views/activityManage/**` 相關同步入口 grep 線索
 
-未掃:
+未掃：
 
 - 未 checkout 每個遠端分支逐一比對。
 - 未逐檔逐行掃完整 `app_bi`。
@@ -121,7 +132,7 @@
 - `8ea905d`: 商戶列表管理同步新增 `notEmbeddedMerchantList` Redis key。
 - `ea9bf27`: `saveMerchantSettingToRedis` 改成只同步 `status = 1`。
 
-解讀:
+解讀：
 
 - 這些 commit 證明設定同步不是純 CRUD，實際會遇到「欄位漏投影」、「runtime Redis key 不完整」、「啟用狀態邊界」問題。
 - 目前 commit 作者不是 Nick；不能當成 Nick 實作 claim。

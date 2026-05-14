@@ -13,7 +13,7 @@
 
 1. `payment-order-status-repair`：金流訂單人工修正入口，價值最高，但必須轉去 `payment` repo 補 source of truth。
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；目前仍只確認到 `app_bi` 發送端。
-3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 3；適合補 Step 4 面試素材。
+3. `admin-config-redis-sync`：設定同步 Redis，Step 3 已依新規定重整；適合補 Step 4 面試素材。
 4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，需補 producer repo。
 5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
 
@@ -64,7 +64,7 @@
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
 | `step2-flow-comparison.md` | 需小幅重整 | ranking 可沿用，但需同步本文件的新候選與證據層級 |
 | `flows/point-control-admin-operation/*` | 舊平鋪格式 / 可沿用但需補 evidence | 已有 Step 5，不更新履歷；之後再遷移到 `materials/` |
-| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用但需補 Step 4 | 已完成 Step 3，下一步可轉面試素材 |
+| `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用但需補 Step 4 | Step 3 已依新規定重整，下一步可轉面試素材 |
 
 ## 掃描等級判斷
 
@@ -233,7 +233,7 @@ source repo 狀態：
 ### 3. `admin-config-redis-sync`
 
 中文名稱：後台設定同步 Redis
-狀態：已完成 Step 3，下一步 Step 4
+狀態：Step 3 已依新規定重整，下一步 Step 4
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 為什麼重要：

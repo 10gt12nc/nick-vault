@@ -18,7 +18,7 @@
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
 | `flows/point-control-admin-operation/` | Step 5，舊平鋪格式 | 不更新履歷；之後若要重整，先補 materials 結構與 evidence 邊界 |
-| `flows/admin-config-redis-sync/` | Step 3，舊平鋪格式 | 下一步可做 Step 4，但需保守標註只確認到 Redis 寫入端 |
+| `flows/admin-config-redis-sync/` | Step 3 已重整，舊平鋪格式 | 主報告已依新規定補掃描範圍、未掃下游與履歷邊界；下一步可做 Step 4 |
 
 ## 專案定位
 
@@ -64,5 +64,5 @@ app_bi admin-config-redis-sync Step 4
 原因：
 
 - Step 1 / Step 2 已重整乾淨。
-- `admin-config-redis-sync` 已完成 Step 3，適合轉成保守面試 case。
+- `admin-config-redis-sync` 已依新規定重整 Step 3，適合轉成保守面試 case。
 - 不更新履歷。

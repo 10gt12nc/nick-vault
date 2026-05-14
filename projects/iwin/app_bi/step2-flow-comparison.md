@@ -96,7 +96,7 @@ Step 2 重新排序後，結論分兩層：
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history | `payment` source of truth 未掃 | 後續轉 `payment Step 1`，不在 `app_bi` 硬挖 |
 | 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | 已 Step 5；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃 | 先保留，不更新履歷 |
-| 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 3；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 下一步做 Step 4 |
+| 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | Step 3 已重整；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 下一步做 Step 4 |
 | 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢 / 報表入口與近期 SQL 修正 history | producer / 補跑機制未掃 | 之後轉 `game_job` 或資料 producer |
 | 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | 查詢入口與多 provider record 頁面 | log writer 未掃 | 適合後續 troubleshooting case |
 | 6 | `admin-rbac-permission-check` | 後台 RBAC / 權限判斷 | 中 | `Base::_initialize()` / `Auth::permission()` 有權限框架 | 高風險 controller enforcement 未逐條確認 | 作為輔助邊界，不單獨優先 |
@@ -108,7 +108,7 @@ Step 2 重新排序後，結論分兩層：
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
 1. `app_bi admin-config-redis-sync Step 4`
-   - 原因：Step 3 已完成，邊界清楚，只需轉保守面試 case。
+   - 原因：Step 3 已依新規定重整，邊界清楚，只需轉保守面試 case。
    - 產出：該 flow 的面試講法、可說 / 不可說、Senior 追問。
    - 是否更新履歷：否。
 2. `payment Step 1`
@@ -199,7 +199,7 @@ Senior / Owner 價值：
 
 中文名稱：後台設定同步 Redis
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-狀態：已完成 Step 3，下一步 Step 4
+狀態：Step 3 已依新規定重整，下一步 Step 4
 
 已確認：
 
@@ -444,7 +444,7 @@ app_bi admin-config-redis-sync Step 4
 
 原因：
 
-- Step 3 已完成，Step 2 也已重整乾淨。
+- Step 3 已依新規定重整，Step 2 也已重整乾淨。
 - 這條 flow 能轉成保守面試 case。
 - 不更新履歷。
 - 不需要自創新 Step，也不需要把 `app_bi` 硬包成完整後端 owner。

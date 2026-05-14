@@ -35,7 +35,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 4` |
+| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 已重整 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 4` |
 
 ## 下一步推薦
 
@@ -48,7 +48,7 @@ app_bi admin-config-redis-sync Step 4
 原因:
 
 - `app_bi` Step 1 / Step 2 已於 2026-05-14 重整乾淨。
-- `admin-config-redis-sync` 已完成 Step 3，下一步可保守轉面試 case。
+- `admin-config-redis-sync` 已依新規定重整 Step 3，下一步可保守轉面試 case。
 - 不更新履歷。
 
 ## 近期候選 Queue
