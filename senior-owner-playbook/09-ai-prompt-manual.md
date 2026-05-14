@@ -21,6 +21,7 @@
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
+- `flow.md` 必須先有初階 / 中階可讀區，包含白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才進 Senior / Owner 的 consistency、failure window、trade-off、owner decision。不要讓 Nick 需要自己從附錄拼出主報告。
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。
@@ -56,6 +57,7 @@
 - 每次完成後，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。
 - 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；push 必須等 Nick 明確 approval。
 - 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
+- 每份 flow.md 要先用白話與圖讓人看懂，再進資深分析；如果是 PHP / ThinkPHP、後台、前端或 BI 專案，必須轉成 Nick 熟悉的後端分層語言。
 - 如果 Nick 說「深掃」，至少使用 Level 2；如果 Nick 說「極限深度 / 逐檔逐行 / 每個 commit diff」，使用 Level 3，並分批完成。
 - 如果 Nick 沒說深度，請依任務主動建議 Level 1 / 2 / 3；若不建議 Level 3，要說明原因。
 
@@ -303,6 +305,12 @@ Code repo:
 請依 senior-owner-playbook/03-flow-learning-package-template.md 產出完整學習包。
 
 必須包含：
+- 閱讀定位與 evidence 層級
+- 白話導讀
+- 初中階 Code 分層對照
+- 最小架構圖
+- 正常流程圖
+- 正常流程逐步說明
 - business goal
 - system position
 - entry point
@@ -332,6 +340,7 @@ Code repo:
 - 誇大 Nick 實際貢獻
 - 寫 secret / token / internal IP / production URL
 - 把 class summary 當成 flow analysis
+- 直接跳進 failure / consistency，卻沒有先寫清楚這條 flow 是什麼功能、誰用、入口、Controller / Service / Model / SQL / Redis / MQ / Log 對照
 
 完成後請自動補：
 - 目前這條 flow 完成到哪裡

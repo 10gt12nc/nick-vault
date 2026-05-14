@@ -40,6 +40,38 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code」。
 
 預設不更新履歷 master；只有 evidence 足夠且 Nick 明確要求時才更新。
 
+## 閱讀層次
+
+每條 flow 的 `flow.md` 必須先讓 Nick 讀懂，再進 Senior / Owner 深挖。這不是新增 Step，而是 Step 3 以後 `flow.md` 的固定寫法。
+
+```text
+第一層：初階 / 中階可讀區
+-> 第二層：Senior / Owner 深度區
+```
+
+第一層要回答：
+
+- 這是什麼功能。
+- 誰會用。
+- 什麼情境觸發。
+- 成功後系統狀態變成什麼。
+- Route / Controller / Service / Model / SQL / Redis / MQ / Log 對照。
+- 最小架構圖。
+- 正常流程圖。
+- 正常流程逐步說明。
+
+第二層才回答：
+
+- source of truth。
+- state transition。
+- transaction boundary。
+- consistency / idempotency。
+- retry / compensation / reconciliation。
+- observability / auditability。
+- failure window。
+- owner decision / trade-off。
+- interview / resume boundary。
+
 ## 深掃等級
 
 Flow 學習包預設使用 Level 2 Flow 深掃。
@@ -101,21 +133,27 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - projects/{domain}/{project}/flows/{flow-name}/materials/claim-boundary.md
 
 請產出：
-1. 業務問題
-2. 系統位置
-3. 入口與 code 路徑
-4. 正常流程
-5. DB / Redis / MQ / 外部 API
-6. 失敗情境
-7. 補償 / retry / 對帳
-8. Senior / Owner 設計取捨
-9. Lead / Architect 追問
-10. 面試 3 分鐘講法
-11. 履歷保守 bullet
-12. 不能誇大的邊界
-13. 下一步要查的 evidence
-14. 本次實際掃描範圍與未掃描範圍
-15. 每條履歷 / 面試說法的證據層級：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
+1. 閱讀定位與 evidence 層級
+2. 白話導讀
+3. 初中階 Code 分層對照
+4. 最小架構圖
+5. 正常流程圖
+6. 正常流程逐步說明
+7. 業務問題
+8. 系統位置
+9. 入口與 code 路徑
+10. DB / Redis / MQ / 外部 API
+11. 資料狀態與 state transition
+12. 失敗情境
+13. 補償 / retry / 對帳
+14. Senior / Owner 設計取捨
+15. Lead / Architect 追問
+16. 面試 3 分鐘講法
+17. 履歷保守 bullet
+18. 不能誇大的邊界
+19. 下一步要查的 evidence
+20. 本次實際掃描範圍與未掃描範圍
+21. 每條履歷 / 面試說法的證據層級：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
 ```
 
 ## 完成後必須給下一步建議
@@ -134,7 +172,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 
 ## 拆檔規則
 
-- `flow.md`：業務問題、系統位置、正常流程、資料與狀態、failure window、owner decision。
+- `flow.md`：唯一主報告。前半寫初階 / 中階可讀區：閱讀定位、白話導讀、Code 分層對照、最小架構圖、正常流程圖與正常流程逐步說明；後半寫 Senior / Owner 深度區：業務問題、系統位置、資料與狀態、failure window、owner decision、面試 / 履歷邊界摘要。
 - `career-interview.md`：該 flow 的保守履歷 / 面試素材、可說與不可說、證據層級。
 - `materials/evidence.md`：code path、commit / branch / grep evidence、已確認、合理推論、待確認。不得貼出密碼、token、內網 IP、production URL 或客戶機密。
 - `materials/interview.md`：3 分鐘講法、Senior 追問、Lead / Architect 追問、可用問答。
@@ -143,11 +181,62 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 
 ## 輸出格式
 
-### 1. 業務問題
+### 0. 閱讀定位
+
+- Flow 中文名稱：
+- Flow slug：
+- 完成狀態：
+- 證據層級：
+- 本 flow 是業務功能 / 共用能力 / 後台入口 / 報表查詢 / deploy flow：
+- 是否只確認到入口：
+
+### 1. 白話導讀
+
+用初階 / 中階也能懂的方式回答：
+
+- 這是什麼功能。
+- 誰會用。
+- 什麼時候會觸發。
+- 使用者或系統做了什麼動作。
+- 成功後資料或狀態會變成什麼。
+- 如果失敗，最直覺會壞在哪裡。
+
+### 2. 初中階 Code 分層對照
+
+若專案不是 Java，也要轉譯成 Nick 熟悉的後端分層：
+
+```text
+Route / API：
+Controller：
+Service / Business：
+Model / DAO / Repository：
+SQL / Table：
+Redis：
+MQ / Kafka / 下游通知：
+External API：
+Log / Audit：
+Config：
+```
+
+找不到或沒有 evidence 的項目，寫 `未確認`、`不適用` 或 `略`，不要硬湊。
+
+### 3. 最小架構圖
+
+只畫本 flow 相關上下游。可以用 Mermaid；未確認節點要標 `待確認`。
+
+### 4. 正常流程圖
+
+用流程圖或編號流程，讓人先看懂從入口到資料落點的主路徑。
+
+### 5. 正常流程逐步說明
+
+用 5 到 12 步描述，不要太長。
+
+### 6. 業務問題
 
 這條 flow 解決什麼問題，錯了會造成什麼後果。
 
-### 2. 系統位置
+### 7. 系統位置
 
 - 產品：
 - 專案：
@@ -155,11 +244,11 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 上游：
 - 下游：
 
-### 3. Code 路徑
+### 8. Code 路徑
 
 只列可確認的路徑，不列猜測。
 
-### 3.1 掃描範圍
+### 8.1 掃描範圍
 
 每份 evidence 都要寫：
 
@@ -171,11 +260,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 未看分支 / 未看原因：
 - 本 flow 是否只確認到後台 / 前端入口：
 
-### 4. 正常流程
-
-用 5 到 12 步描述，不要太長。
-
-### 5. 資料與狀態
+### 9. 資料與狀態
 
 - DB：
 - Redis：
@@ -183,7 +268,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 外部 API：
 - log / audit：
 
-### 6. Failure Window
+### 10. Failure Window
 
 至少整理：
 
@@ -195,7 +280,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - retry 重複副作用
 - 人工補償與狀態不一致
 
-### 7. Owner Decision
+### 11. Owner Decision
 
 不要寫空泛建議，要寫：
 
@@ -205,7 +290,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 風險
 - 驗證方式
 
-### 8. 面試講法
+### 12. 面試講法
 
 要能回答：
 
@@ -215,11 +300,11 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 你怎麼設計可恢復方案。
 - 你怎麼跟營運 / QA / 其他工程師協作。
 
-### 9. 履歷保守寫法
+### 13. 履歷保守寫法
 
 只寫可證明或本人確認的內容。沒有 metric 不寫改善百分比。
 
-### 10. Claim Boundary
+### 14. Claim Boundary
 
 明確列：
 

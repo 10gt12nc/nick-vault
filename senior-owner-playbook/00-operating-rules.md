@@ -26,6 +26,7 @@ AI 需要自動維護：
 - 自動給下一步建議。
 - 自動判斷是否需要更新 project README、Step 文件、flow evidence、claim boundary 或共用索引。
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
+- 自動確認 `flow.md` 是否有初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明。沒有這一層時，不能只補 Senior / Owner 風險分析就算完成。
 - 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；push 一律等待 Nick approval。
 
 但「自動維護」不能改變 Step 主線。
@@ -128,6 +129,15 @@ Nick 說「不要維護流水帳」時，指的是不要維護這類文件：
 flow.md = 研究分析報告主文
 ```
 
+`flow.md` 不是只給 Senior reviewer 看的風險分析，也必須是 Nick 第一次讀這條 flow 時能看懂的學習入口。正確閱讀層次是：
+
+```text
+先讀懂功能與 code 分層
+-> 再理解正常資料流
+-> 再分析 failure / consistency / owner decision
+-> 最後轉面試與履歷邊界
+```
+
 新建或重整後，其他檔案要收在同一條 flow 的 `materials/`，避免主閱讀面混亂：
 
 - `career-interview.md`：該 flow 的保守履歷 / 面試素材。
@@ -139,6 +149,34 @@ flow.md = 研究分析報告主文
 AI 不准因為 Nick 問「研究分析報告在哪」就另創 `research-analysis-report.md` 或額外 README 造成重複與混亂。應直接回答：主報告在 `flow.md`。
 
 既有 `iwin` 舊平鋪格式這輪先不搬。未來重整時再把輔助檔移入 `materials/`，並保留 `flow.md` 作為唯一主報告。
+
+### Flow 可讀性分層
+
+每份 `flow.md` 必須分成兩層，但仍然是同一份主報告，不新增 Step：
+
+第一層：初階 / 中階可讀區，用來先看懂。
+
+- 這條 flow 是什麼功能。
+- 誰會用、什麼情境觸發。
+- 成功後系統狀態變成什麼。
+- Route / Controller / Service / Model / SQL / Redis / MQ / Log 對照。
+- 最小架構圖，只畫本 flow 相關上下游。
+- 正常流程圖，用 5 到 12 步看懂資料怎麼走。
+- 若是後台、前端、BI 或 PHP 專案，要轉譯成 Nick 熟悉的後端分層語言。
+
+第二層：Senior / Owner 深度區，用來判斷價值與風險。
+
+- source of truth 與 projection / cache。
+- transaction boundary。
+- state transition。
+- consistency / idempotency。
+- retry / compensation / reconciliation。
+- observability / auditability。
+- failure window。
+- owner decision / trade-off / rollback。
+- interview / resume boundary 摘要。
+
+架構圖與流程圖是 `flow.md` 的讀懂工具，不是新的任務名稱。未確認的節點必須標 `待確認`，不可為了畫完整而腦補。
 
 ### 證據層級標籤
 
@@ -371,18 +409,22 @@ AI 不能只照 Nick 當下問的 Step 往後跳。每次重讀既有 project / 
 
 完整 flow 學習包至少要能回答：
 
-1. 這條 flow 解決什麼業務問題。
-2. 入口在哪裡。
-3. 主要 code 路徑是什麼。
-4. DB / Redis / MQ / 外部 API 有哪些。
-5. 正常流程怎麼跑。
-6. 失敗、重試、補償、對帳怎麼處理。
-7. Senior / Owner 應該注意什麼設計取捨。
-8. 面試怎麼講。
-9. 履歷怎麼保守寫。
-10. 哪些不能誇大。
-11. 這條 flow 牽涉哪些技術硬底子與技術選型差異。
-12. 每條面試 / 履歷說法的證據層級是什麼。
+1. 白話來說這條 flow 是什麼功能。
+2. 誰會使用、什麼情境觸發、成功後狀態變成什麼。
+3. 用 Nick 熟悉的後端分層語言看，Route / Controller / Service / Model / SQL / Redis / MQ / Log 分別是什麼。
+4. 最小架構圖與正常流程圖是否能讓人先看懂。
+5. 這條 flow 解決什麼業務問題。
+6. 入口在哪裡。
+7. 主要 code 路徑是什麼。
+8. DB / Redis / MQ / 外部 API 有哪些。
+9. 正常流程怎麼跑。
+10. 失敗、重試、補償、對帳怎麼處理。
+11. Senior / Owner 應該注意什麼設計取捨。
+12. 面試怎麼講。
+13. 履歷怎麼保守寫。
+14. 哪些不能誇大。
+15. 這條 flow 牽涉哪些技術硬底子與技術選型差異。
+16. 每條面試 / 履歷說法的證據層級是什麼。
 
 ## Code 掃描與分支證據規則
 

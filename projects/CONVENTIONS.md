@@ -73,6 +73,8 @@ projects/{domain}/{project}/
 2. 若要看這條 flow 可以怎麼轉面試 / 履歷，再讀同層 `career-interview.md`。
 3. 要查 code evidence、技術比較、面試稿細節、不可誇大邊界時，才進 `materials/`。
 
+`flow.md` 必須自己能讀懂，不可以讓 Nick 需要在 `materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md` 裡拼答案。每份 `flow.md` 要先有初階 / 中階可讀區，再進 Senior / Owner 分析。
+
 ## 檔案責任
 
 ### README.md
@@ -89,6 +91,11 @@ projects/{domain}/{project}/
 
 只寫一條 flow。`flow.md` 就是這條 flow 的研究分析報告主文，也是唯一預設閱讀入口，不要另外新增重複的 `research-analysis-report.md`：
 
+- 閱讀定位：這條 flow 是什麼、完成到 Step 幾、證據層級、是否只看到入口。
+- 白話導讀：誰使用、什麼情境觸發、按下去或事件發生後系統做什麼、成功後狀態變成什麼。
+- 初中階 Code 對照：Route / Controller、Service / Business、Model / DAO、SQL / Table、Redis、MQ / 下游通知、Log / Audit。
+- 最小架構圖：只畫本 flow 相關上下游，未確認要標 `待確認`。
+- 正常流程圖：用簡單圖或步驟表達 5 到 12 個主要步驟。
 - 業務問題
 - 系統位置
 - 入口
@@ -98,6 +105,24 @@ projects/{domain}/{project}/
 - failure window
 - owner decision
 - 證據層級標註：真實開發過 / 專案存在 / 分析素材 / 外部案例
+
+建議 `flow.md` 內部順序：
+
+1. 先讀懂：白話導讀、Code 分層、架構圖、流程圖、正常流程。
+2. 再看風險：資料狀態、transaction boundary、consistency、idempotency、failure window。
+3. 最後轉資深價值：owner decision、trade-off、面試 / 履歷邊界摘要。
+
+若是 PHP / ThinkPHP、前端、後台、BI 或非 Java 專案，必須主動轉譯成 Nick 熟悉的後端分層語言，例如：
+
+```text
+Route / Controller：
+Service / Business：
+Model / DAO：
+SQL / Table：
+Redis：
+MQ / 下游通知：
+Log / Audit：
+```
 
 ### flows/{flow-name}/career-interview.md
 

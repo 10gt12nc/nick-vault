@@ -23,6 +23,7 @@
 
 - 「不要維護流水帳」的意思是：不要建立或保留「今天做什麼、昨天做什麼、某次操作紀錄、records、operation-log、work-report」這類時間序列工作日誌。不是要改掉現有 `flow.md / evidence.md / interview.md / claim-boundary.md` 的分析結構。
 - `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
+- `flow.md` 必須先讓初階 / 中階讀者看懂這條 flow 在做什麼，再進 Senior / Owner 分析。前半必須有白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才寫 consistency、failure window、owner decision、interview / resume boundary。
 - `materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告；舊平鋪格式的同名檔先視為待遷移舊格式。
 - 新建或重整後的 flow 資料夾，預設只讓 Nick 直接讀 `flow.md` 與該 flow 的 `career-interview.md`；其他 evidence、decision、interview、claim 邊界要收在 `materials/`，避免主閱讀面混亂。既有 `iwin` 舊資料夾這輪先不搬，等 Nick 明確要求再遷移。
 - flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
@@ -68,6 +69,8 @@
 - 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。
 - 後台、前端、BI、admin 類專案若不是 Nick 主開發，只能作為理解入口與對接 flow；履歷自傳應簡單帶過，不得硬包裝成主導後台或完整系統 owner。
 - 沒有實際 evidence 的技術點可以寫「略」、「不展開」、「建議補讀外部文章 / 官方文件」，不要為了湊滿格式而腦補。
+- `flow.md` 的閱讀層次固定是「先讀懂，再資深化」：先用初階 / 中階可讀方式說清楚功能、使用者、觸發情境、Controller / Service / Model / SQL / Redis / MQ / Log 對照與正常流程，再進入 Senior / Owner 的 state、consistency、idempotency、retry / compensation、observability、trade-off。
+- 架構圖與流程圖是 `flow.md` 的教學入口，不是新 Step、不是額外任務、也不是要畫沒有 evidence 的大圖。圖只畫本 flow 已確認或明確標示待確認的上下游。
 - `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
 
 ## Flow 格式
@@ -90,6 +93,13 @@ projects/{domain}/{project}/
 ```
 
 `flow.md` 是唯一主報告；`career-interview.md` 是該 flow 對應的保守履歷 / 面試素材；`materials/` 是證據與輔助材料。若既有資料仍是舊平鋪格式，先標為舊格式可沿用 / 需遷移，不要未經 Nick 同意批量搬檔。
+
+`flow.md` 內部建議順序：
+
+1. 閱讀定位與 evidence 層級。
+2. 初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖、正常流程逐步說明。
+3. Senior / Owner 深度區：資料狀態、transaction boundary、consistency、idempotency、failure window、retry / compensation、observability、owner decision。
+4. 面試 / 履歷邊界摘要，詳細材料放 `career-interview.md` 與 `materials/`。
 
 ## 檢查
 
