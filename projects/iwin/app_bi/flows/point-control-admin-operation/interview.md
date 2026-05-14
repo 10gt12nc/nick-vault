@@ -3,7 +3,9 @@
 更新時間: 2026-05-13
 Step: 4
 用途: 面試 case，不是履歷 claim
-狀態: 已依新版 KB 由 Step 3 轉成面試包
+狀態: 舊 Step 4 稿；2026-05-14 Step 3 重整後需重新確認，不視為最新完成
+
+> 注意：本文件是舊 Step 4 稿。`flow.md` / `evidence.md` 已於 2026-05-14 重新做 Step 3，因此本文件只能暫作參考；下一步應做 `app_bi point-control-admin-operation Step 4 重整`。
 
 ## Step 4 前檢查
 
@@ -150,9 +152,9 @@ partial success。批量會依 center 分組送 GM command，如果部分 center
 
 它目前不能作為正式履歷主成果，因為缺 Nick 實際參與 evidence，也缺下游 runtime evidence。
 
-## Step 5 後續
+## 舊稿後續狀態
 
-Step 5 已在 `claim-boundary.md` 判定:
+舊 Step 5 曾在 `claim-boundary.md` 判定:
 
 - 不更新正式履歷 / 自傳。
 - 本 flow 留作面試分析 case。
@@ -161,12 +163,11 @@ Step 5 已在 `claim-boundary.md` 判定:
 下一步只推薦一件事:
 
 ```text
-app_bi admin-config-redis-sync Step 3
+app_bi point-control-admin-operation Step 4 重整
 ```
 
 原因:
 
-- `app_bi` 這條 flow 已完成 Step 1-5。
-- 這不代表整個 `app_bi` project 結束。
-- 下一步要回到 `app_bi` Step 2 ranking，選下一條未完成 flow。
-- `admin-config-redis-sync` 是 `app_bi` 內下一條較適合的 control plane / Redis projection 題。
+- Step 3 已於 2026-05-14 重新重整。
+- 舊 Step 4 / Step 5 不能再視為最新完成。
+- 下一步要先重新產出保守面試 case，不更新履歷。

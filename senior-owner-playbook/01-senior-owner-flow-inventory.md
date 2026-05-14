@@ -34,7 +34,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 | Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
+| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi point-control-admin-operation Step 4 重整` |
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 2 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi daily-game-record-summary Step 3` |
 
@@ -43,15 +43,15 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi point-control-admin-operation Step 4 重整
 ```
 
 原因:
 
 - `app_bi` Step 1 / Step 2 已於 2026-05-14 重整乾淨。
-- `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5。
-- 同 project 下一條未完成 flow 是 `daily-game-record-summary`。
-- 預期不更新履歷；先把報表 projection、truth source、資料延遲與補跑邊界釐清。
+- `point-control-admin-operation` 已重新完成 Step 3。
+- 舊 Step 4 / Step 5 暫不視為最新完成。
+- 下一步先重整同一條 flow 的保守面試 case；不更新履歷。
 
 ## 近期候選 Queue
 

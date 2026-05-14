@@ -17,7 +17,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
-| `flows/point-control-admin-operation/` | Step 5，舊平鋪格式 | 不更新履歷；之後若要重整，先補 materials 結構與 evidence 邊界 |
+| `flows/point-control-admin-operation/` | Step 3 已重整，舊平鋪格式 | 2026-05-14 已重整主報告與 evidence；舊 Step 4 / Step 5 暫不視為最新完成 |
 | `flows/admin-config-redis-sync/` | Step 5，舊平鋪格式 | 已檢查履歷 / 自傳；不更新正式履歷，保留為面試分析素材 |
 
 ## 專案定位
@@ -58,12 +58,12 @@
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi point-control-admin-operation Step 4 重整
 ```
 
 原因：
 
 - Step 1 / Step 2 已重整乾淨。
-- `admin-config-redis-sync` 已完成 Step 5，不更新履歷 / 自傳。
-- 同 project 仍有未完成 candidate flow，先不要自動跳到其他 project。
-- `daily-game-record-summary` 可練報表 projection、truth source、資料延遲與補跑邊界。
+- `point-control-admin-operation` 舊 Step 3 品質不足，已於 2026-05-14 重整。
+- 舊 Step 4 / Step 5 不能再視為最新完成。
+- 下一步應先重整同一條 flow 的 Step 4 面試 case，不更新履歷。

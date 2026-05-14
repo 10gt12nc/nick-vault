@@ -184,12 +184,12 @@ Step 5 已完成履歷 / 自傳更新判定：
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi point-control-admin-operation Step 4 重整
 ```
 
 原因：
 
-- `admin-config-redis-sync` 已完成 Step 5。
-- 同 project 下一條未完成且值得做的是 `daily-game-record-summary`。
-- 產出會是報表 projection、truth source、資料延遲與補跑邊界。
-- 預期不更新履歷，除非後續補到 Nick 本人 evidence。
+- `point-control-admin-operation` 已於 2026-05-14 重新完成 Step 3。
+- 舊 Step 4 / Step 5 暫不視為最新完成。
+- 下一步應先把同一條 flow 轉成新版保守面試 case。
+- 不更新履歷。

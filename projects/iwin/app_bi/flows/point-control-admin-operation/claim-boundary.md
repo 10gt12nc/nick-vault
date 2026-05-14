@@ -1,7 +1,9 @@
 # Claim Boundary - point-control-admin-operation
 
 用途: 限制履歷與面試說法，避免誇大
-狀態: Step 5 已檢查，不更新正式履歷 / 自傳
+狀態: 舊 Step 5 稿；2026-05-14 Step 3 重整後需重新確認，不視為最新完成
+
+> 注意：本文件是舊 Step 5 稿。`flow.md` / `evidence.md` 已於 2026-05-14 重新做 Step 3，因此本文件只能暫作參考；完成新版 Step 4 後，才重新做 Step 5 判定。
 
 ## 可以確認
 

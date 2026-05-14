@@ -12,7 +12,7 @@
 Step 2 重新排序後，結論分兩層：
 
 1. 最高 Senior / Owner 價值是 `payment-order-status-repair`，但它不適合只在 `app_bi` 深挖，必須回到 `payment` repo 找 source of truth。
-2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `daily-game-record-summary Step 3`，因為前兩條 `app_bi` flow 已完成 Step 5，下一條應回到候選 ranking 而不是自動跨 project。
+2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `point-control-admin-operation Step 4 重整`，因為這條 flow 的 Step 3 已於 2026-05-14 重新整理，舊 Step 4 / Step 5 不能再視為最新完成。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -73,7 +73,7 @@ Step 2 重新排序後，結論分兩層：
 | `README.md` | 需同步 | Step 2 已重整，下一步不再是 Step 2 |
 | `step1-candidate-flows.md` | 可沿用 | 已有掃描範圍、證據層級、候選 flow |
 | `step2-flow-comparison.md` | 本次已重整 | 舊版 ranking 以 `point-control` 為首，已改成價值排序 / 下一步排序分開 |
-| `flows/point-control-admin-operation/*` | 舊平鋪格式 / 可沿用 | 已 Step 5，不更新履歷；之後若重整再遷移 `materials/` |
+| `flows/point-control-admin-operation/*` | 舊平鋪格式 / Step 3 已重整 | 舊 Step 4 / Step 5 暫不視為最新完成；下一步重整 Step 4 |
 | `flows/admin-config-redis-sync/*` | 舊平鋪格式 / 可沿用 | 已完成 Step 5，不更新履歷 / 自傳 |
 
 ## 比較前提
@@ -95,7 +95,7 @@ Step 2 重新排序後，結論分兩層：
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history | `payment` source of truth 未掃 | 後續轉 `payment Step 1`，不在 `app_bi` 硬挖 |
-| 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | 已 Step 5；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃 | 先保留，不更新履歷 |
+| 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 3 已重整；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；舊 Step 4 / Step 5 待重跑 | 下一步重整 Step 4 |
 | 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
 | 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢 / 報表入口與近期 SQL 修正 history | producer / 補跑機制未掃 | 下一步做 Step 3 |
 | 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | 查詢入口與多 provider record 頁面 | log writer 未掃 | 適合後續 troubleshooting case |
@@ -107,9 +107,9 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-1. `app_bi daily-game-record-summary Step 3`
-   - 原因：`point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5；同 project 下一條值得做的是報表 projection flow。
-   - 產出：報表查詢端的 truth source / latency / reconciliation 邊界。
+1. `app_bi point-control-admin-operation Step 4 重整`
+   - 原因：Step 3 已重新重整，舊 Step 4 / Step 5 不能視為最新完成。
+   - 產出：保守面試 case，明確區分已確認、推測、待確認。
    - 是否更新履歷：否。
 2. `payment Step 1`
    - 原因：`payment-order-status-repair` 價值最高，但強 evidence 不在 `app_bi`。
@@ -425,7 +425,7 @@ Senior / Owner 價值：
 目前已完成：
 
 ```text
-point-control-admin-operation Step 1-5
+point-control-admin-operation Step 3 重整
 admin-config-redis-sync Step 1-5
 ```
 
@@ -440,11 +440,11 @@ admin-config-redis-sync Step 1-5
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi point-control-admin-operation Step 4 重整
 ```
 
 原因：
 
-- `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5。
-- 同 project 下一條未完成且有價值的是 `daily-game-record-summary`。
-- 這條可練報表 projection、truth source、資料延遲與補跑邊界；預期不更新履歷。
+- `point-control-admin-operation` 舊 Step 3 品質不足，已重新重整。
+- 舊 Step 4 / Step 5 暫不視為最新完成。
+- 下一步應先把新版 Step 3 轉成保守面試 case；不更新履歷。
