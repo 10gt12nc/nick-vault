@@ -35,21 +35,21 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 已重整 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 4` |
+| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 5` |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi admin-config-redis-sync Step 5
 ```
 
 原因:
 
 - `app_bi` Step 1 / Step 2 已於 2026-05-14 重整乾淨。
-- `admin-config-redis-sync` 已依新規定重整 Step 3，下一步可保守轉面試 case。
-- 不更新履歷。
+- `admin-config-redis-sync` 已完成 Step 4 面試素材。
+- Step 5 應檢查是否更新履歷 / 自傳；目前預期仍是不更新，除非補到 Nick 本人 evidence。
 
 ## 近期候選 Queue
 
