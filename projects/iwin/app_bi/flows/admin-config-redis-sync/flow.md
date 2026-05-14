@@ -270,10 +270,9 @@ notice = 1
 2026-05-14 專案層級狀態:
 
 - `app_bi` Step 1 已拆成獨立 `step1-candidate-flows.md`。
-- Step 2 尚待依新 Step 1 同步候選排序與證據層級。
-- 因此目前專案下一步先做 `app_bi Step 2 重整`。
+- `app_bi` Step 2 已依新 Step 1 重整候選排序、證據層級與後台入口邊界。
 
-本 flow 在 Step 2 重整乾淨後，建議下一步仍是:
+本 flow 建議下一步是:
 
 ```text
 app_bi admin-config-redis-sync Step 4
