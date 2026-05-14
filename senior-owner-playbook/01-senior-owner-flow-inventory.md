@@ -35,21 +35,21 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi admin-config-redis-sync Step 4` |
+| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | 先重整 `app_bi Step 2` |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi Step 2 重整
 ```
 
 原因:
 
-- `admin-config-redis-sync` 已完成 Step 3。
-- Step 4 會轉成保守面試 case。
-- 目前沒有下游 runtime consumer evidence，也沒有 Nick 本人實作 evidence，所以不更新履歷。
+- `app_bi` Step 1 已於 2026-05-14 拆成獨立 `step1-candidate-flows.md`。
+- Step 2 需要同步新候選排序、證據層級、`coupon-trade-admin-operation` 與後台入口邊界。
+- 不更新履歷。
 
 ## 近期候選 Queue
 

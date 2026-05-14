@@ -2,7 +2,9 @@
 
 更新時間: 2026-05-13
 掃描等級: Level 1 Flow 掃描 / 候選 flow 比較
-狀態: 已依新版 KB 重整
+狀態: 待依 2026-05-14 Step 1 重整結果同步
+
+> 2026-05-14 註記：Step 1 已從 `README.md` 拆成獨立 `step1-candidate-flows.md`，並新增證據層級與 `coupon-trade-admin-operation` 候選。此 Step 2 內容方向可沿用，但下一輪應重整 ranking、證據層級與「只看到後台入口」邊界。不要直接跳 Step 4。
 
 ## 自動重讀紀錄
 
@@ -292,15 +294,17 @@ point-control-admin-operation Step 1-5
 admin-config-redis-sync Step 3
 ```
 
-下一步應該做:
+2026-05-14 後的下一步應該做:
 
 ```text
-app_bi admin-config-redis-sync Step 4
+app_bi Step 2 重整
 ```
 
 要更新:
 
-- `flows/admin-config-redis-sync/interview.md`
+- 本文件的候選排序。
+- 新增 `coupon-trade-admin-operation` 的比較。
+- 各 flow 的證據層級與後台入口邊界。
 
 不做:
 
