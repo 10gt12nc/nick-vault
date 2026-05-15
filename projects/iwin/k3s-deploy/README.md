@@ -11,9 +11,9 @@
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [architecture-map.md](architecture-map.md)：最小專案地圖與部署拓撲。
 3. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-4. 待建立：`flows/{flow-name}/flow.md`：單條 deploy flow 的主研究報告。
-5. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-6. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+4. [flows/gameserver-phased-rollout/flow.md](flows/gameserver-phased-rollout/flow.md)：Step 3 單條 deploy flow 主研究報告。
+5. [flows/gameserver-phased-rollout/career-interview.md](flows/gameserver-phased-rollout/career-interview.md)：該 flow 的保守面試 / 履歷素材。
+6. [flows/gameserver-phased-rollout/materials/evidence.md](flows/gameserver-phased-rollout/materials/evidence.md)：掃描範圍、證據與未掃邊界。
 
 ## 目前狀態
 
@@ -22,7 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 deploy / observability 候選 flow |
 | `architecture-map.md` | 已建立 | 最小拓撲，用來定位 shared / iwin namespace 與主要服務 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 phase rollout、服務 rollout、observability、config / storage 取捨 |
-| `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
+| `flows/gameserver-phased-rollout/` | Step 3 已建立 | 已整理 iwin-gameserver phase rollout、ZK registration、ConfigMap / Secret、Recreate 與 rollback 風險 |
 
 ## 專案定位
 
