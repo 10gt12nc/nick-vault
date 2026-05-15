@@ -10,8 +10,8 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 價值與風險比較。
-3. 未來若選定單條 flow，再讀 `flows/{flow-name}/flow.md`。
-4. 單條 flow 的保守面試 / 履歷素材放 `flows/{flow-name}/career-interview.md`。
+3. [flows/daily-game-data-summary/flow.md](flows/daily-game-data-summary/flow.md)：每日遊戲資料彙總 Step 3 主報告。
+4. [flows/daily-game-data-summary/career-interview.md](flows/daily-game-data-summary/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 5. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
 
 ## 目前狀態
@@ -19,7 +19,8 @@
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
-| `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；尚未建立單條 flow folder |
+| `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
+| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻待確認 |
 
 ## 專案定位
 
@@ -61,11 +62,11 @@
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 3
+game_job daily-game-data-summary Step 4
 ```
 
 原因：
 
-- `game_job` Step 1 / Step 2 已完成。
-- `daily-game-data-summary` 已在 Step 2 被選為第一條最值得深挖的 flow。
-- 下一步才建立單條 flow folder；仍不更新正式履歷 / 自傳。
+- `daily-game-data-summary` Step 3 已建立主報告與 materials。
+- 下一步應補 failure / consistency / evidence 缺口，特別是新增玩家累積表、backup partial failure、下游 app_bi 最新 remote 差異與 upstream writer 邊界。
+- Step 4 仍不更新正式履歷 / 自傳，除非補到 Nick 本人 evidence。
