@@ -14,7 +14,7 @@ flowchart TD
   Iwin["iwin namespace"]
 
   Logs["Fluent Bit -> Loki -> Grafana"]
-  External["External dependency Services + Endpoints"]
+  External["External dependency access (latest refs: direct external endpoints)"]
   MQ["Message admin / broker support"]
 
   API["game-api / third-games-api"]
@@ -48,7 +48,7 @@ flowchart TD
 
 | 區域 | 已確認內容 | Senior / Owner 觀察 |
 | --- | --- | --- |
-| shared namespace | log stack、message admin、外部依賴 abstraction | cluster 共用能力；錯誤會影響多服務 troubleshooting 或 dev 驗證 |
+| shared namespace | log stack、message admin；外部依賴 abstraction 在遠端最新 refs 已被簡化 | cluster 共用能力；錯誤會影響多服務 troubleshooting 或 dev 驗證 |
 | iwin namespace | app / API / job / payment / BI / game server | 應看服務拓撲、對外入口、啟動依賴、resource 與 rollback |
 | iwin-gameserver | phase1 stateless、phase2 center、phase3 gate、phase4 games | 有明確順序與註冊依賴，是最值得深挖的 deploy flow |
 | Java services | Deployment + Service + probe + resource | 可討論 rollout、readiness、image tag、config 覆蓋與 dev/prod 差異 |
@@ -78,6 +78,7 @@ flowchart TD
 ## 不可誇大的邊界
 
 - 這是 dev-k3s manifests 掃描，不是 production SRE 審計。
-- 只確認 repo 內 manifests 與 commit log，未確認 cluster 真實狀態。
+- 已 fetch remote refs；本機 `main` 落後 `origin/main`，本圖以 Step 2 的遠端差異判斷修正外部依賴定位，但未更新公司 repo 工作樹。
+- 只確認 repo 內 manifests、remote refs 與 commit log，未確認 cluster 真實狀態。
 - 未讀 secret value，也不把 secret 內容放入 vault。
 - 未確認 Nick 本人貢獻，不能寫成主導或 owner。

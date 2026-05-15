@@ -10,7 +10,7 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [architecture-map.md](architecture-map.md)：最小專案地圖與部署拓撲。
-3. 待建立：`step2-flow-comparison.md`：Step 2 候選 flow 風險與價值比較。
+3. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 4. 待建立：`flows/{flow-name}/flow.md`：單條 deploy flow 的主研究報告。
 5. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
 6. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
@@ -21,7 +21,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 deploy / observability 候選 flow |
 | `architecture-map.md` | 已建立 | 最小拓撲，用來定位 shared / iwin namespace 與主要服務 |
-| `step2-flow-comparison.md` | 待建立 | 建議下一步比較 phase rollout、服務 rollout、observability、config / storage 取捨 |
+| `step2-flow-comparison.md` | 已建立 | 已比較 phase rollout、服務 rollout、observability、config / storage 取捨 |
 | `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
 
 ## 專案定位
@@ -29,7 +29,7 @@
 已確認：
 
 - Kustomize manifests 分成 shared namespace 與 iwin namespace。
-- shared 側包含 log stack、message admin、外部依賴 service abstraction。
+- shared 側包含 log stack、message admin；遠端最新 refs 顯示外部依賴已由 Kubernetes Service / Endpoints abstraction 改成直連既有外部服務，需在 Step 3 深挖時再確認本機工作樹是否更新。
 - iwin 側包含 `game-api`、`game-job`、`payment`、`third-games-api`、`app-bi`、`bi-share` 與 `iwin-gameserver`。
 - `iwin-gameserver` 採 phase deployment：stateless / center / gate / games，文件註明正式部署需依順序手動 apply。
 - 多個 Java service 使用 Deployment、readiness / liveness probe、resource request / limit、private registry image tag 與 rollout 註解。
@@ -69,11 +69,11 @@
 只推薦一件事：
 
 ```text
-iwin k3s-deploy Step 2
+iwin k3s-deploy gameserver-phased-rollout Step 3
 ```
 
 原因：
 
-- Step 1 已定位 deploy / observability 候選 flow。
-- `k3s-deploy` 不是 money flow，正式履歷價值取決於是否能挑出最有 owner decision 的單條 flow。
-- Step 2 不更新正式履歷，會建立 `step2-flow-comparison.md`，完成後依規則自動 commit。
+- Step 2 已比較 candidate flows。
+- `gameserver-phased-rollout` 最能承載啟動依賴、服務註冊、config 外掛、log4j2 / lua config、Recreate / RollingUpdate 與 rollback 風險。
+- Step 3 不更新正式履歷，會建立單條 flow 學習包；完成後依規則自動 commit。
