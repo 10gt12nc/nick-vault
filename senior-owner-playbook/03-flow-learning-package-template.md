@@ -168,6 +168,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - Step 3 後通常建議補 failure scenarios / consistency / idempotency / retry / compensation / reconciliation。
 - 面試 case 完成前，不急著更新履歷。
 - 如果目前只看到後台 / 前端 / BI 操作入口，優先建議補讀真正後端 / 下游 repo。
+- 下一步 prompt 必須放成 Nick 可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `；code block 內只放一行短 prompt。
 - 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；若需要 push，直接觸發 `git push` approval 視窗，不要只停在本地文字回報。
 
 ## 拆檔規則

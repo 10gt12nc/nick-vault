@@ -61,6 +61,7 @@
 - 若 AI 判斷目前不值得 Level 3，要大方說明原因，例如後台只是入口、下游未定位、履歷 claim 不足、或先讀後端 repo 更有價值。
 - 每次完成 Step 或 flow 更新後，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
+- 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。

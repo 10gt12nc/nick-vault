@@ -17,6 +17,7 @@
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
+- 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
@@ -55,6 +56,7 @@
 - 不要寫 secret、token、內網 IP、production URL、客戶資料。
 - 所有履歷說法要保守，沒有證據不要寫主導、獨立完成、改善百分比。
 - 每次完成後，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。
+- 下一步 prompt 請另外放成可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `，code block 內只放一行短 prompt。
 - 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；若本輪需要 push，直接執行 `git push` 觸發 approval 視窗，不要只用文字請 Nick approval。
 - 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
 - 每份 flow.md 要先用白話與圖讓人看懂，再進資深分析；如果是 PHP / ThinkPHP、後台、前端或 BI 專案，必須轉成 Nick 熟悉的後端分層語言。
@@ -602,3 +604,11 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 建議提示詞：
 {Nick 下一句可以直接貼的短 prompt}
 ```
+
+輸出時必須另外提供一個可直接複製的短 prompt code block：
+
+```text
+{Nick 下一句可以直接貼的短 prompt}
+```
+
+這個 code block 內只放 prompt，不放原因、說明或多個選項。
