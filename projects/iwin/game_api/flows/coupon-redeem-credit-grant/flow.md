@@ -11,6 +11,8 @@ Step：3
 
 本文件只把它當成 code-backed flow analysis。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，不可寫成 Nick 真實開發或主導成果。
 
+2026-05-15 KB 更新後已重新覆核：本 flow 仍屬 Level 2 Flow 深掃完成狀態，可沿用。暫不升 Level 3，原因是目前尚未補到 Nick 本人 evidence 與 production deploy evidence；若未來要轉正式履歷 claim，再追逐 commit diff、下游 bill no 去重語意與 production branch 證據。
+
 已確認：
 
 - API 入口在 `CouponRedeemController#redeem`，路由是 `GET /coupons/redeem`。
