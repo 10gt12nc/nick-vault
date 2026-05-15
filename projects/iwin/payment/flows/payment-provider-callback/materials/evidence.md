@@ -4,6 +4,13 @@
 
 本輪 Step 3 使用 Level 2 掃描。
 
+2026-05-15 KB 更新後複查：
+
+- 已重新讀 KB 與本 flow 文件。
+- 已依新版模板補強 `flow.md` 的閱讀定位、初中階 code 分層、業務問題、系統位置與 code path。
+- Step 3 內容方向判斷：`可沿用 / 已補格式與 evidence 邊界`。
+- 下一步仍是 Step 4，不新增自創任務名稱。
+
 Vault：
 
 - 已重讀 `AGENTS.md`。
@@ -12,16 +19,32 @@ Vault：
 - 已重讀 `senior-owner-playbook/03-flow-learning-package-template.md`。
 - 已重讀 `projects/iwin/payment/README.md`。
 - 已重讀 `projects/iwin/payment/step2-flow-comparison.md`。
+- 已重讀 `projects/iwin/payment/flows/payment-provider-callback/flow.md`。
+- 已重讀 `projects/iwin/payment/flows/payment-provider-callback/career-interview.md`。
+- 已重讀 `projects/iwin/payment/flows/payment-provider-callback/materials/evidence.md`。
 
 Code repo：
 
 - repo：`/Users/nick/Git/iwin/payment`
 - branch：`k3s`
-- fetch：本輪已執行 `git fetch --all --prune`
+- fetch：Step 3 建檔時已執行 `git fetch --all --prune`；2026-05-15 KB 更新後複查也已重新執行。
 - HEAD：`e8be8a1466d9cd642e5f63af86f047c6a8d054bd`
 - `origin/k3s`：`e8be8a1466d9cd642e5f63af86f047c6a8d054bd`
 - ahead / behind：`0 / 0`
 - 公司 repo 既有 untracked：`payment/src/main/java/cn/com/payment/service/impl/.DS_Store`，未修改。
+
+既有文件狀態判斷：
+
+| 文件 | 狀態 | 調整 |
+| --- | --- | --- |
+| `projects/iwin/payment/README.md` | 可沿用 | 已指向 Step 4；本輪不改 Step 主線 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 | Step 2 已補 remote freshness；本輪不重寫 |
+| `projects/iwin/payment/step2-flow-comparison.md` | 可沿用 | 已有 module / service 邊界與 candidate flow 比較 |
+| `flows/payment-provider-callback/flow.md` | 可沿用 / 已補強 | 補新版 KB 要求的 code 分層、系統位置、code path 與業務問題 |
+| `flows/payment-provider-callback/career-interview.md` | 可沿用 | 保守 claim 清楚，不更新正式履歷 |
+| `materials/evidence.md` | 可沿用 / 已補強 | 補 KB 更新後複查與最新 fetch 記錄 |
+| `materials/decision-notes.md` | 可沿用 | 已有 ack timing、idempotency、退款、reconciliation owner decision |
+| `materials/claim-boundary.md` | 可沿用 | 已明確標示沒有 `真實開發過` evidence |
 
 本輪有掃：
 

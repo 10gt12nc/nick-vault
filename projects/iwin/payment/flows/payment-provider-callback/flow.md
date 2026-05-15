@@ -2,11 +2,14 @@
 
 ## 0. 閱讀定位
 
-- Flow：三方金流 provider callback，涵蓋代收充值 callback 與代付提現 callback。
-- 專案：`/Users/nick/Git/iwin/payment`
-- 本輪 Step：Step 3，Level 2 單條 flow 深掃初版。
-- 主要證據層級：`專案存在 / code-backed`。
+- Flow 中文名稱：三方金流 provider callback。
+- Flow slug：`payment-provider-callback`。
+- 專案：`/Users/nick/Git/iwin/payment`。
+- 完成狀態：Step 3，Level 2 單條 flow 深掃初版；2026-05-15 依新版 KB 補齊深度檢查欄位。
+- 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻層級：`待確認`。目前只看到 branch / commit message / code path，沒有 Nick 本人 MR、ticket、commit author 或本人確認，因此不能寫成「Nick 真實開發過」。
+- 本 flow 是：業務功能 + 共用能力。它同時是三方金流 callback 業務流程，也是多 provider 共用的狀態收斂能力。
+- 是否只確認到入口：否。已確認 provider controller、共用 guard、MQ producer / consumer、`updateUserInfo`、`payment_order` / `log_user` 更新與 game lobby / center HTTP 呼叫；但 game lobby / center 下游實作、DB schema / unique key、對帳 / 補單 job 仍是 `待確認`。
 - 讀者入口：本檔先用初階 / 中階可讀方式講清楚 callback 在做什麼，再進入 Senior / Owner 角度的 money correctness、state transition、idempotency、retry / compensation 與 observability。
 
 本 flow 的核心問題不是「哪個 controller 收到哪個欄位」，而是：
@@ -35,7 +38,55 @@ callback 到 payment 後，單一 provider controller 先做幾件事：
 
 所以這條 flow 的 owner 關注點是：callback ack、MQ enqueue、consumer 更新錢包、訂單終態、退款補償，這幾段不是同一個 atomic transaction。
 
-## 2. Code 分層對照
+## 2. 初中階 Code 分層對照
+
+```text
+Route / API：
+- `/nanapay/pay/notify`
+- `/nanapay/withdraw/notify`
+- `/pay4z/pay/notify`
+- `/pay4z/withdraw/notify`
+- provider 查單入口如 `/pay/getOrderStatus`、`/withdraw/getOrderStatus`
+
+Controller：
+- `NanaPayController.payNotify` / `withdrawNotify`
+- `Pay4zController.payNotify` / `withdrawNotify`
+- 責任是 parse callback、驗 IP、驗 sign、provider status mapping、回 ack、送 MQ。
+
+Service / Business：
+- `BaseController.getOrderVO(response, orderNo, returnMsg)`：共用 callback guard。
+- `BaseServiceImpl.asynUpdateOrderStatus`：把 callback 結果包成 `MessageJson`。
+- `BaseServiceImpl.updateUserInfo`：真正改訂單、上分 / 退款、更新玩家欄位與通知。
+- `upperDeposit` / `gmDownScore` / `getGameServerIp`：呼叫 game lobby / center。
+
+Model / DAO / Repository：
+- `OrderVO` 對應 `payment_order`。
+- `LogUserVO`、`userBehaviour` 相關 mapper 在 `updateUserInfo` 後續更新玩家業務欄位。
+
+SQL / Table：
+- 已確認主表：`payment_order`、`log_user`、`user_behaviour`。
+- 待確認：DB schema、`bill_no` unique key、分月表 / 跨月遷移細節。
+
+Redis：
+- 商戶設定 / center HTTP endpoint 透過 `RedisUtils` 讀取。
+- 提現失敗退款後會刪除 order billNo 相關 Redis object。
+
+MQ / Kafka / 下游通知：
+- 使用 XXL-MQ，`NotifyComsumer` 消費 callback 狀態更新訊息。
+- 本 flow 未看到 Kafka。
+
+External API：
+- provider callback 由三方金流打進 payment。
+- payment 透過 game lobby / center HTTP 做 `DEPOSIT` / `WITHDRAW` 類副作用；下游實作待確認。
+
+Log / Audit：
+- provider controller、MQ producer、MQ consumer、上下分 HTTP request / response 都有 log。
+- 待確認：是否有獨立 callback inbox / raw event audit table。
+
+Config：
+- 商戶設定、白名單、provider URL / notify URL、center HTTP endpoint 由 Redis / DB 設定提供。
+- 本文件不記錄任何 secret、內網 IP 或 production URL。
+```
 
 | 層級 | 代表 code | 責任 |
 | --- | --- | --- |
@@ -112,6 +163,50 @@ sequenceDiagram
 10. `NotifyComsumer.doConsume` 收到訊息後呼叫 `updateUserInfo`。
 11. `updateUserInfo` 再次確認訂單仍是 `WAIT` / `PROCESSING`。若已終態，直接回 `MqResult.SUCCESS`，避免 MQ 重送重複處理。
 12. 依 `billType` 與 `status` 執行充值上分、提現成功、提現失敗退款等分支。
+
+## 5.1 業務問題
+
+這條 flow 解決的是「provider 非同步通知如何安全落地」。
+
+如果它壞掉，最直覺的後果是：
+
+- 充值成功但玩家沒有收到金額。
+- provider 重送 callback，造成重複上分。
+- 提現失敗後退款重複執行，造成重複退款。
+- provider 已成功 / 失敗，但 `payment_order` 長時間停在 `WAIT` / `PROCESSING`。
+- callback 已 ack provider，但 MQ 沒有成功落地，導致 payment 內部沒有後續處理。
+- 客服 / 後台只能靠人工查 log 或補單，缺少清楚 audit / reconciliation。
+
+## 5.2 系統位置
+
+- 產品：iwin 金流 / 充值 / 提現。
+- 專案：`payment`。
+- 模組：`payment/` runtime service + `base/module` enum / model。
+- 上游：第三方金流 provider callback；玩家充值 / 提現建單流程是前置 flow。
+- 下游：XXL-MQ、`payment_order` / `log_user` / `user_behaviour`、game lobby / center HTTP、email / marquee、跨月訂單處理。
+- 相關但本輪未深掃：`admin`、`timer`、`app_bi` 人工補單 / repair，game lobby / center 下游錢包實作。
+
+## 5.3 Code 路徑
+
+已確認主要路徑：
+
+- `payment/src/main/java/cn/com/payment/controller/BaseController.java`
+- `payment/src/main/java/cn/com/payment/controller/merchant/NanaPayController.java`
+- `payment/src/main/java/cn/com/payment/controller/merchant/Pay4zController.java`
+- `payment/src/main/java/cn/com/payment/service/impl/withdraw/BaseServiceImpl.java`
+- `payment/src/main/java/cn/com/payment/service/impl/withdraw/NanaPayServiceImpl.java`
+- `payment/src/main/java/cn/com/payment/service/impl/withdraw/Pay4zServiceImpl.java`
+- `payment/src/main/java/cn/com/payment/comsumer/NotifyComsumer.java`
+- `payment/src/main/java/cn/com/payment/utils/ProducerUtil.java`
+- `payment/src/main/java/cn/com/payment/vo/OrderVO.java`
+- `base/module/src/main/java/cn/com/enums/OrderReviewStatusEnum.java`
+
+未確認 / 待補：
+
+- `payment_order` schema / unique key。
+- game lobby / center 的 `DEPOSIT` / `WITHDRAW` handler。
+- 定時對帳 / callback replay / dead letter queue。
+- app_bi / admin 人工補單與 payment API / DB 邊界。
 
 ## 6. 狀態模型
 
