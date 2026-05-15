@@ -12,7 +12,7 @@
 Step 2 重新排序後，結論分兩層：
 
 1. 最高 Senior / Owner 價值是 `payment-order-status-repair`，但它不適合只在 `app_bi` 深挖，必須回到 `payment` repo 找 source of truth。
-2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `daily-game-record-summary Step 3`，因為 `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5，且都不更新履歷 / 自傳。
+2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `daily-game-record-summary Step 4`，因為 `daily-game-record-summary` Step 3 已確認查詢端與 producer，但尚未正式轉成面試 case。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -97,7 +97,7 @@ Step 2 重新排序後，結論分兩層：
 | 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history | `payment` source of truth 未掃 | 後續轉 `payment Step 1`，不在 `app_bi` 硬挖 |
 | 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 5 已完成；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；Nick 貢獻待確認 | 保留為面試分析素材 |
 | 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
-| 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢 / 報表入口與近期 SQL 修正 history | producer / 補跑機制未掃 | 下一步做 Step 3 |
+| 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | 查詢端、game_job producer 與近期 SQL / 時區修正 history | 補跑 / 對帳 / Nick 貢獻未確認 | 下一步做 Step 4 |
 | 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | 查詢入口與多 provider record 頁面 | log writer 未掃 | 適合後續 troubleshooting case |
 | 6 | `admin-rbac-permission-check` | 後台 RBAC / 權限判斷 | 中 | `Base::_initialize()` / `Auth::permission()` 有權限框架 | 高風險 controller enforcement 未逐條確認 | 作為輔助邊界，不單獨優先 |
 | 7 | `coupon-trade-admin-operation` | 兌換碼 / Coupon Trade 營運操作 | 中低到中 | 近期主線有 `coupon trade` code 與 UI | 使用端 / wallet side effect 未掃 | 暫列候選，不優先 |
@@ -107,9 +107,9 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-1. `app_bi daily-game-record-summary Step 3`
-   - 原因：同 project 中 `point-control-admin-operation` 與 `admin-config-redis-sync` 都已完成 Step 5，下一條未完成且仍有 Senior / Owner 價值的是每日遊戲資料彙總。
-   - 產出：報表 projection、producer 待確認、補跑 / reconcile / 延遲資料風險的主研究報告。
+1. `app_bi daily-game-record-summary Step 4`
+   - 原因：Step 3 已確認 app_bi 查詢端與 game_job producer，下一步應轉成保守面試 case。
+   - 產出：3 分鐘講法、Senior / Lead 追問、不能誇大的 claim boundary。
    - 是否更新履歷：否。
 2. `payment Step 1`
    - 原因：`payment-order-status-repair` 價值最高，但強 evidence 不在 `app_bi`。
@@ -238,11 +238,14 @@ Senior / Owner 價值：
 
 中文名稱：每日遊戲資料彙總 / RTP 查詢
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+狀態：已完成 Step 3；下一步 Step 4
 
 已確認：
 
-- `GameData.php` / `DataReportService.php` 有報表查詢與彙總處理線索。
-- 近期 log 有 `daily_game_record_summary`、SQL 修正、金額倍率、提示生成資料時間等修改。
+- `app_bi` 的 `Payment::DailyGameDataSummary()` 查 `log_game_daily_record type=1`，依 `date, platform` pivot 每日彙總。
+- `public/views/jjsj/mrucsjhz/**` 是後台頁面與 Excel 下載入口。
+- `game_job` 的 `GameDailyAntplayAndPGJob` / `GameDailyIwinJob` 是 producer，會從 `log_reel` 日表產生 type=0 個體資料與 type=1 彙總資料。
+- git history 有 SQL group 修正、SUM pivot 修正、平台選擇、金額倍率、2 日留存、生成時間與時區提示等修改。
 
 Senior / Owner 價值：
 
@@ -251,15 +254,11 @@ Senior / Owner 價值：
 - 跨日統計、補跑、延遲資料。
 - 報表是否可被營運誤當交易真相。
 
-推測：
-
-- producer 可能在 `game_job` 或資料處理 repo。
-
 待確認：
 
-- `daily_rtp_total` / `log_game_daily_record` 寫入端。
 - 補跑 / reconcile。
 - 報表延遲標示與查詢效能限制。
+- Nick 是否實際維護過此 flow。
 
 履歷邊界：
 
@@ -414,7 +413,7 @@ Senior / Owner 價值：
 - `payment-order-status-repair`：只確認到人工修正入口，未確認 payment source of truth。
 - `point-control-admin-operation`：只確認到 `app_bi` 發送端，未確認 GM receiver / runtime consumer。
 - `admin-config-redis-sync`：只確認到 Redis 寫入端與部分讀取端，未確認 runtime consumer。
-- `daily-game-record-summary`：只確認到查詢 / 展示端，未確認 producer。
+- `daily-game-record-summary`：已確認查詢 / 展示端與 `game_job` producer，但補跑 / 對帳 / Nick 貢獻仍待確認。
 - `game-round-record-query`：只確認到查詢端，未確認 log writer。
 - `admin-rbac-permission-check`：只確認到權限框架，未逐條確認高風險操作 enforcement。
 - `coupon-trade-admin-operation`：只確認到營運管理端，未確認使用端。
@@ -440,11 +439,11 @@ admin-config-redis-sync Step 1-5
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
 
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的 flow。
+- `daily-game-record-summary` Step 3 已完成，下一步應轉成保守面試 case。

@@ -20,6 +20,7 @@
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
 | `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
+| `flows/daily-game-record-summary/` | Step 3，新版可讀結構 | 已確認 app_bi 查詢端與 game_job producer；不更新正式履歷 |
 
 ## 專案定位
 
@@ -59,7 +60,7 @@
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
@@ -67,5 +68,5 @@ app_bi daily-game-record-summary Step 3
 - Step 1 / Step 2 已重整乾淨。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
-- 預期仍只作報表 / projection 分析素材，不更新履歷；若要變成強 evidence，之後要補 producer repo。
+- `daily-game-record-summary` Step 3 已確認 app_bi 查詢端與 game_job producer。
+- 下一步應轉成保守面試 case；不更新正式履歷。

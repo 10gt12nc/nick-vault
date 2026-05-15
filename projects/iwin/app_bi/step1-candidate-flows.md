@@ -14,7 +14,7 @@
 1. `payment-order-status-repair`：金流訂單人工修正入口，價值最高，但必須轉去 `payment` repo 補 source of truth。
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；不更新履歷 / 自傳，目前仍只確認到 `app_bi` 發送端。
 3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
-4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，需補 producer repo。
+4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，已完成 Step 3；下一步 Step 4。
 5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，所有候選 flow 都只當 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
@@ -270,6 +270,7 @@ source repo 狀態：
 
 中文名稱：每日遊戲資料彙總 / RTP 查詢
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+狀態：已完成 Step 3；下一步 Step 4
 
 為什麼重要：
 
@@ -278,17 +279,15 @@ source repo 狀態：
 
 已確認 evidence：
 
-- `GameData.php` / `DataReportService.php` 有報表查詢與彙總處理。
-- git log 有每日遊戲資料彙總、SQL 修正、金額倍率、提示生成資料時間等線索。
-
-推測：
-
-- 寫入端 / producer 可能在 `game_job` 或其他資料處理 repo。
+- app_bi `Payment::DailyGameDataSummary()` 查 `log_game_daily_record type=1`。
+- `public/views/jjsj/mrucsjhz/**` 是每日遊戲資料彙總頁與 Excel 下載入口。
+- `game_job` `GameDailyAntplayAndPGJob` / `GameDailyIwinJob` 已確認為 producer，會從 `log_reel` 日表產生 type=0 個體資料與 type=1 彙總資料。
+- git log 有每日遊戲資料彙總、SQL 修正、SUM pivot、金額倍率、2 日留存、提示生成資料時間與時區修正等線索。
 
 待確認：
 
-- `daily_rtp_total` / `log_game_daily_record` 或相關報表表的 producer。
 - 報表延遲、補跑、reconciliation。
+- Nick 是否實際維護過此 flow。
 
 履歷邊界：
 
@@ -440,7 +439,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
@@ -448,5 +447,5 @@ app_bi daily-game-record-summary Step 3
 - Step 1 / Step 2 已重整。
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
-- 不更新履歷。
+- `daily-game-record-summary` Step 3 已確認 app_bi 查詢端與 game_job producer。
+- 下一步轉成保守面試 case；不更新履歷。

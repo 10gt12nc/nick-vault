@@ -20,23 +20,24 @@
 - 已補上 push approval 防錯規則：需要 push 時，AI 必須直接觸發 `git push` approval 視窗，不再只用文字回覆本地已提交、等待 Nick 另外要求推送。
 - 已新增 `projects/source-repo-inventory.md`，記錄本機來源 repo 索引；這只是導航，不是 code evidence 或履歷 claim。
 - 已重整 `01-senior-owner-flow-inventory.md` 為 flow dashboard，避免下一步亂跳；完整分析仍放各 flow 的 `flow.md`。
+- 已完成 `app_bi daily-game-record-summary Step 3`，確認 app_bi 查詢端與 game_job producer；目前只作報表 projection / 批次一致性分析素材，不更新履歷。
 
 ## 下一步
 
-### 1. app_bi daily-game-record-summary Step 3
+### 1. app_bi daily-game-record-summary Step 4
 
 建議下一步：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
 
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5，且不更新履歷 / 自傳。
-- `daily-game-record-summary` 是同 project 下一條未完成且仍有 Senior / Owner 價值的候選 flow。
-- 目前沒有下游 runtime consumer evidence，不更新履歷。
+- `daily-game-record-summary` 已完成 Step 3，且已補讀 `game_job` producer。
+- 下一步是轉成保守面試 case，不更新履歷。
 - flow dashboard 已把這件事列為唯一推薦下一步。
 
 ### 2. 再做第一條完整後端 flow
@@ -67,7 +68,7 @@ app_bi daily-game-record-summary Step 3
 ## 下一個 prompt
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。

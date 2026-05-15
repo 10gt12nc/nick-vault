@@ -91,17 +91,16 @@ Step 4 面試稿可以聚焦:
 
 ## Step 5 後下一步
 
-回到 `app_bi` candidate ranking，選下一條未完成 flow。
+目前回到 `app_bi` candidate ranking 後，下一步已收斂到 `daily-game-record-summary Step 4`。
 
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
 
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
-- 下一步應回到同 project candidate ranking，選下一條未完成 flow。
-- `daily-game-record-summary` 是同 project 下一條仍有 Senior / Owner 價值的候選 flow。
+- `daily-game-record-summary` Step 3 已完成，下一步應轉成保守面試 case。

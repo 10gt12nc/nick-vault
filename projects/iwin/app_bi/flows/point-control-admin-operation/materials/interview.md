@@ -241,11 +241,11 @@
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 3
+app_bi daily-game-record-summary Step 4
 ```
 
 原因：
 
 - 本 flow 已完成 Step 1-5。
 - Step 5 已判定不更新正式履歷 / 自傳。
-- 下一步應回到同 project candidate ranking，選下一條未完成 flow。
+- `daily-game-record-summary` Step 3 已完成，下一步應轉成保守面試 case。
