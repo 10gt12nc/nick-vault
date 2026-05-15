@@ -157,13 +157,14 @@ Code repo:
 
 多 session 防污染補充：
 
-- 多個 session 同時維護 `nick-vault` 時，預設以 project / submodule 使用一個 `codex/{project-submodule}` branch 與一個獨立 `git worktree`；不是每個對話都必須開新 branch。
-- 同一 project / submodule 若有多個 session 會並行改檔或 commit，才拆更細的 task branch。
-- 不同 project / submodule 不要共用同一個 `main` 工作樹 stage / commit。
+- 日常模式預設只在 `main` 開發，且同一時間只允許一個 session 具備改檔 / stage / commit 權限。
+- 其他 session 若存在，只能只讀查詢、review 或討論，不得改檔、stage、commit 或切 branch。
+- 只有在 Nick 明確需要並行整理不同 project / submodule，且每個 session 有獨立 worktree 時，才使用 project / submodule branch。
+- 禁止多 session 共用同一 worktree 互相切 branch；同一 branch / worktree 同一時間只能有一個 session 負責改檔與 commit。
 - 禁止在髒工作樹使用 `git add .`。
 - 若 `git diff --cached --name-only` 出現非本輪檔案，AI 不得 commit；先回報 Nick，等待 reset / unstage / 明確指示。
 - 若 Nick 說「先不動其他」，AI 不得整理其他 session 的 index、不得 reset、不得 unstage 非本輪內容。
-- `main` 是共用 KB 的唯一正式來源與穩定整合線。project / submodule branch 開工前、開始新 Step 前、準備 commit 前，要同步最新 `main` 以取得最新 KB。
+- `main` 是共用 KB 的唯一正式來源、日常開發線與穩定整合線。例外使用 project / submodule branch 時，開工前、開始新 Step 前、準備 commit 前，要同步最新 `main` 以取得最新 KB。
 - KB 更新可以短暫用 `codex/kb-rules` 或同類 branch 隔離，但自查通過後應優先合回 `main`；不要讓 KB 長期只存在某個 project branch。
 - 合回 `main` 前必須確認該 project / submodule 的 Step / flow 已形成可讀閉環、README / evidence / claim boundary / 共用索引已同步、自查通過，且 staged 內容沒有混入其他 session。
 ```

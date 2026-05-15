@@ -58,6 +58,7 @@ Transfer wallet 的核心是半完成狀態。轉出成功、轉入失敗、prov
 - `bet-settlement`
 - `game-round-settlement`
 - `antplay-bet-settle-rollback`
+- `third_games_api/gsc-transfer-bet-settle-rollback`
 
 面試主軸：
 
@@ -69,6 +70,19 @@ Transfer wallet 的核心是半完成狀態。轉出成功、轉入失敗、prov
 - wallet mutation 與 round log 應有一致的 commit 狀態。
 - rollback 不是反向再打一筆就好，需要狀態與副作用邊界。
 - BI / report 是 projection，不應是 source of truth。
+
+GSC transfer 補充案例：
+
+- `third_games_api` 是 provider adapter，不是 wallet source of truth。
+- GSC `transfer` 非 rollback 情境會呼叫 gameserver `PGTRANSFERINOUT`，真正錢包異動在 gameserver job。
+- `third_games_api` Mongo `third_log_gsc` / `third_transaction_gsc` 是 callback audit / transaction evidence，不是已確認的唯一帳本。
+- `ROLLBACK` 分支目前 code-backed 行為是不呼叫 gameserver mutation，只回算 balance 並寫 Mongo；必須查 provider spec，不可說已完成 wallet rollback。
+- gameserver 成功但 adapter Mongo insert 失敗，是這條 case 的核心 failure window。
+
+GSC transfer 保守邊界：
+
+- 證據層級是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 沒有 Nick 本人 MR / ticket / production issue / 本人確認前，不寫成 Nick 主導 GSC 串接或修復 rollback。
 
 ## 案例 4：Kafka / MQ 可靠性
 

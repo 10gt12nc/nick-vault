@@ -78,11 +78,23 @@ AI 不會做的事：
 
 之後只要 AI 修改 `nick-vault` 檔案，收尾流程依風險分級。
 
-### 多 session / staging area 防污染規則
+### session / staging area 防污染規則
 
-當 Nick 同時開多個 session 維護 `nick-vault` 時，預設規則是「一個 project / submodule = 一個 branch = 一個獨立 worktree」。不是每個對話都必須開新 branch；只有同一 project / submodule 內有多個 session 同時改檔或 commit 時，才拆成更細的 task branch。
+`nick-vault` 是個人知識庫，不是需要多人大量平行開發的 codebase。日常模式預設：
 
-推薦格式：
+- 只在 `main` 開發。
+- 同一時間只允許一個 session 具備改檔 / stage / commit 權限。
+- 其他 session 若存在，只能做只讀查詢、review 或討論，不得改檔、stage、commit 或切 branch。
+- 優先完成一個 project / flow / Step 後再換下一個，避免多個 AI session 同時改 Markdown 造成內容互相覆蓋或脈絡失真。
+
+例外模式：
+
+- 只有在 Nick 明確需要並行整理不同 project / submodule 時，才使用 project / submodule branch。
+- 每個並行 session 必須有獨立 worktree，不得共用同一個工作樹。
+- 同一 branch / worktree 同一時間只能有一個 session 負責改檔與 commit。
+- 多 session 共用同一 worktree 互相切 branch 是禁止模式。
+
+例外模式推薦格式：
 
 ```text
 ../nick-vault-iwin-app-bi
@@ -95,7 +107,7 @@ branch: codex/iwin-game-job
 branch: codex/iwin-iwin-gameserver
 ```
 
-禁止把多個不同任務長期混在同一個 `main` 工作樹裡修改、stage、commit，因為 Git 的 staging area 屬於工作樹，不屬於單一 session。任何 session 執行 commit 都可能把其他 session 已 staged 的檔案一起帶走。
+禁止把多個不同任務長期混在同一個工作樹裡修改、stage、commit，因為 Git 的 staging area 屬於工作樹，不屬於單一 session。任何 session 執行 commit 都可能把其他 session 已 staged 的檔案一起帶走。
 
 若 Nick 暫時要求或現場只能共用同一個工作樹，commit 前必須額外做以下檢查：
 
@@ -109,13 +121,13 @@ branch: codex/iwin-iwin-gameserver
 
 ### main、KB 與 project branch 同步規則
 
-`main` 是共用 KB 的唯一正式來源，也是穩定整合線。project / submodule branch 是工作線，不是 KB 的長期分叉。
+`main` 是共用 KB 的唯一正式來源，也是日常開發線與穩定整合線。project / submodule branch 只是例外模式的臨時工作線，不是 KB 的長期分叉。
 
 規則：
 
 1. KB 規則以 `main` 為唯一正式來源；其他 branch 讀到的 KB 若落後 `main`，必須視為可能過期。
-2. project / submodule branch 開工前，必須以最新 `main` 為底。
-3. 長時間工作的 project / submodule branch，在開始新 Step、重整 flow 或準備 commit 前，要先同步 `main`，確保讀到最新 KB。
+2. 日常開發直接在 `main` 進行，但同一時間只能有一個寫入 session。
+3. 例外使用 project / submodule branch 時，開工前必須以最新 `main` 為底；長時間工作、開始新 Step、重整 flow 或準備 commit 前，要先同步 `main`，確保讀到最新 KB。
 4. KB 更新可以短暫用 `codex/kb-rules` 或同類 branch / worktree 隔離，避免共用 index 污染；但自查通過後應優先合回 `main`，不得讓 KB 長期只存在某個 project branch。
 5. 這些同步規則只適用 `nick-vault`；公司 / 來源 code repo 仍只能 fetch remote refs，不得自動 pull / merge / checkout / rebase 或改工作樹。
 

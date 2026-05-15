@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 third-party game integration flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
-| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 Level 2 flow 深掃；已依更新後 KB 補強主報告欄位，保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only` |
+| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 4 已轉成保守面試 case；保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only`，尚未更新正式履歷 |
 
 ## 專案定位
 
@@ -64,10 +64,10 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 4
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：
 
-- Step 3 已建立單條 flow 學習包，並把 rollback 語意、gameserver wallet boundary、Mongo audit、provider retry / idempotency 風險整理完成。
-- Step 4 應把這條 flow 轉成可面試講的 case；目前仍不更新正式履歷 / 自傳，除非 Nick 補本人參與 evidence。
+- Step 4 已把 rollback 語意、gameserver wallet boundary、Mongo audit、provider retry / idempotency 風險轉成可面試講的 case。
+- Step 5 應檢查是否更新正式履歷 / 自傳；依目前 evidence 預期仍不更新，除非 Nick 補本人參與 evidence。

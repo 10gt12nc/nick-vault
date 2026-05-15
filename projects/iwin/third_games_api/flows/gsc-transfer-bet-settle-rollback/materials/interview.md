@@ -1,5 +1,9 @@
 # Interview Notes：GSC transfer bet / settle / rollback
 
+完成狀態：Step 4 已轉成可講案例。
+
+證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不寫成真實開發成果。
+
 ## 面試主軸
 
 這條 flow 適合講「第三方遊戲 provider callback 如何安全地落到內部錢包」。
@@ -11,6 +15,15 @@
 - rollback semantics
 - Mongo audit 與 wallet ledger 一致性
 - response timing 與後續 log projection
+
+## 面試回答公式
+
+```text
+我先說這不是單純接 API，而是第三方遊戲 callback 到內部錢包的一致性問題。
+接著說 adapter、Redis routing、gameserver wallet、Mongo audit 怎麼分工。
+然後挑三個 failure window：provider retry、wallet 成功但 Mongo 失敗、ROLLBACK 不改 wallet。
+最後說我會怎麼保守補 evidence 和設計 owner decision。
+```
 
 ## Q1：這條 flow 在做什麼？
 
@@ -44,6 +57,18 @@
 
 可以講成「我追一條第三方 seamless wallet flow 時，不只看 API happy path，而是把 provider callback、Redis routing、gameserver wallet、Mongo audit、retry、rollback、reconciliation 邊界拆開」。這能展示 owner 思維：知道哪裡是真正帳本、哪裡只是投影、哪個 failure window 會讓外部與內部狀態分歧。
 
+## Q9：如果被問「這是你主導的嗎？」
+
+不能說主導。保守回答是：
+
+> 這條目前我不會說是我主導的。我的 evidence 是 code-level flow analysis：我能說清楚 provider callback 到 gameserver wallet mutation 的路徑，也能指出 retry、Mongo audit、rollback 語意的風險。若要寫成正式履歷成果，我會先補本人 MR / ticket / production issue 或本人確認。
+
+## Q10：這條 case 跟一般 payment callback 有什麼不同？
+
+相同點是外部 provider 都會有 retry、timeout、duplicate callback、audit log 與 reconciliation 問題。
+
+不同點是遊戲 flow 還多了 bet amount、valid bet、prize amount、spin currency、game id、wager code 等語意，而且 rollback 可能不是單純訂單退款，而是要和遊戲局、wallet ledger、報表 log 一起對齊。
+
 ## Lead / Architect 追問版
 
 ### 如果 provider 重送，你怎麼避免重複扣加？
@@ -57,6 +82,16 @@ money success 應以 gameserver wallet mutation 為準。Mongo 失敗要進 repa
 ### `ROLLBACK` 不改 wallet，你會怎麼處理？
 
 我會先查 provider spec，確認這個 branch 是不是只要求回傳計算結果。如果 spec 定義 rollback 應該反向異動 wallet，那現況就是風險，需要補 reversal transaction 和 idempotency。如果 spec 不是 wallet mutation，文件與 monitoring 要清楚標示，避免被誤解成已補償。
+
+## 可展現能力對照
+
+| 能力 | 這條 case 怎麼展現 | 證據層級 |
+| --- | --- | --- |
+| Transaction boundary | 能指出 adapter、gameserver wallet、Mongo audit 不是同一個 transaction | `專案存在 / code-backed` |
+| Idempotency | 能說明 provider retry 不能只靠 adapter Mongo，要追 wallet mutation 層 | `分析素材 / learning-only` |
+| Rollback semantics | 能保守指出 rollback code 行為與 provider spec 待確認 | `專案存在 / code-backed` |
+| Reconciliation | 能提出 wallet ledger、callback audit、game log 的 join key / repair 思路 | `分析素材 / learning-only` |
+| Claim discipline | 能清楚說這是分析素材，不是 Nick 主導成果 | `分析素材 / learning-only` |
 
 ## 追問時的保守句
 
