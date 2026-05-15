@@ -2,20 +2,22 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：初版
+狀態：已完成 Step 5 第一條 flow；等待下一條候選進 Step 3
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次結論
 
 `iwin_gameserver` 不是單一服務，而是 root multi-module 加上多個 game modules 與 service instance config。Step 2 的重點不是急著建立 `flows/{flow}`，而是先把候選 flow 橫跨哪些 module、風險在哪、哪條最值得進 Step 3 比清楚。
 
-比較後，最值得進 Step 3 的候選是：
+第一條最值得進 Step 3 的候選已完成 Step 5：
 
 ```text
 third-party-transfer-in-out
 ```
 
 原因是它橫跨 `slots-center`、`slots-games/slots-game-common`、`slots-game-log` 與可能的上游 adapter，直接牽涉玩家餘額、投注 / 有效投注、派彩 / 退款、log 與 idempotency。這比先做純 module map 或 dbproxy class summary 更接近 Senior / Owner 的 production flow。
+
+Step 5 結論是：此 flow 可作面試分析素材，但不更新正式履歷 / 自傳。下一條候選回到同 project 排名，建議做 `center-http-deposit-withdraw Step 3`。
 
 本輪不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -71,7 +73,7 @@ source repo 狀態：
 
 - Step 1：可沿用；已補最新 repo 狀態。
 - Step 2：可沿用；本輪補最新 repo 狀態與 `third-party-transfer-in-out` 已進 Step 4 的狀態。
-- `third-party-transfer-in-out`：Step 3 / Step 4 文件可沿用；下一步仍是 Step 5。
+- `third-party-transfer-in-out`：Step 3 / Step 4 / Step 5 文件可沿用；正式履歷 / 自傳暫不更新。
 - 依最新 KB，不新增替代結構、不新增研究報告、不更新正式履歷。
 
 ## 舊文件狀態判斷
@@ -80,7 +82,7 @@ source repo 狀態：
 | --- | --- | --- |
 | `README.md` | 已補 | 已加入 Step 2 讀檔順序與狀態 |
 | `architecture-map.md` | 已補 | 原本只列 root module，已補 game modules / service instance 邊界 |
-| `step1-candidate-flows.md` | 已修正 | 下一步改回 `iwin_gameserver Step 2`，避免看起來跳過 Step 2 |
+| `step1-candidate-flows.md` | 已修正 | Step 2 已完成；本輪已把下一步改為 `center-http-deposit-withdraw Step 3` |
 | `step2-flow-comparison.md` | 本次新增 | 補齊 Step 2 |
 
 ## 多子模組邊界
@@ -109,8 +111,8 @@ source repo 狀態：
 
 | 排名 | Flow | 中文名稱 | 涉及 module | Senior / Owner 價值 | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | `slots-center`、`slots-games/slots-game-common`、`slots-game-log`、上游 adapter 待確認 | 高 | 上游 repo、idempotency、log / coin 寫入順序未完整確認 | 進 Step 3 |
-| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未掃，gameserver 防重待確認 | 先列候選，之後可跨 repo 深掃 |
+| 1 | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | `slots-center`、`slots-games/slots-game-common`、`slots-game-log`、上游 adapter 待確認 | 高 | 上游 repo、idempotency、log / coin 寫入順序未完整確認 | Step 5 已完成；正式履歷暫不更新 |
+| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未掃，gameserver 防重待確認 | 建議下一條進 Step 3 |
 | 3 | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | `slots-gate`、`slots-center`、`slots-games`、單一 game module、`slots-game-log` | 高 | 必須先選代表 game；不能一次掃 27 個 game | 暫不跳，等選定遊戲 |
 | 4 | `bet-target-set-query` | 打碼目標設定與查詢 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `app_bi` 待確認 | 中高 | 打碼資料落點與投注扣減邏輯未追完 | 可作後續 money rule flow |
 | 5 | `dbproxy-cache-db-write-path` | DB proxy Redis / MySQL 查寫路徑 | `slots-common`、`slots-dbproxy` | 中高 | 容易變 class summary；需綁定具體業務 flow | 作輔助深挖，不先單獨做 |
@@ -119,7 +121,7 @@ source repo 狀態：
 
 ### 1. `third-party-transfer-in-out`
 
-建議狀態：已進 Step 4，主報告見 `flows/third-party-transfer-in-out/flow.md`，面試素材見 `flows/third-party-transfer-in-out/career-interview.md`
+建議狀態：已完成 Step 5，主報告見 `flows/third-party-transfer-in-out/flow.md`，面試素材見 `flows/third-party-transfer-in-out/career-interview.md`，claim 邊界見 `flows/third-party-transfer-in-out/materials/claim-boundary.md`
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -147,6 +149,12 @@ Step 3 已補：
 - `modifyAndGetCoin*` 的完整 atomicity / dataVersion / cache flush 落庫細節。
 - wallet mutation 前是否存在跨 request idempotency guard。
 - `log_currency.bill_no`、`log_reel.serial_id` 是否有 DB unique index。
+
+Step 5 已補：
+
+- 正式履歷 / 自傳暫不更新。
+- project-level career boundary 已整理於 `career-interview.md`。
+- 若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
 
 ### 2. `center-http-deposit-withdraw`
 
@@ -216,11 +224,11 @@ Step 3 已補：
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 5
+iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
 原因：
 
-- Step 4 已把 `flow.md` 收斂成可練習的面試 case。
-- 下一步應整理履歷 / 自傳邊界，明確判斷哪些只能當分析素材、哪些需要 Nick 本人 evidence。
-- 不建議跳新 flow，因為同一條 flow 還沒完成 Step 5。
+- `third-party-transfer-in-out` 已完成 Step 5，不再卡在同一條 flow。
+- 同 project 下一條最高價值候選是 `center-http-deposit-withdraw`。
+- 下一步會補 Step 3 主報告與 evidence；不會直接更新正式履歷。

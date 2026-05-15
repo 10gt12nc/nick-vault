@@ -12,8 +12,19 @@
 | HTTP OK 在 wallet mutation 後、log side effect 前送出 | 專案存在 / code-backed | 已讀 `sendMoneyChange2Center()` |
 | gameserver wallet 層防重未確認 | 分析素材 / learning-only | 本輪未看到明確 guard，但不能宣稱一定沒有 |
 | 可用於 Senior / Owner 面試討論 | 分析素材 / learning-only | Step 4 已整理 30 秒 / 2 分鐘 / 5 分鐘版本 |
+| project-level career boundary | 分析素材 / learning-only | Step 5 已新增 project-level `career-interview.md` |
 | Nick 實作或主導此 flow | 待確認 | 需要 MR / ticket / commit / 本人確認 |
 | production incident / 改善比例 | 待確認 | 本輪沒有證據 |
+
+## Step 5 結論
+
+| 用途 | 判斷 | 原因 |
+| --- | --- | --- |
+| 正式履歷 master | 暫不更新 | 缺 Nick 本人 MR / ticket / commit / production issue / 本人確認 |
+| 投遞用自傳 | 暫不更新 | 不能寫成 Nick 主導成果；也不適合塞入「熟悉」型空泛描述 |
+| 面試素材 | 可用 | 必須用「我分析過 / 如果我是 owner」語氣 |
+| project-level career 索引 | 可更新 | 只整理可說 / 不可說與下一步，不新增正式 claim |
+| 未來升級 claim | 待確認 | 補本人 evidence 後再重評 |
 
 ## 可放面試
 
@@ -24,6 +35,14 @@
 ## 暫不放正式履歷
 
 目前不建議把這條 flow 放進正式履歷 master，除非後續補到 Nick 本人 evidence。可先放在面試準備素材。
+
+暫存句型，現階段不可放正式履歷：
+
+```text
+分析 iwin gameserver 第三方遊戲投注 / 派彩 / 退款 flow，拆解 wallet mutation、log projection、idempotency 與 reconciliation 風險。
+```
+
+原因：這句的安全動詞是「分析」，不是「實作 / 主導 / 改善」。若放進正式履歷，容易被讀成 Nick 個人成果，現階段 evidence 不足。
 
 ## Step 4 面試可用說法
 

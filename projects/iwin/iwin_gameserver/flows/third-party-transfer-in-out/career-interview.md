@@ -1,7 +1,7 @@
 # third-party-transfer-in-out：保守面試素材
 
 更新時間：2026-05-15
-對應 Step：Step 4 面試案例
+對應 Step：Step 5 履歷 / 自傳邊界已完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 面試定位
@@ -114,8 +114,33 @@ Result：
 - 不能說已確認防重完整。
 - 不能說有改善百分比或 owner 權限。
 
-## Step 5 待補
+## Step 5 結論
 
-- 判斷是否能形成履歷 bullet。
-- 若沒有 Nick 本人 evidence，正式履歷應暫不放，或只保留「分析 / 熟悉」類面試素材。
-- 若 Nick 補 MR / ticket / commit / production issue，再重新評估是否能標成 `真實開發過`。
+正式判斷：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 本 flow 只保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 若 Nick 補 MR / ticket / commit / production issue / 本人確認，再重新評估是否能標成 `真實開發過`。
+
+可暫存的保守履歷句型，現階段不放正式履歷：
+
+```text
+分析 iwin gameserver 第三方遊戲投注 / 派彩 / 退款 flow，拆解 wallet mutation、log projection、idempotency 與 reconciliation 風險。
+```
+
+這句只能在面試或自我練習中用「分析過」語氣，不可改成「主導 / 實作 / 改善」。
+
+## 下一步建議
+
+只推薦一件事：
+
+```text
+iwin_gameserver center-http-deposit-withdraw Step 3
+```
+
+原因：
+
+- 本 flow 已完成 Step 5。
+- 下一步應回到同 project 的 candidate ranking，選下一條未完成 flow。
+- `center-http-deposit-withdraw` 同樣是 money correctness flow，會產出 Step 3 主報告；不會直接更新正式履歷。
