@@ -98,7 +98,7 @@ third-party-transfer-in-out
 
 ### 1. `third-party-transfer-in-out`
 
-建議狀態：最適合進 Step 3
+建議狀態：已進 Step 3，主報告見 `flows/third-party-transfer-in-out/flow.md`
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -190,11 +190,11 @@ Step 3 必須補：
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 3
+iwin_gameserver third-party-transfer-in-out Step 4
 ```
 
 原因：
 
-- Step 1 已找候選，Step 2 已完成 module / flow 風險比較。
-- 下一步才可以建立單條 flow folder，並用 Level 2 深掃追 code path、資料流、history 與 failure window。
-- 仍不更新正式履歷；Step 3 只產出 `flow.md` 主報告與 evidence 初稿。
+- Step 3 已建立單條 flow folder，並完成 Level 2 深掃。
+- 下一步應把 `flow.md` 收斂成面試可講的 case，而不是跳到新 flow 或更新正式履歷。
+- Step 4 會產出更完整的面試敘事、追問回答與保守 claim 邊界。
