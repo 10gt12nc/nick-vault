@@ -24,6 +24,26 @@
 | `flows/third-party-transfer-in-out/flow.md` | Step 3 已建立 | 第三方遊戲投派整合 / 投注派彩退款，Level 2 深掃 |
 | `flows/third-party-transfer-in-out/career-interview.md` | Step 4 已建立 | 保守面試案例，含 30 秒 / 2 分鐘 / 5 分鐘版本與追問 |
 
+## KB 更新後深度檢查
+
+更新時間：2026-05-15
+狀態：已依最新 KB 重新檢查，可沿用但已補 repo 最新性與 Step 狀態邊界
+
+已確認：
+
+- 本 project 已有 Step 1、Step 2、單條 flow Step 3、Step 4；沒有跳 Step。
+- `third-party-transfer-in-out` flow folder 已具備 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md`。
+- `flow.md` 已有白話導讀、Code 分層對照、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析。
+- 依最新 KB 的 multi-session / staging 防污染規則，本輪檢查開始時 `nick-vault` working tree 與 staging area 皆乾淨；後續改檔需精準 stage 本 project 檔案，不使用 `git add .`。
+- `/Users/nick/Git/iwin/iwin_gameserver` 已重新 fetch，`main` 與 `origin/main` 一致。
+- `/Users/nick/Git/iwin/third_games_api` 已重新 fetch，`beta` 與 `origin/beta` 一致。
+
+仍待確認：
+
+- Nick 本人是否實際參與 `iwin_gameserver` 或此 flow。
+- `third-party-transfer-in-out` 的 Step 5 是否能形成正式履歷 / 自傳 claim。
+- 若要把此 flow 升級成強 evidence 或履歷 claim，仍需 Level 3 path-specific commit diff、MR / ticket / production issue 或 Nick 本人確認。
+
 ## 專案定位
 
 已確認：

@@ -53,6 +53,27 @@ third-party-transfer-in-out
 - 未逐一深掃 27 個 active game modules。
 - 未確認 Nick 個人 MR / ticket / production issue。
 
+## KB 更新後深度檢查
+
+更新時間：2026-05-15
+檢查深度：Level 2 文件 / evidence 深度檢查；未做 Level 3 逐 commit diff
+
+source repo 狀態：
+
+- `/Users/nick/Git/iwin/iwin_gameserver` 已重新執行 `git fetch --all --prune`。
+- local branch：`main`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- source working tree：本輪檢查為乾淨
+
+文件狀態：
+
+- Step 1：可沿用；已補最新 repo 狀態。
+- Step 2：可沿用；本輪補最新 repo 狀態與 `third-party-transfer-in-out` 已進 Step 4 的狀態。
+- `third-party-transfer-in-out`：Step 3 / Step 4 文件可沿用；下一步仍是 Step 5。
+- 依最新 KB，不新增替代結構、不新增研究報告、不更新正式履歷。
+
 ## 舊文件狀態判斷
 
 | 文件 | 狀態 | 判斷 |
@@ -115,12 +136,17 @@ third-party-transfer-in-out
 - `transactionId` / `betId` 很適合追 idempotency、replay、對帳與重試語意。
 - 可以明確產出 Step 3 的主報告，不會變成「看完很多 class 但沒有 flow」。
 
-Step 3 必須補：
+Step 3 已補：
 
 - 上游 repo / adapter 是誰。
-- `modifyAndGetCoin*` 的 atomicity / dataVersion / 防重。
 - coin update、log_coins、log_reel、player data 的順序。
 - 扣款成功但 response 失敗、派彩晚到、退款重送、玩家餘額不足時的行為。
+
+仍待確認：
+
+- `modifyAndGetCoin*` 的完整 atomicity / dataVersion / cache flush 落庫細節。
+- wallet mutation 前是否存在跨 request idempotency guard。
+- `log_currency.bill_no`、`log_reel.serial_id` 是否有 DB unique index。
 
 ### 2. `center-http-deposit-withdraw`
 

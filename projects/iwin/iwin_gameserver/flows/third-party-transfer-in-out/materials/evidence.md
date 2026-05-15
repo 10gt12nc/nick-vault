@@ -15,6 +15,22 @@
 
 Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 
+## KB 更新後深度檢查
+
+更新時間：2026-05-15
+檢查原因：KB 新增 multi-session / staging area 防污染與 main / project branch 同步規則後，重新檢查本 flow 是否需要調整。
+
+檢查結果：
+
+- `flow.md` 可沿用：已具備白話導讀、Code 分層對照、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析。
+- `career-interview.md` 可沿用：已標示 `專案存在 / code-backed`、`Nick 貢獻待確認`，沒有新增 `真實開發過`。
+- `materials/interview.md` 可沿用：面試說法使用「分析過 / 如果我是 owner」語氣，沒有寫成 Nick 主導成果。
+- `materials/claim-boundary.md` 可沿用：已明確禁止主導、修過 production bug、改善百分比與完整防重 claim。
+- `materials/decision-notes.md` 可沿用：只作 owner decision 分析，不當作 Nick 實作 evidence。
+- 本輪檢查開始時 `nick-vault` 在 `main`，ahead `origin/main`；working tree 與 staging area 皆為乾淨。後續若有改檔，必須精準 stage `projects/iwin/iwin_gameserver/**`，不得混入其他 project。
+
+本輪只補 evidence / Step 狀態與 KB refresh 邊界，不新增新 Step，不更新正式履歷 / 自傳。
+
 ## 本輪重讀 KB
 
 - `AGENTS.md`
@@ -43,7 +59,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 ### iwin_gameserver
 
 - 路徑：`/Users/nick/Git/iwin/iwin_gameserver`
-- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
+- 已執行：`git fetch --all --prune`；Step 4 與 KB 更新後深度檢查皆再次執行確認
 - local branch：`main`
 - local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
 - remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
@@ -55,7 +71,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 ### third_games_api
 
 - 路徑：`/Users/nick/Git/iwin/third_games_api`
-- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
+- 已執行：`git fetch --all --prune`；Step 4 與 KB 更新後深度檢查皆再次執行確認
 - local branch：`beta`
 - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
 - remote HEAD：`origin/beta` = `4915ea5a5000d61eb36717203ea4c6afc45322fa`

@@ -93,6 +93,11 @@
 source repo 狀態：
 
 - `/Users/nick/Git/iwin/iwin_gameserver` 目前分支：`main`
+- 2026-05-15 KB 更新後深度檢查：已重新執行 `git fetch --all --prune`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- source working tree：本輪檢查為乾淨
 - 近期主線 log 包含 `兑换码功能`、`antplay 支援投派整合`、`GSC`、`PG 退款`、`PG bet_result 投派整合`、`iwin gameserver 對接antplay遊戲` 等線索。
 
 已看分支：
