@@ -8,15 +8,6 @@
 
 ## 自動重讀紀錄
 
-## 2026-05-15 KB 補查
-
-依最新 KB 補確認 source repo 遠端狀態：
-
-- `/Users/nick/Git/iwin/app_bi` 已 fetch；本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit；未 pull、未 checkout。
-- `/Users/nick/Git/iwin/game_job` 已 fetch；本地 `main=23908f4`，`origin/main=23908f4`，同步。
-- 本輪未改公司 repo。
-- 因此本 evidence 可作已讀素材；若要升級 claim 或重做報表 flow，需先確認是否更新本地 app_bi 或改讀遠端 diff。
-
 已重讀 KB：
 
 - `AGENTS.md`

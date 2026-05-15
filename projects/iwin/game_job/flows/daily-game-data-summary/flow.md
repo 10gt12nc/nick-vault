@@ -1,6 +1,6 @@
 # daily-game-data-summary Flow
 
-更新時間：2026-05-15（KB 更新後深度檢查調整）
+更新時間：2026-05-15
 Step：3
 掃描等級：Level 2 單條 flow 深挖
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -12,17 +12,6 @@ Step：3
 本文件先讓初階 / 中階讀者看懂「它在做什麼、資料怎麼走、code 在哪裡」，後半才進入 Senior / Owner 角度的 consistency、重跑、failure window、observability 與面試邊界。
 
 本輪沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，所以不得把這條 flow 寫成 Nick 真實開發過；只能作為 code-backed 分析素材。
-
-## KB 更新後深度檢查結論
-
-2026-05-15 依最新 KB 重新檢查後，判斷本 Step 3 主報告「可沿用，但需補 evidence」。本次已補齊：
-
-- 重新 fetch 並確認相關 code repo 的 local / remote HEAD 與 ahead-behind。
-- 補明 `app_bi` local `main` 落後 `origin/main` 4 commit，因此下游只能視為 local snapshot。
-- 補明已看的遠端分支、近期主線 log、path-specific log，以及未掃 / 待確認範圍。
-- 補上既有 Step / flow 文件狀態判斷，避免直接往 Step 4 跳而沒有先檢查 Step 3 是否乾淨。
-
-沒有改變 Step 主線：`daily-game-data-summary` Step 3 仍是已完成但 evidence 邊界保守的 flow learning package；下一步仍是 Step 4。
 
 ## 白話導讀
 
@@ -58,21 +47,6 @@ Step：3
 | DTO | `/Users/nick/Git/iwin/game_job/src/main/java/com/pojo/vo/DailySummaryVo.java` | 定義 date、platform、value1~value4、type、sub_type 的資料意義 |
 | 下游查詢 | `/Users/nick/Git/iwin/app_bi/app/admin/controller/Payment.php` | `DailyGameDataSummary()` 查 `log_game_daily_record` type=1，轉成後台表格 / Excel |
 | 下游 UI | `/Users/nick/Git/iwin/app_bi/public/views/jjsj/mrucsjhz/index.js` | 每日遊戲資料彙總頁面欄位與查詢參數 |
-
-依 Nick 熟悉的後端分層轉譯：
-
-```text
-Route / API：Quartz cron；另有 TestController.gameDailyJob(date) 手動入口
-Controller：TestController 只作補跑入口，非主要 production 入口
-Service / Business：GameDailyAntplayAndPGJob、GameDailyIwinJob、GameDailyServiceImpl
-Model / DAO / Repository：GameDailyDao、LogReelDao
-SQL / Table：log_reel_{yyyy_m_d}、log_game_daily_record、log_game_daily_record_new_players、log_game_daily_record_backup
-Redis：本 flow 未確認直接使用；BiJobBase task state 可能使用 Redis，待 Step 4 補讀
-MQ / Kafka / 下游通知：未確認 / 不適用
-External API：未確認；upstream 第三方 settlement 只作線索，不在本 Step 3 完整深掃
-Log / Audit：LogUtils.GAME_DAILY；缺 rows count / completion marker evidence
-Config：config/application-quartz.yml
-```
 
 ## 最小架構圖
 
@@ -311,14 +285,6 @@ Iwin job 在正常彙總後，會把：
 - `third_games_api`：`beta` 與 `origin/beta` 相同；只掃 log_reel 查詢線索。
 
 詳細掃描範圍、commit evidence 與待確認項目放在 `materials/evidence.md`。
-
-既有文件狀態：
-
-- `README.md`：可沿用；本次同步標示 Step 3 已經 KB 更新後深度檢查。
-- `step1-candidate-flows.md`：可沿用；Level 1 候選 flow 與 Step 2 前置關係完整。
-- `step2-flow-comparison.md`：可沿用；已符合「不可跳 Step 2」的新 KB 要求。
-- `flows/daily-game-data-summary/flow.md`：可沿用但本次補 evidence。
-- `materials/evidence.md`：本次重點調整；補 remote refs、分支 / log 範圍與未掃邊界。
 
 ## 面試 / 履歷邊界摘要
 

@@ -8,11 +8,9 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-3. [architecture-map.md](architecture-map.md)：app_bi 作為後台 / BI / control plane 的定位地圖。
-4. [career-interview.md](career-interview.md)：project-level 保守面試素材與履歷邊界。
-5. `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-6. `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-7. `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+3. `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
+4. `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
+5. `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 
 ## 目前狀態
 
@@ -20,8 +18,6 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已重整 | Level 1 掃描，重新獨立成 Step 1 主文件 |
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
-| `architecture-map.md` | 已補齊 | 只作定位地圖，不取代 flow 深挖 |
-| `career-interview.md` | 已補齊 | project-level 保守素材；不更新正式履歷 |
 | `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/daily-game-record-summary/` | Step 5，新版可讀結構 | 已確認 app_bi 查詢端與 game_job producer；已轉保守面試 case；已判定不更新正式履歷 |
@@ -45,15 +41,6 @@
 - Nick 實際參與過哪些 `app_bi` 功能。
 - 哪些功能有 Nick 本人 MR / ticket / commit / production issue evidence。
 - `point-control`、Redis sync、payment repair 的下游後端實作位置。
-
-## 最新 code 狀態補記
-
-2026-05-15 已依最新 KB 補做 remote refs 檢查：
-
-- `/Users/nick/Git/iwin/app_bi`：已 fetch；本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit；未 pull、未 checkout、未改公司 repo。
-- `/Users/nick/Git/iwin/payment`：已 fetch；目前分支 `k3s` 與 `origin/k3s` 同步在 `e8be8a1`；僅作下一步候選 repo，不代表已掃 payment flow。
-
-因此：`app_bi` 既有分析可作已讀學習素材，但若未來要重新升級 app_bi evidence 或 claim，必須先由 Nick 決定是否更新本地 app_bi 工作樹或改看遠端 diff。
 
 ## 履歷邊界
 

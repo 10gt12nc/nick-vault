@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
-| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；已依 KB 更新後規則補做深度檢查與 evidence 邊界調整；Nick 貢獻待確認 |
+| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻待確認 |
 
 ## 專案定位
 
@@ -68,6 +68,5 @@ game_job daily-game-data-summary Step 4
 原因：
 
 - `daily-game-data-summary` Step 3 已建立主報告與 materials。
-- Step 3 已依 KB 更新後規則補齊 remote refs、分支 / log 掃描範圍與既有文件狀態判斷。
 - 下一步應補 failure / consistency / evidence 缺口，特別是新增玩家累積表、backup partial failure、下游 app_bi 最新 remote 差異與 upstream writer 邊界。
 - Step 4 仍不更新正式履歷 / 自傳，除非補到 Nick 本人 evidence。

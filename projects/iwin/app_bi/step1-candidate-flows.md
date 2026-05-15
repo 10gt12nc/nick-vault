@@ -1,8 +1,8 @@
 # iwin app_bi Step 1：候選 Flow 盤點
 
-更新時間：2026-05-15
+更新時間：2026-05-14
 掃描等級：Level 1 Flow 掃描
-狀態：已依新 KB 重整，並補做 source repo 最新性檢查
+狀態：已依新 KB 重整
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次結論
@@ -31,8 +31,6 @@
 已重讀 vault：
 
 - `projects/iwin/app_bi/README.md`
-- `projects/iwin/app_bi/architecture-map.md`
-- `projects/iwin/app_bi/career-interview.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/career-interview.md`
@@ -48,7 +46,6 @@
 
 - `/Users/nick/Git/iwin/app_bi`
 - 目前分支：`main`
-- 已 fetch remote refs；本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit
 - 遠端分支清單
 - 近期主線 log
 - path-specific log
@@ -57,7 +54,6 @@
 未重讀：
 
 - 未 checkout 每個遠端分支。
-- 未 pull / rebase / merge 公司 repo；本次只讀本地 working tree 與 remote refs 狀態。
 - 未逐 commit diff。
 - 未掃下游 repo：`game_api`、`game_job`、`iwin_gameserver`、`payment`、`third_games_api`。
 - 未確認 Nick 個人 MR / ticket / commit。
@@ -67,8 +63,6 @@
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
 | `README.md` | 已重整 | 已從 Step 1 報告改回專案入口 |
-| `architecture-map.md` | 已補齊 | project-level 地圖；只做定位，不取代單條 flow |
-| `career-interview.md` | 已補齊 | project-level 保守面試素材；不更新正式履歷 |
 | `step1-candidate-flows.md` | 已重整 | 本文件是新的 Step 1 主文件 |
 | `step2-flow-comparison.md` | 可沿用 | 已同步本文件的新候選、證據層級與下一步排序 |
 | `flows/point-control-admin-operation/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |

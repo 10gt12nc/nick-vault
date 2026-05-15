@@ -63,7 +63,7 @@
 | Step | 狀態 | 判斷 |
 | --- | --- | --- |
 | Step 1 | 可沿用 | 已列 candidate flows，且已同步此 flow 進度 |
-| Step 2 | 可沿用 | 已同步 Step 5 完成與下一步轉 payment |
+| Step 2 | 可沿用 | 已同步 Step 5 為下一步 |
 | Step 3 | 已完成 | 已確認 app_bi 查詢端與 game_job producer |
 | Step 4 | 本次完成 | 轉成保守面試 case |
 | Step 5 | 已完成 | 已判定不更新正式履歷 / 自傳 |
