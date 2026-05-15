@@ -22,7 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 deploy / observability 候選 flow |
 | `architecture-map.md` | 已建立 | 最小拓撲，用來定位 shared / iwin namespace 與主要服務 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 phase rollout、服務 rollout、observability、config / storage 取捨 |
-| `flows/gameserver-phased-rollout/` | Step 3 已建立 | 已整理 iwin-gameserver phase rollout、ZK registration、ConfigMap / Secret、Recreate 與 rollback 風險 |
+| `flows/gameserver-phased-rollout/` | Step 4 已建立 | 已整理 iwin-gameserver phase rollout、ZK registration、ConfigMap / Secret、Recreate、rollback 風險與面試追問邊界 |
 
 ## 專案定位
 
@@ -69,11 +69,11 @@
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 4
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
-- Step 3 已建立 `gameserver-phased-rollout` flow 學習包。
-- 這條 flow 的下一個價值點是把 failure / consistency / rollback / interview boundary 收斂成 Step 4 面試案例。
-- Step 4 仍不更新正式履歷；除非補到 Nick 本人 MR / ticket / production evidence，否則維持 `分析素材 / learning-only` 與 `專案存在 / code-backed`。
+- Step 4 已把 failure / consistency / rollback / interview boundary 收斂成可面試案例。
+- 下一步 Step 5 適合做最後 claim gate：確認是否有 Nick 本人 evidence，決定只保留面試素材，或整理成非常保守的 project-level career note。
+- Step 5 仍不預設更新正式履歷；除非補到 Nick 本人 MR / ticket / production evidence，否則維持 `分析素材 / learning-only` 與 `專案存在 / code-backed`。

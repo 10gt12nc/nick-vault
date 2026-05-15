@@ -4,13 +4,13 @@
 
 - Flow 中文名稱：iwin-gameserver 分階段部署與服務註冊
 - Flow slug：`gameserver-phased-rollout`
-- 完成狀態：Step 3 已建立
+- 完成狀態：Step 4 已建立
 - 掃描等級：Level 2 Flow 深掃；未做 Level 3 逐檔逐行 / 逐 commit diff
 - 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`
 - 本 flow 類型：deploy flow / platform runtime flow
 - 是否只確認到入口：不是只確認到 YAML；本輪同時讀到 deploy manifests、generator、gameserver runtime boot、ZK registration 與 shutdown code
 
-本文件是 Step 3 主報告。預設讀這份即可；詳細證據、決策筆記與履歷邊界放在 `materials/`。
+本文件是 Step 3 主報告，Step 4 已補齊面試追問與 claim boundary。預設先讀這份，再讀 `career-interview.md`；詳細證據、決策筆記與履歷邊界放在 `materials/`。
 
 ## 1. 白話導讀
 
@@ -295,10 +295,24 @@ manifest apply
 - terminationGracePeriod / preStop 是否與 `GameServer.stop()`、`CenterServer.stop()` 對齊。
 - dev-k3s 與 production deployment 差異。
 
-## 12. 下一步建議
+## 12. Step 4 面試收斂摘要
 
-Step 3 已建立，下一步建議做 Step 4：把這條 flow 的 failure / consistency / rollback 問答整理成更可面試的 case，同時補清楚哪些 claim 仍只能算 `分析素材 / learning-only`。
+Step 4 的收斂重點：
+
+- 面試主軸不是「我會 Kubernetes」，而是「Kubernetes rollout 必須尊重 legacy game runtime 的 ZK service discovery」。
+- 最能展現 Senior / Owner 判斷的是：phase gate、`Recreate` 取捨、config / image rollback discipline、ZK registration observability、graceful shutdown。
+- 仍不能升級成正式履歷成果，因為沒有 Nick 本人 MR / ticket / production issue / 本人確認。
+
+最保守可講版本：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 4
+我用 iwin-gameserver 這個 code-backed case 分析過 legacy game runtime 上 K3s 時的 rollout 風險。這類服務不能只看 Pod Ready，因為它靠 Zookeeper 註冊 server id 與 peer address；所以 phase order、Recreate strategy、config externalization 和 rollback 要一起設計。這目前是分析素材，不是我已主導 production rollout 的 claim。
+```
+
+## 13. 下一步建議
+
+Step 4 已建立，下一步建議做 Step 5：做最後 claim gate，決定這條 flow 只保留為面試案例，或是否有足夠 Nick evidence 能整理成非常保守的 project-level career note。
+
+```text
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```

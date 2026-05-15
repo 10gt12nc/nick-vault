@@ -32,3 +32,16 @@
 3. 找 pipeline config 或 runbook，證明 phase gate / rollback 不是紙上分析。
 4. 找 production 或 staging log，證明 ZK registration / shutdown / rollback 曾被實際驗證。
 5. Nick 本人確認參與範圍後，才能改寫成保守履歷 bullet。
+
+## Step 4 claim gate
+
+目前 Step 4 只允許以下定位：
+
+| 場景 | 可用說法 | 禁止說法 |
+| --- | --- | --- |
+| 面試追問 rollout | 「我分析過 code-backed case，重點是 ZK registration 影響 rollout strategy。」 | 「我設計了 production rollout。」 |
+| 面試追問 rollback | 「rollback 要同時看 image、ConfigMap、Secret 與 phase order。」 | 「我實際處理過 production rollback。」 |
+| 面試追問 observability | 「最小觀測要看 pod、boot log、ZK registration、connection pool。」 | 「我建立完整 SRE observability。」 |
+| 履歷 | 暫不放正式履歷 | 寫主導 / owner / 改善百分比 |
+
+如果 Nick 後續確認本人參與，仍應先升級到「參與 / 協助分析 / 整理風險」等保守說法，不直接跳到「主導平台遷移」。
