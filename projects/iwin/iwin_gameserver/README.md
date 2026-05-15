@@ -22,6 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 Flow 掃描，列出 Top 5 候選 |
 | `step2-flow-comparison.md` | 已建立 | 候選 flow 技術點、子模組範圍與風險比較 |
 | `flows/third-party-transfer-in-out/flow.md` | Step 3 已建立 | 第三方遊戲投派整合 / 投注派彩退款，Level 2 深掃 |
+| `flows/third-party-transfer-in-out/career-interview.md` | Step 4 已建立 | 保守面試案例，含 30 秒 / 2 分鐘 / 5 分鐘版本與追問 |
 
 ## 專案定位
 
@@ -59,11 +60,11 @@
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 4
+iwin_gameserver third-party-transfer-in-out Step 5
 ```
 
 原因：
 
-- Step 3 已完成 gameserver runtime money flow 的主報告、證據附錄與保守面試素材。
-- 下一步應把這條 flow 收斂成可口述的 Senior / Owner 案例，補齊事件敘事、追問回答與 claim 邊界。
-- Step 4 仍不更新正式履歷；只產出面試案例版本。
+- Step 4 已把這條 flow 收斂成保守面試案例。
+- 下一步才檢查是否能形成履歷 / 自傳邊界；目前仍缺 Nick 本人 MR / ticket / commit / production issue。
+- Step 5 很可能結論是「暫不進正式履歷，只保留面試分析素材」，除非 Nick 補本人 evidence。

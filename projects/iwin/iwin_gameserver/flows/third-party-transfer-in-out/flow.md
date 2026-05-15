@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 2 單條 flow 深掃
-狀態：Step 3 初版
+狀態：Step 4 已補面試案例
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 閱讀定位
@@ -231,11 +231,11 @@ Owner 角度應追問：
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 4
+iwin_gameserver third-party-transfer-in-out Step 5
 ```
 
 原因：
 
-- Step 3 已把 code-backed flow、資料狀態、failure window 與 owner decision 初步整理完。
-- 下一步應轉成可面試口述的案例，而不是先跳新 flow。
-- Step 4 不更新正式履歷；只會收斂 `career-interview.md` 與問答邊界。
+- Step 4 已補 30 秒 / 2 分鐘 / 5 分鐘面試講法與追問回答。
+- 下一步應整理履歷 / 自傳邊界，決定是否只保留為分析素材，或需要 Nick 補本人 evidence 後才放進正式履歷。
+- Step 5 不應直接誇大成主導成果；重點是 claim 分級與保守表述。

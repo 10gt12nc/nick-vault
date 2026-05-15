@@ -98,7 +98,7 @@ third-party-transfer-in-out
 
 ### 1. `third-party-transfer-in-out`
 
-建議狀態：已進 Step 3，主報告見 `flows/third-party-transfer-in-out/flow.md`
+建議狀態：已進 Step 4，主報告見 `flows/third-party-transfer-in-out/flow.md`，面試素材見 `flows/third-party-transfer-in-out/career-interview.md`
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -190,11 +190,11 @@ Step 3 必須補：
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 4
+iwin_gameserver third-party-transfer-in-out Step 5
 ```
 
 原因：
 
-- Step 3 已建立單條 flow folder，並完成 Level 2 深掃。
-- 下一步應把 `flow.md` 收斂成面試可講的 case，而不是跳到新 flow 或更新正式履歷。
-- Step 4 會產出更完整的面試敘事、追問回答與保守 claim 邊界。
+- Step 4 已把 `flow.md` 收斂成可練習的面試 case。
+- 下一步應整理履歷 / 自傳邊界，明確判斷哪些只能當分析素材、哪些需要 Nick 本人 evidence。
+- 不建議跳新 flow，因為同一條 flow 還沒完成 Step 5。

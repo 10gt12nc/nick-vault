@@ -1,8 +1,19 @@
 # third-party-transfer-in-out Evidence
 
 更新時間：2026-05-15
-掃描等級：Level 2 單條 flow 深掃
+掃描等級：Level 2 單條 flow 深掃；Step 4 面試收斂
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 4 更新摘要
+
+2026-05-15 Step 4 已將 Step 3 的 code-backed flow 收斂成面試案例，主要更新：
+
+- `career-interview.md`：補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官與 Step 5 待補。
+- `materials/interview.md`：補深講版、常見追問、Senior 能力點與 Lead / Architect 延伸追問。
+- `materials/claim-boundary.md`：補 Step 4 可說 / 不可說面試邊界。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
+
+Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 
 ## 本輪重讀 KB
 
@@ -18,6 +29,12 @@
 - `projects/iwin/iwin_gameserver/architecture-map.md`
 - `projects/iwin/iwin_gameserver/step1-candidate-flows.md`
 - `projects/iwin/iwin_gameserver/step2-flow-comparison.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/flow.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/career-interview.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/materials/evidence.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/materials/interview.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/materials/claim-boundary.md`
+- `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/materials/decision-notes.md`
 - `projects/iwin/third_games_api/README.md`
 - `projects/iwin/third_games_api/step1-candidate-flows.md`
 
@@ -26,18 +43,19 @@
 ### iwin_gameserver
 
 - 路徑：`/Users/nick/Git/iwin/iwin_gameserver`
-- 已執行：`git fetch --all --prune`
+- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
 - local branch：`main`
 - local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
 - remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
 - ahead / behind：`0 / 0`
 - working tree：本輪觀察為乾淨
 - 補充：fetch 後看到新增遠端分支 / tags；本輪未 checkout 或 merge
+- Step 4 path-specific log 核對：`HttpService.java`、`PGTransferInOutJob.java`、`AntplayTransferInOutJob.java`、`GSCTransferInOutJob.java` 的近期相關 commit 包含 `4843791 fix(#373): antplay 支援投派整合 first`、`deee1b8 feat(#GSC): GSC`、`116e8ec feat(#GSC): GSC` 等；本輪只用來核對 Step 3 evidence，未做 Level 3 逐 commit diff。
 
 ### third_games_api
 
 - 路徑：`/Users/nick/Git/iwin/third_games_api`
-- 已執行：`git fetch --all --prune`
+- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
 - local branch：`beta`
 - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
 - remote HEAD：`origin/beta` = `4915ea5a5000d61eb36717203ea4c6afc45322fa`
