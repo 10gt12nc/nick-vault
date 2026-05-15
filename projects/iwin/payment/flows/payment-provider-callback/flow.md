@@ -5,11 +5,11 @@
 - Flow 中文名稱：三方金流 provider callback。
 - Flow slug：`payment-provider-callback`。
 - 專案：`/Users/nick/Git/iwin/payment`。
-- 完成狀態：Step 3，Level 2 單條 flow 深掃初版；2026-05-15 依新版 KB 補齊深度檢查欄位。
+- 完成狀態：Step 4，Level 2 單條 flow 深掃；2026-05-15 已補 failure / consistency evidence。
 - 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻層級：`待確認`。目前只看到 branch / commit message / code path，沒有 Nick 本人 MR、ticket、commit author 或本人確認，因此不能寫成「Nick 真實開發過」。
 - 本 flow 是：業務功能 + 共用能力。它同時是三方金流 callback 業務流程，也是多 provider 共用的狀態收斂能力。
-- 是否只確認到入口：否。已確認 provider controller、共用 guard、MQ producer / consumer、`updateUserInfo`、`payment_order` / `log_user` 更新與 game lobby / center HTTP 呼叫；但 game lobby / center 下游實作、DB schema / unique key、對帳 / 補單 job 仍是 `待確認`。
+- 是否只確認到入口：否。已確認 provider controller、共用 guard、MQ producer / consumer、`updateUserInfo`、`payment_order` / `log_user` 更新、game lobby / center HTTP 呼叫、下游 `billNo` 傳入玩家餘額異動與 app_bi 人工狀態修復入口；但 DB schema / unique key、下游是否以 `billNo` 強制去重、定時對帳 job 仍是 `待確認`。
 - 讀者入口：本檔先用初階 / 中階可讀方式講清楚 callback 在做什麼，再進入 Senior / Owner 角度的 money correctness、state transition、idempotency、retry / compensation 與 observability。
 
 本 flow 的核心問題不是「哪個 controller 收到哪個欄位」，而是：
@@ -65,7 +65,8 @@ Model / DAO / Repository：
 
 SQL / Table：
 - 已確認主表：`payment_order`、`log_user`、`user_behaviour`。
-- 待確認：DB schema、`bill_no` unique key、分月表 / 跨月遷移細節。
+- 已確認 `payment_order` 會透過動態表名落到月表，例如 `payment_order_yyyy_M` / `payment_order_yyyy_MM`。
+- 待確認：DB schema、`bill_no` unique key。
 
 Redis：
 - 商戶設定 / center HTTP endpoint 透過 `RedisUtils` 讀取。
@@ -77,7 +78,8 @@ MQ / Kafka / 下游通知：
 
 External API：
 - provider callback 由三方金流打進 payment。
-- payment 透過 game lobby / center HTTP 做 `DEPOSIT` / `WITHDRAW` 類副作用；下游實作待確認。
+- payment 透過 game lobby / center HTTP 做 `DEPOSIT` / `WITHDRAW` 類副作用，並把 `billNo` 放在 `billNos` 傳下去。
+- game lobby / center 已確認會把 `billNo` 傳入玩家餘額異動與 currency log；是否強制 idempotent 去重仍待確認。
 
 Log / Audit：
 - provider controller、MQ producer、MQ consumer、上下分 HTTP request / response 都有 log。
@@ -114,7 +116,7 @@ flowchart LR
   Core --> Notify["email / marquee / kyOrder"]
 ```
 
-圖上的 `Controller -> MQProducer -> Consumer -> Core` 是本 flow 已確認的主線；`Game lobby / center HTTP` 是已確認有呼叫，但下游實作與 idempotency 尚未掃，先標 `待確認`。
+圖上的 `Controller -> MQProducer -> Consumer -> Core` 是本 flow 已確認的主線；`Game lobby / center HTTP` 已確認會接收 `billNos`，並把 `billNo` 帶入玩家餘額異動與 currency log，但下游強制去重仍標 `待確認`。
 
 ## 4. 正常流程圖
 
@@ -184,7 +186,7 @@ sequenceDiagram
 - 模組：`payment/` runtime service + `base/module` enum / model。
 - 上游：第三方金流 provider callback；玩家充值 / 提現建單流程是前置 flow。
 - 下游：XXL-MQ、`payment_order` / `log_user` / `user_behaviour`、game lobby / center HTTP、email / marquee、跨月訂單處理。
-- 相關但本輪未深掃：`admin`、`timer`、`app_bi` 人工補單 / repair，game lobby / center 下游錢包實作。
+- 相關但本輪未深掃：`admin`、`timer`、完整定時對帳；`app_bi` 只掃 local HEAD repair boundary，game lobby / center 只確認 `billNo` 傳遞與 currency log，未確認去重 guard。
 
 ## 5.3 Code 路徑
 
@@ -308,7 +310,7 @@ sequenceDiagram
 待確認：
 
 - `payment_order.bill_no` 是否有 DB unique key。
-- game lobby / center 的 `DEPOSIT` / `WITHDRAW` 是否用 `billNos` 做 idempotency。
+- game lobby / center 雖會把 `billNos` 傳入玩家餘額異動與 currency log，但本輪未看到「同一 billNo 已處理就拒絕」的明確 guard 或 DB unique evidence。
 - provider callback raw event 是否有 inbox / callback log 表可以去重或 replay。
 - `ProducerUtil.addProduce` produce 失敗只 log 的設計是否有外部監控或補償機制。
 
@@ -321,12 +323,13 @@ sequenceDiagram
 | Window | 可能問題 | 現有保護 | 待補 evidence |
 | --- | --- | --- | --- |
 | provider callback 已收到，但 MQ produce 失敗 | controller 可能仍回 ack，後續沒有 consumer 處理 | `ProducerUtil` log error | 是否有 alarm / 補單 / callback replay |
-| MQ 重送同一筆成功 callback | 重複上分 / 重複更新 | controller / consumer 訂單狀態 guard | game lobby 是否用 billNos 去重 |
-| 充值上分成功，本地訂單更新失敗 | 玩家餘額已變，payment_order 未終態 | MQ retry 可能再跑；需靠下游 idempotency 或人工對帳 | game lobby idempotency、對帳流程 |
-| 提現失敗退款成功，後續欄位更新或通知失敗 | 可能 MQ retry 重複退款 | catch 後更新訂單失敗狀態並回 SUCCESS | 是否能查到退款已成功的 audit evidence |
+| MQ 重送同一筆成功 callback | 重複上分 / 重複更新 | controller / consumer 訂單狀態 guard；`billNo` 會傳入 game lobby | 下游是否用 `billNo` 查重或 unique key 擋重 |
+| 充值上分成功，本地訂單更新失敗 | 玩家餘額已變，`payment_order` 未終態 | MQ retry 可能再跑；需靠下游 idempotency 或人工對帳 | 下游 `billNo` 去重、currency log unique key、對帳流程 |
+| 提現失敗退款成功，後續欄位更新或通知失敗 | 可能 MQ retry 重複退款 | `ff42791` catch 後更新訂單失敗狀態並回 SUCCESS；`ef67724` 補 `clearBillNo` | 是否能查到退款已成功的 audit evidence |
 | provider 回失敗 / 退回狀態 mapping 不一致 | payment 狀態與 provider 狀態語意偏差 | 各 provider controller 分別 mapping | 所有 provider 狀態矩陣 |
 | 終態後 provider 持續 callback | provider 重送壓力、log noise | `getOrderVO` 回 ack 並阻止處理 | 是否有 rate limit / alert 閾值 |
-| 跨月訂單 callback | 月表 / 分表定位錯誤 | `DynamicDataSourceContextHolder.setBillNo`、`kyOrder` | DB 分表規則與跨月搬移測試 |
+| 跨月訂單 callback | 月表 / 分表定位錯誤 | `DynamicDataSourceContextHolder.setBillNo`、`kyOrder`、動態表名 route | DB schema / unique key 與跨月搬移測試 |
+| 建立訂單時複製使用者 id | 同 uid 第二筆訂單可能撞主鍵 | `03c28e3` 在 insert 前 `orderVO.setId(null)`，並補測試 | DB schema 與月表自增策略 |
 
 ## 13. Retry / Compensation / Reconciliation
 
@@ -336,17 +339,19 @@ sequenceDiagram
 - consumer 失敗回 `MqResult.FAIL`，交給 XXL-MQ 重試。
 - provider controller 有查單 endpoint，例如 `pay/getOrderStatus`、`withdraw/getOrderStatus`。
 - `Pay4zController` 對支付失敗 callback 會走 `autoViewOrder` 直接更新成 ERROR；提現失敗則走 MQ refund 分支。
+- app_bi local HEAD 有人工狀態修復入口，會依 `bill_no` 與月表更新 `payment_order_yyyy_M`，且操作前寫 `opLog`。但 app_bi 本機分支落後 `origin/main` 4 commits，本輪只把它當 repair boundary evidence，不當最新完整結論。
 
 推測：
 
-- 人工補單 / 補償應與 admin 或 app_bi 的 order repair flow 有關，但本輪沒有把 app_bi / admin 修復流程納入 Step 3 主線。
+- 定時對帳 / dead letter 若存在，可能在其他 repo、排程或營運工具中，本輪未確認。
 
 待確認：
 
 - 是否有定時對帳 job。
 - 是否有 dead letter queue 或人工處理 queue。
 - provider 查單結果如何回寫本地訂單。
-- app_bi `payment-order-status-repair` 與 payment 訂單終態的責任邊界。
+- app_bi 最新 `origin/main` 的人工修復流程是否與 local HEAD 一致。
+- app_bi `payment-order-status-repair` 與 payment 訂單終態的權責邊界。
 
 ## 14. Observability / Auditability
 
@@ -373,7 +378,8 @@ sequenceDiagram
 2. Exactly-once 不可假設：要以至少一次 delivery + idempotency guard 設計，並確認 game lobby / center 是否用 `billNos` 去重。
 3. 提現失敗退款是最高風險分支：退款成功後任何 exception 都不能導致 retry 重複退款。現有 code 有專門防護，應列為面試重點。
 4. Provider adapter 應薄，核心狀態機應集中：目前多個 provider controller 有重複結構，容易出現某 provider 漏驗 sign / 漏 ack / 狀態 mapping 不一致。
-5. Reconciliation 需要獨立角色：查單 endpoint、人工補單、定時對帳、callback log / inbox 不應混在 controller 裡靠 log 補。
+5. `billNo` 只能當 idempotency key 的候選：已確認它被傳到下游與 currency log，但若沒有查重或 unique key，仍不能宣稱 end-to-end 去重。
+6. Reconciliation 需要獨立角色：查單 endpoint、人工補單、定時對帳、callback log / inbox 不應混在 controller 裡靠 log 補。
 
 ## 16. 面試 / 履歷邊界摘要
 
@@ -381,6 +387,7 @@ sequenceDiagram
 
 - `payment` 專案存在 provider callback flow，涵蓋充值成功、提現成功、提現失敗退款。
 - code-backed 看到 callback 驗簽 / IP 白名單、訂單終態 guard、XXL-MQ retry、consumer 端 no-op、玩家上分 / 退款與訂單更新。
+- Step 4 進一步 code-backed 確認：payment 會把 `billNo` 當 `billNos` 傳到 game lobby / center；下游會把 `billNo` 傳入玩家餘額異動與 currency log；app_bi local HEAD 有人工狀態修復入口。
 - 這條 flow 可作為 Senior Backend 面試的「金流 callback consistency / idempotency / compensation」分析素材。
 
 目前不能說：
@@ -388,11 +395,12 @@ sequenceDiagram
 - Nick 主導或設計此 callback flow。
 - Nick 修過 pay4z 重複退款，除非補到本人 MR / commit author / ticket / 本人確認。
 - 這套 flow 是 end-to-end exactly-once 或強一致。
-- game lobby / center 已具備 idempotent wallet API，因本輪未掃下游。
+- game lobby / center 已具備 idempotent wallet API；本輪只確認 `billNo` 被傳入下游與 currency log，未確認去重 guard。
+- app_bi repair flow 是最新遠端結論；本輪 app_bi local HEAD 落後 `origin/main` 4 commits。
 
 詳細面試素材放在 `career-interview.md`，證據與待確認清單放在 `materials/evidence.md` 與 `materials/claim-boundary.md`。
 
-## 17. Step 3 結論
+## 17. Step 4 結論
 
 `payment-provider-callback` 值得作為 iwin payment 第一條深挖 flow，因為它同時打到：
 
@@ -403,4 +411,11 @@ sequenceDiagram
 - 玩家上分與提現退款。
 - 人工補償 / 對帳待確認邊界。
 
-下一步不應急著更新正式履歷，而是進 Step 4：補 `payment-provider-callback` 的 failure / consistency evidence，特別是 DB schema unique key、game lobby `billNos` idempotency、對帳 / 補單流程，以及代表 bugfix commit diff。
+Step 4 後的保守結論：
+
+- `billNo` 是這條 flow 最重要的 cross-system correlation key；payment 會把它傳給 game lobby / center，下游也會帶進玩家餘額異動與 currency log。
+- 但 `billNo` 是否被 DB unique key 或查重邏輯強制去重，仍未確認，所以不能宣稱 exactly-once 或下游 wallet idempotent。
+- app_bi local HEAD 顯示有人工狀態修復入口，但因本機落後遠端 4 commits，只能作為 repair boundary 參考，不當最新完整結論。
+- bugfix history 補強了本 flow 的面試價值：`ff42791` 與 `ef67724` 對應提現失敗退款 retry 防護，`03c28e3` 對應建單 id collision 防護。
+
+下一步不應急著更新正式履歷，而是進 Step 5：收斂 `payment-provider-callback` 的保守面試稿與 claim boundary，明確標出哪些能講、哪些只能說是分析素材，並同步更新本 flow 的 `career-interview.md`。

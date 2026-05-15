@@ -22,6 +22,9 @@
 - 充值成功會呼叫上分、更新訂單與玩家欄位。
 - 提現成功會更新訂單與玩家欄位。
 - 提現失敗會進退款分支，並有防 MQ retry 重複退款的處理。
+- payment 會把訂單 `billNo` 以 `billNos` 傳給 game lobby / center。
+- game lobby / center 會把 `billNo` 帶入玩家餘額異動與 currency log。
+- app_bi local HEAD 有以 `bill_no` / 月表更新 `payment_order` 狀態的人工修復入口；但該 repo 本機落後遠端 4 commits，只能當 repair boundary 參考。
 - 代表 provider 包含 NanaPay、Pay4z。
 - path history 顯示 pay4z / nanapay / withdraw_notify_consumer 曾有 callback、sign、ack、重複退款相關修正。
 
@@ -32,7 +35,7 @@
 - outbox / inbox 改善建議。
 - provider adapter / callback core 重構建議。
 - reconciliation dashboard / 對帳 job 建議。
-- game lobby idempotency 檢查建議。
+- game lobby idempotency 檢查建議；目前只確認 `billNo` 傳遞與 log，不確認去重。
 - callback ack 時機調整建議。
 
 ## 待確認
@@ -40,8 +43,8 @@
 - Nick 是否參與 NanaPay 或 Pay4z。
 - commit message 中有 Nick branch / ticket 的項目是否對應 Nick 本人工作。
 - DB schema 是否有 `bill_no` unique key。
-- game lobby / center 是否用 `billNos` 做 idempotency。
-- app_bi / admin 的人工補單流程如何與 payment 訂單狀態互動。
+- game lobby / center 是否用 `billNos` 做查重、unique key 或 no-op idempotency。
+- app_bi / admin 最新遠端的人工補單流程如何與 payment 訂單狀態互動。
 - 是否有 callback raw event log / inbox table。
 - 是否有定時對帳與 dead letter queue。
 
@@ -53,6 +56,8 @@
 - 「設計 payment provider callback」
 - 「解決 pay4z 重複退款」
 - 「打造 exactly-once 金流交易」
+- 「確認 game lobby wallet API 已用 billNo 去重」
+- 「確認 payment_order.bill_no 有 DB unique key」
 - 「負責完整 payment owner」
 - 「改善成功率 / 降低事故率 X%」
 
