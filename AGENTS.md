@@ -38,6 +38,10 @@
 - `senior-owner-playbook/01~16` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~16。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
 - 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
+- 多 session 不得共用同一個 `main` 工作樹進行不同任務；預設以 project / submodule 作為 branch 與 worktree 單位，例如 `codex/iwin-app-bi`、`codex/iwin-game-job`、`codex/iwin-iwin-gameserver`。不是每個對話都必須開新 branch；若同一 project / submodule 有多個 session 會同時改檔或 commit，才拆成更細的 task branch。共用同一工作樹時，staging area 會互相污染，容易把其他 session 已 staged 的 flow 一起 commit。
+- 若暫時仍在共用工作樹，AI commit 前必須檢查 `git status --short`、`git diff --cached --name-only` 與 `git diff --cached`；只能精準 stage 本輪檔案，禁止 `git add .`。若發現非本輪 staged 檔案，不得 commit，必須先回報並等待 Nick 處理或明確指示。
+- `main` 是共用 KB 的唯一正式來源與穩定整合線；project / submodule branch 開工前必須以最新 `main` 為底，長時間工作或開始新 Step 前要先 merge / rebase `main`，確保讀到最新 KB。KB 更新可以短暫用 `codex/kb-rules` 或同類 branch 隔離，但自查通過後應優先合回 `main`，不得讓 KB 長期只存在某個 project branch。
+- project / submodule branch 合回 `main` 的時機是：該批 Step / flow 已完成到可讀閉環、自查通過、沒有混入其他 project staged 內容、Nick 沒要求暫停，且已確認不會污染履歷 claim 或共用索引。半成品、待確認 evidence、正在被另一 session 改的內容，不合回 `main`。
 - 改檔自查通過後，AI 要自動 commit。若本輪需要推上 GitHub，AI 必須直接執行 `git push` 並用 approval 視窗讓 Nick 按 Yes / No；不得只用文字回覆本地已提交、等待 Nick 另外要求推送。不得未經 approval 視窗或 Nick 明確指示直接推送。
 
 ## Senior / Owner 原則
@@ -122,4 +126,6 @@ projects/{domain}/{project}/
 - 是否有更新 README 或 todo？
 - 是否已自行全掃確認已改檔案與相關規則？
 - 是否已依改動大小完成輕量自查或全掃確認，並 commit？
+- 若同一 repo 有多個 session，是否已使用獨立 branch / worktree，或至少確認沒有非本輪 staged 檔案？
+- 若在 project / submodule branch 工作，是否已同步最新 `main` 以取得最新 KB？
 - 若需要 push，是否已直接觸發 `git push` approval 視窗，而不是只停在本地文字回報？

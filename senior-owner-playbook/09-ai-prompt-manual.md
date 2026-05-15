@@ -34,7 +34,7 @@
 - `senior-owner-playbook/01~16` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
-- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；若需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不要只用文字回覆本地已提交、等待 Nick 另外要求推送。
+- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；commit 前仍須遵守多 session / staging area 防污染規則，確認沒有非本輪 staged 檔案。若需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不要只用文字回覆本地已提交、等待 Nick 另外要求推送。
 
 ## 0. 開新對話時的總提示詞
 
@@ -62,7 +62,7 @@
 - 所有履歷說法要保守，沒有證據不要寫主導、獨立完成、改善百分比。
 - 每次完成後，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。
 - 下一步 prompt 請另外放成可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `，code block 內只放一行短 prompt。
-- 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；若本輪需要 push，直接執行 `git push` 觸發 approval 視窗，不要只用文字請 Nick approval。
+- 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；commit 前仍須檢查 `git diff --cached --name-only`，不得混入其他 session / 其他 project 檔案。若本輪需要 push，直接執行 `git push` 觸發 approval 視窗，不要只用文字請 Nick approval。
 - 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
 - 每份 flow.md 要先用白話與圖讓人看懂，再進資深分析；如果是 PHP / ThinkPHP、後台、前端或 BI 專案，必須轉成 Nick 熟悉的後端分層語言。
 - 如果 Nick 說「深掃」，至少使用 Level 2；如果 Nick 說「極限深度 / 逐檔逐行 / 每個 commit diff」，使用 Level 3，並分批完成。
@@ -136,8 +136,9 @@ Code repo:
 1. 重讀改過的檔案片段。
 2. 跑 git diff --check。
 3. 跑 git status --short，確認只動預期檔案。
-4. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
-5. 自查通過後直接 commit。
+4. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
+5. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+6. 自查通過後直接 commit。
 
 如果本次是重大 / 實質改檔：
 
@@ -146,12 +147,25 @@ Code repo:
 3. 檢查規則是否互相衝突。
 4. 跑 git diff --check。
 5. 跑 git status --short，確認只動預期檔案。
-6. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
-7. 檢查履歷 / 面試 claim 沒有誇大，且 evidence 層級清楚。
-8. 自查通過後自動 commit。
-9. commit 後回報 commit hash。
-10. 若需要 push，直接執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No；未通過 approval 不推。
-11. 不要在 final 只回覆本地已提交、等待 Nick 另外要求推送。除非 Nick 明確說「不要 push / 只 commit」。
+6. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
+7. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+8. 檢查履歷 / 面試 claim 沒有誇大，且 evidence 層級清楚。
+9. 自查通過後自動 commit。
+10. commit 後回報 commit hash。
+11. 若需要 push，直接執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No；未通過 approval 不推。
+12. 不要在 final 只回覆本地已提交、等待 Nick 另外要求推送。除非 Nick 明確說「不要 push / 只 commit」。
+
+多 session 防污染補充：
+
+- 多個 session 同時維護 `nick-vault` 時，預設以 project / submodule 使用一個 `codex/{project-submodule}` branch 與一個獨立 `git worktree`；不是每個對話都必須開新 branch。
+- 同一 project / submodule 若有多個 session 會並行改檔或 commit，才拆更細的 task branch。
+- 不同 project / submodule 不要共用同一個 `main` 工作樹 stage / commit。
+- 禁止在髒工作樹使用 `git add .`。
+- 若 `git diff --cached --name-only` 出現非本輪檔案，AI 不得 commit；先回報 Nick，等待 reset / unstage / 明確指示。
+- 若 Nick 說「先不動其他」，AI 不得整理其他 session 的 index、不得 reset、不得 unstage 非本輪內容。
+- `main` 是共用 KB 的唯一正式來源與穩定整合線。project / submodule branch 開工前、開始新 Step 前、準備 commit 前，要同步最新 `main` 以取得最新 KB。
+- KB 更新可以短暫用 `codex/kb-rules` 或同類 branch 隔離，但自查通過後應優先合回 `main`；不要讓 KB 長期只存在某個 project branch。
+- 合回 `main` 前必須確認該 project / submodule 的 Step / flow 已形成可讀閉環、README / evidence / claim boundary / 共用索引已同步、自查通過，且 staged 內容沒有混入其他 session。
 ```
 
 ## 0.3 舊文件狀態判斷提示詞
@@ -585,7 +599,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 7. 是否有檢查這條 flow 以前是否讀過？
 8. 是否有更新 README 或 todo？
 9. 是否已自行全掃確認？
-10. 是否已依改動大小完成輕量自查或全掃確認，並自動 commit？
+10. 是否已依改動大小完成輕量自查或全掃確認，且 commit 前確認沒有非本輪 staged 檔案？
 11. 若需要 push，是否已直接觸發 `git push` approval 視窗，而不是只停在本地文字回報？
 12. 下一步只推薦一件事。
 ```
@@ -612,7 +626,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 
 不會做：
 - 不更新履歷，除非 evidence 足夠且 Nick 明確要求。
-- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；若需要 push，直接觸發 `git push` approval 視窗。
+- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；commit 前必須確認 staged 內容沒有混入其他 session / 其他 project；若需要 push，直接觸發 `git push` approval 視窗。
 
 建議提示詞：
 {Nick 下一句可以直接貼的短 prompt}

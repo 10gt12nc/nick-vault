@@ -28,6 +28,7 @@ AI 需要自動維護：
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 - 自動確認 `flow.md` 是否有初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明。沒有這一層時，不能只補 Senior / Owner 風險分析就算完成。
 - 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；若本輪需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不得只停在本地文字回報。
+- 多個 Codex / AI session 同時維護本 repo 時，預設以 project / submodule 為單位使用獨立 branch + 獨立 `git worktree`，避免共用 `main` 的 working tree 與 staging area；同一 project / submodule 若有並行改檔或 commit，再拆更細 task branch。
 
 但「自動維護」不能改變 Step 主線。
 
@@ -77,6 +78,64 @@ AI 不會做的事：
 
 之後只要 AI 修改 `nick-vault` 檔案，收尾流程依風險分級。
 
+### 多 session / staging area 防污染規則
+
+當 Nick 同時開多個 session 維護 `nick-vault` 時，預設規則是「一個 project / submodule = 一個 branch = 一個獨立 worktree」。不是每個對話都必須開新 branch；只有同一 project / submodule 內有多個 session 同時改檔或 commit 時，才拆成更細的 task branch。
+
+推薦格式：
+
+```text
+../nick-vault-iwin-app-bi
+branch: codex/iwin-app-bi
+
+../nick-vault-iwin-game-job
+branch: codex/iwin-game-job
+
+../nick-vault-iwin-gameserver
+branch: codex/iwin-iwin-gameserver
+```
+
+禁止把多個不同任務長期混在同一個 `main` 工作樹裡修改、stage、commit，因為 Git 的 staging area 屬於工作樹，不屬於單一 session。任何 session 執行 commit 都可能把其他 session 已 staged 的檔案一起帶走。
+
+若 Nick 暫時要求或現場只能共用同一個工作樹，commit 前必須額外做以下檢查：
+
+1. 跑 `git status --short`，確認工作樹與 index 狀態。
+2. 跑 `git diff --cached --name-only`，確認 staged 檔案全部屬於本輪範圍。
+3. 跑 `git diff --cached`，實際看 staged diff。
+4. 只能用精準路徑或 `git add -p` stage 本輪檔案；禁止 `git add .`。
+5. 若發現非本輪 staged 檔案，不得 commit；先回報 Nick，等待 Nick reset / unstage / 指定處理方式。
+
+若本輪只是在髒工作樹補小規則，且 index 已有其他 session 的 staged 內容，AI 可以只改檔並回報「未 commit，原因是現場已有非本輪 staged 檔案」，不得為了自動 commit 而碰其他 session 的 staged 狀態。
+
+### main、KB 與 project branch 同步規則
+
+`main` 是共用 KB 的唯一正式來源，也是穩定整合線。project / submodule branch 是工作線，不是 KB 的長期分叉。
+
+規則：
+
+1. KB 規則以 `main` 為唯一正式來源；其他 branch 讀到的 KB 若落後 `main`，必須視為可能過期。
+2. project / submodule branch 開工前，必須以最新 `main` 為底。
+3. 長時間工作的 project / submodule branch，在開始新 Step、重整 flow 或準備 commit 前，要先同步 `main`，確保讀到最新 KB。
+4. KB 更新可以短暫用 `codex/kb-rules` 或同類 branch / worktree 隔離，避免共用 index 污染；但自查通過後應優先合回 `main`，不得讓 KB 長期只存在某個 project branch。
+5. 這些同步規則只適用 `nick-vault`；公司 / 來源 code repo 仍只能 fetch remote refs，不得自動 pull / merge / checkout / rebase 或改工作樹。
+
+project / submodule branch 可以合回 `main` 的時機：
+
+1. 該批 Step / flow 已完成到可讀閉環，例如 Step 文件、flow 主報告、career-interview、materials evidence / claim boundary 與 README / 共用索引已同步。
+2. 自查通過：重讀改檔、跑 `git diff --check`、確認沒有 secret / token / internal IP / production URL / 客戶資料、沒有履歷誇大。
+3. `git status --short` 與 `git diff --cached --name-only` 顯示 staged 內容只屬於要合回的 project / submodule branch，沒有混入其他 session 或其他 project。
+4. 若內容會影響共用規則、履歷 master、自傳或跨 project 索引，必須確認相關 KB 已同步，且 Nick 沒要求暫停。
+5. 若本輪需要推送，仍須由 AI 執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No。
+
+不應合回 `main` 的狀況：
+
+- flow 還是半成品，或 evidence / claim boundary 明顯待補。
+- 同一批檔案仍有其他 session 正在改。
+- staged 內容混入其他 project / submodule。
+- Nick 明確說「先不要合」「先不要 commit」「先停在本地」。
+- 只是探索、比較或暫存想法，還沒有形成可讀閉環。
+- project / submodule branch 尚未同步最新 `main`，可能沒套用最新 KB。
+
 ### 小型 / 低風險改檔
 
 小型 / 低風險改檔可以輕量自查後直接 commit，例如：
@@ -92,6 +151,7 @@ AI 不會做的事：
 - 重讀改過的檔案片段。
 - 跑 `git diff --check`。
 - 跑 `git status --short`，確認只動預期檔案。
+- 跑 `git diff --cached --name-only`，確認沒有非本輪 staged 檔案會混入 commit。
 - 確認沒有 secret、token、internal IP、production URL、客戶資料。
 
 ### 重大 / 實質改檔
@@ -105,6 +165,7 @@ AI 不會做的事：
    - 檢查新規則是否和既有 KB 衝突。
    - 跑 `git diff --check`。
    - 跑 `git status --short` 確認只動 `nick-vault` 預期檔案。
+   - 跑 `git diff --cached --name-only`，確認 staged 內容沒有混入其他 session 或其他任務。
    - 檢查沒有 secret、token、internal IP、production URL、客戶資料。
    - 檢查履歷 / 面試 claim 沒有誇大，且已標示 evidence 層級。
 重大 / 實質改檔包含：
@@ -141,6 +202,7 @@ commit 完
 
 - Nick 明確說「不要 commit」、「先不要動 git」、「只改檔不提交」時，以 Nick 當下要求為準。
 - 若 git 狀態有非本次修改且會混入 commit，AI 必須先說明並只 stage 本次相關檔案；不確定時先停下來問。
+- 若 staging area 已有其他 session / 其他任務內容，且 Nick 沒明確要求 AI 代為整理 index，AI 不得 unstage、reset 或 commit 那些內容；只能回報風險並停在未 commit 狀態。
 - 若自查發現問題，先修正再 commit，不可把明知有問題的狀態提交。
 
 ## 防再犯規則：流水帳、研究報告與規格變更
