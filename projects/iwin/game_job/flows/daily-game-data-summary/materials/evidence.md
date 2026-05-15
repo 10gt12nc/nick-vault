@@ -1,9 +1,20 @@
 # daily-game-data-summary Evidence
 
-更新時間：2026-05-15
+更新時間：2026-05-15（KB 更新後深度檢查調整）
 Step：3
 掃描等級：Level 2
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## KB 更新後調整摘要
+
+本次是依更新後 KB 對 `game_job daily-game-data-summary Step 3` 做深度檢查與調整，不是新增 Step 4。
+
+檢查結論：
+
+- Step 1 / Step 2 / Step 3 主線完整，沒有跳 Step。
+- Step 3 主報告有白話導讀、Code 分層、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析，可沿用。
+- 原 Step 3 evidence 對 remote refs 最新性、遠端分支、近期 log、path-specific log 與既有文件狀態寫得不夠細，本次補齊。
+- `app_bi` 本機仍落後 `origin/main` 4 commit；下游結論維持「local snapshot 線索」，不可宣稱已看最新 app_bi。
 
 ## 本次自動重讀
 
@@ -19,10 +30,38 @@ Step：3
 - `projects/iwin/game_job/README.md`
 - `projects/iwin/game_job/step1-candidate-flows.md`
 - `projects/iwin/game_job/step2-flow-comparison.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/flow.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/career-interview.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/materials/evidence.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/materials/decision-notes.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/materials/interview.md`
+- `projects/iwin/game_job/flows/daily-game-data-summary/materials/claim-boundary.md`
 - `projects/iwin/app_bi/flows/daily-game-record-summary/flow.md`
 - `projects/iwin/app_bi/flows/daily-game-record-summary/materials/evidence.md`
 
+## 既有文件狀態判斷
+
+| 文件 | 狀態 | 判斷 |
+| --- | --- | --- |
+| `projects/iwin/game_job/README.md` | 可沿用 / 本次同步 | 專案入口清楚；本次補上 Step 3 已深度檢查調整 |
+| `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 | 已做 Level 1 candidate flow 掃描，且沒有直接跳 Step 3 |
+| `projects/iwin/game_job/step2-flow-comparison.md` | 可沿用 | 已比較候選 flow 與風險，符合新 KB 的 Step 2 前置規則 |
+| `flow.md` | 可沿用 / 需補 evidence | 主報告閱讀層次完整；本次補 KB 更新後檢查結論與分層轉譯 |
+| `career-interview.md` | 可沿用 | 保守標示 Nick 貢獻待確認，未誇大 |
+| `materials/evidence.md` | 本次重點調整 | 補 remote refs、分支 / log 範圍、既有文件狀態與未掃邊界 |
+| `materials/decision-notes.md` | 可沿用 | 已整理 delete + insert、new player state、timezone、backup 等 owner decision |
+| `materials/interview.md` | 可沿用 | 以分析案例呈現，未寫成 Nick 成果 |
+| `materials/claim-boundary.md` | 可沿用 | 明確禁止主導 / 設計 / 修正 claim |
+
 ## Repo 狀態
+
+本輪已重新執行 fetch：
+
+- `/Users/nick/Git/iwin/game_job`：`git fetch --all --prune`
+- `/Users/nick/Git/iwin/app_bi`：`git fetch --all --prune`
+- `/Users/nick/Git/iwin/iwin_gameserver`：`git fetch --all --prune`
+- `/Users/nick/Git/iwin/game_api`：`git fetch --all --prune`
+- `/Users/nick/Git/iwin/third_games_api`：`git fetch --all --prune`
 
 | Repo | Branch | Local HEAD | Remote HEAD | Ahead / Behind | 本輪用途 |
 | --- | --- | --- | --- | --- | --- |
@@ -33,6 +72,51 @@ Step：3
 | `/Users/nick/Git/iwin/third_games_api` | `beta` | `4915ea5a5000d61eb36717203ea4c6afc45322fa` | `origin/beta` 同 HEAD | 0 / 0 | log_reel 查詢線索掃描 |
 
 注意：本輪只 fetch remote refs，沒有 pull、merge、checkout 或修改公司 repo。
+
+## `game_job` 分支與 log 掃描
+
+已看遠端分支清單：
+
+- `origin/main`
+- `origin/k3s`
+- `origin/feature/gsc_record_backup`
+- `origin/antplay_new_bak_job`
+- `origin/nick-DailyReport`
+- `origin/feature/setBlacklistHset`
+- `origin/antplay-pg-mongo`
+- `origin/fix-ci-deploy`
+- `origin/beta`
+- `origin/feature/RD-128`
+- `origin/ci_test`
+- `origin/feature/RD-71`
+
+已看近期主線 log：
+
+- `23908f4`：Merge remote-tracking branch `origin/main`
+- `93fa5c1`：兌換碼功能相關
+- `676beeb`：新增配置
+- `a19571b`：兌換碼功能
+- `b993395`：GSC 批量執行改為 2500
+- `a6268cb`：MongoDB ISODate 修正
+- `d877c58`：Antplay 分批備份 Mongo、TestController API 備份 GSC
+- `bf92773` / `d11b1f4`：GSC 分批查詢調整
+- `d9edfa7`：Antplay 每日彙總 GMT+0 修正
+
+已看本 flow path-specific log，重點包含：
+
+- `d9edfa7`：Antplay timezone 修正。
+- `696acf7`：PG timezone 修正。
+- `3a7fd8b`：PG / Antplay 與 Iwin job 切分。
+- `661ba5d`、`90a8c22`、`babfc2b`：新增玩家 / 留存調整。
+- `52ee53d`：每日彙總跨時區修正。
+- `aecf2b4` 起一系列 `#247`：每日遊戲資料彙總與備份功能演進。
+
+未做：
+
+- 未 checkout 遠端分支。
+- 未逐檔逐行掃所有 module。
+- 未逐一閱讀每個相關 commit 的完整 diff。
+- 未對 `origin/nick-DailyReport` 做 branch 工作樹切換；僅透過 log / path-specific history 作 evidence 線索。
 
 ## 主程式掃描範圍
 

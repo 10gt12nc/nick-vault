@@ -166,7 +166,7 @@
 
 本 flow 已完成 Step 1-5。
 
-下一步回到同 project candidate ranking，只推薦一件事：
+本 flow 已完成；下一步不再停留在 app_bi，只推薦一件事：
 
 ```text
 payment Step 1
