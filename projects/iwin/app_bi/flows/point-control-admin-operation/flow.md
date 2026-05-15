@@ -597,7 +597,7 @@ Owner 風險：
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 原因：
@@ -605,6 +605,6 @@ app_bi daily-game-record-summary Step 5
 - 本 flow 已完成 Step 1-5。
 - Step 5 判定不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
-- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
-- 下一步應做 Step 5，判定是否更新正式履歷 / 自傳。
+- `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
+- 依 KB 回到同 project candidate ranking，下一條做 `game-round-record-query Step 3`。
 - 若本次有改檔，完成自查後 commit；若需要 push，直接觸發 `git push` approval 視窗。

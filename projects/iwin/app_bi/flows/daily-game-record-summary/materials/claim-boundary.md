@@ -1,7 +1,7 @@
 # Claim Boundary - app_bi daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成；Step 5 尚未完成
+完成狀態：Step 5 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 可說
@@ -34,16 +34,57 @@
 - 可追到 Nick 參與補跑、時區修正、金額修正、報表錯誤排查。
 - 對應事故或需求描述，能保守說明 Nick 的實際貢獻。
 
-## Step 4 後下一步
+## Step 5 結論
+
+不更新正式履歷 / 自傳。
+
+本 flow 目前適合保留為「面試分析素材 / learning-only」，不適合寫入：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+
+原因：
+
+- 已確認 code 功能存在，但目前只證明 `app_bi` 查詢端與 `game_job` producer 存在。
+- 尚未補到 Nick 本人 MR / ticket / commit / production issue / 本人確認。
+- 尚未確認 Nick 是否維護過 producer job、報表查詢、補跑、對帳或時區修正。
+- 尚未看到正式環境補跑流程、告警、對帳機制或量化改善 evidence。
+- 這條是 reporting projection / batch consistency 分析素材，不是交易 source of truth 或 Nick 個人主導成果。
+
+## 可以留作面試 case
+
+可講成：
+
+```text
+我分析過一條每日遊戲資料彙總的 reporting flow。它表面上是 app_bi 後台查詢，但實際要往上追 game_job producer，拆出 source log、type=0 projection、type=1 summary 與後台 pivot 查詢。我會從批次重跑、時區切分、資料成熟度、金額單位與補跑對帳角度看風險。
+```
+
+避免講成：
+
+```text
+我主導每日遊戲資料彙總。
+我負責 game_job 報表批次。
+我設計資料平台或報表架構。
+```
+
+若未來補到 Nick 本人 evidence，仍只能先考慮非常保守版本：
+
+```text
+參與每日遊戲資料彙總 / 報表相關功能維護，協助釐清遊戲戰績來源、批次彙總、報表查詢與資料一致性邊界。
+```
+
+沒有上述 evidence 前，不寫入正式履歷。
+
+## Step 5 後下一步
 
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 原因：
 
-- Step 4 已完成面試 case。
-- Step 5 要判斷是否更新正式履歷 / 自傳。
-- 目前證據仍不足，預期不更新正式履歷。
+- `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- 依 KB，一條 flow 完成後回同 project candidate ranking。
+- `game-round-record-query` 是下一條值得做的 app_bi flow，但 Step 3 必須補 log writer / 後端 evidence，不能只停在後台查詢端。

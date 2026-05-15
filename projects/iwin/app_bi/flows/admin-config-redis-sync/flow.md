@@ -598,12 +598,12 @@ MySQL 設定已修改
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 原因：
 
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
-- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
-- 下一步應做 Step 5，判定是否更新正式履歷 / 自傳。
+- `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
+- 依 KB 回到同 project candidate ranking，下一條做 `game-round-record-query Step 3`。

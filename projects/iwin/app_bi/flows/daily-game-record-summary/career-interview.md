@@ -1,12 +1,12 @@
 # Career / Interview - app_bi daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成；Step 5 尚未完成
+完成狀態：Step 5 已完成
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
 
 ## 結論
 
-這條 flow 可以當面試分析案例，不更新正式履歷 / 自傳。
+這條 flow 可以當面試分析案例；Step 5 已判定不更新正式履歷 / 自傳。
 
 可講成：
 
@@ -79,7 +79,7 @@
 參與每日遊戲資料彙總 / 報表相關功能維護，協助釐清遊戲戰績來源、批次彙總、報表查詢與資料一致性邊界，提升報表數字排查與補跑風險判斷能力。
 ```
 
-目前證據層級不足，不放入：
+Step 5 結論：目前證據層級不足，不放入：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
@@ -119,3 +119,17 @@
 - 技術決策附錄：`materials/decision-notes.md`
 - 面試稿附錄：`materials/interview.md`
 - 履歷邊界附錄：`materials/claim-boundary.md`
+
+## 下一步
+
+只推薦一件事：
+
+```text
+app_bi game-round-record-query Step 3
+```
+
+原因：
+
+- 本 flow 已完成 Step 5，不更新正式履歷 / 自傳。
+- 依 KB，一條 flow 完成後要回同 project candidate ranking 選下一條。
+- `game-round-record-query` 可作 troubleshooting 素材，但 Step 3 必須補 log writer / source repo evidence，不能只看 app_bi 查詢端。

@@ -1,7 +1,7 @@
 # Interview - app_bi daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成
+完成狀態：Step 5 已完成
 文件角色：`materials/interview.md` 詳細面試稿附錄
 掃描等級：Level 2 Flow 深掃延伸
 證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
@@ -66,7 +66,7 @@
 | Step 2 | 可沿用 | 已同步 Step 5 為下一步 |
 | Step 3 | 已完成 | 已確認 app_bi 查詢端與 game_job producer |
 | Step 4 | 本次完成 | 轉成保守面試 case |
-| Step 5 | 尚未完成 | 下一步判斷是否更新履歷 / 自傳 |
+| Step 5 | 已完成 | 已判定不更新正式履歷 / 自傳 |
 
 本次不做：
 
@@ -211,32 +211,32 @@ app_bi 查詢端用 `SUM(CASE WHEN sub_type = ... THEN value1 ELSE 0 END)` 把 s
 參與每日遊戲資料彙總 / 報表相關功能維護，協助釐清遊戲戰績來源、批次彙總、報表查詢與資料一致性邊界，提升報表數字排查與補跑風險判斷能力。
 ```
 
-目前證據層級不足，不放入：
+Step 5 結論：目前證據層級不足，不放入：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 
-## Step 4 結論
+## Step 4 / Step 5 結論
 
 這條 flow 已可作為保守面試 case。
 
-Step 5 尚未完成履歷 / 自傳更新判定。
+Step 5 已完成履歷 / 自傳更新判定：不更新正式履歷 / 自傳。
 
 目前定位：
 
 - `flow.md`：主研究報告。
 - `career-interview.md`：Nick 預設閱讀的保守面試 / 履歷素材。
 - `materials/interview.md`：本 Step 4 詳細面試稿附錄。
-- `materials/claim-boundary.md`：目前仍標 Step 5 尚未完成。
+- `materials/claim-boundary.md`：履歷 / 自傳更新邊界與 Step 5 結論。
 
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 原因：
 
-- Step 4 已完成面試 case。
-- 下一步只判斷是否更新正式履歷 / 自傳。
-- 目前預期不更新，除非補到 Nick 本人 evidence。
+- `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- 依 KB，一條 flow 完成後回同 project candidate ranking。
+- `game-round-record-query` 可作 troubleshooting flow，但 Step 3 要先補查詢端、log writer 與下游 source evidence。

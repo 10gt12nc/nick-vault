@@ -22,24 +22,25 @@
 - 已重整 `01-senior-owner-flow-inventory.md` 為 flow dashboard，避免下一步亂跳；完整分析仍放各 flow 的 `flow.md`。
 - 已完成 `app_bi daily-game-record-summary Step 3`，確認 app_bi 查詢端與 game_job producer；目前只作報表 projection / 批次一致性分析素材，不更新履歷。
 - 已完成 `app_bi daily-game-record-summary Step 4`，轉成保守面試 case；目前仍不更新履歷 / 自傳。
+- 已完成 `app_bi daily-game-record-summary Step 5` 的「不更新履歷 / 自傳」判定；沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，只保留為面試分析素材。
 
 ## 下一步
 
-### 1. app_bi daily-game-record-summary Step 5
+### 1. app_bi game-round-record-query Step 3
 
 建議下一步：
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 原因：
 
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5，且不更新履歷 / 自傳。
-- `daily-game-record-summary` 已完成 Step 4，且已轉成保守面試 case。
-- 下一步只判斷是否更新正式履歷 / 自傳；目前預期不更新。
-- flow dashboard 已把這件事列為唯一推薦下一步。
+- `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
+- 依 KB，一條 flow 完成後回同 project candidate ranking。
+- `game-round-record-query` 可作玩家申訴 / 牌局查詢 / troubleshooting 素材，但 Step 3 必須補 log writer / 後端 evidence，不能只停在 app_bi 查詢端。
 
 ### 2. 再做第一條完整後端 flow
 
@@ -69,7 +70,7 @@ app_bi daily-game-record-summary Step 5
 ## 下一個 prompt
 
 ```text
-app_bi daily-game-record-summary Step 5
+app_bi game-round-record-query Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/app_bi` code 最新狀態，不需要 Nick 每次重貼完整規則。

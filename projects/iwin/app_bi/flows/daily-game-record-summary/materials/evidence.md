@@ -1,7 +1,7 @@
 # Evidence - app_bi daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 3 evidence 已完成；Step 4 已重讀並補充面試素材
+完成狀態：Step 5 已完成
 文件角色：`materials/evidence.md` 證據附錄
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -63,6 +63,42 @@ Step 4 邊界：
 - 未逐 commit diff。
 - 未補到 Nick 本人 MR / ticket / production issue。
 - 因此本 flow 只能轉成保守面試 case，不更新正式履歷 / 自傳。
+
+## Step 5 補掃紀錄
+
+本次 Step 5 為履歷 / 自傳更新判定，不新增正式 claim。
+
+已補重讀：
+
+- 本 flow 的 `flow.md`
+- 本 flow 的 `career-interview.md`
+- 本 flow 的 `materials/evidence.md`
+- 本 flow 的 `materials/interview.md`
+- 本 flow 的 `materials/claim-boundary.md`
+- `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step1-candidate-flows.md`
+- `projects/iwin/app_bi/step2-flow-comparison.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/06-todo.md`
+
+已補確認 code 狀態：
+
+- `/Users/nick/Git/iwin/app_bi` 目前分支：`main`
+- `/Users/nick/Git/iwin/app_bi` 工作區：乾淨
+- `/Users/nick/Git/iwin/app_bi` path-specific log：`Payment.php`、`public/views/jjsj/mrucsjhz/**`
+- `/Users/nick/Git/iwin/game_job` path-specific log：daily summary jobs / service / mapper
+
+Step 5 判定：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 本 flow 只保留為 `分析素材 / learning-only` 與保守面試 case。
+
+原因：
+
+- 未補到 Nick 本人 MR / ticket / commit / production issue / 本人確認。
+- 未確認 Nick 實際處理補跑、時區、金額、留存、查詢或 producer job。
+- 未看到量化改善或正式 owner evidence。
 
 ## Branch / log
 
