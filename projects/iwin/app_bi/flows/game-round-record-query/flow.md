@@ -1,7 +1,7 @@
 # app_bi - game-round-record-query
 
 更新時間：2026-05-15
-完成狀態：Step 3 已完成；Step 4 / Step 5 尚未完成
+完成狀態：Step 4 已完成；Step 5 尚未完成
 文件角色：`flow.md` 主研究報告
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -10,7 +10,7 @@
 
 - Flow 中文名稱：遊戲局紀錄查詢 / 玩家申訴排查入口
 - Flow slug：`game-round-record-query`
-- 完成狀態：Step 3 已完成
+- 完成狀態：Step 4 已完成
 - 證據層級：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
 - 本 flow 類型：後台查詢入口 / troubleshooting flow / 遊戲戰績 log 查詢
 - 是否只確認到入口：不是只看入口；已確認 `app_bi` 查詢端，並追到 `iwin_gameserver` 的戰績 log 寫入線索，但 writer 尚未做 Level 3 逐檔逐 commit 深掃
@@ -342,17 +342,22 @@ Owner 角度應該追問：
 
 除非之後補到 Nick 本人 MR / ticket / commit / production issue / 本人確認，否則不更新正式履歷與自傳。
 
+Step 4 已整理完整面試稿：
+
+- `career-interview.md`
+- `materials/interview.md`
+
 ## 16. 下一步要查的 evidence
 
-Step 4 建議聚焦面試 case，不急著更新履歷：
+Step 5 建議做「是否更新正式履歷 / 自傳」判定，但目前預期仍是不更新：
 
-- 把本 flow 轉成 3 分鐘面試講法。
-- 把「查詢 log vs 交易 truth」講清楚。
-- 準備 Senior 追問：查不到局、金額不一致、serial_id update miss、跨日分表查詢慢。
-- 繼續標註 `專案存在 / code-backed`，不升級成 `真實開發過`。
+- 檢查 Step 4 面試稿是否有誇大成 Nick 真實開發。
+- 確認是否有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
+- 若仍無個人 evidence，正式履歷與自傳不更新。
+- 保留本 flow 作為 troubleshooting / production risk 面試分析素材。
 
 下一步只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 4
+app_bi game-round-record-query Step 5
 ```

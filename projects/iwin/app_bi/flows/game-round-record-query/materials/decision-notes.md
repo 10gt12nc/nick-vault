@@ -1,7 +1,7 @@
 # game-round-record-query - Decision Notes
 
 更新時間：2026-05-15
-完成狀態：Step 3 初版
+完成狀態：Step 4 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 1. 查詢 log 不等於交易 truth

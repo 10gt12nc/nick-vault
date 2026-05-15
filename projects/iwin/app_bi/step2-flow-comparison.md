@@ -12,7 +12,7 @@
 Step 2 重新排序後，結論分兩層：
 
 1. 最高 Senior / Owner 價值是 `payment-order-status-repair`，但它不適合只在 `app_bi` 深挖，必須回到 `payment` repo 找 source of truth。
-2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `game-round-record-query Step 4`，因為前三條 app_bi flow 都已完成 Step 5，目前應進 Step 4，轉成保守面試 case。
+2. 若本輪繼續留在 `app_bi`，最乾淨的下一步是 `game-round-record-query Step 5`，因為前三條 app_bi flow 都已完成 Step 5，`game-round-record-query` 已完成 Step 4，目前應判斷是否更新正式履歷 / 自傳。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -98,7 +98,7 @@ Step 2 重新排序後，結論分兩層：
 | 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 5 已完成；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；Nick 貢獻待確認 | 保留為面試分析素材 |
 | 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
 | 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | Step 5 已完成；查詢端、game_job producer、SQL / 時區修正 history 與保守面試 case | Nick 貢獻未確認 | 不更新正式履歷 |
-| 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 3 已完成；查詢入口、每日戰績分表與 iwin_gameserver log writer 線索已補 | Nick 貢獻未確認；wallet / provider truth 未完整深掃 | 下一步做 Step 4 |
+| 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 4 已完成；查詢入口、每日戰績分表、iwin_gameserver log writer 線索與保守面試 case 已補 | Nick 貢獻未確認；wallet / provider truth 未完整深掃 | 下一步做 Step 5 |
 | 6 | `admin-rbac-permission-check` | 後台 RBAC / 權限判斷 | 中 | `Base::_initialize()` / `Auth::permission()` 有權限框架 | 高風險 controller enforcement 未逐條確認 | 作為輔助邊界，不單獨優先 |
 | 7 | `coupon-trade-admin-operation` | 兌換碼 / Coupon Trade 營運操作 | 中低到中 | 近期主線有 `coupon trade` code 與 UI | 使用端 / wallet side effect 未掃 | 暫列候選，不優先 |
 | 8 | `app-bi-report-export` | BI 報表查詢與匯出 | 中低 | 報表查詢與 Excel export 線索 | producer / row limit / background job 未掃 | 低優先，除非有真實效能問題 |
@@ -107,9 +107,9 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-1. `app_bi game-round-record-query Step 4`
-   - 原因：`game-round-record-query` Step 3 已完成且格式乾淨；依 KB 下一步固定進 Step 4。
-   - 產出：遊戲局查詢的保守面試 case、Senior 追問與不可誇大邊界。
+1. `app_bi game-round-record-query Step 5`
+   - 原因：`game-round-record-query` Step 4 已完成；依 KB 下一步固定進 Step 5。
+   - 產出：正式履歷 / 自傳是否更新的保守判定；目前預期仍是不更新。
    - 是否更新履歷：否。
 2. `payment Step 1`
    - 原因：`payment-order-status-repair` 價值最高，但強 evidence 不在 `app_bi`。
@@ -439,7 +439,7 @@ admin-config-redis-sync Step 1-5
 下一步只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 4
+app_bi game-round-record-query Step 5
 ```
 
 原因：
@@ -447,4 +447,4 @@ app_bi game-round-record-query Step 4
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 3 已完成，依 KB 下一步做 `game-round-record-query Step 4`。
+- `game-round-record-query` Step 4 已完成，依 KB 下一步做 `game-round-record-query Step 5`。

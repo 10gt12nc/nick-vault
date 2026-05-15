@@ -26,7 +26,7 @@
 
 既有 flow 狀態：
 
-- `game-round-record-query`：本次前尚未建立 flow folder。
+- `game-round-record-query`：Step 3 已完成；本次 Step 4 轉成面試 case。
 - `point-control-admin-operation`：Step 5 已完成，可沿用。
 - `admin-config-redis-sync`：Step 5 已完成，可沿用。
 - `daily-game-record-summary`：Step 5 已完成，可沿用。

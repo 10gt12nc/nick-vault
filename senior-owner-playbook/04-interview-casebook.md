@@ -137,6 +137,34 @@ Lead / Architect 追問：
 - 報表 table 需要 batch id / generated_at / source range 嗎？
 - 營運看到數字異常時，第一個排查入口應該是哪裡？
 
+## 案例 7：遊戲局紀錄查詢 / 玩家申訴排查
+
+對應 flow：
+
+- `app_bi/game-round-record-query`
+
+面試主軸：
+
+後台遊戲局查詢不是單純查表。它是玩家申訴與 production troubleshooting 的入口，要能分清楚後台看到的 `log_reel` 戰績 log、wallet / currency ledger、provider transaction 與真正 settlement truth。Senior 要能追 app_bi 查詢端、每日分表、channel shard、`serial_id`、bet / settle update 與 log writer failure window。
+
+可講重點：
+
+- `log_reel` 是 troubleshooting projection，不是完整交易 truth。
+- 查不到局不等於玩家沒玩，可能是日期分表、channel shard、log pipeline 或查詢條件問題。
+- 第三方遊戲的 `serial_id` 是 provider transaction / bet id 的關聯 key，但要確認唯一性與 update miss。
+- bet insert 成功、settle update 失敗時，後台可能看到不完整戰績。
+- 長區間每日分表查詢與 `date_format(game_start_time, ...)` 可能造成效能與索引風險。
+- 玩家申訴 SOP 應該同時查戰績 log、wallet / currency log、provider transaction 與 settlement 狀態。
+
+Lead / Architect 追問：
+
+- `log_reel`、wallet ledger、provider transaction 的資料契約怎麼定？
+- `serial_id` update miss 如何告警、補償與重放？
+- 是否需要統一 troubleshooting portal 或 correlation id？
+- 多 provider 的 bet / settle / refund 狀態機是否應標準化？
+- 如何讓客服查詢不壓垮 log DB？
+- 查不到資料時，系統是否要提示可能原因而不是只回空結果？
+
 ## 面試回答公式
 
 ```text

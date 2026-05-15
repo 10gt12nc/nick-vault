@@ -125,11 +125,11 @@ Step 5 結論：目前證據層級不足，不放入：
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 4
+app_bi game-round-record-query Step 5
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5，不更新正式履歷 / 自傳。
 - 依 KB，一條 flow 完成後要回同 project candidate ranking 選下一條。
-- `game-round-record-query` Step 3 已完成，下一步可轉 Step 4 保守面試 case。
+- `game-round-record-query` Step 4 已完成，下一步可做 Step 5 履歷 / 自傳更新判定。

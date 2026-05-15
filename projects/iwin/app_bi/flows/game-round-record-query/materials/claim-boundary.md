@@ -1,7 +1,7 @@
 # game-round-record-query - Claim Boundary
 
 更新時間：2026-05-15
-完成狀態：Step 3 已完成；Step 5 尚未完成
+完成狀態：Step 4 已完成；Step 5 尚未完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 可說
@@ -41,3 +41,14 @@
 - Nick 明確確認自己維護過此 flow。
 
 即使補到 evidence，也要保守寫，不用「主導」「owner」「架構師」這類字。
+
+## Step 4 面試邊界補充
+
+Step 4 已轉成面試 case，但仍不改變 claim 層級：
+
+- 面試可說「我分析過 / 我會這樣排查」。
+- 不說「我實際主導 / 我實際修過」。
+- 不說「我設計完整玩家申訴系統」。
+- 不說「我負責 wallet correctness」。
+
+下一步 Step 5 只做正式履歷 / 自傳是否更新的判定；目前沒有 Nick 本人 evidence，預期仍是不更新。

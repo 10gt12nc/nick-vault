@@ -37,24 +37,23 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi game-round-record-query Step 4` |
+| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi game-round-record-query Step 5` |
+| iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 1 | 專案存在 / Nick 貢獻待確認 | 否 | `game_job daily-game-data-summary Step 2` |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-app_bi game-round-record-query Step 4
+game_job daily-game-data-summary Step 2
 ```
 
 原因:
 
-- `app_bi` Step 1 / Step 2 已於 2026-05-14 重整乾淨。
-- `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
-- `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 3 已完成，已確認 app_bi 查詢端與 iwin_gameserver log writer 線索。
-- 依 KB，Step 3 乾淨後下一步是 Step 4。
+- Nick 本輪已指定 `iwin game_job`，且 `game_job` Step 1 已建立。
+- `daily-game-data-summary` 在 `game_job` 有最多 code-backed evidence：Quartz、job、service、mapper、時區修正與 path-specific history。
+- 下一步應先做 Step 2，將 `daily-game-data-summary`、`third-party-record-mongo-backup`、`coin-flow-batch-projection` 做價值 / 風險排序，再決定第一條 Step 3 深挖 flow。
+- 不更新履歷 / 自傳；先保持 `專案存在 / code-backed` 與 Nick 貢獻待確認。
 
 ## 近期候選 Queue
 
@@ -65,10 +64,11 @@ app_bi game-round-record-query Step 4
 | 1 | iwin | payment | `payment-provider-callback` | 金流 provider callback | money correctness / callback / idempotency / reconciliation | `payment Step 1` |
 | 2 | iwin | payment | `payment-order-provider-request` | 金流訂單與 provider request | 訂單狀態、provider contract、timeout / retry | `payment Step 1` |
 | 3 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |
-| 4 | iwin | iwin_gameserver | `game-round-settlement` | 遊戲局結算 | state transition / bet settlement / rollback | `iwin_gameserver Step 1` |
-| 5 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
-| 6 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
-| 7 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
+| 4 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | batch correctness / timezone boundary / BI projection consistency | `game_job daily-game-data-summary Step 2` |
+| 5 | iwin | iwin_gameserver | `game-round-settlement` | 遊戲局結算 | state transition / bet settlement / rollback | `iwin_gameserver Step 1` |
+| 6 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
+| 7 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
+| 8 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
 
 ## Domain Backlog
 
@@ -85,6 +85,10 @@ app_bi game-round-record-query Step 4
 - `transfer-wallet-ledger`｜Transfer wallet ledger
 - `provider-transfer-in-out`｜Provider 轉入 / 轉出
 - `settled-bets-kafka`｜Settled bets Kafka
+- `daily-game-data-summary`｜每日遊戲資料彙總
+- `third-party-record-mongo-backup`｜第三方遊戲紀錄 Mongo 備份與清理
+- `coin-flow-batch-projection`｜金幣流水清算 / 遊戲行為投影
+- `online-payment-data-cleaning`｜充值 / 提現資料清洗與每日經濟資料
 - `game-round-settlement`｜遊戲局結算
 - `third-party-game-login`｜第三方遊戲登入
 - `third-party-transaction-sync`｜第三方交易同步
