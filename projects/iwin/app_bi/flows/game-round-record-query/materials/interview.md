@@ -206,7 +206,7 @@ Step 5 補充：`iwin_gameserver` 的 log writer / Antplay-GSC 戰績相關 path
 只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：

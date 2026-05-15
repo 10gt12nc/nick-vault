@@ -80,11 +80,11 @@
 只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
 
 - `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - 依 KB，一條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳；下一步轉 `payment Step 1`。
+- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳；下一步轉 `iwin payment payment-provider-callback Step 5`。

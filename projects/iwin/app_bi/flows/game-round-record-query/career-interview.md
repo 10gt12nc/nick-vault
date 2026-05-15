@@ -137,11 +137,11 @@ Step 5 已完成；目前不放入：
 只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，不更新正式履歷 / 自傳。
 - `app_bi` 主要 flow 已收斂；下一個高價值方向是金流 source of truth。
-- `payment Step 1` 會先找金流 repo 的 production flows，不會直接寫履歷。
+- `iwin payment payment-provider-callback Step 5` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接寫履歷。

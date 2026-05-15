@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：新建 Step 2
+狀態：已建立；目前第一條 flow 已完成 Step 4，下一步 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次結論
@@ -42,9 +42,9 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 需同步 | Step 2 建立後，專案狀態應從 Step 1 更新為 Step 2 |
+| `README.md` | 已同步 | 專案狀態已同步到 `daily-game-data-summary` Step 5 下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 掃描範圍、候選 flow 與 evidence 邊界已清楚 |
-| `step2-flow-comparison.md` | 本次新建 | 補上 Step 2，比較候選 flow，不建立單條 flow folder |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 補上 Step 2，比較候選 flow；目前第一條 flow 已完成 Step 4 |
 
 ## 比較前提
 
@@ -63,7 +63,7 @@
 
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整 | upstream `log_reel` writer 與 app_bi 查詢端需要 Step 3 對齊 | 下一步進 Step 3 |
+| 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整 | upstream `log_reel` writer 與 app_bi 查詢端已在 Step 3 標示邊界 | 已完成 Step 4，下一步 Step 5 |
 | 2 | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Antplay new log / transaction backup code 清楚，且有 GSC / Antplay branch history | backup / delete partial failure、GSC 完整 path、retention policy 未深挖 | 排第二條 Step 3 候選 |
 | 3 | `coin-flow-batch-projection` | 金幣流水清算 / 遊戲行為投影 | 高但未收斂 | Redis checkpoint、跨日 task finish、多資料源 projection 線索清楚 | 核心 handle method 未完整讀完；source of truth 未定位 | 先補 path 後再 Step 3 |
 | 4 | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | `payment_order_{yyyy_m}` 讀取與支付分類清楚 | payment source of truth 在 `payment` repo；目前只是 reporting projection | 暫不優先，之後可接 payment flow |
@@ -73,8 +73,8 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `game_job daily-game-data-summary Step 3`
-   - 原因：Step 1 / Step 2 已確認它是目前 evidence 最厚、風險點最完整的候選。
+1. `game_job daily-game-data-summary Step 5`
+   - 原因：Step 3 / Step 4 已完成，下一步只能做 claim gate。
    - 產出：單條 flow 學習包，包含 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md`。
    - 是否更新履歷：否，至少等 Step 4 / Step 5 且補到 Nick 本人 evidence。
 2. `game_job third-party-record-mongo-backup Step 3`
@@ -258,11 +258,11 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 3
+game_job daily-game-data-summary Step 5
 ```
 
 原因：
 
-- Step 1 / Step 2 已確認這條 flow 是目前 `game_job` 最乾淨的第一條深挖候選。
-- Step 3 才會建立單條 flow folder 與 `flow.md` 主報告。
-- Step 3 仍不更新履歷；只產出 code-backed 學習包與 evidence 邊界。
+- Step 3 / Step 4 已完成，下一步是 Step 5 claim gate。
+- Step 5 會檢查是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
+- 產出是 claim boundary 判定，不是新的候選排序。

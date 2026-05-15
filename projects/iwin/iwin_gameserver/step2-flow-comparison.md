@@ -72,7 +72,7 @@ source repo 狀態：
 文件狀態：
 
 - Step 1：可沿用；已補最新 repo 狀態。
-- Step 2：可沿用；本輪補最新 repo 狀態與 `third-party-transfer-in-out` 已進 Step 4 的狀態。
+- Step 2：可沿用；本輪補最新 repo 狀態與 `third-party-transfer-in-out` 已完成 Step 5 的狀態。
 - `third-party-transfer-in-out`：Step 3 / Step 4 / Step 5 文件可沿用；正式履歷 / 自傳暫不更新。
 - 依最新 KB，不新增替代結構、不新增研究報告、不更新正式履歷。
 
@@ -83,7 +83,7 @@ source repo 狀態：
 | `README.md` | 已補 | 已加入 Step 2 讀檔順序與狀態 |
 | `architecture-map.md` | 已補 | 原本只列 root module，已補 game modules / service instance 邊界 |
 | `step1-candidate-flows.md` | 已修正 | Step 2 已完成；本輪已把下一步改為 `center-http-deposit-withdraw Step 3` |
-| `step2-flow-comparison.md` | 本次新增 | 補齊 Step 2 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 補齊 Step 2；目前第一條 flow 已完成 Step 5，下一步回同 project 候選 ranking |
 
 ## 多子模組邊界
 

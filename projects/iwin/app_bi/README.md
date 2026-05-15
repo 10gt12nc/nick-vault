@@ -74,7 +74,7 @@
 只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
@@ -85,4 +85,4 @@ payment Step 1
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
-- `payment Step 1` 會先找金流 repo 的 candidate flows，不會直接把 app_bi 人工修正入口寫成完整 payment owner。
+- `iwin payment payment-provider-callback Step 5` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工修正入口寫成完整 payment owner。

@@ -23,7 +23,7 @@
 
 既有文件判斷：
 
-- `README.md`：需小調整；Step 3 已建立後，下一步建議不可停在 Step 3，已改為 Step 4。
+- `README.md`：已同步；Step 4 已建立後，下一步建議不可停在 Step 3 / Step 4，已改為 Step 5 claim gate。
 - `architecture-map.md`：可沿用，已正確標記 dev-k3s / code-backed 邊界。
 - `step1-candidate-flows.md`：需補 evidence；`external-service-bridge` 與 config bake-in 是早期 local snapshot，已由 Step 2 / Step 3 的 remote refs 修正，這輪補上舊 evidence 邊界。
 - `step2-flow-comparison.md`：可沿用；它已補上 project-level Step 2、module / service 邊界與 flow ranking。

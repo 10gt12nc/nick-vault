@@ -169,7 +169,7 @@
 本 flow 已完成；下一步不再停留在 app_bi，只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
@@ -177,5 +177,5 @@ payment Step 1
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `payment Step 1`，回到真正 money correctness source of truth。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment payment-provider-callback Step 5`，回到真正 money correctness source of truth。
 - 它目前仍只作報表 / projection 分析素材，不更新履歷。

@@ -8,7 +8,7 @@ Flow 中文名稱：GSC transfer 投注 / 派彩 / rollback 整合回調。
 
 Flow slug：`gsc-transfer-bet-settle-rollback`。
 
-完成狀態：Step 3 已建立，並依更新後 KB 做過深度檢查與局部補強；可作為 Step 4 面試 case 的輸入。
+完成狀態：Step 4 已完成；主報告已依更新後 KB 做過深度檢查與局部補強，下一步是 Step 5 claim gate。
 
 證據層級：`專案存在 / code-backed`。目前沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，因此不能寫成 Nick 真實開發成果。
 
@@ -312,8 +312,10 @@ GSC 類 provider 通常會在玩家遊戲過程中回傳下注、派彩、取消
 - gameserver 成功但 adapter audit 寫失敗時的 production repair / reconciliation SOP。
 - `PGTransferInOutJob` 後續 log / bet log 失敗的 retry 機制。
 
-## 本 Step 3 結論
+## 目前結論
 
 `gsc-transfer-bet-settle-rollback` 是一條高價值 Senior Backend flow，因為它把 provider API、Redis routing、gameserver wallet mutation、Mongo audit、rollback semantics、retry / idempotency 全部串在一起。
 
-但它目前的履歷層級只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。最重要的下一個洞是：補 Step 4 面試 case 時，要把「ROLLBACK 不改 wallet」與「gameserver 成功但 Mongo 失敗」整理成可講、保守、不誇大的交易一致性案例。
+Step 4 已把「ROLLBACK 不改 wallet」與「gameserver 成功但 Mongo 失敗」收斂成保守面試案例；下一步是 Step 5 claim gate。
+
+目前履歷層級仍只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。正式履歷 / 自傳暫不更新；若 Nick 後續補本人 evidence，再重新評估是否升級 claim。

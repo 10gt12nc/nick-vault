@@ -35,7 +35,7 @@
 - `projects/README.md`
 - `projects/iwin/app_bi/README.md`
 - `projects/iwin/app_bi/step1-candidate-flows.md`
-- 確認 `projects/iwin/game_api/` 原本不存在，這輪新建 README 與 Step 1。
+- `projects/iwin/game_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
 
 已重讀參考文件：
 
@@ -77,8 +77,8 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_api/README.md` | 本輪新建 | 專案入口，保守標註履歷邊界 |
-| `projects/iwin/game_api/step1-candidate-flows.md` | 本輪新建 | Level 1 candidate flow 盤點 |
+| `projects/iwin/game_api/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/game_api/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | workspace 舊分析 `docs/專案分析/game_api.md` | 可參考 / 不搬運 | 有專案概覽與 API / DB / Redis 線索，但含舊環境資訊與敏感配置，不能直接複製進 vault |
 
 ## 掃描等級判斷
@@ -87,7 +87,7 @@
 
 原因：
 
-- Nick 只指定 `iwin game_api`，目前 project 尚未在 vault 建立。
+- 本檔是 `game_api` Step 1 的歷史盤點；目前 project 已建立，且第一條 `coupon-redeem-credit-grant` flow 已完成 Step 4。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 flow。
 - `game_api` 候選很多，直接 Level 2 容易選錯 flow。
 - Level 3 目前不值得，因為還沒選定 flow，也還沒確認 Nick 本人 evidence。
@@ -395,7 +395,7 @@ production 風險：
 
 ## 下一步要讀的 Code Path
 
-若做 Step 2：
+Step 2 / Step 3 已完成；以下 code path 保留為當時 Step 1 建議與後續核對清單：
 
 - `CouponRedeemController.java`
 - `CouponRedeemServiceImpl.java`
@@ -410,7 +410,7 @@ production 風險：
 - `LoginServiceImpl.java`
 - path-specific git log / important diffs
 
-若 Step 2 選定 coupon 後做 Step 3：
+Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 
 - 追加掃 GM command：`GmIntfcComponent`、`GMCommandNames.GM_CMD_DEPOSIT`、`SET_BET_TARGET_COUPON`
 - 追加掃下游 repo：`iwin_gameserver` 或實際 GM handler 所在 repo
@@ -423,14 +423,12 @@ production 風險：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
-- `senior-owner-playbook/04-interview-casebook.md`
 - project-level `career-interview.md`
-- `flows/` 單條 flow folder
 
 原因：
 
-- 本次只是 Step 1 candidate flow 盤點。
-- 還沒有完成單條 flow Level 2。
+- 本檔只是 Step 1 candidate flow 盤點。
+- 單條 coupon flow 已完成 Step 4，但還沒有 Nick 本人 evidence。
 - 沒有 Nick 本人 evidence，不可更新正式履歷 / 自傳。
 
 ## 下一步建議
@@ -438,12 +436,11 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin game_api Step 2
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 原因：
 
-- Step 1 已建立 Top 5 candidate flows。
-- 下一步應比較 flow 價值、evidence 強度、履歷可轉換性與下游掃描成本。
-- Step 2 會產出 `step2-flow-comparison.md`，仍不更新正式履歷 / 自傳。
+- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
+- Step 5 會判定是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

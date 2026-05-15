@@ -36,7 +36,7 @@
 - `projects/iwin/game_api/README.md`
 - `projects/iwin/game_api/step1-candidate-flows.md`
 - `projects/**/flows/` 與 `senior-owner-playbook/01-senior-owner-flow-inventory.md` 的 third-game / GSC / OneAPI / Antplay 線索。
-- 確認 `projects/iwin/third_games_api/` 原本不存在，這輪新建 README 與 Step 1。
+- `projects/iwin/third_games_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
 
 已重讀參考文件：
 
@@ -83,8 +83,8 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/third_games_api/README.md` | 本輪新建 | 專案入口，保守標註履歷邊界 |
-| `projects/iwin/third_games_api/step1-candidate-flows.md` | 本輪新建 | Level 1 candidate flow 盤點 |
+| `projects/iwin/third_games_api/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/third_games_api/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | workspace 舊分析 `docs/專案分析/third_games_api.md` | 可參考 / 不搬運 | 有專案概覽、endpoint、DB / Redis / Mongo 線索，但含敏感配置，不能直接複製進 vault |
 | workspace catalog `third-game-integration.md` | 可參考 / 不搬運 | 有與 gameserver / payment 的關聯定位，可作 Step 1 導航 |
 | `app_bi/game-round-record-query` 相關 flow | 可沿用 / 不重整 | 已提到第三方 provider serial id 與 log writer，但主題是後台查詢，不取代本 project Step 1 |
@@ -395,9 +395,9 @@ production 風險：
 | `LoginController` / `SmsController` / `PartnerController` | 多數 annotation 被註解，屬於遺留搬遷線索，不適合作為本 project 第一條 production flow |
 | `gameList` / `login launch` | 有 provider launch 價值，但 money correctness 低於 bet / settle / rollback callback |
 
-## Step 2 建議比較維度
+## 後續核對維度
 
-下一步若做 Step 2，建議比較：
+Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flow 時的比較維度：
 
 - money correctness：是否直接改玩家餘額 / 有效投注。
 - provider idempotency：重送、timeout、duplicate transaction 的處理是否清楚。
@@ -411,11 +411,11 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin third_games_api Step 2
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：
 
-- Top 5 flow 已初步定位，但 GSC transfer、OneAPI bet_result、Antplay bet / settle 的價值很接近。
-- Step 2 可以先比較哪條最值得 Level 2 深掃，避免直接跳進大型 controller 逐行整理。
-- Step 2 預計建立 `step2-flow-comparison.md`；不更新履歷 / 自傳；完成後依規則自動 commit。
+- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
+- Step 5 會判定是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
+- 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

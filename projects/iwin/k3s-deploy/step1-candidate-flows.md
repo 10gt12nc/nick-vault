@@ -39,7 +39,7 @@
 - `senior-owner-playbook/04-interview-casebook.md`
 - `senior-owner-playbook/12-role-target-readiness-matrix.md`
 - `senior-owner-playbook/13-code-capability-map.md`
-- 確認 `projects/iwin/k3s-deploy/` 原本不存在，這輪新建 README、architecture map 與 Step 1。
+- `projects/iwin/k3s-deploy/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
 
 已重讀 code repo：
 
@@ -88,9 +88,9 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/k3s-deploy/README.md` | 本輪新建 | 專案入口，保守標註履歷邊界 |
-| `projects/iwin/k3s-deploy/architecture-map.md` | 本輪新建 | 最小拓撲，避免 Step 1 變成散亂 YAML 清單 |
-| `projects/iwin/k3s-deploy/step1-candidate-flows.md` | 本輪新建 | Level 1 candidate flow 盤點 |
+| `projects/iwin/k3s-deploy/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/k3s-deploy/architecture-map.md` | 已建立 / 可沿用 | 最小拓撲，避免 Step 1 變成散亂 YAML 清單 |
+| `projects/iwin/k3s-deploy/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `senior-owner-playbook/04-interview-casebook.md` | 可沿用 | 已有 K3s / rollout / observability 面試主軸，可和本 project 後續 flow 對齊 |
 | `senior-owner-playbook/13-code-capability-map.md` | 可沿用 | 已把 `k3s-deploy` 定位為 K3s deployment、kustomization、service rollout、phase deployment |
 | workspace dev-k3s 運維文件 | 可參考 / 不搬運 | 可能包含環境細節與敏感資訊，本輪只作索引參考 |
@@ -101,7 +101,7 @@
 
 原因：
 
-- Nick 只指定 `iwin k3s-deploy`，目前 project 尚未在 vault 建立。
+- 本檔是 `k3s-deploy` Step 1 的歷史盤點；目前 project 已建立，且第一條 `gameserver-phased-rollout` flow 已完成 Step 4。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 deploy flow。
 - `k3s-deploy` 有多條 platform / rollout 候選，直接 Level 2 容易選錯主軸。
 - Level 3 目前不值得，因為尚未選定 flow，也尚未確認 Nick 本人 evidence。
@@ -421,9 +421,9 @@ gameserver-phased-rollout
 - 比 observability pipeline 更貼近 iwin 遊戲 runtime 的服務拓撲。
 - 但在正式深挖前，Step 2 仍值得先比較候選 flow，避免過早鎖定。
 
-## 下一步要讀的 code path
+## 後續核對 code path
 
-若 Nick 下 `iwin k3s-deploy Step 2`：
+Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flow 時的核對清單：
 
 - `dev/iwin/iwin-gameserver/**`
 - `dev/iwin/game-api/**`
@@ -467,11 +467,11 @@ gameserver-phased-rollout
 只推薦一件事：
 
 ```text
-iwin k3s-deploy Step 2
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
-- Step 1 已先定位 Top 5 deploy / observability candidate flows。
-- 這個 repo 的履歷價值取決於能不能選出最有 owner decision 的單條 flow，不能平均整理所有 YAML。
-- Step 2 不更新正式履歷，可能建立 `step2-flow-comparison.md`，不需要 push；完成後依規則自動 commit。
+- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
+- Step 5 會確認是否有 Nick 本人 evidence；目前預期只保留為面試素材 / learning-only。
+- 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

@@ -38,11 +38,11 @@
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/game_api/README.md`
 - `projects/iwin/game_api/step1-candidate-flows.md`
-- 確認 `projects/iwin/payment/` 原本不存在，這輪新建 README 與 Step 1。
+- `projects/iwin/payment/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
 
 已做重複 flow 檢查：
 
-- `projects/**/flows/`：尚無 `payment` flow folder。
+- `projects/iwin/payment/flows/payment-provider-callback/`：目前已建立，且已完成 Step 4；下一步是 Step 5 claim gate。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`：已有 `payment-provider-callback`、`payment-order-provider-request`、`withdrawal-auto-review-refund` 候選索引。
 - `senior-owner-playbook/04-interview-casebook.md`：已有金流 callback 一致性的通用面試框架。
 - `projects/iwin/app_bi/step2-flow-comparison.md`：已指出 `payment-order-status-repair` 不適合只在 `app_bi` 深挖，需回到 `payment` repo。
@@ -85,8 +85,8 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 本輪新建 | 專案入口，保守標註履歷邊界 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 本輪新建 | Level 1 candidate flow 盤點 |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `payment-provider-callback` Step 5 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
 
@@ -96,7 +96,7 @@
 
 原因：
 
-- Nick 只指定 `iwin payment`，目前 project 尚未在 vault 建立。
+- 本檔是 `payment` Step 1 的歷史盤點；目前 project 已建立，且第一條 `payment-provider-callback` flow 已完成 Step 4。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 flow。
 - `payment` provider controller / service 很多，直接 Level 2 容易被單一商戶綁住，反而看不到共通 flow。
 - Level 3 目前不值得，因為尚未選定 flow，也未確認 Nick 本人 evidence。
@@ -406,27 +406,27 @@ production 風險：
 
 ## 下一步建議
 
-只推薦一件事：做 `iwin payment Step 2`。
+只推薦一件事：
+
+```text
+iwin payment payment-provider-callback Step 5
+```
 
 為什麼現在做它：
 
-- `payment-provider-callback` 與 `withdrawal-auto-review-refund` 都很強，Step 2 需要比較哪條先做，才不會 Level 2 深掃時選錯 provider 或太快陷入單一商戶細節。
+- Step 2 / Step 3 / Step 4 已完成，且 `payment-provider-callback` 是目前全 iwin 最值得收斂的下一條 flow。
+- Step 5 會做 claim gate：確認是否仍只能保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`，或是否有 Nick 本人 evidence 可進一步整理。
 
 會產出什麼：
 
-- `projects/iwin/payment/step2-flow-comparison.md`
-- 明確選定第一條要進 Step 3 / Level 2 的 flow。
-- 補清楚是否需要同步讀 `app_bi`、`game_api` 或 game lobby / center 下游。
+- 更新 `projects/iwin/payment/flows/payment-provider-callback/materials/claim-boundary.md`。
+- 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- 不更新。至少等單條 flow Step 4 / Step 5，且有 Nick 本人 evidence 或本人確認後才考慮。
+- 預設不更新。只有補到 Nick 本人 MR / ticket / commit / production issue / 本人確認才考慮。
 
 是否需要 commit / push：
 
-- Step 2 完成後依規則自動 commit。
+- Step 5 完成後依規則自動 commit。
 - 不需要 push，除非 Nick 明確要求。
-
-```text
-iwin payment Step 2
-```

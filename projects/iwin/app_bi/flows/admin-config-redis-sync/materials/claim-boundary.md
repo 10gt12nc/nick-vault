@@ -91,12 +91,12 @@ Step 4 面試稿可以聚焦:
 
 ## Step 5 後下一步
 
-`game-round-record-query` Step 5 已完成；app_bi 主要 flow 已收斂，目前下一步轉到 `payment Step 1`。
+`game-round-record-query` Step 5 已完成；app_bi 主要 flow 已收斂，目前下一步轉到 `iwin payment payment-provider-callback Step 5`。
 
 只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
@@ -104,4 +104,4 @@ payment Step 1
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `payment Step 1`，回到真正 money correctness source of truth。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment payment-provider-callback Step 5`，回到真正 money correctness source of truth。

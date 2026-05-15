@@ -29,33 +29,39 @@
 - 已依 2026-05-15 KB 深度檢查 `app_bi`，補齊 project-level `architecture-map.md` 與 `career-interview.md`，並把 app_bi 本地落後 `origin/main` 4 commit 的 source repo 狀態寫入 Step / evidence；正式履歷仍不更新。
 - 已完成 `game_job Step 1`，建立 `projects/iwin/game_job/README.md` 與 `step1-candidate-flows.md`；目前只作 Java batch / BI projection / third-party record backup 的候選 flow 盤點，不更新履歷。
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
+- 已完成 `game_api coupon-redeem-credit-grant Step 4`，轉成優惠券兌換上分 / 打碼要求的保守面試 case；目前仍不更新正式履歷 / 自傳。
+- 已完成 `game_job daily-game-data-summary Step 4`，轉成 batch correctness / BI projection 的保守面試 case；目前仍不更新正式履歷 / 自傳。
+- 已完成 `payment payment-provider-callback Step 4`，補齊 failure / consistency evidence、下游 `billNo` 傳遞與 app_bi repair boundary；目前仍不更新正式履歷 / 自傳。
+- 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
+- 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
 
 ## 下一步
 
-### 1. payment Step 1
+### 1. iwin payment payment-provider-callback Step 5
 
 建議下一步：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
 
-- `app_bi` 主要分析 flow 已完成 Step 5 判定，皆不更新正式履歷 / 自傳。
-- `payment-order-status-repair` 是 app_bi Step 2 最高價值候選，但 app_bi 只看到人工修正入口。
-- 真正 money correctness、callback、訂單狀態機與 wallet side effect 要回到 payment repo。
-- 本步只做 candidate flow 掃描，不更新履歷 / 自傳。
+- `app_bi` 主要 flow 已完成 Step 5 判定，下一步應到 `payment` 補真正 money correctness source of truth。
+- `payment-provider-callback` 已完成 Step 4 evidence 補強，下一步應做 Step 5 claim boundary。
+- 目前仍缺 Nick 本人 MR / ticket / commit / production issue / 本人確認，預期不更新正式履歷，只保留面試分析素材。
 
-### 2. 再做第一條完整後端 flow
+### 2. iwin 各 project 下一步
 
-建議後端主線：
+目前各 project 自己的下一步：
 
-1. `payment-provider-callback`
-2. `transfer-wallet-transfer-in-out`
-3. `bet-settlement`
-4. `settled-bets-kafka`
-5. `observability-pipeline`
+1. `payment`：`iwin payment payment-provider-callback Step 5`
+2. `game_api`：`iwin game_api coupon-redeem-credit-grant Step 5`
+3. `game_job`：`game_job daily-game-data-summary Step 5`
+4. `third_games_api`：`iwin third_games_api gsc-transfer-bet-settle-rollback Step 5`
+5. `iwin_gameserver`：`iwin_gameserver center-http-deposit-withdraw Step 3`
+6. `k3s-deploy`：`iwin k3s-deploy gameserver-phased-rollout Step 5`
+7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，轉 `iwin payment payment-provider-callback Step 5`。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -75,7 +81,7 @@ payment Step 1
 ## 下一個 prompt
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。

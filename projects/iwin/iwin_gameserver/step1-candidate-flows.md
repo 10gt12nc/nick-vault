@@ -54,9 +54,9 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 本次新增 | 新 project 入口 |
-| `projects/iwin/iwin_gameserver/architecture-map.md` | 本次新增 | 最小定位圖，不是單條 flow 報告 |
-| `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 本次新增 | Step 1 主文件 |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 3` |
+| `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
+| `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
 | workspace 跨專案關聯文件 | 可參考 / 需 flow 內再驗證 | 提供 `payment`、`game_api` 與 center_http 關係，但不當成單條 flow evidence 終點 |
 
@@ -66,7 +66,7 @@
 
 原因：
 
-- Nick 只指定 `iwin iwin_gameserver`，目前 vault 尚無此 project，第一步應先找 candidate flows。
+- 本檔是 `iwin_gameserver` Step 1 的歷史盤點；目前 project 已建立，且第一條 `third-party-transfer-in-out` flow 已完成 Step 5。
 - 尚未選定單條 flow，不適合直接 Level 2 深挖。
 - 若要寫成履歷或強 evidence，才需要 Level 3 逐 commit diff 與 Nick 本人 evidence。
 
@@ -156,7 +156,7 @@ source repo 狀態：
 
 中文名稱：第三方遊戲投派整合 / 投注派彩退款
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-建議：Step 2 比較後，優先進 Step 3
+建議：已完成 Step 5，暫不進正式履歷
 
 為什麼重要：
 
@@ -186,7 +186,7 @@ source repo 狀態：
 履歷邊界：
 
 - 目前不可寫 Nick 主導第三方遊戲整合。
-- 可作高價值面試分析素材，等 Step 3 / Step 4 / Nick 本人 evidence 後再討論履歷。
+- 可作高價值面試分析素材；Step 5 已判定沒有 Nick 本人 evidence 前不更新正式履歷。
 
 ### 2. `center-http-deposit-withdraw`
 
@@ -334,7 +334,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-下一步 Step 2 / Step 3 應優先讀：
+下一條候選 `center-http-deposit-withdraw` Step 3 應優先讀：
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpAntplayTransferInOut.java`

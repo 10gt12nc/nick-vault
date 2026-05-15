@@ -84,8 +84,8 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 本輪同步 | 專案定位清楚，本輪更新 Step 2 狀態與下一步 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 需補 remote freshness | Step 1 結構乾淨；本輪 Step 2 補上 fetch 後最新性 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `payment-provider-callback` Step 5 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補 remote freshness 與目前 Step 5 下一步 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |
 
@@ -285,7 +285,7 @@ Senior / Owner 價值：
 
 選 `payment-provider-callback`。
 
-Step 3 建議掃描策略：
+Step 3 / Step 4 已完成；以下掃描策略保留為當時 Step 2 選 flow 後的核對清單：
 
 - 先建立共通 callback 主線：provider callback -> status normalize -> `asynUpdateOrderStatus` -> notify MQ -> `updateUserInfo` -> order / user / behaviour / mail / marquee / cross-month update。
 - 再挑 1-2 個 provider 作代表，不平均掃所有 provider。
@@ -311,39 +311,35 @@ Step 3 暫不做：
 
 ## 本次不更新的內容
 
-- 不建立 `flows/payment-provider-callback/`：Step 2 只做比較，Step 3 才建立單條 flow folder。
+- 不建立新的 flow folder：`flows/payment-provider-callback/` 已存在，下一步只做 Step 5 claim gate。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
 - 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
 
 ## 下一步建議
 
-只推薦一件事：做 `payment-provider-callback` Step 3。
+只推薦一件事：
+
+```text
+iwin payment payment-provider-callback Step 5
+```
 
 為什麼現在做它：
 
-- Step 2 已完成候選比較，callback 是最值得先做的金流主線。
-- Step 3 會開始建立單條 flow 學習包，把 callback 的正常流程、狀態轉移、MQ retry、failure window、idempotency 與面試邊界寫清楚。
+- Step 3 / Step 4 已完成，callback flow 已有主報告與面試素材。
+- Step 5 會做最後 claim gate，確認是否仍不能更新正式履歷 / 自傳。
 
 會產出什麼：
 
-- `projects/iwin/payment/flows/payment-provider-callback/flow.md`
-- `projects/iwin/payment/flows/payment-provider-callback/career-interview.md`
-- `projects/iwin/payment/flows/payment-provider-callback/materials/evidence.md`
-- `projects/iwin/payment/flows/payment-provider-callback/materials/decision-notes.md`
-- `projects/iwin/payment/flows/payment-provider-callback/materials/interview.md`
-- `projects/iwin/payment/flows/payment-provider-callback/materials/claim-boundary.md`
+- 更新 `projects/iwin/payment/flows/payment-provider-callback/materials/claim-boundary.md` 的 Step 5 判定。
+- 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
 - 不更新正式履歷。
-- 只會產出 flow-level 保守面試 / 履歷候選素材，並標 `專案存在 / code-backed`、`分析素材 / learning-only` 或 `待確認`。
+- 目前預期仍不更新正式履歷；只會把可說 / 不可說邊界寫清楚。
 
 是否需要 commit / push：
 
-- 本輪 Step 2 完成後自動 commit。
+- Step 5 完成後自動 commit。
 - 不需要 push，除非 Nick 明確要求。
-
-```text
-iwin payment payment-provider-callback Step 3
-```

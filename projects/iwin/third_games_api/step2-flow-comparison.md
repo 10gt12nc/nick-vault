@@ -7,7 +7,7 @@
 
 ## 本次結論
 
-建議第一條進 Step 3：
+本文件當時選出的第一條 flow：
 
 ```text
 gsc-transfer-bet-settle-rollback
@@ -91,10 +91,10 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 本輪同步 | Step 1 後已乾淨；本輪更新 Step 2 狀態與下一步 |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `gsc-transfer-bet-settle-rollback` Step 5 |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
-| `step2-flow-comparison.md` | 本輪新建 | 比較 Top candidate，選出 Step 3 主線 |
-| `flows/` | 尚未建立 | 符合規則；Step 2 前不建 flow folder |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出 Step 3 主線；目前第一條 flow 已完成 Step 4 |
+| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 已完成，下一步是 Step 5 claim gate |
 
 ## 專案 / module 邊界
 
@@ -133,7 +133,7 @@ gsc-transfer-bet-settle-rollback
 
 | Ranking | Flow | Money correctness | Idempotency / retry | Downstream evidence | Commit history | 面試價值 | 履歷可用性 | 結論 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 待確認 | 第一條 Step 3 |
+| 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 待確認 | 已完成 Step 4，下一步 Step 5 |
 | 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 待確認 | 第二候選 |
 | 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 待確認 | 適合後續做對照 |
 | 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 待確認 | 需先確認 production 使用哪組 endpoint |
@@ -142,7 +142,7 @@ gsc-transfer-bet-settle-rollback
 ## Flow 1：`gsc-transfer-bet-settle-rollback`
 
 中文名稱：GSC transfer 投派整合 / rollback
-建議狀態：第一條進 Step 3
+建議狀態：已完成 Step 4，下一步 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ### 為什麼排第一
@@ -280,9 +280,9 @@ gsc-transfer-bet-settle-rollback
 | `gameList` / `login launch` | provider integration 有價值，但 money / rollback 風險低於 callback |
 | `gsc-pushbet` | 目前看起來偏注單推送 / 驗證，money mutation 與 failure window 不如 transfer |
 
-## Step 3 建議主線
+## Step 3 主線回顧
 
-下一步建立：
+已建立：
 
 ```text
 projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
@@ -311,13 +311,12 @@ Step 3 必須至少補：
 
 已更新：
 
-- `projects/iwin/third_games_api/README.md`：同步 Step 2 已建立與下一步。
-- `projects/iwin/third_games_api/step2-flow-comparison.md`：本輪新建。
+- `projects/iwin/third_games_api/README.md`：同步目前下一步。
+- `projects/iwin/third_games_api/step2-flow-comparison.md`：回補目前 Step 5 下一步。
 
 未更新：
 
-- `senior-owner-playbook/01-senior-owner-flow-inventory.md`：目前 worktree 已有其他 project 的未提交變更；為避免混入本輪 commit，這輪先不動共用 dashboard。Step 3 建立單條 flow 後再同步更合理。
-- `senior-owner-playbook/04-interview-casebook.md`：尚未完成 Step 3 / Step 4，不新增面試案例。
+- `senior-owner-playbook/04-interview-casebook.md`：本輪只校正 iwin 文件狀態，不新增面試案例。
 - `senior-owner-playbook/05-resume-master-zh.md`、`08-application-autobiography-zh.md`：沒有 Nick 本人 evidence，不更新。
 
 ## 下一步建議
@@ -325,11 +324,11 @@ Step 3 必須至少補：
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 3
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：
 
-- Step 2 已完成候選比較，且 `gsc-transfer-bet-settle-rollback` 的交易風險、downstream evidence、面試價值最高。
-- Step 3 會產出單條 flow 學習包；不更新正式履歷 / 自傳。
+- Step 2 / Step 3 / Step 4 已完成，下一步是 Step 5 claim gate。
+- Step 5 會檢查是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

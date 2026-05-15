@@ -381,11 +381,11 @@ Step 4 已整理完整面試稿：
 下一步只推薦一件事：
 
 ```text
-payment Step 1
+iwin payment payment-provider-callback Step 5
 ```
 
 原因：
 
 - `app_bi` 已完成四條主要分析 flow 的 Step 5 判定。
 - `payment-order-status-repair` 在 app_bi 只看到人工修正入口，真正 money correctness 要回到 `/Users/nick/Git/iwin/payment`。
-- 下一步做 `payment Step 1` 會先找金流 repo 的 candidate flows，不會直接把 app_bi 人工入口寫成完整 payment owner。
+- 下一步做 `iwin payment payment-provider-callback Step 5` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工入口寫成完整 payment owner。

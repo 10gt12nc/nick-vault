@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 本次新建 | 專案入口，僅放定位與下一步 |
-| `projects/iwin/game_job/step1-candidate-flows.md` | 本次新建 | Step 1 主文件 |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `daily-game-data-summary Step 5` |
+| `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
-| `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 需同步 | 本次新增 `game_job` Step 1 狀態 |
-| `senior-owner-playbook/06-todo.md` | 需同步 | 下一步應加入 `game_job daily-game-data-summary Step 2` |
+| `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 4 狀態 |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job daily-game-data-summary Step 5` |
 
 ## 掃描等級判斷
 
@@ -174,7 +174,7 @@ source repo 狀態：
 
 中文名稱：每日遊戲資料彙總
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-建議：下一步優先做 Step 2，再決定是否 Step 3 深挖
+建議：已完成 Step 2 / Step 3 / Step 4；目前下一步是 Step 5 claim gate
 
 為什麼重要：
 
@@ -356,11 +356,11 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 2
+game_job daily-game-data-summary Step 5
 ```
 
 原因：
 
 - `daily-game-data-summary` evidence 最厚，且已有 `app_bi daily-game-record-summary` 查詢端可對照。
-- Step 2 可以把 `daily-game-data-summary`、`third-party-record-mongo-backup`、`coin-flow-batch-projection` 放在同一張風險 / 價值比較表，確認第一條 Step 3 要深挖哪個。
-- 不更新履歷 / 自傳；下一步產出是候選排序與深挖範圍，不是正式 claim。
+- Step 2 / Step 3 / Step 4 已完成；目前應進 Step 5，檢查是否更新履歷 / 自傳邊界。
+- Step 5 預期仍不更新正式履歷 / 自傳；下一步產出是 claim boundary 判定，不是新的候選排序。

@@ -43,9 +43,9 @@ coupon-redeem-credit-grant
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用，已小幅同步 | Step 1 後的專案入口乾淨；本輪只把 Step 2 狀態與下一步改成 coupon Step 3 |
+| `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步為 coupon flow 下一步 Step 5 |
 | `step1-candidate-flows.md` | 可沿用 | 已有 Top 5 flow、證據層級、未掃範圍；但 Step 1 發生在新 fetch 規則前，本輪補遠端狀態 |
-| `step2-flow-comparison.md` | 本輪新建 | Step 2 主文件 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前第一條 flow 已完成 Step 4，下一步是 Step 5 |
 
 ## Code Repo 最新狀態
 
