@@ -18,7 +18,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊；建議先深挖 coupon |
-| `flows/coupon-redeem-credit-grant/` | Step 3 已建立 | 已完成優惠券兌換上分 / 打碼要求 Level 2 深掃；只作 code-backed 面試學習素材，不更新正式履歷 |
+| `flows/coupon-redeem-credit-grant/` | Step 3 已建立 / 已依最新 KB 覆核 | 已完成優惠券兌換上分 / 打碼要求 Level 2 深掃；KB 更新後判定可沿用，暫不升 Level 3；只作 code-backed 面試學習素材，不更新正式履歷 |
 
 ## 專案定位
 
