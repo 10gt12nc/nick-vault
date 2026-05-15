@@ -1,8 +1,8 @@
 # iwin app_bi Step 2：候選 Flow 技術點與風險比較
 
-更新時間：2026-05-14
+更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：已依 2026-05-14 Step 1 重整
+狀態：已依 2026-05-15 KB 與 Step 1 再檢查
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次結論
@@ -28,6 +28,8 @@ Step 2 重新排序後，結論分兩層：
 已重讀 vault：
 
 - `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/architecture-map.md`
+- `projects/iwin/app_bi/career-interview.md`
 - `projects/iwin/app_bi/step1-candidate-flows.md`
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/app_bi/flows/point-control-admin-operation/flow.md`
@@ -37,6 +39,7 @@ Step 2 重新排序後，結論分兩層：
 
 - `/Users/nick/Git/iwin/app_bi`
 - 目前分支：`main`
+- 已 fetch remote refs；本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit
 - 遠端分支清單
 - 近期主線 log
 - path-specific log
@@ -62,6 +65,7 @@ Step 2 重新排序後，結論分兩層：
 未重讀 / 未完成：
 
 - 未 checkout 每個遠端分支。
+- 未 pull / rebase / merge 公司 repo；本次只讀本地 working tree 與 remote refs 狀態。
 - 未逐 commit diff。
 - 未掃下游 repo：`payment`、`game_api`、`game_job`、`iwin_gameserver`、`third_games_api`。
 - 未確認 Nick 個人 MR / ticket / commit。
@@ -71,6 +75,8 @@ Step 2 重新排序後，結論分兩層：
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
 | `README.md` | 可沿用 | 已同步 Step 2 結論與下一步建議 |
+| `architecture-map.md` | 已補齊 | project-level 定位地圖，避免只看 flow 時迷路 |
+| `career-interview.md` | 已補齊 | project-level 保守面試素材，明確不更新正式履歷 |
 | `step1-candidate-flows.md` | 可沿用 | 已有掃描範圍、證據層級、候選 flow |
 | `step2-flow-comparison.md` | 本次已重整 | 舊版 ranking 以 `point-control` 為首，已改成價值排序 / 下一步排序分開 |
 | `flows/point-control-admin-operation/*` | 新版結構 / 已完成 Step 5 | 不更新履歷 / 自傳；保留為面試分析素材 |
