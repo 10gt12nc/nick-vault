@@ -9,15 +9,17 @@
 ## 讀檔順序
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
-2. 未來若選定單條 flow，再讀 `flows/{flow-name}/flow.md`。
-3. 單條 flow 的保守面試 / 履歷素材放 `flows/{flow-name}/career-interview.md`。
-4. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
+2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 價值與風險比較。
+3. 未來若選定單條 flow，再讀 `flows/{flow-name}/flow.md`。
+4. 單條 flow 的保守面試 / 履歷素材放 `flows/{flow-name}/career-interview.md`。
+5. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
 
 ## 目前狀態
 
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
-| `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows；尚未建立單條 flow folder |
+| `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
+| `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；尚未建立單條 flow folder |
 
 ## 專案定位
 
@@ -59,11 +61,11 @@
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 2
+game_job daily-game-data-summary Step 3
 ```
 
 原因：
 
-- `game_job` Step 1 已找出多條候選 flow。
-- `daily-game-data-summary` 有最多 path-specific history、明確時區修正與資料重跑 / 刪除 / 備份邊界，最值得進 Step 2 排序後確認是否作為第一條深挖 flow。
-- 下一步仍不更新正式履歷 / 自傳；先產出 candidate comparison 與更清楚的單條 flow 選擇理由。
+- `game_job` Step 1 / Step 2 已完成。
+- `daily-game-data-summary` 已在 Step 2 被選為第一條最值得深挖的 flow。
+- 下一步才建立單條 flow folder；仍不更新正式履歷 / 自傳。
