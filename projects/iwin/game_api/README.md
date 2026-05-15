@@ -18,7 +18,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊；建議先深挖 coupon |
-| `flows/coupon-redeem-credit-grant/` | Step 3 已建立 / 已依最新 KB 覆核 | 已完成優惠券兌換上分 / 打碼要求 Level 2 深掃；KB 更新後判定可沿用，暫不升 Level 3；只作 code-backed 面試學習素材，不更新正式履歷 |
+| `flows/coupon-redeem-credit-grant/` | Step 4 已建立 / 已依最新 KB 覆核 | 已完成優惠券兌換上分 / 打碼要求 Level 2 深掃，並轉成保守面試案例；KB 更新後判定可沿用，暫不升 Level 3；只作 code-backed 面試學習素材，不更新正式履歷 |
 
 ## 專案定位
 
@@ -61,11 +61,11 @@
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 4
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 原因：
 
-- Step 3 已建立單條 flow 學習包。
-- 這條 flow 的 failure window、idempotency、下游 GM command 與 claim boundary 已可支撐一個保守面試案例。
-- 下一步應把它整理成 Step 4 面試案例；不更新正式履歷，完成後依規則自動 commit。
+- Step 4 已把這條 flow 收斂成保守面試案例。
+- 下一步才檢查是否能形成履歷 / 自傳安全 claim。
+- 目前仍缺 Nick 本人 MR / ticket / commit / production issue / 本人確認，Step 5 很可能結論是「暫不更新正式履歷，只保留面試分析素材」。

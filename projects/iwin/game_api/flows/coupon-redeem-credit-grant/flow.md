@@ -2,6 +2,7 @@
 
 更新時間：2026-05-15
 Step：3
+完成狀態：Step 4 已補面試案例
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -212,6 +213,12 @@ sequenceDiagram
 
 詳細面試素材見 [career-interview.md](career-interview.md)。
 
-## 下一步
+## Step 4 狀態與下一步
 
-Step 3 已完成後，下一步最值得做 Step 4：把這條 flow 轉成保守的面試案例，重點放在「跨系統 side effect 的一致性與 idempotency 設計」，不更新正式履歷。
+Step 4 已完成：已把這條 flow 轉成保守面試案例，重點放在「跨系統 side effect 的一致性與 idempotency 設計」。本輪不更新正式履歷。
+
+下一步最值得做 Step 5：檢查是否能形成履歷 / 自傳安全 claim。以目前 evidence 來看，預期仍會判定不更新正式履歷，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
+
+```text
+iwin game_api coupon-redeem-credit-grant Step 5
+```
