@@ -80,11 +80,11 @@
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因：
 
 - `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - 依 KB，一條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` 是下一條值得做的 app_bi flow，但 Step 3 必須補 log writer / 後端 evidence，不能只停在後台查詢端。
+- `game-round-record-query` Step 3 已完成，下一步可轉 Step 4 保守面試 case。

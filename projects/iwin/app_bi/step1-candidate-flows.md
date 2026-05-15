@@ -15,7 +15,7 @@
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；不更新履歷 / 自傳，目前仍只確認到 `app_bi` 發送端。
 3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
 4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，已完成 Step 5；不更新正式履歷 / 自傳。
-5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
+5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，Step 3 已完成；已補 app_bi 查詢端與 iwin_gameserver log writer 線索，下一步 Step 4。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，所有候選 flow 都只當 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -439,7 +439,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因：
@@ -448,5 +448,5 @@ app_bi game-round-record-query Step 3
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- 依 KB 回到同 project candidate ranking。
-- `game-round-record-query` 可作 troubleshooting case，但 Step 3 必須補 log writer / source repo evidence，不可只靠 app_bi 查詢端。
+- `game-round-record-query` Step 3 已完成，已補 app_bi 查詢端與 iwin_gameserver log writer 線索。
+- 依 KB，Step 3 乾淨後下一步是 Step 4，不自行創造其他任務。

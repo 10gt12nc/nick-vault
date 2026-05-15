@@ -91,12 +91,12 @@ Step 4 面試稿可以聚焦:
 
 ## Step 5 後下一步
 
-目前回到 `app_bi` candidate ranking 後，下一步已收斂到 `game-round-record-query Step 3`。
+目前回到 `app_bi` candidate ranking 後，下一步已收斂到 `game-round-record-query Step 4`。
 
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因：
@@ -104,4 +104,4 @@ app_bi game-round-record-query Step 3
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- 依 KB 回到同 project candidate ranking，下一條做 `game-round-record-query Step 3`。
+- 依 KB 回到同 project candidate ranking，下一步做 `game-round-record-query Step 4`。

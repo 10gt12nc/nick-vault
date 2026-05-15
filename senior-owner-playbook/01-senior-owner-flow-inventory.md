@@ -37,14 +37,14 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | 未開始 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi game-round-record-query Step 3` |
+| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi game-round-record-query Step 4` |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因:
@@ -53,8 +53,8 @@ app_bi game-round-record-query Step 3
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- 依 KB，單條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` 可作玩家申訴 / 牌局查詢 / troubleshooting 素材，但 Step 3 要先補 log writer / 後端 evidence。
+- `game-round-record-query` Step 3 已完成，已確認 app_bi 查詢端與 iwin_gameserver log writer 線索。
+- 依 KB，Step 3 乾淨後下一步是 Step 4。
 
 ## 近期候選 Queue
 

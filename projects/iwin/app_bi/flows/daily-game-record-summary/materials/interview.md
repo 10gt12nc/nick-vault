@@ -232,7 +232,7 @@ Step 5 已完成履歷 / 自傳更新判定：不更新正式履歷 / 自傳。
 下一步只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因：

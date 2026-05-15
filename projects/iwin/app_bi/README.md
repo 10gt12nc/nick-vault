@@ -21,6 +21,7 @@
 | `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/daily-game-record-summary/` | Step 5，新版可讀結構 | 已確認 app_bi 查詢端與 game_job producer；已轉保守面試 case；已判定不更新正式履歷 |
+| `flows/game-round-record-query/` | Step 3，新版可讀結構 | 已確認 app_bi 查詢端與 iwin_gameserver log writer 線索；目前只作 troubleshooting 分析素材，不更新履歷 |
 
 ## 專案定位
 
@@ -60,7 +61,7 @@
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 3
+app_bi game-round-record-query Step 4
 ```
 
 原因：
@@ -69,5 +70,5 @@ app_bi game-round-record-query Step 3
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
-- 依 KB，一條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` 是下一條 app_bi 內值得做的 troubleshooting flow；Step 3 需補 log writer / 下游 evidence。
+- `game-round-record-query` Step 3 已完成，已補 app_bi 查詢端與 iwin_gameserver log writer 線索。
+- 依 KB，Step 3 乾淨後下一步是 Step 4，不自行創造其他任務。
