@@ -28,10 +28,11 @@ Owner 問題：
 - controller 入口終態 guard。
 - consumer 端二次終態 guard。
 - 提現失敗退款分支的 retry 防護。
+- payment 會把 `billNo` 當 `billNos` 傳到 game lobby / center，下游會帶入玩家餘額異動與 currency log。
 
 缺口：
 
-- 下游 wallet API 是否 idempotent 未確認。
+- 下游 wallet API 是否真的以 `billNo` 查重或 unique key 去重未確認。
 - callback event 是否有 inbox 去重未確認。
 - 本地 DB update 與外部 HTTP 不在同一個 transaction。
 
@@ -54,7 +55,7 @@ Owner 延伸：
 
 - 要能 audit「退款是否真的成功」。
 - 要有人工處理清單，而不是只靠 log。
-- 要確認下游 `billNos` 是否可查詢 / 去重。
+- 要確認下游 `billNos` 是否可查詢 / 去重；目前只確認有帶入 currency log，不能當成已去重。
 
 ## 4. Provider Adapter 與共用狀態機
 
@@ -88,12 +89,20 @@ callback flow 不應只靠 callback 成功。
 
 - provider 查單 endpoint 的結果是否會回寫本地。
 - 是否有定時對帳 job。
-- 是否有手動補單 / repair workflow。
+- 是否有手動補單 / repair workflow；app_bi local HEAD 有 `bill_no` + 月表的狀態修復入口，但本機落後遠端 4 commits，需再確認最新行為。
 - callback accepted but MQ failed 的案件如何被發現。
 - DB / log / provider statement 如何對帳。
 
-## 6. 面試取捨說法
+## 6. Step 4 Owner 補充
+
+Step 4 補到三個新的 owner 判斷：
+
+- `billNo` 是 cross-system correlation key，但不是自動等於 idempotency。只有當下游查重、唯一鍵或可重放 reconciliation 能證明時，才可說 wallet API idempotent。
+- `payment_order` 是月表動態 routing；沒有 DB schema evidence 前，`bill_no` unique key 與跨月唯一性都要保留待確認。
+- repair workflow 可以存在於 app_bi，但後台修狀態本身不是 reconciliation。owner 還要問：修狀態前是否能證明 provider / wallet / payment 三邊哪一邊是 source of truth。
+
+## 7. 面試取捨說法
 
 保守說法：
 
-> 這類金流 callback 我不會追求單一大 transaction，而是拆成可驗證 callback、durable event、idempotent consumer、下游 wallet idempotency、reconciliation 與人工補償。現有 code 有終態 guard 與 MQ retry，但 outbox / inbox、下游 idempotency、對帳 evidence 還需要補齊。
+> 這類金流 callback 我不會追求單一大 transaction，而是拆成可驗證 callback、durable event、idempotent consumer、下游 wallet idempotency、reconciliation 與人工補償。現有 code 有終態 guard、MQ retry、`billNo` cross-system trace 與退款 retry 防護，但 outbox / inbox、下游強制去重、DB unique key 與對帳 evidence 還需要補齊。
