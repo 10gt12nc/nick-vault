@@ -7,7 +7,7 @@
 ## 讀檔順序
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
-2. 待建立：`step2-flow-comparison.md`：Step 2 候選 flow 風險與價值比較。
+2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. 待建立：`flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
 4. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
 5. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
@@ -17,7 +17,7 @@
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
-| `step2-flow-comparison.md` | 待建立 | 建議下一步先比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊 |
+| `step2-flow-comparison.md` | 已建立 | 已比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊；建議先深挖 coupon |
 | `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
 
 ## 專案定位
@@ -61,11 +61,11 @@
 只推薦一件事：
 
 ```text
-iwin game_api Step 2
+iwin game_api coupon-redeem-credit-grant Step 3
 ```
 
 原因：
 
-- Step 1 已先定位 Top 5 candidate flows。
-- `game_api` money-related 候選很多，直接深挖前應先用 Step 2 比較風險、evidence 強度與履歷可轉換性。
-- Step 2 不更新正式履歷，可能建立 `step2-flow-comparison.md`，不需要 push；完成後依規則自動 commit。
+- Step 2 已比較候選 flow。
+- `coupon-redeem-credit-grant` 同時有 money correctness、近期 main commit、`k3s` branch 安全性修正與明確 failure window。
+- 下一步應建立單條 flow 學習包；不更新正式履歷，完成後依規則自動 commit。
