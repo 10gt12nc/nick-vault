@@ -10,9 +10,9 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-3. 待建立：`flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-4. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-5. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+3. [flows/payment-provider-callback/flow.md](flows/payment-provider-callback/flow.md)：Step 3 第一條 flow 主研究報告。
+4. [flows/payment-provider-callback/career-interview.md](flows/payment-provider-callback/career-interview.md)：該 flow 的保守面試 / 履歷素材。
+5. [flows/payment-provider-callback/materials/evidence.md](flows/payment-provider-callback/materials/evidence.md)：證據、技術決策、詳細面試稿與 claim 邊界附錄入口。
 
 ## 目前狀態
 
@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
-| `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
+| `flows/payment-provider-callback/` | Step 3 初版 | Level 2 深掃 provider callback；已建立主報告、面試素材與 evidence / decision / claim 邊界附錄 |
 
 ## 專案定位
 
@@ -65,11 +65,11 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 3
+iwin payment payment-provider-callback Step 4
 ```
 
 原因：
 
-- Step 2 已完成候選比較。
-- `payment-provider-callback` 最能代表金流 callback、訂單狀態、MQ retry、玩家上下分 / 退款與人工補償邊界。
-- Step 3 會建立單條 flow 學習包；不更新正式履歷，除非之後補到 Nick 本人 evidence。
+- Step 3 已建立單條 flow 學習包。
+- Step 4 最值得補 failure / consistency evidence：DB unique key、game lobby `billNos` idempotency、對帳 / 補單 flow、代表 bugfix commit diff。
+- 仍不更新正式履歷，除非補到 Nick 本人 evidence。
