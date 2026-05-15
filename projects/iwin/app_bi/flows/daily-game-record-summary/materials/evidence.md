@@ -1,7 +1,7 @@
 # Evidence - app_bi daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 3 已完成
+完成狀態：Step 3 evidence 已完成；Step 4 已重讀並補充面試素材
 文件角色：`materials/evidence.md` 證據附錄
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -28,6 +28,41 @@
 - `/Users/nick/Git/iwin/app_bi`
 - `/Users/nick/Git/iwin/game_job`
 - `/Users/nick/Git/iwin/iwin-workspace` 的 SQL dump 只作 schema 參考
+
+## Step 4 補掃紀錄
+
+本次 Step 4 為面試 case 轉換，不改正式履歷 / 自傳。
+
+已補重讀：
+
+- 本 flow 的 `flow.md`
+- 本 flow 的 `career-interview.md`
+- 本 flow 的 `materials/evidence.md`
+- 本 flow 的 `materials/decision-notes.md`
+- 本 flow 的 `materials/interview.md`
+- 本 flow 的 `materials/claim-boundary.md`
+- `projects/iwin/app_bi/README.md`
+- `projects/iwin/app_bi/step1-candidate-flows.md`
+- `projects/iwin/app_bi/step2-flow-comparison.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/04-interview-casebook.md`
+- `senior-owner-playbook/06-todo.md`
+
+已補確認 code 狀態：
+
+- `/Users/nick/Git/iwin/app_bi` 目前分支：`main`
+- `/Users/nick/Git/iwin/app_bi` 工作區：乾淨
+- `/Users/nick/Git/iwin/app_bi` 近期 log 與 `Payment.php`、`public/views/jjsj/mrucsjhz/**` path-specific log
+- `/Users/nick/Git/iwin/game_job` 目前分支：`main`
+- `/Users/nick/Git/iwin/game_job` 工作區：乾淨
+- `/Users/nick/Git/iwin/game_job` 近期 log 與 daily summary job / mapper path-specific log
+
+Step 4 邊界：
+
+- 未 checkout 每個遠端分支逐一比對。
+- 未逐 commit diff。
+- 未補到 Nick 本人 MR / ticket / production issue。
+- 因此本 flow 只能轉成保守面試 case，不更新正式履歷 / 自傳。
 
 ## Branch / log
 

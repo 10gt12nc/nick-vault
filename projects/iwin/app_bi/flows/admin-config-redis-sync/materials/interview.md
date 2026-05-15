@@ -186,11 +186,12 @@ Step 5 已完成履歷 / 自傳更新判定：
 下一步只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 4
+app_bi daily-game-record-summary Step 5
 ```
 
 原因：
 
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
-- `daily-game-record-summary` Step 3 已完成，下一步應轉成保守面試 case。
+- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
+- 下一步應做 Step 5，判定是否更新正式履歷 / 自傳。

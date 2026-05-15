@@ -36,14 +36,14 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 3 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi daily-game-record-summary Step 4` |
+| iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi daily-game-record-summary Step 5` |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-app_bi daily-game-record-summary Step 4
+app_bi daily-game-record-summary Step 5
 ```
 
 原因:
@@ -51,8 +51,8 @@ app_bi daily-game-record-summary Step 4
 - `app_bi` Step 1 / Step 2 已於 2026-05-14 重整乾淨。
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` Step 3 已確認 app_bi 查詢端與 game_job producer。
-- 預期仍不更新正式履歷；先轉成保守面試 case。
+- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
+- 預期仍不更新正式履歷；下一步只做 Step 5 判定。
 
 ## 近期候選 Queue
 

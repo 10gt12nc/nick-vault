@@ -169,12 +169,13 @@
 下一步回到同 project candidate ranking，只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 4
+app_bi daily-game-record-summary Step 5
 ```
 
 原因：
 
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
-- `daily-game-record-summary` Step 3 已完成，下一步應轉成保守面試 case。
+- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
+- 下一步應做 Step 5，判定是否更新正式履歷 / 自傳。
 - 它目前仍只作報表 / projection 分析素材，不更新履歷。

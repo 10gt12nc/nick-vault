@@ -14,7 +14,7 @@
 1. `payment-order-status-repair`：金流訂單人工修正入口，價值最高，但必須轉去 `payment` repo 補 source of truth。
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；不更新履歷 / 自傳，目前仍只確認到 `app_bi` 發送端。
 3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
-4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，已完成 Step 3；下一步 Step 4。
+4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，已完成 Step 4；下一步 Step 5。
 5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，需補 log writer。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，所有候選 flow 都只當 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
@@ -270,7 +270,7 @@ source repo 狀態：
 
 中文名稱：每日遊戲資料彙總 / RTP 查詢
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-狀態：已完成 Step 3；下一步 Step 4
+狀態：已完成 Step 4；下一步 Step 5
 
 為什麼重要：
 
@@ -439,7 +439,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 4
+app_bi daily-game-record-summary Step 5
 ```
 
 原因：
@@ -447,5 +447,5 @@ app_bi daily-game-record-summary Step 4
 - Step 1 / Step 2 已重整。
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
-- `daily-game-record-summary` Step 3 已確認 app_bi 查詢端與 game_job producer。
-- 下一步轉成保守面試 case；不更新履歷。
+- `daily-game-record-summary` Step 4 已完成，已轉成保守面試 case。
+- 下一步做 Step 5，保守判定是否需要更新履歷 / 自傳；目前預期仍不更新正式履歷。

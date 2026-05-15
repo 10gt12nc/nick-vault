@@ -1,7 +1,7 @@
 # app_bi - daily-game-record-summary
 
 更新時間：2026-05-15
-完成狀態：Step 3 已完成；Step 4 / Step 5 尚未完成
+完成狀態：Step 4 已完成；Step 5 尚未完成
 文件角色：`flow.md` 主研究報告
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -10,7 +10,7 @@
 
 - Flow 中文名稱：每日遊戲資料彙總 / 報表查詢
 - Flow slug：`daily-game-record-summary`
-- 完成狀態：Step 3 已完成
+- 完成狀態：Step 4 已完成
 - 證據層級：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
 - 本 flow 類型：BI 報表查詢 / 每日批次彙總 projection / 後台查詢入口
 - 是否只確認到入口：不只入口；已確認 `app_bi` 查詢端，也補讀 `game_job` producer，但未確認 Nick 本人開發痕跡
@@ -238,18 +238,18 @@ transaction boundary 目前看起來分散在多次 delete / insert / select / i
 - Nick 改善報表效能或資料準確率。
 - Nick 是這條報表的 owner。
 
-Step 4 才會正式整理面試 case；Step 5 才會判斷是否更新正式履歷 / 自傳。目前不更新。
+Step 4 已整理成保守面試 case；Step 5 才會判斷是否更新正式履歷 / 自傳。目前不更新。
 
 ## 14. 下一步建議
 
 只推薦一件事：
 
 ```text
-app_bi daily-game-record-summary Step 4
+app_bi daily-game-record-summary Step 5
 ```
 
 原因：
 
-- Step 3 已經確認 app_bi 查詢端與 game_job producer。
-- 下一步應把這條轉成保守面試 case，練習「報表 projection / 批次一致性 / 補跑風險」怎麼講。
-- 不更新正式履歷；Step 4 只產出面試素材。
+- Step 4 已把這條轉成保守面試 case。
+- 下一步只判斷是否更新正式履歷 / 自傳。
+- 目前預期仍不更新；除非補到 Nick 本人 MR / ticket / commit / production issue / 本人確認。

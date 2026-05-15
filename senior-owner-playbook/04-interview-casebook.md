@@ -111,6 +111,32 @@ Transfer wallet 的核心是半完成狀態。轉出成功、轉入失敗、prov
 - log pipeline 要能支援 incident RCA。
 - 服務上線前要知道依賴與 failure blast radius。
 
+## 案例 6：報表 projection / 批次彙總可信度
+
+對應 flow：
+
+- `app_bi/daily-game-record-summary`
+
+面試主軸：
+
+後台報表不是 source of truth。每日遊戲資料彙總表面上是 app_bi 查詢頁，實際要追到 game_job producer、來源戰績日表、projection table、summary row 與後台 pivot 查詢。Senior 要能分清楚原始交易 / 遊戲紀錄、批次產物、報表展示與營運判讀之間的邊界。
+
+可講重點：
+
+- 報表 table 多半是 projection，不應直接當交易真相。
+- 批次 job 要能判斷日期切分、時區、重跑與半成品風險。
+- summary 查詢要看 group by / pivot / 金額單位是否一致。
+- 留存、活躍、新增玩家這類指標通常有成熟度與延遲問題。
+- 報表異常排查要先回到 producer log、source table 與產生時間。
+
+Lead / Architect 追問：
+
+- 如果 job 跑一半失敗，後台會看到什麼？
+- 如果時區切錯一天，怎麼發現與修正？
+- 報表補跑會不會覆蓋人工修正或造成重複統計？
+- 報表 table 需要 batch id / generated_at / source range 嗎？
+- 營運看到數字異常時，第一個排查入口應該是哪裡？
+
 ## 面試回答公式
 
 ```text
@@ -120,4 +146,3 @@ Transfer wallet 的核心是半完成狀態。轉出成功、轉入失敗、prov
 再說我會優先處理哪個 owner decision。
 最後說我不會誇大的邊界，以及下一步要補的 evidence。
 ```
-
