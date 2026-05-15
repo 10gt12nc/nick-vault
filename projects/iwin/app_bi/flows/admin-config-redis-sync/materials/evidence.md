@@ -8,6 +8,15 @@
 
 ## Step 5 補掃紀錄
 
+## 2026-05-15 KB 補查
+
+依最新 KB 補確認 source repo 遠端狀態：
+
+- `/Users/nick/Git/iwin/app_bi` 已 fetch。
+- 本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit。
+- 本輪未 pull、未 checkout、未改公司 repo。
+- 因此本 evidence 可作已讀素材；若要升級 claim 或重做 app_bi flow，需先確認是否更新本地 app_bi 工作樹或改讀遠端 diff。
+
 本次 Step 5 只判斷是否更新履歷 / 自傳，不重新深挖下游 code。
 
 已補讀：
