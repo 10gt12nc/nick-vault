@@ -9,7 +9,7 @@
 ## 讀檔順序
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
-2. 待建立：`step2-flow-comparison.md`：Step 2 候選 flow 風險與價值比較。
+2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. 待建立：`flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
 4. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
 5. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
@@ -19,7 +19,7 @@
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
-| `step2-flow-comparison.md` | 待建立 | 建議下一步比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單 |
+| `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
 | `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
 
 ## 專案定位
@@ -65,11 +65,11 @@
 只推薦一件事：
 
 ```text
-iwin payment Step 2
+iwin payment payment-provider-callback Step 3
 ```
 
 原因：
 
-- Step 1 已定位 Top 5 candidate flows。
-- `payment` 的候選都碰 money correctness，但最佳第一條需要先比較 evidence 強度、Nick 參與可能性、面試可轉換性與下游待確認成本。
-- Step 2 不更新正式履歷，可能建立 `step2-flow-comparison.md`，不需要 push；完成後依規則自動 commit。
+- Step 2 已完成候選比較。
+- `payment-provider-callback` 最能代表金流 callback、訂單狀態、MQ retry、玩家上下分 / 退款與人工補償邊界。
+- Step 3 會建立單條 flow 學習包；不更新正式履歷，除非之後補到 Nick 本人 evidence。
