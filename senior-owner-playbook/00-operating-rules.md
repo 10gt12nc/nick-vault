@@ -28,7 +28,7 @@ AI 需要自動維護：
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 - 自動確認 `flow.md` 是否有初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明。沒有這一層時，不能只補 Senior / Owner 風險分析就算完成。
 - 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；若本輪需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不得只停在本地文字回報。
-- 多個 Codex / AI session 同時維護本 repo 時，預設以 project / submodule 為單位使用獨立 branch + 獨立 `git worktree`，避免共用 `main` 的 working tree 與 staging area；同一 project / submodule 若有並行改檔或 commit，再拆更細 task branch。
+- 多個 Codex / AI session 同時開著時，日常模式仍預設只在 `main` 開發，且同一時間只允許一個 session 具備改檔 / stage / commit 權限；其他 session 只能只讀。只有 Nick 明確需要並行整理不同 project / submodule，且每個 session 有獨立 worktree 時，才使用 project / submodule branch。
 
 但「自動維護」不能改變 Step 主線。
 
