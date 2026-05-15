@@ -11,6 +11,7 @@
 - 每次只跑一個 step。
 - 每次只完成一條 flow。
 - 每次 Step 開始前，AI 必須自動重讀 KB、該 project 既有文件與相關 code 最新狀態；Nick 不需要每次提醒。
+- 每次掃公司 / 來源 code repo 前，AI 必須先 `git fetch --all --prune` 或用等效方式確認 remote refs 最新，並記錄 local HEAD、remote HEAD、是否 ahead / behind；不得自動 `pull`、merge、checkout、rebase 或改公司 repo 工作樹。
 - 每次重讀後，AI 必須自己檢查舊 Step / 舊 flow 文件是否符合目前 KB；若不符合，要主動建議重整或直接補 evidence，不能等 Nick 追問。
 - 不確定就標示「已確認 / 推測 / 待確認」。
 - 只輸出整理後的新內容，不複製舊檔。
@@ -19,6 +20,7 @@
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
+- 每次 Step 也要寫清楚 code repo 遠端最新性：是否已 fetch、local HEAD、remote HEAD、是否 ahead / behind；若未 fetch 或本機落後遠端，必須標示「未確認最新 code」。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
@@ -49,6 +51,7 @@
 規則：
 - 只能動 nick-vault。
 - 公司專案只能讀，不能改。
+- 掃公司 code 前先 fetch remote refs 確認最新性；只允許更新 remote refs，不自動 pull / merge / checkout / rebase 或改公司 repo 工作樹。
 - archive/ 只能當參考來源。
 - 每次 Step / flow 任務開始前，請自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不要等 Nick 說「重讀」。
 - 新內容要重新整理、去重、結合、優化，不要複製舊檔。
@@ -87,7 +90,9 @@ Vault:
 - 若既有 flow 是舊平鋪格式，也要讀同層 `evidence.md` / `interview.md` / `claim-boundary.md` / `decision-notes.md`，並標註待遷移
 
 Code repo:
+- 是否已 fetch remote refs
 - 目前 branch
+- local HEAD / remote HEAD / ahead-behind 狀態
 - 遠端 / 近期 branch 清單
 - 近期 git log
 - path-specific git log

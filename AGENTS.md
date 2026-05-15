@@ -47,6 +47,7 @@
 - 每次只做一條 flow。
 - 每次 Nick 下 `project stepN`、`某 flow Step N`、`下一步`、`繼續` 時，AI 必須自動重讀本 vault KB、既有專案文件與相關 code 最新狀態，不需要 Nick 另外提醒「重讀 KB / 重讀 code」。
 - 自動重讀至少包含：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、該 project 既有 README / Step 文件 / flow 文件、相關 code repo 的 branch / log / 關鍵入口。
+- 掃公司 / 來源 code repo 前，必須先確認遠端 refs 是否最新：預設執行 `git fetch --all --prune` 或等效方式更新 remote refs，然後記錄 local HEAD、`origin/{branch}` HEAD、是否 ahead / behind。公司 repo 只能讀，不得自動 `pull`、merge、checkout、rebase 或改工作樹；若本機落後遠端，要標示「本機未更新 / 待 Nick 確認」，除非 Nick 明確同意才更新工作樹。
 - 自動重讀後，AI 必須主動檢查既有 Step / flow 文件是否是舊規則、舊格式、舊 evidence 或不符合目前 KB；如果發現不一致，要先標出「需重整 / 需補 evidence / 可沿用」，不能等 Nick 追問。
 - 如果既有 Step 已存在但品質不足，下一步建議必須優先指向「重整既有 Step」或「補齊舊文件邊界」，而不是直接跳到下一個 Step。
 - 每次產出或更新後，AI 也要自動維護對應共用索引 / 規則 / project README / Step 文件的連動關係；如果判斷不該更新，需簡短說明原因。
@@ -67,6 +68,7 @@
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
 - 每次 Step 都要在 `materials/evidence.md` 或舊格式對應 evidence 文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。
+- 每次 Step 的掃描範圍也要寫清楚 code repo 遠端狀態：是否已 fetch、local HEAD、remote HEAD、是否 ahead / behind；若未 fetch 或本機落後遠端，必須標為未確認，不可宣稱已看最新 code。
 - 如果沒有掃其他分支、沒有看到下游 code、或只看到後台 / 前端操作面，必須明確標成「未掃 / 待確認 / 只作關聯入口」，不能自行補成完整後端 flow。
 - 後台、前端、BI、admin 類專案若不是 Nick 主開發，只能作為理解入口與對接 flow；履歷自傳應簡單帶過，不得硬包裝成主導後台或完整系統 owner。
 - 沒有實際 evidence 的技術點可以寫「略」、「不展開」、「建議補讀外部文章 / 官方文件」，不要為了湊滿格式而腦補。

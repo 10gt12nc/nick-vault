@@ -16,6 +16,8 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
 - 重讀 `senior-owner-playbook/03-flow-learning-package-template.md`。
 - 重讀該 project 既有 `README.md`、Step 文件、flow 文件。
 - 重讀相關 code repo 的 branch、log、path-specific log 與主要入口。
+- 掃公司 / 來源 code repo 前先 `git fetch --all --prune` 或用等效方式更新 remote refs，並記錄 local HEAD、remote HEAD、是否 ahead / behind。
+- 公司 / 來源 code repo 只能讀；不得自動 `pull`、merge、checkout、rebase 或改工作樹。若本機落後遠端，標示「本機未更新 / 待 Nick 確認」。
 - 判斷本次是 Level 1 / Level 2 / Level 3。
 - 寫清楚已掃、未掃、待確認。
 
