@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：第一條深挖，下一步做 Step 3
+建議：已完成 Step 4，下一步做 Step 5 履歷 / 自傳邊界判定
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ### 已確認
@@ -186,7 +186,7 @@ coupon-redeem-credit-grant
 
 中。
 
-Step 3 需要補讀：
+Step 3 已補讀：
 
 - `GmIntfcComponent`
 - `GMCommandNames.GM_CMD_DEPOSIT`
@@ -205,12 +205,20 @@ Step 3 需要補讀：
 
 ### 結論
 
-第一順位。它最適合做 `game_api` 第一份完整 flow 學習包。
+第一順位。它已完成 `game_api` 第一份完整 flow 學習包與保守面試案例。
+
+Step 4 已完成：
+
+- `flows/coupon-redeem-credit-grant/career-interview.md`
+- `flows/coupon-redeem-credit-grant/materials/interview.md`
+- `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
+
+下一步是 Step 5：判定是否能形成履歷 / 自傳安全 claim。目前仍缺 Nick 本人 evidence，預期不更新正式履歷。
 
 ## 2. `partner-deposit-withdraw-bill`
 
 中文名稱：Partner API 上分 / 下分 / 查單
-建議：第二順位；coupon Step 3 後再做
+建議：第二順位；coupon Step 5 收斂後再做
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ### 已確認
@@ -471,30 +479,27 @@ Step 3 需要補讀：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 3
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 為什麼現在做它：
 
-- Step 1 / Step 2 已完成，候選排序乾淨。
-- coupon 是目前最適合立刻深挖的單條 production flow。
-- `origin/k3s` 已提供重要併發防護線索，Step 3 可以直接比較 main 與 k3s 差異。
+- Step 4 已把 coupon flow 收斂成保守面試案例。
+- 同一條 flow 還沒完成 Step 5，依 KB 不應直接跳新 flow。
+- Step 5 只做履歷 / 自傳 claim 邊界判定，不預設更新正式履歷。
 
 會產出什麼：
 
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/flow.md`
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/career-interview.md`
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/materials/evidence.md`
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/materials/decision-notes.md`
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/materials/interview.md`
-- `projects/iwin/game_api/flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
+- 更新 `materials/claim-boundary.md` 的 Step 5 判定。
+- 如 evidence 不足，明確標示不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- 同步 README / inventory 下一步。
 
 是否更新履歷：
 
-- 不更新正式履歷 / 自傳。
-- 只建立保守面試素材與 claim boundary。
+- 只有補到 Nick 本人 MR / ticket / commit / production issue / 本人確認才考慮。
+- 目前預期不更新正式履歷 / 自傳。
 
 是否需要 commit / push：
 
-- Step 3 完成後需要 commit。
-- 不需要 push，除非 Nick 明確要求。
+- Step 5 完成後需要 commit。
+- 是否 push 依 Nick 指示；若需要，AI 直接執行 `git push` 觸發 approval。

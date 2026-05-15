@@ -2,8 +2,20 @@
 
 更新時間：2026-05-15
 Step：3
-掃描等級：Level 2 Flow 深掃
+掃描等級：Level 2 Flow 深掃；Step 4 面試收斂
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 4 更新摘要
+
+2026-05-15 Step 4 已將 Step 3 的 code-backed flow 收斂成面試案例，主要更新：
+
+- `career-interview.md`：重寫為 Step 4 面試案例，補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官與 Step 5 待補。
+- `materials/interview.md`：補 Step 4 前檢查、一句話版本、深講版、Senior 追問、Lead / Architect 追問與 Step 4 結論。
+- `materials/claim-boundary.md`：補 Step 4 面試可說 / 不可說邊界。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
+- `senior-owner-playbook/04-interview-casebook.md`、`01-senior-owner-flow-inventory.md`：同步新增 / 更新此 flow 的面試案例索引。
+
+Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 
 ## 自動重讀紀錄
 
@@ -25,10 +37,10 @@ Step：3
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 需同步 | Step 3 完成後需更新 flow 入口 |
+| `README.md` | 已同步 | Step 4 完成後已更新 flow 狀態與下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 候選 flow 盤點仍成立 |
-| `step2-flow-comparison.md` | 可沿用 | 已正確指向本 flow Step 3 |
-| `flows/coupon-redeem-credit-grant/` | 本輪新建 | 使用新 flow package 結構 |
+| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 4，下一步指向 Step 5 |
+| `flows/coupon-redeem-credit-grant/` | Step 4 已完成 | 使用新 flow package 結構；面試案例已補齊 |
 
 ## Code Repo 最新狀態
 

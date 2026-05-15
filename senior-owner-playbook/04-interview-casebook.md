@@ -170,6 +170,40 @@ Lead / Architect 追問：
 - 如何讓客服查詢不壓垮 log DB？
 - 查不到資料時，系統是否要提示可能原因而不是只回空結果？
 
+## 案例 8：優惠券兌換上分 / 打碼要求
+
+對應 flow：
+
+- `game_api/coupon-redeem-credit-grant`
+
+證據邊界：
+
+- 此案例只作面試分析素材，不更新正式履歷 / 自傳。
+- 目前是 `專案存在 / code-backed`；Nick 本人 MR / ticket / commit / production issue / 本人確認待補。
+- `origin/k3s` 有 Redis lock 修正，但 production 是否部署待確認；不可說成 Nick 修復雙領。
+
+面試主軸：
+
+優惠券兌換不是單純查 coupon 再寫 record。它是 API 驗 token 與資格後，跨到 gameserver 做上分，再設定提款打碼要求，最後才寫本地 `coupon_record` 與 `used_count`。Senior 要能拆出 coupon local state、玩家錢包、打碼狀態、GM command 與 reconciliation 的 transaction boundary。
+
+可講重點：
+
+- `game_api` 是 orchestration layer，不是玩家錢包 source of truth。
+- `main` 上同 uid 同 coupon 是 check-then-insert；DB dump 顯示 `(coupon_code, log_user_id)` 是普通 index，不是 unique key。
+- `DEPOSIT` 與 `SET_BET_TARGET_COUPON` 是兩個外部 side effect，可能只有一個成功。
+- GM command 成功後才寫本地 `coupon_record`，會有「錢已發但本地未記錄」窗口。
+- Redis lock 是 mitigation，不應替代 DB unique constraint 與下游 deterministic idempotency key。
+- 對帳要比對 coupon record、reason 124 wallet log、coupon bet target log 與 `used_count`。
+
+Lead / Architect 追問：
+
+- coupon redeem 的 success contract 是 wallet applied，還是 wallet + bet target + record 都完成？
+- 下游 deposit 是否支援同 bill no 重送 idempotent？
+- 如果 deposit 成功但 bet target 失敗，補償 owner 是誰？
+- Redis lock TTL 與 delete 是否用 compare-and-delete？
+- campaign 若有總量上限，如何避免 concurrent oversell？
+- 客服如何查「玩家說領了但系統查不到 record」？
+
 ## 面試回答公式
 
 ```text
