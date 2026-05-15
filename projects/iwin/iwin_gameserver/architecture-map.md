@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：初版最小架構地圖
+狀態：已補 root module / game module / service instance 邊界
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 閱讀定位
@@ -28,6 +28,39 @@ flowchart LR
 ```
 
 ## Module 定位
+
+### Root Maven Modules
+
+根 `pom.xml` 已確認掛載的 module：
+
+| Root module | 角色 | 是否執行期服務 |
+| --- | --- | --- |
+| `slots-gate` | 玩家連線入口，WebSocket / TCP codec，轉發玩家封包到 center / game | 是 |
+| `slots-center` | 大廳、玩家 cache、錢包、center_http、活動、打碼與第三方整合入口 | 是 |
+| `slots-dbproxy` | 通用 DB / Redis 查寫代理 | 是 |
+| `slots-social` | 郵件 / social 類服務 | 是 |
+| `slots-common` | common library：network、Protobuf、Redis、Zookeeper、dao annotation、controller | 否 |
+| `slots-game-log` | 遊戲與投注 log writer / cron 類工作 | 是 |
+| `slots-games` | game aggregator，底下再掛多個遊戲 module | 部分是 |
+
+### Game Modules
+
+`slots-games/pom.xml` 已確認掛載：
+
+| 類型 | modules |
+| --- | --- |
+| 共用遊戲層 | `slots-game-common` |
+| active game modules | `slots-game2-dfdc`、`slots-game8-slzw`、`slots-game10-ajtx`、`slots-game12-ald`、`slots-game15-mxt`、`slots-game16-jjbx`、`slots-game19-ly`、`slots-game22-xjbs`、`slots-game23-bqtp`、`slots-game27-tgwsj`、`slots-game34-bcbm`、`slots-game35-by`、`slots-game39-tg`、`slots-game40-sgj`、`slots-game48-cb`、`slots-game51-eyd`、`slots-game52-zszw`、`slots-game54-ldjz`、`slots-game57-zfbb`、`slots-game59-cjtx`、`slots-game60-dzpk`、`slots-game61-lp`、`slots-game62-bingo`、`slots-game64-dj`、`slots-game65-ss`、`slots-game66-db`、`slots-game82-dice2`、`slots-game83-crash2` |
+| present but commented in `slots-games/pom.xml` | `slots-game7-jzbx`、`slots-game9-wlcs`、`slots-game11-jktb`、`slots-game13-rxbq`、`slots-game25-ykr`、`slots-game26-ytdh`、`slots-game28-ymghd`、`slots-game30-bjl`、`slots-game41-csd`、`slots-game49-wxhh`、`slots-game58-mhzy`、`slots-game63-truco`、`slots-game67-domino`、`slots-game68-dice`、`slots-game69-crash`、`slots-game71-trucom`、`slots-game81-double2` |
+
+### Repo 內存在但邊界不同
+
+| 目錄 | 狀態 | 本輪處理方式 |
+| --- | --- | --- |
+| `slots-robot` | repo 內有 `pom.xml`，但未掛在 root `pom.xml` modules | 暫列待確認，不當作主線候選 flow |
+| `slots-tools` | 離線工具 / SQL / proto 相關目錄，未掛 root pom | 只作 schema / tooling 線索，不當 runtime flow |
+| `service/**` | 各服務 instance config，包括 center、gate、dbproxy、log、social、各 game service | 只記錄 instance 邊界，不寫環境細節 |
+| `conf/json/**` | 遊戲與 runtime config | 單條遊戲 flow 深掃時再讀 |
 
 | Module | 角色 | Senior / Owner 關注 |
 | --- | --- | --- |
@@ -91,3 +124,4 @@ DB proxy：
 - 本地 code 確認功能存在，不等於 Nick 真實開發過。
 - workspace 舊分析只作參考，不當成履歷 evidence。
 - 本文件不含 production URL、內網 IP、token、客戶資料。
+- `iwin_gameserver` 不是單一服務，未來單條 flow 必須寫清楚跨到哪些 root module、哪些 game module、哪些 service instance；不能用一張大圖含糊帶過。

@@ -8,17 +8,19 @@
 
 1. [architecture-map.md](architecture-map.md)：最小專案地圖。
 2. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
-3. 未來 `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-4. 未來 `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-5. 未來 `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+3. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 技術點與風險比較。
+4. 未來 `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
+5. 未來 `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
+6. 未來 `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 
 ## 目前狀態
 
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
 | `README.md` | 已建立 | 專案入口與履歷邊界 |
-| `architecture-map.md` | 已建立 | Level 1 最小架構地圖，只放定位資訊 |
+| `architecture-map.md` | 已補強 | Level 1 最小架構地圖，已補 root module、game modules、service instance 邊界 |
 | `step1-candidate-flows.md` | 已建立 | Level 1 Flow 掃描，列出 Top 5 候選 |
+| `step2-flow-comparison.md` | 已建立 | 候選 flow 技術點、子模組範圍與風險比較 |
 
 ## 專案定位
 
@@ -56,11 +58,11 @@
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 2
+iwin_gameserver third-party-transfer-in-out Step 3
 ```
 
 原因：
 
-- Step 1 已建立候選 ranking。
-- `third-party-transfer-in-out` 同時牽涉第三方投注 / 派彩 / 退款、玩家錢包、投注流水、有效投注、log 與可能的 idempotency，是目前最值得比較後深挖的 flow。
-- 下一步是 Step 2 候選 flow 技術點與風險比較，不更新正式履歷；完成 Step 2 後再進單條 flow Step 3。
+- Step 1 已建立候選 ranking，Step 2 已補齊候選 flow 技術點、風險與子模組範圍。
+- `third-party-transfer-in-out` 是 Step 2 後最值得進入單條 flow 深掃的候選。
+- 下一步才建立單條 flow folder；不更新正式履歷。

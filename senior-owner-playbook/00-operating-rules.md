@@ -33,6 +33,40 @@ AI 需要自動維護：
 
 除非 Nick 明確指定，AI 不可以自行創造新的任務名稱或插入新流程，例如「下游定位」、「補硬底子」、「架構圖補完」作為下一步。這些只能作為目前 Step 內的待確認、補充文件或 evidence 項目。
 
+### 防跳 Step 規則
+
+新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2，比較 candidate flows 的技術點、風險、證據強度、module / repo / service 邊界，以及哪一條最值得進 Step 3。
+
+禁止流程：
+
+```text
+Step 1 找到候選 flow
+-> 直接建議或建立某 flow Step 3
+```
+
+正確流程：
+
+```text
+Step 1 找 candidate flows
+-> Step 2 比較 candidate flows 與邊界
+-> Step 3 才建立單條 flow 學習包
+```
+
+只有 Nick 明確說「跳過 Step 2」「直接做某 flow Step 3」時，AI 才可以越過 Step 2；輸出時仍要標明「Nick 指定跳過 Step 2」與因此缺少的比較邊界。
+
+如果 project 目錄只有 `step1-candidate-flows.md`，沒有 `step2-flow-comparison.md` 或等價 Step 2 文件，下一步建議必須是 `{project} Step 2`，不能推薦 `{flow} Step 3`。
+
+### 多 module / monorepo 防錯規則
+
+遇到 multi-module、monorepo、多 service instance 或多 repo 關聯專案時，Step 1 / Step 2 必須先建立足夠定位用的 module 邊界：
+
+- root module / submodule / service instance / tool 目錄分層。
+- 哪些是 runtime service，哪些只是 common library、tooling、config、deploy 或離線資料。
+- 候選 flow 會跨哪些 module / upstream / downstream。
+- 未掃的 module 必須標明未掃，不可假裝整個 repo 已完整理解。
+
+這不是要平均整理所有 class；module map 只用來避免選 flow 時漏掉架構邊界。Step 2 仍要回到 production flow 排序。
+
 AI 不會做的事：
 
 - 不會在 Nick 沒有要求時背景定期掃 repo。
@@ -624,6 +658,11 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 5. Step 4 完成後：建議檢查 claim boundary，再決定是否進 Step 5。
 6. 面試 case 完成後：建議檢查 claim boundary，再決定是否更新履歷。
 7. 履歷 evidence 不足時：建議先補 MR / ticket / commit / 實際參與證據，不更新履歷。
+
+防錯補充：
+
+- 如果 Step 1 完成但 Step 2 不存在，下一步只能是 Step 2。
+- 多 module / monorepo 專案的 Step 2 必須比較候選 flow 的 module / service / repo 邊界；不能只在 Step 1 選一條 flow 後直接進 Step 3。
 
 ## Senior / Lead / Architect 對標
 

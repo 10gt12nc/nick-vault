@@ -151,7 +151,7 @@ source repo 狀態：
 
 中文名稱：第三方遊戲投派整合 / 投注派彩退款
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-建議：下一步優先做 Step 2
+建議：Step 2 比較後，優先進 Step 3
 
 為什麼重要：
 
@@ -350,11 +350,11 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 2
+iwin_gameserver Step 2
 ```
 
 原因：
 
-- Step 1 已建立候選 flow 與掃描邊界。
-- 下一步應先比較 `third-party-transfer-in-out` 的技術點、風險與是否需要同步讀上游 repo，再決定 Step 3 單條 flow 深掃範圍。
+- Step 1 只負責找候選 flow，不能跳過 Step 2 直接做單條 flow。
+- `iwin_gameserver` 是多 module repo，Step 2 必須先把候選 flow 橫跨的 root module、game module、service instance 與上游 repo 邊界比清楚。
 - 不更新正式履歷；此階段只會產出候選 flow 技術 / 風險比較與後續 code path。

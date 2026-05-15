@@ -32,6 +32,31 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
 
 不需要更新時，也要簡短說明原因。
 
+## Step 主線防跳規則
+
+新 project 的固定主線是：
+
+```text
+Step 1：找 candidate flows
+Step 2：比較 candidate flows 的技術點、風險、證據強度與 module / repo / service 邊界
+Step 3：選定一條 flow 後才建立單條 flow 學習包
+Step 4：轉面試 case
+Step 5：整理履歷 / 自傳邊界
+```
+
+如果 project 只有 Step 1，下一步必須是 Step 2。沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過。
+
+## 多 module / monorepo 專案規則
+
+若來源 repo 是 multi-module、monorepo、多 service instance 或多 repo 關聯專案，Step 1 / Step 2 必須先建立定位用邊界：
+
+- root module、submodule、service instance、tooling、config 分層。
+- 哪些是 runtime service，哪些是 common library、離線工具或部署 / instance config。
+- 候選 flow 橫跨哪些 module / upstream / downstream。
+- 未掃 module 要明確標示未掃。
+
+這不是要求平均整理所有 class；module map 只用來支撐 flow 排序，避免在還沒理解架構邊界時急著建立單條 flow。
+
 ## 目的
 
 `projects/` 用來放整理後、可長期維護的專案分析。

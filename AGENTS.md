@@ -32,6 +32,8 @@
   - `/Users/nick/Git/antplay/math-workspace`
 - 參考其他 workspace 只能用來學防呆、索引、KB 治理與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo 規則到 `nick-vault`。
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
+- 新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2：比較 candidate flows、技術點、風險、module / repo / service 邊界。不得在沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過 Step 2。
+- 多 module / multi repo / monorepo 類專案，Step 1 / Step 2 必須先整理 module / submodule / service instance / upstream-downstream 邊界。不能只挑一條看起來高價值的 flow 就跳過子模組地圖；也不能平均做 class summary。架構圖只作定位，Step 2 才決定哪條 flow 進 Step 3。
 - 一條 flow 完成 Step 5 後，不代表整個 project 完成。若同 project 的 Step 1 / Step 2 還有未完成 candidate flows，下一步要回到同 project 選下一條 flow；不要自行跳到其他 project，除非 Nick 明確說要換專案。
 - `senior-owner-playbook/01~16` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~16。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
@@ -65,6 +67,7 @@
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
+- 如果只有 Step 1，下一步預設是 Step 2；沒有 Step 2 時，不得直接跳 Step 3 / 建 flow folder。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
 - 每次 Step 都要在 `materials/evidence.md` 或舊格式對應 evidence 文件寫清楚本次實際掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否有看。

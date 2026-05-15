@@ -28,6 +28,8 @@
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。
+- 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。
+- 多 module / monorepo / 多 service 專案，Step 1 / Step 2 必須先整理 root module、submodule、service instance、tooling / config 邊界，並比較候選 flow 會跨哪些 module。這不是 class summary，而是避免跳過架構邊界。
 - 單條 flow 做到 Step 5 只代表該 flow 完成，不代表整個 project 完成；下一步要先回同 project 的 candidate ranking 選下一條未完成 flow，不要自行跨 project。
 - `senior-owner-playbook/01~16` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
@@ -249,6 +251,11 @@ Code repo:
 
 ```text
 請根據 Step 1 的 candidate flows，做 Senior / Owner 技術點比較。
+
+如果這是 multi-module / monorepo / 多 service 專案，請先列出：
+- root module / submodule / service instance / tooling / config 邊界
+- 哪些是 runtime service，哪些是 common library 或離線工具
+- 每條候選 flow 橫跨哪些 module / upstream / downstream
 
 比較維度：
 - data consistency
@@ -591,6 +598,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 規則：
 - 不自行創造新 Step。
 - 如果 Step 1 完成，下一步是 Step 2。
+- 如果 Step 1 完成但 Step 2 文件不存在，下一步只能是 Step 2，不能直接跳 Step 3 / 建 flow folder。
 - 如果 Step 2 完成，下一步是 Step 3。
 - 如果 Step 3 完成且文件乾淨，下一步是 Step 4。
 - 如果 Step 4 完成，下一步才檢查 Step 5 / 履歷。
