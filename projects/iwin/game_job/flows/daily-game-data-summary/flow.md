@@ -1,6 +1,6 @@
 # daily-game-data-summary Flow
 
-更新時間：2026-05-15
+更新時間：2026-05-15（Step 4 面試 case 更新）
 Step：3
 掃描等級：Level 2 單條 flow 深挖
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
@@ -12,6 +12,12 @@ Step：3
 本文件先讓初階 / 中階讀者看懂「它在做什麼、資料怎麼走、code 在哪裡」，後半才進入 Senior / Owner 角度的 consistency、重跑、failure window、observability 與面試邊界。
 
 本輪沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，所以不得把這條 flow 寫成 Nick 真實開發過；只能作為 code-backed 分析素材。
+
+## KB 更新後深度檢查結論
+
+2026-05-15 依最新 KB 重新檢查後，判斷本 Step 3 主報告可沿用。本 flow 已補齊 remote refs、branch / log 掃描範圍、未掃邊界與既有文件狀態；Step 4 則在此基礎上把 flow 轉成面試 case study。
+
+重要邊界不變：`app_bi` 本機 `main` 落後 `origin/main` 4 commit，只能當 local snapshot；upstream writer 只做線索掃描；目前仍沒有 Nick 本人 evidence。
 
 ## 白話導讀
 
@@ -47,6 +53,21 @@ Step：3
 | DTO | `/Users/nick/Git/iwin/game_job/src/main/java/com/pojo/vo/DailySummaryVo.java` | 定義 date、platform、value1~value4、type、sub_type 的資料意義 |
 | 下游查詢 | `/Users/nick/Git/iwin/app_bi/app/admin/controller/Payment.php` | `DailyGameDataSummary()` 查 `log_game_daily_record` type=1，轉成後台表格 / Excel |
 | 下游 UI | `/Users/nick/Git/iwin/app_bi/public/views/jjsj/mrucsjhz/index.js` | 每日遊戲資料彙總頁面欄位與查詢參數 |
+
+依 Nick 熟悉的後端分層轉譯：
+
+```text
+Route / API：Quartz cron；另有 TestController.gameDailyJob(date) 手動入口
+Controller：TestController 只作補跑入口，非主要 production 入口
+Service / Business：GameDailyAntplayAndPGJob、GameDailyIwinJob、GameDailyServiceImpl
+Model / DAO / Repository：GameDailyDao、LogReelDao
+SQL / Table：log_reel_{yyyy_m_d}、log_game_daily_record、log_game_daily_record_new_players、log_game_daily_record_backup
+Redis：本 flow 未確認直接使用；BiJobBase task state 可能使用 Redis，待後續補讀
+MQ / Kafka / 下游通知：未確認 / 不適用
+External API：未確認；upstream 第三方 settlement 只作線索
+Log / Audit：LogUtils.GAME_DAILY；缺 rows count / completion marker evidence
+Config：config/application-quartz.yml
+```
 
 ## 最小架構圖
 
@@ -286,6 +307,14 @@ Iwin job 在正常彙總後，會把：
 
 詳細掃描範圍、commit evidence 與待確認項目放在 `materials/evidence.md`。
 
+既有文件狀態：
+
+- `README.md`：可沿用；本次同步標示 Step 4 已完成。
+- `step1-candidate-flows.md`：可沿用；Level 1 候選 flow 與 Step 2 前置關係完整。
+- `step2-flow-comparison.md`：可沿用；已符合「不可跳 Step 2」的 KB 要求。
+- `flows/daily-game-data-summary/flow.md`：可沿用；已補 evidence 並同步 Step 4 狀態。
+- `materials/evidence.md`：可沿用；已補 remote refs、分支 / log 範圍與未掃邊界。
+
 ## 面試 / 履歷邊界摘要
 
 可以作為面試分析素材：
@@ -304,12 +333,21 @@ Iwin job 在正常彙總後，會把：
 
 詳細面試素材見 `career-interview.md`；claim 邊界見 `materials/claim-boundary.md`。
 
+## Step 4 面試 Case 狀態
+
+已完成 Step 4：
+
+- `career-interview.md`：30 秒摘要、3 分鐘版本、面試官追問、保守回答、Senior 能力與履歷候選句。
+- `materials/interview.md`：更細的追問 drill、白板口述、面試紅線與可展示能力。
+
+重要邊界不變：目前仍沒有 Nick 本人 evidence，所以 Step 4 只產出面試分析素材，不更新正式履歷。
+
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 4
+game_job daily-game-data-summary Step 5
 ```
 
-原因：Step 3 已建立 flow 學習包；下一步應檢查 failure / consistency / evidence 缺口，特別是 `log_game_daily_record_new_players` 的重跑一致性、backup partial failure、app_bi 最新 remote 差異與 upstream writer 邊界。Step 4 仍不應更新正式履歷，除非補到 Nick 本人 evidence。
+原因：Step 3 / Step 4 已完成；下一步只能檢查是否值得進 Step 5 更新履歷 / 自傳。若仍沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，Step 5 應明確結論為「不更新正式履歷，只保留為分析素材」。

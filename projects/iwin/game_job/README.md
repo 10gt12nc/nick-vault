@@ -21,6 +21,7 @@
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
 | `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻待確認 |
+| `flows/daily-game-data-summary/career-interview.md` | Step 4 | 已轉成 Senior Backend 面試 case study；仍不更新正式履歷 |
 
 ## 專案定位
 
@@ -62,11 +63,11 @@
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 4
+game_job daily-game-data-summary Step 5
 ```
 
 原因：
 
 - `daily-game-data-summary` Step 3 已建立主報告與 materials。
-- 下一步應補 failure / consistency / evidence 缺口，特別是新增玩家累積表、backup partial failure、下游 app_bi 最新 remote 差異與 upstream writer 邊界。
-- Step 4 仍不更新正式履歷 / 自傳，除非補到 Nick 本人 evidence。
+- Step 4 已建立可講的面試 case、追問回答、Senior 能力對照與「是否主導」的保守回答。
+- 下一步才檢查 Step 5 / 履歷是否值得更新；目前仍需要 Nick 本人 evidence，預設不更新正式履歷 / 自傳。
