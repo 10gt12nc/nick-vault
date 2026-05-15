@@ -349,11 +349,11 @@ Step 3 需要讀：
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 3
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
-- Step 2 已比較完候選 flow。
-- `gameserver-phased-rollout` 最有 release risk、service dependency、config boundary 與 owner decision 價值。
-- 下一步會建立單條 flow 學習包；不更新正式履歷，需要 commit，不需要 push，除非 Nick 明確要求。
+- Step 3 已建立 `gameserver-phased-rollout` flow 學習包，Step 4 已補面試案例收斂。
+- `gameserver-phased-rollout` 仍是目前最有 release risk、service dependency、config boundary 與 owner decision 價值的 flow。
+- 下一步應進 Step 5，做最後 claim gate 與 project-level career note 判斷；不預設更新正式履歷，需要 commit，不需要 push，除非 Nick 明確要求。

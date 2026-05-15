@@ -3,7 +3,7 @@
 ## 本次掃描結論
 
 - 掃描日期：2026-05-15
-- 掃描等級：Level 2 Flow 深掃
+- 掃描等級：Level 2 Flow 深掃；Step 4 面試案例收斂
 - 證據層級：`專案存在 / code-backed`
 - Nick 貢獻：`待確認`
 - 敏感資料處理：未複製 secret value、token、內網 IP、production URL；source 中若出現敏感值，本文件只描述類型，不貼內容。
@@ -23,10 +23,14 @@
 
 既有文件判斷：
 
-- `README.md`：可沿用，但 Step 3 建立後需同步狀態。
+- `README.md`：需小調整；Step 3 已建立後，下一步建議不可停在 Step 3，已改為 Step 4。
 - `architecture-map.md`：可沿用，已正確標記 dev-k3s / code-backed 邊界。
-- `step1-candidate-flows.md`：可沿用；候選 flow 排序已有 Step 2 修正。
-- `step2-flow-comparison.md`：可沿用；已明確推薦本 flow 進 Step 3。
+- `step1-candidate-flows.md`：需補 evidence；`external-service-bridge` 與 config bake-in 是早期 local snapshot，已由 Step 2 / Step 3 的 remote refs 修正，這輪補上舊 evidence 邊界。
+- `step2-flow-comparison.md`：可沿用；它已補上 project-level Step 2、module / service 邊界與 flow ranking。
+- `flow.md`：可沿用；Step 3 已補上業務問題、系統位置、Code 路徑與掃描範圍。Step 4 只補面試收斂摘要與下一步。
+- `career-interview.md`：需補 Step 4；這輪補 90 秒 / 30 秒版本與防守句。
+- `materials/interview.md`：需補 Step 4；這輪補 failure scenario drill、Senior / Lead 追問與回答邊界。
+- `materials/claim-boundary.md`：需補 Step 4 claim gate；這輪補可用 / 禁止說法表。
 
 ## Source repo 狀態
 
@@ -128,6 +132,23 @@ path-specific commits 已看摘要：
 - 是否有真實 rollback / incident / pod log / ZK znode 查核紀錄。
 - production 與 dev-k3s 的 deployment 差異。
 - terminationGracePeriod / preStop 是否與 runtime graceful shutdown 完整對齊。
+
+## Step 4 面試收斂 evidence
+
+本輪沒有新增 source code path，使用 Step 3 已讀 evidence 做面試 case 收斂。重新確認 source repo 遠端狀態：
+
+- `/Users/nick/Git/iwin/k3s-deploy`
+  - 已執行 `git fetch --all --prune`。
+  - local `main`：`61cb42a8a21445f51ad7e032ade0d13de73ed7cc`
+  - `origin/main`：`48e1d50f017b8c67364072a0cb4614c843bfb474`
+  - ahead / behind：0 / 34
+  - 公司 repo 工作樹未 pull / merge / checkout；仍以 `origin/main` objects 作最新 evidence。
+- `/Users/nick/Git/iwin/iwin_gameserver`
+  - 已執行 `git fetch --all --prune`。
+  - local `main` = `origin/main`：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+  - ahead / behind：0 / 0
+
+Step 4 新增的是面試表達與 claim gate，不新增 production claim，不更新正式履歷。
 
 ## 未掃範圍
 
