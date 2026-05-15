@@ -44,6 +44,20 @@
 
 可以講成「我追一條第三方 seamless wallet flow 時，不只看 API happy path，而是把 provider callback、Redis routing、gameserver wallet、Mongo audit、retry、rollback、reconciliation 邊界拆開」。這能展示 owner 思維：知道哪裡是真正帳本、哪裡只是投影、哪個 failure window 會讓外部與內部狀態分歧。
 
+## Lead / Architect 追問版
+
+### 如果 provider 重送，你怎麼避免重複扣加？
+
+我不會只靠 adapter 查 Mongo，因為 Mongo 寫入是在 gameserver wallet mutation 之後，兩者不是同一個 transaction。最終保護要落在 wallet mutation 層，用 provider transaction id / wager code / player id 組成 idempotency key。adapter 層可以做 early duplicate check 和 audit，但不能當最後防線。
+
+### 如果 gameserver 已成功，但 `third_games_api` 寫 Mongo 失敗，你怎麼定義成功？
+
+money success 應以 gameserver wallet mutation 為準。Mongo 失敗要進 repair / reconciliation，而不是讓 provider retry 造成第二次扣加。API response policy 要看 provider spec，但前提是 wallet 層必須先具備可重入結果。
+
+### `ROLLBACK` 不改 wallet，你會怎麼處理？
+
+我會先查 provider spec，確認這個 branch 是不是只要求回傳計算結果。如果 spec 定義 rollback 應該反向異動 wallet，那現況就是風險，需要補 reversal transaction 和 idempotency。如果 spec 不是 wallet mutation，文件與 monitoring 要清楚標示，避免被誤解成已補償。
+
 ## 追問時的保守句
 
 - 「這部分我目前只追到 code-backed evidence，還不能說 production 已經怎麼處理。」

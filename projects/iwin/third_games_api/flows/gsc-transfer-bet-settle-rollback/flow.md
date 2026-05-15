@@ -4,9 +4,19 @@
 
 本文件是 `iwin third_games_api gsc-transfer-bet-settle-rollback Step 3` 的主報告。
 
+Flow 中文名稱：GSC transfer 投注 / 派彩 / rollback 整合回調。
+
+Flow slug：`gsc-transfer-bet-settle-rollback`。
+
+完成狀態：Step 3 已建立，並依更新後 KB 做過深度檢查與局部補強；可作為 Step 4 面試 case 的輸入。
+
 證據層級：`專案存在 / code-backed`。目前沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，因此不能寫成 Nick 真實開發成果。
 
-掃描深度：Level 2 Flow 深掃。這輪已重讀 vault KB、`third_games_api` Step 1 / Step 2、`third_games_api` 最新 `beta` 分支與 `iwin_gameserver` 最新 `main` 分支，並補看 `iwin_gameserver` 的 `origin/Nick-GSC_PG` path history 作為分支線索。沒有切分支、沒有 pull、沒有修改公司專案。
+本 flow 是業務功能 / 共用能力 / 後台入口 / 報表查詢 / deploy flow：業務功能，屬於第三方遊戲 provider callback 到內部錢包異動的 production flow。
+
+是否只確認到入口：不是。已確認 provider API 入口、Redis routing、下游 gameserver command dispatch、wallet mutation job 與 log projection 呼叫點；但 gameserver wallet method 的底層持久化與冪等仍是待確認。
+
+掃描深度：Level 2 Flow 深掃。這輪已重讀 vault KB、`third_games_api` Step 1 / Step 2、既有 flow package、`third_games_api` 最新 `beta` 分支與 `iwin_gameserver` 最新 `main` 分支，並補看 `iwin_gameserver` 的 `origin/Nick-GSC_PG` path history 作為分支線索。沒有切分支、沒有 pull、沒有修改公司專案。
 
 本 flow 研究的是 GSC provider 打進 `POST /api/seamless/transfer` 後，`third_games_api` 如何驗簽、解析交易、查玩家、找 gameserver，再透過 gameserver 做投注 / 派彩錢包異動；以及 `ROLLBACK` action 在目前 code 裡的特殊處理方式。
 
@@ -28,13 +38,20 @@
 
 | 層級 | 已確認 code | 角色 |
 | --- | --- | --- |
+| Route / API | `POST /api/seamless/transfer` | GSC provider 的 transfer callback 入口 |
 | Provider API | `third_games_api/src/main/java/com/slots/web/controller/GscController.java` `transfer(...)` | 接 `POST /api/seamless/transfer`，驗簽、驗玩家、解析 transactions、呼叫 gameserver、寫 Mongo |
+| Service / Business | `GscController#transfer` 內部流程 | 目前 business orchestration 主要寫在 controller，未拆出獨立 service |
+| Model / DTO | `GscTransferReq`、`AccountVo`、gameserver response JSON | 承接 provider request、玩家資料與下游回應 |
+| SQL / Table | 未在本輪看到直接 SQL table 寫入 | 錢包底層可能在 gameserver / player data，需另追 |
 | Redis routing | `third_games_api/src/main/java/com/slots/web/common/utils/GetGameRedis.java` | 快取 third platform / game mapping / center routing |
 | Redis refresh | `third_games_api/src/main/java/com/slots/web/schedule/ScheduleServer.java` | 每 5 秒重新初始化 `GetGameRedis` |
+| External API | gameserver `center_http` command `PGTRANSFERINOUT` / `PLAYERINFO` | `third_games_api` 查餘額與送錢包異動的下游 HTTP |
 | Gameserver HTTP dispatch | `iwin_gameserver/slots-center/src/main/java/com/slots/center/service/HttpService.java` | 接 `PGTRANSFERINOUT` command，建立 job |
 | Gameserver job wrapper | `iwin_gameserver/slots-center/src/main/java/com/slots/sql/job/HttpPGTransferInOut.java` | 用 `accountId` 找玩家，丟進 game pool |
 | Wallet mutation job | `iwin_gameserver/slots-center/src/main/java/com/slots/center/job/http/PGTransferInOutJob.java` | 檢查餘額、呼叫 `modifyAndGetCoinPG`、回覆 HTTP、推 log / bet log |
 | Player wallet method | `iwin_gameserver/slots-games/slots-game-common/src/main/java/com/slots/game/common/data/GamePlayer.java` | 錢包異動落點之一；本輪只追到呼叫點，未逐行展開底層持久化 |
+| MQ / Kafka | 本輪未看到此 flow 直接使用 MQ / Kafka | 後續 log / event 是否有非同步機制需另追 |
+| Log / Audit | Mongo `third_log_gsc`、`third_transaction_gsc`、gameserver game coin / reel / bet log | callback evidence、transaction evidence 與 gameserver 投影 |
 
 ## 最小架構圖
 
@@ -87,6 +104,57 @@ flowchart TD
 11. gameserver `PGTransferInOutJob` 檢查玩家存在與餘額，呼叫 `modifyAndGetCoinPG` 進行錢包異動，然後回覆 HTTP，並推送 game coin / reel / bet log。
 12. `third_games_api` 解析 gameserver response balance，寫入 `third_log_gsc` 與 `third_transaction_gsc`，再回 GSC success。
 
+## 業務問題
+
+GSC 類 provider 通常會在玩家遊戲過程中回傳下注、派彩、取消或 rollback 類交易。iwin 端要把外部 provider 的交易語意轉成內部錢包可以理解的扣款 / 加款 / audit evidence。
+
+這條 flow 的業務問題不是單純「接一支 API」，而是：
+
+- 玩家在第三方遊戲下注後，iwin 內部餘額要正確扣除。
+- 派彩或 bonus 類事件要正確加回。
+- provider retry、timeout、重送時不能重複扣加。
+- rollback / reversal 的語意要和 provider spec、內部 wallet ledger 對齊。
+- wallet、callback audit、報表 log 之間需要能對帳。
+
+## 系統位置
+
+`third_games_api` 位在 provider-facing adapter 層，負責接外部 callback、轉換資料格式、找下游 gameserver 與留下 callback evidence。
+
+`iwin_gameserver` 位在內部 wallet / player runtime 層，負責真正的玩家餘額異動、投注統計與 log projection。
+
+因此這條 flow 的 owner 視角要分成兩層：
+
+- Adapter correctness：驗簽、幣別、玩家存在、game mapping、response mapping、Mongo audit。
+- Money correctness：gameserver wallet mutation、idempotency、rollback semantics、reconciliation。
+
+## 入口與 code 路徑
+
+已確認入口：
+
+- `third_games_api`：`GscController#transfer`
+- gameserver 查餘額：`moneyInoutGetBalance(...)` 發 `PLAYERINFO`
+- gameserver 錢包異動：`PGTRANSFERINOUT`
+- gameserver dispatch：`HttpService#PGTransferInOut`
+- gameserver job：`HttpPGTransferInOut#runImpl`
+- wallet mutation job：`PGTransferInOutJob#runHttpTask`、`modifyCoin`、`sendMoneyChange2Center`
+
+待確認入口：
+
+- provider spec 對 `ROLLBACK` 的正式定義。
+- `modifyAndGetCoinPG` 底層是否有 transaction id / bet id 的唯一性保護。
+- Mongo index / schema 是否對 `betId`、`transactionId` 或 `action` 做 unique constraint。
+
+## DB / Redis / MQ / 外部 API
+
+| 類型 | 已確認內容 | Owner 注意點 |
+| --- | --- | --- |
+| DB / Wallet | gameserver `GamePlayer.modifyAndGetCoinPG` 呼叫點 | 真正持久化與冪等仍待深追 |
+| Mongo | `third_log_gsc`、`third_transaction_gsc` | audit / transaction evidence，不等於最終帳本 |
+| Redis | `Game:List:ThirdIdList`、third platform PG routing cache | mapping miss 會讓交易無法送下游；refresh 失敗告警待確認 |
+| MQ / Kafka | 本輪未看到直接使用 | 若 log projection 有非同步投遞，需另追 |
+| 外部 API | GSC provider callback | 外部 retry / timeout 會放大 idempotency 風險 |
+| 內部 HTTP | gameserver `PLAYERINFO`、`PGTRANSFERINOUT` | adapter 與 wallet mutation 不在同一個 transaction |
+
 ## 已確認資料狀態
 
 | 狀態 / 資料 | 來源 | 用途 | 注意事項 |
@@ -98,6 +166,18 @@ flowchart TD
 | Gameserver wallet | `GamePlayer.modifyAndGetCoinPG` | 真正錢包異動 | 本輪只追到呼叫點，底層持久化與冪等未完整確認 |
 | Mongo `third_log_gsc` | `third_games_api` 寫入 | callback audit | 不是已確認的最終帳本 |
 | Mongo `third_transaction_gsc` | `third_games_api` 寫入 | transaction evidence / query evidence | 本輪未看到 unique index evidence |
+
+## State Transition
+
+| 階段 | 狀態 | 已確認行為 | 待確認 |
+| --- | --- | --- | --- |
+| Provider callback received | 外部交易到達 adapter | request validation、sign、currency、player check | request 是否可一次多筆交易 |
+| Parsed transaction | provider transaction 轉成內部欄位 | 取 `amount`、`bet`、`validBetAmount`、`prizeAmount`、`wager_code`、`action` | 多筆 transactions 是否只應保留最後一筆 |
+| Pre-balance checked | adapter 查目前餘額 | 呼叫 gameserver `PLAYERINFO` | 查餘額與扣款之間沒有 lock，最終仍應以 gameserver mutation 為準 |
+| Non-rollback command sent | 送 gameserver `PGTRANSFERINOUT` | 帶 `addMoney`、`BetCoin`、`validBetCoin`、`spinCurrency`、`transactionId`、`betId` | 下游 command 是否有冪等 |
+| Wallet mutated | gameserver 修改玩家錢包 | `PGTransferInOutJob` 呼叫 `modifyAndGetCoinPG` | 底層 ledger / DB 寫入方式 |
+| Audit written | adapter 寫 Mongo | 寫 `third_log_gsc`、`third_transaction_gsc` | insert 失敗的 repair |
+| Rollback branch | 特殊 rollback response | 不送 gameserver，只回算 balance 與寫 Mongo | 是否符合 provider spec |
 
 ## Transaction Boundary
 
@@ -213,6 +293,24 @@ flowchart TD
 - 「保證 exactly-once」。
 
 正式履歷若要更新，必須等 Nick 補本人參與 evidence，並完成更深的 branch / commit / issue / production case 確認。
+
+## Lead / Architect 追問
+
+1. 如果 provider timeout 後重送同一筆 transfer，你如何保證不重複扣款？
+2. 為什麼 idempotency 不能只放在 `third_games_api` Mongo？
+3. gameserver wallet 成功但 Mongo insert 失敗時，API 應該回 success 還是 error？
+4. `ROLLBACK` 不呼叫 gameserver 是 spec-driven 還是技術債？你會怎麼驗證？
+5. 若 `transactions` 允許多筆，現有只保留最後一筆的行為會造成什麼資料正確性問題？
+6. 報表 log、callback audit、wallet ledger 三者不一致時，以誰為準？如何 repair？
+7. Redis routing cache 每 5 秒 refresh，如果 mapping miss 或 stale，交易要 fail fast、fallback 還是降級？
+
+## 下一步要查的 evidence
+
+- GSC provider spec 對 `transfer`、`ROLLBACK`、多筆 transactions、retry 的正式語意。
+- `GamePlayer.modifyAndGetCoinPG` 底層是否有 provider transaction id / bet id unique protection。
+- Mongo `third_log_gsc` / `third_transaction_gsc` index。
+- gameserver 成功但 adapter audit 寫失敗時的 production repair / reconciliation SOP。
+- `PGTransferInOutJob` 後續 log / bet log 失敗的 retry 機制。
 
 ## 本 Step 3 結論
 

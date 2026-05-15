@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 third-party game integration flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
-| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 Level 2 flow 深掃；保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only` |
+| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 Level 2 flow 深掃；已依更新後 KB 補強主報告欄位，保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only` |
 
 ## 專案定位
 

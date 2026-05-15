@@ -19,13 +19,13 @@ Source repo：
   - local HEAD：`4915ea5`
   - `origin/beta`：`4915ea5`
   - ahead / behind：`0 / 0`
-  - 本輪已執行 `git fetch --all --prune`，沒有 checkout / pull / merge / rebase。
+  - Step 3 建立時與本次 KB 更新後深度檢查，皆已執行 `git fetch --all --prune`，沒有 checkout / pull / merge / rebase。
 - `/Users/nick/Git/iwin/iwin_gameserver`
   - branch：`main`
   - local HEAD：`30a9fcb`
   - `origin/main`：`30a9fcb`
   - ahead / behind：`0 / 0`
-  - 本輪已執行 `git fetch --all --prune`，沒有 checkout / pull / merge / rebase。
+  - Step 3 建立時與本次 KB 更新後深度檢查，皆已執行 `git fetch --all --prune`，沒有 checkout / pull / merge / rebase。
 
 ## 已讀 code path
 
@@ -81,6 +81,7 @@ Source repo：
 - `ScheduleServer` 每 5 秒呼叫 `GetGameRedis.init()` refresh cache。
 - gameserver `HttpService` 會 dispatch `PGTRANSFERINOUT` 到 `HttpPGTransferInOut`。
 - `PGTransferInOutJob` 會檢查玩家與餘額，呼叫 `modifyAndGetCoinPG`，然後回 HTTP response 並送 log / bet log。
+- 本次依更新後 KB 回頭檢查既有 Step 3，結論是主體可沿用；已補強 `flow.md` 的業務問題、系統位置、入口與 code 路徑、DB / Redis / MQ / 外部 API、state transition、Lead / Architect 追問與下一步 evidence。
 
 ## 推測
 
