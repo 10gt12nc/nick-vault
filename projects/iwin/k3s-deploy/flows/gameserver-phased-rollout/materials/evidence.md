@@ -23,10 +23,11 @@
 
 既有文件判斷：
 
-- `README.md`：可沿用，但 Step 3 建立後需同步狀態。
+- `README.md`：需小調整；Step 3 已建立後，下一步建議不可停在 Step 3，已改為 Step 4。
 - `architecture-map.md`：可沿用，已正確標記 dev-k3s / code-backed 邊界。
-- `step1-candidate-flows.md`：可沿用；候選 flow 排序已有 Step 2 修正。
-- `step2-flow-comparison.md`：可沿用；已明確推薦本 flow 進 Step 3。
+- `step1-candidate-flows.md`：需補 evidence；`external-service-bridge` 與 config bake-in 是早期 local snapshot，已由 Step 2 / Step 3 的 remote refs 修正，這輪補上舊 evidence 邊界。
+- `step2-flow-comparison.md`：可沿用；它已補上 project-level Step 2、module / service 邊界與 flow ranking。
+- `flow.md`：需補模板缺口；這輪補上業務問題、系統位置、Code 路徑與掃描範圍，避免只有附錄才看得到 evidence。
 
 ## Source repo 狀態
 

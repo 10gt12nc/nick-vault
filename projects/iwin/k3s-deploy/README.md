@@ -29,7 +29,7 @@
 已確認：
 
 - Kustomize manifests 分成 shared namespace 與 iwin namespace。
-- shared 側包含 log stack、message admin；遠端最新 refs 顯示外部依賴已由 Kubernetes Service / Endpoints abstraction 改成直連既有外部服務，需在 Step 3 深挖時再確認本機工作樹是否更新。
+- shared 側包含 log stack、message admin；遠端最新 refs 顯示外部依賴已由 Kubernetes Service / Endpoints abstraction 改成直連既有外部服務。`architecture-map.md` 與 Step 2 已採用最新定位，Step 1 內的 bridge 描述只保留為早期盤點脈絡。
 - iwin 側包含 `game-api`、`game-job`、`payment`、`third-games-api`、`app-bi`、`bi-share` 與 `iwin-gameserver`。
 - `iwin-gameserver` 採 phase deployment：stateless / center / gate / games，文件註明正式部署需依順序手動 apply。
 - 多個 Java service 使用 Deployment、readiness / liveness probe、resource request / limit、private registry image tag 與 rollout 註解。
@@ -69,11 +69,11 @@
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 3
+iwin k3s-deploy gameserver-phased-rollout Step 4
 ```
 
 原因：
 
-- Step 2 已比較 candidate flows。
-- `gameserver-phased-rollout` 最能承載啟動依賴、服務註冊、config 外掛、log4j2 / lua config、Recreate / RollingUpdate 與 rollback 風險。
-- Step 3 不更新正式履歷，會建立單條 flow 學習包；完成後依規則自動 commit。
+- Step 3 已建立 `gameserver-phased-rollout` flow 學習包。
+- 這條 flow 的下一個價值點是把 failure / consistency / rollback / interview boundary 收斂成 Step 4 面試案例。
+- Step 4 仍不更新正式履歷；除非補到 Nick 本人 MR / ticket / production evidence，否則維持 `分析素材 / learning-only` 與 `專案存在 / code-backed`。

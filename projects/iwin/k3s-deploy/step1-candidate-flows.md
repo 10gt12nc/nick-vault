@@ -15,7 +15,7 @@
 2. `java-service-rollout-config`：`game-api`、`payment`、`third-games-api`、`game-job` 的 Deployment / Service / probe / resource / config 覆蓋與 image tag rollout。
 3. `observability-pipeline`：Fluent Bit 收集 container log 到 Loki，再由 Grafana 查詢，適合作為 incident RCA 與 troubleshooting 面試案例。
 4. `legacy-app-containerization`：`app-bi`、`bi-share` 從 host runtime / file log 轉向 stdout / stderr、emptyDir / hostPath 的取捨。
-5. `external-service-bridge`：用 Kubernetes Service / Endpoints 把 cluster 內服務連到既有外部依賴，重點是 dev/prod 差異、blast radius 與命名抽象。
+5. `external-service-bridge`：早期盤點時看到的外部依賴 abstraction 候選；Step 2 重新 fetch remote refs 後已確認最新方向改成直連既有外部依賴，因此只保留為 migration trade-off 脈絡，不建議獨立成主 flow。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，所有候選 flow 都只當 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -259,7 +259,7 @@ production 風險：
 - `dev/iwin/iwin-gameserver/kustomization.yml` 有 phase deployment 註解。
 - `phase1-stateless`、`phase2-center`、`phase3-gate`、`phase4-games` 目錄存在。
 - phase3 gate service 對外，部分 center / social service 改為 cluster 內 service。
-- 近期 commit 有新增 center / social ClusterIP service、移除 PVC、configs 改 bake 進 image、POD_IP / SERVER_IP 相關修正。
+- 早期 local log 看到 center / social ClusterIP service、移除 PVC、configs bake into image、POD_IP / SERVER_IP 相關修正；Step 2 / Step 3 重新讀 `origin/main` 後，最新 evidence 已改為 per-service ConfigMap / shared ConfigMap / Secret externalization，不能再把 bake-in 視為最終設計。
 
 推測：
 
@@ -376,38 +376,35 @@ production 風險：
 
 ### 5. `external-service-bridge`
 
-中文名稱：cluster 內服務透過 Service / Endpoints 連既有外部依賴
+中文名稱：外部依賴存取抽象與簡化
 
 為什麼重要：
 
 - dev-k3s 不一定把 DB / Redis / ZK / Mongo 全部搬進 cluster。
-- 透過 Kubernetes Service / Endpoints 給 pod 穩定 DNS 名稱，可降低 app config 對實體 host 的耦合。
-- 這是 migration 中常見的「先抽象依賴，再逐步替換實體位置」策略。
+- Step 1 早期 local 掃描看到 Kubernetes Service / Endpoints abstraction 線索，這是 migration 中常見的「先抽象依賴，再逐步替換實體位置」策略。
+- Step 2 重新 fetch remote refs 後，最新 evidence 顯示這個 abstraction 已被移除，改成 pod 直連既有外部依賴；因此本候選只作 trade-off 對照，不再作主 flow。
 
 production 風險：
 
-- Endpoints 指向既有外部依賴，cluster DNS 正常不代表外部服務健康。
+- 若走 Service / Endpoints abstraction，cluster DNS 正常不代表外部服務健康。
+- 若走直連既有外部依賴，app config 對外部位置耦合更高，dev / prod 差異也更需要標清楚。
 - network / firewall / DNS 問題會被包裝成 app 啟動或 timeout 問題。
 - dev/prod 差異太大時，不能把 dev-k3s 行為直接當 production evidence。
 
 已確認 evidence：
 
-- `dev/external-services/kustomization.yml`
-- `dev/external-services/mysql.yml`
-- `dev/external-services/mongodb.yml`
-- `dev/external-services/redis-1.yml`
-- `dev/external-services/redis-2.yml`
-- `dev/external-services/zookeeper.yml`
+- Step 1 local snapshot 曾看到 `dev/external-services/*.yml` abstraction 檔案。
+- Step 2 remote refs 已確認 external-services 舊 manifests 被移除，新增 README / setup script，最新定位是不建議作主 flow。
 
 推測：
 
-- 這條適合放在 Step 2 比較或作為其他 flow 的 dependency section，不一定值得獨立深挖成主 flow。
+- 這條適合放在 Step 2 比較或作為其他 flow 的 dependency section，不值得獨立深挖成主 flow。
 
 待確認：
 
-- 各 app config 是否已全面使用 service DNS。
+- 各 app config 是否已全面改成最新直連方式。
 - 外部依賴健康檢查與故障告警。
-- 服務遷移到 cluster 內時是否需要改 app config。
+- 服務遷移到 cluster 內時是否需要再次改 app config 或恢復 abstraction。
 
 ## 建議第一條深挖 flow
 

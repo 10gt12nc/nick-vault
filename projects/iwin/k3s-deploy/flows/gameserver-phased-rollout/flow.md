@@ -113,9 +113,82 @@ sequenceDiagram
 9. ZK watch callback 回傳 server id 與 address 後，`NetNodeConnectPool` 更新連線池，新增或移除 peer connection。
 10. phase2 center、phase3 gate、phase4 games 依序啟動後，gate 可以承接玩家入口，game / center / dbproxy / log 之間透過 ZK 發現彼此。
 
-## 6. Senior / Owner 深度區
+## 6. 業務問題
 
-### 6.1 Source of Truth
+這條 flow 解決的是「legacy game runtime 怎麼在 K3s 裡安全啟動與更新」。它不是 money transaction flow，但錯誤一樣會影響玩家入口、遊戲服務可用性、內部服務連線與 deploy rollback 判斷。
+
+錯了可能造成：
+
+- phase 順序錯，center / gate / game 在依賴未 ready 時啟動。
+- 同 server id 短暫雙跑，造成 ZK registration 重複或 peer 連線混亂。
+- ConfigMap / Secret / image tag 不一致，讓不同 game service 吃到不同設定。
+- pod ready 但 runtime 尚未完成 ZK registration，導致 operator 誤判可以進下一 phase。
+- graceful shutdown 沒對齊 K8s termination，玩家連線或 center / game 收斂狀態不乾淨。
+
+## 7. 系統位置
+
+| 項目 | 內容 |
+| --- | --- |
+| 產品 / 環境 | iwin dev-k3s deployment；production 差異待確認 |
+| 專案 | `/Users/nick/Git/iwin/k3s-deploy`、`/Users/nick/Git/iwin/iwin_gameserver` |
+| Deploy module | `dev/iwin/iwin-gameserver` |
+| Runtime module | `BaseServer`、`ZkService`、`GateServer`、`CenterServer`、`GameServer` |
+| 上游 | operator / deploy pipeline / kustomize apply；實際 CI gate 待確認 |
+| 下游 | Zookeeper、DB proxy、log service、social service、center / gate / game peer services |
+| 觀測 | container stdout、Fluent Bit、Loki、Grafana；dashboard / alert 待確認 |
+
+## 8. Code 路徑與掃描範圍
+
+已看 deploy repo：
+
+- `/Users/nick/Git/iwin/k3s-deploy`
+- 已 fetch remote refs；local `main`：`61cb42a8a21445f51ad7e032ade0d13de73ed7cc`
+- `origin/main`：`48e1d50f017b8c67364072a0cb4614c843bfb474`
+- ahead / behind：local ahead 0、behind 34
+- 公司 repo 工作樹未 pull / merge / checkout；Step 3 以 `origin/main` objects 判斷最新 manifests
+
+已看 deploy code path：
+
+- `origin/main:dev/iwin/iwin-gameserver/kustomization.yml`
+- `origin/main:dev/iwin/iwin-gameserver/gen.sh`
+- `origin/main:dev/iwin/iwin-gameserver/phase1-stateless/kustomization.yml`
+- `origin/main:dev/iwin/iwin-gameserver/phase2-center/kustomization.yml`
+- `origin/main:dev/iwin/iwin-gameserver/phase3-gate/kustomization.yml`
+- `origin/main:dev/iwin/iwin-gameserver/phase4-games/kustomization.yml`
+- `origin/main:dev/iwin/iwin-gameserver/*-cm.yml` 與主要 Deployment / Service 檔名清單
+- path-specific log：`origin/main -- dev/iwin/iwin-gameserver`
+
+已看 runtime repo：
+
+- `/Users/nick/Git/iwin/iwin_gameserver`
+- 已 fetch remote refs；local `main` = `origin/main`：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：0 / 0
+
+已看 runtime code path：
+
+- `server.sh`
+- `slots_env.sh`
+- `slots-common/src/main/java/com/slots/common/server/BaseServer.java`
+- `slots-common/src/main/java/com/slots/common/properties/ServerProperties.java`
+- `slots-common/src/main/java/com/slots/common/properties/ZkProperties.java`
+- `slots-common/src/main/java/com/slots/common/zookeeper/ZkService.java`
+- `slots-common/src/main/java/com/slots/common/zookeeper/NetNodeConnectPool.java`
+- `slots-common/src/main/java/com/slots/common/zookeeper/NetNodeBeConnectPool.java`
+- `slots-game-gate/src/main/java/com/slots/game/gate/server/GateServer.java`
+- `slots-game-center/src/main/java/com/slots/game/center/server/CenterServer.java`
+- `slots-games/slots-game-common/src/main/java/com/slots/game/common/server/GameServer.java`
+
+未掃 / 待確認：
+
+- 未連線 cluster，未查 `kubectl` events / rollout history。
+- 未讀 GitLab MR / issue / pipeline。
+- 未讀 secret value、token、內網 IP、production URL。
+- 未做 Level 3 逐檔逐行 / 逐 commit diff。
+- 未確認 Nick 本人 MR / ticket / production issue。
+
+## 9. Senior / Owner 深度區
+
+### 9.1 Source of Truth
 
 | 類型 | Source of truth | Owner 觀察 |
 | --- | --- | --- |
@@ -125,7 +198,7 @@ sequenceDiagram
 | 服務發現 | Zookeeper znode | Kubernetes Service 不是 gameserver 內部 discovery 主體；ZK path 才是 runtime peer discovery |
 | 實際服務位址 | pod 啟動後註冊的 server address | pod IP / server IP placeholder 若錯，peer 連線會接錯位址 |
 
-### 6.2 State Transition
+### 9.2 State Transition
 
 ```text
 manifest apply
@@ -142,14 +215,14 @@ manifest apply
 
 這裡沒有傳統 DB transaction boundary；真正的 rollout boundary 是「每個 phase 是否達到可讓下一 phase 啟動的 runtime ready 狀態」。
 
-### 6.3 Consistency / Idempotency
+### 9.3 Consistency / Idempotency
 
 - `kubectl apply -k` 對 manifests 是 declarative / idempotent，但 app runtime 的 ZK registration 不是單純 YAML idempotency 可以覆蓋。
 - generator 保留舊 `svrid` 作為 appid，避免 znode 名稱、業務資料或既有 runtime 假設突然改掉。
 - Deployment strategy 使用 `Recreate`，推測是為了避免 RollingUpdate 造成同一 server id 短暫雙跑或雙註冊。這是合理推論，仍需 deploy incident / MR 討論補強。
 - `BaseServer.checkServerPort()` 會透過 ZK 檢查 server registration 是否重複；這支持「雙開是實際 runtime concern」，不是純想像。
 
-### 6.4 Failure Window
+### 9.4 Failure Window
 
 | Failure window | 可能現象 | 目前 evidence | Owner 應對 |
 | --- | --- | --- | --- |
@@ -161,7 +234,7 @@ manifest apply
 | shutdown 未完成 | 玩家未清乾淨、center 仍看到 game | `GameServer.stop()` 等玩家離場、踢玩家、關 NetServer；`CenterServer.stop()` 也有 wait game disappear 邏輯 | terminationGracePeriod / preStop / stop signal 要和 app graceful shutdown 對齊，這輪未看到完整 K8s 設定 |
 | log pipeline 破洞 | pod 起不來但缺中央查詢線索 | log4j2 後續 commit 收斂 Console | app log 要確定進 stdout，Fluent Bit / Loki label 要能按 pod / phase 查 |
 
-### 6.5 Retry / Compensation / Rollback
+### 9.5 Retry / Compensation / Rollback
 
 本 flow 的 retry / compensation 比較像 release operation，不是資料對帳：
 
@@ -171,7 +244,7 @@ manifest apply
 - image 錯：rollback image tag 時，同步確認 ConfigMap / Secret 是否也需要回到對應版本。
 - player-facing gate 有問題：應優先保護玩家入口與既有連線；這輪沒有 production runbook evidence，不能寫成已驗證方案。
 
-### 6.6 Observability
+### 9.6 Observability
 
 已確認：
 
@@ -185,7 +258,7 @@ manifest apply
 - 是否有 deployment checklist 或 incident RCA。
 - 是否有 alert / metrics，而不是只有 logs。
 
-### 6.7 Owner Decision
+### 9.7 Owner Decision
 
 | Decision | 選擇 | 好處 | 代價 / 風險 |
 | --- | --- | --- | --- |
@@ -196,7 +269,7 @@ manifest apply
 | Recreate strategy | 避免同 server id 雙跑 | 降低雙註冊風險 | 可能有短暫不可用，需要 phase / HA 設計補足 |
 | Console logging | 容器標準 log pipeline | 易接 Fluent Bit / Loki | 需要 log label / retention / query discipline |
 
-## 7. 面試 / 履歷邊界摘要
+## 10. 面試 / 履歷邊界摘要
 
 可以作為面試分析素材：
 
@@ -214,7 +287,7 @@ manifest apply
 
 原因：本輪沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
 
-## 8. 本 flow 下一步要補的 evidence
+## 11. 本 flow 下一步要補的 evidence
 
 - Nick 是否有相關 MR / ticket / commit。
 - 真實 deploy command / pipeline gate / rollback runbook。
@@ -222,7 +295,7 @@ manifest apply
 - terminationGracePeriod / preStop 是否與 `GameServer.stop()`、`CenterServer.stop()` 對齊。
 - dev-k3s 與 production deployment 差異。
 
-## 9. 下一步建議
+## 12. 下一步建議
 
 Step 3 已建立，下一步建議做 Step 4：把這條 flow 的 failure / consistency / rollback 問答整理成更可面試的 case，同時補清楚哪些 claim 仍只能算 `分析素材 / learning-only`。
 
