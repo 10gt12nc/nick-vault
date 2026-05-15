@@ -1,8 +1,24 @@
 # third-party-transfer-in-out Evidence
 
 更新時間：2026-05-15
-掃描等級：Level 2 單條 flow 深掃；Step 4 面試收斂
+掃描等級：Level 2 單條 flow 深掃；Step 5 履歷 / 自傳邊界收斂
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 5 更新摘要
+
+2026-05-15 Step 5 已完成履歷 / 自傳邊界整理，主要更新：
+
+- `career-interview.md`：將 Step 4 面試素材收斂成 Step 5 結論，明確標示正式履歷 / 自傳暫不更新。
+- `materials/claim-boundary.md`：補正式履歷、自傳、面試、project-level career boundary。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從本 flow Step 5 改為同 project 下一條候選 `center-http-deposit-withdraw Step 3`。
+- `projects/iwin/iwin_gameserver/career-interview.md`：新增 project-level career / interview boundary，避免後續誤把 code-backed analysis 寫成 Nick 個人成果。
+
+Step 5 結論：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 本 flow 保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 若要升級為正式履歷 claim，需要 Nick 本人 MR / ticket / commit / production issue / 本人確認。
 
 ## Step 4 更新摘要
 
@@ -14,6 +30,22 @@
 - `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
 
 Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
+
+## KB 更新後深度檢查
+
+更新時間：2026-05-15
+檢查原因：KB 新增 multi-session / staging area 防污染與 main / project branch 同步規則後，重新檢查本 flow 是否需要調整。
+
+檢查結果：
+
+- `flow.md` 可沿用：已具備白話導讀、Code 分層對照、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析。
+- `career-interview.md` 可沿用：已標示 `專案存在 / code-backed`、`Nick 貢獻待確認`，沒有新增 `真實開發過`。
+- `materials/interview.md` 可沿用：面試說法使用「分析過 / 如果我是 owner」語氣，沒有寫成 Nick 主導成果。
+- `materials/claim-boundary.md` 可沿用：已明確禁止主導、修過 production bug、改善百分比與完整防重 claim。
+- `materials/decision-notes.md` 可沿用：只作 owner decision 分析，不當作 Nick 實作 evidence。
+- 本輪檢查在專用 worktree `/Users/nick/Git/nick/nick-vault-iwin-gameserver` 與分支 `codex/iwin-iwin-gameserver` 執行；working tree 與 staging area 開始時皆為乾淨。後續改檔精準 stage `projects/iwin/iwin_gameserver/**`，不得混入其他 project。
+
+本輪只補 evidence / Step 狀態與 KB refresh 邊界，不新增新 Step，不更新正式履歷 / 自傳。
 
 ## 本輪重讀 KB
 
@@ -43,7 +75,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 ### iwin_gameserver
 
 - 路徑：`/Users/nick/Git/iwin/iwin_gameserver`
-- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
+- 已執行：`git fetch --all --prune`；Step 4、KB 更新後深度檢查與 Step 5 皆再次執行確認
 - local branch：`main`
 - local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
 - remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
@@ -55,7 +87,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 ### third_games_api
 
 - 路徑：`/Users/nick/Git/iwin/third_games_api`
-- 已執行：`git fetch --all --prune`；Step 4 開始前再次執行確認
+- 已執行：`git fetch --all --prune`；Step 4、KB 更新後深度檢查與 Step 5 皆再次執行確認
 - local branch：`beta`
 - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
 - remote HEAD：`origin/beta` = `4915ea5a5000d61eb36717203ea4c6afc45322fa`

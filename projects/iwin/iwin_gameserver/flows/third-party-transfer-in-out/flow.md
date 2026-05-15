@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 2 單條 flow 深掃
-狀態：Step 4 已補面試案例
+狀態：Step 5 已完成履歷 / 自傳邊界
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 閱讀定位
@@ -226,16 +226,23 @@ Owner 角度應追問：
 - `materials/claim-boundary.md`
 - `materials/decision-notes.md`
 
+Step 5 結論：
+
+- 本 flow 可保留為 Senior / Owner 面試分析素材。
+- 不更新正式履歷 master。
+- 不更新投遞用自傳。
+- 若 Nick 後續補本人 MR / ticket / commit / production issue / 本人確認，再重新評估是否升級成 `真實開發過` 或正式成果。
+
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin_gameserver third-party-transfer-in-out Step 5
+iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
 原因：
 
-- Step 4 已補 30 秒 / 2 分鐘 / 5 分鐘面試講法與追問回答。
-- 下一步應整理履歷 / 自傳邊界，決定是否只保留為分析素材，或需要 Nick 補本人 evidence 後才放進正式履歷。
-- Step 5 不應直接誇大成主導成果；重點是 claim 分級與保守表述。
+- 本 flow 已完成 Step 5，正式履歷 / 自傳暫不更新。
+- Step 5 完成後應回到同 project candidate ranking，而不是跳其他 project。
+- `center-http-deposit-withdraw` 是下一條最高價值 money flow，適合進 Step 3 主報告。

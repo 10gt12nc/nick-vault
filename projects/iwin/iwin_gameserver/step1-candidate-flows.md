@@ -2,15 +2,15 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：初版
+狀態：已完成第一條候選 flow Step 5；下一步回到候選 ranking
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 本次結論
 
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
-1. 第三方遊戲投派整合 / 投注派彩退款。
-2. payment / game_api 透過 center_http 對玩家上分 / 下分。
+1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
+2. payment / game_api 透過 center_http 對玩家上分 / 下分。建議下一條進 Step 3。
 3. 打碼目標設定與查詢。
 4. 遊戲 spin / 結算 / log_reel 投注流水。
 5. dbproxy 的 MySQL / Redis 查寫代理。
@@ -93,6 +93,11 @@
 source repo 狀態：
 
 - `/Users/nick/Git/iwin/iwin_gameserver` 目前分支：`main`
+- 2026-05-15 KB 更新後深度檢查：已重新執行 `git fetch --all --prune`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- source working tree：本輪檢查為乾淨
 - 近期主線 log 包含 `兑换码功能`、`antplay 支援投派整合`、`GSC`、`PG 退款`、`PG bet_result 投派整合`、`iwin gameserver 對接antplay遊戲` 等線索。
 
 已看分支：
@@ -350,11 +355,11 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin_gameserver Step 2
+iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
 原因：
 
-- Step 1 只負責找候選 flow，不能跳過 Step 2 直接做單條 flow。
-- `iwin_gameserver` 是多 module repo，Step 2 必須先把候選 flow 橫跨的 root module、game module、service instance 與上游 repo 邊界比清楚。
-- 不更新正式履歷；此階段只會產出候選 flow 技術 / 風險比較與後續 code path。
+- Step 2 已完成，`third-party-transfer-in-out` 也已完成 Step 5。
+- 完成一條 flow 後，下一步應回到同 project 候選 ranking，而不是跨 project。
+- `center-http-deposit-withdraw` 是下一條最高價值 money flow；不更新正式履歷，先產出 Step 3 主報告與 evidence。
