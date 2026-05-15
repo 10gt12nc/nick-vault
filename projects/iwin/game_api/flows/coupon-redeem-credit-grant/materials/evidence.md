@@ -32,11 +32,37 @@ Step：3
 
 ## Code Repo 最新狀態
 
+### 2026-05-15 KB 更新後覆核
+
+Nick 提醒 KB 已更新後，已依最新規則重新覆核：
+
+- 已重新讀 `AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`09-ai-prompt-manual.md`、`03-flow-learning-package-template.md`。
+- 已重新確認多 session / staging area 規則；本次文件調整只限 `game_api` 三個檔案，不整理其他 project 的未提交變更。
+- 已重新對 `game_api` 與 `iwin_gameserver` 執行 `git fetch --all --prune`，只更新 remote refs，未 pull / merge / checkout / rebase，未改公司 repo。
+- 重新 fetch 後，兩個 source repo 的 local `main` 仍與 `origin/main` 同步，Step 3 code evidence 沒有因遠端更新而過期。
+
+既有 Step 3 文件狀態判斷：
+
+| 文件 | 狀態 | 判斷 |
+| --- | --- | --- |
+| `flow.md` | 可沿用 | 已有白話導讀、Code 分層、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析 |
+| `career-interview.md` | 可沿用 | 保守標示只能作面試學習素材，不寫 Nick 真實開發 |
+| `materials/evidence.md` | 本輪補強 | 補上 KB 更新後覆核與最新 remote refs 狀態 |
+| `materials/decision-notes.md` | 可沿用 | 已涵蓋 DB unique、idempotency key、state machine、Redis lock、reconciliation |
+| `materials/interview.md` | 可沿用 | 已有面試開場、架構講法、failure window 與追問 |
+| `materials/claim-boundary.md` | 可沿用 | 已清楚標示可說 / 不可說與需要補的 Nick evidence |
+
+深度等級覆核：
+
+- 本 flow 目前仍判定為 Level 2 Flow 深掃足夠。
+- 不建議直接升 Level 3，因為尚未取得 Nick 本人 MR / ticket / production issue evidence，也未確認 production 實際部署 `origin/k3s` lock；直接逐檔逐行追完整 commit diff，對正式履歷 claim 的增益有限。
+- 若下一步要把這條 flow 轉成更強 evidence 或正式履歷 claim，再建議 Level 3，重點應放在 coupon path-specific commit diff、下游 `billNo` 去重語意、production branch / deploy evidence 與 Nick 本人參與證據。
+
 ### `/Users/nick/Git/iwin/game_api`
 
 已執行：
 
-- `git fetch --all --prune`
+- `git fetch --all --prune`，並於 KB 更新後再覆核一次。
 - 只更新 remote refs；未 pull、未 merge、未 checkout、未 rebase、未改公司 repo。
 
 | 項目 | 值 |
@@ -52,7 +78,7 @@ Step：3
 
 已執行：
 
-- `git fetch --all --prune`
+- `git fetch --all --prune`，並於 KB 更新後再覆核一次。
 - 只更新 remote refs；未 pull、未 merge、未 checkout、未 rebase、未改公司 repo。
 
 | 項目 | 值 |
