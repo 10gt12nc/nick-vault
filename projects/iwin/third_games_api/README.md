@@ -10,9 +10,9 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-3. 待建立：`flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-4. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-5. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+3. [flows/gsc-transfer-bet-settle-rollback/flow.md](flows/gsc-transfer-bet-settle-rollback/flow.md)：GSC transfer 投注 / 派彩 / rollback 主研究報告。
+4. [flows/gsc-transfer-bet-settle-rollback/career-interview.md](flows/gsc-transfer-bet-settle-rollback/career-interview.md)：該 flow 的保守面試 / 履歷素材。
+5. [flows/gsc-transfer-bet-settle-rollback/materials/](flows/gsc-transfer-bet-settle-rollback/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 
 ## 目前狀態
 
@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 third-party game integration flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
-| `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
+| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 Level 2 flow 深掃；保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only` |
 
 ## 專案定位
 
@@ -64,11 +64,10 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 3
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 4
 ```
 
 原因：
 
-- Step 2 已比較 Top 5 candidate flows。
-- `gsc-transfer-bet-settle-rollback` 同時具備 money correctness、provider idempotency、rollback / transfer 語意、gameserver downstream evidence 與近期 commit 線索。
-- Step 3 會建立單條 flow 學習包；不更新正式履歷，完成後依規則自動 commit。
+- Step 3 已建立單條 flow 學習包，並把 rollback 語意、gameserver wallet boundary、Mongo audit、provider retry / idempotency 風險整理完成。
+- Step 4 應把這條 flow 轉成可面試講的 case；目前仍不更新正式履歷 / 自傳，除非 Nick 補本人參與 evidence。
