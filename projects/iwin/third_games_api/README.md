@@ -9,7 +9,7 @@
 ## 讀檔順序
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
-2. 待建立：`step2-flow-comparison.md`：Step 2 候選 flow 風險與價值比較。
+2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. 待建立：`flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
 4. 待建立：`flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
 5. 待建立：`flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
@@ -19,7 +19,7 @@
 | 文件 / flow | 狀態 | 說明 |
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 third-party game integration flow 候選 |
-| `step2-flow-comparison.md` | 待建立 | 建議下一步比較 GSC transfer、OneAPI bet_result、Antplay bet / settle、Redis platform config、GSC pushbet |
+| `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
 | `flows/` | 尚未建立 | Step 1 不建立 flow folder，等 Nick 選定單條 flow 後再建 |
 
 ## 專案定位
@@ -64,11 +64,11 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api Step 2
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 3
 ```
 
 原因：
 
-- Step 1 已定位 Top 5 candidate flows。
-- 這個 project 每條候選都碰 money / transaction，但風險形狀不同；先做 Step 2 比較，才能選最值得深挖的一條。
-- Step 2 不更新正式履歷，可能建立 `step2-flow-comparison.md`，不需要 push；完成後依規則自動 commit。
+- Step 2 已比較 Top 5 candidate flows。
+- `gsc-transfer-bet-settle-rollback` 同時具備 money correctness、provider idempotency、rollback / transfer 語意、gameserver downstream evidence 與近期 commit 線索。
+- Step 3 會建立單條 flow 學習包；不更新正式履歷，完成後依規則自動 commit。
