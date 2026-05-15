@@ -91,7 +91,7 @@ Step 4 面試稿可以聚焦:
 
 ## Step 5 後下一步
 
-`game-round-record-query` Step 5 已完成；目前下一步收斂到 `payment Step 1`。
+`game-round-record-query` Step 5 已完成；app_bi 主要 flow 已收斂，目前下一步轉到 `payment Step 1`。
 
 只推薦一件事：
 
