@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 
 ## 自動重讀紀錄
 
@@ -26,7 +26,7 @@
 
 既有 flow 狀態：
 
-- `game-round-record-query`：Step 3 已完成；本次 Step 4 轉成面試 case。
+- `game-round-record-query`：Step 5 已完成；本次判定不更新正式履歷 / 自傳。
 - `point-control-admin-operation`：Step 5 已完成，可沿用。
 - `admin-config-redis-sync`：Step 5 已完成，可沿用。
 - `daily-game-record-summary`：Step 5 已完成，可沿用。
@@ -35,13 +35,13 @@
 
 已看 repo：
 
-| Repo | 分支 | 工作區狀態 | 本次角色 |
+| Repo | 分支 / 遠端狀態 | 工作區狀態 | 本次角色 |
 | --- | --- | --- | --- |
-| `/Users/nick/Git/iwin/app_bi` | `main` | clean | 後台查詢端 |
-| `/Users/nick/Git/iwin/iwin_gameserver` | `main` | clean | writer / log pipeline 線索 |
-| `/Users/nick/Git/iwin/game_job` | `main` | clean | schema / log table 線索 |
-| `/Users/nick/Git/iwin/game_api` | `main` | clean | 其他 reader 線索 |
-| `/Users/nick/Git/iwin/third_games_api` | `beta` | clean | provider reader / serial id 線索 |
+| `/Users/nick/Git/iwin/app_bi` | 已 fetch；本地 `main`=`4a206a2`，`origin/main`=`fd9881f`，本地 behind 4 | clean | 後台查詢端；未 pull，不能宣稱本機已是最新工作樹 |
+| `/Users/nick/Git/iwin/iwin_gameserver` | 已 fetch；本地 `main`=`30a9fcb`，`origin/main`=`30a9fcb` | clean | writer / log pipeline 線索；有 Nick commit evidence |
+| `/Users/nick/Git/iwin/game_job` | 已 fetch；本地 `main`=`23908f4`，`origin/main`=`23908f4` | clean | schema / log table 線索 |
+| `/Users/nick/Git/iwin/game_api` | 已 fetch；本地 `main`=`39bb6e3`，`origin/main`=`39bb6e3` | clean | 其他 reader 線索 |
+| `/Users/nick/Git/iwin/third_games_api` | 已 fetch；本地 `beta` 與 `origin/beta` 同步 | clean | provider reader / serial id 線索 |
 
 未掃：
 
@@ -49,6 +49,7 @@
 - 未逐 commit diff。
 - 未完整掃所有 game-specific `_getRecord()` branch。
 - 未掃 wallet / provider callback / currency ledger 的完整 truth source。
+- `app_bi` 本地 main fetch 後落後 origin/main 4 commit；本輪未 pull / 未 checkout 新分支，遵守公司 repo 只讀規則。
 
 ## app_bi Evidence
 
@@ -245,6 +246,11 @@ d638b1c feat(#RD-146): antplay金幣流水查詢,牌局查詢修正
 e83c729 feat(#first commit): first commit
 ```
 
+Step 5 判定：
+
+- `app_bi` 查詢端 path-specific log 未看到 Nick / `10gt12nc` author。
+- 因此不能把 `app_bi GameRound` 查詢頁寫成 Nick 真實開發成果。
+
 iwin_gameserver path-specific log：
 
 ```text
@@ -262,6 +268,12 @@ a5fbcb3 feat(#PG): GSC+ PG
 0f4a972 feat(#144): iwin gameserver map會覆蓋
 ```
 
+Nick evidence 線索：
+
+- `iwin_gameserver` 的 `GamePlayer.java`、`LogController.java`、`LogJobCrons.java`、`Mapper.java`、`LogReel*Job` 相關 path log 有大量 `10gt12nc` commit。
+- 代表 Nick 可能實際參與的是後端 log writer / Antplay-GSC provider 戰績與投派整合，而不是 `app_bi` 查詢頁本身。
+- 這批 evidence 應另開 `iwin_gameserver` 或 provider integration flow 做 Level 2 / Level 3 深挖，再決定是否更新正式履歷。
+
 ## 證據層級判斷
 
 | 說法 | 證據層級 | 判斷 |
@@ -269,6 +281,7 @@ a5fbcb3 feat(#PG): GSC+ PG
 | app_bi 有遊戲局紀錄查詢 | 專案存在 / code-backed | code 已確認 |
 | 查詢會讀 `log_reel_{date}` | 專案存在 / code-backed | code 已確認 |
 | iwin_gameserver 有 log writer 線索 | 專案存在 / code-backed | code 已確認 |
-| Nick 開發 / 維護此 flow | 待確認 | 無 Nick 個人 evidence |
-| 可寫正式履歷 | 待確認 | 目前不可 |
+| Nick 開發 / 維護 app_bi 查詢端 | 待確認 | app_bi path log 未看到 Nick author |
+| Nick 參與 iwin_gameserver writer / Antplay-GSC 戰績線索 | 待確認 / 需另開 flow | 有 `10gt12nc` commit，但需另開後端 flow 深挖後才可拆成正式 claim |
+| 可寫正式履歷 | 待確認 | 本 flow 目前不可；正式履歷不更新 |
 | 可當面試分析素材 | 分析素材 / learning-only | 可，但要保守 |

@@ -25,39 +25,27 @@
 - 已完成 `app_bi daily-game-record-summary Step 5` 的「不更新履歷 / 自傳」判定；沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，只保留為面試分析素材。
 - 已完成 `app_bi game-round-record-query Step 3`，確認 app_bi 查詢端、每日 `log_reel` 分表與 iwin_gameserver log writer 線索；目前只作玩家申訴 / troubleshooting 分析素材，不更新履歷。
 - 已完成 `app_bi game-round-record-query Step 4`，轉成保守面試 case；目前仍不更新履歷 / 自傳。
+- 已完成 `app_bi game-round-record-query Step 5` 的「不更新履歷 / 自傳」判定；app_bi 查詢端未見 Nick author，iwin_gameserver writer 的 Nick commit 線索應另開後端 flow 深挖。
 - 已完成 `game_job Step 1`，建立 `projects/iwin/game_job/README.md` 與 `step1-candidate-flows.md`；目前只作 Java batch / BI projection / third-party record backup 的候選 flow 盤點，不更新履歷。
 
 ## 下一步
 
-### 1. game_job daily-game-data-summary Step 2
+### 1. payment Step 1
 
 建議下一步：
 
 ```text
-game_job daily-game-data-summary Step 2
+payment Step 1
 ```
 
 原因：
 
-- Nick 本輪已指定 `iwin game_job`。
-- `game_job` Step 1 已完成，候選 flow 中 `daily-game-data-summary` evidence 最厚，包含 Quartz、job、service、mapper、時區修正、重跑刪除與備份清理。
-- Step 2 會把它和 `third-party-record-mongo-backup`、`coin-flow-batch-projection` 做價值 / 風險排序，再決定第一條 Step 3。
-- 仍不更新履歷 / 自傳；先維持 `專案存在 / code-backed`。
+- `app_bi` 主要分析 flow 已完成 Step 5 判定，皆不更新正式履歷 / 自傳。
+- `payment-order-status-repair` 是 app_bi Step 2 最高價值候選，但 app_bi 只看到人工修正入口。
+- 真正 money correctness、callback、訂單狀態機與 wallet side effect 要回到 payment repo。
+- 本步只做 candidate flow 掃描，不更新履歷 / 自傳。
 
-### 2. app_bi game-round-record-query Step 5
-
-建議之後可回來做：
-
-```text
-app_bi game-round-record-query Step 5
-```
-
-原因：
-
-- `game-round-record-query` Step 4 已完成，已轉成保守面試 case。
-- 若回到 `app_bi` 主線，依 KB 下一步是 Step 5，判斷是否更新正式履歷 / 自傳；目前預期仍是不更新。
-
-### 3. 再做第一條完整後端 flow
+### 2. 再做第一條完整後端 flow
 
 建議後端主線：
 
@@ -67,7 +55,7 @@ app_bi game-round-record-query Step 5
 4. `settled-bets-kafka`
 5. `observability-pipeline`
 
-### 4. 每條完成後自動判斷是否更新
+### 3. 每條完成後自動判斷是否更新
 
 每條 flow 完成後，AI 要自動判斷是否需要更新：
 
@@ -85,10 +73,10 @@ app_bi game-round-record-query Step 5
 ## 下一個 prompt
 
 ```text
-game_job daily-game-data-summary Step 2
+payment Step 1
 ```
 
-AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/game_job` code 最新狀態，不需要 Nick 每次重貼完整規則。
+AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試最低門檻
 

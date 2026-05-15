@@ -15,7 +15,7 @@
 2. `point-control-admin-operation`：後台控制操作，已完成 Step 5；不更新履歷 / 自傳，目前仍只確認到 `app_bi` 發送端。
 3. `admin-config-redis-sync`：設定同步 Redis，已完成 Step 5；不更新履歷 / 自傳。
 4. `daily-game-record-summary`：每日遊戲資料彙總 / 報表投影，已完成 Step 5；不更新正式履歷 / 自傳。
-5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，Step 4 已完成；已補 app_bi 查詢端與 iwin_gameserver log writer 線索，並轉成保守面試 case，下一步 Step 5。
+5. `game-round-record-query`：遊戲局紀錄查詢 / troubleshooting 入口，已完成 Step 5；不更新正式履歷 / 自傳，iwin_gameserver Nick commit 線索另開後端 flow 深挖。
 
 不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，所有候選 flow 都只當 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -166,7 +166,7 @@ source repo 狀態：
 ### 1. `payment-order-status-repair`
 
 中文名稱：充值 / 提現訂單狀態修正
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 建議：不要只在 `app_bi` 深挖，應轉去 `/Users/nick/Git/iwin/payment`
 
 為什麼重要：
@@ -317,14 +317,15 @@ source repo 狀態：
 
 待確認：
 
-- log writer。
-- 分表規則。
-- 查詢範圍與效能限制。
+- wallet / provider truth。
+- Nick writer commit 對應的 ticket / production context。
+- `app_bi` 本地 main 落後 origin/main 4 commit，未 pull。
 
 履歷邊界：
 
-- 偏 troubleshooting 素材。
-- 未掃 log writer 前，不寫完整遊戲局資料鏈路。
+- 偏 troubleshooting / 面試分析素材。
+- `app_bi` 查詢端不寫正式履歷。
+- iwin_gameserver writer evidence 應另開後端 flow，不混在 app_bi claim。
 
 ### 6. `app-bi-report-export`
 
@@ -439,7 +440,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
@@ -448,5 +449,6 @@ app_bi game-round-record-query Step 5
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 4 已完成，已轉成保守面試 case。
-- 依 KB，Step 4 後下一步是 Step 5，判斷是否更新正式履歷 / 自傳；目前預期仍是不更新。
+- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
+- `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
+- `payment Step 1` 會先找金流 repo 的 candidate flows，不會直接把 app_bi 人工修正入口寫成完整 payment owner。

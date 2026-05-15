@@ -21,7 +21,7 @@
 | `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/daily-game-record-summary/` | Step 5，新版可讀結構 | 已確認 app_bi 查詢端與 game_job producer；已轉保守面試 case；已判定不更新正式履歷 |
-| `flows/game-round-record-query/` | Step 4，新版可讀結構 | 已確認 app_bi 查詢端與 iwin_gameserver log writer 線索；已轉保守面試 case；目前不更新履歷 |
+| `flows/game-round-record-query/` | Step 5，新版可讀結構 | 已確認 app_bi 查詢端與 iwin_gameserver log writer 線索；已轉保守面試 case；已判定不更新正式履歷 |
 
 ## 專案定位
 
@@ -61,7 +61,7 @@
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
@@ -70,5 +70,6 @@ app_bi game-round-record-query Step 5
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 4 已完成，已轉成保守面試 case。
-- 依 KB，Step 4 後下一步是 Step 5，判斷是否更新正式履歷 / 自傳；目前預期仍是不更新。
+- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
+- `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
+- `payment Step 1` 會先找金流 repo 的 candidate flows，不會直接把 app_bi 人工修正入口寫成完整 payment owner。

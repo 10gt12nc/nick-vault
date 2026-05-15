@@ -143,6 +143,11 @@ Lead / Architect 追問：
 
 - `app_bi/game-round-record-query`
 
+證據邊界：
+
+- 此案例只作面試分析素材，不更新正式履歷 / 自傳。
+- `app_bi` 查詢端未看到 Nick author；`iwin_gameserver` writer 有 Nick commit 線索，但應另開後端 flow 深挖。
+
 面試主軸：
 
 後台遊戲局查詢不是單純查表。它是玩家申訴與 production troubleshooting 的入口，要能分清楚後台看到的 `log_reel` 戰績 log、wallet / currency ledger、provider transaction 與真正 settlement truth。Senior 要能追 app_bi 查詢端、每日分表、channel shard、`serial_id`、bet / settle update 與 log writer failure window。

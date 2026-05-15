@@ -1,10 +1,10 @@
 # Interview - app_bi game-round-record-query
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成
+完成狀態：Step 5 已完成
 文件角色：`materials/interview.md` 詳細面試稿附錄
 掃描等級：Level 2 Flow 深掃延伸
-證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
+證據層級：分析素材 / learning-only；app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 
 ## 本次結論
 
@@ -27,6 +27,8 @@
 ```
 
 原因：目前只確認 code 功能存在，Nick 個人實作貢獻仍是 `待確認`。這條適合作為 troubleshooting / production risk 的面試分析素材，不適合直接放正式履歷。
+
+Step 5 補充：`iwin_gameserver` 的 log writer / Antplay-GSC 戰績相關 path 有 `10gt12nc` commit 線索，但它應該另開後端 writer / provider integration flow 深挖；本文件仍只把 `app_bi game-round-record-query` 當查詢入口與面試分析 case。
 
 ## Step 4 前檢查
 
@@ -68,7 +70,7 @@
 | Step 2 | 可沿用 | 已同步 Step 4 為下一步 |
 | Step 3 | 可沿用 | 已確認 app_bi 查詢端與 iwin_gameserver log writer 線索 |
 | Step 4 | 本次完成 | 轉成保守面試 case |
-| Step 5 | 尚未完成 | 下一步判斷是否更新履歷 / 自傳 |
+| Step 5 | 已完成 | 不更新正式履歷 / 自傳；Nick writer evidence 另開後端 flow |
 
 本次不做：
 
@@ -204,12 +206,11 @@
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
 
-- Step 4 已完成。
-- 面試素材已整理。
-- 下一步應判斷是否更新正式履歷 / 自傳。
-- 目前沒有 Nick 本人 evidence，預期仍是不更新。
+- 本 flow Step 5 已完成。
+- 面試素材已整理，正式履歷 / 自傳不更新。
+- 下一步應轉向更高價值的金流 source of truth，而不是繼續在 app_bi 查詢頁硬挖。

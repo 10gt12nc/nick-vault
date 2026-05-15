@@ -598,7 +598,7 @@ MySQL 設定已修改
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
@@ -606,4 +606,4 @@ app_bi game-round-record-query Step 5
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- 依 KB 回到同 project candidate ranking，下一步做 `game-round-record-query Step 5`。
+- `game-round-record-query` Step 5 已完成；下一步轉 `payment Step 1`，回到真正 money correctness source of truth。

@@ -1,12 +1,19 @@
 # Career / Interview - app_bi game-round-record-query
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成；Step 5 尚未完成
-證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
+完成狀態：Step 5 已完成
+證據層級：分析素材 / learning-only；app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 
 ## 結論
 
 這條 flow 可以當面試分析案例；目前不建議寫進正式履歷 / 自傳。
+
+Step 5 判定：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- `app_bi` 查詢端未看到 Nick author。
+- `iwin_gameserver` log writer / Antplay-GSC 戰績相關 path 有 `10gt12nc` commit 線索，但應另開後端 flow 深挖，不混在 app_bi 查詢頁 claim。
 
 可講成：
 
@@ -83,7 +90,7 @@
 參與遊戲局紀錄查詢 / 玩家申訴排查相關功能維護，協助釐清後台查詢、戰績分表、第三方交易單號與遊戲 log pipeline 的資料邊界，提升異常局號排查與資料一致性判斷能力。
 ```
 
-Step 5 尚未完成；目前先不放入：
+Step 5 已完成；目前不放入：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
@@ -130,11 +137,11 @@ Step 5 尚未完成；目前先不放入：
 只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
 
-- Step 4 已完成，面試素材已整理。
-- 依 KB，下一步固定做 Step 5，判斷是否更新正式履歷 / 自傳。
-- 目前預期仍是不更新，除非補到 Nick 本人 evidence。
+- 本 flow Step 5 已完成，不更新正式履歷 / 自傳。
+- `app_bi` 主要 flow 已收斂；下一個高價值方向是金流 source of truth。
+- `payment Step 1` 會先找金流 repo 的 production flows，不會直接寫履歷。

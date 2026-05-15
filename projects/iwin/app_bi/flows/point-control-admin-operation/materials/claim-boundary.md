@@ -169,7 +169,7 @@
 下一步回到同 project candidate ranking，只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
 
 原因：
@@ -177,5 +177,5 @@ app_bi game-round-record-query Step 5
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- 依 KB 回到同 project candidate ranking，下一步做 `game-round-record-query Step 5`。
+- `game-round-record-query` Step 5 已完成；下一步轉 `payment Step 1`，回到真正 money correctness source of truth。
 - 它目前仍只作報表 / projection 分析素材，不更新履歷。

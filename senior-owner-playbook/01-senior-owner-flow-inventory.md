@@ -37,7 +37,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | 回到 app_bi ranking，選下一條 |
-| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | `app_bi game-round-record-query Step 5` |
+| iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | 轉後端主線 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 1 | 專案存在 / Nick 貢獻待確認 | 否 | `game_job daily-game-data-summary Step 2` |
 
 ## 下一步推薦
@@ -45,15 +45,15 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-game_job daily-game-data-summary Step 2
+payment Step 1
 ```
 
 原因:
 
-- Nick 本輪已指定 `iwin game_job`，且 `game_job` Step 1 已建立。
-- `daily-game-data-summary` 在 `game_job` 有最多 code-backed evidence：Quartz、job、service、mapper、時區修正與 path-specific history。
-- 下一步應先做 Step 2，將 `daily-game-data-summary`、`third-party-record-mongo-backup`、`coin-flow-batch-projection` 做價值 / 風險排序，再決定第一條 Step 3 深挖 flow。
-- 不更新履歷 / 自傳；先保持 `專案存在 / code-backed` 與 Nick 貢獻待確認。
+- `app_bi` 主要分析 flow 已完成 Step 5 判定，皆不更新正式履歷 / 自傳。
+- `payment-order-status-repair` 在 app_bi 只看到人工修正入口，真正 money correctness 要回到 `/Users/nick/Git/iwin/payment`。
+- 下一步先做 `payment Step 1`，找 payment repo 的 candidate production flows，不直接把 app_bi 人工入口寫成完整 payment owner。
+- 不更新履歷 / 自傳；至少等 payment flow Step 4 / Step 5 且有 Nick evidence 後再判斷。
 
 ## 近期候選 Queue
 

@@ -1,17 +1,20 @@
 # app_bi - game-round-record-query
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成；Step 5 尚未完成
+完成狀態：Step 5 已完成
 文件角色：`flow.md` 主研究報告
 掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 
 ## 0. 閱讀定位
 
 - Flow 中文名稱：遊戲局紀錄查詢 / 玩家申訴排查入口
 - Flow slug：`game-round-record-query`
-- 完成狀態：Step 4 已完成
-- 證據層級：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
+- 完成狀態：Step 5 已完成
+- 證據層級：
+  - `app_bi` 查詢端：`專案存在 / code-backed`；Nick 個人貢獻 `待確認`
+  - `iwin_gameserver` log writer / Antplay-GSC 戰績相關 path：有 `10gt12nc` commit 線索
+  - 本 flow 正式履歷結論：不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`
 - 本 flow 類型：後台查詢入口 / troubleshooting flow / 遊戲戰績 log 查詢
 - 是否只確認到入口：不是只看入口；已確認 `app_bi` 查詢端，並追到 `iwin_gameserver` 的戰績 log 寫入線索，但 writer 尚未做 Level 3 逐檔逐 commit 深掃
 
@@ -31,7 +34,7 @@
 
 它的價值在 production troubleshooting：玩家說「這局不對」、「派彩不對」、「回合查不到」時，工程師要知道查詢頁看到的是哪一層資料、是不是 source of truth、可能漏在哪裡。
 
-目前不能把這條 flow 寫成 Nick 真實開發成果；沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，只能當 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+目前不能把「app_bi 遊戲局查詢頁」寫成 Nick 真實開發成果；`app_bi` path-specific log 未看到 Nick author。雖然 `iwin_gameserver` 的 log writer / Antplay-GSC 戰績相關 path 有 `10gt12nc` commit 線索，但那應該另開後端 flow 深挖，不混在 app_bi 查詢頁裡寫正式履歷。
 
 ## 2. 初中階 Code 分層對照
 
@@ -197,11 +200,11 @@ sequenceDiagram
 
 已看分支：
 
-- `app_bi`：`main`
-- `iwin_gameserver`：`main`
-- `game_job`：`main`
-- `game_api`：`main`
-- `third_games_api`：`beta`
+- `app_bi`：本地 `main`，已 fetch；本地 `4a206a2`，`origin/main` `fd9881f`，本地落後 4 commit，未 pull / 未 checkout
+- `iwin_gameserver`：`main`，已 fetch；本地與 `origin/main` 同步在 `30a9fcb`
+- `game_job`：`main`，已 fetch；本地與 `origin/main` 同步在 `23908f4`
+- `game_api`：`main`，已 fetch；本地與 `origin/main` 同步在 `39bb6e3`
+- `third_games_api`：`beta`，已 fetch；本地與 `origin/beta` 同步
 
 已看 git log：
 
@@ -215,6 +218,30 @@ sequenceDiagram
 - 未做 Level 3 逐檔逐行。
 - 未確認 Nick 本人 MR / ticket / commit / production issue。
 - 未完整追 wallet / currency ledger / provider callback 對帳。
+
+## 8.2 Step 5 履歷判定
+
+結論：本 flow 不更新正式履歷 / 自傳。
+
+判定理由：
+
+1. `app_bi` 查詢端 path-specific log 主要 author 是 `gill` / `arnold`，未看到 Nick / `10gt12nc`。
+2. 本地 `app_bi main` fetch 後落後 `origin/main` 4 commit，未 pull；因此不能宣稱已看最新本機 code 工作樹。
+3. `iwin_gameserver` 的 log writer、Antplay / GSC 戰績相關 path 有大量 `10gt12nc` commit，代表 Nick evidence 更適合放到 `iwin_gameserver` 的後端 log writer / provider integration flow 裡深挖。
+4. 這條 `app_bi game-round-record-query` 的主角是後台 troubleshooting 查詢入口，不是遊戲結算、wallet correctness 或 log pipeline owner。
+5. 目前沒有把「玩家申訴排查、遊戲局查詢、log writer 修復」與 Nick production issue / ticket / MR review 做完整對齊。
+
+可保留用途：
+
+- 面試時用作「我如何從後台查詢入口追到後端 log writer，並辨識 troubleshooting log 與交易 truth 邊界」的分析 case。
+- 未來做 `iwin_gameserver` 或 Antplay / GSC provider flow 時，作為查詢端 / 下游排查視角。
+
+不可更新：
+
+- 不新增正式履歷 bullet。
+- 不改投遞用自傳。
+- 不說 Nick 主導 `app_bi` 遊戲局查詢。
+- 不說 Nick 負責玩家申訴系統或 wallet correctness。
 
 ## 9. Source of Truth 與 Projection
 
@@ -340,24 +367,25 @@ Owner 角度應該追問：
 - 我是 log pipeline owner。
 - 我改善查詢效能或修過 production issue。
 
-除非之後補到 Nick 本人 MR / ticket / commit / production issue / 本人確認，否則不更新正式履歷與自傳。
+Step 5 已判定：不更新正式履歷與自傳。`iwin_gameserver` 的 Nick commit 線索另開後端 flow 深挖後，才可評估是否轉成正式履歷 claim。
 
 Step 4 已整理完整面試稿：
 
 - `career-interview.md`
 - `materials/interview.md`
 
-## 16. 下一步要查的 evidence
+## 16. 下一步建議
 
-Step 5 建議做「是否更新正式履歷 / 自傳」判定，但目前預期仍是不更新：
-
-- 檢查 Step 4 面試稿是否有誇大成 Nick 真實開發。
-- 確認是否有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
-- 若仍無個人 evidence，正式履歷與自傳不更新。
-- 保留本 flow 作為 troubleshooting / production risk 面試分析素材。
+這條 flow 已完成 Step 5。下一步應回到更高價值的後端 source of truth，而不是繼續在 `app_bi` 查詢頁硬挖。
 
 下一步只推薦一件事：
 
 ```text
-app_bi game-round-record-query Step 5
+payment Step 1
 ```
+
+原因：
+
+- `app_bi` 已完成四條主要分析 flow 的 Step 5 判定。
+- `payment-order-status-repair` 在 app_bi 只看到人工修正入口，真正 money correctness 要回到 `/Users/nick/Git/iwin/payment`。
+- 下一步做 `payment Step 1` 會先找金流 repo 的 candidate flows，不會直接把 app_bi 人工入口寫成完整 payment owner。

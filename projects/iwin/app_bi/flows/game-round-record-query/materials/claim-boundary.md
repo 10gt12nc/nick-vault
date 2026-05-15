@@ -1,8 +1,8 @@
 # game-round-record-query - Claim Boundary
 
 更新時間：2026-05-15
-完成狀態：Step 4 已完成；Step 5 尚未完成
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+完成狀態：Step 5 已完成
+證據層級：app_bi 查詢端為專案存在 / code-backed；iwin_gameserver writer 有 Nick commit 線索；正式履歷不更新
 
 ## 可說
 
@@ -51,4 +51,14 @@ Step 4 已轉成面試 case，但仍不改變 claim 層級：
 - 不說「我設計完整玩家申訴系統」。
 - 不說「我負責 wallet correctness」。
 
-下一步 Step 5 只做正式履歷 / 自傳是否更新的判定；目前沒有 Nick 本人 evidence，預期仍是不更新。
+## Step 5 判定
+
+正式履歷 / 自傳不更新。
+
+原因：
+
+- `app_bi` 查詢端 path-specific log 未看到 Nick / `10gt12nc` author。
+- `iwin_gameserver` log writer / Antplay-GSC 戰績相關 path 有 `10gt12nc` commit 線索，但這屬於後端 writer / provider integration evidence，不應混入 `app_bi` 查詢頁 claim。
+- 本 flow 可作面試分析素材；若要升級履歷，應另做 `iwin_gameserver` / provider log writer flow，並追重要 commit diff、ticket / issue 與 production context。
+
+下一步不再做本 flow；回到更高價值後端 flow。
