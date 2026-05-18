@@ -5,9 +5,9 @@
 - Flow 中文名稱：充值建單與 provider request。
 - Flow slug：`payment-order-provider-request`。
 - 專案：`/Users/nick/Git/iwin/payment`。
-- 完成狀態：Step 4，Level 2 單條 flow 深掃；2026-05-18 建立主學習包並轉成面試 case。
-- 證據層級：`專案存在 / code-backed`。
-- Nick 個人貢獻層級：`待確認`。目前只看到 branch / code path / commit message，沒有 Nick 本人 MR、ticket、commit author、production issue 或本人確認，因此不能寫成「Nick 真實開發過」。
+- 完成狀態：Step 5，Level 2+ claim gate；2026-05-18 建立主學習包、轉成面試 case，並完成 Nick 個人貢獻判定。
+- 證據層級：`真實開發過` / `專案存在 / code-backed` 混合。
+- Nick 個人貢獻層級：`部分 provider request 真實開發過`。已從 source repo path-specific history 確認 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 在 `origin/pay4z-Nick` / `origin/NaNapay_Nick` / `origin/feature/nimtestpay-dev` 等分支與相關 commits 中，新增或修改 Pay4z、NaNapay、BFPAY、NimTestPay 這類 provider request / query / callback code。整體 `payment` 金流架構、全部 provider、完整 reconciliation owner 仍不得誇大。
 - 是否只確認到入口：否。已確認玩家支付選擇、provider controller `/newPay`、訂單建立、商戶設定、簽章、金額單位轉換、provider HTTP request、回傳支付資訊、失敗標 `ERROR`、查單入口；但 DB unique key、provider accepted 後無 callback 的自動 reconciliation、完整 request / callback raw log 仍是 `待確認`。
 
 本 flow 的核心問題是：
@@ -295,24 +295,26 @@ Owner 判斷：
 
 可說：
 
-- 這是一條 code-backed 的 provider request flow 分析。
+- Nick 有 code history 可支撐「參與多個 iwin payment provider request / callback / query 對接與維護」。
+- 最強 evidence 是 Pay4z：`origin/pay4z-Nick` 與 `7853917 feat(#285): pay4z 对接` 新增 `Pay4zController` / `Pay4zServiceImpl`，包含 `/newPay`、callback、查單、簽章、金額單位與 merchant order id。
+- 也可用 NaNapay、BFPAY、NimTestPay 作輔助 evidence，但要分清楚 production provider、query / fix、local / SIT manual testing。
 - 可以用它談 provider integration、簽章、金額單位、merchant order id、HTTP timeout、查單 / callback / reconciliation。
-- 可以說「我分析過這類 flow，會先確認本地訂單、provider order、callback 上分三者的邊界」。
 
 不能說：
 
 - Nick 主導或設計 iwin provider request 架構。
-- Nick 對接 Pay4z / NimTestPay / CashPay。
-- Nick 修過 `03c28e3` 或 `173074a` 相關問題。
+- Nick 對接全部 payment provider。
+- Nick 建立完整自動 reconciliation 機制。
 - 所有 provider 都已確認具備一致 idempotency。
 - 已確認完整自動 reconciliation。
+- NimTestPay 只能說 local / SIT manual testing merchant controller，不要包裝成正式 production provider 上線成果。
 
 詳細面試素材放在 `career-interview.md` 與 `materials/interview.md`，證據與待確認清單放在 `materials/evidence.md` 與 `materials/claim-boundary.md`。
 
 ## 14. 下一步
 
-建議下一步只做一件事：Step 5，檢查本 flow 是否能更新正式履歷 / 自傳；依目前 evidence 預期仍是不更新，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
+建議下一步只做一件事：回到同 project candidate flow，做 `manual-order-review-repair` Step 3。原因是 provider request / callback / withdrawal 已形成金流主線，下一條最值得補的是人工審核、補單與修復邊界。
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```

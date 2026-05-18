@@ -4,7 +4,7 @@
 
 `payment` 是 iwin 金流 / 充值 / 提現相關的 Java Spring Boot 多 module 專案，主要價值在 third-party provider request / callback、訂單狀態轉移、玩家上下分、MQ 非同步副作用、自動出款與人工審核。這是目前 iwin domain 裡最接近 Senior Backend / Platform Backend / System Owner 面試價值的後端專案之一。
 
-目前所有內容只標為 `專案存在 / code-backed`；沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，不寫成 Nick 真實開發成果。
+目前多數內容仍標為 `專案存在 / code-backed`；但 `payment-order-provider-request` 已完成 Step 5 claim gate，Pay4z / NaNapay / BFPAY / NimTestPay 等 provider request / query / callback 相關 code 有 Nick path-specific commit evidence，可用「參與」口徑寫入履歷素材。仍不得寫成 Nick 主導完整金流或全部 provider owner。
 
 ## 讀檔順序
 
@@ -15,8 +15,8 @@
 5. [flows/payment-provider-callback/materials/evidence.md](flows/payment-provider-callback/materials/evidence.md)：證據、技術決策、詳細面試稿與 claim 邊界附錄入口。
 6. [flows/withdrawal-auto-review-refund/flow.md](flows/withdrawal-auto-review-refund/flow.md)：第二條 flow 主研究報告，已完成 Step 5 claim gate。
 7. [flows/withdrawal-auto-review-refund/career-interview.md](flows/withdrawal-auto-review-refund/career-interview.md)：該 flow 的保守面試素材。
-8. [flows/payment-order-provider-request/flow.md](flows/payment-order-provider-request/flow.md)：第三條 flow 主研究報告，整理充值建單、provider request、簽章、金額單位、provider order id 與查單邊界。
-9. [flows/payment-order-provider-request/career-interview.md](flows/payment-order-provider-request/career-interview.md)：該 flow Step 4 保守面試素材。
+8. [flows/payment-order-provider-request/flow.md](flows/payment-order-provider-request/flow.md)：第三條 flow 主研究報告，整理充值建單、provider request、簽章、金額單位、provider order id 與查單邊界，已完成 Step 5 claim gate。
+9. [flows/payment-order-provider-request/career-interview.md](flows/payment-order-provider-request/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 
 ## 目前狀態
 
@@ -26,7 +26,7 @@
 | `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
 | `flows/payment-provider-callback/` | Step 5 已完成 | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary、bugfix diff 與履歷 / 自傳 claim gate |
 | `flows/withdrawal-auto-review-refund/` | Step 5 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case，並完成不更新正式履歷 / 自傳的 claim gate |
-| `flows/payment-order-provider-request/` | Step 4 已完成 | Level 2 深掃充值建單與 provider request；已補支付列表 / 詳情、provider `/newPay`、本地 `payment_order`、簽章、金額單位、provider response、查單與 timeout / unknown 邊界，並轉成面試 case |
+| `flows/payment-order-provider-request/` | Step 5 已完成 | Level 2+ claim gate；已確認 Nick 在 Pay4z、NaNapay、BFPAY、NimTestPay / `createOrderNo` 相關 provider request / query / callback code 有 path-specific commits，可保守寫入履歷素材 |
 
 ## 專案定位
 
@@ -57,7 +57,8 @@
 目前可以說：
 
 - 可用來理解 / 分析 iwin 金流、充值、提現、provider callback、MQ retry 與人工審核修復。
-- 可作為 Senior Backend 面試素材 evidence base，但需先完成單條 flow Level 2 深掃。
+- `payment-order-provider-request` 可保守寫成 Nick 參與第三方金流 provider request / callback / query 對接與維護。
+- 其他 payment flow 若未補 Nick path-specific evidence，仍只作 Senior Backend 面試素材 evidence base。
 
 目前不能說：
 
@@ -71,11 +72,11 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```
 
 原因：
 
-- `payment-order-provider-request` 已完成 Step 4 面試 case。
-- 下一步應做 Step 5 claim gate，判斷是否能更新正式履歷 / 自傳。
-- 依目前 evidence 預期仍不更新正式履歷，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
+- `payment-order-provider-request` 已完成 Step 5 claim gate。
+- provider request / callback / withdrawal 三條 payment 主線已收斂，下一條同 project 最值得補人工審核、補單與修復邊界。
+- 預期產出 `manual-order-review-repair` 的 Step 3 主學習包，連接 app_bi 後台入口與 payment source of truth。

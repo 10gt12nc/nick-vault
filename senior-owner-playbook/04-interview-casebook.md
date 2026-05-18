@@ -22,6 +22,13 @@
 - 入分 / 扣分副作用不能和 callback ack 混在一起亂做。
 - 若 MQ 或下游失敗，要有可查詢的 pending / failed 狀態。
 
+payment provider request 補充：
+
+- `payment-order-provider-request` 已完成 Step 5 claim gate，可用 Nick 本人 provider 對接與維護素材。
+- 最強 code evidence 是 Pay4z：`origin/pay4z-Nick` / `7853917` 新增 `Pay4zController` 與 `Pay4zServiceImpl`，涵蓋 `/newPay`、callback、查單、簽章、金額單位與 merchant order id。
+- NaNapay、BFPAY、NimTestPay 也可作輔助 evidence，但要分清 production provider、查單 / fix、local / SIT manual testing。
+- 面試時可以說「參與 provider request / callback / query 對接與維護」，不要說主導完整金流或全部 provider owner。
+
 Lead / Architect 追問：
 
 - 如果 provider 說成功，但你 DB transaction rollback 怎麼辦？

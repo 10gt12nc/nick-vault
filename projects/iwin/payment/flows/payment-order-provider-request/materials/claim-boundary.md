@@ -2,58 +2,60 @@
 
 ## 目前結論
 
-本 flow 目前只可作為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+本 flow 已完成 Step 5 claim gate。
 
-Step 4 已轉成面試 case，但這不等於履歷 claim 可以升級。正式履歷 / 自傳不更新，等 Step 5 claim gate 做最後判斷。
+結論：可以把 Nick 的個人貢獻從 `待確認` 升級為 `部分 provider request 真實開發過`。
 
-不更新：
+可更新：
 
-- `senior-owner-playbook/05-resume-master-zh.md`
-- `senior-owner-playbook/08-application-autobiography-zh.md`
+- flow-level `career-interview.md`
+- `senior-owner-playbook/05-resume-master-zh.md` 的金流 provider 經驗描述
+- `senior-owner-playbook/08-application-autobiography-zh.md` 的投遞用保守描述
 
 原因：
 
-- 沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
-- 沒有確認 Nick 是 payment provider integration owner。
-- 已完成 Step 4 面試 case，但尚未完成 Step 5 claim gate。
-- DB unique key、provider idempotency、自動 reconciliation 還是待確認。
+- `git log --all` 與 path-specific history 顯示 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 對多個 provider request / callback / query 相關檔案有新增與修正。
+- `origin/pay4z-Nick` 指向 Pay4z 對接分支，`7853917` / `702cc73` 新增 `Pay4zController` 與 `Pay4zServiceImpl`。
+- `origin/NaNapay_Nick` 包含 NaNapay 對接，`7ae7f11` 新增 `NanaPayController` 與 `NanaPayServiceImpl`。
+- BFPAY / NewCashPay query、NimTestPay local / SIT manual testing controller 也有 `10gt12nc` path-specific commits。
 
 ## 可寫入面試素材
 
 可以保守說：
 
-- 「我分析過 iwin payment 的充值建單與 provider request flow。」
-- 「這條 flow 涉及 `payment_order`、商戶設定、provider request、簽章、金額單位、callback 與查單補償。」
+- 「我參與過 iwin payment provider request / callback / query 對接與維護。」
+- 「比較明確的 code evidence 包含 Pay4z、NaNapay、BFPAY，以及 NimTestPay local / SIT testing controller。」
+- 「這類 flow 涉及 `payment_order`、商戶設定、provider request、簽章、金額單位、callback 與查單補償。」
 - 「我會用它討論 provider integration 的 transaction boundary、timeout、idempotency、reconciliation。」
 
-## 需要 Nick 確認後才可升級
+## 可升級 claim
 
-若 Nick 確認曾參與，可升級成：
+- `真實開發過`：Pay4z provider request / callback / query 對接，依 `origin/pay4z-Nick` 與 `7853917` / `702cc73`。
+- `真實開發過`：NaNapay provider request / callback / query 對接，依 `origin/NaNapay_Nick` 與 `7ae7f11`。
+- `真實維護過`：BFPAY / NewCashPay 查單與狀態處理邊界，依 `260e550`。
+- `真實修復過`：Pay4z callback / sign 相關問題，依 `9aa0477`。
+- `真實測試支援 / SIT tooling`：NimTestPay local / SIT manual testing controller，依 `7403277`；不可包裝成 production provider owner。
 
-- `真實開發過`
-- `真實排查過`
-- `真實修復過`
-- `真實 provider integration 維護經驗`
+## 仍需保守
 
-需要 evidence：
-
-- MR / PR link。
-- ticket / issue。
-- commit author。
-- production incident / postmortem。
-- Nick 口頭確認具體做過哪一段。
+- 只能寫「參與」或「維護」，不要寫「主導」。
+- 只能寫已掃到的代表 provider，例如 Pay4z、NaNapay、BFPAY；不要寫全部 provider。
+- NimTestPay 要標成 local / SIT manual testing tooling，不要寫 production 上線成果。
+- `createOrderNo` id collision fix 可以作為資料一致性 bugfix，但不要說完整建單架構都是 Nick 設計。
+- 沒有 production incident / metric 前，不寫改善比例或事故解決成效。
 
 ## 禁止 claim
 
 - 禁止寫「主導 iwin 三方金流串接」。
 - 禁止寫「設計 provider request 架構」。
-- 禁止寫「對接 Pay4z / NimTestPay / CashPay」。
+- 禁止寫「對接全部 payment provider」。
 - 禁止寫「解決 provider request timeout 對帳」。
 - 禁止寫「建立完整 reconciliation 機制」。
 - 禁止寫「確認所有 provider idempotent」。
+- 禁止把 NimTestPay 寫成正式 production provider 上線成果。
 
 ## 下一步
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```

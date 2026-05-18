@@ -2,7 +2,9 @@
 
 ## Step 4 判斷
 
-`payment-order-provider-request` 已轉成 Step 4 面試 case。這條 flow 補上 provider callback 之前的前半段：本地訂單如何建立、如何組 provider request、如何處理 accepted / rejected / unknown，以及如何用 `billNo` 接 callback / 查單。
+`payment-order-provider-request` 已完成 Step 5 claim gate。這條 flow 補上 provider callback 之前的前半段：本地訂單如何建立、如何組 provider request、如何處理 accepted / rejected / unknown，以及如何用 `billNo` 接 callback / 查單。
+
+Step 5 新結論：Nick 不應維持 `待確認`。path-specific git history 已確認 `10gt12nc` 在 Pay4z、NaNapay、BFPAY、NimTestPay 與 `createOrderNo` 相關 code 有實際新增 / 修正。但 owner decision 仍只能說「參與 provider 對接與維護」，不可說完整金流架構 owner。
 
 ## Owner Decision
 
@@ -51,5 +53,5 @@ HTTP timeout 不能直接等同 provider fail，因為 request 可能送到 prov
 ## 下一步
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```

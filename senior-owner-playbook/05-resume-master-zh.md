@@ -14,7 +14,7 @@
 - 接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤、資料流梳理與文件化，重建核心 flow 的理解，降低後續維護與交接成本。
 - 參與平台服務版本升級與相容性調整相關工作，包含 Java / Spring Boot 版本、相依套件、部署驗證與既有功能風險確認；若正式履歷要寫成完整主導升級，需再補 commit / MR / release evidence。
 - 參與前台 REST API、服務間 gRPC / ProtoBuf 或類似契約式通訊維護，處理欄位定義、資料結構、版本相容與多模組整合情境。
-- 參與第三方金流與錢包相關流程，包含 provider request、callback、簽章驗證、訂單狀態、入出金副作用、補償與對帳風險分析；正式履歷若要寫成主導或量化改善，需再補實作證據。
+- 參與第三方金流 provider 對接與維護，包含 Pay4z、NaNapay、BFPAY 等 provider request / callback / query 流程，處理簽章驗證、金額單位、merchant order id、訂單狀態、查單補償與 timeout / unknown 風險；不寫主導完整金流或量化改善。
 - 參與第三方遊戲 provider integration 與遊戲結算相關流程，涵蓋登入、轉入轉出、下注 / 派彩、rollback、交易同步、紀錄保存與報表鏈路，聚焦玩家餘額、provider transaction 與 round log 的一致性。
 - 維護或分析 Kafka / RabbitMQ / scheduled job 等非同步流程，理解 retry、DLT、補償、request log、資料重跑與營運查詢在 production 中的重要性。
 - 參與後台控制面與營運工具維護，包含 RBAC / 權限、報表查詢、玩家 / 商戶 / provider 設定、白名單、quota、Quartz job 與操作稽核等場景。
@@ -88,3 +88,4 @@
 - 可使用：參與、維護、分析、梳理、協助、優化、整理、提出改善方向。
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
+- 已補較強 code evidence：iwin payment provider request / callback / query 對接與維護可用「參與」口徑，包含 Pay4z、NaNapay、BFPAY 等 path-specific commits；仍不可寫成主導完整金流、全部 provider owner 或已建立完整 reconciliation。

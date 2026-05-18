@@ -2,10 +2,10 @@
 
 ## 本次掃描定位
 
-- 任務：`iwin payment payment-order-provider-request Step 4`。
+- 任務：`iwin payment payment-order-provider-request Step 5`。
 - 日期：2026-05-18。
-- 掃描等級：Level 2 Flow 深掃延伸；將充值建單與 provider request 轉成面試 case。
-- 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`。
+- 掃描等級：Level 2+ claim gate；在 Step 4 code path 基礎上追 Nick branch、author、path-specific history 與重要 diff。
+- 證據層級：`真實開發過` / `專案存在 / code-backed` 混合；Nick 貢獻從 `待確認` 修正為「部分 provider request 真實開發過」。
 
 ## 自動重讀
 
@@ -28,6 +28,9 @@
 - `projects/iwin/payment/flows/payment-order-provider-request/flow.md`
 - `projects/iwin/payment/flows/payment-order-provider-request/career-interview.md`
 - `projects/iwin/payment/flows/payment-order-provider-request/materials/interview.md`
+- `projects/iwin/payment/flows/payment-order-provider-request/materials/claim-boundary.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
 
 ## source repo 狀態
 
@@ -76,6 +79,60 @@ payment：
 - Step 4 重看代表 controller 後，確認 `Pay4zController` 查單會回 `SUCCESS` / `FAIL` / `UNKOWN` 語意，但這仍是查單入口，不等於已確認自動 reconciliation。
 - Step 4 重看 `NewCashPayController` 後，確認 response abnormal / parse fail 會標 `ERROR`，但部份查單 response abnormal 的更新語句有註解線索，不能推論所有 unknown 都會進終態。
 
+## Step 5 Nick 個人貢獻 evidence
+
+### source repo / branch evidence
+
+已掃遠端分支：
+
+- `origin/pay4z-Nick`
+- `origin/NaNapay_Nick`
+- `origin/Nick-02-mdTest`
+- `origin/Nick-03`
+- `origin/Nick-work-item-201-test`
+- `origin/feature/nimtestpay-dev`
+- `origin/nick`
+- `origin/Kafka-Nick`
+
+已確認與本 flow 直接相關：
+
+| 分支 / commit | Author / Committer | 日期 | 檔案 | 判斷 |
+| --- | --- | --- | --- | --- |
+| `origin/pay4z-Nick` / `702cc73` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 新增 Pay4z provider request / callback / query / withdraw service |
+| `7853917` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 同 Pay4z 對接 commit，進入主線 history |
+| `9aa0477` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-12-01 | `Pay4zController.java`、`Utils.java` | 修正 Pay4z callback / sign 解析：`errorMsg` 加號被空格替換造成 sign mismatch |
+| `origin/NaNapay_Nick` / `7ae7f11` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-11-13 | `NanaPayController.java`、`NanaPayServiceImpl.java` | 新增 NaNapay provider request / callback / query / withdraw service |
+| `260e550` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2024-12-26 | `BFPayController.java`、`NewCashPayController.java` | BFPAY order / callback 修正與 NewCashPay 查單更新 |
+| `7403277` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2026-04-30 | `NimTestPayController.java`、`application.yml` | 新增 NimTestPay local / SIT manual testing controller；Co-Authored-By Claude，不能包裝成 production provider owner |
+| `03c28e3` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2026-05-14 | `BaseServiceImpl#createOrderNo`、unit test | 修正 `log_user.id` 被 BeanUtil 複製到 `payment_order.id`，避免同 uid 第二筆 order 撞主鍵 |
+
+### 重要 diff 摘要
+
+- Pay4z 新增 `Pay4zController`：`/pay4z/newPay` 會 `getMerchant`、`validMoney`、`createOrderNo`，以 `merchantOrderNo = order.billNo` 組 provider request，處理 amount 分 / 元、callback URL、sign、provider response、`CashPayVO` 與 failure -> `ERROR`。
+- Pay4z callback / query：同 controller 包含 `/pay/notify`、`/pay/getOrderStatus`，處理 sign、white list、`PAID` / `PAY_FAILED` / `REFUND` / unknown。
+- Pay4z sign bugfix：`9aa0477` 改用不過濾 `+` 的 request parser，避免 provider callback errorMsg 中 `+` 被 decode 成空白後驗簽失敗。
+- NaNapay 新增 `NanaPayController`：與本 flow 相同形狀，包含 `createOrderNo`、`mchOrderId = billNo`、SHA512 sign、amount unit、provider request、callback 與 query。
+- BFPAY / NewCashPay：`260e550` 改查單 URL、sign key、query form request，並避免部分 NewCashPay 查單 response abnormal 時直接改 order `ERROR`。
+- `03c28e3`：`createOrderNo` 清掉 copied id 並新增 unit test，屬於 provider request 共用建單風險修復。
+
+### Step 5 claim 判斷
+
+可升級為 `真實開發過`：
+
+- Nick 參與 iwin payment 多個 provider request / callback / query 對接與維護。
+- Pay4z 是最強履歷 evidence，可明確說「參與 Pay4z provider 對接」，但仍不寫主導完整金流。
+- NaNapay / BFPAY 可作輔助 provider integration evidence。
+- `createOrderNo` id collision fix 可說「修復 payment order 建單時 BeanUtil 複製 id 的資料一致性問題」，但不要擴大成完整建單架構 owner。
+
+仍只能 code-backed / 待確認：
+
+- 完整 payment 金流 owner。
+- 全部 provider 一致標準化。
+- DB unique key 與 production schema。
+- 自動 reconciliation job。
+- provider timeout 對帳 SOP。
+- 所有 provider 的 end-to-end idempotency。
+
 ## 相關 commit 線索
 
 - `03c28e3 fix: clear copied order id before payment insert`
@@ -102,25 +159,25 @@ payment：
 - provider request / response 是否有統一 raw log / outbox / inbox。
 - `PayTypeServiceImpl#createPayOrder` 是否仍有實際呼叫路徑，或主要 provider request 都走 `BaseServiceImpl#createOrderNo`。
 - app_bi / admin 是否能安全查 provider order status 並修補 payment order。
-- Nick 本人是否參與任一 provider request 對接、bugfix、ticket 或 production incident。
+- `10gt12nc` 與 Nick 本人身份已可依本輪語境與 branch naming 作履歷素材使用；若要對外附證，仍建議 Nick 保存 GitHub / GitLab 帳號對應截圖或 HR 可接受的佐證。
 
 ## 未掃
 
 - 未逐 provider 全部 `/newPay` 逐行掃。
-- 未逐 commit diff 展開所有 provider 對接。
+- 已展開 Pay4z、NaNapay、BFPAY / NewCashPay、NimTestPay 與 `createOrderNo` 代表 diff；未逐 commit diff 展開所有 provider 對接。
 - 未掃 DB schema / migration / production index。
 - 未掃 timer / reconciliation job 全貌。
 - 未掃完整 app_bi repair UI。
 
-## Step 4 結論
+## Step 5 結論
 
-- 本 flow 已完成 Step 4 面試 case，足以讓 Nick 用 provider request 談 transaction boundary、idempotency、unknown state、reconciliation 與 provider adapter trade-off。
-- 核心講法：`payment_order` 先建 `WAIT`，`billNo` 帶到 provider 當 merchant order id；provider accepted 後仍要等 callback / 查單確認，`newPay` success 不等於上分。
-- 高風險追問：本地 insert 成功但 provider request timeout、provider accepted no callback、response fail 但 provider 已建單、重複 `/newPay` 產新 `billNo`、金額單位轉換、sign / notify URL 設定錯。
-- 正式履歷不更新，因為 Nick 本人 evidence 未補。
+- 本 flow 已完成 Step 5 claim gate。
+- Nick 個人貢獻不應再維持「待確認」：至少 Pay4z / NaNapay / BFPAY / NimTestPay 相關 provider request / query / callback code 有 `10gt12nc` path-specific commits 與 Nick branch evidence。
+- 正式履歷可保守更新為「參與第三方金流 provider request / callback / query 對接與維護」，不寫主導、不寫全權 owner、不寫量化改善。
+- 核心講法仍是：`payment_order` 先建 `WAIT`，`billNo` 帶到 provider 當 merchant order id；provider accepted 後仍要等 callback / 查單確認，`newPay` success 不等於上分。
 
 ## 下一步
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```

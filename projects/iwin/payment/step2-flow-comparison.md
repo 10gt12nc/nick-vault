@@ -84,8 +84,8 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `payment-order-provider-request` Step 5 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 4 完成與 Step 5 下一步 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 3 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與下一條 `manual-order-review-repair` Step 3 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |
 
@@ -322,24 +322,24 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment payment-order-provider-request Step 5
+iwin payment manual-order-review-repair Step 3
 ```
 
 為什麼現在做它：
 
-- `payment-order-provider-request` 已完成 Step 4 面試 case。
-- 下一步應做 Step 5 claim gate，判斷是否能更新正式履歷 / 自傳。
+- `payment-order-provider-request` 已完成 Step 5 claim gate。
+- 下一步應回到同 project candidate ranking，做 `manual-order-review-repair` Step 3。
 
 會產出什麼：
 
-- 更新 `projects/iwin/payment/flows/payment-order-provider-request/` 的 claim boundary，並明確判定是否更新正式履歷 / 自傳。
+- 建立 `projects/iwin/payment/flows/manual-order-review-repair/` 的主學習包，連接 app_bi 後台入口與 payment source of truth。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- 預設不更新正式履歷；等本 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
+- `payment-order-provider-request` 已可保守更新正式履歷；下一條 `manual-order-review-repair` 仍需先做 code-backed evidence。
 
 是否需要 commit / push：
 
-- Step 5 完成後自動 commit。
+- Step 3 完成後自動 commit。
 - 不需要 push，除非 Nick 明確要求。
