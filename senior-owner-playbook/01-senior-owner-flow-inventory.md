@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，`payment-provider-callback Step 5` 與 `withdrawal-auto-review-refund Step 5` 都已完成，`payment-order-provider-request Step 3` 也已完成；下一步做 `payment-order-provider-request Step 4`。
+- 若目標是最快產出 Senior Backend 履歷素材，`payment-provider-callback Step 5` 與 `withdrawal-auto-review-refund Step 5` 都已完成，`payment-order-provider-request Step 4` 也已完成；下一步做 `payment-order-provider-request Step 5`。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
@@ -96,7 +96,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin game_api coupon-redeem-credit-grant Step 5` |
 | iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 已收斂，轉 payment 下一條 |
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 已收斂，轉 `payment-order-provider-request` |
-| iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 3 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin payment payment-order-provider-request Step 4` |
+| iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin payment payment-order-provider-request Step 5` |
 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | Step 5 檢查履歷是否更新 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `game_job daily-game-data-summary Step 5` |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 回到 iwin_gameserver ranking，選下一條 |
@@ -108,13 +108,13 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-iwin payment payment-order-provider-request Step 4
+iwin payment payment-order-provider-request Step 5
 ```
 
 原因:
 
-- `payment-order-provider-request` 已完成 Step 3 主學習包。
-- 下一步應轉成面試 case，補 failure / consistency / idempotency / retry / reconciliation 追問。
+- `payment-order-provider-request` 已完成 Step 4 面試 case。
+- 下一步應做 Step 5 claim gate，判斷是否能更新正式履歷 / 自傳。
 - 目前仍只作 code-backed flow；正式履歷仍需要 Nick 本人 evidence 才能升級。
 
 ## 近期候選 Queue
@@ -123,7 +123,7 @@ iwin payment payment-order-provider-request Step 4
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | payment | `payment-order-provider-request` | 金流訂單與 provider request | Step 3 已完成；下一步補 provider request timeout、unknown、idempotency、query / reconciliation 面試 case | `iwin payment payment-order-provider-request Step 4` |
+| 1 | iwin | payment | `payment-order-provider-request` | 金流訂單與 provider request | Step 4 已完成；下一步做履歷 / claim gate，預期仍不更新正式履歷除非補 Nick 本人 evidence | `iwin payment payment-order-provider-request Step 5` |
 | 2 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 已完成 Step 4，應收 Step 5 判定，不跳新 flow | `iwin game_api coupon-redeem-credit-grant Step 5` |
 | 3 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 已完成 Step 4，下一步做履歷 / claim gate | `game_job daily-game-data-summary Step 5` |
 | 4 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |

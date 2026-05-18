@@ -5,7 +5,7 @@
 - Flow 中文名稱：充值建單與 provider request。
 - Flow slug：`payment-order-provider-request`。
 - 專案：`/Users/nick/Git/iwin/payment`。
-- 完成狀態：Step 3，Level 2 單條 flow 深掃；2026-05-18 建立主學習包。
+- 完成狀態：Step 4，Level 2 單條 flow 深掃；2026-05-18 建立主學習包並轉成面試 case。
 - 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻層級：`待確認`。目前只看到 branch / code path / commit message，沒有 Nick 本人 MR、ticket、commit author、production issue 或本人確認，因此不能寫成「Nick 真實開發過」。
 - 是否只確認到入口：否。已確認玩家支付選擇、provider controller `/newPay`、訂單建立、商戶設定、簽章、金額單位轉換、provider HTTP request、回傳支付資訊、失敗標 `ERROR`、查單入口；但 DB unique key、provider accepted 後無 callback 的自動 reconciliation、完整 request / callback raw log 仍是 `待確認`。
@@ -307,12 +307,12 @@ Owner 判斷：
 - 所有 provider 都已確認具備一致 idempotency。
 - 已確認完整自動 reconciliation。
 
-詳細面試素材放在 `career-interview.md`，證據與待確認清單放在 `materials/evidence.md` 與 `materials/claim-boundary.md`。
+詳細面試素材放在 `career-interview.md` 與 `materials/interview.md`，證據與待確認清單放在 `materials/evidence.md` 與 `materials/claim-boundary.md`。
 
 ## 14. 下一步
 
-建議下一步只做一件事：Step 4，把本 flow 轉成面試 case，補 failure / consistency / idempotency / retry / reconciliation 追問。
+建議下一步只做一件事：Step 5，檢查本 flow 是否能更新正式履歷 / 自傳；依目前 evidence 預期仍是不更新，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
 
 ```text
-iwin payment payment-order-provider-request Step 4
+iwin payment payment-order-provider-request Step 5
 ```

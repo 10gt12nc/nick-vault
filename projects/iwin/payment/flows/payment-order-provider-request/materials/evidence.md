@@ -2,9 +2,9 @@
 
 ## 本次掃描定位
 
-- 任務：`iwin payment payment-order-provider-request Step 3`。
+- 任務：`iwin payment payment-order-provider-request Step 4`。
 - 日期：2026-05-18。
-- 掃描等級：Level 2 Flow 深掃；建立充值建單與 provider request 主學習包。
+- 掃描等級：Level 2 Flow 深掃延伸；將充值建單與 provider request 轉成面試 case。
 - 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`。
 
 ## 自動重讀
@@ -25,6 +25,9 @@
 - `projects/iwin/payment/flows/payment-provider-callback/flow.md`
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md`
 - `projects/iwin/payment/flows/*/materials/*.md`
+- `projects/iwin/payment/flows/payment-order-provider-request/flow.md`
+- `projects/iwin/payment/flows/payment-order-provider-request/career-interview.md`
+- `projects/iwin/payment/flows/payment-order-provider-request/materials/interview.md`
 
 ## source repo 狀態
 
@@ -70,6 +73,8 @@ payment：
 - provider callback success 不在 `newPay` 完成；會進 `asynUpdateOrderStatus` / notify MQ / `updateUserInfo`。
 - `NimTestPayController`、`Pay4zController`、`NewCashPayController` 都有 `/pay/getOrderStatus` 查單入口線索。
 - `a56b407` 對 payment 做過憑證外部化與 sign key log mask 類安全修正。
+- Step 4 重看代表 controller 後，確認 `Pay4zController` 查單會回 `SUCCESS` / `FAIL` / `UNKOWN` 語意，但這仍是查單入口，不等於已確認自動 reconciliation。
+- Step 4 重看 `NewCashPayController` 後，確認 response abnormal / parse fail 會標 `ERROR`，但部份查單 response abnormal 的更新語句有註解線索，不能推論所有 unknown 都會進終態。
 
 ## 相關 commit 線索
 
@@ -107,15 +112,15 @@ payment：
 - 未掃 timer / reconciliation job 全貌。
 - 未掃完整 app_bi repair UI。
 
-## Step 3 結論
+## Step 4 結論
 
-- 本 flow 已建立 Step 3 主學習包，足以讓 Nick 先讀懂 provider request 主線。
-- 核心講法：`payment_order` 先建 `WAIT`，`billNo` 帶到 provider 當 merchant order id；provider accepted 後仍要等 callback / 查單確認。
-- 高風險斷點：本地 insert 成功但 provider request timeout、金額單位轉換、provider accepted no callback、response fail 但 provider 已建單、重複 `/newPay`、sign / notify URL 設定錯。
+- 本 flow 已完成 Step 4 面試 case，足以讓 Nick 用 provider request 談 transaction boundary、idempotency、unknown state、reconciliation 與 provider adapter trade-off。
+- 核心講法：`payment_order` 先建 `WAIT`，`billNo` 帶到 provider 當 merchant order id；provider accepted 後仍要等 callback / 查單確認，`newPay` success 不等於上分。
+- 高風險追問：本地 insert 成功但 provider request timeout、provider accepted no callback、response fail 但 provider 已建單、重複 `/newPay` 產新 `billNo`、金額單位轉換、sign / notify URL 設定錯。
 - 正式履歷不更新，因為 Nick 本人 evidence 未補。
 
 ## 下一步
 
 ```text
-iwin payment payment-order-provider-request Step 4
+iwin payment payment-order-provider-request Step 5
 ```
