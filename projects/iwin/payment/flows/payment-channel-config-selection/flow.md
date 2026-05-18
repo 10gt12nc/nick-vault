@@ -1,8 +1,8 @@
 # iwin payment payment-channel-config-selection
 
-完成狀態：Step 4 已完成
-掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+完成狀態：Step 5 已完成
+掃描等級：Level 2+ claim gate
+證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻未確認到可放履歷的直接 evidence
 
 本 flow 研究的是：
 
@@ -207,11 +207,11 @@ sequenceDiagram
 - 玩家層級、device、channel、商戶 status 與商戶帳號對應的交叉過濾。
 - Redis projection partial sync、cold-cache fallback、config versioning 的 owner decision。
 
-目前不可放正式履歷：
+Step 5 判定不放正式履歷：
 
 - 未找到 Nick 直接修改這條 payment list/detail/withdrawConfig 或 app_bi payment config sync 主線的 path-specific evidence。
 - app_bi 設定同步相關 history 目前主要是 gill / arnold。
-- payment 相關 history 中 `10gt12nc` 只支撐 provider request / insert consistency 題材，不支撐本 flow owner claim。
+- payment 相關 history 中 `10gt12nc` 只支撐 provider request / order insert consistency 題材，不支撐本 flow owner claim。
 
 ## 9. Step 4 面試 case
 
@@ -286,12 +286,77 @@ app_bi MySQL 設定
 
 Step 4 已把這條 runtime config flow 轉成可面試 case，重點放在 config consistency、partial sync、cold-cache fallback、production 排查順序與 fail closed owner decision。
 
-下一步建議做 Step 5：重新檢查 path-specific history、claim boundary、履歷 / 自傳是否需要更新。以目前 evidence 看，預期仍不更新正式履歷，只保留面試素材。
+## 11. Step 5 Claim Gate
 
-## 11. 下一步建議
+### 11.1 結論
+
+本 flow 已完成 Step 5，判定如下：
+
+| 項目 | 判定 |
+| --- | --- |
+| 是否更新正式履歷 master | 不更新 |
+| 是否更新投遞用自傳 | 不更新 |
+| 是否可作面試 case | 可以 |
+| 證據層級 | 專案存在 / code-backed；分析素材 / learning-only |
+| Nick 個人貢獻 | 未確認到可放履歷的直接 evidence |
+
+### 11.2 為什麼不更新履歷
+
+Step 5 重新 fetch 並檢查 payment / app_bi 相關 path history 後，仍未找到 `10gt12nc` 直接修改以下主線的 evidence：
+
+- `PayPublicController#/payment/list`
+- `PayPublicController#/payment/detail`
+- `PayTypeServiceImpl#fetchPayTypeList`
+- `PayTypeServiceImpl#fetchPayTypeDetail`
+- `PayTypeServiceImpl#withdrawConfig`
+- app_bi payment config / Redis sync 主線
+
+有看到 `10gt12nc` 在相關 path 的 commit：
+
+- `03c28e3`：充值建單前清掉 BeanUtil 帶入的 copied order id。
+- `6539d7a`：提款建單前清掉 BeanUtil 帶入的 copied order id。
+
+這兩筆是 order insert consistency / provider request 方向的 evidence，不是 payment channel config selection 的直接 evidence。真正支撐本 flow config / Redis projection 的 path history 主要是 Derek / gill / arnold，例如 `c92a8c2` 修正 Redis `payTypeList` 格式、`ea9bf27` 商戶同步只保留 `status=1`。
+
+### 11.3 可保留的面試價值
+
+這條 flow 雖然不進正式履歷，但很適合當 Senior / Owner 面試補充案例：
+
+- runtime eligibility：玩家是否能看到正確支付 / 提現入口。
+- DB source of truth、Redis projection、payment runtime filter 三層一致性。
+- `payTypeList` / `merchantList` / `merchantAccountList` 多 key partial sync。
+- Redis cold-cache fallback 與第一個 request 空列表風險。
+- fail closed、config version、sync validation、per-channel readiness、explainability。
+
+### 11.4 不能誇大的邊界
+
+不可說：
+
+- 我主導 payment channel config selection。
+- 我設計 payment runtime config center。
+- 我修復支付列表 / 商戶設定 production incident。
+- 我建立完整 config version / atomic rollout。
+
+可說：
+
+- 我分析過 payment runtime config selection，能說明 DB 設定、Redis projection、payment API eligibility 的一致性風險。
+- 我會用這條案例討論支付入口前置條件、partial sync、cold-cache fallback、fail closed 與 owner decision。
+
+## 12. Step 5 結論
+
+`payment-channel-config-selection` 已完成 Step 5。這條 flow 最終定位是：
+
+```text
+code-backed runtime config consistency 面試案例
+不是正式履歷成果
+```
+
+payment project 目前 Top 5 flow 都已完成到 Step 5。下一步回到跨 iwin queue，優先收斂已完成 Step 4、等待 claim gate 的 `game_api coupon-redeem-credit-grant Step 5`。
+
+## 13. 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 5
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

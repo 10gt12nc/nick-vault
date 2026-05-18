@@ -225,6 +225,38 @@ Lead / Architect 追問：
 - campaign 若有總量上限，如何避免 concurrent oversell？
 - 客服如何查「玩家說領了但系統查不到 record」？
 
+## 案例 9：Payment runtime config selection
+
+對應 flow：
+
+- `payment/payment-channel-config-selection`
+
+證據邊界：
+
+- 此案例只作面試分析素材，不更新正式履歷 / 自傳。
+- 已完成 Step 5 claim gate；未找到 Nick 直接修改 payment list/detail/withdrawConfig 或 app_bi Redis sync 的 path-specific evidence。
+- `10gt12nc` 在相關 path 的 `03c28e3` / `6539d7a` 屬於 order insert id copy 修正，支撐 provider request / order insert consistency，不支撐本 flow owner claim。
+
+面試主軸：
+
+支付方式與商戶設定不是單純後台資料，而是玩家能否進入 money flow 的 runtime eligibility contract。Senior 要能看懂 MySQL source of truth、Redis projection、payment API filter 三層一致性，並處理多 key partial sync、cold-cache fallback、player layer / channel / device filter 與 fail closed。
+
+可講重點：
+
+- MySQL 設定是 source of truth，Redis `settings` 是 runtime projection，payment API 是 eligibility decision。
+- `/payment/list` 決定玩家可見支付類型，`/payment/detail` 決定該 pay code 下有哪些商戶 / VIP / 快捷支付 detail。
+- `payTypeList`、`merchantList`、`merchantAccountList`、`convenientPay`、`vipPay`、`paySetting` 必須同版本或可驗證。
+- Redis key miss 可以 fallback DB，但第一個 request 不能仍拿到空列表。
+- 設定不完整時應 fail closed，不曝光不可確認商戶。
+
+Lead / Architect 追問：
+
+- DB 已改、Redis 未同步時玩家會看到什麼？
+- `payTypeList` 有新 pay code，但 `merchantList` 還沒同步，怎麼偵測？
+- 如何設計 config version / batch validation？
+- per-channel readiness 要存在哪裡、誰看？
+- fail closed 對營收有影響時，owner decision 怎麼取捨？
+
 ## 面試回答公式
 
 ```text

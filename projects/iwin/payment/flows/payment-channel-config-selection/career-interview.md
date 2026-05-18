@@ -1,11 +1,11 @@
 # payment-channel-config-selection career-interview
 
-完成狀態：Step 4 已完成
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+完成狀態：Step 5 已完成
+證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻未確認到可放履歷的直接 evidence
 
 ## 保守定位
 
-這條 flow 目前只作面試分析素材，不放入正式履歷。
+這條 flow 已完成 Step 5 claim gate，最終只作面試分析素材，不放入正式履歷。
 
 可說：
 
@@ -52,8 +52,30 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 | 會怎麼改善？ | 加 config version、同步結果表、schema validation、cold-cache 測試、channel/key readiness check，runtime 對不完整 config fail closed。 |
 | 這條能放履歷嗎？ | 目前不放。它是 code-backed 分析素材，但沒有 Nick 直接 path-specific evidence。 |
 
+## Step 5 Claim Gate
+
+最終判定：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 可保留在 `senior-owner-playbook/04-interview-casebook.md` 作 runtime config consistency 面試案例。
+
+原因：
+
+- `10gt12nc` 在相關 payment path 的 evidence 是 order insert id copy 修正，支撐 provider request / order insert consistency，不支撐本 flow 的 payment list/detail/config sync claim。
+- app_bi payment config sync / RedisSynchronize 主線沒有看到 `10gt12nc` 直接修改 evidence。
+- config / Redis projection 相關修改主要是 Derek / gill / arnold。
+
+可用定位：
+
+> 我分析過 payment runtime config selection，能從 DB source of truth、Redis projection、payment API eligibility 三層說明支付入口一致性風險。
+
+不可升級為：
+
+> 我主導 payment config selection / 設計設定中心 / 修復支付列表 production incident。
+
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 5
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

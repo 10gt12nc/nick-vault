@@ -354,5 +354,5 @@ sequenceDiagram
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 5
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

@@ -124,5 +124,5 @@ Step 5 證據更新：Pay4z / NaNapay / BFPAY / NimTestPay 相關 commits 由 `1
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 5
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

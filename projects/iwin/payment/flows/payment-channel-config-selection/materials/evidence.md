@@ -212,8 +212,102 @@ payment `origin/k3s` path-specific log 補看到：
 - 不更新正式履歷 / 自傳。
 - 下一步建議做 Step 5：檢查 claim boundary、履歷 / 自傳是否需要更新；以目前 evidence 預期仍不更新正式履歷。
 
+## Step 5 claim gate
+
+- 任務：`iwin payment payment-channel-config-selection Step 5`。
+- 日期：2026-05-18。
+- 掃描等級：Level 2+ claim gate。
+- 目標：確認本 flow 是否能更新正式履歷 / 自傳，並補最終 claim boundary。
+
+### Step 5 自動重讀
+
+已重讀 KB：
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+
+已重讀 vault：
+
+- `flow.md`
+- `career-interview.md`
+- `materials/evidence.md`
+- `materials/interview.md`
+- `materials/decision-notes.md`
+- `materials/claim-boundary.md`
+- `projects/iwin/payment/README.md`
+- `projects/iwin/payment/step1-candidate-flows.md`
+- `projects/iwin/payment/step2-flow-comparison.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/04-interview-casebook.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+- `senior-owner-playbook/06-todo.md`
+
+### Step 5 source repo 狀態
+
+`/Users/nick/Git/iwin/payment`：
+
+- 已執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`k3s`
+- local HEAD：`bb7794e55386d914801887cc43b53d263c74d3c3`
+- `origin/k3s` HEAD：`cd03174b60fefa0c7f312912c179a3b6b9818664`
+- ahead / behind：`0 / 2`
+- 工作樹狀態：既有未追蹤 `payment/src/main/java/cn/com/payment/service/impl/.DS_Store`；本輪只讀未動。
+- 判斷：本機工作樹落後遠端 2 commits，本輪不 pull、不 checkout、不改公司 repo；claim gate 以 remote refs / `origin/k3s` path history 判斷。
+
+`/Users/nick/Git/iwin/app_bi`：
+
+- 已執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`main`
+- local HEAD：`4a206a28ab8f5be4329602cdc510ee9ea41efb25`
+- `origin/main` HEAD：`fd9881fc417e01f960d758b4b91ba1a10b507855`
+- ahead / behind：`0 / 4`
+- 本輪未 pull、未 checkout、未改工作樹。
+- 判斷：app_bi 本機仍落後 4 commits，本輪只用 remote refs / path history 判斷，不宣稱本機工作樹最新。
+
+### Step 5 補查 path-specific history
+
+payment 補查：
+
+- `git log --all --author='10gt12nc'` 針對 `PayPublicController.java`、`PayTypeServiceImpl.java`、`BaseServiceImpl.java`、`PayTypeChannelVO.java`、`Constant.java`。
+- `git log --all` 同路徑最近 history。
+- `git show` 檢查 `03c28e3`、`6539d7a`、`c92a8c2` 的 relevant diff。
+
+app_bi 補查：
+
+- `git log --all --author='10gt12nc'` 針對 `RedisSynchronize.php`、`NewPay.php`、`SettingConfig.php`、`Base.php`、Laravel rewrite 後的 `app/Services/Pay/NewPay/*` 與 manager model。
+- `git log --all` 同路徑最近 history。
+- `git show` 檢查 `ea9bf27` 的 relevant diff。
+
+### Step 5 已確認
+
+- `10gt12nc` 在 payment 相關 path 有 `03c28e3`、`6539d7a` 與 merge commits。
+- `03c28e3` 是充值建單前 `orderVO.setId(null)`，避免 BeanUtil 帶入玩家 id 造成 order insert 主鍵風險。
+- `6539d7a` 是提款建單前 `orderInsert.setId(null)`，同樣屬於 order insert consistency。
+- 這兩筆支撐 provider request / order insert consistency 題材，不支撐 payment list/detail/config selection claim。
+- `c92a8c2` / Derek 才是 Redis `payTypeList` 格式與 `PayTypeChannelVO` 的直接 config evidence。
+- app_bi `RedisSynchronize` 相關直接 evidence 目前主要是 gill / arnold，例如 `ea9bf27` 商戶同步只保留 `status=1`。
+- 未找到 `10gt12nc` 直接修改 app_bi payment config sync / RedisSynchronize 主線。
+
+### Step 5 claim 結論
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 可更新 / 保留 `senior-owner-playbook/04-interview-casebook.md` 作面試案例索引。
+- 本 flow 最終定位：`專案存在 / code-backed` + `分析素材 / learning-only`。
+- Nick 個人貢獻：未確認到可放履歷的直接 evidence。
+
+### Step 5 未掃 / 待確認
+
+- 未逐檔逐行掃完整 payment / app_bi。
+- 未逐 commit diff 展開所有 payment config / Redis sync history。
+- 未確認 Nick 本人 MR / ticket / production issue / 本人口述。
+- 未掃 production Redis / DB 實際設定。
+
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 5
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
