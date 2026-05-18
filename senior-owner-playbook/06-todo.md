@@ -78,6 +78,10 @@ iwin payment payment-provider-callback Step 5
 
 但不要把履歷寫太滿。只有完成 flow 並補 evidence 後，才升級履歷說法。
 
+### 4. 跨 repo 選題參考
+
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，仍先完成 `iwin payment payment-provider-callback Step 5`。
+
 ## 下一個 prompt
 
 ```text

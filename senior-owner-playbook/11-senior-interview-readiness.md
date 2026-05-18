@@ -20,21 +20,22 @@
 - 唯一履歷 master 已整理。
 - 投遞用自傳已整理。
 - 未來專案資料夾 `projects/` 已建立。
-- 已有 `app_bi` 兩條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`。但它們目前仍屬於後台 / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
+- 已有 `app_bi` 四條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`、`daily-game-record-summary`、`game-round-record-query`。但它們目前仍屬於後台 / BI / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
+- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback` Step 4、`game_api/coupon-redeem-credit-grant` Step 4、`game_job/daily-game-data-summary` Step 4、`third_games_api/gsc-transfer-bet-settle-rollback` Step 4、`iwin_gameserver/third-party-transfer-in-out` Step 5、`k3s-deploy/gameserver-phased-rollout` Step 4。這些可當素材庫，但仍需要補 Nick 本人 evidence 或完成 Step 5 後才能升級成履歷主張。
 
 ### 尚未完成
 
-- 尚未完成 3-5 條高價值後端 production flow，例如 payment callback、wallet transfer、Kafka settlement、game settlement。
-- 尚未完成 3-5 條可面試案例。
-- 尚未把已完成 case 轉成 3 分鐘面試說法。
+- 尚未完成 3-5 條同時具備 high-value backend depth、完整 evidence、claim boundary 與 Nick 本人 evidence 的主力 production case，例如 payment callback、wallet transfer、Kafka settlement、game settlement。
+- 尚未完成 3-5 條可作為 Senior 面試主力的後端案例；目前已有素材，但多數仍停在 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
+- 尚未把 3 條主力後端 case 打磨成可穩定口說、可抗追問的 3 分鐘版本。
 - 尚未依 evidence 最終更新履歷 bullet。
 
 所以目前狀態是：
 
 ```text
 準備系統已完成。
-已有 app_bi 入門 case。
-Senior 面試主力內容尚未完成。
+已有 app_bi 入門 case 與多條 iwin 保守面試素材。
+Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case。
 ```
 
 ## 能投 10 萬以上職缺前的最低門檻
