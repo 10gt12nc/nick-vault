@@ -5,7 +5,7 @@
 - Flow 中文名稱：三方金流 provider callback。
 - Flow slug：`payment-provider-callback`。
 - 專案：`/Users/nick/Git/iwin/payment`。
-- 完成狀態：Step 4，Level 2 單條 flow 深掃；2026-05-15 已補 failure / consistency evidence。
+- 完成狀態：Step 5，Level 2 單條 flow 深掃；2026-05-15 已補 failure / consistency evidence，2026-05-18 已完成履歷 / 自傳 claim gate。
 - 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻層級：`待確認`。目前只看到 branch / commit message / code path，沒有 Nick 本人 MR、ticket、commit author 或本人確認，因此不能寫成「Nick 真實開發過」。
 - 本 flow 是：業務功能 + 共用能力。它同時是三方金流 callback 業務流程，也是多 provider 共用的狀態收斂能力。
@@ -400,7 +400,7 @@ sequenceDiagram
 
 詳細面試素材放在 `career-interview.md`，證據與待確認清單放在 `materials/evidence.md` 與 `materials/claim-boundary.md`。
 
-## 17. Step 4 結論
+## 17. Step 5 結論
 
 `payment-provider-callback` 值得作為 iwin payment 第一條深挖 flow，因為它同時打到：
 
@@ -418,4 +418,11 @@ Step 4 後的保守結論：
 - app_bi local HEAD 顯示有人工狀態修復入口，但因本機落後遠端 4 commits，只能作為 repair boundary 參考，不當最新完整結論。
 - bugfix history 補強了本 flow 的面試價值：`ff42791` 與 `ef67724` 對應提現失敗退款 retry 防護，`03c28e3` 對應建單 id collision 防護。
 
-下一步不應急著更新正式履歷，而是進 Step 5：收斂 `payment-provider-callback` 的保守面試稿與 claim boundary，明確標出哪些能講、哪些只能說是分析素材，並同步更新本 flow 的 `career-interview.md`。
+Step 5 claim gate 結論：
+
+- 不更新正式履歷 / 自傳：目前仍缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
+- 本 flow 保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only` 的 Senior 面試素材。
+- 面試可講 money correctness、callback trust boundary、MQ retry、提現失敗退款防重複補償、`billNo` cross-system trace 與人工 repair boundary。
+- 不可說 Nick 主導 / 設計 payment callback，不可說修復 pay4z 重複退款，不可說下游 wallet 已確認 exactly-once。
+
+下一步應回到 `payment` project 的候選 flow ranking，選下一條未完成且價值高的 flow；目前同 project 第二優先是 `withdrawal-auto-review-refund`。

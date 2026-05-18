@@ -6,6 +6,13 @@
 - Nick 個人參與：`待確認`
 - 本檔用途：面試素材整理，不是正式履歷 final claim。
 
+## Step 5 claim gate
+
+- Step 5 結論：不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+- 原因：目前只有 `專案存在 / code-backed` 與 `分析素材 / learning-only`；缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
+- 可用方式：作為 Senior Backend 面試案例，保守說「我分析 / 梳理過這類金流 callback flow 的一致性與補償風險」。
+- 不可用方式：不可寫成 Nick 主導 payment callback、修復重複退款、設計 exactly-once 或負責完整 payment owner。
+
 ## 30 秒版本
 
 我會把這條 flow 當成金流 callback consistency 的案例來講：三方 provider callback 進來後，payment 先做白名單與簽章驗證，再把 provider 狀態轉成內部訂單狀態，透過 XXL-MQ 非同步交給 consumer 處理。consumer 端會再做訂單狀態 guard，避免重複 callback 或 MQ retry 導致重複處理；payment 也會把 `billNo` 傳到 game lobby / center 作為跨系統追蹤鍵。提現失敗退款是最高風險分支，因為退款成功後如果再 retry，可能造成重複退款，所以 code 裡有針對退款例外後回 SUCCESS 的防護。
@@ -78,4 +85,4 @@ Step 4 補掃後，可以再補一句：payment 確實會把 `billNo` 以 `billN
 - 分析並整理金流 provider callback flow，聚焦三方 callback 驗證、訂單狀態轉移、XXL-MQ retry、玩家上分 / 提現退款與重複 callback 冪等風險。
 - 針對提現失敗退款場景梳理重複退款 failure window，整理 callback ack、MQ retry、終態 guard 與人工補償邊界。
 
-目前正式履歷不要放。
+目前正式履歷不要放；等 Nick 補本人 evidence 後，才重新做履歷 / 自傳更新判定。

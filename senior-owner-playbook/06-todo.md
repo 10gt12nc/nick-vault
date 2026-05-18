@@ -31,37 +31,37 @@
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
 - 已完成 `game_api coupon-redeem-credit-grant Step 4`，轉成優惠券兌換上分 / 打碼要求的保守面試 case；目前仍不更新正式履歷 / 自傳。
 - 已完成 `game_job daily-game-data-summary Step 4`，轉成 batch correctness / BI projection 的保守面試 case；目前仍不更新正式履歷 / 自傳。
-- 已完成 `payment payment-provider-callback Step 4`，補齊 failure / consistency evidence、下游 `billNo` 傳遞與 app_bi repair boundary；目前仍不更新正式履歷 / 自傳。
+- 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為金流 callback consistency / compensation 的保守面試素材。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
 - 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
 
 ## 下一步
 
-### 1. iwin payment payment-provider-callback Step 5
+### 1. iwin payment withdrawal-auto-review-refund Step 3
 
 建議下一步：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment withdrawal-auto-review-refund Step 3
 ```
 
 原因：
 
-- `app_bi` 主要 flow 已完成 Step 5 判定，下一步應到 `payment` 補真正 money correctness source of truth。
-- `payment-provider-callback` 已完成 Step 4 evidence 補強，下一步應做 Step 5 claim boundary。
-- 目前仍缺 Nick 本人 MR / ticket / commit / production issue / 本人確認，預期不更新正式履歷，只保留面試分析素材。
+- `payment-provider-callback` 已完成 Step 5，結論是不更新正式履歷 / 自傳。
+- 單條 flow 完成 Step 5 後，應回同 project candidate ranking 選下一條，而不是跨 project。
+- `withdrawal-auto-review-refund` 是 payment Step 2 第二優先，能補提款建單、自動審核 / 出款、provider request、callback 失敗退款與補償風險。
 
 ### 2. iwin 各 project 下一步
 
 目前各 project 自己的下一步：
 
-1. `payment`：`iwin payment payment-provider-callback Step 5`
+1. `payment`：`iwin payment withdrawal-auto-review-refund Step 3`
 2. `game_api`：`iwin game_api coupon-redeem-credit-grant Step 5`
 3. `game_job`：`game_job daily-game-data-summary Step 5`
 4. `third_games_api`：`iwin third_games_api gsc-transfer-bet-settle-rollback Step 5`
 5. `iwin_gameserver`：`iwin_gameserver center-http-deposit-withdraw Step 3`
 6. `k3s-deploy`：`iwin k3s-deploy gameserver-phased-rollout Step 5`
-7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，轉 `iwin payment payment-provider-callback Step 5`。
+7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，payment callback 也已 Step 5，轉 `iwin payment withdrawal-auto-review-refund Step 3`。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -80,12 +80,12 @@ iwin payment payment-provider-callback Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，仍先完成 `iwin payment payment-provider-callback Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment callback 已完成 Step 5，下一條先做 `iwin payment withdrawal-auto-review-refund Step 3`。
 
 ## 下一個 prompt
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment withdrawal-auto-review-refund Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。

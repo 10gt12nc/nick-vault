@@ -10,7 +10,7 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-3. [flows/payment-provider-callback/flow.md](flows/payment-provider-callback/flow.md)：第一條 flow 主研究報告，已補到 Step 4 evidence。
+3. [flows/payment-provider-callback/flow.md](flows/payment-provider-callback/flow.md)：第一條 flow 主研究報告，已完成 Step 5 claim gate。
 4. [flows/payment-provider-callback/career-interview.md](flows/payment-provider-callback/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 5. [flows/payment-provider-callback/materials/evidence.md](flows/payment-provider-callback/materials/evidence.md)：證據、技術決策、詳細面試稿與 claim 邊界附錄入口。
 
@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
-| `flows/payment-provider-callback/` | Step 4 已補 evidence | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary 與 bugfix diff |
+| `flows/payment-provider-callback/` | Step 5 已完成 | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary、bugfix diff 與履歷 / 自傳 claim gate |
 
 ## 專案定位
 
@@ -65,11 +65,11 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment withdrawal-auto-review-refund Step 3
 ```
 
 原因：
 
-- Step 4 已補 failure / consistency evidence。
-- Step 5 最值得把面試稿與 claim boundary 收斂成可直接複習的版本，避免把 `billNo` 傳遞誤講成下游 exactly-once。
-- 仍不更新正式履歷，除非補到 Nick 本人 evidence。
+- `payment-provider-callback` 已完成 Step 5，結論是不更新正式履歷 / 自傳。
+- 同 project 的 Step 2 ranking 第二優先是 `withdrawal-auto-review-refund`，比切去其他 project 更符合「單條 flow 完成後回同 project candidate ranking」規則。
+- 這條能延伸玩家提款建單、自動審核 / 自動出款、provider request、callback 失敗退款與 money correctness。

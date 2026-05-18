@@ -1,5 +1,31 @@
 # payment-provider-callback claim-boundary
 
+## Step 5 判定
+
+結論：不更新正式履歷 / 自傳。
+
+原因：
+
+- 本 flow 已完成 Step 3 / Step 4，且具備 code-backed flow、failure window、面試稿與 claim boundary。
+- 但目前沒有 Nick 本人 MR / PR、commit author、ticket 指派與完成紀錄、production issue / incident 紀錄或 Nick 本人確認。
+- 因此證據層級維持 `專案存在 / code-backed` 與 `分析素材 / learning-only`，不能升級為 `真實開發過`。
+
+本輪可安全收斂：
+
+- 作為 Senior Backend 面試素材，可講金流 callback 的 trust boundary、訂單終態 guard、XXL-MQ retry、提現失敗退款重複補償風險、`billNo` cross-system trace 與 repair boundary。
+- 作為學習素材，可整理 owner decision：callback inbox / outbox、下游 wallet idempotency、callback replay、對帳 job、人工補償 dashboard。
+
+本輪不做：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 不把本 flow 寫成 Nick 主導 / 設計 / 修復成果。
+
+下一步：
+
+- 回到 `payment` project candidate ranking，選下一條未完成 flow。
+- 目前同 project 第二優先是 `withdrawal-auto-review-refund`。
+
 ## 真實開發過
 
 目前沒有可標記為 `真實開發過` 的項目。

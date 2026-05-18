@@ -42,7 +42,7 @@
 
 已做重複 flow 檢查：
 
-- `projects/iwin/payment/flows/payment-provider-callback/`：目前已建立，且已完成 Step 4；下一步是 Step 5 claim gate。
+- `projects/iwin/payment/flows/payment-provider-callback/`：目前已建立，且已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`：已有 `payment-provider-callback`、`payment-order-provider-request`、`withdrawal-auto-review-refund` 候選索引。
 - `senior-owner-playbook/04-interview-casebook.md`：已有金流 callback 一致性的通用面試框架。
 - `projects/iwin/app_bi/step2-flow-comparison.md`：已指出 `payment-order-status-repair` 不適合只在 `app_bi` 深挖，需回到 `payment` repo。
@@ -96,7 +96,7 @@
 
 原因：
 
-- 本檔是 `payment` Step 1 的歷史盤點；目前 project 已建立，且第一條 `payment-provider-callback` flow 已完成 Step 4。
+- 本檔是 `payment` Step 1 的歷史盤點；目前 project 已建立，且第一條 `payment-provider-callback` flow 已完成 Step 5。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 flow。
 - `payment` provider controller / service 很多，直接 Level 2 容易被單一商戶綁住，反而看不到共通 flow。
 - Level 3 目前不值得，因為尚未選定 flow，也未確認 Nick 本人 evidence。
@@ -409,17 +409,17 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment withdrawal-auto-review-refund Step 3
 ```
 
 為什麼現在做它：
 
-- Step 2 / Step 3 / Step 4 已完成，且 `payment-provider-callback` 是目前全 iwin 最值得收斂的下一條 flow。
-- Step 5 會做 claim gate：確認是否仍只能保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`，或是否有 Nick 本人 evidence 可進一步整理。
+- `payment-provider-callback` 已完成 Step 5，結論是不更新正式履歷 / 自傳。
+- Step 1 ranking 的第二優先是 `withdrawal-auto-review-refund`，適合接著做提款、自動審核 / 出款與失敗退款 flow。
 
 會產出什麼：
 
-- 更新 `projects/iwin/payment/flows/payment-provider-callback/materials/claim-boundary.md`。
+- 建立 / 更新 `projects/iwin/payment/flows/withdrawal-auto-review-refund/` 的 Step 3 學習包。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
@@ -428,5 +428,5 @@ iwin payment payment-provider-callback Step 5
 
 是否需要 commit / push：
 
-- Step 5 完成後依規則自動 commit。
+- Step 3 完成後依規則自動 commit。
 - 不需要 push，除非 Nick 明確要求。

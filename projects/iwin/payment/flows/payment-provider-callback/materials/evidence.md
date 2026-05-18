@@ -4,6 +4,18 @@
 
 本 flow 使用 Level 2 掃描。Step 4 不是重開新 flow，而是在 Step 3 主報告上補 failure / consistency evidence。
 
+2026-05-18 Step 5 claim gate 複查：
+
+- 已重新讀 KB、payment README、Step 1 / Step 2、`flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/decision-notes.md`、`materials/claim-boundary.md`。
+- 已重新 fetch `/Users/nick/Git/iwin/payment` remote refs。
+- `/Users/nick/Git/iwin/payment` 目前分支：`k3s`。
+- local HEAD：`bb7794e55386d914801887cc43b53d263c74d3c3`。
+- `origin/k3s` HEAD：`bb7794e55386d914801887cc43b53d263c74d3c3`。
+- ahead / behind：`0 / 0`。
+- source repo 既有 untracked：`payment/src/main/java/cn/com/payment/service/impl/.DS_Store`，本輪只讀不碰。
+- Step 5 結論：不更新正式履歷 / 自傳，因為仍缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
+- 本輪未重掃 `iwin_gameserver` / `app_bi` 最新遠端，也未補 DB schema / 下游去重 evidence；Step 4 既有待確認邊界仍維持。
+
 2026-05-15 KB 更新後複查：
 
 - 已重新讀 KB 與本 flow 文件。

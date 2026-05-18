@@ -311,7 +311,7 @@ Step 3 暫不做：
 
 ## 本次不更新的內容
 
-- 不建立新的 flow folder：`flows/payment-provider-callback/` 已存在，下一步只做 Step 5 claim gate。
+- `flows/payment-provider-callback/` 已完成 Step 5 claim gate；下一步不重做此 flow。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
 - 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -321,25 +321,25 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment withdrawal-auto-review-refund Step 3
 ```
 
 為什麼現在做它：
 
-- Step 3 / Step 4 已完成，callback flow 已有主報告與面試素材。
-- Step 5 會做最後 claim gate，確認是否仍不能更新正式履歷 / 自傳。
+- `payment-provider-callback` 已完成 Step 5，且結論是不更新正式履歷 / 自傳。
+- 依本文件排序，下一條同 project 候選 flow 是 `withdrawal-auto-review-refund`。
 
 會產出什麼：
 
-- 更新 `projects/iwin/payment/flows/payment-provider-callback/materials/claim-boundary.md` 的 Step 5 判定。
+- 建立 / 更新 `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md` 與對應 materials。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
 - 不更新正式履歷。
-- 目前預期仍不更新正式履歷；只會把可說 / 不可說邊界寫清楚。
+- 預設不更新正式履歷；等新 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
 
 是否需要 commit / push：
 
-- Step 5 完成後自動 commit。
+- Step 3 完成後自動 commit。
 - 不需要 push，除非 Nick 明確要求。
