@@ -15,6 +15,8 @@
 5. [flows/payment-provider-callback/materials/evidence.md](flows/payment-provider-callback/materials/evidence.md)：證據、技術決策、詳細面試稿與 claim 邊界附錄入口。
 6. [flows/withdrawal-auto-review-refund/flow.md](flows/withdrawal-auto-review-refund/flow.md)：第二條 flow 主研究報告，已完成 Step 5 claim gate。
 7. [flows/withdrawal-auto-review-refund/career-interview.md](flows/withdrawal-auto-review-refund/career-interview.md)：該 flow 的保守面試素材。
+8. [flows/payment-order-provider-request/flow.md](flows/payment-order-provider-request/flow.md)：第三條 flow Step 3 主研究報告，整理充值建單、provider request、簽章、金額單位、provider order id 與查單邊界。
+9. [flows/payment-order-provider-request/career-interview.md](flows/payment-order-provider-request/career-interview.md)：該 flow 的保守面試素材。
 
 ## 目前狀態
 
@@ -24,6 +26,7 @@
 | `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
 | `flows/payment-provider-callback/` | Step 5 已完成 | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary、bugfix diff 與履歷 / 自傳 claim gate |
 | `flows/withdrawal-auto-review-refund/` | Step 5 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case，並完成不更新正式履歷 / 自傳的 claim gate |
+| `flows/payment-order-provider-request/` | Step 3 已完成 | Level 2 深掃充值建單與 provider request；已補支付列表 / 詳情、provider `/newPay`、本地 `payment_order`、簽章、金額單位、provider response、查單與 timeout / unknown 邊界 |
 
 ## 專案定位
 
@@ -68,11 +71,11 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-order-provider-request Step 3
+iwin payment payment-order-provider-request Step 4
 ```
 
 原因：
 
-- `payment-provider-callback` 與 `withdrawal-auto-review-refund` 都已完成 Step 5 claim gate。
-- 同 project 下一條高價值候選是 `payment-order-provider-request`，可補 provider request、簽章、timeout、provider order id 與查單 / 對帳邊界。
-- 預期仍只做 code-backed flow，不更新正式履歷，除非 Nick 補本人 evidence。
+- `payment-order-provider-request` 已完成 Step 3 主學習包。
+- 下一步應轉成面試 case，補 failure / consistency / idempotency / retry / reconciliation 追問。
+- 預期仍不更新正式履歷，除非 Nick 補本人 evidence。
