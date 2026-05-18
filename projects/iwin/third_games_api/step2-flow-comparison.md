@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1.5 Flow 比較
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -143,7 +143,7 @@ gsc-transfer-bet-settle-rollback
 
 中文名稱：GSC transfer 投派整合 / rollback
 建議狀態：已完成 Step 4，下一步 Step 5
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼排第一
 
@@ -178,7 +178,7 @@ gsc-transfer-bet-settle-rollback
 
 中文名稱：OneAPI / PG bet_result 投派 callback
 建議狀態：第二候選
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼排第二
 
@@ -202,7 +202,7 @@ gsc-transfer-bet-settle-rollback
 
 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程
 建議狀態：第三候選
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
 
@@ -226,7 +226,7 @@ gsc-transfer-bet-settle-rollback
 
 中文名稱：GSC seamless withdraw / deposit / rollback / cancel
 建議狀態：第四候選
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
 
@@ -250,7 +250,7 @@ gsc-transfer-bet-settle-rollback
 
 中文名稱：第三方平台 Redis 設定快取 / center_http 選路
 建議狀態：支援性候選，不優先於交易 flow
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
 
@@ -324,7 +324,7 @@ Step 3 必須至少補：
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

@@ -61,11 +61,17 @@
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
-- Step 4 已把這條 flow 收斂成保守面試案例。
-- 下一步才檢查是否能形成履歷 / 自傳安全 claim。
-- 目前仍缺 Nick 本人 MR / ticket / commit / production issue / 本人確認，Step 5 很可能結論是「暫不更新正式履歷，只保留面試分析素材」。
+- `coupon-redeem-credit-grant` 目前仍缺 Nick 本人 MR / ticket / commit / production issue / 本人確認，先不搶寫正式履歷。
+- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
+- 等 payment contribution consolidation 完成後，再回來判斷 game_api 是否需要 Step 5 claim gate。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 coupon flow 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

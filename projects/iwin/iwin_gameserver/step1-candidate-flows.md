@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已完成第一條候選 flow Step 5；下一步回到候選 ranking
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 3` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `iwin payment contribution claim consolidation` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -155,7 +155,7 @@ source repo 狀態：
 ### 1. `third-party-transfer-in-out`
 
 中文名稱：第三方遊戲投派整合 / 投注派彩退款
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：已完成 Step 5，暫不進正式履歷
 
 為什麼重要：
@@ -188,10 +188,10 @@ source repo 狀態：
 - 目前不可寫 Nick 主導第三方遊戲整合。
 - 可作高價值面試分析素材；Step 5 已判定沒有 Nick 本人 evidence 前不更新正式履歷。
 
-### 2. `center-http-deposit-withdraw`
+### 2. `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）
 
 中文名稱：center_http 玩家上分 / 下分
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -223,7 +223,7 @@ source repo 狀態：
 ### 3. `bet-target-set-query`
 
 中文名稱：打碼目標設定與查詢
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -255,7 +255,7 @@ source repo 狀態：
 ### 4. `game-spin-settlement-log-reel`
 
 中文名稱：遊戲 spin / 結算 / 投注流水寫入
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -287,7 +287,7 @@ source repo 狀態：
 ### 5. `dbproxy-cache-db-write-path`
 
 中文名稱：DB proxy 的 Redis / MySQL 查寫路徑
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -334,7 +334,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-下一條候選 `center-http-deposit-withdraw` Step 3 應優先讀：
+下一條候選 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） Step 3 應優先讀：
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpAntplayTransferInOut.java`
@@ -355,11 +355,11 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin_gameserver center-http-deposit-withdraw Step 3
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - Step 2 已完成，`third-party-transfer-in-out` 也已完成 Step 5。
 - 完成一條 flow 後，下一步應回到同 project 候選 ranking，而不是跨 project。
-- `center-http-deposit-withdraw` 是下一條最高價值 money flow；不更新正式履歷，先產出 Step 3 主報告與 evidence。
+- `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） 是下一條最高價值 money flow；不更新正式履歷，先產出 Step 3 主報告與 evidence。

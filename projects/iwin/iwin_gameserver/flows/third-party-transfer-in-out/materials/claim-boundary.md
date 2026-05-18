@@ -67,3 +67,9 @@
 - 解決第三方遊戲重複扣款 production incident。
 - 改善投注 / 派彩效能或錯帳率。
 - 擔任 gameserver owner。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。

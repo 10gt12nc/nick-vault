@@ -45,3 +45,9 @@
 - 如果確認 Nick 是 owner：才可寫成「負責 GSC seamless wallet transfer flow 的交易正確性與對帳策略」。
 
 目前不要升級。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 GSC transfer callback 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback 語意。
+- 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。

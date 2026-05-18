@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -89,7 +89,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 都完成 Step 5，下一步轉 `game_api coupon-redeem-credit-grant Step 5` |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 都完成 Step 5，下一步轉 `iwin payment contribution claim consolidation` |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
@@ -182,7 +182,7 @@ source repo 狀態：
 ### 1. `payment-provider-callback`
 
 中文名稱：三方金流 provider callback
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：第一優先候選，Step 2 後若 evidence 強，建議第一條 Level 2 深挖
 
 為什麼重要：
@@ -227,7 +227,7 @@ production 風險：
 ### 2. `withdrawal-auto-review-refund`
 
 中文名稱：玩家提款建單、自動出款與失敗退款
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：高價值候選，和 callback 並列比較
 
 為什麼重要：
@@ -271,7 +271,7 @@ production 風險：
 ### 3. `payment-order-provider-request`
 
 中文名稱：充值建單與 provider request
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：高價值候選，但需 Step 2 選代表 provider
 
 為什麼重要：
@@ -313,7 +313,7 @@ production 風險：
 ### 4. `manual-order-review-repair`
 
 中文名稱：人工審核、補單與訂單修復
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：已完成 Step 5；下一步轉 `payment-channel-config-selection`
 
 為什麼重要：
@@ -353,7 +353,7 @@ production 風險：
 ### 5. `payment-channel-config-selection`
 
 中文名稱：支付方式 / 商戶 / 提現設定選擇
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：中高價值候選，適合和 `app_bi` Redis sync 合併理解
 
 為什麼重要：
@@ -413,7 +413,7 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 為什麼現在做它：

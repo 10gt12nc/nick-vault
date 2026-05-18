@@ -319,3 +319,9 @@ GSC 類 provider 通常會在玩家遊戲過程中回傳下注、派彩、取消
 Step 4 已把「ROLLBACK 不改 wallet」與「gameserver 成功但 Mongo 失敗」收斂成保守面試案例；下一步是 Step 5 claim gate。
 
 目前履歷層級仍只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。正式履歷 / 自傳暫不更新；若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；缺 Nick 本人對 GSC transfer callback 的直接 evidence。
+- 可面試講：code-backed / 分析過。可講 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback 語意。
+- 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner 或解決 production 錯帳。

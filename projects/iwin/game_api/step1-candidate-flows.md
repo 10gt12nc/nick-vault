@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -163,7 +163,7 @@ source repo 狀態：
 ### 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：第一條深挖 flow
 
 為什麼重要：
@@ -208,7 +208,7 @@ production 風險：
 ### 2. `partner-deposit-withdraw-bill`
 
 中文名稱：Partner API 上分 / 下分 / 查單
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：高價值候選，Step 2 和 coupon 比較後再決定是否深挖
 
 為什麼重要：
@@ -252,7 +252,7 @@ production 風險：
 ### 3. `agent-bonus-receive-transfer`
 
 中文名稱：代理佣金領取 / 轉帳
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：適合做 consistency / projection 案例，但需確認是否與 Nick 經歷相關
 
 為什麼重要：
@@ -295,7 +295,7 @@ production 風險：
 ### 4. `game-record-dynamic-table-query`
 
 中文名稱：遊戲戰績動態分表查詢
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：中高價值，適合作為 troubleshooting / observability flow
 
 為什麼重要：
@@ -337,7 +337,7 @@ production 風險：
 ### 5. `login-register-token-cache`
 
 中文名稱：玩家登入註冊 / token / Redis cache
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：高流量入口候選，但 money correctness 不如前 3 條
 
 為什麼重要：
@@ -436,7 +436,7 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

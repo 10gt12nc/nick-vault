@@ -6,6 +6,8 @@
 
 > 2026-05-18 更新規則：Nick 已明確確認 `iwin/payment` 實際開發很多。正式改寫 payment 履歷前，必須先做 `iwin payment contribution claim consolidation`，全面掃 Nick / `10gt12nc` commits、branches、重要 diff、既有 payment flows 與本人確認內容，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。不得只因單條 flow 沒有直接 path evidence 就低估整個 payment 經驗。
 
+> 2026-05-18 iwin 文件同步：`projects/iwin` 下各 project / flow 的履歷邊界已先對齊三層 claim gate。現階段可保守保留「參與第三方金流 provider 對接與維護」，但 payment 主力 bullets 尚未最終重寫；下一步仍是掃全量 Nick / `10gt12nc` payment commits、branches 與重要 diff 後再更新正式履歷。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
@@ -91,4 +93,4 @@
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
 - 已補較強 code evidence：iwin payment provider request / callback / query 對接與維護可用「參與」口徑，包含 Pay4z、NaNapay、BFPAY 等 path-specific commits；仍不可寫成主導完整金流、全部 provider owner 或已建立完整 reconciliation。
-- 待補 consolidation：Nick 本人確認 `iwin/payment` 實際開發很多；需做 project-level contribution consolidation 後，再把 payment 主力經驗改寫成更完整的履歷 bullets。
+- 待補 consolidation：`projects/iwin` 的 project / flow 履歷邊界已先同步為三層 claim gate；仍需做 payment project-level contribution consolidation，掃全量 Nick / `10gt12nc` commits、branches、重要 diff 與本人確認後，再把 payment 主力經驗改寫成更完整的履歷 bullets。

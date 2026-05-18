@@ -1,11 +1,13 @@
 # 投遞用自傳版本
 
-這份是正式投遞履歷時使用的自傳版本，不取代 `05-resume-master-zh.md`。  
+這份是正式投遞履歷時使用的自傳版本，不取代 `05-resume-master-zh.md`。
 `05-resume-master-zh.md` 是母稿，這份是從母稿濃縮後的投遞版。
 
 > 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔前，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。
 
 > 2026-05-18 更新規則：Nick 已明確確認 `iwin/payment` 實際開發很多。正式改寫投遞自傳中的 payment 經驗前，必須先完成 `iwin payment contribution claim consolidation`，把本人確認、Nick / `10gt12nc` commits、branches、重要 diff 與既有 payment flow evidence 對齊；不得只因單條 flow 缺直接 path evidence 就弱化整個 payment 經驗。
+
+> 2026-05-18 iwin 文件同步：`projects/iwin` 下各 project / flow 已先補齊「可放履歷 / 可面試講 / 不可誇大」分層。自傳目前仍維持保守版，不追加主導、owner 或量化改善；payment 主力經驗需等 contribution consolidation 完成後再重寫。
 
 ## 使用原則
 

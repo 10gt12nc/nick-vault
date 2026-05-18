@@ -45,3 +45,9 @@
 | 履歷 | 暫不放正式履歷 | 寫主導 / owner / 改善百分比 |
 
 如果 Nick 後續確認本人參與，仍應先升級到「參與 / 協助分析 / 整理風險」等保守說法，不直接跳到「主導平台遷移」。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 K3s / rollout / rollback 的 MR / ticket / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver phased rollout 說明 legacy runtime 上 K3s、ZK registration、Recreate strategy、config / secret rollback 與 observability gate。
+- 不可誇大：不得寫成 Nick 主導 K3s 遷移、設計完整 DevOps / SRE system、處理 production rollback 或改善 zero-downtime 指標。

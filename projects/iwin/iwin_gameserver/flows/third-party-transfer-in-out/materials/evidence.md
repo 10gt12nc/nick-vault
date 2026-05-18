@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 2 單條 flow 深掃；Step 5 履歷 / 自傳邊界收斂
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## Step 5 更新摘要
 
@@ -10,7 +10,7 @@
 
 - `career-interview.md`：將 Step 4 面試素材收斂成 Step 5 結論，明確標示正式履歷 / 自傳暫不更新。
 - `materials/claim-boundary.md`：補正式履歷、自傳、面試、project-level career boundary。
-- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從本 flow Step 5 改為同 project 下一條候選 `center-http-deposit-withdraw Step 3`。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從本 flow Step 5 改為同 project 下一條候選 `iwin payment contribution claim consolidation`。
 - `projects/iwin/iwin_gameserver/career-interview.md`：新增 project-level career / interview boundary，避免後續誤把 code-backed analysis 寫成 Nick 個人成果。
 
 Step 5 結論：
@@ -39,7 +39,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 檢查結果：
 
 - `flow.md` 可沿用：已具備白話導讀、Code 分層對照、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析。
-- `career-interview.md` 可沿用：已標示 `專案存在 / code-backed`、`Nick 貢獻待確認`，沒有新增 `真實開發過`。
+- `career-interview.md` 可沿用：已標示 `專案存在 / code-backed`、`Nick 貢獻依三層 claim gate 判斷`，沒有新增 `真實開發過`。
 - `materials/interview.md` 可沿用：面試說法使用「分析過 / 如果我是 owner」語氣，沒有寫成 Nick 主導成果。
 - `materials/claim-boundary.md` 可沿用：已明確禁止主導、修過 production bug、改善百分比與完整防重 claim。
 - `materials/decision-notes.md` 可沿用：只作 owner decision 分析，不當作 Nick 實作 evidence。

@@ -381,11 +381,17 @@ Step 4 已整理完整面試稿：
 下一步只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - `app_bi` 已完成四條主要分析 flow 的 Step 5 判定。
 - `payment-order-status-repair` 在 app_bi 只看到人工修正入口，真正 money correctness 要回到 `/Users/nick/Git/iwin/payment`。
-- 下一步做 `iwin payment payment-provider-callback Step 5` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工入口寫成完整 payment owner。
+- 下一步做 `iwin payment contribution claim consolidation` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工入口寫成完整 payment owner。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；缺 Nick 本人 app_bi 直接 evidence。
+- 可面試講：code-backed / 分析過。可講後台入口、BI 查詢、控制面、人工修復入口與下游 source of truth 追蹤。
+- 不可誇大：不得寫成 Nick 主導完整後台、BI owner 或把後台入口包裝成完整後端 money flow owner。

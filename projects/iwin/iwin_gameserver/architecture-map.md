@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已補 root module / game module / service instance 邊界
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 閱讀定位
 

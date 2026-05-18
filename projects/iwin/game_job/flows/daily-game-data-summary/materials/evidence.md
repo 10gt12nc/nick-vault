@@ -3,7 +3,7 @@
 更新時間：2026-05-15（Step 4 面試 case 更新）
 Step：4
 掃描等級：Level 2
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## Step 4 更新摘要
 

@@ -78,11 +78,18 @@
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
-- `payment-channel-config-selection` Step 5 已完成，判定不更新正式履歷 / 自傳，只保留 runtime config consistency 面試案例。
-- payment Top 5 flow 已完成到 Step 5，下一步回到 iwin queue 收斂已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
-- `game_api coupon-redeem-credit-grant` 已有面試 case，下一步應做 claim gate，檢查是否更新履歷。
+- payment Top 5 flow 已完成到 Step 5，但單條 flow 的 claim gate 仍太分散。
+- Nick 已明確補充 `payment` 實際開發很多；不能只用單條 flow 缺直接 evidence 低估整個 payment 經驗。
+- 下一步應把全部 Nick / `10gt12nc` commits、branches、重要 diff、本人確認與既有 flow evidence 合併，輸出「可放履歷 / 可面試講 / 不可誇大」三層。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：真實開發過。已確認 Nick / `10gt12nc` 在多個 provider request / callback / query 與 payment order consistency 相關 commits / branches 有 evidence，可保守寫「參與第三方金流 provider 對接與維護」。
+- 可面試講：code-backed / 分析過。五條 payment flow 都可作 Senior Backend / Platform Backend 面試素材，涵蓋 callback、提款退款、provider request、人工修復與支付設定一致性。
+- 不可誇大：不是主導完整金流 owner。不得寫成負責整個 `payment`、全部 provider、完整 wallet / reconciliation 架構或量化改善。
+- 待完成：正式改寫履歷 / 自傳前，先做 project-level contribution consolidation，整合全部 Nick / `10gt12nc` commits、branches、重要 diff 與本人確認。

@@ -53,5 +53,5 @@ HTTP timeout 不能直接等同 provider fail，因為 request 可能送到 prov
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```

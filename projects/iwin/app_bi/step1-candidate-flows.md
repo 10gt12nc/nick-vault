@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已依新 KB 重整，並補做 source repo 最新性檢查
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -207,7 +207,7 @@ source repo 狀態：
 
 中文名稱：單點控制 / 營運控制操作
 狀態：已完成 Step 1-5，不更新履歷
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -242,7 +242,7 @@ source repo 狀態：
 
 中文名稱：後台設定同步 Redis
 狀態：已完成 Step 5，不更新履歷 / 自傳
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -275,7 +275,7 @@ source repo 狀態：
 ### 4. `daily-game-record-summary`
 
 中文名稱：每日遊戲資料彙總 / RTP 查詢
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 狀態：已完成 Step 5；不更新正式履歷 / 自傳
 
 為什麼重要：
@@ -303,7 +303,7 @@ source repo 狀態：
 ### 5. `game-round-record-query`
 
 中文名稱：遊戲局紀錄查詢 / production troubleshooting 入口
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -336,7 +336,7 @@ source repo 狀態：
 ### 6. `app-bi-report-export`
 
 中文名稱：BI 報表查詢與匯出
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -364,7 +364,7 @@ source repo 狀態：
 ### 7. `admin-rbac-permission-check`
 
 中文名稱：後台 RBAC / 權限判斷
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -393,7 +393,7 @@ source repo 狀態：
 ### 8. `coupon-trade-admin-operation`
 
 中文名稱：兌換碼 / Coupon Trade 營運操作
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -446,7 +446,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
@@ -457,4 +457,4 @@ iwin payment payment-provider-callback Step 5
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
-- `iwin payment payment-provider-callback Step 5` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工修正入口寫成完整 payment owner。
+- `iwin payment contribution claim consolidation` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工修正入口寫成完整 payment owner。

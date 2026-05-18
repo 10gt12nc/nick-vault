@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -172,7 +172,7 @@ source repo 狀態：
 ### 1. `gsc-transfer-bet-settle-rollback`
 
 中文名稱：GSC transfer 投派整合 / rollback
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：第一條深挖 flow
 
 為什麼重要：
@@ -218,7 +218,7 @@ production 風險：
 ### 2. `oneapi-wallet-bet-result`
 
 中文名稱：OneAPI / PG bet_result 投派 callback
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：高價值候選，Step 2 和 GSC transfer 比較後再決定是否深挖
 
 為什麼重要：
@@ -263,7 +263,7 @@ production 風險：
 ### 3. `antplay-bet-settle-rollback`
 
 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：適合做 state transition 與 rollback 對照案例
 
 為什麼重要：
@@ -305,7 +305,7 @@ production 風險：
 ### 4. `gsc-seamless-withdraw-deposit-cancel`
 
 中文名稱：GSC seamless withdraw / deposit / rollback / cancel
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：中高價值，適合和 transfer flow 比較 provider 狀態機
 
 為什麼重要：
@@ -346,7 +346,7 @@ production 風險：
 ### 5. `third-platform-redis-config-refresh`
 
 中文名稱：第三方平台 Redis 設定快取 / center_http 選路
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：作為支援性 flow，若 Step 2 發現交易 flow 太分散，可先深挖此 routing / config 風險
 
 為什麼重要：
@@ -411,7 +411,7 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

@@ -85,3 +85,9 @@
 | 處理 rollout / rollback 問題 | deploy failure、incident、rollback log、postmortem、Nick 本人確認 |
 | 設計 phase rollout | 設計文件、MR discussion、commit author / reviewer、pipeline 變更紀錄 |
 | 改善 observability | dashboard / query / alert / RCA 使用紀錄 |
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 K3s / rollout / rollback 的 MR / ticket / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver phased rollout 說明 legacy runtime 上 K3s、ZK registration、Recreate strategy、config / secret rollback 與 observability gate。
+- 不可誇大：不得寫成 Nick 主導 K3s 遷移、設計完整 DevOps / SRE system、處理 production rollback 或改善 zero-downtime 指標。

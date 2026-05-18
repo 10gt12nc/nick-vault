@@ -1,7 +1,7 @@
 # iwin_gameserver Career / Interview Boundary
 
 更新時間：2026-05-15
-證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻依三層 claim gate 判斷
 
 ## Project-level 結論
 
@@ -55,11 +55,17 @@
 只推薦一件事：
 
 ```text
-iwin_gameserver center-http-deposit-withdraw Step 3
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - `third-party-transfer-in-out` 已完成 Step 5，正式履歷暫不更新。
-- 同 project 的下一條最高價值候選是 `center-http-deposit-withdraw`。
+- 同 project 的下一條最高價值候選是 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）。
 - 下一步會產出單條 flow 主報告，不會更新正式履歷；若後續補到 Nick 本人 evidence，再回頭評估履歷。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。

@@ -1,7 +1,7 @@
 # coupon-redeem-credit-grant claim boundary
 
 更新時間：2026-05-15
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## Step 4 面試邊界補充
 
@@ -80,3 +80,9 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 coupon flow 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -467,7 +467,7 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

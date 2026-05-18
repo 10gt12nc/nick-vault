@@ -4,7 +4,7 @@
 完成狀態：Step 5 已完成
 文件角色：`materials/evidence.md` 證據附錄
 掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 自動重讀紀錄
 

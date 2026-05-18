@@ -4,7 +4,7 @@
 完成狀態：Step 5 已完成
 文件角色：`flow.md` 主研究報告
 掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 格式狀態：已遷移為新版結構；`flow.md` 為唯一主研究報告
 
 ## 0. 閱讀定位
@@ -597,7 +597,7 @@ Owner 風險：
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
@@ -606,5 +606,11 @@ iwin payment payment-provider-callback Step 5
 - Step 5 判定不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment payment-provider-callback Step 5`，回到真正 money correctness source of truth。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment contribution claim consolidation`，回到真正 money correctness source of truth。
 - 若本次有改檔，完成自查後 commit；若需要 push，直接觸發 `git push` approval 視窗。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；缺 Nick 本人 app_bi 直接 evidence。
+- 可面試講：code-backed / 分析過。可講後台入口、BI 查詢、控制面、人工修復入口與下游 source of truth 追蹤。
+- 不可誇大：不得寫成 Nick 主導完整後台、BI owner 或把後台入口包裝成完整後端 money flow owner。

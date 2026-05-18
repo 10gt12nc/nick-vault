@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
 狀態：新建 Step 1
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `daily-game-data-summary Step 5` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `iwin payment contribution claim consolidation` |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 4 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job daily-game-data-summary Step 5` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `iwin payment contribution claim consolidation` |
 
 ## 掃描等級判斷
 
@@ -173,7 +173,7 @@ source repo 狀態：
 ### 1. `daily-game-data-summary`
 
 中文名稱：每日遊戲資料彙總
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 建議：已完成 Step 2 / Step 3 / Step 4；目前下一步是 Step 5 claim gate
 
 為什麼重要：
@@ -212,7 +212,7 @@ source repo 狀態：
 ### 2. `third-party-record-mongo-backup`
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -247,7 +247,7 @@ source repo 狀態：
 ### 3. `coin-flow-batch-projection`
 
 中文名稱：金幣流水清算 / 遊戲行為投影
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -282,7 +282,7 @@ source repo 狀態：
 ### 4. `online-payment-data-cleaning`
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -314,7 +314,7 @@ source repo 狀態：
 ### 5. `partition-table-creation`
 
 中文名稱：每日 / 每月分表建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -356,7 +356,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

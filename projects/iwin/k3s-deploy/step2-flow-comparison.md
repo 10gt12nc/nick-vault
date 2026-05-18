@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Step 2 比較掃描；介於 Level 1 與 Level 2 之間
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -349,7 +349,7 @@ Step 3 已依此範圍補讀 / 標示待確認：
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

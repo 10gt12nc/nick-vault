@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 文件角色：project-level 保守面試素材
-證據層級：分析素材 / learning-only；專案存在 / code-backed；Nick 貢獻待確認
+證據層級：分析素材 / learning-only；專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 結論
 
@@ -58,10 +58,16 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - app_bi 已收斂為入口 / 分析素材。
 - 下一步應補 money correctness 的後端 source of truth。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；沒有 Nick 本人 app_bi 相關 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可作後台入口、BI 查詢、控制面、人工修復入口與下游 source of truth 追蹤的分析素材。
+- 不可誇大：不得寫成 Nick 主導完整後台、BI owner、完整 payment repair owner，或把後台入口直接包裝成後端 money flow owner。

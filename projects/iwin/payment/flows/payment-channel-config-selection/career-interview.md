@@ -77,5 +77,11 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不單獨升級成本 flow 的真實開發成果；但不得否定 Nick 在 `payment` 的整體實際開發經驗。若放履歷，應先併入 project-level payment contribution consolidation。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

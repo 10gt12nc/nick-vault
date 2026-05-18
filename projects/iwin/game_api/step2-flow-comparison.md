@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1.5 / Step 2 比較掃描
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -132,7 +132,7 @@ coupon-redeem-credit-grant
 
 中文名稱：優惠券兌換上分 / 打碼要求
 建議：已完成 Step 4，下一步做 Step 5 履歷 / 自傳邊界判定
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
 
@@ -219,7 +219,7 @@ Step 4 已完成：
 
 中文名稱：Partner API 上分 / 下分 / 查單
 建議：第二順位；coupon Step 5 收斂後再做
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
 
@@ -291,7 +291,7 @@ Step 4 已完成：
 
 中文名稱：代理佣金領取 / 轉帳
 建議：第三順位；適合 consistency / projection 案例
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
 
@@ -359,7 +359,7 @@ Step 4 已完成：
 
 中文名稱：遊戲戰績動態分表查詢
 建議：後續作 troubleshooting / observability case
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
 
@@ -413,7 +413,7 @@ Step 4 已完成：
 
 中文名稱：玩家登入註冊 / token / Redis cache
 建議：後續作 high-traffic auth / cache case
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
 
@@ -479,7 +479,7 @@ Step 4 已完成：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 為什麼現在做它：

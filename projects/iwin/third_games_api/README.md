@@ -64,10 +64,17 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
-- Step 4 已把 rollback 語意、gameserver wallet boundary、Mongo audit、provider retry / idempotency 風險轉成可面試講的 case。
-- Step 5 應檢查是否更新正式履歷 / 自傳；依目前 evidence 預期仍不更新，除非 Nick 補本人參與 evidence。
+- `gsc-transfer-bet-settle-rollback` 已可作 seamless wallet 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
+- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
+- 等 payment contribution consolidation 完成後，再回來判斷 third_games_api 是否需要 Step 5 claim gate。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 GSC transfer callback 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback 語意。
+- 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。

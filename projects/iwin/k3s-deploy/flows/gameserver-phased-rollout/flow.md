@@ -314,5 +314,11 @@ Step 4 的收斂重點：
 Step 4 已建立，下一步建議做 Step 5：做最後 claim gate，決定這條 flow 只保留為面試案例，或是否有足夠 Nick evidence 能整理成非常保守的 project-level career note。
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+iwin payment contribution claim consolidation
 ```
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；缺 Nick 本人 K3s / rollout / rollback 直接 evidence。
+- 可面試講：code-backed / 分析過。可講 legacy runtime 上 K3s、ZK registration、Recreate strategy、config / secret rollback 與 observability gate。
+- 不可誇大：不得寫成 Nick 主導 K3s 遷移、設計完整 DevOps / SRE system 或處理 production rollback。

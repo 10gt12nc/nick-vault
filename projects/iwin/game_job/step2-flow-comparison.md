@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
 狀態：已建立；目前第一條 flow 已完成 Step 4，下一步 Step 5
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -73,7 +73,7 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `game_job daily-game-data-summary Step 5`
+1. `iwin payment contribution claim consolidation`
    - 原因：Step 3 / Step 4 已完成，下一步只能做 claim gate。
    - 產出：單條 flow 學習包，包含 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md`。
    - 是否更新履歷：否，至少等 Step 4 / Step 5 且補到 Nick 本人 evidence。
@@ -93,7 +93,7 @@
 ### 1. `daily-game-data-summary`
 
 中文名稱：每日遊戲資料彙總
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -133,7 +133,7 @@ Senior / Owner 價值：
 ### 2. `third-party-record-mongo-backup`
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -169,7 +169,7 @@ Senior / Owner 價值：
 ### 3. `coin-flow-batch-projection`
 
 中文名稱：金幣流水清算 / 遊戲行為投影
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -206,7 +206,7 @@ Senior / Owner 價值：
 ### 4. `online-payment-data-cleaning`
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -234,7 +234,7 @@ Senior / Owner 價值：
 ### 5. `partition-table-creation`
 
 中文名稱：每日 / 每月分表建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -258,7 +258,7 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

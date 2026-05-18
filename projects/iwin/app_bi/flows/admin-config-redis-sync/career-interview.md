@@ -2,7 +2,7 @@
 
 更新時間：2026-05-14
 用途：單條 flow 的保守面試 / 履歷素材
-證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
+證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 結論
 
@@ -103,3 +103,9 @@ MySQL 設定已修改
 - 技術決策附錄：`materials/decision-notes.md`
 - 面試稿附錄：`materials/interview.md`
 - 履歷邊界附錄：`materials/claim-boundary.md`
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；沒有 Nick 本人 app_bi 相關 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可作後台入口、BI 查詢、控制面、人工修復入口與下游 source of truth 追蹤的分析素材。
+- 不可誇大：不得寫成 Nick 主導完整後台、BI owner、完整 payment repair owner，或把後台入口直接包裝成後端 money flow owner。

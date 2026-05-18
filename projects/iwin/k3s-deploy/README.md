@@ -69,11 +69,17 @@
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
-- Step 4 已把 failure / consistency / rollback / interview boundary 收斂成可面試案例。
-- 下一步 Step 5 適合做最後 claim gate：確認是否有 Nick 本人 evidence，決定只保留面試素材，或整理成非常保守的 project-level career note。
-- Step 5 仍不預設更新正式履歷；除非補到 Nick 本人 MR / ticket / production evidence，否則維持 `分析素材 / learning-only` 與 `專案存在 / code-backed`。
+- `gameserver-phased-rollout` 已可作 rollout / rollback 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
+- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
+- 等 payment contribution consolidation 完成後，再回來判斷 k3s-deploy 是否需要 Step 5 claim gate。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 K3s / rollout / rollback 的 MR / ticket / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver phased rollout 說明 legacy runtime 上 K3s、ZK registration、Recreate strategy、config / secret rollback 與 observability gate。
+- 不可誇大：不得寫成 Nick 主導 K3s 遷移、設計完整 DevOps / SRE system、處理 production rollback 或改善 zero-downtime 指標。

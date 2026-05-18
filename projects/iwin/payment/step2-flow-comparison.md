@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1.5 Flow 比較
 狀態：已建立
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -127,7 +127,7 @@ payment-provider-callback
 
 中文名稱：三方金流 provider callback
 建議：第一條進 Step 3
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -162,7 +162,7 @@ Senior / Owner 價值：
 
 中文名稱：玩家提款、自動審核 / 自動出款與失敗退款
 建議：第二優先；可在 callback Step 3 裡作關聯邊界
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -193,7 +193,7 @@ Senior / Owner 價值：
 
 中文名稱：充值建單與 provider request
 建議：第三優先；Step 3 若 Nick 指定某 provider 才適合先做
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -221,7 +221,7 @@ Senior / Owner 價值：
 
 中文名稱：人工審核、補單與訂單修復
 建議：已完成 Step 5；下一步轉 `payment-channel-config-selection`
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -251,7 +251,7 @@ Senior / Owner 價值：
 
 中文名稱：支付方式 / 商戶 / 提现設定選擇
 建議：第五優先；可作 config consistency 補充
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -325,7 +325,7 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
 
 為什麼現在做它：

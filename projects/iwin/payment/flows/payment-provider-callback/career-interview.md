@@ -85,4 +85,10 @@ Step 4 補掃後，可以再補一句：payment 確實會把 `billNo` 以 `billN
 - 分析並整理金流 provider callback flow，聚焦三方 callback 驗證、訂單狀態轉移、XXL-MQ retry、玩家上分 / 提現退款與重複 callback 冪等風險。
 - 針對提現失敗退款場景梳理重複退款 failure window，整理 callback ack、MQ retry、終態 guard 與人工補償邊界。
 
-目前正式履歷不要放；等 Nick 補本人 evidence 後，才重新做履歷 / 自傳更新判定。
+本 flow 不單獨放入正式履歷；等 payment project-level contribution consolidation 完成後，再決定如何併入履歷 / 自傳。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不單獨升級成本 flow 的真實開發成果；但不得否定 Nick 在 `payment` 的整體實際開發經驗。若放履歷，應先併入 project-level payment contribution consolidation。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

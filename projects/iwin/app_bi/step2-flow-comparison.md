@@ -3,7 +3,7 @@
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
 狀態：已依 2026-05-15 KB 與 Step 1 再檢查
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -100,8 +100,8 @@ Step 2 重新排序後，結論分兩層：
 
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history；`payment-provider-callback` 已進到 Step 4 | `payment` 的人工修復 / 對帳細節仍待後續 flow 補 | 後續先收 `iwin payment payment-provider-callback Step 5`，不在 `app_bi` 硬挖 |
-| 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 5 已完成；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；Nick 貢獻待確認 | 保留為面試分析素材 |
+| 1 | `payment-order-status-repair` | 金流訂單狀態修正 | 高 | `app_bi` 有人工修正入口與跨月查單 history；`payment-provider-callback` 已進到 Step 4 | `payment` 的人工修復 / 對帳細節仍待後續 flow 補 | 後續先收 `iwin payment contribution claim consolidation`，不在 `app_bi` 硬挖 |
+| 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 5 已完成；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；Nick 貢獻依三層 claim gate 判斷 | 保留為面試分析素材 |
 | 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
 | 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | Step 5 已完成；查詢端、game_job producer、SQL / 時區修正 history 與保守面試 case | Nick 貢獻未確認 | 不更新正式履歷 |
 | 5 | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 已完成；查詢入口、每日戰績分表、iwin_gameserver log writer 線索與保守面試 case 已補 | app_bi 查詢端 Nick 貢獻未確認；writer evidence 應另開後端 flow | 不更新履歷，轉後端主線 |
@@ -113,7 +113,7 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-1. `iwin payment payment-provider-callback Step 5`
+1. `iwin payment contribution claim consolidation`
    - 原因：`app_bi` 的金流人工入口已完成定位，後端主線已轉到 `payment-provider-callback`，且該 flow 已完成 Step 4。
    - 產出：payment-provider-callback 的 Step 5 claim boundary 與保守面試素材收斂，不把 app_bi 人工入口硬當完整 payment owner。
    - 是否更新履歷：否，至少等 payment flow Step 4 / Step 5。
@@ -124,7 +124,7 @@ Step 2 重新排序後，結論分兩層：
 ### 1. `payment-order-status-repair`
 
 中文名稱：金流訂單狀態修正
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -160,7 +160,7 @@ Senior / Owner 價值：
 ### 2. `point-control-admin-operation`
 
 中文名稱：單點控制 / 營運控制操作
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 狀態：已完成 Step 5；不更新履歷 / 自傳
 
 已確認：
@@ -195,7 +195,7 @@ Senior / Owner 價值：
 ### 3. `admin-config-redis-sync`
 
 中文名稱：後台設定同步 Redis
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 狀態：已完成 Step 5
 
 已確認：
@@ -234,7 +234,7 @@ Senior / Owner 價值：
 ### 4. `daily-game-record-summary`
 
 中文名稱：每日遊戲資料彙總 / RTP 查詢
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 狀態：已完成 Step 5；不更新正式履歷 / 自傳
 
 已確認：
@@ -265,7 +265,7 @@ Senior / Owner 價值：
 ### 5. `game-round-record-query`
 
 中文名稱：遊戲局紀錄查詢 / production troubleshooting 入口
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -299,7 +299,7 @@ Senior / Owner 價值：
 ### 6. `admin-rbac-permission-check`
 
 中文名稱：後台 RBAC / 權限判斷
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -330,7 +330,7 @@ Senior / Owner 價值：
 ### 7. `coupon-trade-admin-operation`
 
 中文名稱：兌換碼 / Coupon Trade 營運操作
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -362,7 +362,7 @@ Senior / Owner 價值：
 ### 8. `app-bi-report-export`
 
 中文名稱：BI 報表查詢與匯出
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
 
@@ -437,7 +437,7 @@ admin-config-redis-sync Step 1-5
 下一步只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

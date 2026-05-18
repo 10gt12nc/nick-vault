@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
-| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻待確認 |
+| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻依三層 claim gate 判斷 |
 | `flows/daily-game-data-summary/career-interview.md` | Step 4 | 已轉成 Senior Backend 面試 case study；仍不更新正式履歷 |
 
 ## 專案定位
@@ -63,11 +63,17 @@
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
-- `daily-game-data-summary` Step 3 已建立主報告與 materials。
-- Step 4 已建立可講的面試 case、追問回答、Senior 能力對照與「是否主導」的保守回答。
-- 下一步才檢查 Step 5 / 履歷是否值得更新；目前仍需要 Nick 本人 evidence，預設不更新正式履歷 / 自傳。
+- `daily-game-data-summary` 已可作 batch correctness 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
+- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
+- 等 payment contribution consolidation 完成後，再回來判斷 game_job 是否需要 Step 5 claim gate。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 daily summary / BI batch 的直接 evidence。
+- 可面試講：code-backed / 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
+- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題、負責上游 gameserver 到 app_bi 全鏈路。

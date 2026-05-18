@@ -4,7 +4,7 @@
 完成狀態：Step 5 已完成
 文件角色：`materials/interview.md` 詳細面試稿附錄
 掃描等級：Level 2 Flow 深掃延伸
-證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻待確認
+證據層級：分析素材 / learning-only；code 功能為專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -232,11 +232,11 @@ Step 5 已完成履歷 / 自傳更新判定：不更新正式履歷 / 自傳。
 下一步只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - 依 KB，一條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳；下一步轉 `iwin payment payment-provider-callback Step 5`。
+- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳；下一步轉 `iwin payment contribution claim consolidation`。

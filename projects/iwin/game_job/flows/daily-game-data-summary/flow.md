@@ -3,7 +3,7 @@
 更新時間：2026-05-15（Step 4 面試 case 更新）
 Step：3
 掃描等級：Level 2 單條 flow 深挖
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 閱讀定位
 
@@ -347,7 +347,13 @@ Iwin job 在正常彙總後，會把：
 只推薦一件事：
 
 ```text
-game_job daily-game-data-summary Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：Step 3 / Step 4 已完成；下一步只能檢查是否值得進 Step 5 更新履歷 / 自傳。若仍沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，Step 5 應明確結論為「不更新正式履歷，只保留為分析素材」。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；缺 Nick 本人 daily summary / BI batch 直接 evidence。
+- 可面試講：code-backed / 分析過。可講 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
+- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題或負責全鏈路。

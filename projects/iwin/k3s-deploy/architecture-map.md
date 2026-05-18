@@ -2,7 +2,7 @@
 
 本文件只做最小定位，不取代單條 flow 的 `flow.md`。
 
-證據層級：`專案存在 / code-backed`；Nick 貢獻待確認。
+證據層級：`專案存在 / code-backed`；Nick 貢獻依三層 claim gate 判斷。
 
 ## 最小拓撲
 

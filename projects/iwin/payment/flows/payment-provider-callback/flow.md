@@ -426,3 +426,9 @@ Step 5 claim gate 結論：
 - 不可說 Nick 主導 / 設計 payment callback，不可說修復 pay4z 重複退款，不可說下游 wallet 已確認 exactly-once。
 
 下一步應回到 `payment` project 的候選 flow ranking，選下一條未完成且價值高的 flow；目前同 project 第二優先是 `withdrawal-auto-review-refund`。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：本 flow 目前不單獨升級成真實開發成果；若要放履歷，先併入 `iwin payment contribution claim consolidation` 統一判斷。
+- 可面試講：code-backed / 分析過。可講本 flow 的 money correctness、狀態轉移、冪等、retry、補償、人工修復或 config consistency。
+- 不可誇大：不得寫成 Nick 主導完整 payment / wallet owner、設計完整金流架構、建立完整 reconciliation 或解決 production incident。

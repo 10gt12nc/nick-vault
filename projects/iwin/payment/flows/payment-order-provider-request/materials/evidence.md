@@ -179,5 +179,5 @@ payment：
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```

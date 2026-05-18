@@ -316,5 +316,11 @@ Owner 判斷：
 後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 3。下一步同 flow 做 Step 4。
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：真實開發過。Nick / `10gt12nc` 的 Pay4z、NaNapay、BFPAY、NimTestPay 與 `createOrderNo` 相關 commits / branches 可支撐「參與第三方金流 provider request / callback / query 對接與維護」。
+- 可面試講：code-backed / 分析過。可講 provider request、callback、query、timeout unknown、訂單狀態與查單補償。
+- 不可誇大：不是主導完整金流 owner；不得寫全部 provider、完整架構 owner、完整 reconciliation 或量化改善。

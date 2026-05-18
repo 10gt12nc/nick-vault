@@ -1,7 +1,7 @@
 # coupon-redeem-credit-grant decision notes
 
 更新時間：2026-05-15
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## Decision 1：Idempotency 底線放在 DB，不只放在 Redis lock
 

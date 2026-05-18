@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 對應 Step：Step 4 面試案例
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 面試定位
 
@@ -118,3 +118,9 @@ Result：
 - 判斷是否能形成履歷 bullet。
 - 若沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，正式履歷應暫不放。
 - 若 Nick 補到本人 evidence，再重新評估是否能標成 `真實開發過`，並保守描述實際角色。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 coupon flow 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

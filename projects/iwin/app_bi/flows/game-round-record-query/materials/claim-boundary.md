@@ -62,3 +62,9 @@ Step 4 已轉成面試 case，但仍不改變 claim 層級：
 - 本 flow 可作面試分析素材；若要升級履歷，應另做 `iwin_gameserver` / provider log writer flow，並追重要 commit diff、ticket / issue 與 production context。
 
 下一步不再做本 flow；回到更高價值後端 flow。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；沒有 Nick 本人 app_bi 相關 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可作後台入口、BI 查詢、控制面、人工修復入口與下游 source of truth 追蹤的分析素材。
+- 不可誇大：不得寫成 Nick 主導完整後台、BI owner、完整 payment repair owner，或把後台入口直接包裝成後端 money flow owner。

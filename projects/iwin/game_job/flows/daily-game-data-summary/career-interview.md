@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 Step：4
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 使用邊界
 
@@ -106,3 +106,9 @@ Senior 角度我會看四個點。第一，delete + insert 雖然方便重跑，
 - 不能說 Nick 修正 PG / Antplay 時區問題。
 - 不能說 Nick 負責 app_bi 報表或 upstream gameserver 全鏈路。
 - 不能說已確認 production enable flag、正式 cron 或完整上游 writer。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 daily summary / BI batch 的直接 evidence。
+- 可面試講：code-backed / 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
+- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題、負責上游 gameserver 到 app_bi 全鏈路。

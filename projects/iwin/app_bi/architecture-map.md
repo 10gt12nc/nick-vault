@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 文件角色：project-level 定位地圖
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 定位
 
@@ -56,7 +56,7 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-provider-callback Step 5
+iwin payment contribution claim consolidation
 ```
 
 原因：

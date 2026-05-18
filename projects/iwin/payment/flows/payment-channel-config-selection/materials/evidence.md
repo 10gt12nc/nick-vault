@@ -203,7 +203,7 @@ payment `origin/k3s` path-specific log 補看到：
 判斷：
 
 - 新看到的 10gt12nc path log 仍偏 provider request / insert consistency，不足以支撐 Nick 對 `payment-channel-config-selection` 的直接履歷 claim。
-- Step 4 保留「專案存在 / code-backed；Nick 貢獻待確認」。
+- Step 4 保留「專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷」。
 
 ## Step 4 結論
 
@@ -309,5 +309,5 @@ app_bi 補查：
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin payment contribution claim consolidation
 ```

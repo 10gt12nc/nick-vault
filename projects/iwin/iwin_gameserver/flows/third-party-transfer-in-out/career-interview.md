@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 對應 Step：Step 5 履歷 / 自傳邊界已完成
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 面試定位
 
@@ -136,11 +136,17 @@ Result：
 只推薦一件事：
 
 ```text
-iwin_gameserver center-http-deposit-withdraw Step 3
+iwin payment contribution claim consolidation
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5。
 - 下一步應回到同 project 的 candidate ranking，選下一條未完成 flow。
-- `center-http-deposit-withdraw` 同樣是 money correctness flow，會產出 Step 3 主報告；不會直接更新正式履歷。
+- `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） 同樣是 money correctness flow，會產出 Step 3 主報告；不會直接更新正式履歷。
+
+## 履歷 claim 分層（2026-05-18 KB 對齊）
+
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
