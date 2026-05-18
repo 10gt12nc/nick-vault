@@ -1,6 +1,6 @@
-# iwin payment manual-order-review-repair Step 3
+# iwin payment manual-order-review-repair
 
-完成狀態：Step 3 已建立
+完成狀態：Step 4 已完成
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -250,7 +250,51 @@ sequenceDiagram
 4. `PROCESSING` unknown 不能直接退款或成功，要先查 provider 與 wallet。
 5. callback 晚到時要靠終態 guard / inbox / repair SOP 防止覆蓋人工判斷。
 
-## 8. 面試 / 履歷邊界摘要
+## 8. Step 4 面試 case
+
+### 8.1 3 分鐘講法
+
+我會把這條 flow 定位成金流 recovery / operation boundary，而不是後台 CRUD。正常人工審核會從 app_bi 進來，但 app_bi 只是操作入口；真正要看 payment 的 `/payment/public/oderView`。這個 API 會先確認訂單仍是 `WAIT`，再依充值或提現分支處理。充值通過會呼叫 `upperDeposit` 上分，再更新 `payment_order` 與玩家充值統計；提現退回會把交易語意改成 `WITHDRAWBACK`，再呼叫 `upperDeposit` 把錢退回玩家，接著更新訂單與失敗統計。
+
+這裡最容易出事的是直接修狀態。app_bi 的 `repairOrderService` 可以直接把月表裡的 `payment_order.status` 改成成功、拒絕、退回或異常，並寫 remark / opLog；但這條路徑沒有在 method 內處理 wallet 上分 / 退款、provider 查單或統計更新。所以我會把它定義成 break-glass repair，只能在有 provider 查單、wallet log、payment order 三邊 evidence 後使用。
+
+如果面試官問 `PROCESSING` 卡住怎麼辦，我不會直接說退款或改成功。`PROCESSING` 代表 provider 可能已接單，正確處理要先查 provider / 商戶後台、payment order、game lobby currency log。只有 provider 明確 failed 才能走退款；success 要補終態；unknown 要保留人工待查，而不是用猜的改狀態。
+
+### 8.2 高頻追問
+
+| 追問 | 建議回答 |
+| --- | --- |
+| 人工審核是直接改 DB 嗎？ | 正常審核不是。app_bi `bill_check` 會呼叫 payment `/oderView`，由 payment 做狀態 guard、上分 / 退款與統計更新。但另有 direct repair 工具，只能當最後手段。 |
+| 為什麼只能審 `WAIT`？ | 因為終態訂單可能已完成玩家餘額、副作用通知或 provider 出款。覆蓋終態會造成重複上分、重複退款或 audit 斷裂。 |
+| 提現退回和拒絕差在哪？ | 退回是 money movement，要把已扣的錢加回玩家；拒絕 / 失敗類狀態主要是狀態與統計語意。面試時要強調退回不能只改 status。 |
+| `PROCESSING` 卡住怎麼辦？ | 先查 provider 查單 / 商戶後台、payment order、wallet log；success 補終態，failed 才退款，unknown 保留人工待查。 |
+| callback 晚到怎麼辦？ | callback flow 要有終態 guard，人工修復也要留 reason / provider evidence。若人工已補成功或退回，晚到 callback 應 no-op 或進人工衝突處理，不可覆蓋。 |
+| direct repair 要怎麼設計比較安全？ | 權限隔離、雙人覆核、高風險狀態限制、before-after snapshot、provider query raw evidence、wallet log evidence、operator / reason / ticket link，並能查出後續是否需要補統計。 |
+
+### 8.3 人工 repair SOP checklist
+
+建議 SOP：
+
+1. 先確認 `billNo` 對應的 `payment_order_yyyy_M`。
+2. 看目前狀態：`WAIT`、`PROCESSING`、`SUCCESS`、`BACK`、`ERROR`。
+3. 查 provider：callback log、query order、商戶後台或出款平台。
+4. 查 wallet：game lobby / center currency log 是否已上分 / 扣分 / 退款。
+5. 查 payment 統計：`log_user`、`user_behaviour` 是否已更新。
+6. 判斷 source of truth：provider 成功、provider 失敗、wallet 已動、wallet 未動或 unknown。
+7. 選操作：走 `/oderView`、走 `gameRecharge` 補單、或用 `repairOrderService` break-glass。
+8. 寫入 operator、reason、before-after、查單結果與 ticket / 工單。
+9. 處理 callback 晚到：確保終態 guard / no-op / 人工衝突處理。
+10. 事後抽樣對帳：payment order、provider、wallet log 三邊一致。
+
+### 8.4 Step 4 面試結論
+
+這條 flow 可以拿來講「人工補償邊界」：
+
+- 自動流程無法解決所有 unknown，營運入口必須存在。
+- 但人工權限越大，越需要嚴格 evidence、audit、狀態 guard 與補償 SOP。
+- 正常審核 API 與 direct status repair 必須分層，不能混成一個「改狀態」操作。
+
+## 9. 面試 / 履歷邊界摘要
 
 可作面試素材：
 
@@ -264,9 +308,9 @@ sequenceDiagram
 - `app_bi` repair 相關 path history 目前主要是 gill / arnold；payment 人工審核核心 history 主要是 Derek / gill / arnold。
 - 只保留為 `專案存在 / code-backed` 與 Senior 面試分析素材。
 
-## 9. Step 3 結論
+## 10. Step 4 結論
 
-`manual-order-review-repair` 已完成 Step 3 主學習包。這條 flow 的核心不是單一人工按鈕，而是「營運介入如何安全地改變 money state」。
+`manual-order-review-repair` 已完成 Step 4。這條 flow 的核心不是單一人工按鈕，而是「營運介入如何安全地改變 money state」。
 
 最重要的 code-backed 結論：
 
@@ -274,11 +318,12 @@ sequenceDiagram
 - 充值成功與提現退回會呼叫 `upperDeposit`，不是只改 status。
 - `gameRecharge` 支援人工充值、線上掉單補單、兌換補單與 GM 下分。
 - app_bi 的 `repairOrderService` 是直接修狀態工具，應視為 break-glass repair，不可等同完整 reconciliation。
+- Step 4 已補可面試的 3 分鐘講法、追問答法與人工 repair SOP。
 
-## 10. 下一步建議
+## 11. 下一步建議
 
-Step 3 已建立，下一步只推薦做 Step 4：把這條 flow 轉成可面試 case，補齊追問答法、人工修復 SOP、狀態衝突與 claim boundary。
+Step 4 已完成，下一步只推薦做 Step 5：檢查是否有 Nick 本人 evidence 可支撐正式履歷 / 自傳更新。依目前 Step 4 evidence，預期仍是不更新正式履歷，只保留面試分析素材。
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```

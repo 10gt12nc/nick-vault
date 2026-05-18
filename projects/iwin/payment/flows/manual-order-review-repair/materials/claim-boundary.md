@@ -1,6 +1,6 @@
 # claim-boundary
 
-## Step 3 claim 判斷
+## Step 4 claim 判斷
 
 本 flow 目前是：
 
@@ -13,6 +13,7 @@
 - 面試時作為人工修復 / 補償邊界案例。
 - 說明 payment 人工審核不是單純改狀態，而是可能牽涉上分、退款、統計與通知。
 - 說明 direct repair 與正式審核 API 的差異。
+- 說明 `PROCESSING` unknown 不應直接退款或改成功。
 
 ## 不可使用
 
@@ -34,8 +35,14 @@
 - `10gt12nc` 直接修改 `PayTypeServiceImpl#gameRecharge` 主邏輯。
 - `10gt12nc` 直接修改 app_bi `bill_check` / `repairOrderService`。
 
+## Step 4 結論
+
+- 可作 Senior Backend / Owner 面試分析素材。
+- 不更新正式履歷 / 自傳。
+- 若要進 Step 5，目標不是硬找履歷 bullet，而是做最後 claim gate：再次檢查是否有 Nick 本人 MR / ticket / commit / production issue / 本人確認。依目前 evidence，預期仍是不更新。
+
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```

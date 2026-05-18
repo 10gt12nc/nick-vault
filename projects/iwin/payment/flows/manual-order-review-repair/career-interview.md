@@ -1,6 +1,6 @@
 # manual-order-review-repair career-interview
 
-完成狀態：Step 3 已建立
+完成狀態：Step 4 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 保守定位
@@ -24,6 +24,14 @@
 
 我會把 payment 的人工修復拆成兩層：一層是正常人工審核 API，例如 `/payment/public/oderView`，它會檢查訂單還是待審，然後依充值或提現分支去做上分、退款、更新訂單與玩家統計；另一層是後台 break-glass repair，例如直接把某筆 `payment_order_yyyy_M` 狀態改掉。後者不能當成完整 reconciliation，因為它不一定有 wallet 副作用，也不一定綁定 provider 查單 evidence。
 
+## 3 分鐘講法
+
+我會把這個案例講成「金流人工補償邊界」。正常人工審核不是後台直接改 DB；app_bi 會呼叫 payment 的 `/payment/public/oderView`，payment 先確認訂單仍是 `WAIT`，再依充值或提現處理副作用。充值通過會上分，提現退回會退款，接著才更新訂單與玩家統計。
+
+比較危險的是直接修狀態。app_bi 有 `repairOrderService` 能直接更新 `payment_order_yyyy_M.status`，但這個 method 內沒有處理 provider 查單、wallet 上分 / 退款或統計更新，所以我會把它視為 break-glass。真正安全的 SOP 應該先查 provider 狀態、wallet log、payment order，再決定是補成功、退款、保持 unknown，或只修顯示狀態。
+
+這條 flow 能展示 owner 思維：自動流程和人工補償不是互斥，而是同一個狀態機的不同入口。人工權限越大，就越要有狀態 guard、audit、before-after、callback 晚到的 no-op / conflict handling，不能靠營運猜測改 money state。
+
 ## 面試主軸
 
 這條 flow 的 owner 重點是：
@@ -43,9 +51,11 @@
 | 提現退回最危險在哪？ | 退回不是改 status，而是要把錢退回玩家。若 `upperDeposit` 成功但訂單更新失敗，或人工修狀態但 wallet 沒動，都會造成 money state 不一致。 |
 | `PROCESSING` 卡住怎麼辦？ | 不能直接退款或手動出款。要先用 provider 查單 / 商戶後台 / wallet log 確認終態。app_bi UI 也有提示：自動提現提交異常要先代付快查，不要盲目改手動出款。 |
 | 直接修復訂單狀態可以嗎？ | 可以作為最後手段，但要降級為 break-glass repair：必須有原因、operator、before-after、provider 查單結果，並確認是否需要補做 wallet / 統計 side effect。 |
+| callback 晚到怎麼辦？ | 晚到 callback 要先看訂單是否已終態。若人工已補成功或退回，callback 不應覆蓋；理想上要有 raw callback / query evidence 和人工衝突處理。 |
+| 這條能放履歷嗎？ | 目前不放。它是 code-backed 面試分析素材，但沒有 Nick 直接修改人工審核 / 修單主線的 path-specific evidence。 |
 
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```

@@ -84,8 +84,8 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 4 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與 `manual-order-review-repair` Step 3 完成 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 5 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與 `manual-order-review-repair` Step 4 完成 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |
 
@@ -220,7 +220,7 @@ Senior / Owner 價值：
 ### 4. `manual-order-review-repair`
 
 中文名稱：人工審核、補單與訂單修復
-建議：已完成 Step 3；下一步 Step 4
+建議：已完成 Step 4；下一步 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -279,7 +279,7 @@ Senior / Owner 價值：
 | 1 | `payment-provider-callback` | 高 | 高 | 高 | 中高 | 高 | 中 | 第一條深挖 |
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 高 | 中 | 高 | 高 | 第二條候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高 | 中 | 中高 | 中 | 需先選 provider |
-| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 3 已完成；下一步 Step 4 |
+| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 4 已完成；下一步 Step 5 |
 | 5 | `payment-channel-config-selection` | 中 | 中 | 中高 | 高 | 中 | 中 | 補充型 flow |
 
 ## 第一條 Flow 選擇
@@ -323,22 +323,22 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```
 
 為什麼現在做它：
 
-- `manual-order-review-repair` Step 3 已建立。
-- 下一步應在同 flow 做 Step 4 面試 case。
+- `manual-order-review-repair` Step 4 已完成。
+- 下一步應在同 flow 做 Step 5 claim gate。
 
 會產出什麼：
 
-- 補齊人工 repair SOP、direct status repair 風險、`PROCESSING` unknown 與 callback 晚到衝突的可口述素材。
+- 檢查是否有 Nick 本人 evidence 可支撐正式履歷 / 自傳更新；依目前 evidence 預期仍是不更新。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` 已完成 Step 3，下一步做 Step 4 面試 case。
+- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` 已完成 Step 4，下一步做 Step 5 claim gate。
 
 是否需要 commit / push：
 

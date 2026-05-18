@@ -124,5 +124,5 @@ Step 5 證據更新：Pay4z / NaNapay / BFPAY / NimTestPay 相關 commits 由 `1
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```

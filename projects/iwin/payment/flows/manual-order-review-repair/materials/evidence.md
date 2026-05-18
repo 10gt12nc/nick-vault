@@ -139,15 +139,25 @@ app_bi repair 相關 path：
 - 未掃 production runbook。
 - 未逐 commit diff 展開所有人工審核歷史。
 
-## Step 3 結論
+## Step 4 補充
 
-- 本 flow 已完成 Step 3。
+- 任務：`iwin payment manual-order-review-repair Step 4`。
+- 日期：2026-05-18。
+- 掃描等級：Level 2 Flow 深掃延伸；以 Step 3 code evidence 為基礎，補面試 case、SOP、claim boundary。
+- `/Users/nick/Git/iwin/payment` 已重新 fetch：local HEAD / `origin/k3s` 仍為 `bb7794e55386d914801887cc43b53d263c74d3c3`，ahead / behind `0 / 0`。
+- `/Users/nick/Git/iwin/app_bi` 已重新 fetch：local HEAD `4a206a28ab8f5be4329602cdc510ee9ea41efb25`，`origin/main` `fd9881fc417e01f960d758b4b91ba1a10b507855`，ahead / behind `0 / 4`；本輪仍不 pull、不 checkout、不改工作樹。
+- Step 4 未新增正式履歷 claim；只把 Step 3 evidence 轉成面試可口述 case。
+
+## Step 4 結論
+
+- 本 flow 已完成 Step 4。
 - `manual-order-review-repair` 可作 Senior 面試素材，重點是人工介入 money state 的狀態機與補償邊界。
 - 目前不更新正式履歷 / 自傳。
 - Nick 貢獻仍標 `待確認`；只可說 Nick 已在 payment provider request 共用建單風險有 evidence，不能延伸成 Nick 主導人工審核 / 修單。
+- 下一步 Step 5 只做 claim gate，預期仍是不更新正式履歷。
 
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 4
+iwin payment manual-order-review-repair Step 5
 ```
