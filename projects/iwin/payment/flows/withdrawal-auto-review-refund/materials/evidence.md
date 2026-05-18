@@ -2,9 +2,9 @@
 
 ## 本次掃描定位
 
-- 任務：`iwin payment withdrawal-auto-review-refund Step 3`。
+- 任務：`iwin payment withdrawal-auto-review-refund Step 4`。
 - 日期：2026-05-18。
-- 掃描等級：Level 2 Flow 深掃。
+- 掃描等級：Level 2 Flow 深掃；Step 4 補 failure / consistency / idempotency / retry / reconciliation 與面試 case。
 - 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`。
 
 ## 自動重讀
@@ -22,6 +22,9 @@
 - `projects/iwin/payment/step1-candidate-flows.md`
 - `projects/iwin/payment/step2-flow-comparison.md`
 - `projects/iwin/payment/flows/payment-provider-callback/flow.md`
+- `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md`
+- `projects/iwin/payment/flows/withdrawal-auto-review-refund/career-interview.md`
+- `projects/iwin/payment/flows/withdrawal-auto-review-refund/materials/*.md`
 
 ## source repo 狀態
 
@@ -57,6 +60,9 @@ payment：
 - `payment/src/main/java/cn/com/payment/service/impl/withdraw/BaseServiceImpl.java`
 - `payment/src/main/java/cn/com/payment/service/impl/withdraw/NimTestPayServiceImpl.java`
 - `payment/src/main/java/cn/com/payment/service/impl/withdraw/Pay4zServiceImpl.java`
+- `payment/src/main/java/cn/com/payment/controller/merchant/NimTestPayController.java`
+- `payment/src/main/java/cn/com/payment/controller/merchant/Pay4zController.java`
+- `payment/src/main/java/cn/com/payment/comsumer/NotifyComsumer.java`
 - `payment/src/main/java/cn/com/payment/utils/ProducerUtil.java`
 - `payment/src/main/java/cn/com/payment/vo/OrderVO.java`
 - `payment/src/main/java/cn/com/payment/vo/QueryWithdrawVO.java`
@@ -90,6 +96,9 @@ gameserver `origin/k3s`：
 - `WithdrawController` + `HandlerRouterServiceImpl` 是另一條人工 / router 指定商戶出款路徑，會先改 `PROCESSING` 再丟 auto withdraw MQ。
 - `WithdrawComsumer` 消費 auto withdraw MQ 後依 `withdrawType` 反射呼叫 provider service。
 - 代表 provider service 若下單失敗或 response parse fail，會呼叫 `asynUpdateOrderStatus(ERROR, WITHDRAW)`。
+- Pay4z / NimTestPay controller 均有 `/withdraw/getOrderStatus` 代付查單入口線索。
+- `NotifyComsumer` 消費 notify topic 後呼叫 `updateUserInfo`；處理 exception 時回 `MqResult.FAIL`。
+- `ProducerUtil.addProduce` catch exception 只 log，沒有往外拋。
 - `updateUserInfo` 提現失敗分支會把 `tradeType` 改 `WITHDRAWBACK`，呼叫 `upperDeposit` 退款，再更新訂單 `ERROR` 與失敗原因。
 - `updateUserInfo` 在處理提現前會 guard 訂單狀態必須是 `WAIT` 或 `PROCESSING`。
 - `ff42791` / `ef67724` 相關 diff 顯示曾補過「防止已退款後 MQ retry 再次進退款流程」與 clear billNo。
@@ -116,6 +125,8 @@ payment log grep 找到：
 - 自動出款失敗但還沒有 provider 終態時，多數 branch 會轉人工審核，而不是直接退款。
 - provider 明確失敗或 callback 明確失敗時，會走退款。
 - `billNo` 是跨 payment 與 game lobby / center 的主要 idempotency / trace key，但本輪只確認傳遞與 log，未確認強制去重。
+- 多 provider 查單入口可以作為 reconciliation 輔助，但目前只確認入口存在，未確認定時自動對帳 job。
+- `ProducerUtil` 的錯誤處理使 MQ produce fail 可能不會中止上游流程，因此 Step 4 把它列為 owner 風險。
 
 ## 待確認
 
@@ -135,8 +146,15 @@ payment log grep 找到：
 - 未掃完整 app_bi repair UI。
 - 未掃 timer / reconciliation job 全貌。
 
+## Step 4 面試 case 結論
+
+- 本 flow 已可作為保守面試 case，主軸是跨系統 money correctness。
+- 核心講法：`payment_order`、game lobby / center 餘額、provider payout status 是三個 source of truth。
+- 高風險斷點：扣分成功但建單失敗、MQ produce fail only log、provider accepted no callback、重複 callback / MQ retry、下游 `billNo` 去重待確認。
+- 仍不可升級履歷 claim，因為 Nick 本人 evidence 未補。
+
 ## 下一步
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 4
+iwin payment withdrawal-auto-review-refund Step 5
 ```

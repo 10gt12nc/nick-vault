@@ -6,6 +6,7 @@
 - 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻：`待確認`。
 - 目前用途：Senior Backend / Platform Backend / System Owner 面試素材，不進正式履歷 master。
+- Step 4 結論：可作為保守面試 case；正式履歷 / 自傳仍等 Step 5 claim gate。
 
 ## 3 分鐘講法
 
@@ -50,8 +51,31 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 | 自動審核條件有哪些？ | 商戶金額 / 時間、玩家 `is_autowithdraw`、玩家層級開關、提款金額上下限、今日充值、今日打碼比例。 |
 | 為什麼這條 flow 有 owner 價值？ | 它橫跨玩家錢包、payment order、provider payout、MQ callback、退款補償與人工 fallback，任何斷點都可能是資金正確性問題。 |
 
+## Step 4 面試主軸
+
+最穩的講法不是「我做了自動出款」，而是：
+
+> 我會用提款 flow 說明跨系統資金一致性：payment order、game lobby 玩家餘額、provider payout status 是三個 source of truth；每個副作用都有半成功風險，所以要靠狀態機、idempotency key、MQ retry 邊界、查單 / reconciliation 和人工補償 SOP 收斂。
+
+## 高風險斷點回答
+
+| 斷點 | 面試回答 |
+| --- | --- |
+| 扣分成功但建單失敗 | 這是最大風險，因為玩家錢包已變，但 payment 沒完整訂單。應用 pending event / outbox 或至少用 `billNo` 查下游 currency log 後補償。 |
+| MQ produce 失敗 | `ProducerUtil` 目前 catch 後只 log，訂單可能已 `PROCESSING` 但消息沒落地。owner 方案是 failed event、alarm 或 outbox。 |
+| provider accepted 無 callback | 不能直接標成功或退款。要查 provider order status；unknown 要進 reconciliation。 |
+| 重複失敗 callback | 第一層靠 `payment_order` 終態 guard；第二層靠退款 catch 防 MQ retry；第三層理想上要下游 `billNo` 去重。 |
+| 下游 `billNo` | 已確認傳入與寫 log，未確認強去重，所以面試不能講已完整 idempotent。 |
+
+## 可用 STAR 簡版
+
+- Situation：提款 flow 橫跨 payment 訂單、game lobby 錢包、provider 代付與 callback。
+- Task：釐清提款成功、失敗退款、卡單、重複 callback 時的資金一致性邊界。
+- Action：把 flow 拆成扣分建單、自動審核、provider request、callback notify、退款補償；逐段標出 source of truth、idempotency guard、retry 和人工補償點。
+- Result：可形成一套 money correctness 面試案例，但目前仍是 code-backed 分析素材，不升級成真實開發 claim。
+
 ## 下一步
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 4
+iwin payment withdrawal-auto-review-refund Step 5
 ```

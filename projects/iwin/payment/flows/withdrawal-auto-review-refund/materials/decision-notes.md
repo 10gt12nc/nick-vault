@@ -1,6 +1,6 @@
 # decision-notes
 
-## Step 3 判斷
+## Step 4 判斷
 
 `withdrawal-auto-review-refund` 值得作為 payment 第二條 flow，原因是它比 provider callback 更靠近玩家提款入口，能把扣分、建單、自動審核、provider 代付、callback 與退款補償串成完整資金閉環。
 
@@ -16,7 +16,7 @@
 
 ## Step 4 重點
 
-Step 4 不需要改履歷，應專注補：
+Step 4 已補齊面試 case，不需要改履歷，重點結論是：
 
 - failure window。
 - consistency。
@@ -25,8 +25,18 @@ Step 4 不需要改履歷，應專注補：
 - reconciliation。
 - observability / auditability。
 
+## Owner 改善方向
+
+| 改善方向 | 為什麼 | 證據狀態 |
+| --- | --- | --- |
+| pending event / outbox | 扣分成功但建單失敗是最危險斷點 | 目前 code-backed 看到先扣分後 insert |
+| failed MQ produce alarm | `ProducerUtil` catch 後只 log | 已確認 code path |
+| provider query / reconciliation | provider accepted no callback 不能直接退款 | 多 provider 有查單入口，但自動 job 未確認 |
+| game lobby `billNo` 去重 | 避免重複 `DEPOSIT` / `WITHDRAW` | 已確認傳入與 log，未確認 unique guard |
+| aging dashboard | `WAIT` / `PROCESSING` 卡單需要可見 | 未確認 |
+
 ## 下一步
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 4
+iwin payment withdrawal-auto-review-refund Step 5
 ```

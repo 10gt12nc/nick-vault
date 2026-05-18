@@ -22,6 +22,26 @@
 | MQ produce 失敗怎麼辦？ | 不能只 log。要有可查的 failed event、alarm、重送機制，或把狀態變更與事件發送改成 outbox pattern。 |
 | `PROCESSING` 卡住怎麼辦？ | 需要 aging monitor + provider query job + 人工 repair SOP，並明確區分 unknown、failed、success，避免未知狀態直接退款。 |
 | 怎麼避免自動審核錯放？ | 自動條件要可審計，包含命中商戶、命中時間、金額區間、玩家層級與打碼判斷；不符時轉人工，不能靜默失敗。 |
+| 如果 provider 查單也是 unknown？ | 不退款、不標成功，進人工 reconciliation；要保存 provider request / callback / query raw evidence，等 provider 終態或人工確認。 |
+| 如果要補監控，先補哪三個？ | `PROCESSING` aging、notify MQ retry / fail、provider callback delay。這三個最直接對應卡單、重試與終態延遲。 |
+
+## Step 4 面試版
+
+### 90 秒版本
+
+這條提款 flow 我會從 money correctness 看。玩家提款時，payment 先檢查玩家、綁定、黑名單、提款設定、待審單與打碼目標；通過後先呼叫 game lobby `WITHDRAW` 扣分，扣分成功才建 `payment_order`。後面自動審核 job 會掃 `is_auto_review=1` 且 `WAIT` 的訂單，再依玩家層級、金額、今日充值與打碼比例決定是否出款。出款時訂單改 `PROCESSING`，再呼叫 provider。
+
+真正的難點是 provider accepted 不等於成功，最終要看 callback 或查單。失敗時走 `asynUpdateOrderStatus` / `updateUserInfo`，呼叫 game lobby `DEPOSIT` 退回玩家。我要特別看扣分成功建單失敗、MQ produce 失敗只 log、provider no callback、重複 callback 是否重複退款，以及下游 `billNo` 是否真的去重。
+
+### 風險分級
+
+| 風險 | 等級 | 原因 |
+| --- | --- | --- |
+| 扣分成功但建單失敗 | 高 | 玩家餘額已變，但 payment 缺訂單 source of truth |
+| provider accepted no callback | 高 | 訂單卡 `PROCESSING`，不能直接成功或退款 |
+| 重複 callback / MQ retry | 高 | 若終態 guard 或下游去重不足，會重複退款 |
+| MQ produce fail only log | 中高 | 狀態已變但事件未送出，需 alarm / outbox |
+| 自動審核條件不符 | 中 | 會轉人工，風險是 backlog 和 remark 不完整 |
 
 ## 可說案例
 
@@ -37,5 +57,5 @@
 ## 下一步
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 4
+iwin payment withdrawal-auto-review-refund Step 5
 ```

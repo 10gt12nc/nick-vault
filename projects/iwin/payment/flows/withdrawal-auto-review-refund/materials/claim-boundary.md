@@ -4,6 +4,8 @@
 
 本 flow 目前只可作為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
 
+Step 4 已完成面試 case，但這不等於履歷 claim 可以升級。Step 5 才檢查是否更新正式履歷 / 自傳。
+
 不更新：
 
 - `senior-owner-playbook/05-resume-master-zh.md`
@@ -53,5 +55,5 @@
 ## 下一步
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 4
+iwin payment withdrawal-auto-review-refund Step 5
 ```
