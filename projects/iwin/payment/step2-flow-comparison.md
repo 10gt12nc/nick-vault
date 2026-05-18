@@ -84,8 +84,8 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `payment-provider-callback` Step 5 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補 remote freshness 與目前 Step 5 下一步 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `withdrawal-auto-review-refund` Step 4 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前第二條 flow Step 3 完成與 Step 4 下一步 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |
 
@@ -312,6 +312,7 @@ Step 3 暫不做：
 ## 本次不更新的內容
 
 - `flows/payment-provider-callback/` 已完成 Step 5 claim gate；下一步不重做此 flow。
+- `flows/withdrawal-auto-review-refund/` 已完成 Step 3 主學習包；下一步補 Step 4 failure / consistency / idempotency / retry / reconciliation。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
 - 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -321,25 +322,25 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 3
+iwin payment withdrawal-auto-review-refund Step 4
 ```
 
 為什麼現在做它：
 
-- `payment-provider-callback` 已完成 Step 5，且結論是不更新正式履歷 / 自傳。
-- 依本文件排序，下一條同 project 候選 flow 是 `withdrawal-auto-review-refund`。
+- `withdrawal-auto-review-refund` 已完成 Step 3。
+- Step 4 應補 failure window、consistency、idempotency、retry / compensation 與 reconciliation，尤其是扣分成功但建單失敗與 provider accepted no callback。
 
 會產出什麼：
 
-- 建立 / 更新 `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md` 與對應 materials。
+- 更新 `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md` 與對應 materials 的 Step 4 深度區。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
 - 不更新正式履歷。
-- 預設不更新正式履歷；等新 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
+- 預設不更新正式履歷；等本 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
 
 是否需要 commit / push：
 
-- Step 3 完成後自動 commit。
+- Step 4 完成後自動 commit。
 - 不需要 push，除非 Nick 明確要求。

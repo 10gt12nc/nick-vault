@@ -21,7 +21,7 @@
 - 投遞用自傳已整理。
 - 未來專案資料夾 `projects/` 已建立。
 - 已有 `app_bi` 四條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`、`daily-game-record-summary`、`game-round-record-query`。但它們目前仍屬於後台 / BI / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
-- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback` Step 5、`game_api/coupon-redeem-credit-grant` Step 4、`game_job/daily-game-data-summary` Step 4、`third_games_api/gsc-transfer-bet-settle-rollback` Step 4、`iwin_gameserver/third-party-transfer-in-out` Step 5、`k3s-deploy/gameserver-phased-rollout` Step 4。這些可當素材庫，但仍需要補 Nick 本人 evidence 才能升級成履歷主張。
+- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback` Step 5、`payment/withdrawal-auto-review-refund` Step 3、`game_api/coupon-redeem-credit-grant` Step 4、`game_job/daily-game-data-summary` Step 4、`third_games_api/gsc-transfer-bet-settle-rollback` Step 4、`iwin_gameserver/third-party-transfer-in-out` Step 5、`k3s-deploy/gameserver-phased-rollout` Step 4。這些可當素材庫，但仍需要補 Nick 本人 evidence 才能升級成履歷主張。
 
 ### 尚未完成
 
