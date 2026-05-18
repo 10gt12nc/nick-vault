@@ -305,6 +305,12 @@ Config：
 
 只寫可證明或本人確認的內容。沒有 metric 不寫改善百分比。
 
+如果 Nick 明確確認某 project / repo 實際開發很多，單條 flow 的 Step 5 不足以代表整個 project 的履歷結論。要先做 project-level contribution consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff 與本人確認內容，再把經驗分成：
+
+- 可放履歷：真實開發過。
+- 可面試講：code-backed / 分析過。
+- 不可誇大：不是主導完整系統 owner、不是全部功能 owner、沒有 metric 不寫改善百分比。
+
 ### 14. Claim Boundary
 
 明確列：

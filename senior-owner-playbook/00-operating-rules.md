@@ -318,6 +318,34 @@ flow、履歷、自傳與面試素材都要標註來源層級：
 
 沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得把內容標成 `真實開發過`。
 
+本人確認規則：
+
+- Nick 明確說「我做過」、「我開發很多」、「這是我負責 / 參與」時，這本身就是 evidence，層級是 `本人確認`。
+- `本人確認` 可以支撐履歷使用「參與、維護、開發、處理」等保守動詞；若要寫「主導、負責整體、獨立完成、改善 X%」，仍需要更強 evidence，例如 MR / ticket / release / incident / metric。
+- AI 不得因為 path-specific commit 沒直接命中某一條 flow，就把 Nick 對整個 repo / project 的實際開發經驗判成沒有。正確做法是標成「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，再回頭做 contribution consolidation。
+- 如果本人確認和 git history 看起來不一致，AI 要列出差異並補查 branches / aliases / merge commits / squash commits / ticket，而不是直接否定本人確認。
+
+### Project-level contribution consolidation
+
+當 Nick 表示某個 project / repo 是主力開發經驗，或 AI 發現正式履歷低估該 repo 時，必須先做 project-level contribution consolidation，再更新 05 / 08。
+
+contribution consolidation 必須至少掃：
+
+- 全部 Nick / `10gt12nc` commits。
+- Nick 可能使用的 author / email / branch aliases。
+- 遠端 branches 與近期 branch。
+- path-specific history 與重要 commit diff。
+- 已完成 flow evidence、career-interview、claim-boundary。
+- Nick 本人確認的實際工作內容。
+
+輸出必須分三層：
+
+1. `可放履歷：真實開發過`：有本人確認，最好再有 commit / branch / ticket / production issue / code-backed evidence；用保守動詞寫成履歷素材。
+2. `可面試講：code-backed / 分析過`：系統存在且 AI 已深掃，可用於解釋架構、failure window、owner decision，但不包裝成 Nick 的成果。
+3. `不可誇大`：不得寫主導完整系統、全權 owner、完整架構師、改善百分比、全部 provider / 全部 flow owner，除非有更強 evidence。
+
+重要：單條 flow 的 Step 5 只判斷那條 flow 能不能進履歷；不能拿來否定整個 project 的履歷價值。像 `iwin/payment` 這種主力金流 repo，若 Nick 確認「開發很多」，下一步應做 project-level contribution consolidation，而不是直接說 payment 都不能寫。
+
 ### Flow 完成後的下一步
 
 一條 flow 做到 Step 5，只代表這一條 flow 的固定主線完成，不代表整個 project 完成。
@@ -698,11 +726,14 @@ AI 必須主動判斷掃描深度，不要全部丟給 Nick 決定。
 若 Nick 要求「最後整理履歷 / 自傳」或「更新 05 / 08 最終版」，AI 必須先做最終核對：
 
 - 掃描相關 code repo 的主分支、近期分支、path-specific log 與重要 commit diff。
+- 若是 Nick 明確說實際做很多的主力 repo，先完成 project-level contribution consolidation，不得只根據單條 flow 的 Step 5 直接排除該 repo 經驗。
+- 全面掃 Nick / `10gt12nc` commits、branches、重要 diff 與可能的 author aliases，並和 Nick 本人確認內容交叉整理。
 - 掃描 `projects/` 已完成 flows、project-level career-interview、flow-level career-interview。
 - 掃描 `archive/` 舊履歷、自傳、career、ai-notes、KB 中所有履歷素材。
 - 去重、降誇大、刪除沒有 evidence 的強 claim。
 - 每條履歷 bullet 標註來源層級：`真實開發過` / `專案存在` / `分析素材` / `待確認`。
 - 沒有 evidence 的內容只能留在待確認或面試分析素材，不寫進正式投遞句子。
+- 若本人確認足夠但 commit / ticket 尚未補齊，履歷可用「參與 / 維護 / 開發」保守口徑，並在 claim boundary 標註「本人確認，待 commit / ticket 補強」。
 
 ## 每次完成後的自動下一步建議
 

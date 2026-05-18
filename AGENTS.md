@@ -27,6 +27,7 @@
 - `materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告；舊平鋪格式的同名檔先視為待遷移舊格式。
 - 新建或重整後的 flow 資料夾，預設只讓 Nick 直接讀 `flow.md` 與該 flow 的 `career-interview.md`；其他 evidence、decision、interview、claim 邊界要收在 `materials/`，避免主閱讀面混亂。既有 `iwin` 舊資料夾這輪先不搬，等 Nick 明確要求再遷移。
 - flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
+- Nick 本人明確說「我做過 / 我開發很多 / 這是我負責或參與的」時，屬於 `本人確認` evidence，不能被 AI 當成沒有 evidence。AI 必須把它和 commit / MR / ticket 一起納入 claim 判斷，但仍要保守標示為「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，不得反過來把 Nick 的經驗抹掉。
 - 參考 workspace 正確路徑：
   - `/Users/nick/Git/iwin/iwin-workspace`
   - `/Users/nick/Git/antplay/math-workspace`
@@ -83,6 +84,7 @@
 - `flow.md` 的閱讀層次固定是「先讀懂，再資深化」：先用初階 / 中階可讀方式說清楚功能、使用者、觸發情境、Controller / Service / Model / SQL / Redis / MQ / Log 對照與正常流程，再進入 Senior / Owner 的 state、consistency、idempotency、retry / compensation、observability、trade-off。
 - 架構圖與流程圖是 `flow.md` 的教學入口，不是新 Step、不是額外任務、也不是要畫沒有 evidence 的大圖。圖只畫本 flow 已確認或明確標示待確認的上下游。
 - `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
+- 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。
 
 ## Flow 格式
 

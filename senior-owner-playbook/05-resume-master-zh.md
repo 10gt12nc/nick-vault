@@ -4,6 +4,8 @@
 
 > 目前證據狀態：保守母稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔前，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；每條 claim 需標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`，不得腦補。
 
+> 2026-05-18 更新規則：Nick 已明確確認 `iwin/payment` 實際開發很多。正式改寫 payment 履歷前，必須先做 `iwin payment contribution claim consolidation`，全面掃 Nick / `10gt12nc` commits、branches、重要 diff、既有 payment flows 與本人確認內容，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。不得只因單條 flow 沒有直接 path evidence 就低估整個 payment 經驗。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
@@ -89,3 +91,4 @@
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
 - 已補較強 code evidence：iwin payment provider request / callback / query 對接與維護可用「參與」口徑，包含 Pay4z、NaNapay、BFPAY 等 path-specific commits；仍不可寫成主導完整金流、全部 provider owner 或已建立完整 reconciliation。
+- 待補 consolidation：Nick 本人確認 `iwin/payment` 實際開發很多；需做 project-level contribution consolidation 後，再把 payment 主力經驗改寫成更完整的履歷 bullets。

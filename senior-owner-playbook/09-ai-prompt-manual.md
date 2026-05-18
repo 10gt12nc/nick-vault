@@ -26,6 +26,7 @@
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
 - `flow.md` 必須先有初階 / 中階可讀區，包含白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才進 Senior / Owner 的 consistency、failure window、trade-off、owner decision。不要讓 Nick 需要自己從附錄拼出主報告。
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
+- Nick 本人明確確認做過的內容也是 evidence。AI 不得只因單條 flow 沒有直接 path-specific commit 就否定整個 project 經驗；需標成「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，再補 contribution consolidation。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。
 - 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。
@@ -552,10 +553,12 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 
 規則：
 - 沒有 evidence 不更新。
+- Nick 本人確認是 evidence，但要標清楚；本人確認可以支撐「參與 / 維護 / 開發」，不自動支撐「主導 / 全權 owner / 改善 X%」。
 - 不寫主導、獨立完成、改善 X%，除非有明確證據。
 - 可以寫參與、維護、分析、梳理、協助、優化、提出改善方向。
 - 履歷只補高價值且能面試講清楚的內容。
 - 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / `archive/` / KB 所有履歷自傳素材。
+- 若 Nick 指出某 repo 是主力開發經驗，必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow evidence 與本人確認內容，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。
 - 每條履歷 claim 都要標註證據層級：真實開發過 / 專案存在 / 分析素材 / 待確認。
 
 請先列：
