@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，`payment-provider-callback Step 5`、`withdrawal-auto-review-refund Step 5`、`payment-order-provider-request Step 5`、`manual-order-review-repair Step 5` 都已完成；下一步回到 payment candidate ranking，做 `payment-channel-config-selection Step 3`。
+- 若目標是最快產出 Senior Backend 履歷素材，`payment-provider-callback Step 5`、`withdrawal-auto-review-refund Step 5`、`payment-order-provider-request Step 5`、`manual-order-review-repair Step 5` 都已完成，`payment-channel-config-selection Step 3` 也已完成；下一步做 `payment-channel-config-selection Step 4`。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
@@ -98,7 +98,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 已收斂，轉 `payment-order-provider-request` |
 | iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：Pay4z / NaNapay / BFPAY / NimTestPay provider request evidence；整體金流 owner 不誇大 | 是，保守更新 | 已收斂 |
 | iwin | payment | `manual-order-review-repair` | 人工審核 / 補單 / 訂單修復 | 中高 | Step 5 | 專案存在 / code-backed；Nick 貢獻未確認到可放履歷的直接 evidence | 否 | 已收斂，轉 `payment-channel-config-selection` |
-| iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 2 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin payment payment-channel-config-selection Step 3` |
+| iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 3 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin payment payment-channel-config-selection Step 4` |
 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | Step 5 檢查履歷是否更新 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `game_job daily-game-data-summary Step 5` |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 回到 iwin_gameserver ranking，選下一條 |
@@ -110,14 +110,14 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-iwin payment payment-channel-config-selection Step 3
+iwin payment payment-channel-config-selection Step 4
 ```
 
 原因:
 
 - `payment-order-provider-request` 已完成 Step 5 claim gate，Nick provider request 貢獻已由 path-specific history 升級為部分真實開發過。
 - `manual-order-review-repair Step 5` 已完成，判定不更新正式履歷 / 自傳。
-- 下一步回到同 project candidate ranking，做 `payment-channel-config-selection`，補 runtime config / 玩家分層 / 商戶設定選擇的一致性題材。
+- `payment-channel-config-selection Step 3` 已完成，下一步同 flow 做 Step 4，轉成可面試 case。
 
 ## 近期候選 Queue
 
@@ -125,7 +125,7 @@ iwin payment payment-channel-config-selection Step 3
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | payment 前四條 high-money flow 已收斂；補 runtime config / Redis projection / 玩家分層 | `iwin payment payment-channel-config-selection Step 3` |
+| 1 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | Step 3 已完成；補 config consistency / partial sync 面試 case | `iwin payment payment-channel-config-selection Step 4` |
 | 2 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 已完成 Step 4，應收 Step 5 判定，不跳新 flow | `iwin game_api coupon-redeem-credit-grant Step 5` |
 | 3 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 已完成 Step 4，下一步做履歷 / claim gate | `game_job daily-game-data-summary Step 5` |
 | 4 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |

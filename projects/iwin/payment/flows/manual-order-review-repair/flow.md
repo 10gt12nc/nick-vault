@@ -347,12 +347,12 @@ sequenceDiagram
 - `payment-order-provider-request` Step 5。
 - `manual-order-review-repair` Step 5。
 
-下一步回到同 project candidate ranking，建議做第五條 `payment-channel-config-selection`，補 runtime config / 玩家分層 / 商戶設定選擇的一致性題材。
+後續狀態更新：第五條 `payment-channel-config-selection` 已完成 Step 3，下一步同 flow 做 Step 4。
 
 ## 13. 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 3
+iwin payment payment-channel-config-selection Step 4
 ```

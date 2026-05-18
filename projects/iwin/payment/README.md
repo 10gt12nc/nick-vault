@@ -19,6 +19,8 @@
 9. [flows/payment-order-provider-request/career-interview.md](flows/payment-order-provider-request/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 10. [flows/manual-order-review-repair/flow.md](flows/manual-order-review-repair/flow.md)：第四條 flow 主研究報告，整理人工審核、補單、訂單狀態修復、app_bi 後台入口與 payment side effect 邊界，已完成 Step 5 claim gate。
 11. [flows/manual-order-review-repair/career-interview.md](flows/manual-order-review-repair/career-interview.md)：該 flow 的保守面試素材。
+12. [flows/payment-channel-config-selection/flow.md](flows/payment-channel-config-selection/flow.md)：第五條 flow 主研究報告，整理支付列表 / 商戶 / 玩家層級 / 提現設定選擇與 Redis projection consistency，目前完成 Step 3。
+13. [flows/payment-channel-config-selection/career-interview.md](flows/payment-channel-config-selection/career-interview.md)：該 flow 的保守面試素材。
 
 ## 目前狀態
 
@@ -30,6 +32,7 @@
 | `flows/withdrawal-auto-review-refund/` | Step 5 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case，並完成不更新正式履歷 / 自傳的 claim gate |
 | `flows/payment-order-provider-request/` | Step 5 已完成 | Level 2+ claim gate；已確認 Nick 在 Pay4z、NaNapay、BFPAY、NimTestPay / `createOrderNo` 相關 provider request / query / callback code 有 path-specific commits，可保守寫入履歷素材 |
 | `flows/manual-order-review-repair/` | Step 5 已完成 | Level 2 深掃人工審核 / 補單 / 修復；已確認 `/oderView`、`/gameRecharge`、app_bi `bill_check` / `repairOrderService` 與 direct status repair 的風險邊界；Step 5 判定不更新正式履歷 / 自傳，只作面試素材 |
+| `flows/payment-channel-config-selection/` | Step 3 已完成 | Level 2 深掃支付列表 / 支付詳情 / 提現設定選擇；已確認 payment runtime 消費 app_bi Redis projection，並整理 config consistency / partial sync / cold-cache fallback 風險 |
 
 ## 專案定位
 
@@ -75,11 +78,11 @@
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 3
+iwin payment payment-channel-config-selection Step 4
 ```
 
 原因：
 
-- `manual-order-review-repair` Step 5 已完成，判定不更新正式履歷 / 自傳。
-- `payment` 目前四條高價值 money flow 已收斂，下一步回到同 project candidate ranking。
-- `payment-channel-config-selection` 可補 runtime config / 玩家分層 / 商戶設定選擇的一致性題材，和既有金流 request / callback / withdrawal / repair flow 形成完整 payment 圖像。
+- `payment-channel-config-selection` Step 3 已完成，已建立 runtime config selection 主線。
+- 下一步應把 config consistency、partial sync、cold-cache fallback、fail closed 轉成可面試 case。
+- 預設仍不更新正式履歷；需等 Step 5 claim gate 檢查 Nick 直接 evidence。

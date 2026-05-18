@@ -45,5 +45,5 @@
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 3
+iwin payment payment-channel-config-selection Step 4
 ```
