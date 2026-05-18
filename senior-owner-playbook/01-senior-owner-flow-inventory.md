@@ -90,21 +90,21 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 | Domain | Project | Flow | 中文名稱 | 價值 | 狀態 | 證據層級 | 履歷 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | app_bi 已收斂，轉 payment |
-| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | app_bi 已收斂，轉 payment |
-| iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / Nick 貢獻待確認 | 否 | app_bi 已收斂，轉 payment |
+| iwin | app_bi | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | app_bi 已收斂，轉 payment |
+| iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | app_bi 已收斂，轉 payment |
+| iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | app_bi 已收斂，轉 payment |
 | iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | app_bi 已收斂，轉 payment |
-| iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin game_api coupon-redeem-credit-grant Step 5` |
-| iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | payment Top 5 已收斂 |
-| iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | payment Top 5 已收斂 |
-| iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：Pay4z / NaNapay / BFPAY / NimTestPay provider request evidence；整體金流 owner 不誇大 | 是，保守更新 | payment Top 5 已收斂 |
-| iwin | payment | `manual-order-review-repair` | 人工審核 / 補單 / 訂單修復 | 中高 | Step 5 | 專案存在 / code-backed；Nick 貢獻未確認到可放履歷的直接 evidence | 否 | payment Top 5 已收斂 |
+| iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再排 Step 5 |
+| iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | project-level 轉 contribution consolidation |
+| iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | project-level 轉 contribution consolidation |
+| iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：Pay4z / NaNapay / BFPAY / NimTestPay provider request evidence；整體金流 owner 不誇大 | 是，保守更新 | project-level 轉 contribution consolidation |
+| iwin | payment | `manual-order-review-repair` | 人工審核 / 補單 / 訂單修復 | 中高 | Step 5 | 專案存在 / code-backed；Nick 貢獻未確認到可放履歷的直接 evidence | 否 | project-level 轉 contribution consolidation |
 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻未確認到可放本 flow 履歷的直接 evidence | 否 | 單條 flow 不更新；project-level 轉 contribution consolidation |
-| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / Nick 貢獻待確認 | 否 | Step 5 檢查履歷是否更新 |
-| iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `game_job daily-game-data-summary Step 5` |
-| iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | 回到 iwin_gameserver ranking，選下一條 |
-| iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 2 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin_gameserver center-http-deposit-withdraw Step 3` |
-| iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻待確認 | 否 | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
+| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再排 Step 5 |
+| iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再排 Step 5 |
+| iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再回 ranking |
+| iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 2 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再排 Step 3 |
+| iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 payment consolidation 後再排 Step 5 |
 
 ## 下一步推薦
 
@@ -127,10 +127,10 @@ iwin payment contribution claim consolidation
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | Nick 本人確認 payment 開發很多；需補全 commits / branches / diff / 履歷邊界 | `iwin payment contribution claim consolidation` |
-| 2 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 已完成 Step 4，應收 Step 5 判定，不跳新 flow | `iwin game_api coupon-redeem-credit-grant Step 5` |
-| 3 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 已完成 Step 4，下一步做履歷 / claim gate | `game_job daily-game-data-summary Step 5` |
+| 2 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 已完成 Step 4，應收 Step 5 判定，不跳新 flow | 待 payment consolidation 後再排 Step 5 |
+| 3 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 已完成 Step 4，下一步做履歷 / claim gate | 待 payment consolidation 後再排 Step 5 |
 | 4 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |
-| 5 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | money correctness / center wallet mutation / idempotency | `iwin_gameserver center-http-deposit-withdraw Step 3` |
+| 5 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | money correctness / center wallet mutation / idempotency | 待 payment consolidation 後再排 Step 3 |
 | 6 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
 | 7 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
 | 8 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |

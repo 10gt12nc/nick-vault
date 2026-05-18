@@ -60,17 +60,17 @@ iwin payment contribution claim consolidation
 - 需要全面掃 Nick / `10gt12nc` commits、branches、重要 diff、既有 payment flows 與本人確認內容。
 - 產出要分三層：可放履歷的真實開發經驗、可面試講的 code-backed / 分析素材、不可誇大的邊界。
 
-### 2. iwin 各 project 下一步
+### 2. iwin 各 project 局部下一步
 
-目前各 project 自己的下一步：
+目前總優先仍是 `iwin payment contribution claim consolidation`。以下是 payment consolidation 完成後，各 project 才回頭銜接的局部下一步：
 
 1. `payment`：`iwin payment contribution claim consolidation`
-2. `game_api`：`iwin game_api coupon-redeem-credit-grant Step 5`
-3. `game_job`：`game_job daily-game-data-summary Step 5`
-4. `third_games_api`：`iwin third_games_api gsc-transfer-bet-settle-rollback Step 5`
-5. `iwin_gameserver`：`iwin_gameserver center-http-deposit-withdraw Step 3`
-6. `k3s-deploy`：`iwin k3s-deploy gameserver-phased-rollout Step 5`
-7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，先補 `iwin payment contribution claim consolidation`。
+2. `game_api`：待 payment consolidation 後，再做 `coupon-redeem-credit-grant Step 5`。
+3. `game_job`：待 payment consolidation 後，再做 `daily-game-data-summary Step 5`。
+4. `third_games_api`：待 payment consolidation 後，再做 `gsc-transfer-bet-settle-rollback Step 5`。
+5. `iwin_gameserver`：待 payment consolidation 後，再判斷是否做 `center-http-deposit-withdraw Step 3`。
+6. `k3s-deploy`：待 payment consolidation 後，再做 `gameserver-phased-rollout Step 5`。
+7. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -89,7 +89,7 @@ iwin payment contribution claim consolidation
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，先做 `iwin payment contribution claim consolidation`，把 payment 真實開發經驗收斂進履歷邊界，再回到 `iwin game_api coupon-redeem-credit-grant Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，先做 `iwin payment contribution claim consolidation`，把 payment 真實開發經驗收斂進履歷邊界，再回到 `game_api coupon-redeem-credit-grant Step 5`。
 
 ## 下一個 prompt
 

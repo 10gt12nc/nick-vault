@@ -10,7 +10,7 @@
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
 1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
-2. payment / game_api 透過 center_http 對玩家上分 / 下分。建議下一條進 Step 3。
+2. payment / game_api 透過 center_http 對玩家上分 / 下分。待 payment consolidation 後再排 Step 3。
 3. 打碼目標設定與查詢。
 4. 遊戲 spin / 結算 / log_reel 投注流水。
 5. dbproxy 的 MySQL / Redis 查寫代理。
@@ -188,7 +188,7 @@ source repo 狀態：
 - 目前不可寫 Nick 主導第三方遊戲整合。
 - 可作高價值面試分析素材；Step 5 已判定沒有 Nick 本人 evidence 前不更新正式履歷。
 
-### 2. `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）
+### 2. `center-http-deposit-withdraw`
 
 中文名稱：center_http 玩家上分 / 下分
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
@@ -334,7 +334,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-下一條候選 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） Step 3 應優先讀：
+下一條候選 `center-http-deposit-withdraw` Step 3 應優先讀：
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpAntplayTransferInOut.java`
@@ -362,4 +362,4 @@ iwin payment contribution claim consolidation
 
 - Step 2 已完成，`third-party-transfer-in-out` 也已完成 Step 5。
 - 完成一條 flow 後，下一步應回到同 project 候選 ranking，而不是跨 project。
-- `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） 是下一條最高價值 money flow；不更新正式履歷，先產出 Step 3 主報告與 evidence。
+- `center-http-deposit-withdraw` 仍是下一條高價值 money flow；但本輪先完成 payment contribution consolidation，再回來排 Step 3。

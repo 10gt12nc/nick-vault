@@ -245,7 +245,7 @@ iwin payment contribution claim consolidation
 
 - 本 flow 已完成 Step 5，正式履歷 / 自傳暫不更新。
 - Step 5 完成後應回到同 project candidate ranking，而不是跳其他 project。
-- `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） 是下一條最高價值 money flow，適合進 Step 3 主報告。
+- `center-http-deposit-withdraw` 是下一條最高價值 money flow，適合進 Step 3 主報告。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

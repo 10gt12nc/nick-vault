@@ -96,7 +96,7 @@ iwin payment contribution claim consolidation
 
 - `third-party-transfer-in-out` 已完成 Step 5，正式履歷 / 自傳暫不更新。
 - 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
-- 等 payment contribution consolidation 完成後，再回到同 project candidate ranking，判斷是否做 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）。
+- 等 payment contribution consolidation 完成後，再回到同 project candidate ranking，判斷是否做 `center-http-deposit-withdraw`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

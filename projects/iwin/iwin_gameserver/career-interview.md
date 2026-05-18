@@ -61,7 +61,7 @@ iwin payment contribution claim consolidation
 原因：
 
 - `third-party-transfer-in-out` 已完成 Step 5，正式履歷暫不更新。
-- 同 project 的下一條最高價值候選是 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）。
+- 同 project 的下一條最高價值候選是 `center-http-deposit-withdraw`。
 - 下一步會產出單條 flow 主報告，不會更新正式履歷；若後續補到 Nick 本人 evidence，再回頭評估履歷。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

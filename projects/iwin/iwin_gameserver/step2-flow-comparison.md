@@ -112,7 +112,7 @@ source repo 狀態：
 | 排名 | Flow | 中文名稱 | 涉及 module | Senior / Owner 價值 | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | `slots-center`、`slots-games/slots-game-common`、`slots-game-log`、上游 adapter 待確認 | 高 | 上游 repo、idempotency、log / coin 寫入順序未完整確認 | Step 5 已完成；正式履歷暫不更新 |
-| 2 | `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未掃，gameserver 防重待確認 | 建議下一條進 Step 3 |
+| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未掃，gameserver 防重待確認 | 待 payment consolidation 後再排 Step 3 |
 | 3 | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | `slots-gate`、`slots-center`、`slots-games`、單一 game module、`slots-game-log` | 高 | 必須先選代表 game；不能一次掃 27 個 game | 暫不跳，等選定遊戲 |
 | 4 | `bet-target-set-query` | 打碼目標設定與查詢 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `app_bi` 待確認 | 中高 | 打碼資料落點與投注扣減邏輯未追完 | 可作後續 money rule flow |
 | 5 | `dbproxy-cache-db-write-path` | DB proxy Redis / MySQL 查寫路徑 | `slots-common`、`slots-dbproxy` | 中高 | 容易變 class summary；需綁定具體業務 flow | 作輔助深挖，不先單獨做 |
@@ -156,7 +156,7 @@ Step 5 已補：
 - project-level career boundary 已整理於 `career-interview.md`。
 - 若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
 
-### 2. `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）
+### 2. `center-http-deposit-withdraw`
 
 建議狀態：高價值候選，但需跨 `payment` / `game_api`
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
@@ -217,7 +217,7 @@ Step 5 已補：
 為什麼不先做：
 
 - 它有平台價值，但單獨做容易變 class summary。
-- 更好的方式是在 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排） 裡追到 DB 寫入時，再把 dbproxy 當 transaction / consistency 附屬層深挖。
+- 更好的方式是在 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 裡追到 DB 寫入時，再把 dbproxy 當 transaction / consistency 附屬層深挖。
 
 ## 下一步建議
 
@@ -230,5 +230,5 @@ iwin payment contribution claim consolidation
 原因：
 
 - `third-party-transfer-in-out` 已完成 Step 5，不再卡在同一條 flow。
-- 同 project 下一條最高價值候選是 `center-http-deposit-withdraw`（待 payment contribution consolidation 後再排）。
-- 下一步會補 Step 3 主報告與 evidence；不會直接更新正式履歷。
+- 同 project 下一條最高價值候選仍是 `center-http-deposit-withdraw`。
+- 但本輪總優先先收斂 payment 真實開發 claim；完成後再回來排 gameserver Step 3。
