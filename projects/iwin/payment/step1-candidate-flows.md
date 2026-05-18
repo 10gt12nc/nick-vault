@@ -38,13 +38,14 @@
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/game_api/README.md`
 - `projects/iwin/game_api/step1-candidate-flows.md`
-- `projects/iwin/payment/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5，第二條 `withdrawal-auto-review-refund` 完成 Step 5，第三條 `payment-order-provider-request` 完成 Step 5。
+- `projects/iwin/payment/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5，第二條 `withdrawal-auto-review-refund` 完成 Step 5，第三條 `payment-order-provider-request` 完成 Step 5，第四條 `manual-order-review-repair` 完成 Step 3。
 
 已做重複 flow 檢查：
 
 - `projects/iwin/payment/flows/payment-provider-callback/`：目前已建立，且已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/`：目前已建立，且已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - `projects/iwin/payment/flows/payment-order-provider-request/`：目前已建立，且已完成 Step 5 claim gate；Nick provider request 貢獻已由 path-specific history 升級為部分真實開發過。
+- `projects/iwin/payment/flows/manual-order-review-repair/`：目前已建立，完成 Step 3；已確認 payment `/oderView`、`/gameRecharge` 與 app_bi `bill_check` / `repairOrderService` 邊界，目前只作面試素材。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`：已有 `payment-provider-callback`、`payment-order-provider-request`、`withdrawal-auto-review-refund` 候選索引。
 - `senior-owner-playbook/04-interview-casebook.md`：已有金流 callback 一致性的通用面試框架。
 - `projects/iwin/app_bi/step2-flow-comparison.md`：已指出 `payment-order-status-repair` 不適合只在 `app_bi` 深挖，需回到 `payment` repo。
@@ -87,7 +88,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `manual-order-review-repair` Step 3 |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `manual-order-review-repair` Step 4 |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
@@ -312,7 +313,7 @@ production 風險：
 
 中文名稱：人工審核、補單與訂單修復
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
-建議：可作第二階段候選，銜接 `app_bi` repair 線索
+建議：已完成 Step 3，下一步做 Step 4
 
 為什麼重要：
 
@@ -396,7 +397,7 @@ production 風險：
 | 1 | `payment-provider-callback` | 高 | 高 | 待確認 | Step 2 優先比較，可能第一條深挖 |
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 待確認 | 和 callback 並列候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高待確認 | 需選代表 provider |
-| 4 | `manual-order-review-repair` | 中高 | 中高 | 待確認 | 銜接 `app_bi` repair |
+| 4 | `manual-order-review-repair` | 中高 | 中高 | 待確認 | Step 3 已完成；下一步 Step 4 |
 | 5 | `payment-channel-config-selection` | 中 | 中高 | 待確認 | 可補 runtime config consumer |
 
 ## 不建議先做的方向
@@ -411,17 +412,17 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 3
+iwin payment manual-order-review-repair Step 4
 ```
 
 為什麼現在做它：
 
-- `payment-order-provider-request` 已完成 Step 5 claim gate。
-- 下一個高價值工作是回到同 project candidate ranking，做 `manual-order-review-repair` Step 3。
+- `manual-order-review-repair` Step 3 已建立。
+- 下一個高價值工作是在同一條 flow 補 Step 4 面試 case。
 
 會產出什麼：
 
-- 建立 `projects/iwin/payment/flows/manual-order-review-repair/` 的主學習包。
+- 補齊人工 repair SOP、direct status repair 風險、`PROCESSING` unknown 與 callback 晚到衝突的可口述素材。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：

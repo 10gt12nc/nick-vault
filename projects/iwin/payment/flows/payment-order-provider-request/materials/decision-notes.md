@@ -53,5 +53,5 @@ HTTP timeout 不能直接等同 provider fail，因為 request 可能送到 prov
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 3
+iwin payment manual-order-review-repair Step 4
 ```

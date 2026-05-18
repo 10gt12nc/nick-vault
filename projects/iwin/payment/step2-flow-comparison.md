@@ -84,8 +84,8 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 3 |
-| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與下一條 `manual-order-review-repair` Step 3 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 4 |
+| `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與 `manual-order-review-repair` Step 3 完成 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |
 
@@ -220,7 +220,7 @@ Senior / Owner 價值：
 ### 4. `manual-order-review-repair`
 
 中文名稱：人工審核、補單與訂單修復
-建議：第四優先；和 `app_bi` repair 合併看
+建議：已完成 Step 3；下一步 Step 4
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -231,6 +231,7 @@ Senior / Owner 價值：
 - 提現通過會更新訂單 / 統計，並可能發 mail / marquee。
 - `gameRecharge` 支援 GM人工充值、線上掉單補單、GM下分等場景。
 - `app_bi` 已有 payment order search / repair 入口線索。
+- Step 3 進一步確認：app_bi 一般審核會呼叫 payment `/payment/public/oderView`；`repairOrderService` 可直接修 `payment_order_yyyy_M.status`，但不處理 wallet / provider / 統計 side effect，應視為 break-glass repair。
 
 Senior / Owner 價值：
 
@@ -238,8 +239,8 @@ Senior / Owner 價值：
 
 風險與待確認：
 
-- `app_bi` 是直接改 DB 還是調 API 待確認。
-- 人工修復 audit log 待確認。
+- 正常審核已確認會調 payment API；直接修狀態工具也存在。
+- 人工修復 before-after audit、provider 查單 evidence 與 SOP 待確認。
 - 手動補單與 provider callback 重送如何防衝突待確認。
 
 為什麼不是第一條：
@@ -278,7 +279,7 @@ Senior / Owner 價值：
 | 1 | `payment-provider-callback` | 高 | 高 | 高 | 中高 | 高 | 中 | 第一條深挖 |
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 高 | 中 | 高 | 高 | 第二條候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高 | 中 | 中高 | 中 | 需先選 provider |
-| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | 適合 callback 後補 |
+| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 3 已完成；下一步 Step 4 |
 | 5 | `payment-channel-config-selection` | 中 | 中 | 中高 | 高 | 中 | 中 | 補充型 flow |
 
 ## 第一條 Flow 選擇
@@ -322,22 +323,22 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 3
+iwin payment manual-order-review-repair Step 4
 ```
 
 為什麼現在做它：
 
-- `payment-order-provider-request` 已完成 Step 5 claim gate。
-- 下一步應回到同 project candidate ranking，做 `manual-order-review-repair` Step 3。
+- `manual-order-review-repair` Step 3 已建立。
+- 下一步應在同 flow 做 Step 4 面試 case。
 
 會產出什麼：
 
-- 建立 `projects/iwin/payment/flows/manual-order-review-repair/` 的主學習包，連接 app_bi 後台入口與 payment source of truth。
+- 補齊人工 repair SOP、direct status repair 風險、`PROCESSING` unknown 與 callback 晚到衝突的可口述素材。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- `payment-order-provider-request` 已可保守更新正式履歷；下一條 `manual-order-review-repair` 仍需先做 code-backed evidence。
+- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` 已完成 Step 3，下一步做 Step 4 面試 case。
 
 是否需要 commit / push：
 

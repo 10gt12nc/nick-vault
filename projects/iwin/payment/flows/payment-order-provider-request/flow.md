@@ -313,8 +313,8 @@ Owner 判斷：
 
 ## 14. 下一步
 
-建議下一步只做一件事：回到同 project candidate flow，做 `manual-order-review-repair` Step 3。原因是 provider request / callback / withdrawal 已形成金流主線，下一條最值得補的是人工審核、補單與修復邊界。
+建議下一步只做一件事：`manual-order-review-repair` 已完成 Step 3，接著做 Step 4。原因是 provider request / callback / withdrawal 已形成金流主線，人工審核、補單與修復邊界也已建立主學習包，下一步要轉成可面試 case。
 
 ```text
-iwin payment manual-order-review-repair Step 3
+iwin payment manual-order-review-repair Step 4
 ```

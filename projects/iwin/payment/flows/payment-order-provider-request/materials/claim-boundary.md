@@ -57,5 +57,5 @@
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 3
+iwin payment manual-order-review-repair Step 4
 ```
