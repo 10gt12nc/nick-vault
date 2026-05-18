@@ -18,6 +18,61 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 只看到後台 / 前端 / BI 入口的 flow，優先當面試分析素材，不急著寫履歷。
 - Source repo 清單看 `projects/source-repo-inventory.md`；真正做 flow 前仍要重讀 code branch / log / path-specific history。
 
+## 跨 repo 優先排序
+
+用途：當 Nick 只問「下一個整理哪個 project / repo」時，先用這份排序判斷；真正開工前仍必須做該 repo 的 Step 1 / Step 2，不能把本表當 code evidence。
+
+評估目標：Senior Java Backend / Platform Backend / System Owner 的履歷與面試素材價值。優先看 production flow、money correctness、wallet / bet / settlement、idempotency、retry / compensation、reconciliation、observability、rollout / rollback。workspace、官網、前端、mock、simulator 預設只當輔助入口。
+
+| 排名 | Project / repo | 初步判斷 |
+| --- | --- | --- |
+| 1 | `math-core` / `*-math` | 差異化最高；若有遊戲數學、RTP、派彩、模擬驗證，是最稀缺素材 |
+| 2 | `payment` | 金流 callback、訂單狀態、MQ retry、上分 / 退款、對帳，Backend 最高價值主線 |
+| 3 | `iwin_gameserver` | 遊戲 runtime / wallet source of truth，可追投注、派彩、退款、錢包一致性 |
+| 4 | `third_games_api` | 第三方遊戲 seamless wallet、bet / settle / rollback，交易邊界清楚 |
+| 5 | `antplay-slot-game-api` | 遊戲 API 主線，可能接下注、遊戲啟動、玩家狀態與錢包 |
+| 6 | `game_api` | 玩家端 / partner API orchestration，有 coupon 上分、partner deposit / withdraw、agent bonus |
+| 7 | `antplay-slot-game-job` | 遊戲批次、報表、結算、projection / replay 可能性高 |
+| 8 | `game_job` | BI projection、daily summary、備份、重跑安全與資料一致性 |
+| 9 | `openobserve` | Observability / log / tracing / metrics，適合 System Owner 故障定位素材 |
+| 10 | `kafka` | Event-driven consistency、consumer lag、retention、retry / DLQ 題材 |
+| 11 | `antplay-slot-admin-api` | 後台 API；若有設定、風控、人工修正，可支援 owner story |
+| 12 | `k3s-deploy` | K8s / Kustomize rollout、config / secret、probe、rollback |
+| 13 | `ugsoft-connector-api` | 可能是 external integration / connector API；若有重試、冪等、同步，可升級 |
+| 14 | `antplay-api-deploy` | API deploy 主線，適合補 rollout / rollback / config 管理 |
+| 15 | `antplay-push-grpc` | gRPC realtime / push pipeline；若有 delivery / retry / backpressure 可升級 |
+| 16 | `ugsoft-admin-api` | 後台 API；價值取決於是否只是 CRUD，或有審核 / 修正 / 風控 |
+| 17 | `app_bi` | 已整理完；後台 / BI / control plane，輔助追後端，不當主線 |
+| 18 | `antplay-push` | push runtime，需確認是否只是 wrapper |
+| 19 | `antplay-bot` | bot / automation / ops tooling，通常輔助 |
+| 20 | `antplay-tg-notify` | 通知 / 告警，能補 observability，但不是主線 |
+| 21 | `buffer-id` | 若是 ID generator，可當 platform 小亮點，需確認 |
+| 22 | `ci-template` | CI 標準化素材，中等偏輔助 |
+| 23 | `antplay-docker-deploys` | Docker deploy / env 管理，價值看 production 接近度 |
+| 24 | `bi_share` | 可能偏 BI / share 報表，需 Step 1 確認 |
+| 25 | `shareinstall-back` | 安裝歸因 / tracking / reward 可能有價值，但目前未知 |
+| 26 | `payment-thirdparty-simulator` | 支援 payment 測試，不當主專案 |
+| 27 | `platform-mock` | mock / contract 支援，不當主線 |
+| 28 | `antplay-slot-lib` | 未知共用庫；若含 game state SDK 再升級 |
+| 29 | `antplay-tool-transfer-web` | 工具 web；除非牽涉 money repair，否則偏輔助 |
+| 30 | `ugsoft-admin-web` | 後台前端，作入口，不當主線 |
+| 31 | `antplay-slot-admin` | 後台前端，作入口，不當主線 |
+| 32 | `antplay-web-deploy` | Web deploy，通常低於 API deploy |
+| 33 | `official-web-v3` | 官網，履歷價值低 |
+| 34 | `official-web-v2` | 官網舊版，履歷價值低 |
+| 35 | `official-web` | 官網舊版，履歷價值低 |
+| 36 | `iwin_client_unity` | Client 端，對 Backend 主線較低 |
+| 37 | `ci-test` | sandbox / 測試 repo 可能性高 |
+| 38 | `iwin-workspace` | workspace 索引，不當 flow 主題 |
+| 39 | `ugsoft-workspace` | workspace 索引，不當 flow 主題 |
+| 40 | `math-workspace` | workspace 索引，不當 flow 主題 |
+
+使用提醒：
+
+- 若目標是最快產出 Senior Backend 履歷素材，仍優先收斂 `payment-provider-callback Step 5`。
+- 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
+- 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
+
 ## 狀態定義
 
 | 狀態 | 意義 |
