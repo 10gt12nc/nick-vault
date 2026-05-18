@@ -316,5 +316,5 @@ Owner 判斷：
 後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 3。下一步同 flow 做 Step 4。
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

@@ -1,6 +1,6 @@
 # iwin payment payment-channel-config-selection
 
-完成狀態：Step 3 已完成
+完成狀態：Step 4 已完成
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -213,9 +213,69 @@ sequenceDiagram
 - app_bi 設定同步相關 history 目前主要是 gill / arnold。
 - payment 相關 history 中 `10gt12nc` 只支撐 provider request / insert consistency 題材，不支撐本 flow owner claim。
 
-## 9. Step 3 結論
+## 9. Step 4 面試 case
 
-`payment-channel-config-selection` 已完成 Step 3。這條 flow 的核心不是商戶 CRUD，而是：
+### 9.1 3 分鐘講法
+
+這條 flow 我會定位成 payment 的 runtime config selection。玩家打開充值或提現頁時，payment API 不是把所有支付方式和商戶直接回給前端，而是先取得玩家層級，再依 channel、device 和 Redis `settings` 裡的 payment projection 做 eligibility decision。
+
+資料來源分三層：app_bi 後台維護 MySQL 設定，`RedisSynchronize` 把 payment type、merchant、merchant account、convenient pay、VIP pay、pay setting、layers 同步到 Redis，payment runtime 再透過 `/payment/list`、`/payment/detail`、`/payment/public/withdrawConfig` 消費這些 projection。
+
+Senior / Owner 風險在於這不是單一 cache key，而是多個 key 要同版本。如果 `payTypeList` 已同步但 `merchantList` 沒同步，玩家可能看到支付類型但沒有可用 detail；如果 `merchantList` 與 `merchantAccountList` 不一致，後續建單可能缺 merchant id；如果 Redis cold cache fallback 只寫回 Redis 卻沒有讓第一個 request 拿到新資料，玩家會看到空白支付列表。Owner decision 應該是 config version、同步後 validation、per-channel readiness、schema validation，以及 runtime 對不完整設定 fail closed。
+
+### 9.2 高頻追問
+
+| 追問 | 保守答法 |
+| --- | --- |
+| 這條跟金流 correctness 有關嗎？ | 有，但它是 money flow 的前置 eligibility，不直接上分 / 扣款。錯了會讓玩家不能進入正確支付或提現入口。 |
+| DB 和 Redis 誰是 source of truth？ | MySQL 設定是 source of truth，Redis 是 runtime projection，payment API 是最後 eligibility decision。 |
+| list 和 detail 為什麼要分開看？ | list 先決定玩家可見支付類型；detail 再決定該 pay code 下的商戶、VIP 或快捷支付細節。 |
+| 玩家看不到支付方式先查什麼？ | 查 uid 對應 channel / Redis DB、玩家層級、`payTypeList`、`merchantList`、device、layers、商戶 status、`merchantAccountList` 對應。 |
+| partial sync 怎麼防？ | 加 batch/version、同步後 validation、per-channel/key result，runtime 讀到跨 key 不一致時 fail closed 並告警。 |
+| Redis miss 怎麼處理？ | 可以 fallback DB，但要確保本次 response 拿到 fallback 結果，不只是寫回 Redis；也要有 cold-cache test 與 key miss alert。 |
+| 這條能寫履歷嗎？ | 目前不寫正式履歷。它是 code-backed 分析素材，Nick 直接 path-specific evidence 還不足。 |
+
+### 9.3 Production 排查順序
+
+玩家看不到支付方式：
+
+1. 用 uid 確認 channel、Redis DB、玩家層級。
+2. 查 `/payment/list` log 是否有空列表 warning。
+3. 查 `settings/payTypeList` 是否有該 channel 可用 pay type。
+4. 查 `merchantList` / `convenientPay` / `vipPay` 是否有符合 channel、device、layers 的資料。
+5. 查 app_bi sync 是否最近有失敗、只同步部分 key，或 waitSync 沒清掉。
+6. 若 Redis key 空，確認 fallback DB 後 response 是否仍空。
+
+玩家看到支付類型但 detail 空：
+
+1. 查 list 回傳的 pay code。
+2. 查 `merchantList` 是否有該 pay code 的商戶。
+3. 查 `merchantAccountList` 是否有 merchant name + channel 對應。
+4. 查商戶 fixed amount / amount gears / activity 設定是否能組成前端 detail。
+5. 查玩家 layer / device 是否被 detail 再次過濾。
+
+提現設定顯示錯：
+
+1. 查 `paySetting` 是否為該 channel 的最新 JSON。
+2. 查玩家已綁定 zfb / pix / bank account 是否被正確遮罩。
+3. 查金額單位轉換是否一致。
+4. 查設定 schema 是否有缺欄位或舊格式。
+
+### 9.4 Owner decision
+
+面試時可把改善方向收斂成五個 owner decision：
+
+| Decision | 為什麼 |
+| --- | --- |
+| Versioned config | 多 key projection 必須知道是否同一批設定 |
+| Sync validation | `payTypeList`、`merchantList`、`merchantAccountList` 要能互相對上 |
+| Per-channel readiness | 每個 channel / Redis DB 的同步成功狀態要可觀測 |
+| Cold-cache safety | Redis miss fallback 不能讓第一個玩家 request 拿空資料 |
+| Fail closed + explainability | 不完整設定不曝光商戶，並能說明為什麼某玩家看不到 |
+
+## 10. Step 4 結論
+
+`payment-channel-config-selection` 已完成 Step 4。這條 flow 的核心不是商戶 CRUD，而是：
 
 ```text
 app_bi MySQL 設定
@@ -224,12 +284,14 @@ app_bi MySQL 設定
 -> 前端看到可用支付方式與提現設定
 ```
 
-下一步建議做 Step 4，把這條 runtime config flow 轉成可面試 case，重點放在 config consistency、partial sync、cold-cache fallback 與 fail closed。
+Step 4 已把這條 runtime config flow 轉成可面試 case，重點放在 config consistency、partial sync、cold-cache fallback、production 排查順序與 fail closed owner decision。
 
-## 10. 下一步建議
+下一步建議做 Step 5：重新檢查 path-specific history、claim boundary、履歷 / 自傳是否需要更新。以目前 evidence 看，預期仍不更新正式履歷，只保留面試素材。
+
+## 11. 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

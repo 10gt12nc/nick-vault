@@ -1,6 +1,6 @@
 # payment-channel-config-selection career-interview
 
-完成狀態：Step 3 已完成
+完成狀態：Step 4 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 保守定位
@@ -32,6 +32,15 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 
 我會補的 owner guard 是 config version、每個 channel / key 的同步結果、schema validation、readiness check，並讓 payment runtime fail closed：不確定的商戶不要曝光，而不是讓玩家進入錯誤 money flow。
 
+## STAR 面試素材
+
+| 段落 | 保守講法 |
+| --- | --- |
+| Situation | payment runtime 需要依玩家層級、channel、device 和後台設定，決定玩家可見的支付 / 提現入口。 |
+| Task | 分析 DB 設定、Redis projection、payment API filter 三層是否一致，找出會造成空列表、錯商戶或錯提現限制的 failure window。 |
+| Action | 從 `/payment/list`、`/payment/detail`、`withdrawConfig` 往下讀到 `PayTypeServiceImpl`、`BaseServiceImpl`，再回看 app_bi `RedisSynchronize` 如何同步 `payTypeList`、`merchantList`、`merchantAccountList`、`paySetting`。 |
+| Result | 收斂出 config version、同步 validation、per-channel readiness、cold-cache safety、fail closed 與 explainability 這幾個 owner decision。 |
+
 ## 可用問答
 
 | 問題 | 保守答法 |
@@ -46,5 +55,5 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

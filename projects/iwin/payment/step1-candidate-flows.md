@@ -38,7 +38,7 @@
 - `projects/iwin/app_bi/step2-flow-comparison.md`
 - `projects/iwin/game_api/README.md`
 - `projects/iwin/game_api/step1-candidate-flows.md`
-- `projects/iwin/payment/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5，第二條 `withdrawal-auto-review-refund` 完成 Step 5，第三條 `payment-order-provider-request` 完成 Step 5，第四條 `manual-order-review-repair` 完成 Step 5，第五條 `payment-channel-config-selection` 完成 Step 3。
+- `projects/iwin/payment/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5，第二條 `withdrawal-auto-review-refund` 完成 Step 5，第三條 `payment-order-provider-request` 完成 Step 5，第四條 `manual-order-review-repair` 完成 Step 5，第五條 `payment-channel-config-selection` 完成 Step 4。
 
 已做重複 flow 檢查：
 
@@ -46,7 +46,7 @@
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/`：目前已建立，且已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - `projects/iwin/payment/flows/payment-order-provider-request/`：目前已建立，且已完成 Step 5 claim gate；Nick provider request 貢獻已由 path-specific history 升級為部分真實開發過。
 - `projects/iwin/payment/flows/manual-order-review-repair/`：目前已建立，完成 Step 5；已確認 payment `/oderView`、`/gameRecharge` 與 app_bi `bill_check` / `repairOrderService` 邊界，並已轉成面試 case，Step 5 判定不更新正式履歷 / 自傳。
-- `projects/iwin/payment/flows/payment-channel-config-selection/`：目前已建立，完成 Step 3；已確認 payment runtime 依 Redis projection、玩家層級、channel、device、商戶設定選擇支付 / 提現入口。
+- `projects/iwin/payment/flows/payment-channel-config-selection/`：目前已建立，完成 Step 4；已確認 payment runtime 依 Redis projection、玩家層級、channel、device、商戶設定選擇支付 / 提現入口，並已轉成面試 case。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`：已有 `payment-provider-callback`、`payment-order-provider-request`、`withdrawal-auto-review-refund` 候選索引。
 - `senior-owner-playbook/04-interview-casebook.md`：已有金流 callback 一致性的通用面試框架。
 - `projects/iwin/app_bi/step2-flow-comparison.md`：已指出 `payment-order-status-repair` 不適合只在 `app_bi` 深挖，需回到 `payment` repo。
@@ -89,7 +89,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `payment-channel-config-selection` Step 4 |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `payment-channel-config-selection` Step 5 |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
@@ -399,7 +399,7 @@ production 風險：
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 待確認 | 和 callback 並列候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高待確認 | 需選代表 provider |
 | 4 | `manual-order-review-repair` | 中高 | 中高 | 待確認 | Step 5 已完成；不更新正式履歷 |
-| 5 | `payment-channel-config-selection` | 中 | 中高 | 待確認 | Step 3 已完成；下一步 Step 4 |
+| 5 | `payment-channel-config-selection` | 中 | 中高 | 待確認 | Step 4 已完成；下一步 Step 5 |
 
 ## 不建議先做的方向
 
@@ -413,17 +413,17 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```
 
 為什麼現在做它：
 
-- `payment-channel-config-selection` Step 3 已完成。
-- 下一個高價值工作是把 runtime config / 商戶設定選擇 flow 轉成可面試 case。
+- `payment-channel-config-selection` Step 4 已完成。
+- 下一個高價值工作是做 Step 5 claim gate，檢查是否有 Nick path-specific evidence 可支撐履歷 / 自傳更新。
 
 會產出什麼：
 
-- 補 `payment-channel-config-selection` 的 3 分鐘講法、高頻追問、owner decision 與保守 claim boundary。
+- 補 `payment-channel-config-selection` 的 claim boundary、path-specific evidence 判斷與是否更新履歷 / 自傳的結論。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：

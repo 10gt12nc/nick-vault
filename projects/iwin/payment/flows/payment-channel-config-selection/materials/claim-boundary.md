@@ -1,6 +1,6 @@
 # claim-boundary
 
-## Step 3 claim 判斷
+## Step 4 claim 判斷
 
 本 flow 目前是：
 
@@ -14,6 +14,7 @@
 - 說明 payment list/detail/withdrawConfig 如何消費 app_bi 同步到 Redis 的設定。
 - 說明 DB / Redis / runtime filter 三層一致性的風險。
 - 說明玩家層級、channel、device、merchant status、merchant account 對應的交叉條件。
+- 說明 partial sync、cold-cache fallback、fail closed、config version 與 explainability 的 owner decision。
 
 ## 不可使用
 
@@ -40,5 +41,5 @@
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

@@ -179,5 +179,5 @@ payment：
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

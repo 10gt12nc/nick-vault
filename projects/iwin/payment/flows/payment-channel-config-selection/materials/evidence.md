@@ -144,8 +144,76 @@ app_bi：
 - 不更新正式履歷 / 自傳。
 - 下一步建議轉 Step 4，把 config consistency / partial sync / cold-cache fallback 轉成面試 case。
 
+## Step 4 補充掃描
+
+- 任務：`iwin payment payment-channel-config-selection Step 4`。
+- 日期：2026-05-18。
+- 掃描等級：Level 2 Flow 深掃延伸；本輪重點是把 Step 3 code-backed flow 轉成面試 case，不新增未確認履歷 claim。
+
+### Step 4 自動重讀
+
+已重讀 KB：
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+
+已重讀本 flow：
+
+- `flow.md`
+- `career-interview.md`
+- `materials/evidence.md`
+- `materials/interview.md`
+- `materials/decision-notes.md`
+- `materials/claim-boundary.md`
+
+### Step 4 source repo 狀態
+
+`/Users/nick/Git/iwin/payment`：
+
+- 已執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`k3s`
+- local HEAD：`bb7794e55386d914801887cc43b53d263c74d3c3`
+- `origin/k3s` HEAD：`cd03174b60fefa0c7f312912c179a3b6b9818664`
+- ahead / behind：`0 / 2`
+- 工作樹狀態：既有未追蹤 `payment/src/main/java/cn/com/payment/service/impl/.DS_Store`；本輪只讀未動。
+- 判斷：本機工作樹落後遠端 2 commits，本輪不 pull、不 checkout、不改公司 repo；Step 4 沿用 Step 3 已讀 code path，並以最新 `origin/k3s` path history 補核對。
+
+`/Users/nick/Git/iwin/app_bi`：
+
+- 已執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`main`
+- local HEAD：`4a206a28ab8f5be4329602cdc510ee9ea41efb25`
+- `origin/main` HEAD：`fd9881fc417e01f960d758b4b91ba1a10b507855`
+- ahead / behind：`0 / 4`
+- 本輪未 pull、未 checkout、未改工作樹。
+- 判斷：app_bi 本機仍落後 4 commits；Step 4 不新增 app_bi code 結論，只使用 Step 3 已確認的 Redis projection 主線。
+
+### Step 4 path history 補核對
+
+payment `origin/k3s` path-specific log 補看到：
+
+- `4a0a261` / 10gt12nc：merge `feature/nimtestpay-dev` into `k3s`。
+- `6539d7a` / 10gt12nc：`fix: clear copied order id before withdraw insert`。
+- `03c28e3` / 10gt12nc：`fix: clear copied order id before payment insert`。
+- `7d4de37` / arnold：Spring Boot / Java / Jakarta 大版本升級。
+- `c92a8c2` / Derek：`feat(#充值):修正redis paytypelist儲存格式`。
+
+判斷：
+
+- 新看到的 10gt12nc path log 仍偏 provider request / insert consistency，不足以支撐 Nick 對 `payment-channel-config-selection` 的直接履歷 claim。
+- Step 4 保留「專案存在 / code-backed；Nick 貢獻待確認」。
+
+## Step 4 結論
+
+- 本 flow 已完成 Step 4。
+- 已補 3 分鐘講法、高頻追問、production 排查順序、Lead / Architect 追問與 owner decision。
+- 不更新正式履歷 / 自傳。
+- 下一步建議做 Step 5：檢查 claim boundary、履歷 / 自傳是否需要更新；以目前 evidence 預期仍不更新正式履歷。
+
 ## 下一步
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```

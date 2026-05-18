@@ -280,7 +280,7 @@ Senior / Owner 價值：
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 高 | 中 | 高 | 高 | 第二條候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高 | 中 | 中高 | 中 | 需先選 provider |
 | 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 5 已完成；不更新正式履歷 |
-| 5 | `payment-channel-config-selection` | 中 | 中 | 中高 | 高 | 中 | 中 | Step 3 已完成；下一步 Step 4 |
+| 5 | `payment-channel-config-selection` | 中 | 中 | 中高 | 高 | 中 | 中 | Step 4 已完成；下一步 Step 5 |
 
 ## 第一條 Flow 選擇
 
@@ -324,13 +324,13 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment payment-channel-config-selection Step 4
+iwin payment payment-channel-config-selection Step 5
 ```
 
 為什麼現在做它：
 
-- `payment-channel-config-selection` Step 3 已完成。
-- 下一步應在同 flow 做 Step 4。
+- `payment-channel-config-selection` Step 4 已完成。
+- 下一步應在同 flow 做 Step 5 claim gate。
 
 會產出什麼：
 
