@@ -26,8 +26,12 @@
 4. **callback 晚到要有衝突處理**：人工修復後的 provider callback 不能直接覆蓋終態。
 5. **統計與顯示分離**：修 payment order status 不代表 `log_user`、`user_behaviour`、wallet log 都已一致。
 
+## Step 5 claim decision
+
+本 flow 不更新正式履歷 / 自傳。人工審核、補單、修單主線目前沒有 Nick 直接 path-specific evidence，只保留為面試 owner decision 素材。
+
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

@@ -179,5 +179,5 @@ payment：
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

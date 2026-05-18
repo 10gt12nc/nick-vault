@@ -156,8 +156,62 @@ app_bi repair 相關 path：
 - Nick 貢獻仍標 `待確認`；只可說 Nick 已在 payment provider request 共用建單風險有 evidence，不能延伸成 Nick 主導人工審核 / 修單。
 - 下一步 Step 5 只做 claim gate，預期仍是不更新正式履歷。
 
+## Step 5 補充
+
+- 任務：`iwin payment manual-order-review-repair Step 5`。
+- 日期：2026-05-18。
+- 掃描等級：Level 2 Flow 深掃延伸；以 Step 3 / Step 4 code evidence 為基礎，補最後履歷 / 自傳 claim gate。
+- 已重讀 KB：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`。
+- 已重讀本 flow：`flow.md`、`career-interview.md`、`materials/claim-boundary.md`。
+- 已重讀正式素材：`senior-owner-playbook/05-resume-master-zh.md`、`senior-owner-playbook/08-application-autobiography-zh.md`。
+
+### Step 5 source repo 狀態
+
+`/Users/nick/Git/iwin/payment`：
+
+- 已重新執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`k3s`
+- local HEAD：`bb7794e55386d914801887cc43b53d263c74d3c3`
+- `origin/k3s` HEAD：`57306977c0e2f82f39becdf9076ce3e2a73952b8`
+- ahead / behind：`0 / 1`
+- 工作樹狀態：既有未追蹤 `payment/src/main/java/cn/com/payment/service/impl/.DS_Store`；本輪只讀未動。
+- 判斷：本機工作樹落後遠端 1 commit，本輪不 pull、不 checkout、不改公司 repo；Step 5 claim gate 以 `origin/k3s` path history 補判讀，不能宣稱本機 working tree 已是最新 code。
+
+`/Users/nick/Git/iwin/app_bi`：
+
+- 已重新執行 `git fetch --all --prune` 更新 remote refs。
+- 本機分支：`main`
+- local HEAD：`4a206a28ab8f5be4329602cdc510ee9ea41efb25`
+- `origin/main` HEAD：`fd9881fc417e01f960d758b4b91ba1a10b507855`
+- ahead / behind：`0 / 4`
+- 本輪未 pull、未 checkout、未改工作樹。
+- 判斷：app_bi 本機仍落後 4 commits，path history 以 `origin/main` 補判讀。
+
+### Step 5 path history re-check
+
+payment manual-review / repair 相關 path 的 `10gt12nc` history：
+
+- `03c28e3` / `10gt12nc`：`fix: clear copied order id before payment insert`。
+- `6539d7a` / `10gt12nc`：`fix: clear copied order id before withdraw insert`。
+- `3908da9`、`4a0a261`：merge commits。
+
+app_bi `bill_check` / `repairOrderService` / repair UI 相關 path 的 `10gt12nc` history：
+
+- 未找到直接修改紀錄。
+
+最新 remote refs 相關 path 仍顯示 app_bi repair 主要是 gill / arnold 的歷史，例如 `42feaee`、`d3b33ee`、`36718d4`、`900c7d5`、`57819d9`；payment 人工審核 / repair 相關 path 仍以 Derek / gill / arnold 等 commit 為主。
+
+## Step 5 結論
+
+- `manual-order-review-repair` 已完成 Step 5。
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 最終證據層級維持：`專案存在 / code-backed`、`分析素材 / learning-only`。
+- Nick 個人貢獻：未確認到可放正式履歷的直接 evidence。
+- `03c28e3`、`6539d7a` 只能支撐共享建單 / 提款 insert consistency 題材，不能延伸成 Nick 主導人工審核 / 補單 / 修單。
+
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

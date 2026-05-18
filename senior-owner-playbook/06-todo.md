@@ -36,36 +36,37 @@
 - 已完成 `payment payment-order-provider-request Step 5`，完成 provider request claim gate；已確認 Nick 在 Pay4z / NaNapay / BFPAY / NimTestPay 等 provider request / query / callback 相關 code 有 path-specific commits，正式履歷可用「參與」口徑，不寫主導完整金流。
 - 已完成 `payment manual-order-review-repair Step 3`，建立人工審核 / 補單 / 訂單修復主學習包；目前只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment manual-order-review-repair Step 4`，轉成可面試 case；目前仍只作面試素材，不更新正式履歷 / 自傳。
+- 已完成 `payment manual-order-review-repair Step 5`，判定不更新正式履歷 / 自傳；人工審核 / 補單 / 修單只保留為面試分析素材。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
 - 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
 
 ## 下一步
 
-### 1. iwin payment manual-order-review-repair Step 5
+### 1. iwin payment payment-channel-config-selection Step 3
 
 建議下一步：
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```
 
 原因：
 
-- `manual-order-review-repair` Step 4 已完成，已整理人工 repair SOP、`PROCESSING` unknown、callback 晚到與退回退款 failure window。
-- 下一步做 Step 5 claim gate，確認是否有 Nick 本人 evidence 可更新正式履歷 / 自傳。
-- 依目前 evidence，預期仍是不更新正式履歷，只保留面試分析素材。
+- `manual-order-review-repair` Step 5 已完成，已判定不更新正式履歷 / 自傳。
+- payment 前四條 high-money flow 已收斂。
+- 下一步補 `payment-channel-config-selection` 的 runtime config / 玩家分層 / 商戶設定選擇 flow，讓 payment project 的 money flow 與 config flow 更完整。
 
 ### 2. iwin 各 project 下一步
 
 目前各 project 自己的下一步：
 
-1. `payment`：`iwin payment manual-order-review-repair Step 5`
+1. `payment`：`iwin payment payment-channel-config-selection Step 3`
 2. `game_api`：`iwin game_api coupon-redeem-credit-grant Step 5`
 3. `game_job`：`game_job daily-game-data-summary Step 5`
 4. `third_games_api`：`iwin third_games_api gsc-transfer-bet-settle-rollback Step 5`
 5. `iwin_gameserver`：`iwin_gameserver center-http-deposit-withdraw Step 3`
 6. `k3s-deploy`：`iwin k3s-deploy gameserver-phased-rollout Step 5`
-7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，payment callback、withdrawal、provider request 都已 Step 5，manual repair 已 Step 4，轉 `iwin payment manual-order-review-repair Step 5`。
+7. `app_bi`：主要 flow 已收斂；下一步不回 app_bi，payment callback、withdrawal、provider request、manual repair 都已 Step 5，轉 `iwin payment payment-channel-config-selection Step 3`。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -84,12 +85,12 @@ iwin payment manual-order-review-repair Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment callback、withdrawal、provider request 都已完成 Step 5，`manual-order-review-repair` 已完成 Step 4，下一條先做 `iwin payment manual-order-review-repair Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment callback、withdrawal、provider request、manual repair 都已完成 Step 5，下一條先做 `iwin payment payment-channel-config-selection Step 3`。
 
 ## 下一個 prompt
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與 `/Users/nick/Git/iwin/payment` code 最新狀態，不需要 Nick 每次重貼完整規則。

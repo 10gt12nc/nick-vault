@@ -220,7 +220,7 @@ Senior / Owner 價值：
 ### 4. `manual-order-review-repair`
 
 中文名稱：人工審核、補單與訂單修復
-建議：已完成 Step 4；下一步 Step 5
+建議：已完成 Step 5；下一步轉 `payment-channel-config-selection`
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 已確認：
@@ -279,7 +279,7 @@ Senior / Owner 價值：
 | 1 | `payment-provider-callback` | 高 | 高 | 高 | 中高 | 高 | 中 | 第一條深挖 |
 | 2 | `withdrawal-auto-review-refund` | 高 | 高 | 高 | 中 | 高 | 高 | 第二條候選 |
 | 3 | `payment-order-provider-request` | 高 | 中高 | 中高 | 中 | 中高 | 中 | 需先選 provider |
-| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 4 已完成；下一步 Step 5 |
+| 4 | `manual-order-review-repair` | 高 | 中高 | 中高 | 中 | 中高 | 中 | Step 5 已完成；不更新正式履歷 |
 | 5 | `payment-channel-config-selection` | 中 | 中 | 中高 | 高 | 中 | 中 | 補充型 flow |
 
 ## 第一條 Flow 選擇
@@ -314,6 +314,7 @@ Step 3 暫不做：
 
 - `flows/payment-provider-callback/` 已完成 Step 5 claim gate；下一步不重做此 flow。
 - `flows/withdrawal-auto-review-refund/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
+- `flows/manual-order-review-repair/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
 - 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -323,22 +324,22 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```
 
 為什麼現在做它：
 
-- `manual-order-review-repair` Step 4 已完成。
-- 下一步應在同 flow 做 Step 5 claim gate。
+- `manual-order-review-repair` Step 5 已完成。
+- 下一步應回到同 project candidate ranking，做剩下的 `payment-channel-config-selection`。
 
 會產出什麼：
 
-- 檢查是否有 Nick 本人 evidence 可支撐正式履歷 / 自傳更新；依目前 evidence 預期仍是不更新。
+- 建立 runtime config / 玩家分層 / 商戶設定選擇的 Step 3 flow package。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` 已完成 Step 4，下一步做 Step 5 claim gate。
+- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` Step 5 判定不更新正式履歷。
 
 是否需要 commit / push：
 

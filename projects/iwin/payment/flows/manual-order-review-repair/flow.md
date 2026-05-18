@@ -1,8 +1,8 @@
 # iwin payment manual-order-review-repair
 
-完成狀態：Step 4 已完成
+完成狀態：Step 5 已完成
 掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+證據層級：專案存在 / code-backed；Nick 貢獻未確認到可放正式履歷的直接 evidence
 
 本 flow 研究的是：
 
@@ -320,10 +320,39 @@ sequenceDiagram
 - app_bi 的 `repairOrderService` 是直接修狀態工具，應視為 break-glass repair，不可等同完整 reconciliation。
 - Step 4 已補可面試的 3 分鐘講法、追問答法與人工 repair SOP。
 
-## 11. 下一步建議
+## 11. Step 5 履歷 / 自傳 claim gate
 
-Step 4 已完成，下一步只推薦做 Step 5：檢查是否有 Nick 本人 evidence 可支撐正式履歷 / 自傳更新。依目前 Step 4 evidence，預期仍是不更新正式履歷，只保留面試分析素材。
+本 flow 已完成 Step 5，結論是不更新正式履歷 / 自傳。
+
+判斷理由：
+
+- 已重新 fetch source repo remote refs；`payment` 本機 `k3s` 落後 `origin/k3s` 1 commit，`app_bi` 本機 `main` 落後 `origin/main` 4 commits，因此本次 claim gate 以最新 remote refs 的 path history 補判讀，未 pull、未 checkout、未改公司 repo。
+- `10gt12nc` 在本次人工審核 / 修復相關 path 只找到共享建單 / 提款 insert id 清理 commit：`03c28e3`、`6539d7a`，可支撐 provider request / withdraw insert consistency 相關保守說法，但不能延伸成人工審核 / 補單 / 修單主線 owner。
+- 目前未找到 `10gt12nc` 直接修改 `PayTypeServiceImpl#oderView`、`PayTypeServiceImpl#gameRecharge` 主邏輯、app_bi `bill_check` 或 `repairOrderService` 的 path-specific evidence。
+- 沒有 Nick 本人 MR / ticket / production issue / 本人確認前，這條 flow 只保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+
+可用方式：
+
+- 面試時可用這條 flow 講人工修復、break-glass repair、`PROCESSING` unknown、callback 晚到與 money side effect 邊界。
+- 正式履歷 / 自傳不新增「人工審核、補單、修單、reconciliation」相關 claim。
+
+## 12. Step 5 結論
+
+`manual-order-review-repair` 已完成 Step 5。最終定位是 Senior Backend / Owner 面試素材，不進正式履歷。
+
+同一個 `payment` project 目前已完成：
+
+- `payment-provider-callback` Step 5。
+- `withdrawal-auto-review-refund` Step 5。
+- `payment-order-provider-request` Step 5。
+- `manual-order-review-repair` Step 5。
+
+下一步回到同 project candidate ranking，建議做第五條 `payment-channel-config-selection`，補 runtime config / 玩家分層 / 商戶設定選擇的一致性題材。
+
+## 13. 下一步建議
+
+只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

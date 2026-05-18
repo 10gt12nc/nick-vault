@@ -1,12 +1,12 @@
 # claim-boundary
 
-## Step 4 claim 判斷
+## Step 5 claim 判斷
 
 本 flow 目前是：
 
 - `專案存在 / code-backed`
 - `分析素材 / learning-only`
-- Nick 個人貢獻：待確認
+- Nick 個人貢獻：未確認到可放正式履歷的直接 evidence
 
 ## 可以使用
 
@@ -35,14 +35,15 @@
 - `10gt12nc` 直接修改 `PayTypeServiceImpl#gameRecharge` 主邏輯。
 - `10gt12nc` 直接修改 app_bi `bill_check` / `repairOrderService`。
 
-## Step 4 結論
+## Step 5 結論
 
 - 可作 Senior Backend / Owner 面試分析素材。
 - 不更新正式履歷 / 自傳。
-- 若要進 Step 5，目標不是硬找履歷 bullet，而是做最後 claim gate：再次檢查是否有 Nick 本人 MR / ticket / commit / production issue / 本人確認。依目前 evidence，預期仍是不更新。
+- 已完成最後 claim gate；目前沒有 Nick 本人 MR / ticket / production issue / 本人確認，path-specific commit 也不足以支撐人工審核 / 補單 / 修單 claim。
+- 已找到的 `03c28e3`、`6539d7a` 只能支撐共享建單 / 提款 insert consistency 相關保守說法，不延伸到本 flow ownership。
 
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

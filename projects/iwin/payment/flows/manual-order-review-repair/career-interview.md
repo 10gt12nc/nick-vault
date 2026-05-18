@@ -1,7 +1,7 @@
 # manual-order-review-repair career-interview
 
-完成狀態：Step 4 已完成
-證據層級：專案存在 / code-backed；Nick 貢獻待確認
+完成狀態：Step 5 已完成
+證據層級：專案存在 / code-backed；Nick 貢獻未確認到可放正式履歷的直接 evidence
 
 ## 保守定位
 
@@ -54,8 +54,18 @@
 | callback 晚到怎麼辦？ | 晚到 callback 要先看訂單是否已終態。若人工已補成功或退回，callback 不應覆蓋；理想上要有 raw callback / query evidence 和人工衝突處理。 |
 | 這條能放履歷嗎？ | 目前不放。它是 code-backed 面試分析素材，但沒有 Nick 直接修改人工審核 / 修單主線的 path-specific evidence。 |
 
+## Step 5 claim gate
+
+最終判斷：不更新正式履歷 / 自傳。
+
+理由：
+
+- 未找到 Nick 直接修改 `oderView`、`gameRecharge`、app_bi `bill_check` 或 `repairOrderService` 的 path-specific evidence。
+- 已找到的 `10gt12nc` commit 只支撐共享建單 / 提款 insert consistency 題材，不支撐人工審核 / 補單 / 修單 owner claim。
+- 本 flow 可作面試分析素材，但不得寫成 Nick 主導人工審核、補單、修單、reconciliation 或 break-glass repair 設計。
+
 ## 下一步
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```

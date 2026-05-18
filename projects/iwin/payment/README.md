@@ -17,7 +17,7 @@
 7. [flows/withdrawal-auto-review-refund/career-interview.md](flows/withdrawal-auto-review-refund/career-interview.md)：該 flow 的保守面試素材。
 8. [flows/payment-order-provider-request/flow.md](flows/payment-order-provider-request/flow.md)：第三條 flow 主研究報告，整理充值建單、provider request、簽章、金額單位、provider order id 與查單邊界，已完成 Step 5 claim gate。
 9. [flows/payment-order-provider-request/career-interview.md](flows/payment-order-provider-request/career-interview.md)：該 flow 的保守面試 / 履歷素材。
-10. [flows/manual-order-review-repair/flow.md](flows/manual-order-review-repair/flow.md)：第四條 flow 主研究報告，整理人工審核、補單、訂單狀態修復、app_bi 後台入口與 payment side effect 邊界，目前完成 Step 4。
+10. [flows/manual-order-review-repair/flow.md](flows/manual-order-review-repair/flow.md)：第四條 flow 主研究報告，整理人工審核、補單、訂單狀態修復、app_bi 後台入口與 payment side effect 邊界，已完成 Step 5 claim gate。
 11. [flows/manual-order-review-repair/career-interview.md](flows/manual-order-review-repair/career-interview.md)：該 flow 的保守面試素材。
 
 ## 目前狀態
@@ -29,7 +29,7 @@
 | `flows/payment-provider-callback/` | Step 5 已完成 | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary、bugfix diff 與履歷 / 自傳 claim gate |
 | `flows/withdrawal-auto-review-refund/` | Step 5 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case，並完成不更新正式履歷 / 自傳的 claim gate |
 | `flows/payment-order-provider-request/` | Step 5 已完成 | Level 2+ claim gate；已確認 Nick 在 Pay4z、NaNapay、BFPAY、NimTestPay / `createOrderNo` 相關 provider request / query / callback code 有 path-specific commits，可保守寫入履歷素材 |
-| `flows/manual-order-review-repair/` | Step 4 已完成 | Level 2 深掃人工審核 / 補單 / 修復；已確認 `/oderView`、`/gameRecharge`、app_bi `bill_check` / `repairOrderService` 與 direct status repair 的風險邊界，並已轉成面試 case，目前只作面試素材 |
+| `flows/manual-order-review-repair/` | Step 5 已完成 | Level 2 深掃人工審核 / 補單 / 修復；已確認 `/oderView`、`/gameRecharge`、app_bi `bill_check` / `repairOrderService` 與 direct status repair 的風險邊界；Step 5 判定不更新正式履歷 / 自傳，只作面試素材 |
 
 ## 專案定位
 
@@ -75,11 +75,11 @@
 只推薦一件事：
 
 ```text
-iwin payment manual-order-review-repair Step 5
+iwin payment payment-channel-config-selection Step 3
 ```
 
 原因：
 
-- `manual-order-review-repair` Step 4 已完成，已補人工 repair SOP、`PROCESSING` unknown、callback 晚到、退回退款與 direct status repair 的追問答法。
-- 下一步應做 Step 5 claim gate：檢查是否有 Nick 本人 evidence 支撐正式履歷 / 自傳更新。
-- 依目前 evidence，預期仍是不更新正式履歷，只保留面試分析素材。
+- `manual-order-review-repair` Step 5 已完成，判定不更新正式履歷 / 自傳。
+- `payment` 目前四條高價值 money flow 已收斂，下一步回到同 project candidate ranking。
+- `payment-channel-config-selection` 可補 runtime config / 玩家分層 / 商戶設定選擇的一致性題材，和既有金流 request / callback / withdrawal / repair flow 形成完整 payment 圖像。
