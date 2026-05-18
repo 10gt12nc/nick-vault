@@ -25,7 +25,11 @@
 | 如果 provider 查單也是 unknown？ | 不退款、不標成功，進人工 reconciliation；要保存 provider request / callback / query raw evidence，等 provider 終態或人工確認。 |
 | 如果要補監控，先補哪三個？ | `PROCESSING` aging、notify MQ retry / fail、provider callback delay。這三個最直接對應卡單、重試與終態延遲。 |
 
-## Step 4 面試版
+## Step 5 面試版
+
+本檔可以作為面試稿，但不是正式履歷 claim。Step 5 判定不更新正式履歷 / 自傳；面試時應保守說「我分析 / 梳理過這類提款 flow」，不能說 Nick 主導、設計或修復。
+
+## 口說版本
 
 ### 90 秒版本
 
@@ -56,6 +60,4 @@
 
 ## 下一步
 
-```text
-iwin payment withdrawal-auto-review-refund Step 5
-```
+回到 `payment` project candidate ranking，選下一條未完成 flow。

@@ -312,7 +312,7 @@ Step 3 暫不做：
 ## 本次不更新的內容
 
 - `flows/payment-provider-callback/` 已完成 Step 5 claim gate；下一步不重做此 flow。
-- `flows/withdrawal-auto-review-refund/` 已完成 Step 4 面試 case；下一步做 Step 5 claim gate。
+- `flows/withdrawal-auto-review-refund/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
 - 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -322,23 +322,22 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 5
+iwin payment payment-order-provider-request Step 3
 ```
 
 為什麼現在做它：
 
-- `withdrawal-auto-review-refund` 已完成 Step 4。
-- 下一步應做 claim gate，檢查正式履歷 / 自傳是否更新；目前仍需要 Nick 本人 evidence。
+- `payment-provider-callback` 與 `withdrawal-auto-review-refund` 都已完成 Step 5。
+- 下一條同 project 高價值候選是 `payment-order-provider-request`，可補充值建單 / provider request、簽章、timeout、provider order id 與查單邊界。
 
 會產出什麼：
 
-- 更新 `projects/iwin/payment/flows/withdrawal-auto-review-refund/claim-boundary.md` 與對應索引。
+- 建立 `projects/iwin/payment/flows/payment-order-provider-request/` 的 flow learning package。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- 不更新正式履歷。
-- 預設不更新正式履歷；等本 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
+- 預設不更新正式履歷；等新 flow 到 Step 5 且有 Nick 本人 evidence 再判斷。
 
 是否需要 commit / push：
 

@@ -6,7 +6,15 @@
 - 證據層級：`專案存在 / code-backed`。
 - Nick 個人貢獻：`待確認`。
 - 目前用途：Senior Backend / Platform Backend / System Owner 面試素材，不進正式履歷 master。
-- Step 4 結論：可作為保守面試 case；正式履歷 / 自傳仍等 Step 5 claim gate。
+- Step 5 結論：可作為保守面試 case；不更新正式履歷 / 自傳，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
+
+## Step 5 claim gate
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 原因：目前只有 `專案存在 / code-backed` 與 `分析素材 / learning-only`；缺 Nick 本人 evidence，不能升級為 `真實開發過`。
+- 可用方式：面試時保守說「我分析 / 梳理過提款、自動審核 / 自動出款與失敗退款 flow 的一致性與補償風險」。
+- 不可用方式：不可寫成 Nick 主導自動出款、設計提款退款架構、修復重複退款或負責完整 payment owner。
 
 ## 3 分鐘講法
 
@@ -46,7 +54,7 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 | 問題 | 回答方向 |
 | --- | --- |
 | 扣分成功但建單失敗怎麼辦？ | 目前 code 顯示先 `gmDownScore` 再 insert，這是重大 failure window；要補 evidence 看是否有下游 billNo 查詢、補償 job 或人工修復入口。 |
-| provider accepted 但沒有 callback 怎麼辦？ | 訂單會停 `PROCESSING`；本輪未確認 query order / reconciliation job，Step 4 要補。 |
+| provider accepted 但沒有 callback 怎麼辦？ | 訂單會停 `PROCESSING`；目前只確認多個 provider 有查單入口，尚未確認自動 query order / reconciliation job。 |
 | 怎麼避免重複退款？ | notify consumer 先檢查訂單只接受 `WAIT` / `PROCESSING`；退款異常 catch 內會回 `MqResult.SUCCESS` 防 MQ retry 再次退款。但下游錢包是否用 billNo 去重仍待確認。 |
 | 自動審核條件有哪些？ | 商戶金額 / 時間、玩家 `is_autowithdraw`、玩家層級開關、提款金額上下限、今日充值、今日打碼比例。 |
 | 為什麼這條 flow 有 owner 價值？ | 它橫跨玩家錢包、payment order、provider payout、MQ callback、退款補償與人工 fallback，任何斷點都可能是資金正確性問題。 |
@@ -76,6 +84,4 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 
 ## 下一步
 
-```text
-iwin payment withdrawal-auto-review-refund Step 5
-```
+回到 `payment` project candidate ranking，選下一條未完成 flow。

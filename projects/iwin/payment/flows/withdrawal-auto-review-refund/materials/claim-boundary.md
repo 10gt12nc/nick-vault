@@ -1,10 +1,10 @@
 # claim-boundary
 
-## 目前結論
+## Step 5 判定
+
+結論：不更新正式履歷 / 自傳。
 
 本 flow 目前只可作為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
-
-Step 4 已完成面試 case，但這不等於履歷 claim 可以升級。Step 5 才檢查是否更新正式履歷 / 自傳。
 
 不更新：
 
@@ -15,8 +15,19 @@ Step 4 已完成面試 case，但這不等於履歷 claim 可以升級。Step 5 
 
 - 沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
 - 沒有確認 Nick 是 payment owner。
-- 還沒完成 Step 4 failure / consistency 深挖。
+- Step 4 failure / consistency 深挖已完成，但只證明 code-backed flow 與風險分析，不證明 Nick 本人貢獻。
 - 下游 `billNo` 去重、DB unique key、reconciliation 還是待確認。
+
+本輪可安全收斂：
+
+- 作為 Senior Backend 面試素材，可講提款建單、扣分、自動審核 / 自動出款、provider 終態、失敗退款、MQ retry、終態 guard 與人工補償邊界。
+- 作為學習素材，可整理 owner decision：pending event / outbox、failed MQ produce alarm、provider query / reconciliation、game lobby `billNo` 去重、`WAIT` / `PROCESSING` aging dashboard。
+
+本輪不做：
+
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 不把本 flow 寫成 Nick 主導 / 設計 / 修復成果。
 
 ## 可寫入面試素材
 
@@ -54,6 +65,4 @@ Step 4 已完成面試 case，但這不等於履歷 claim 可以升級。Step 5 
 
 ## 下一步
 
-```text
-iwin payment withdrawal-auto-review-refund Step 5
-```
+回到 `payment` project candidate ranking，選下一條未完成 flow。

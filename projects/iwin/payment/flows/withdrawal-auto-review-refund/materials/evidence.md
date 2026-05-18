@@ -2,9 +2,9 @@
 
 ## 本次掃描定位
 
-- 任務：`iwin payment withdrawal-auto-review-refund Step 4`。
+- 任務：`iwin payment withdrawal-auto-review-refund Step 5`。
 - 日期：2026-05-18。
-- 掃描等級：Level 2 Flow 深掃；Step 4 補 failure / consistency / idempotency / retry / reconciliation 與面試 case。
+- 掃描等級：Level 2 Flow 深掃；Step 5 複查 Step 4 evidence，完成履歷 / 自傳 claim gate。
 - 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`。
 
 ## 自動重讀
@@ -25,6 +25,8 @@
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/flow.md`
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/career-interview.md`
 - `projects/iwin/payment/flows/withdrawal-auto-review-refund/materials/*.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
 
 ## source repo 狀態
 
@@ -153,8 +155,15 @@ payment log grep 找到：
 - 高風險斷點：扣分成功但建單失敗、MQ produce fail only log、provider accepted no callback、重複 callback / MQ retry、下游 `billNo` 去重待確認。
 - 仍不可升級履歷 claim，因為 Nick 本人 evidence 未補。
 
+## Step 5 claim gate 結論
+
+- 不更新正式履歷 / 自傳。
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 原因：目前 evidence 只到 `專案存在 / code-backed` 與 `分析素材 / learning-only`，缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
+- 可保留為 Senior 面試素材：提款 money correctness、扣分後建單 failure window、自動審核條件、provider accepted 不等於成功、失敗退款防重複、`billNo` trace 與 reconciliation 邊界。
+- 不可升級成：Nick 主導自動出款、設計提款退款架構、修復重複退款、確認 wallet exactly-once、完整 payment owner。
+
 ## 下一步
 
-```text
-iwin payment withdrawal-auto-review-refund Step 5
-```
+回到 `payment` project candidate ranking，選下一條未完成 flow。

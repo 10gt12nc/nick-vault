@@ -13,7 +13,7 @@
 3. [flows/payment-provider-callback/flow.md](flows/payment-provider-callback/flow.md)：第一條 flow 主研究報告，已完成 Step 5 claim gate。
 4. [flows/payment-provider-callback/career-interview.md](flows/payment-provider-callback/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 5. [flows/payment-provider-callback/materials/evidence.md](flows/payment-provider-callback/materials/evidence.md)：證據、技術決策、詳細面試稿與 claim 邊界附錄入口。
-6. [flows/withdrawal-auto-review-refund/flow.md](flows/withdrawal-auto-review-refund/flow.md)：第二條 flow Step 4 主研究報告，整理玩家提款、自動審核 / 自動出款、失敗退款與一致性面試 case。
+6. [flows/withdrawal-auto-review-refund/flow.md](flows/withdrawal-auto-review-refund/flow.md)：第二條 flow 主研究報告，已完成 Step 5 claim gate。
 7. [flows/withdrawal-auto-review-refund/career-interview.md](flows/withdrawal-auto-review-refund/career-interview.md)：該 flow 的保守面試素材。
 
 ## 目前狀態
@@ -23,7 +23,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 callback、provider request、自動出款、玩家提款建單、人工審核 / 補單，建議第一條深挖 `payment-provider-callback` |
 | `flows/payment-provider-callback/` | Step 5 已完成 | Level 2 深掃 provider callback；已補 failure / consistency evidence、下游 `billNo` 傳遞、app_bi repair boundary、bugfix diff 與履歷 / 自傳 claim gate |
-| `flows/withdrawal-auto-review-refund/` | Step 4 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case |
+| `flows/withdrawal-auto-review-refund/` | Step 5 已完成 | Level 2 深掃玩家提款、自動審核 / 自動出款、provider 代付失敗與退款主線；已補 failure / consistency / idempotency / retry / reconciliation 面試 case，並完成不更新正式履歷 / 自傳的 claim gate |
 
 ## 專案定位
 
@@ -37,7 +37,7 @@
 
 推測：
 
-- `payment` 是金流 orchestration 與狀態更新核心之一，但玩家錢包最終上下分會透過 game lobby / center HTTP 或 GM command；Step 4 已確認 `billNo` 會傳入下游餘額異動與 currency log，但下游強制去重仍待確認。
+- `payment` 是金流 orchestration 與狀態更新核心之一，但玩家錢包最終上下分會透過 game lobby / center HTTP 或 GM command；`withdrawal-auto-review-refund` Step 5 已確認 `billNo` 會傳入下游餘額異動與 currency log，但下游強制去重仍待確認。
 - provider controller 大量重複相同形狀：`newPay`、`pay/notify`、`withdraw/notify`、查單，適合抽出共通 callback / provider request flow 深挖，而不是平均整理每個商戶 class。
 - `app_bi` 的 `payment-order-status-repair` 應回到本專案一起看，避免只把後台人工入口誤當完整金流 flow。
 
@@ -68,11 +68,11 @@
 只推薦一件事：
 
 ```text
-iwin payment withdrawal-auto-review-refund Step 5
+iwin payment payment-order-provider-request Step 3
 ```
 
 原因：
 
-- `withdrawal-auto-review-refund` 已完成 Step 4 面試 case。
-- 下一步應做 Step 5 claim gate，檢查是否更新履歷 / 自傳。
-- 沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，預期仍不更新正式履歷。
+- `payment-provider-callback` 與 `withdrawal-auto-review-refund` 都已完成 Step 5 claim gate。
+- 同 project 下一條高價值候選是 `payment-order-provider-request`，可補 provider request、簽章、timeout、provider order id 與查單 / 對帳邊界。
+- 預期仍只做 code-backed flow，不更新正式履歷，除非 Nick 補本人 evidence。
