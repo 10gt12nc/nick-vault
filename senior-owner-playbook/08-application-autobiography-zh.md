@@ -9,9 +9,9 @@
 
 > 2026-05-19 game_api coupon Step 5：已完成 `projects/iwin/game_api/flows/coupon-redeem-credit-grant/` claim gate。投遞自傳可保守寫 Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發；仍不寫主導完整活動獎勵系統、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
 
-> 2026-05-19 game_job daily summary Step 5：已完成 `projects/iwin/game_job/flows/daily-game-data-summary/` claim gate。投遞自傳可保守寫 Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護；仍不寫主導完整 BI pipeline、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或量化改善。
+> 2026-05-19 game_job consolidation：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護；仍不寫主導完整 BI pipeline、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或量化改善。
 
-> 2026-05-19 game_job third-party Mongo backup Step 5：已完成 `projects/iwin/game_job/flows/third-party-record-mongo-backup/` claim gate。投遞自傳可保守寫 Nick 參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整；仍不寫主導完整第三方紀錄備份、完整 retention policy owner 或量化改善。
+> 2026-05-19 game_job consolidation 補充：投遞自傳可保守寫 Nick 參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整；仍不寫主導完整第三方紀錄備份、完整 retention policy owner 或量化改善。
 
 ## 使用原則
 

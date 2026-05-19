@@ -261,6 +261,6 @@ Step 4 開始前已重新檢查 Step 3：
 
 ## Step 5 結論
 
-- 更新正式履歷 / 自傳：否；本次只形成單條 flow evidence，正式 05 / 08 需等 `game_job contribution claim consolidation` 掃 code + 所有 flow KB 後統一判斷。
+- 更新正式履歷 / 自傳：本 Step 5 當時只形成單條 flow evidence；目前已由 `contribution-claim-consolidation.md` 掃 code + 所有 flow KB 後統一判斷。
 - 可作候選口徑：「參與 BI 批次報表資料流維護，協助處理遊戲每日彙總 projection 的資料日邊界、重跑一致性、新增玩家 / 留存與下游查詢正確性。」
 - 不可寫：主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路、修復 production incident、改善 X%。

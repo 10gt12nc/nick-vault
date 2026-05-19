@@ -91,7 +91,7 @@ Senior 角度我會看四個點。第一，delete + insert 雖然方便重跑，
 
 ## 對應履歷 Bullet
 
-可作 `game_job contribution claim consolidation` 的履歷候選 evidence。
+已納入 `contribution-claim-consolidation.md`，可作 `game_job` project-level 履歷 evidence。
 
 正式履歷候選句：
 
@@ -109,6 +109,6 @@ Senior 角度我會看四個點。第一，delete + insert 雖然方便重跑，
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可候選寫法為「參與每日遊戲資料彙總 batch / BI projection 開發與維護」；正式 05 / 08 仍以 `game_job contribution claim consolidation` 為準。
+- 可放履歷 evidence：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可保守寫法為「參與每日遊戲資料彙總 batch / BI projection 開發與維護」；已由 `contribution-claim-consolidation.md` 收斂。
 - 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
 - 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

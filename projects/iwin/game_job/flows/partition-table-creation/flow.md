@@ -195,7 +195,7 @@ Game 分表 template：
 只推薦一件事：
 
 ```text
-iwin game_job contribution claim consolidation
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
-原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job` 目前 Top 5 flow 都已收斂。依最新 KB，下一條最值得做的是 `game_job contribution claim consolidation`，先收斂本 project 的履歷 claim 邊界。
+原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job contribution claim consolidation` 已完成，下一步回到 `game_api` 未完成的代表 flow。

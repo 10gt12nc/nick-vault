@@ -75,6 +75,7 @@
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 下一步判斷必須先看 Nick 當下是不是在要求「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」。若是，AI 只能先維護 todo / KB / index，把缺口列清楚並等待 Nick 指定下一個 flow Step；不得把自己列出的缺口自動當成已授權執行 Step 4 / Step 5。
 - 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若目前 project 已累積 code-backed flow，但尚未做 project-level contribution consolidation，且 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或 AI 準備建議 Step 4 / Step 5 / 更新履歷前，必須先檢查 Step 2 定義的本批代表 flows 是否都完成到 Step 5。未完成時，只能回 Step 2 ranking 繼續同 project 下一條 flow；都完成後才建議並執行 `{project} contribution claim consolidation`。這個 consolidation 是履歷 claim gate，不是亂創新 Step。
+- 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」狀態。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定要先做別的 project / flow。AI 必須在 project README、todo 或 inventory 標清楚「已達 consolidation 條件 / 待收口」，避免把它和一般 flow queue 混在一起。
 - 如果 Step 3 已完成且文件乾淨，且不涉及履歷 / 自傳 / contribution claim gate，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果只有 Step 1，下一步預設是 Step 2；沒有 Step 2 時，不得直接跳 Step 3 / 建 flow folder。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。

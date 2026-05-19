@@ -11,7 +11,7 @@ Step：5
 
 本文件先讓初階 / 中階讀者看懂「它在做什麼、資料怎麼走、code 在哪裡」，後半才進入 Senior / Owner 角度的 consistency、重跑、failure window、observability 與面試邊界。
 
-本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_job` 每日遊戲資料彙總相關 job / service / mapper / config path 有一串 `#247` commits，也有 `#384` PG 時區修正、`#403` Antplay GMT+0 修正、job 拆分、新增玩家 / 留存與備份 / 清理調整。因此可作「真實開發過」候選 evidence；正式 05 / 08 仍需 project-level consolidation；但仍不可寫成 Nick 主導完整 BI pipeline、完整 game_job owner、修復 production incident 或負責上游 gameserver 到 app_bi 全鏈路。
+本 flow 已完成 Step 5，且已納入 `contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_job` 每日遊戲資料彙總相關 job / service / mapper / config path 有一串 `#247` commits，也有 `#384` PG 時區修正、`#403` Antplay GMT+0 修正、job 拆分、新增玩家 / 留存與備份 / 清理調整。因此可作「真實開發過」evidence；但仍不可寫成 Nick 主導完整 BI pipeline、完整 game_job owner、修復 production incident 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## KB 更新後深度檢查結論
 
@@ -362,13 +362,13 @@ Step 5 已完成：本 flow 可作 game_job project contribution consolidation e
 只推薦一件事：
 
 ```text
-iwin game_job contribution claim consolidation
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
-原因：本 flow Step 5 已收斂，且同 project 的 `third-party-record-mongo-backup`、`coin-flow-batch-projection`、`online-payment-data-cleaning` 與 `partition-table-creation` 也已完成 Step 5；下一步做 `game_job contribution claim consolidation`。
+原因：本 flow Step 5 已收斂，且 `game_job contribution claim consolidation` 已完成；下一步回到 `game_api` 未完成的代表 flow。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可候選寫法為「參與每日遊戲資料彙總 batch / BI projection 開發與維護」；正式 05 / 08 仍以 `game_job contribution claim consolidation` 為準。
+- 可放履歷 evidence：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可保守寫法為「參與每日遊戲資料彙總 batch / BI projection 開發與維護」；已由 `contribution-claim-consolidation.md` 收斂。
 - 可面試講：code-backed / 實作過 + 分析過。可講 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、資料日修正與報表正確性。
 - 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整 BI pipeline owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

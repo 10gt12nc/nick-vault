@@ -141,7 +141,7 @@ GSC transfer 保守邊界：
 
 證據邊界：
 
-- `game_job/daily-game-data-summary` 已完成 Step 5 claim gate，可作 game_job project contribution consolidation evidence；正式履歷 / 自傳仍以 project-level consolidation 為準。
+- `game_job/daily-game-data-summary` 已完成 Step 5 claim gate，且已納入 `projects/iwin/game_job/contribution-claim-consolidation.md`。
 - `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits。
 - `app_bi` 查詢端仍只作下游 local snapshot；上游 writer 只做線索掃描，不可寫成完整 BI pipeline owner。
 
@@ -173,7 +173,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 目前完成 Step 5，可作 code-backed 面試 case，也可作 game_job project contribution consolidation evidence；正式履歷 / 自傳仍以 project-level consolidation 為準。
+- 目前完成 Step 5，可作 code-backed 面試 case，且已納入 `projects/iwin/game_job/contribution-claim-consolidation.md`。
 - `10gt12nc` 有 GSC 分批查詢與 batch size 調整 direct commits：`d11b1f4`、`bf92773`。
 - 可寫局部「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。
 - 不可寫成 Nick 主導完整第三方遊戲紀錄備份或 retention policy owner。

@@ -8,9 +8,9 @@
 
 > 2026-05-19 game_api coupon Step 5：已完成 `projects/iwin/game_api/flows/coupon-redeem-credit-grant/` claim gate。Nick / `10gt12nc` 在 `game_api` coupon Controller / Service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler 有 path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。仍不得寫成主導完整 coupon / reward system、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
 
-> 2026-05-19 game_job daily summary Step 5：已完成 `projects/iwin/game_job/flows/daily-game-data-summary/` claim gate。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
+> 2026-05-19 game_job consolidation：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
 
-> 2026-05-19 game_job third-party Mongo backup Step 5：已完成 `projects/iwin/game_job/flows/third-party-record-mongo-backup/` claim gate。Nick / `10gt12nc` 在 `game_job` GSC Mongo backup job path 有 `d11b1f4`、`bf92773` direct commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。仍不得寫成主導完整第三方遊戲紀錄備份、完整 Antplay / GSC / Oneapi retention policy owner、已驗證 production enable 或改善 X%。
+> 2026-05-19 game_job consolidation 補充：Nick / `10gt12nc` 在 `game_job` GSC Mongo backup job path 有 `d11b1f4`、`bf92773` direct commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。仍不得寫成主導完整第三方遊戲紀錄備份、完整 Antplay / GSC / Oneapi retention policy owner、已驗證 production enable 或改善 X%。
 
 ## 一、工作經驗
 
@@ -99,4 +99,4 @@
 - 可使用：參與、維護、分析、梳理、協助、優化、整理、提出改善方向。
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
-- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler。game_job daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理。game_job third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。仍不可寫成主導完整金流、完整 reward system、完整 BI pipeline、完整第三方紀錄備份、全部 provider owner 或已建立完整 reconciliation。
+- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler。game_job 已完成 project-level consolidation；daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理；third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。仍不可寫成主導完整金流、完整 reward system、完整 BI pipeline、完整第三方紀錄備份、全部 provider owner 或已建立完整 reconciliation。
