@@ -2,7 +2,7 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job partition-table-creation Step 3` 主報告。
+本文件是 `iwin game_job partition-table-creation Step 3` 主報告；Step 4 已把本 flow 轉成正式面試 case，詳見 `career-interview.md`。
 
 中文名稱：每日 / 每月分表建立。
 
@@ -195,7 +195,7 @@ Game 分表 template：
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 4
+iwin game_job partition-table-creation Step 5
 ```
 
-原因：Step 3 已建立主學習包；下一步應把這條轉成保守面試 case，重點放在「支撐 production batch 的 table rollover reliability」，不是履歷主成果。
+原因：Step 4 已完成正式面試 case；下一步應做 Step 5 claim gate。若沒有新增 Nick direct evidence，Step 5 大概率仍只保留為 code-backed 面試補充素材，不更新正式履歷 / 自傳。

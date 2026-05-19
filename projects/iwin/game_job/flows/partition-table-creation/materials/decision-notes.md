@@ -1,6 +1,6 @@
 # Decision Notes: partition-table-creation
 
-完成狀態：Step 3。
+完成狀態：Step 4。
 
 用途：整理分表建立 flow 的 owner decision、取捨與面試 framing。
 
@@ -95,7 +95,17 @@ Owner 判斷：
 - 需要 per channel result 與 expected table count。
 - 新 channel onboarding 要有建表 verification。
 
-## Step 3 後仍不可升級的點
+## Step 4 面試 decision framing
+
+面試時應把這條定位成 reliability / owner decision，不要包成「我做了一個 schema migration 平台」：
+
+- table rollover job 的價值是讓 writer / batch / report 跨日跨月前有表可寫可查。
+- `CREATE TABLE IF NOT EXISTS` 是存在性 idempotency，不是 schema evolution。
+- 多 channel DB 的 owner 風險是 partial success 與缺少 per channel summary。
+- template 檔名是 contract，未知格式應 fail fast。
+- production 補強重點是 dry-run expected list、failed summary、alert、backfill 與 schema drift check。
+
+## Step 4 後仍不可升級的點
 
 - 不可寫 Nick 真實開發這條 flow，因 direct path 未見 Nick / `10gt12nc` commit。
 - 不可說 production 已驗證啟用，因 main / k3s config 都 disabled。

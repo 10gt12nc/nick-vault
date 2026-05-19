@@ -38,6 +38,7 @@
 - 已完成 `game_job online-payment-data-cleaning Step 4`，轉成 payment reporting projection 的正式面試 case；目前仍只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 - 已完成 `game_job online-payment-data-cleaning Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為 payment reporting projection / replay-safe 的 code-backed 面試案例。
 - 已完成 `game_job partition-table-creation Step 3`，建立每日 / 每月分表建立主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
+- 已完成 `game_job partition-table-creation Step 4`，轉成 table rollover / schema rollout reliability 的正式面試 case；目前仍只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為金流 callback consistency / compensation 的保守面試素材。
 - 已完成 `payment withdrawal-auto-review-refund Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為提款、自動審核 / 自動出款、失敗退款的一致性與補償面試素材。
 - 已完成 `payment payment-order-provider-request Step 5`，完成 provider request claim gate；已確認 Nick 在 Pay4z / NaNapay / BFPAY / NimTestPay 等 provider request / query / callback 相關 code 有 path-specific commits，正式履歷可用「參與」口徑，不寫主導完整金流。
@@ -53,12 +54,12 @@
 
 ## 下一步
 
-### 1. iwin game_job partition-table-creation Step 4
+### 1. iwin game_job partition-table-creation Step 5
 
 建議下一步：
 
 ```text
-iwin game_job partition-table-creation Step 4
+iwin game_job partition-table-creation Step 5
 ```
 
 原因：
@@ -68,14 +69,14 @@ iwin game_job partition-table-creation Step 4
 - `game_job daily-game-data-summary` 已完成 Step 5，履歷 / 自傳已保守同步。
 - `game_job third-party-record-mongo-backup` 已完成 Step 5，履歷 / 自傳已保守同步。
 - `coin-flow-batch-projection` Step 5 已完成，正式履歷 / 自傳不更新。
-- `partition-table-creation` Step 3 已完成，已補 table rollover / schema rollout / batch 前置依賴的可靠性視角。
-- 同 flow 下一步最值得做 Step 4，轉成正式面試 case；目前未補 direct evidence 前不更新履歷。
+- `partition-table-creation` Step 4 已完成，已補 table rollover / schema rollout / batch 前置依賴的正式面試 case。
+- 同 flow 下一步最值得做 Step 5，確認 claim boundary 與是否更新履歷 / 自傳；目前未補 direct evidence 前預期不更新履歷。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_job partition-table-creation Step 4`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin game_job partition-table-creation Step 5`。以下是近期各 project 的局部下一步：
 
-1. `game_job`：`partition-table-creation Step 4`。
+1. `game_job`：`partition-table-creation Step 5`。
 2. `iwin_gameserver`：判斷是否做 `center-http-deposit-withdraw Step 3`。
 3. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
 4. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
@@ -100,12 +101,12 @@ iwin game_job partition-table-creation Step 4
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，`game_job coin-flow-batch-projection Step 5` 與 `game_job online-payment-data-cleaning Step 5` 已完成但不更新履歷，`game_job partition-table-creation Step 3` 已完成，下一步回到 `game_job partition-table-creation Step 4`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，`game_job coin-flow-batch-projection Step 5` 與 `game_job online-payment-data-cleaning Step 5` 已完成但不更新履歷，`game_job partition-table-creation Step 4` 已完成，下一步回到 `game_job partition-table-creation Step 5`。
 
 ## 下一個 prompt
 
 ```text
-iwin game_job partition-table-creation Step 4
+iwin game_job partition-table-creation Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

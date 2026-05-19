@@ -163,3 +163,38 @@ Game templates：
 - schema 變更如何套到既有分表。
 - 是否有手動補表 SOP。
 - 是否有 Nick 本人確認、MR、ticket、production issue 可補強此 flow。
+
+## Step 4 更新紀錄
+
+更新日期：2026-05-19
+
+本次已重讀：
+
+- 本 flow `flow.md`
+- `career-interview.md`
+- `materials/interview.md`
+- `materials/claim-boundary.md`
+- `materials/decision-notes.md`
+- 本 evidence 文件
+- `projects/iwin/game_job/README.md`
+- `projects/iwin/game_job/step1-candidate-flows.md`
+- `projects/iwin/game_job/step2-flow-comparison.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/06-todo.md`
+
+本次更新：
+
+- 將 `career-interview.md` 從 Step 3 初稿整理成 Step 4 正式面試 case。
+- 補齊 STAR、3 分鐘講法、面試官追問與 owner decision framing。
+- 同步 `claim-boundary.md`：目前仍不更新正式履歷 / 自傳。
+- 同步 `decision-notes.md`：Step 4 的主軸是 table rollover reliability，不是 schema migration platform。
+
+Source repo 狀態沿用本次 Step 4 開工前確認：
+
+- 已 fetch：是。
+- local HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
+- `origin/main` HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
+- ahead / behind：`0 / 0`
+- 公司 repo 工作區：乾淨。
+
+本次沒有新增 Nick direct evidence，沒有更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。

@@ -1,6 +1,6 @@
 # partition-table-creation career-interview
 
-完成狀態：Step 3。
+完成狀態：Step 4。
 
 證據層級：專案存在 / code-backed。這條 flow 目前沒有 Nick / `10gt12nc` direct path evidence，不能寫成真實開發或主導；只作 table rollover / schema rollout 的面試分析素材。
 
@@ -34,12 +34,66 @@ Senior 風險不在 SQL 多複雜，而在 rollover reliability：
 
 所以這條不是履歷主線，但可以用來面試講 batch 系統的前置依賴、schema rollout、observability 與 fail-fast。
 
+## STAR 正式版
+
+### Situation
+
+跨日或跨月後，某個 log writer、batch projection 或報表查詢可能遇到 table not found。表面看起來像上游寫入或報表邏輯錯，但真正原因可能是分表 rollover job 沒跑、某個 channel DB 沒建到、template 命名錯誤，或既有表 schema drift。
+
+### Task
+
+我的分析目標不是證明這條是交易主流程，而是把 table rollover 這個支撐性 flow 拆清楚：它什麼時候跑、建哪些 DB / table、怎麼命名、哪些 failure 會被隱藏，以及 production 要怎麼補觀測與補救。
+
+### Action
+
+1. 先從 Quartz 入口確認 `CreateTableJobQuartz` 的 task name、daily 類型、timeout 與 `@DisallowConcurrentExecution`，避免誤判是否可能併發。
+2. 再讀 `CreateTableJob`，拆成 BI 固定 `bi_log` 建表與 game active channel DB 建表兩段。
+3. 追 `InitTableConfig` 的檔名解析，確認只有 `day` / `month` 會轉成下一天 / 下一月 suffix。
+4. 對照 `initBiTable` 與 `initGameTable` template，確認 SQL 來源是 classpath trusted template，`CREATE TABLE IF NOT EXISTS` 只提供存在性 idempotency。
+5. 檢查 config 與 history，標出 main / k3s 目前都 disabled、direct path 沒有 Nick commit，避免履歷 claim 誇大。
+6. 把 owner 風險整理成 filename validation、partial success summary、schema drift check、manual backfill / dry-run、per channel alert。
+
+### Result
+
+最後這條可以作為面試中的 reliability case：我能把跨日 / 跨月缺表問題拆成 schedule、template、table naming、channel DB、SQL execution、schema drift 六段，也能說出 `CREATE TABLE IF NOT EXISTS` 能解決什麼、不能解決什麼。
+
+## 面試官追問與回答
+
+### Q1：`CREATE TABLE IF NOT EXISTS` 是否代表完全 idempotent？
+
+不是。它只表示表已存在時不重建，能讓 rollover job 重跑時比較安全；但它不會更新既有表欄位、索引或型別，所以不能取代 migration 或 schema drift repair。
+
+### Q2：為什麼只建下一天 / 下一月？
+
+這是提前 rollover：讓 writer / batch 到新日期或新月份時，表已經存在。缺點是如果 job 停了一段時間，單純重跑不一定補回歷史缺表，所以 production 需要指定日期 / 月份的補建工具與 dry-run。
+
+### Q3：如果某個 channel DB 建表失敗，怎麼判斷？
+
+目前 code 主要靠 log，這是風險。比較好的做法是每輪產生 per channel / per table summary：expected、created、already existed、failed，最後如果有 failed table list，就讓 task status 或 alert 明確呈現非全成功。
+
+### Q4：`player_bet_demo-mouth.sql` 這種檔名錯誤會怎樣？
+
+目前解析只認 `day` / `month`，`mouth` 不會被當成月份，所以可能產生沒有月份 suffix 的非預期表名。這種錯應該加 filename validation，啟動或 job 開始時 fail fast。
+
+### Q5：為什麼不用 Flyway / Liquibase？
+
+這條 job 的目標是大量日期 / 月份分表與多 channel DB 的 rollover，template 建表可以處理「下一期表要先存在」這件事。但 schema evolution 是另一個問題，仍需要 migration framework、drift check 或 repair SOP 來管理。
+
+### Q6：如果要做成 production-grade，你會補什麼？
+
+我會補六件事：template filename validation、dry-run expected table list、per table / per channel summary、failed table alert、指定日期 / 月份補建工具、schema drift 檢查。這些比單純把 exception log 出來更能支撐 owner 排查。
+
+### Q7：這條能寫履歷嗎？
+
+目前不建議寫正式履歷成果。它是 code-backed 分析素材，且 direct path 沒看到 Nick / `10gt12nc` commit。可以在面試中當作我分析過 batch reliability / table rollover 的例子，但不能說我開發或主導。
+
 ## 可面試講
 
 - 分表建立是 production batch / log writer 的前置依賴，不是單純 DBA 雜事。
 - `CREATE TABLE IF NOT EXISTS` 解決重跑安全，但不解決 schema migration。
 - 大量 channel DB 建表要能看 partial success，不能只看 job 最後有沒有結束。
 - template naming 應該 fail fast，避免錯字造成表名錯誤。
+- 面試中可把 incident 排查拆成 schedule、template、channel DB、SQL execution、schema drift。
 
 ## 不可誇大
 
@@ -52,5 +106,5 @@ Senior 風險不在 SQL 多複雜，而在 rollover reliability：
 ## 下一步
 
 ```text
-iwin game_job partition-table-creation Step 4
+iwin game_job partition-table-creation Step 5
 ```
