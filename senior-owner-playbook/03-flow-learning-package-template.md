@@ -171,6 +171,19 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - 下一步 prompt 必須放成 Nick 可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `；code block 內只放一行短 prompt。
 - 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；commit 前仍須遵守多 session / staging area 防污染規則，確認沒有非本輪 staged 檔案。若需要 push，直接觸發 `git push` approval 視窗，不要只停在本地文字回報。
 
+## Flow Track 與 Career Track
+
+Flow 文件負責 Flow Track：系統理解、深掃 evidence、面試 case、單條 flow claim gate。
+
+履歷 / 自傳負責 Career Track：project-level contribution consolidation 與 05 / 08 最終說法。
+
+規則：
+
+- Flow Step 5 只判斷單條 flow，不代表整個 project 完成，也不直接決定 05 / 08。
+- Project contribution consolidation 可以引用 flow evidence，但主要掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認與 archive 履歷素材。
+- 更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 前，必須先有 project-level consolidation 結論。
+- contribution consolidation 不需要等所有 candidate flow 都 Step 5；它可以在任一代表 flow 完成、Nick 追問履歷、或準備更新履歷前執行。
+
 ## 拆檔規則
 
 - `flow.md`：唯一主報告。前半寫初階 / 中階可讀區：閱讀定位、白話導讀、Code 分層對照、最小架構圖、正常流程圖與正常流程逐步說明；後半寫 Senior / Owner 深度區：業務問題、系統位置、資料與狀態、failure window、owner decision、面試 / 履歷邊界摘要。

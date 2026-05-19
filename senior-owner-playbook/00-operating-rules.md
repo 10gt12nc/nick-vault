@@ -14,6 +14,15 @@
 
 AI 都必須套用同一套規則。
 
+### Flow Track vs Career Track
+
+本 vault 同時有兩條線，AI 必須分清楚：
+
+1. `Flow Track`：負責系統理解與面試案例。固定主線是 `Step 1 project candidate flows -> Step 2 flow ranking -> 單條 flow Step 3 深掃 -> Step 4 面試 case -> Step 5 單條 flow claim gate`。每條 flow 一樣要依深掃規範讀 code、history、evidence、failure window、consistency、claim boundary。Flow Step 5 只回答「這條 flow 本身能不能作履歷素材」，不能回答「整個 project 履歷怎麼寫」。
+2. `Career Track`：負責履歷 / 自傳 / project-level 經驗整理。固定主線是 `project contribution claim consolidation -> 05 resume / 08 autobiography`。consolidation 要以 project 為包裝單位，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence 與 archive 履歷素材。履歷 / 自傳可以引用 flow，但主要結論來自 project-level consolidation，不直接吃單條 flow Step 5。
+
+重要優先級：若只是學系統或準備單條面試 case，走 Flow Track。若要判斷 Nick 經驗、履歷、自傳、project claim，走 Career Track。`project contribution claim consolidation` 不要求 project 所有 candidate flow 都做到 Step 5；它可以在任一代表 flow 完成、Nick 追問履歷、或準備更新 05 / 08 前先做。
+
 AI 需要自動維護：
 
 - 自動重讀 KB。
@@ -338,6 +347,12 @@ flow、履歷、自傳與面試素材都要標註來源層級：
 `contribution claim consolidation` 是履歷 claim gate，不是新的 flow Step，也不是亂創任務。它的目的只是防止把「分析過 code」誤寫成「Nick 真實開發過」，也防止只因單條 flow 缺 direct path evidence 就抹掉整個 project 經驗。
 
 它不要求 project 內所有 candidate flow 都做到 Step 5。contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認與既有 flow evidence；目的是先建立 project-level 履歷 claim 邊界。可在任一代表 flow 完成、Nick 追問履歷價值、或準備更新履歷前執行。
+
+正式履歷 / 自傳更新規則：
+
+- 05 / 08 只吃 project-level consolidation 的結論，不直接吃單條 flow Step 5。
+- 單條 flow Step 5 可以成為 consolidation 的 evidence，但不能單獨決定整個 project 的履歷說法。
+- 若某 project 尚未 consolidation，AI 不得因為某條 flow 已 Step 5 就直接更新 05 / 08；也不得因為某條 flow 缺 direct evidence 就否定整個 project 經驗。
 
 contribution consolidation 必須至少掃：
 

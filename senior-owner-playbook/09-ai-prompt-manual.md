@@ -17,6 +17,7 @@
 - 只輸出整理後的新內容，不複製舊檔。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
+- Flow 線與履歷 / 自傳線分開：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
@@ -543,9 +544,16 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 每條可用說法都要標註證據層級；沒有 Nick 本人 evidence 時，不得寫成真實開發成果。
 ```
 
-## 5. Step 5：履歷 / 自傳更新
+## 5. Step 5：單條 flow claim gate
 
-用途：只有 flow 完成後，才允許更新履歷。
+用途：檢查單條 flow 是否可作履歷 / 自傳素材，但不直接代表整個 project 履歷結論。
+
+重要：
+
+- Step 5 是 Flow Track 的最後一站，只判斷單條 flow。
+- 正式 05 / 08 履歷自傳屬於 Career Track，原則上必須先有 project contribution claim consolidation。
+- 單條 flow Step 5 可以輸出「可放履歷 / 可面試講 / 不可誇大」的 evidence，供 project consolidation 使用。
+- 若 project 尚未 consolidation，不得只憑單條 flow Step 5 直接更新 05 / 08。
 
 ```text
 請根據已完成的 flow evidence，檢查是否值得更新：
