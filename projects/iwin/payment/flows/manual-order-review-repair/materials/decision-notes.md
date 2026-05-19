@@ -33,5 +33,5 @@
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```

@@ -236,7 +236,7 @@ Step 5 已完成：本 flow 可作 `game_api` project contribution consolidation
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

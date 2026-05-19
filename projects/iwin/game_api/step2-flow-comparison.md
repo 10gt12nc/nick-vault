@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 5 claim gate；因目前只有單條完整 flow，下一步轉第二順位 `partner-deposit-withdraw-bill Step 3`
+建議：已完成 Step 5 claim gate；第二順位 `partner-deposit-withdraw-bill` 已完成 Step 3，下一步做 Step 4
 證據層級：真實開發過 + code-backed
 
 ### 已確認
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可作 flow evidence；但目前只有單條完整 flow，不足以做完整 `game_api contribution claim consolidation`。下一步應補 `partner-deposit-withdraw-bill Step 3`。
+Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 3，下一步應做 Step 4。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,12 +213,12 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `partner-deposit-withdraw-bill Step 3`，補足 Step 2 本批代表 flows。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 已補到 Step 3，下一步轉 Step 4。
 
 ## 2. `partner-deposit-withdraw-bill`
 
 中文名稱：Partner API 上分 / 下分 / 查單
-建議：第二順位；coupon Step 5 收斂後再做
+建議：Step 3 已完成；下一步做 Step 4
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
@@ -237,6 +237,8 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `pa
   - 呼叫 `GM_CMD_WITHDRAW`。
   - 成功後 `updCoin(status=0)`。
 - `BillInfo` / `BillList` 依 `billNos` 或 start / end 推出分日 collection 查詢。
+- Step 3 已補完整 flow package：`flows/partner-deposit-withdraw-bill/flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md`。
+- 本輪 path-specific history 未看到 Nick / `10gt12nc` 直接修改 partner flow；目前只作 code-backed 面試素材，不更新正式履歷。
 
 ### Senior / Owner 價值
 
@@ -285,7 +287,13 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `pa
 
 ### 結論
 
-第二順位。價值高，但 Step 3 成本比 coupon 高。
+第二順位已進 Step 3。這條是 `game_api` 最接近正式 partner money API 的代表 flow；下一步應做 Step 4 面試收斂，仍不直接做完整 project contribution consolidation。
+
+下一步：
+
+```text
+iwin game_api partner-deposit-withdraw-bill Step 4
+```
 
 ## 3. `agent-bonus-receive-transfer`
 
@@ -479,13 +487,13 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `pa
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```
 
 為什麼現在做它：
 
-- `coupon-redeem-credit-grant` 已完成 Step 5。
-- 同 project 第一條 flow 已收斂，但 Step 2 本批代表 flows 未完成，不足以做完整 project-level contribution consolidation。
+- `partner-deposit-withdraw-bill` Step 3 已完成。
+- 同 project 第二條代表 money API 已讀清楚，但還需要 Step 4 面試收斂；暫不做完整 project-level contribution consolidation。
 
 會產出什麼：
 

@@ -169,7 +169,7 @@
 本 flow 已完成；下一步不再停留在 app_bi，只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```
 
 原因：
@@ -177,7 +177,7 @@ iwin game_api partner-deposit-withdraw-bill Step 3
 - `point-control-admin-operation` 已完成 Step 5，且不更新履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin game_api partner-deposit-withdraw-bill Step 3`，先補 game_api 第二條代表 money API flow。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin game_api partner-deposit-withdraw-bill Step 4`，收斂 game_api 第二條代表 money API flow 的面試素材。
 - 它目前仍只作報表 / projection 分析素材，不更新履歷。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

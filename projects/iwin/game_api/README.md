@@ -8,9 +8,12 @@
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
-3. [flows/coupon-redeem-credit-grant/flow.md](flows/coupon-redeem-credit-grant/flow.md)：Step 3 第一條 flow 主研究報告。
+3. [flows/coupon-redeem-credit-grant/flow.md](flows/coupon-redeem-credit-grant/flow.md)：第一條完整 flow 主研究報告，已到 Step 5。
 4. [flows/coupon-redeem-credit-grant/career-interview.md](flows/coupon-redeem-credit-grant/career-interview.md)：該 flow 的保守面試素材。
 5. [flows/coupon-redeem-credit-grant/materials/](flows/coupon-redeem-credit-grant/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+6. [flows/partner-deposit-withdraw-bill/flow.md](flows/partner-deposit-withdraw-bill/flow.md)：第二條代表 money API flow，Partner API 上分 / 下分 / 查單，已完成 Step 3。
+7. [flows/partner-deposit-withdraw-bill/career-interview.md](flows/partner-deposit-withdraw-bill/career-interview.md)：該 flow 的 Step 3 面試草稿。
+8. [flows/partner-deposit-withdraw-bill/materials/](flows/partner-deposit-withdraw-bill/materials/)：Step 3 掃描範圍、evidence、decision、interview、claim boundary。
 
 ## 目前狀態
 
@@ -19,6 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊；建議先深挖 coupon |
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 已完成優惠券兌換上分 / 打碼要求 Level 2+ claim gate；`10gt12nc` 在 coupon Controller / Service / DAO / mapper / entity 與 gameserver bet target handler 有 path-specific commits，可作 project contribution consolidation evidence |
+| `flows/partner-deposit-withdraw-bill/` | Step 3 已完成 | 已完成 Partner API 上分 / 下分 / 查單 Level 2 code-backed flow 深掃；目前未看到 Nick / `10gt12nc` direct path evidence，不更新正式履歷 |
 | `contribution-claim-consolidation.md` | 暫緩 | 依最新 KB，單條 coupon Step 5 不能直接代表整個 `game_api` project；先補第二條代表 flow |
 
 ## 專案定位
@@ -53,6 +57,7 @@
 
 - 可用來理解 / 分析 iwin 玩家端 API、partner API 與 money-related orchestration。
 - `coupon-redeem-credit-grant` 可作 Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發的候選 evidence，包含 API、service、DB record、GM command orchestration 與下游 bet target handler 對接。
+- `partner-deposit-withdraw-bill` 可作 code-backed 面試素材，用來說明 partner 上分 / 下分 / 查單、Mongo 訂單狀態、GM command、idempotency 與 reconciliation 風險；目前不作正式履歷 claim。
 - 其他 `game_api` flow 仍需各自完成 claim gate，不能因 coupon evidence 擴大成整個 `game_api` owner。
 
 目前不能說：
@@ -67,13 +72,14 @@
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```
 
 原因：
 
-- `coupon-redeem-credit-grant` Step 5 已完成，且已有 Nick / `10gt12nc` direct path evidence。
-- 但單條 coupon Step 5 不能代表完整 `game_api` project；下一步應回 Step 2 ranking，補第二順位 `partner-deposit-withdraw-bill`。
+- `partner-deposit-withdraw-bill` Step 3 已完成，入口、上下分、查單、狀態與風險窗口已讀清楚。
+- 下一步應把這條 flow 收斂成 Step 4 面試素材。
+- 仍不做 `game_api contribution claim consolidation`，因為本批代表 flows 尚未完成到 Step 5。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

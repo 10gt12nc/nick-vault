@@ -56,7 +56,7 @@
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 3
+iwin game_api partner-deposit-withdraw-bill Step 4
 ```
 
 原因：
