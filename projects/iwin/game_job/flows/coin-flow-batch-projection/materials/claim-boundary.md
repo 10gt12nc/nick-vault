@@ -1,6 +1,6 @@
 # Claim Boundary: coin-flow-batch-projection
 
-## Step 3 判定
+## Step 4 判定
 
 目前判定：不更新正式履歷 / 自傳。
 
@@ -8,7 +8,7 @@
 
 原因：
 
-- 已深讀 `CoinFlowJob` 核心 path，可作面試分析素材。
+- 已深讀 `CoinFlowJob` 核心 path，並已轉成 Step 4 正式面試 case。
 - path-specific history 沒有足夠 Nick / `10gt12nc` direct commit 可以證明 Nick 真實開發這條 flow。
 - 目前沒有 Nick 本人確認、MR、ticket、production issue 可補強。
 
@@ -32,3 +32,7 @@
 - `10gt12nc` 在 coin flow direct path 的 commit / branch / MR / ticket。
 - production issue 或修復紀錄。
 - app_bi / BI 查詢端是否把此 projection 用於重要報表。
+
+## Step 5 初步預期
+
+若沒有新增 evidence，Step 5 大概率維持「不更新正式履歷 / 自傳」。這條可留作 code-backed 面試 case，展示 batch projection、checkpoint consistency、replay 與 observability 分析能力。

@@ -113,5 +113,5 @@ A：它不是 wallet correctness 的 source of truth，但它是 troubleshooting
 ## 下一步
 
 ```text
-iwin game_job coin-flow-batch-projection Step 4
+iwin game_job coin-flow-batch-projection Step 5
 ```

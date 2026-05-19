@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、金幣流水 / 玩家行為 projection、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 3，目前是 code-backed 分析素材，未到履歷 claim。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner 或負責上游 gameserver 到 app_bi 全鏈路。
+它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 4，目前是 code-backed 面試 case，未到履歷 claim。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -15,7 +15,7 @@
 5. [flows/third-party-record-mongo-backup/flow.md](flows/third-party-record-mongo-backup/flow.md)：第三方遊戲紀錄 Mongo 備份與清理 Step 3 主報告。
 6. [flows/third-party-record-mongo-backup/career-interview.md](flows/third-party-record-mongo-backup/career-interview.md)：該 flow 的保守面試素材。
 7. [flows/coin-flow-batch-projection/flow.md](flows/coin-flow-batch-projection/flow.md)：金幣流水清算 / 玩家行為投影 Step 3 主報告。
-8. [flows/coin-flow-batch-projection/career-interview.md](flows/coin-flow-batch-projection/career-interview.md)：該 flow 的 Step 3 面試素材初稿。
+8. [flows/coin-flow-batch-projection/career-interview.md](flows/coin-flow-batch-projection/career-interview.md)：該 flow 的 Step 4 正式面試 case。
 9. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
 
 ## 目前狀態
@@ -28,8 +28,8 @@
 | `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
 | `flows/third-party-record-mongo-backup/flow.md` | Step 5 | 已完成 Mongo backup / delete / retention flow 學習包、面試 case 與 claim gate |
 | `flows/third-party-record-mongo-backup/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；可保守寫局部 GSC backup 分批處理經驗 |
-| `flows/coin-flow-batch-projection/flow.md` | Step 3 | 已完成金幣流水 / 玩家行為 projection 主學習包；目前 code-backed，不更新履歷 |
-| `flows/coin-flow-batch-projection/career-interview.md` | Step 3 | 已建立面試素材初稿；Step 4 需轉正式 case |
+| `flows/coin-flow-batch-projection/flow.md` | Step 4 | 已完成金幣流水 / 玩家行為 projection 主學習包與正式面試 case；目前 code-backed，不更新履歷 |
+| `flows/coin-flow-batch-projection/career-interview.md` | Step 4 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；Step 5 需做 claim gate |
 
 ## 專案定位
 
@@ -77,14 +77,13 @@
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 4
+iwin game_job coin-flow-batch-projection Step 5
 ```
 
 原因：
 
-- `coin-flow-batch-projection` Step 3 已完成，已把 Redis checkpoint、多來源 projection、跨日 catch-up、MySQL 累加 upsert 與 Mongo delete+insert failure window 整理成主學習包。
-- 下一步應轉成正式 Step 4 面試 case，而不是跳其他 project。
-- 是否更新履歷要等 Step 5 claim gate。
+- `coin-flow-batch-projection` Step 4 已完成，已把 Redis checkpoint、多來源 projection、跨日 catch-up、MySQL 累加 upsert 與 Mongo delete+insert failure window 轉成正式面試 case。
+- 下一步應做 Step 5 claim gate，確認是否更新履歷；目前預期未補 direct evidence 前不更新。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

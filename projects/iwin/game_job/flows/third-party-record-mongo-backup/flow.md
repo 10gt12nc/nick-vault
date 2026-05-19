@@ -243,11 +243,11 @@ Step 5 前只能保守標成 code-backed / 分析過；`10gt12nc` 的 GSC 分批
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 4
+iwin game_job coin-flow-batch-projection Step 5
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，claim 已收斂為局部真實開發過。
-- `coin-flow-batch-projection` Step 3 已完成，下一步應轉成正式 Step 4 面試 case。
-- 是否更新履歷要等該 flow Step 5。
+- `coin-flow-batch-projection` Step 4 已完成，下一步應做 Step 5 claim gate。
+- 目前預期未補 direct evidence 前不更新履歷。

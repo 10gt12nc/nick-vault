@@ -6,7 +6,7 @@
 
 掃描等級：Level 2。
 
-證據層級：專案存在 / code-backed；Nick 貢獻待 Step 5 claim gate。
+證據層級：專案存在 / code-backed；Step 4 已轉正式面試 case，Nick 貢獻待 Step 5 claim gate。
 
 ## KB / vault 重讀
 
@@ -19,6 +19,9 @@
 - `projects/iwin/game_job/README.md`
 - `projects/iwin/game_job/step1-candidate-flows.md`
 - `projects/iwin/game_job/step2-flow-comparison.md`
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/flow.md`
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/career-interview.md`
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/materials/interview.md`
 
 ## Source repo 狀態
 
@@ -39,6 +42,7 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - `origin/main` HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
 - ahead / behind：`0 / 0`
 - 工作區：乾淨
+- Step 4 前已再次 fetch，local / remote HEAD 仍一致。
 
 未做：
 
@@ -106,6 +110,14 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - `CoinFlowJob.java` path 主要 history 為 first commit 與 2026 k3s / Java 21 / Spring Boot 3.2 遷移。
 - 相關 coin flow / mapper path 可見 `10gt12nc` 的 daily summary 類 commits，但這些不是 coin flow direct ownership evidence。
 - 目前不可把此 flow 標為 Nick 真實開發過。
+
+## Step 4 產出
+
+已更新：
+
+- `career-interview.md`：正式 30 秒、3 分鐘、STAR、常見追問、Lead / Architect 追問、可說 / 不可說。
+- `materials/interview.md`：面試口語開場、深入講法、STAR 素材、追問回答與可用句子。
+- `materials/claim-boundary.md`：更新 Step 4 判定；未補 direct evidence 前不更新正式履歷 / 自傳。
 
 ## 已確認風險
 
