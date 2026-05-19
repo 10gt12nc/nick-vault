@@ -10,6 +10,8 @@
 
 > 2026-05-19 game_job daily summary Step 5：已完成 `projects/iwin/game_job/flows/daily-game-data-summary/` claim gate。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
 
+> 2026-05-19 game_job third-party Mongo backup Step 5：已完成 `projects/iwin/game_job/flows/third-party-record-mongo-backup/` claim gate。Nick / `10gt12nc` 在 `game_job` GSC Mongo backup job path 有 `d11b1f4`、`bf92773` direct commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。仍不得寫成主導完整第三方遊戲紀錄備份、完整 Antplay / GSC / Oneapi retention policy owner、已驗證 production enable 或改善 X%。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
@@ -23,13 +25,13 @@
 - 參與第三方金流 provider 對接與維護，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay 等 provider request / callback / query / withdraw flow，處理簽章驗證、金額單位、merchant order id、callback ack、查單與 provider response 異常；不寫主導完整金流或全部 provider owner。
 - 修正或維護 payment / withdraw order 建單一致性與 provider callback / sign 類問題，例如 BeanUtil copied id 造成 order insert collision 的風險、Pay4z / NaNapay / SitoBank / OnePay 類 provider 驗簽與欄位格式問題；不寫完整 reconciliation 或量化事故改善。
 - 參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游上分 / 打碼處理；可面試延伸 transaction boundary、idempotency、partial success 與 reconciliation，但不寫主導完整活動獎勵系統或修復 production 雙領事故。
-- 參與每日遊戲資料彙總 batch / BI projection 開發與維護，處理 `log_reel` 投注明細到 `log_game_daily_record` 的彙總、資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存與歷史資料備份 / 清理；不寫主導完整 BI pipeline 或完整資料平台 owner。
+- 參與每日遊戲資料彙總 batch / BI projection 開發與維護，處理 `log_reel` 投注明細到 `log_game_daily_record` 的彙總、資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存與歷史資料備份 / 清理；並參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整；不寫主導完整 BI pipeline、完整資料平台 owner 或完整第三方紀錄備份 owner。
 - 參與第三方遊戲 provider integration 與遊戲結算相關流程，涵蓋登入、轉入轉出、下注 / 派彩、rollback、交易同步、紀錄保存與報表鏈路，聚焦玩家餘額、provider transaction 與 round log 的一致性。
 - 維護或分析 Kafka / RabbitMQ / scheduled job 等非同步流程，理解 retry、DLT、補償、request log、資料重跑與營運查詢在 production 中的重要性。
 - 參與後台控制面與營運工具維護，包含 RBAC / 權限、報表查詢、玩家 / 商戶 / provider 設定、白名單、quota、Quartz job 與操作稽核等場景。
 - 參與或分析 K3s / Docker / CI / observability 相關部署與維運資料，理解 service rollout、probe、resource、log pipeline、release provenance 與事故排查需求。
 - 參與或接觸 Game Server 新遊戲 / 活動、slot 類遊戲邏輯、RTP 模擬與 reel strip 驗證相關資料與流程，理解遊戲數學模組與 runtime loading 對遊戲平台的影響；若要寫成主要職責，需再確認實際參與程度。
-- 曾處理大量資料批次與查詢效能問題，例如 MongoDB cursor / stream、批次搬移、JVM / GC 觀察、Redis 熱點資料與 SQL 查詢調整等方向；正式履歷若要寫成量化改善，需再補前後指標。
+- 曾處理大量資料批次與查詢效能問題，例如 MongoDB 分批查詢 / 批次搬移、cursor / stream、JVM / GC 觀察、Redis 熱點資料與 SQL 查詢調整等方向；正式履歷若要寫成量化改善，需再補前後指標。
 
 ### 後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
 
@@ -97,4 +99,4 @@
 - 可使用：參與、維護、分析、梳理、協助、優化、整理、提出改善方向。
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
-- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler。game_job daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理。仍不可寫成主導完整金流、完整 reward system、完整 BI pipeline、全部 provider owner 或已建立完整 reconciliation。
+- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler。game_job daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理。game_job third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。仍不可寫成主導完整金流、完整 reward system、完整 BI pipeline、完整第三方紀錄備份、全部 provider owner 或已建立完整 reconciliation。

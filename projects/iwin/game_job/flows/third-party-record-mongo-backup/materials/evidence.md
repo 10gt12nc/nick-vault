@@ -2,7 +2,7 @@
 
 ## 本次掃描範圍
 
-任務：`iwin game_job third-party-record-mongo-backup Step 3` / Step 4 延伸
+任務：`iwin game_job third-party-record-mongo-backup Step 3` / Step 4 / Step 5 claim gate
 
 掃描深度：Level 2。
 
@@ -12,6 +12,14 @@ Step 4 補掃：
 - 重新 fetch `/Users/nick/Git/iwin/third_games_api` remote refs。
 - 補讀 `10gt12nc` 兩個 GSC commit 的 stat 與 diff：`d11b1f4`、`bf92773`。
 - 補整理面試 case、decision framing、claim boundary。
+
+Step 5 補掃：
+
+- 再次 fetch `/Users/nick/Git/iwin/game_job` remote refs。
+- 再次 fetch `/Users/nick/Git/iwin/third_games_api` remote refs。
+- 確認 `d11b1f4`、`bf92773` branch contains：`main`、`origin/main`、`origin/k3s`。
+- 補讀 `git show --name-status`、`git show --stat`、path-specific `10gt12nc` author log。
+- 補判斷正式履歷 / 自傳可用範圍。
 
 nick-vault：
 
@@ -40,7 +48,7 @@ source repo：
 
 `/Users/nick/Git/iwin/game_job`
 
-- 已執行：`git fetch --all --prune`；Step 4 已再次執行
+- 已執行：`git fetch --all --prune`；Step 4 / Step 5 已再次執行
 - local branch：`main`
 - local HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
 - `origin/main`：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
@@ -50,7 +58,7 @@ source repo：
 
 `/Users/nick/Git/iwin/third_games_api`
 
-- 已執行：`git fetch --all --prune`；Step 4 已再次執行
+- 已執行：`git fetch --all --prune`；Step 4 / Step 5 已再次執行
 - local branch：`beta`
 - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
 - `origin/beta`：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
@@ -209,6 +217,39 @@ Batch size：
 - 後續 `b993395` by arnold 又把 GSC transaction batch size 調成 2500。
 - 判斷：batch size 是 production tuning 題，但本次沒有 metrics，不能寫量化改善。
 
+## Step 5 claim gate
+
+Branch contains：
+
+- `d11b1f4`：`main`、`origin/main`、`origin/k3s`
+- `bf92773`：`main`、`origin/main`、`origin/k3s`
+
+`git show --name-status`：
+
+- `d11b1f4` 修改：
+  - `config/application-quartz.yml`
+  - `src/main/java/com/job/biTask/ThirdLogGscJob.java`
+  - `src/main/java/com/job/biTask/ThirdTransactionGscJob.java`
+  - `src/main/java/com/pojo/vo/ThirdLogGscVO.java`
+  - `src/main/java/com/pojo/vo/ThirdTransactionGscVO.java`
+  - `src/main/resources/application-quartz.yml`
+- `bf92773` 修改：
+  - `src/main/java/com/job/biTask/ThirdLogGscJob.java`
+  - `src/main/java/com/job/biTask/ThirdTransactionGscJob.java`
+
+Path-specific `10gt12nc` author log：
+
+- GSC backup path 直接相關只有 `d11b1f4`、`bf92773`。
+- 同一 author 在 `game_job` 還有 daily summary / timezone / retention 類 commits，但那些已歸入 `daily-game-data-summary` Step 5，不混到本 flow claim。
+
+Step 5 判斷：
+
+- 可升級為「局部真實開發過 + code-backed」。
+- 可寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與批次大小調整」。
+- 不可寫「主導完整第三方遊戲紀錄備份系統」。
+- 不可寫「負責完整 Antplay / GSC retention policy」。
+- 不可寫任何 storage / 查詢效率量化改善。
+
 ## 已確認
 
 - `game_job` 有第三方 Mongo retention job。
@@ -234,17 +275,25 @@ Batch size：
 
 ## 履歷判斷
 
-本 Step 4 不更新正式履歷。
+本 Step 5 可保守更新正式履歷。
 
-`10gt12nc` commit 是局部真實開發線索，但目前只能寫：
+可寫：
 
-- 「Nick / `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 commit，待 Step 5 claim gate 判斷是否能升級為局部真實開發。」
+- 「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與批次大小調整。」
+- 建議併入 `game_job` / 批次處理 / Mongo 大量資料處理 bullet，不單獨放大。
 
 不能寫：
 
 - Nick 主導第三方遊戲紀錄備份。
 - Nick owner Antplay / GSC retention policy。
 - Nick 改善 storage 或查詢效率 X%。
+
+## Step 5 產出
+
+- `claim-boundary.md` 已升級為 Step 5，標示局部真實開發過。
+- `career-interview.md` 已補可放履歷 / 不可誇大。
+- `README.md`、Step 文件、inventory、todo 已同步。
+- `05-resume-master-zh.md`、`08-application-autobiography-zh.md` 已保守同步。
 
 ## Step 4 產出
 

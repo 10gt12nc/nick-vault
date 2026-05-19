@@ -31,6 +31,7 @@
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
 - 已完成 `game_api coupon-redeem-credit-grant Step 5`，確認 `10gt12nc` 有 game_api / iwin_gameserver coupon path-specific commits；可保守更新正式履歷 / 自傳，不寫主導完整 coupon / reward owner。
 - 已完成 `game_job daily-game-data-summary Step 5`，確認 `10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 path-specific commits；可保守更新正式履歷 / 自傳，不寫完整 BI pipeline owner。
+- 已完成 `game_job third-party-record-mongo-backup Step 5`，確認 `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 direct commits；可保守更新正式履歷 / 自傳為局部 GSC Mongo backup 分批處理經驗，不寫完整第三方紀錄備份 owner。
 - 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為金流 callback consistency / compensation 的保守面試素材。
 - 已完成 `payment withdrawal-auto-review-refund Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為提款、自動審核 / 自動出款、失敗退款的一致性與補償面試素材。
 - 已完成 `payment payment-order-provider-request Step 5`，完成 provider request claim gate；已確認 Nick 在 Pay4z / NaNapay / BFPAY / NimTestPay 等 provider request / query / callback 相關 code 有 path-specific commits，正式履歷可用「參與」口徑，不寫主導完整金流。
@@ -46,12 +47,12 @@
 
 ## 下一步
 
-### 1. iwin game_job third-party-record-mongo-backup Step 5
+### 1. iwin game_job coin-flow-batch-projection Step 3
 
 建議下一步：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```
 
 原因：
@@ -59,13 +60,14 @@ iwin game_job third-party-record-mongo-backup Step 5
 - payment project-level contribution consolidation 已完成，履歷 / 自傳已保守同步。
 - `game_api coupon-redeem-credit-grant` 已完成 Step 5，履歷 / 自傳已保守同步。
 - `game_job daily-game-data-summary` 已完成 Step 5，履歷 / 自傳已保守同步。
-- `third-party-record-mongo-backup` Step 4 已完成，下一步應做 Step 5 claim gate，判斷 `10gt12nc` GSC 分批查詢 commit 是否能保守形成局部真實開發 claim。
+- `third-party-record-mongo-backup` Step 5 已完成，履歷 / 自傳已保守同步為局部 GSC backup 分批處理經驗。
+- 同 project 下一條最值得做 `coin-flow-batch-projection`，補 Redis checkpoint、多來源 projection、跨日 catch-up 與 idempotency 題。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_job third-party-record-mongo-backup Step 5`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin game_job coin-flow-batch-projection Step 3`。以下是近期各 project 的局部下一步：
 
-1. `game_job`：`third-party-record-mongo-backup Step 5`。
+1. `game_job`：`coin-flow-batch-projection Step 3`。
 2. `iwin_gameserver`：判斷是否做 `center-http-deposit-withdraw Step 3`。
 3. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
 4. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
@@ -90,12 +92,12 @@ iwin game_job third-party-record-mongo-backup Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon 與 game_job daily summary 已收斂，`game_job third-party-record-mongo-backup Step 4` 也已收斂，下一步回到 `game_job third-party-record-mongo-backup Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，下一步回到 `game_job coin-flow-batch-projection Step 3`。
 
 ## 下一個 prompt
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

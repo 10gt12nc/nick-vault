@@ -1,8 +1,8 @@
 # third-party-record-mongo-backup career-interview
 
-完成狀態：Step 4。
+完成狀態：Step 5。
 
-證據層級：專案存在 / code-backed；`10gt12nc` 有 GSC 分批查詢與 batch size 調整 commit 線索，待 Step 5 claim gate 判斷是否能升級成局部真實開發。
+證據層級：局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢與 batch size 調整 commits。
 
 ## 一句話版本
 
@@ -34,9 +34,9 @@ Situation：第三方遊戲 provider log / transaction 寫在 Mongo active colle
 
 Task：讓 retention job 能分批搬移舊資料，避免一次拉全量造成記憶體與長時間操作風險，並降低 copy-then-delete 的資料不一致風險。
 
-Action：從 code-backed 分析來看，GSC 曾由 `10gt12nc` commit 把原本一次查出所有符合條件的資料，改成 `while` loop + `limit(BATCH_SIZE)` 分批查詢、逐批 insert backup、逐批用 `_id` delete origin；後續又調整 batch size。Step 4 先把它整理成面試 case，不直接升正式履歷。
+Action：從 code-backed 分析來看，GSC 曾由 `10gt12nc` commit 把原本一次查出所有符合條件的資料，改成 `while` loop + `limit(BATCH_SIZE)` 分批查詢、逐批 insert backup、逐批用 `_id` delete origin；後續又調整 batch size。Step 5 已確認這能支撐局部真實開發 claim。
 
-Result：可面試講成 batch retention / partial failure / idempotent retry 題；正式履歷是否能寫「參與 GSC Mongo backup 分批查詢」要等 Step 5 claim gate 補 commit diff、本人確認與可能的 ticket / MR。
+Result：可面試講成 batch retention / partial failure / idempotent retry 題；正式履歷可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與批次大小調整」，但不可擴大成完整 retention owner。
 
 ## 可面試講
 
@@ -80,13 +80,19 @@ A：它不是 wallet correctness 的 source of truth，但它是 troubleshooting
 
 ## 可放履歷
 
-目前不建議單獨放正式履歷。
+可以放正式履歷，但不建議單獨放大成一整條主力成果；應併入 `game_job` / batch / Mongo 大量資料處理經驗。
 
 原因：
 
-- Step 4 已 code-backed 並完成面試 case，但尚未完成 Step 5 claim gate。
-- `10gt12nc` 有 GSC 分批查詢與 batch size 調整 commit，屬於值得保留的直接參與線索，但還需要 Step 5 判斷能否寫成局部真實開發。
+- Step 5 已確認 `10gt12nc` 有 GSC 分批查詢與 batch size 調整 direct commits。
+- 這是局部真實開發，不是完整系統 owner。
 - 不能把這條 flow 包裝成 Nick 主導完整第三方遊戲 audit retention。
+
+保守履歷句：
+
+```text
+參與遊戲報表與紀錄保留相關 batch 維護，包含每日遊戲資料彙總，以及 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與批次大小調整。
+```
 
 ## 可作面試素材
 
@@ -107,5 +113,5 @@ A：它不是 wallet correctness 的 source of truth，但它是 troubleshooting
 ## 下一步
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```

@@ -1,6 +1,6 @@
 # third-party-record-mongo-backup decision-notes
 
-完成狀態：Step 4。
+完成狀態：Step 5。
 
 用途：整理這條 Mongo retention flow 的 owner decision、取捨與面試 framing。
 
@@ -10,7 +10,7 @@
 
 目前 code 順序是先 insert backup，再 delete origin。這個順序偏安全，因為失敗時比較可能留下 duplicate，而不是直接丟資料。但它還缺少 idempotent write、batch reconciliation 與 retention policy 的明確 decision。
 
-`10gt12nc` 相關 diff 顯示 GSC job 曾從一次查出所有符合條件的資料，改成 `while` loop + `limit(BATCH_SIZE)` 分批查詢、逐批 insert backup、逐批依 `_id` delete origin；後續又調整 batch size。這可作為 Step 4 面試素材，但是否能寫成正式履歷要等 Step 5。
+`10gt12nc` 相關 diff 顯示 GSC job 曾從一次查出所有符合條件的資料，改成 `while` loop + `limit(BATCH_SIZE)` 分批查詢、逐批 insert backup、逐批依 `_id` delete origin；後續又調整 batch size。Step 5 已確認這可保守寫成局部真實開發，但只限 GSC 分批查詢與 batch size 調整。
 
 ## Owner decision 1：資料丟失 vs duplicate
 
@@ -109,7 +109,7 @@ GSC history 有 batch size 調整：
 
 這比背 class 名稱更像 Senior / Owner。
 
-## Step 5 前不可升級的點
+## Step 5 後仍不可升級的點
 
 - 不可把 `10gt12nc` 的兩個 GSC commit 擴大成完整 Antplay / GSC backup owner。
 - 不可說 production 已驗證，因 main config GSC disabled，production enable 仍待部署 config 確認。

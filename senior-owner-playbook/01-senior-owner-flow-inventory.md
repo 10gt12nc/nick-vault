@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，payment Top 5 flow、`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 4` 都已收斂；下一步回到 `game_job third-party-record-mongo-backup Step 5`。
+- 若目標是最快產出 Senior Backend 履歷素材，payment Top 5 flow、`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 5` 都已收斂；下一步回到 `game_job coin-flow-batch-projection Step 3`。
 - 2026-05-19 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，但不得寫成主導完整金流或全部 provider owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
@@ -103,7 +103,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 5 | code-backed；不單獨升級支付設定 owner | 否，作面試素材 | 已收斂 |
 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 3 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 commits | 是，保守更新 | 已收斂 |
-| iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 4 | 專案存在 / code-backed；`10gt12nc` 有 GSC 分批查詢 commit 線索，待 Step 5 判斷 | 否 | queue 第 1：Step 5 |
+| iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 5 | 局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢 / batch size 調整 commits | 是，併入 game_job batch bullet | 已收斂 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂，待回 ranking |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 2 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 2 |
 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 4 |
@@ -113,7 +113,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```
 
 原因:
@@ -121,7 +121,8 @@ iwin game_job third-party-record-mongo-backup Step 5
 - `payment` project-level contribution consolidation 已完成，履歷 / 自傳已保守同步。
 - `game_api coupon-redeem-credit-grant` 已完成 Step 5，履歷 / 自傳已保守同步。
 - `game_job daily-game-data-summary` 已完成 Step 5，履歷 / 自傳已保守同步。
-- 同 project 目前最值得接著做 `third-party-record-mongo-backup Step 5`。
+- `game_job third-party-record-mongo-backup` 已完成 Step 5，履歷 / 自傳已保守同步。
+- 同 project 目前最值得接著做 `coin-flow-batch-projection Step 3`。
 
 ## 近期候選 Queue
 
@@ -129,9 +130,9 @@ iwin game_job third-party-record-mongo-backup Step 5
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | Step 4 已收斂；下一條做 claim gate，判斷 `10gt12nc` GSC 分批查詢是否可保守升級局部 claim | `iwin game_job third-party-record-mongo-backup Step 5` |
-| 2 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | money correctness / center wallet mutation / idempotency | 待 game_job backup flow 後再排 Step 3 |
-| 3 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，下一步可做 claim gate | 待 game_job backup flow 後再排 |
+| 1 | iwin | game_job | `coin-flow-batch-projection` | 金幣流水清算 / 遊戲行為投影 | game_job 前兩條 flow 已收斂；下一條補 Redis checkpoint、多來源 projection、跨日 catch-up 與 idempotency | `iwin game_job coin-flow-batch-projection Step 3` |
+| 2 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | money correctness / center wallet mutation / idempotency | 待 game_job coin flow 後再排 Step 3 |
+| 3 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，下一步可做 claim gate | 待 game_job coin flow 後再排 |
 | 4 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |
 | 5 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不再排下一步 | 已完成 |
 | 6 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |

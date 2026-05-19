@@ -2,13 +2,13 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job third-party-record-mongo-backup Step 3` 主報告；Step 4 面試 case 已整理於 `career-interview.md` 與 `materials/interview.md`。
+本文件是 `iwin game_job third-party-record-mongo-backup Step 3` 主報告；Step 4 面試 case 與 Step 5 claim gate 已整理於 `career-interview.md` 與 `materials/claim-boundary.md`。
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理。
 
 掃描深度：Level 2。已讀 `game_job` 的 Quartz 入口、backup job、VO mapping、共用 `BiJobBase`、Quartz config、path-specific commit history，並對照 `third_games_api` 的 Antplay / GSC Mongo writer。這不是 Level 3 逐 commit diff 全量鑑識，也不是 production issue 復盤。
 
-證據層級：專案存在 / code-backed；Nick / `10gt12nc` 貢獻待 Step 5 claim gate 判斷。
+證據層級：局部真實開發過 + code-backed；Nick / `10gt12nc` 有 GSC 分批查詢與 batch size 調整 commit，可保守寫成局部參與，不可擴大成完整 backup owner。
 
 本 flow 不是 wallet source of truth。它比較像第三方遊戲 provider log / transaction 的 audit retention job：把超過保留門檻的 Mongo 文件從 active collection 搬到 backup collection，再清掉更舊的 backup。
 
@@ -243,11 +243,11 @@ Step 5 前只能保守標成 code-backed / 分析過；`10gt12nc` 的 GSC 分批
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```
 
 原因：
 
-- Step 4 已把這條 flow 轉成可面試講的 Senior case，並補 decision-notes 與回答稿。
-- 下一步應做 Step 5 claim gate，判斷 `10gt12nc` 的 GSC 分批查詢與 batch size 調整 commit 是否能支撐局部真實開發 claim。
-- 若 Step 5 不通過，就維持 code-backed 面試素材，不更新正式履歷。
+- 本 flow Step 5 已完成，claim 已收斂為局部真實開發過。
+- 依同 project ranking，下一條最值得做 `coin-flow-batch-projection`，它有 Redis checkpoint、多來源 projection、跨日 catch-up 與更接近 money correctness 的影子資料風險。
+- 下一步會產出單條 flow 學習包；是否更新履歷要等該 flow Step 5。

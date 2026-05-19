@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」；仍不得寫成主導完整 BI pipeline、完整 game_job owner 或負責上游 gameserver 到 app_bi 全鏈路。
+它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -24,8 +24,8 @@
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
 | `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可保守更新履歷 / 自傳 |
 | `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
-| `flows/third-party-record-mongo-backup/flow.md` | Step 4 | 已完成 Mongo backup / delete / retention flow 學習包與面試 case；先作 code-backed 面試素材 |
-| `flows/third-party-record-mongo-backup/career-interview.md` | Step 4 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；不更新正式履歷，待 Step 5 claim gate |
+| `flows/third-party-record-mongo-backup/flow.md` | Step 5 | 已完成 Mongo backup / delete / retention flow 學習包、面試 case 與 claim gate |
+| `flows/third-party-record-mongo-backup/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；可保守寫局部 GSC backup 分批處理經驗 |
 
 ## 專案定位
 
@@ -54,6 +54,7 @@
 
 - 可用來分析 iwin 批次任務、BI projection、分表、報表資料清洗與第三方遊戲紀錄備份流程。
 - `daily-game-data-summary` 可保守寫成 Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護，包含資料日 / 時區窗口、delete + insert 重跑、summary / retention、新增玩家與歷史資料備份 / 清理。
+- `third-party-record-mongo-backup` 可保守寫成 Nick 參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整。
 - 其他 `game_job` flow 仍需各自完成 claim gate，不能因 daily summary evidence 擴大成整個 `game_job` owner。
 
 目前不能說：
@@ -61,6 +62,7 @@
 - Nick 主導 `game_job`。
 - Nick 負責完整 BI / game data pipeline。
 - Nick 是第三方遊戲紀錄備份 owner。
+- Nick 設計完整 Antplay / GSC / Oneapi retention policy。
 - Nick 主導完整上游 gameserver -> game_job -> app_bi 報表鏈路。
 - 寫任何未驗證的量化改善，例如報表正確率、查帳時間或效能改善 X%。
 
@@ -69,17 +71,18 @@
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 5
+iwin game_job coin-flow-batch-projection Step 3
 ```
 
 原因：
 
-- `third-party-record-mongo-backup` Step 4 已完成，已整理成面試 case / decision framing。
-- 下一步應做 Step 5 claim gate，判斷 `10gt12nc` 的 GSC 分批查詢與 batch size 調整 commit 是否能保守升級成局部真實開發 claim。
-- 若 Step 5 不通過，就維持 code-backed 面試素材，不更新履歷。
+- `third-party-record-mongo-backup` Step 5 已完成，履歷 / 自傳已保守同步為局部 GSC backup 分批處理經驗。
+- 依 Step 2 ranking，同 project 下一條最值得做 `coin-flow-batch-projection`，補 Redis checkpoint、多來源 projection、跨日 catch-up 與 idempotency 題。
+- 是否更新履歷要等該 flow Step 5。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：真實開發過。Nick / `10gt12nc` 有 `daily-game-data-summary` path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
-- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正。
-- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。
+- 可放履歷：局部真實開發過。Nick / `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 分批處理維護」。
+- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正；可用 third-party Mongo backup 說明 copy-then-delete、idempotency、batch size 與 retention policy。
+- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、完整第三方紀錄備份 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

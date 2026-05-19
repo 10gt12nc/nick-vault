@@ -173,9 +173,10 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 目前完成 Step 4，可作 code-backed 面試 case。
-- `10gt12nc` 有 GSC 分批查詢與 batch size 調整 commit 線索：`d11b1f4`、`bf92773`。
-- 正式履歷仍待 Step 5 claim gate；不可寫成 Nick 主導完整第三方遊戲紀錄備份或 retention policy owner。
+- 目前完成 Step 5，可作 code-backed 面試 case，也可保守併入履歷。
+- `10gt12nc` 有 GSC 分批查詢與 batch size 調整 direct commits：`d11b1f4`、`bf92773`。
+- 可寫局部「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。
+- 不可寫成 Nick 主導完整第三方遊戲紀錄備份或 retention policy owner。
 
 面試主軸：
 
