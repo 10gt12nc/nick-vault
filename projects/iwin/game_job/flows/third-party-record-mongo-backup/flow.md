@@ -243,11 +243,11 @@ Step 5 前只能保守標成 code-backed / 分析過；`10gt12nc` 的 GSC 分批
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 3
+iwin game_job coin-flow-batch-projection Step 4
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，claim 已收斂為局部真實開發過。
-- 依同 project ranking，下一條最值得做 `coin-flow-batch-projection`，它有 Redis checkpoint、多來源 projection、跨日 catch-up 與更接近 money correctness 的影子資料風險。
-- 下一步會產出單條 flow 學習包；是否更新履歷要等該 flow Step 5。
+- `coin-flow-batch-projection` Step 3 已完成，下一步應轉成正式 Step 4 面試 case。
+- 是否更新履歷要等該 flow Step 5。

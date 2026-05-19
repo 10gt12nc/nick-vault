@@ -362,10 +362,10 @@ Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 3
+iwin game_job coin-flow-batch-projection Step 4
 ```
 
-原因：本 flow Step 5 已收斂，且同 project 下一條 `third-party-record-mongo-backup` 也已完成 Step 5；下一步回到同 project ranking，選 `coin-flow-batch-projection`。
+原因：本 flow Step 5 已收斂，且同 project 下一條 `third-party-record-mongo-backup` 也已完成 Step 5；`coin-flow-batch-projection` Step 3 已完成，下一步回到該 flow 做 Step 4。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

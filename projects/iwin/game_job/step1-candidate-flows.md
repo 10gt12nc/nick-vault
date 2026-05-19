@@ -2,7 +2,7 @@
 
 更新時間：2026-05-19
 掃描等級：Level 1 Flow 掃描
-狀態：Step 1 可沿用；第一條 flow 已完成 Step 5
+狀態：Step 1 可沿用；前兩條 flow 已完成 Step 5，第三條已完成 Step 3
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -13,7 +13,7 @@
 
 1. `daily-game-data-summary`：每日遊戲資料彙總，價值最高；有跨時區、重跑刪除、個人資料與 summary 資料分層、留存計算、備份清理。
 2. `third-party-record-mongo-backup`：第三方遊戲紀錄 Mongo 備份與清理；有批次查詢、insert backup、delete origin、保留天數與 partial failure 風險。
-3. `coin-flow-batch-projection`：金幣流水清算；有 log_reel / jackpot / taxt 多資料源、Redis checkpoint、跨日切換與 Mongo projection。
+3. `coin-flow-batch-projection`：金幣流水清算；有 log_reel / jackpot / taxt 多資料源、Redis checkpoint、跨日切換、MySQL user behaviour projection 與 Mongo coin flow projection。已完成 Step 3。
 4. `online-payment-data-cleaning`：支付 / 提現資料清洗；從 payment order 分表彙整充值、提現、首充、代理充值與經濟資料。
 5. `partition-table-creation`：每日 / 每月分表建立；支撐 log / BI table rollover，屬於可靠性輔助 flow。
 
@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job coin-flow-batch-projection Step 3` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job coin-flow-batch-projection Step 4` |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job coin-flow-batch-projection Step 3` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job coin-flow-batch-projection Step 4` |
 
 ## 掃描等級判斷
 
@@ -258,7 +258,7 @@ source repo 狀態：
 ### 3. `coin-flow-batch-projection`
 
 中文名稱：金幣流水清算 / 遊戲行為投影
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+證據層級：專案存在 / code-backed；目前已完成 Step 3，Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -272,23 +272,30 @@ source repo 狀態：
 - job 使用 Redis key 記錄 last pull max id、record num、pull over status、last result。
 - `execAfter()` 會確認所有 channel 的三種資料表都拉完後才 `taskFinish()`。
 - `afterTaskFinish()` 會重設 next day pull id / status 並清 Redis。
+- Step 3 已確認 MySQL `user_game_behaviour_{yyyy_m}` 是累加 upsert，Mongo `log_coin_flow_{gameId}` 是 delete+insert projection。
+- Step 3 已確認 main config 目前 `coinFlowEnable=false`，實際部署啟用狀態待確認。
+
+已完成補充：
+
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/flow.md`
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/career-interview.md`
+- `projects/iwin/game_job/flows/coin-flow-batch-projection/materials/evidence.md`
 
 推測：
 
-- projection 可能寫 Mongo `log_coin_flow*` 與 BI table `user_game_behaviour_{yyyy_m}`。
 - 真正金幣交易 truth source 不在此 job。
 
 待確認：
 
-- `handleLogReelData()`、`handleLogJackpotData()`、`handleTaxtData()` 的完整 path 與 mapper。
-- 跨日多拉與 max loop 的 failure window。
-- Redis checkpoint 遺失或重設後是否會重複投影。
+- `user_game_behaviour_{yyyy_m}` 實際 unique key。
+- upstream writer 的延遲與 source of truth。
+- Redis checkpoint 遺失或重設後的 production replay SOP。
 - app_bi 或 BI 查詢端如何使用這些 projection。
 
 履歷邊界：
 
 - 可作 Senior batch / incremental projection 設計題。
-- 未 Level 2 前不可寫履歷。
+- Step 3 後仍不可寫履歷，需 Step 5 claim gate。
 
 ### 4. `online-payment-data-cleaning`
 
@@ -367,11 +374,10 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 3
+iwin game_job coin-flow-batch-projection Step 4
 ```
 
 原因：
 
-- `daily-game-data-summary` evidence 最厚，且已有 `app_bi daily-game-record-summary` 查詢端可對照。
-- `daily-game-data-summary` 已完成 Step 5，正式履歷 / 自傳已保守同步。
-- `third-party-record-mongo-backup` 已完成 Step 5，下一步回到同 project ranking，選 `coin-flow-batch-projection`。
+- `coin-flow-batch-projection` 已完成 Step 3，下一步應轉成正式面試 case。
+- 履歷 / 自傳仍等 Step 5 claim gate。
