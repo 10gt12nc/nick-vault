@@ -337,6 +337,8 @@ flow、履歷、自傳與面試素材都要標註來源層級：
 
 `contribution claim consolidation` 是履歷 claim gate，不是新的 flow Step，也不是亂創任務。它的目的只是防止把「分析過 code」誤寫成「Nick 真實開發過」，也防止只因單條 flow 缺 direct path evidence 就抹掉整個 project 經驗。
 
+它不要求 project 內所有 candidate flow 都做到 Step 5。contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認與既有 flow evidence；目的是先建立 project-level 履歷 claim 邊界。可在任一代表 flow 完成、Nick 追問履歷價值、或準備更新履歷前執行。
+
 contribution consolidation 必須至少掃：
 
 - 全部 Nick / `10gt12nc` commits。

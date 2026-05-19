@@ -313,6 +313,8 @@ Config：
 
 優先級：contribution consolidation 是履歷 claim gate，優先於「Step 3 完成後進 Step 4」或「Step 5 後回候選 ranking」。只要下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，就先做 `{project} contribution claim consolidation`。
 
+不要誤解成「所有 flow Step 5 做完才 consolidation」。contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認與既有 flow evidence；可在任一代表 flow 完成、Nick 追問履歷、或準備更新履歷前執行。
+
 ### 14. Claim Boundary
 
 明確列：

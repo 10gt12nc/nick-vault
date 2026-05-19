@@ -561,6 +561,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / `archive/` / KB 所有履歷自傳素材。
 - 若 Nick 指出某 repo 是主力開發經驗，必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow evidence 與本人確認內容，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。
 - 若 Nick 沒明確說「我做很多」，但 AI 已整理出高價值 code-backed flow，且下一步要碰履歷 / 自傳 / claim boundary，也要先做該 project 的 contribution consolidation。這是避免兩種錯誤：把分析成果誇大成 Nick 成果，或因單條 flow 缺 direct evidence 就低估整個 repo 經驗。
+- contribution consolidation 不要求該 project 全部 flow 都做到 Step 5。它是掃 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認與既有 flow evidence，先界定履歷 claim；可在任一代表 flow 完成、Nick 追問履歷、或準備更新 05 / 08 前執行。
 - 每條履歷 claim 都要標註證據層級：真實開發過 / 專案存在 / 分析素材 / 待確認。
 
 請先列：

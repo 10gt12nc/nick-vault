@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，payment Top 5 flow、`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 5` 都已收斂；`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5`、`game_job partition-table-creation Step 5` 也已完成但不更新正式履歷 / 自傳。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成；因為 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
+- 若目標是最快產出 Senior Backend 履歷素材，payment 的 Top 5 代表 flow 與 contribution claim 已先保守收斂，但不是全 payment project 完成；`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 5` 都已收斂到可用 claim。`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5`、`game_job partition-table-creation Step 5` 也已完成但不更新正式履歷 / 自傳。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成；因為 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
 - 2026-05-19 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，但不得寫成主導完整金流或全部 provider owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
@@ -95,7 +95,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | 已收斂 |
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 是，保守更新 | 已收斂 |
-| iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 高 | 已完成 | 本人確認 + 真實開發過 + code-backed | 是，保守更新 | 已收斂 |
+| iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 高 | 已完成 | 本人確認 + 真實開發過 + code-backed | 是，保守更新 | 履歷 claim 已收斂；不是全 payment project 完成 |
 | iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 單條 flow code-backed；project-level 有多 provider callback / sign 維護 evidence | 併入 payment project bullet | 已收斂 |
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 單條 flow code-backed；withdraw insert / null-safety 有有限維護 evidence | 不單獨寫自動出款 owner | 已收斂 |
 | iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：多 provider request / callback / query / withdraw evidence；整體金流 owner 不誇大 | 是，保守更新 | 已收斂 |

@@ -4,7 +4,9 @@
 
 `payment` 是 iwin 金流 / 充值 / 提現相關的 Java Spring Boot 多 module 專案，主要價值在 third-party provider request / callback、訂單狀態轉移、玩家上下分、MQ 非同步副作用、自動出款與人工審核。這是目前 iwin domain 裡最接近 Senior Backend / Platform Backend / System Owner 面試價值的後端專案之一。
 
-目前已完成 project-level contribution consolidation。Nick 本人確認加上 `10gt12nc` path-specific commits，足以把 `payment` 經驗升級為「部分真實開發過」：多個第三方金流 provider request / callback / query / withdraw 對接或維護、provider sign / response parsing bugfix、payment / withdraw order insert consistency 修正。仍不得寫成 Nick 主導完整金流或全部 provider owner。
+目前已完成 project-level contribution consolidation。這代表 `payment` 的履歷 claim 邊界已先保守收斂，不代表 `payment` 全專案、全部 provider、全部 flow 都整理完。
+
+Nick 本人確認加上 `10gt12nc` path-specific commits，足以把 `payment` 經驗升級為「部分真實開發過」：多個第三方金流 provider request / callback / query / withdraw 對接或維護、provider sign / response parsing bugfix、payment / withdraw order insert consistency 修正。仍不得寫成 Nick 主導完整金流或全部 provider owner。
 
 ## 讀檔順序
 
@@ -34,7 +36,7 @@
 | `flows/payment-order-provider-request/` | Step 5 已完成 | Level 2+ claim gate；已確認 Nick 在 Pay4z、NaNapay、BFPAY、NimTestPay / `createOrderNo` 相關 provider request / query / callback code 有 path-specific commits，可保守寫入履歷素材 |
 | `flows/manual-order-review-repair/` | Step 5 已完成 | Level 2 深掃人工審核 / 補單 / 修復；已確認 `/oderView`、`/gameRecharge`、app_bi `bill_check` / `repairOrderService` 與 direct status repair 的風險邊界；Step 5 判定不更新正式履歷 / 自傳，只作面試素材 |
 | `flows/payment-channel-config-selection/` | Step 5 已完成 | Level 2+ claim gate；已確認 payment runtime 消費 app_bi Redis projection，並已轉成 config consistency / partial sync / cold-cache fallback / fail closed 面試 case；Step 5 判定不更新正式履歷 / 自傳 |
-| `contribution-claim-consolidation.md` | 已完成 | Level 3 取向 claim 掃描；整合 Nick 本人確認、`10gt12nc` commits、branches、重要 diff 與 Top 5 flow evidence，已更新履歷 / 自傳保守說法 |
+| `contribution-claim-consolidation.md` | 已完成 | Level 3 取向 claim 掃描；整合 Nick 本人確認、`10gt12nc` commits、branches、重要 diff 與 Top 5 flow evidence，已更新履歷 / 自傳保守說法；這是履歷 claim 收斂，不是全 project 完成 |
 
 ## 專案定位
 
@@ -58,6 +60,8 @@
 
 待確認：
 
+- payment 仍有大量未整理 flow；目前只是 Top 5 代表 flow 與履歷 claim 先收斂。
+- 若要補完整 payment 能力地圖，後續可追加 provider-by-provider inventory、transfer wallet、MQ / reconciliation、game lobby 上下分、跨月分表與更多 production incident / bug history。
 - provider callback 是否都有簽章驗證、終態保護、重送 no-op 與 callback log。
 - `payment_order` 分月 / 跨月搬移邏輯與 DB schema / unique key。
 - game lobby / center 的上下分 API 是否具備 `billNo` 查重或 DB unique idempotency。
@@ -90,10 +94,10 @@
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
-- payment project-level contribution consolidation 已完成，履歷 / 自傳已同步保守說法。
-- `game_api coupon-redeem-credit-grant` 已完成 Step 4，下一步應按 KB 做 Step 5 claim gate。
+- payment 目前只是履歷 claim 先保守收斂，不是全 project 都完成。
+- 目前總 queue 已移到 `iwin_gameserver`，因為 gameserver 已有 code-backed money flow，但尚未做 project-level contribution claim consolidation。

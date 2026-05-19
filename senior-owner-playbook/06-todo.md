@@ -48,8 +48,8 @@
 - 已完成 `payment manual-order-review-repair Step 5`，判定不更新正式履歷 / 自傳；人工審核 / 補單 / 修單只保留為面試分析素材。
 - 已完成 `payment payment-channel-config-selection Step 3`，建立支付列表 / 商戶 / 玩家層級 / 提現設定選擇的 runtime config 主學習包；目前只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-channel-config-selection Step 4`，轉成可面試 case；目前仍只作面試素材，不更新正式履歷 / 自傳。
-- 已完成 `payment payment-channel-config-selection Step 5`，判定不更新正式履歷 / 自傳；payment Top 5 flow 已收斂。
-- 已完成 `iwin payment contribution claim consolidation`；Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但仍不寫完整金流 owner。
+- 已完成 `payment payment-channel-config-selection Step 5`，判定不更新正式履歷 / 自傳；payment Top 5 代表 flow 已收斂，但不代表全 payment project 已完成。
+- 已完成 `iwin payment contribution claim consolidation`；Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但這是履歷 claim 收斂，不是 payment 全量 flow 完成；仍不寫完整金流 owner。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 3`，建立 center_http 上分 / 下分主學習包；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
@@ -80,7 +80,7 @@ iwin iwin_gameserver contribution claim consolidation
 3. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
 4. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
 5. `game_api`：`coupon-redeem-credit-grant Step 5` 已收斂；下一條需回 Step 2 ranking 選。
-6. `payment`：Top 5 flow 與 contribution consolidation 已收斂；之後除非 Nick 指定新 payment flow，先不重做。
+6. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，足夠支撐目前保守履歷 claim；但 payment 仍可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。除非 Nick 指定新 payment flow，短期先不重做。
 7. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
 
 ### 3. 每條完成後自動判斷是否更新
@@ -100,7 +100,7 @@ iwin iwin_gameserver contribution claim consolidation
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5` 與 `game_job partition-table-creation Step 5` 已完成但不更新履歷。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成，但 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment 的履歷 claim 已先保守收斂，但不是全 project 完成；game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 也已收斂到可用 claim。`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5` 與 `game_job partition-table-creation Step 5` 已完成但不更新履歷。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成，但 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
 
 ## 下一個 prompt
 

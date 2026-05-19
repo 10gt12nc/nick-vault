@@ -87,6 +87,7 @@
 - `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
 - 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。
 - 即使 Nick 沒先說「我做很多」，只要某 project 已經開始形成可面試 code-backed 素材，而 AI 的下一步會影響履歷 claim 或 Nick 明確追問履歷價值，就要先做該 project 的 contribution consolidation；不得因為「Step 3 乾淨預設 Step 4」而跳過 claim gate。
+- contribution consolidation 不要求該 project 所有 candidate flow 都做到 Step 5。它掃的是 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認與已完成 flow evidence，用來先建立履歷 claim 邊界；可在任一代表 flow 完成、Nick 追問履歷、或準備更新履歷前執行。
 
 ## Flow 格式
 

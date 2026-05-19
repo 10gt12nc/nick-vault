@@ -413,23 +413,23 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 為什麼現在做它：
 
-- payment Top 5 flow 已完成到 Step 5。
-- project-level contribution consolidation 已完成。
-- 下一個高價值工作是收斂 iwin queue 裡已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
+- payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂。
+- 這不代表 payment 全專案完成；只是目前履歷 claim 已足夠保守使用。
+- 目前總 queue 已移到 `iwin_gameserver`，需要先做 project-level contribution claim consolidation。
 
 會產出什麼：
 
-- 補 `game_api coupon-redeem-credit-grant` 的 claim boundary、path-specific evidence 判斷與是否更新履歷 / 自傳的結論。
-- 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
+- 補 `iwin_gameserver` 的 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow evidence 與履歷 claim 邊界。
+- 同步 `projects/iwin/iwin_gameserver/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- payment project-level 履歷說法已保守更新。下一條 `game_api coupon-redeem-credit-grant` 需等 Step 5 claim gate 才能判斷。
+- payment project-level 履歷說法已保守更新。`iwin_gameserver` 需先做 contribution consolidation 才能判斷是否更新履歷。
 
 是否需要 commit / push：
 

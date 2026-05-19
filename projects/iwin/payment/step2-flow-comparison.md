@@ -323,7 +323,7 @@ Step 3 暫不做：
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -338,8 +338,8 @@ iwin game_api coupon-redeem-credit-grant Step 5
 
 為什麼現在做它：
 
-- payment Top 5 flow 已完成到 Step 5。
-- project-level contribution consolidation 已完成。
+- payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
+- 目前總 queue 已移到 `iwin_gameserver`，需要先做 project-level contribution claim consolidation。
 - 下一步回到 iwin queue，收斂已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
 
 會產出什麼：
