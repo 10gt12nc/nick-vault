@@ -2,7 +2,7 @@
 
 更新時間：2026-05-19
 掃描等級：Level 1 Flow 掃描
-狀態：Step 1 可沿用；前四條 flow 已完成 Step 5，第五條已完成 Step 4
+狀態：Step 1 可沿用；Top 5 flow 已完成 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -15,7 +15,7 @@
 2. `third-party-record-mongo-backup`：第三方遊戲紀錄 Mongo 備份與清理；有批次查詢、insert backup、delete origin、保留天數與 partial failure 風險。
 3. `coin-flow-batch-projection`：金幣流水清算；有 log_reel / jackpot / taxt 多資料源、Redis checkpoint、跨日切換、MySQL user behaviour projection 與 Mongo coin flow projection。已完成 Step 5，不更新正式履歷 / 自傳。
 4. `online-payment-data-cleaning`：支付 / 提現資料清洗；從 payment order 分表彙整充值、提現、首充、代理充值與經濟資料。已完成 Step 5，不更新正式履歷 / 自傳。
-5. `partition-table-creation`：每日 / 每月分表建立；支撐 log / BI table rollover，屬於可靠性輔助 flow。已完成 Step 4，下一步做 Step 5 claim gate。
+5. `partition-table-creation`：每日 / 每月分表建立；支撐 log / BI table rollover，屬於可靠性輔助 flow。已完成 Step 5，不更新正式履歷 / 自傳。
 
 本 Step 1 本身不更新履歷；後續 `daily-game-data-summary` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可保守更新正式履歷 / 自傳。其他候選 flow 仍需各自完成 claim gate。
 
@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job partition-table-creation Step 5` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步 Top 5 flow 都已完成 Step 5 |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job partition-table-creation Step 5` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `iwin_gameserver center-http-deposit-withdraw Step 3` |
 
 ## 掃描等級判斷
 
@@ -379,10 +379,10 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
 原因：
 
-- `partition-table-creation` 已完成 Step 4，下一步應做 claim gate。
-- 目前預期未補 direct evidence 前不更新正式履歷 / 自傳。
+- `partition-table-creation` 已完成 Step 5，正式履歷 / 自傳不更新。
+- `game_job` Top 5 flow 都已收斂，下一步回到目前跨 project queue。

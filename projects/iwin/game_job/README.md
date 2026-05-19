@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、金幣流水 / 玩家行為 projection、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 5，目前是 code-backed 面試 case，不更新正式履歷 / 自傳。`online-payment-data-cleaning` 已完成 Step 5，目前也是 code-backed 面試 case，不更新正式履歷 / 自傳。`partition-table-creation` 已完成 Step 4，目前只作 table rollover / schema rollout 的 code-backed 面試素材，下一步做 Step 5 claim gate。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner、完整 schema migration owner 或負責上游 gameserver 到 app_bi 全鏈路。
+它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 5，目前是 code-backed 面試 case，不更新正式履歷 / 自傳。`online-payment-data-cleaning` 已完成 Step 5，目前也是 code-backed 面試 case，不更新正式履歷 / 自傳。`partition-table-creation` 已完成 Step 5，目前只作 table rollover / schema rollout 的 code-backed 面試素材，不更新正式履歷 / 自傳。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner、完整 schema migration owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -36,8 +36,8 @@
 | `flows/coin-flow-batch-projection/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
 | `flows/online-payment-data-cleaning/flow.md` | Step 5 | 已完成充值 / 提現資料清洗與每日經濟資料主學習包、正式面試 case 與 claim gate；目前 code-backed，不更新履歷 |
 | `flows/online-payment-data-cleaning/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
-| `flows/partition-table-creation/flow.md` | Step 4 | 已完成每日 / 每月分表建立主學習包與正式面試 case；目前 code-backed，不更新履歷 |
-| `flows/partition-table-creation/career-interview.md` | Step 4 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；下一步做 Step 5 claim gate |
+| `flows/partition-table-creation/flow.md` | Step 5 | 已完成每日 / 每月分表建立主學習包、正式面試 case 與 claim gate；目前 code-backed，不更新履歷 |
+| `flows/partition-table-creation/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
 
 ## 專案定位
 
@@ -86,13 +86,13 @@
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
 原因：
 
-- `partition-table-creation` Step 4 已完成，已把 table rollover、SQL template、`CREATE TABLE IF NOT EXISTS`、多 channel DB partial success、schema drift 與 `player_bet_demo-mouth.sql` 檔名風險整理成正式面試 case。
-- 下一步應做 Step 5 claim gate；目前未補 direct evidence 前不更新正式履歷 / 自傳。
+- `partition-table-creation` Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。
+- `game_job` 目前 Top 5 flow 都已收斂；下一步應回到目前跨 project queue，做 `iwin_gameserver center-http-deposit-withdraw Step 3`，補中心錢包上分 / 下分的 money correctness 素材。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

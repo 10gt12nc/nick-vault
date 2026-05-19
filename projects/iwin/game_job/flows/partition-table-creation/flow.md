@@ -2,13 +2,13 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job partition-table-creation Step 3` 主報告；Step 4 已把本 flow 轉成正式面試 case，詳見 `career-interview.md`。
+本文件是 `iwin game_job partition-table-creation Step 3` 主報告；Step 4 已把本 flow 轉成正式面試 case，Step 5 已完成 claim gate。
 
 中文名稱：每日 / 每月分表建立。
 
 掃描深度：Level 2。已讀 `CreateTableJob`、Quartz wrapper / registry、`InitTableConfig`、MyBatis create table mapper、BI / game SQL template、path-specific history 與 main / `origin/k3s` config。這不是 Level 3 逐檔逐行全 repo 鑑識。
 
-證據層級：專案存在 / code-backed。這條 flow 目前沒有 Nick / `10gt12nc` direct path evidence；不更新正式履歷 / 自傳，只作 table rollover / schema rollout / batch 前置依賴的可靠性面試素材。
+證據層級：專案存在 / code-backed。這條 flow 目前沒有 Nick / `10gt12nc` direct path evidence；Step 5 判定不更新正式履歷 / 自傳，只作 table rollover / schema rollout / batch 前置依賴的可靠性面試素材。
 
 ## 白話導讀
 
@@ -195,7 +195,7 @@ Game 分表 template：
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 3
 ```
 
-原因：Step 4 已完成正式面試 case；下一步應做 Step 5 claim gate。若沒有新增 Nick direct evidence，Step 5 大概率仍只保留為 code-backed 面試補充素材，不更新正式履歷 / 自傳。
+原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job` 目前 Top 5 flow 都已收斂。依目前跨 project queue，下一條最值得做的是 `iwin_gameserver center-http-deposit-withdraw Step 3`，補中心錢包上分 / 下分的 money correctness 素材。

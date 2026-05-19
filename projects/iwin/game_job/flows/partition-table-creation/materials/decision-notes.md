@@ -1,6 +1,6 @@
 # Decision Notes: partition-table-creation
 
-完成狀態：Step 4。
+完成狀態：Step 5。
 
 用途：整理分表建立 flow 的 owner decision、取捨與面試 framing。
 
@@ -111,3 +111,18 @@ Owner 判斷：
 - 不可說 production 已驗證啟用，因 main / k3s config 都 disabled。
 - 不可說這條是完整 schema migration platform。
 - 不可寫改善 rollover 正確率、事故數或建表時間 X%。
+
+## Step 5 claim decision
+
+最終處理：
+
+- 保留為 code-backed 面試 case。
+- 不更新正式履歷 / 自傳。
+- 不把 `game_job` 既有 daily summary / GSC backup 的真實開發 evidence 擴張到本 flow。
+
+理由：
+
+- direct path 未見 Nick / `10gt12nc` commit。
+- `origin/k3s` prod cron 對齊 commit 由 Arnold 提交，且 `createTableEnable=false`。
+- 沒有本人確認或 production incident evidence。
+- 本 flow 的價值是 owner 思維補充，不是履歷主成果。

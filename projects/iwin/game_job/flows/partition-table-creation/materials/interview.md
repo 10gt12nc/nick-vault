@@ -6,7 +6,7 @@
 
 證據層級：專案存在 / code-backed。不能說是 Nick 真實開發或主導。
 
-完成狀態：Step 4，已轉成正式面試 case。
+完成狀態：Step 5，已轉成正式面試 case，並完成 claim gate；只作 code-backed 面試素材。
 
 ## 口語開場
 

@@ -198,3 +198,65 @@ Source repo 狀態沿用本次 Step 4 開工前確認：
 - 公司 repo 工作區：乾淨。
 
 本次沒有新增 Nick direct evidence，沒有更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+
+## Step 5 claim gate 更新紀錄
+
+更新日期：2026-05-19
+
+本次掃描等級：Level 2 claim gate。目的在確認履歷 / 自傳是否可更新，不是 Level 3 逐檔逐行全 repo 鑑識。
+
+本次已重讀：
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+- 本 flow `flow.md`
+- `career-interview.md`
+- `materials/evidence.md`
+- `materials/claim-boundary.md`
+- `projects/iwin/game_job/README.md`
+- `senior-owner-playbook/04-interview-casebook.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/06-todo.md`
+
+Source repo 狀態：
+
+- Repo：`/Users/nick/Git/iwin/game_job`
+- 已 fetch：是，`git fetch --all --prune`
+- 分支：`main`
+- local HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
+- `origin/main` HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
+- ahead / behind：`0 / 0`
+- 工作區：乾淨
+
+Step 5 追加檢查：
+
+- path-specific log：
+  - `CreateTableJob.java`
+  - `CreateTableJobQuartz.java`
+  - `InitTableConfig.java`
+  - `initBiTable/`
+  - `initGameTable/`
+  - `Channel.xml`
+  - `LogLoginDao.xml`
+- path-specific author search：`--author='10gt12nc|Nick|nick'`
+- keyword history：`createTable`、`CreateTable`、`分表`、`建表`、`partition`、`table`
+- keyword + author search：`--author='10gt12nc|Nick|nick'` 搭配上述 keyword
+- `origin/k3s` 上 `c7352f2 feat(quartz): 對齊 prod 啟用 33 支 cron job`
+
+Step 5 觀察：
+
+- direct path history 仍只有 Arnold 的 `c8a3fde feat(#first): first commit` 與 `42ae838 feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`。
+- direct path author search 沒有 Nick / `10gt12nc` 命中。
+- keyword history 有 Arnold 的 `c7352f2 feat(quartz): 對齊 prod 啟用 33 支 cron job`、`0b0bace fix(quartz): 還原 JDBC 持久化`、`0a1b4be test: Phase D testcontainers MySQL integration tests + regression net`，但不是 Nick evidence。
+- `c7352f2` 位於 `origin/k3s`，其 prod cron 對齊說明列出 `createTable` 維持 disabled；`src/main/resources/application-quartz.yml` 中 `createTable: 0 0 2 * * ?`、`createTableEnable: false`。
+- 目前沒有本人確認、MR、ticket、production issue 或 direct commit 可把本 flow 升級為真實開發過。
+
+Step 5 結論：
+
+- 不更新正式履歷 / 自傳。
+- 可加入 `senior-owner-playbook/04-interview-casebook.md` 作為 code-backed 面試案例。
+- 本 flow 收斂為 Step 5：code-backed / 分析過，不可寫成 Nick 實際開發或主導。

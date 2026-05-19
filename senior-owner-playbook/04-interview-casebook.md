@@ -231,6 +231,39 @@ Lead / Architect 追問：
 - Mongo 指標要保存 snapshot history 還是 deterministic latest state？
 - 怎麼避免 reporting 異常被誤判成 provider callback 或 wallet transaction 錯？
 
+## 案例 6-4：Table rollover / schema template 可靠性
+
+對應 flow：
+
+- `game_job/partition-table-creation`
+
+證據邊界：
+
+- 已完成 Step 5 claim gate，只作 code-backed 面試 case，不更新正式履歷 / 自傳。
+- direct path history 未見 Nick / `10gt12nc` commit；不能說 Nick 開發或主導此 flow。
+- `origin/k3s` 的 prod cron 對齊 commit 由 Arnold 提交，且 `createTableEnable=false`，不能說 production enable 已確認。
+- 這是 table rollover support flow，不是完整 schema migration platform。
+
+面試主軸：
+
+分表建立不是業務交易，但它是 log writer、batch projection 與報表查詢的前置可靠性條件。Senior 要能說清楚 SQL template、日期 / 月份 table naming、`CREATE TABLE IF NOT EXISTS` 的 idempotency 邊界、多 channel DB partial success、schema drift 與補建能力。
+
+可講重點：
+
+- `CREATE TABLE IF NOT EXISTS` 解決重跑時表已存在的問題，不解決 schema evolution。
+- template 檔名是 contract，未知格式或 typo 應該 fail fast。
+- 多 channel DB 建表不能只看 job 結束，要看 expected / created / existed / failed summary。
+- job 只建下一天 / 下一月，不代表可以補回歷史缺表。
+- production-grade 補強應包含 dry-run expected list、failed table alert、指定日期補建工具與 schema drift check。
+
+Lead / Architect 追問：
+
+- 如果某個 channel DB 建表失敗，但 job 繼續跑完，下游會看到什麼？
+- `CREATE TABLE IF NOT EXISTS` 為什麼不是完整 idempotency？
+- template 改 schema 後，既有分表怎麼處理？
+- 為什麼這裡不直接用 Flyway / Liquibase？兩者解決的問題差在哪？
+- 如果跨月第一天報表 table not found，排查順序是什麼？
+
 ## 案例 7：遊戲局紀錄查詢 / 玩家申訴排查
 
 對應 flow：

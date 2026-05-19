@@ -1,8 +1,8 @@
 # partition-table-creation career-interview
 
-完成狀態：Step 4。
+完成狀態：Step 5。
 
-證據層級：專案存在 / code-backed。這條 flow 目前沒有 Nick / `10gt12nc` direct path evidence，不能寫成真實開發或主導；只作 table rollover / schema rollout 的面試分析素材。
+證據層級：專案存在 / code-backed。這條 flow 目前沒有 Nick / `10gt12nc` direct path evidence，不能寫成真實開發或主導；Step 5 判定不更新正式履歷 / 自傳，只作 table rollover / schema rollout 的面試分析素材。
 
 ## 一句話版本
 
@@ -85,7 +85,19 @@ Senior 風險不在 SQL 多複雜，而在 rollover reliability：
 
 ### Q7：這條能寫履歷嗎？
 
-目前不建議寫正式履歷成果。它是 code-backed 分析素材，且 direct path 沒看到 Nick / `10gt12nc` commit。可以在面試中當作我分析過 batch reliability / table rollover 的例子，但不能說我開發或主導。
+不建議寫正式履歷成果。Step 5 重新確認後，direct path 仍沒看到 Nick / `10gt12nc` commit，也沒有本人確認、MR、ticket 或 production issue evidence。可以在面試中當作我分析過 batch reliability / table rollover 的例子，但不能說我開發或主導。
+
+## Step 5 claim gate
+
+結論：不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+
+原因：
+
+- direct path history 只看到 Arnold 的 first commit 與 k3s migration。
+- Nick / `10gt12nc` 在 `CreateTableJob`、Quartz wrapper、`InitTableConfig`、SQL template、mapper path 沒有 commit 命中。
+- `origin/k3s` 的 prod cron 對齊 commit 仍維持 `createTableEnable=false`，且作者不是 Nick。
+- 沒有 Nick 本人確認此 flow 是實際參與開發。
+- 這條是支撐性 reliability case，不適合單獨當履歷主成果。
 
 ## 可面試講
 
@@ -106,5 +118,5 @@ Senior 風險不在 SQL 多複雜，而在 rollover reliability：
 ## 下一步
 
 ```text
-iwin game_job partition-table-creation Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 3
 ```
