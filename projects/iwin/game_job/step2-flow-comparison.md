@@ -64,7 +64,7 @@
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整，且有 `10gt12nc` path-specific commits | upstream `log_reel` writer 與 app_bi 查詢端已在 Step 3 標示邊界 | 已完成 Step 5 |
-| 2 | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Antplay new / GSC log 與 transaction backup code 已 Step 3 深挖，且有 `10gt12nc` GSC 分批查詢 commit 線索 | production enable、backup unique/idempotency、app_bi / 後台查詢端未確認 | 已完成 Step 3，下一步 Step 4 |
+| 2 | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Antplay new / GSC log 與 transaction backup code 已 Step 3 深挖，Step 4 已轉面試 case，且有 `10gt12nc` GSC 分批查詢 commit 線索 | production enable、backup unique/idempotency、app_bi / 後台查詢端未確認 | 已完成 Step 4，下一步 Step 5 |
 | 3 | `coin-flow-batch-projection` | 金幣流水清算 / 遊戲行為投影 | 高但未收斂 | Redis checkpoint、跨日 task finish、多資料源 projection 線索清楚 | 核心 handle method 未完整讀完；source of truth 未定位 | 先補 path 後再 Step 3 |
 | 4 | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | `payment_order_{yyyy_m}` 讀取與支付分類清楚 | payment source of truth 在 `payment` repo；目前只是 reporting projection | 暫不優先，之後可接 payment flow |
 | 5 | `partition-table-creation` | 每日 / 每月分表建立 | 中低 | SQL template 與 channel DB 建表流程清楚 | 支撐性 flow，面試主題性較弱 | 作其他 flow 的可靠性補充 |
@@ -73,10 +73,10 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `game_job third-party-record-mongo-backup Step 4`
-   - 原因：`third-party-record-mongo-backup` 已完成 Step 3；下一步要轉成可面試講的 Senior case 與 decision notes。
-   - 產出：Step 4 面試 case / Q&A / decision framing，繼續保守標示履歷 claim。
-   - 是否更新履歷：否，先做 Step 4；等 Step 5 且補到 Nick evidence 再判斷。
+1. `game_job third-party-record-mongo-backup Step 5`
+   - 原因：`third-party-record-mongo-backup` 已完成 Step 4；下一步要做 claim gate，判斷 `10gt12nc` GSC commit 能否形成局部真實開發 claim。
+   - 產出：Step 5 claim boundary 收斂；若 evidence 足夠，保守列入 game_job / 履歷素材，否則維持 code-backed 面試素材。
+   - 是否更新履歷：可能，但只在 Step 5 通過後保守更新。
 2. `game_job coin-flow-batch-projection Step 2 補掃`
    - 原因：價值可能最高，但 Step 1 尚未完整讀核心 handle method。
    - 產出：補足是否值得 Step 3 的 evidence。
@@ -167,8 +167,8 @@ Senior / Owner 價值：
 
 判斷：
 
-- 已完成 Step 3，適合進 Step 4。
-- 目前不更新履歷；等 Step 5 再判斷 `10gt12nc` 的 GSC commit 是否可寫成局部真實開發。
+- 已完成 Step 4，適合進 Step 5。
+- 目前不更新履歷；Step 5 再判斷 `10gt12nc` 的 GSC commit 是否可寫成局部真實開發。
 
 ### 3. `coin-flow-batch-projection`
 
@@ -262,11 +262,11 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 4
+iwin game_job third-party-record-mongo-backup Step 5
 ```
 
 原因：
 
 - `daily-game-data-summary` Step 5 已完成，正式履歷 / 自傳已保守同步。
-- `third-party-record-mongo-backup` Step 3 已完成，下一步是 Step 4 面試 case / decision framing。
-- 產出不是履歷正式 claim；Step 5 才做 claim gate。
+- `third-party-record-mongo-backup` Step 4 已完成，下一步是 Step 5 claim gate。
+- 產出是判斷能否保守寫成局部真實開發，不是擴大成完整 backup owner。

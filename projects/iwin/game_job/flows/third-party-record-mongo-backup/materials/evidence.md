@@ -2,9 +2,16 @@
 
 ## 本次掃描範圍
 
-任務：`iwin game_job third-party-record-mongo-backup Step 3`
+任務：`iwin game_job third-party-record-mongo-backup Step 3` / Step 4 延伸
 
 掃描深度：Level 2。
+
+Step 4 補掃：
+
+- 重新 fetch `/Users/nick/Git/iwin/game_job` remote refs。
+- 重新 fetch `/Users/nick/Git/iwin/third_games_api` remote refs。
+- 補讀 `10gt12nc` 兩個 GSC commit 的 stat 與 diff：`d11b1f4`、`bf92773`。
+- 補整理面試 case、decision framing、claim boundary。
 
 nick-vault：
 
@@ -33,7 +40,7 @@ source repo：
 
 `/Users/nick/Git/iwin/game_job`
 
-- 已執行：`git fetch --all --prune`
+- 已執行：`git fetch --all --prune`；Step 4 已再次執行
 - local branch：`main`
 - local HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
 - `origin/main`：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
@@ -43,7 +50,7 @@ source repo：
 
 `/Users/nick/Git/iwin/third_games_api`
 
-- 已執行：`git fetch --all --prune`
+- 已執行：`git fetch --all --prune`；Step 4 已再次執行
 - local branch：`beta`
 - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
 - `origin/beta`：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
@@ -185,6 +192,23 @@ Batch size：
 | `b993395` | 2025-05-09 | arnold | `fix : gsc 批量执行改为2500` | GSC transaction batch size 再調整 |
 | `c7352f2` | 2026-05-07 | arnold | `feat(quartz): 對齊 prod 啟用 33 支 cron job` | config 對齊線索；production 實際仍需部署確認 |
 
+## Step 4 補讀 commit diff 摘要
+
+`d11b1f4` by `10gt12nc`：
+
+- `ThirdLogGscJob` 從一次 query 全部符合 `createdTime < targetDate` 的資料，改成 `while (true)` 分批查詢。
+- 新增 `query.limit(BATCH_SIZE)`，初始 batch size 為 1000。
+- 每批 insert backup 後，收集該批 VO 的 `id`，再用 `_id in idList` delete origin。
+- `ThirdTransactionGscJob` 做同型修改。
+- 這個 diff 的核心價值：降低一次查全量 / 一次 insert / 一次 remove 大集合的風險，讓 job 可分段處理。
+
+`bf92773` by `10gt12nc`：
+
+- `ThirdLogGscJob` batch size 從 1000 調成 10000。
+- `ThirdTransactionGscJob` batch size 從 1000 調成 10000。
+- 後續 `b993395` by arnold 又把 GSC transaction batch size 調成 2500。
+- 判斷：batch size 是 production tuning 題，但本次沒有 metrics，不能寫量化改善。
+
 ## 已確認
 
 - `game_job` 有第三方 Mongo retention job。
@@ -210,7 +234,7 @@ Batch size：
 
 ## 履歷判斷
 
-本 Step 3 不更新正式履歷。
+本 Step 4 不更新正式履歷。
 
 `10gt12nc` commit 是局部真實開發線索，但目前只能寫：
 
@@ -221,3 +245,10 @@ Batch size：
 - Nick 主導第三方遊戲紀錄備份。
 - Nick owner Antplay / GSC retention policy。
 - Nick 改善 storage 或查詢效率 X%。
+
+## Step 4 產出
+
+- `career-interview.md` 已轉成 Step 4 面試 case。
+- `materials/interview.md` 已補 30 秒 / 3 分鐘 / STAR / Q&A。
+- `materials/decision-notes.md` 已補 batch size trade-off 與 owner decision。
+- `materials/claim-boundary.md` 已標示仍需 Step 5 claim gate。

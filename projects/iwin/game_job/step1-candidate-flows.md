@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job third-party-record-mongo-backup Step 4` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job third-party-record-mongo-backup Step 5` |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job third-party-record-mongo-backup Step 4` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job third-party-record-mongo-backup Step 5` |
 
 ## 掃描等級判斷
 
@@ -238,6 +238,7 @@ source repo 狀態：
 - `projects/iwin/game_job/flows/third-party-record-mongo-backup/flow.md`
 - `projects/iwin/game_job/flows/third-party-record-mongo-backup/career-interview.md`
 - `projects/iwin/game_job/flows/third-party-record-mongo-backup/materials/evidence.md`
+- 已完成 Step 4 面試 case / decision framing。
 
 仍待確認：
 
@@ -365,11 +366,11 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 4
+iwin game_job third-party-record-mongo-backup Step 5
 ```
 
 原因：
 
 - `daily-game-data-summary` evidence 最厚，且已有 `app_bi daily-game-record-summary` 查詢端可對照。
 - `daily-game-data-summary` 已完成 Step 5，正式履歷 / 自傳已保守同步。
-- `third-party-record-mongo-backup` 已完成 Step 3，下一步應轉成 Step 4 面試 case / decision notes。
+- `third-party-record-mongo-backup` 已完成 Step 4，下一步應做 Step 5 claim gate。

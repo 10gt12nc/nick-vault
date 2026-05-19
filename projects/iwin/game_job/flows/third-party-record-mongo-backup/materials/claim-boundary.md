@@ -1,5 +1,7 @@
 # third-party-record-mongo-backup claim-boundary
 
+完成狀態：Step 4。
+
 ## Evidence level
 
 目前：專案存在 / code-backed。
@@ -17,11 +19,19 @@
 - 是否有 MR / ticket / production issue / 本人確認可補強。
 - 是否只是一次修正，不能升級成完整 flow owner。
 
+Step 4 判斷：
+
+- 可作面試 case。
+- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 下一步 Step 5 才做正式 claim gate。
+
 ## 可面試講
 
 - 分析過第三方遊戲 provider Mongo log / transaction retention job。
 - 能說明 copy-then-delete 的 partial failure、idempotency、duplicate backup、delete count reconciliation。
 - 能提出 owner 級改善：duplicate-safe write、run id、copied / deleted count 對帳、retention policy 對齊。
+- 能保守說 GSC history 有 `10gt12nc` 分批查詢與 batch size 調整 commit，這是局部直接 evidence 線索。
 
 ## 可保守放履歷的條件
 
@@ -31,7 +41,9 @@
 參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與批次大小調整，降低單次批次處理風險，並支援 provider log / transaction retention。
 ```
 
-這句目前還不能放正式履歷，因為 Step 3 尚未完成 claim gate。
+這句目前還不能放正式履歷，因為 Step 5 claim gate 尚未完成。
+
+Step 4 後仍維持：不能放正式履歷，等 Step 5。
 
 ## 不可寫
 

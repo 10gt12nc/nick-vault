@@ -2,7 +2,7 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job third-party-record-mongo-backup Step 3`。
+本文件是 `iwin game_job third-party-record-mongo-backup Step 3` 主報告；Step 4 面試 case 已整理於 `career-interview.md` 與 `materials/interview.md`。
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理。
 
@@ -243,11 +243,11 @@ Step 5 前只能保守標成 code-backed / 分析過；`10gt12nc` 的 GSC 分批
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 4
+iwin game_job third-party-record-mongo-backup Step 5
 ```
 
 原因：
 
-- Step 3 已把正常流程、主要 failure window 與上下游 writer 關係收斂。
-- Step 4 應把這條 flow 轉成可面試講的 Senior case，補 decision-notes 與回答稿。
-- 目前不更新履歷；等 Step 5 claim gate 判斷 `10gt12nc` commit 與本人確認能否支撐局部開發 claim。
+- Step 4 已把這條 flow 轉成可面試講的 Senior case，並補 decision-notes 與回答稿。
+- 下一步應做 Step 5 claim gate，判斷 `10gt12nc` 的 GSC 分批查詢與 batch size 調整 commit 是否能支撐局部真實開發 claim。
+- 若 Step 5 不通過，就維持 code-backed 面試素材，不更新正式履歷。

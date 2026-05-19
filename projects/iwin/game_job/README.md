@@ -24,8 +24,8 @@
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
 | `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可保守更新履歷 / 自傳 |
 | `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
-| `flows/third-party-record-mongo-backup/flow.md` | Step 3 | 已完成 Mongo backup / delete / retention flow 學習包；先作 code-backed 面試素材 |
-| `flows/third-party-record-mongo-backup/career-interview.md` | Step 3 | 已補保守面試回答；不更新正式履歷，待 Step 5 claim gate |
+| `flows/third-party-record-mongo-backup/flow.md` | Step 4 | 已完成 Mongo backup / delete / retention flow 學習包與面試 case；先作 code-backed 面試素材 |
+| `flows/third-party-record-mongo-backup/career-interview.md` | Step 4 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；不更新正式履歷，待 Step 5 claim gate |
 
 ## 專案定位
 
@@ -69,14 +69,14 @@
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 4
+iwin game_job third-party-record-mongo-backup Step 5
 ```
 
 原因：
 
-- `third-party-record-mongo-backup` Step 3 已完成，正常流程、主要 failure window、upstream writer 關係與 evidence 邊界已收斂。
-- 下一步應把它轉成 Step 4 面試 case / decision notes，而不是直接升履歷。
-- Step 5 才判斷 `10gt12nc` 的 GSC 分批查詢 commit 是否足以形成局部真實開發 claim。
+- `third-party-record-mongo-backup` Step 4 已完成，已整理成面試 case / decision framing。
+- 下一步應做 Step 5 claim gate，判斷 `10gt12nc` 的 GSC 分批查詢與 batch size 調整 commit 是否能保守升級成局部真實開發 claim。
+- 若 Step 5 不通過，就維持 code-backed 面試素材，不更新履歷。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

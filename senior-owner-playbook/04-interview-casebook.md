@@ -165,6 +165,39 @@ Lead / Architect 追問：
 - 報表 table 需要 batch id / generated_at / source range 嗎？
 - 營運看到數字異常時，第一個排查入口應該是哪裡？
 
+## 案例 6-2：Mongo retention / copy-then-delete 批次安全
+
+對應 flow：
+
+- `game_job/third-party-record-mongo-backup`
+
+證據邊界：
+
+- 目前完成 Step 4，可作 code-backed 面試 case。
+- `10gt12nc` 有 GSC 分批查詢與 batch size 調整 commit 線索：`d11b1f4`、`bf92773`。
+- 正式履歷仍待 Step 5 claim gate；不可寫成 Nick 主導完整第三方遊戲紀錄備份或 retention policy owner。
+
+面試主軸：
+
+第三方遊戲 provider log / transaction retention 不是單純清 Mongo。真正的風險在於 active collection 到 backup collection 的 copy-then-delete 不是 atomic；Senior 要能定義重跑 idempotency、duplicate backup、delete count reconciliation、retention policy 與 audit 查詢邊界。
+
+可講重點：
+
+- active collection 不是 wallet source of truth，而是 provider log / transaction evidence。
+- copy-before-delete 的方向偏安全：寧可 duplicate，不可丟資料。
+- backup collection 應保留 source `_id` 或 source id，並使用 duplicate-safe write。
+- 每批要記錄 fetched / copied / deleted / remaining；delete count 不一致應 fail 或告警。
+- batch size 是 production tuning，不是越大越好，要看文件大小、Mongo 壓力、job duration 與錯誤率。
+- retention 的 14 / 30 天要對齊客服查詢、provider dispute、audit 與 storage 成本。
+
+Lead / Architect 追問：
+
+- 如果 insert backup 成功但 delete origin 失敗，下一輪怎麼避免 duplicate？
+- backup collection 是否需要 unique index？如果 duplicate key 發生怎麼處理？
+- 為什麼不用 Mongo transaction？成本與部署前提是什麼？
+- retention policy 誰決定？30 天後 hard delete 是否合規？
+- 多 instance 或 manual endpoint 同時跑同 collection 怎麼鎖？
+
 ## 案例 7：遊戲局紀錄查詢 / 玩家申訴排查
 
 對應 flow：
