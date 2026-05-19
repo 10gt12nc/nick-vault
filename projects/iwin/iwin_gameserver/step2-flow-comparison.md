@@ -112,7 +112,7 @@ source repo 狀態：
 | 排名 | Flow | 中文名稱 | 涉及 module | Senior / Owner 價值 | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | `slots-center`、`slots-games/slots-game-common`、`slots-game-log`、上游 adapter 待確認 | 高 | 上游 repo、idempotency、log / coin 寫入順序未完整確認 | Step 5 已完成；正式履歷暫不更新 |
-| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未完整掃，gameserver 防重待確認；Nick direct evidence 未 consolidation | Step 3 已完成；先做 contribution claim consolidation |
+| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未完整掃，gameserver 防重待確認；Nick direct evidence 未 consolidation | Step 3 已完成；下一步做 Step 4 |
 | 3 | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | `slots-gate`、`slots-center`、`slots-games`、單一 game module、`slots-game-log` | 高 | 必須先選代表 game；不能一次掃 27 個 game | 暫不跳，等選定遊戲 |
 | 4 | `bet-target-set-query` | 打碼目標設定與查詢 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `app_bi` 待確認 | 中高 | 打碼資料落點與投注扣減邏輯未追完 | 可作後續 money rule flow |
 | 5 | `dbproxy-cache-db-write-path` | DB proxy Redis / MySQL 查寫路徑 | `slots-common`、`slots-dbproxy` | 中高 | 容易變 class summary；需綁定具體業務 flow | 作輔助深挖，不先單獨做 |
@@ -233,6 +233,6 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成主學習包。
-- 但 `iwin_gameserver` 尚未做 project-level Nick / `10gt12nc` contribution consolidation。
-- 下一步要先把 gameserver 的 commits、branches、重要 diff 與既有 flow evidence 分成「可放履歷 / 可面試講 / 不可誇大」。
-- consolidation 後再決定是否回到 `center-http-deposit-withdraw Step 4`。
+- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
+- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
+- 完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。

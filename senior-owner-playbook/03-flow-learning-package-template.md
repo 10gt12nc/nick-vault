@@ -324,7 +324,7 @@ Config：
 - 可面試講：code-backed / 分析過。
 - 不可誇大：不是主導完整系統 owner、不是全部功能 owner、沒有 metric 不寫改善百分比。
 
-優先級：contribution consolidation 是履歷 claim gate，優先於「Step 3 完成後進 Step 4」或「Step 5 後回候選 ranking」。只要下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，就先做 `{project} contribution claim consolidation`。
+優先級：contribution consolidation 是履歷 claim gate，但完整 consolidation 仍必須先看 Step 2 定義的本批代表 flows 是否都完成 Step 5。若下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，AI 必須先判斷本批代表 flows 狀態；未完成時回同 project 下一條 flow，全部完成後才做 `{project} contribution claim consolidation`。
 
 完整 contribution consolidation 預設就是等 Step 2 定義的本批代表 flows 全部完成到 Step 5 後再做。不要把單條 flow Step 5 誤當完整 project consolidation。完整 contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認、所有已完成 flow KB 與多條代表 flow evidence；若本批代表 flows 未完成，下一步先補同 project 下一條代表 flow。
 

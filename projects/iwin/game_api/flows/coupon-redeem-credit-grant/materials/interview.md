@@ -14,7 +14,7 @@
 | `materials/claim-boundary.md` | 本輪補強 | Step 4 需補面試可說 / 不可說 |
 | `career-interview.md` | 本輪重寫 | 轉成 30 秒 / 2 分鐘 / 5 分鐘 / STAR / 反問面試官 |
 
-Step 5 已更新正式履歷 / 自傳的保守 claim；本面試稿仍維持「可講實作，也要講不可誇大」。
+Step 5 只完成單條 flow claim gate，尚未更新正式履歷 / 自傳；本面試稿維持「可講實作，也要講不可誇大」。正式 05 / 08 需等 `game_api` 本批代表 flows 完成後，再由 project-level contribution consolidation 統一判斷。
 
 ## 面試主軸
 

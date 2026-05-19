@@ -245,8 +245,8 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 - 本 flow 已完成 Step 5，正式履歷 / 自傳暫不更新。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
-- 但 `iwin_gameserver` 尚未做 project-level contribution claim consolidation。
-- 下一步應先確認 Nick / `10gt12nc` 真實貢獻範圍，再決定哪些 gameserver flow 可進履歷、哪些只作面試素材。
+- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
+- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case；完整 consolidation 等本批代表 flows 完成 Step 5 後再做。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

@@ -2,7 +2,7 @@
 
 本資料夾整理 `/Users/nick/Git/iwin/game_api` 的專案知識。
 
-`game_api` 是 iwin 玩家端 / partner API 聚合層，主要價值是理解玩家登入註冊、遊戲入口、戰績查詢、優惠券兌換、partner 上下分 / 查單、代理分潤領取與活動獎勵流程。它比 `app_bi` 更接近 production API 與 money / state transition。`coupon-redeem-credit-grant` 已完成 Step 5，Nick / `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 有直接 commit evidence，可作 project-level contribution consolidation 的 strong evidence；仍不得寫成主導完整玩家端 API、完整 reward system owner 或已解決 production 雙領事故。
+`game_api` 是 iwin 玩家端 / partner API 聚合層，主要價值是理解玩家登入註冊、遊戲入口、戰績查詢、優惠券兌換、partner 上下分 / 查單、代理分潤領取與活動獎勵流程。它比 `app_bi` 更接近 production API 與 money / state transition。`coupon-redeem-credit-grant` 已完成 Step 5，Nick / `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 有直接 commit evidence，可作未來 project-level contribution consolidation 的 strong evidence；但目前 Step 2 本批代表 flows 未完成，仍不得寫成主導完整玩家端 API、完整 reward system owner 或已解決 production 雙領事故。
 
 ## 讀檔順序
 

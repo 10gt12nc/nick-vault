@@ -340,7 +340,7 @@ iwin game_api partner-deposit-withdraw-bill Step 3
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
 - 目前總 queue 已移到 `game_api partner-deposit-withdraw-bill Step 3`，先補 game_api 第二條代表 money API flow。
-- 下一步回到 iwin queue，補 `game_api coupon-redeem-credit-grant` Step 5 之後的 project-level contribution consolidation。
+- 下一步回到 iwin queue，補 `game_api partner-deposit-withdraw-bill Step 3`，先完成第二條代表 money API flow。
 
 會產出什麼：
 

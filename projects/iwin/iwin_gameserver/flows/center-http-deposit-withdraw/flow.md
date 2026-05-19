@@ -238,5 +238,5 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 - Step 3 已建立主學習包。
 - 但本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim；下一步先轉 Step 4 面試 case。
-- 下一步應先做 `iwin_gameserver` project-level contribution consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence。
-- consolidation 後再決定是否把本 flow 轉 Step 4 面試 case，或是否有足夠 evidence 更新履歷 / 自傳。
+- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
+- 下一步先把本 flow 轉 Step 4 面試 case；完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。

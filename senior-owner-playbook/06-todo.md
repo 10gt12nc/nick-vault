@@ -68,10 +68,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 1. `game_api partner-deposit-withdraw-bill Step 3`：`game_api` 目前只有 `coupon-redeem-credit-grant` 一條完整 Step 5 flow，Step 2 本批代表 flows 未完成；先補 Step 2 第二順位 money API。
 2. `game_job contribution claim consolidation`：Top 5 代表 flows 已完成 Step 5，才可做 project-level 貢獻收斂；需重讀所有 game_job flow KB、掃 Nick / `10gt12nc` code commits / branches / 重要 diff，統一成「可放履歷 / 可面試講 / 不可誇大」三層。
 3. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
-4. 舊 flow-level 語氣待修：`game_api/coupon-redeem-credit-grant` 與 `game_job/daily-game-data-summary` 的部分 evidence / interview 文字仍有「更新正式履歷 / 自傳：是」或「Step 5 已更新 05 / 08」的舊語氣；新 KB 下應改成「可作 project consolidation evidence，正式 05 / 08 以 project-level consolidation 為準」。這是文件語氣修正，不是要重做 flow。
-5. `payment` 小修待辦：project-level consolidation 已完成，但少數 flow-level 檔仍寫「本 flow 可更新 05 / 08」的舊語氣；應統一改成「已由 payment contribution consolidation 收斂，單 flow 不直接決定正式履歷」。
-6. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
-7. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
+4. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
+5. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
 ### 1. iwin game_api partner-deposit-withdraw-bill Step 3
 

@@ -446,4 +446,4 @@ iwin game_api partner-deposit-withdraw-bill Step 3
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
-- 下一步轉去 `game_api` 做 project-level contribution claim consolidation。
+- 下一步轉去 `game_api partner-deposit-withdraw-bill Step 3`，先補第二條代表 money API flow。

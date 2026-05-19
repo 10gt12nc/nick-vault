@@ -32,7 +32,7 @@
 - contribution consolidation 是履歷 claim gate，但完整 project-level consolidation 預設要等 Step 2 定義的本批代表 flows 全部完成到 Step 5。若 project 只有單條 flow Step 5，AI 只能把它當該 flow 的 claim evidence，下一步回 Step 2 ranking 補同 project 下一條高價值 flow；不得推薦或執行完整 `{project} contribution claim consolidation`，除非 Nick 明確說要做 limited claim check，且文件必須標明不是全 project 結論。
 - 但如果 Nick 只要求「待辦 / 缺口 / 優先順序」，AI 先把 contribution consolidation 或 flow Step 列成待辦，不自動執行；等 Nick 明確下 `project contribution claim consolidation` 或 `flow Step N` 才開始深掃與改 flow 文件。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
-- 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。但如果正在處理履歷 / 自傳 / contribution claim gate，先做 `{project} contribution claim consolidation`。
+- 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。若正在處理履歷 / 自傳 / contribution claim gate，必須先確認 Step 2 定義的本批代表 flows 是否都完成 Step 5；未完成時回同 project 下一條 flow，完成後才做 `{project} contribution claim consolidation`。
 - 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / monorepo / 多 service 專案，Step 1 / Step 2 必須先整理 root module、submodule、service instance、tooling / config 邊界，並比較候選 flow 會跨哪些 module。這不是 class summary，而是避免跳過架構邊界。
 - 單條 flow 做到 Step 5 只代表該 flow 完成，不代表整個 project 完成；下一步要先回同 project 的 candidate ranking 選下一條未完成 flow，不要自行跨 project。

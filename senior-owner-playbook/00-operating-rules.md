@@ -511,7 +511,7 @@ Step 4：轉面試 case
 Step 5：單條 flow claim gate
 ```
 
-Step 5 不是 project-level 履歷結論。若 Nick 問的是整個 project 經驗、履歷、自傳、真實開發貢獻，下一步必須轉 Career Track 的 project contribution claim consolidation。
+Step 5 不是 project-level 履歷結論。若 Nick 問的是整個 project 經驗、履歷、自傳、真實開發貢獻，下一步必須先檢查 Step 2 定義的本批代表 flows 是否都完成 Step 5；未完成時回同 project 下一條 flow，全部完成後才轉 Career Track 的 project contribution claim consolidation。
 
 AI 可以在 Step 3 內補 `materials/evidence.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`，也可以把下游 repo、runtime consumer、GM receiver 標成待確認。若既有 flow 是舊平鋪格式，先讀同名舊檔並標註待遷移。
 
@@ -761,7 +761,7 @@ AI 必須主動判斷掃描深度，不要全部丟給 Nick 決定。
 若 Nick 要求「最後整理履歷 / 自傳」或「更新 05 / 08 最終版」，AI 必須先做最終核對：
 
 - 掃描相關 code repo 的主分支、近期分支、path-specific log 與重要 commit diff。
-- 若是 Nick 明確說實際做很多的主力 repo，先完成 project-level contribution consolidation，不得只根據單條 flow 的 Step 5 直接排除該 repo 經驗。
+- 若是 Nick 明確說實際做很多的主力 repo，也要先檢查 Step 2 定義的本批代表 flows 是否都完成 Step 5；未完成時先補同 project 下一條 flow，完成後才做 project-level contribution consolidation，不得只根據單條 flow 的 Step 5 直接排除該 repo 經驗。
 - 全面掃 Nick / `10gt12nc` commits、branches、重要 diff 與可能的 author aliases，並和 Nick 本人確認內容交叉整理。
 - 掃描 `projects/` 已完成 flows、project-level career-interview、flow-level career-interview。
 - 掃描 `archive/` 舊履歷、自傳、career、ai-notes、KB 中所有履歷素材。

@@ -294,6 +294,6 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 
 ## Step 5 結論
 
-- 更新正式履歷 / 自傳：是，保守更新。
-- 可寫：「參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游打碼 handler。」
+- 更新正式履歷 / 自傳：否；本次只形成單條 flow evidence，正式 05 / 08 需等 `game_api` 本批代表 flows 完成後，再由 project-level contribution consolidation 判斷。
+- 可作候選口徑：「參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游打碼 handler。」
 - 不可寫：主導完整 coupon / reward system、設計 Redis lock、修復 production 雙領 bug、完整 wallet / reconciliation owner、改善 X%。
