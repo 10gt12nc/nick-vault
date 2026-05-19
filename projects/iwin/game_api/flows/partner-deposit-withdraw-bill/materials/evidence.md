@@ -53,9 +53,9 @@ Step 4 不新增正式履歷 claim，也不執行 `game_api contribution claim c
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 本輪需同步 | 第二條 flow 已完成 Step 5，下一步改回 Step 2 ranking 的第三順位 |
+| `README.md` | 已同步 | 第二條 flow 已完成 Step 5，下一步已回 Step 2 ranking 的第三順位 |
 | `step1-candidate-flows.md` | 可沿用 | 已列出此 flow 為第二順位候選 |
-| `step2-flow-comparison.md` | 本輪需同步 | 此 flow 從 Step 4 進到 Step 5；下一步回到第三順位 |
+| `step2-flow-comparison.md` | 已同步 | 此 flow 從 Step 4 進到 Step 5；下一步已回到第三順位 |
 | `flows/coupon-redeem-credit-grant/` | 可沿用 | 第一條 flow 已 Step 5，但不代表整個 `game_api` project 完成 |
 | `flows/partner-deposit-withdraw-bill/flow.md` | 可沿用 / 本輪同步 | Step 3 / Step 4 內容可用；Step 5 補 claim gate 結論 |
 
@@ -245,10 +245,10 @@ Nick / `10gt12nc` author filter：
 
 這條 flow 已完成 Step 5 單條 flow claim gate。它可以作為 code-backed 面試案例，但目前不能寫成 Nick 真實開發過。
 
-第三順位 `agent-bonus-receive-transfer` 已完成 Step 3，下一步做 Step 4。仍不做完整 `game_api contribution claim consolidation`。
+第三順位 `agent-bonus-receive-transfer` 已完成 Step 4，下一步做 Step 5。仍不做完整 `game_api contribution claim consolidation`。
 
 下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```

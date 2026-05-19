@@ -1,9 +1,20 @@
 # agent-bonus-receive-transfer evidence
 
 更新時間：2026-05-19
-Step：3
+Step：4
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 4 更新摘要
+
+2026-05-19 Step 4 重新 fetch `game_api` 與 `game_job` remote refs，確認本機 `main` 仍與 `origin/main` 同步，並把 Step 3 主學習包收斂成面試案例：
+
+- `career-interview.md`：補一句話、30 秒、2 分鐘、5 分鐘、STAR、Senior / Platform / System Owner 口吻、常見追問與 Step 5 下一步。
+- `materials/interview.md`：補 30 秒、3 分鐘、5 分鐘、STAR、Senior / Lead 追問、反問面試官、可說 / 不可說。
+- `materials/claim-boundary.md`：維持 code-backed 面試素材；未看到 Nick / `10gt12nc` direct path evidence 前，不更新正式履歷 / 自傳。
+- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 4，下一步為 Step 5。
+
+Step 4 不新增正式履歷 claim，也不執行 `game_api contribution claim consolidation`。
 
 ## 自動重讀紀錄
 
@@ -31,9 +42,9 @@ Step：3
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 已同步 | 已新增第三條 flow Step 3 狀態與下一步 |
-| `step1-candidate-flows.md` | 已同步 | 已列此 flow 為第三順位，並標示 Step 3 完成 |
-| `step2-flow-comparison.md` | 已同步 | 已列此 flow 為第三順位，並更新為 Step 3 完成 |
+| `README.md` | 已同步 | 已把本 flow 從 Step 3 更新為 Step 4，下一步改 Step 5 |
+| `step1-candidate-flows.md` | 已同步 | 已把本 flow 從 Step 3 更新為 Step 4 |
+| `step2-flow-comparison.md` | 已同步 | 已把本 flow 從 Step 3 更新為 Step 4，下一步改 Step 5 |
 | `coupon-redeem-credit-grant` | 可沿用 | Step 5 完成，有 Nick direct evidence |
 | `partner-deposit-withdraw-bill` | 可沿用 | Step 5 完成，但只作 code-backed 面試素材 |
 
@@ -42,6 +53,7 @@ Step：3
 Source repo：`/Users/nick/Git/iwin/game_api`
 
 - Step 3 開始前已執行 `git fetch --all --prune`。
+- Step 4 開始前已再次執行 `git fetch --all --prune`。
 - 本機 branch：`main`
 - local HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
 - `origin/main` HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
@@ -63,6 +75,7 @@ Source repo：`/Users/nick/Git/iwin/game_api`
 下游 / 上游參考 repo：`/Users/nick/Git/iwin/game_job`
 
 - Step 3 已執行 `git fetch --all --prune`。
+- Step 4 開始前已再次執行 `git fetch --all --prune`。
 - 本機 branch：`main`
 - local HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
 - `origin/main` HEAD：`23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`
@@ -212,6 +225,7 @@ Source repo：`/Users/nick/Git/iwin/game_api`
 Nick / `10gt12nc` author filter：
 
 - 本輪未找到 Nick / `10gt12nc` 直接修改 `AgentShareServiceImpl`、`ShareCommonService`、Partner share endpoints、AgentMoney / transfer / receive log model 或 GameAgent mapper 的 commit。
+- Step 4 重跑同一組 agent bonus path author filter，結果仍為空。
 
 `game_job` agent bonus paths：
 
@@ -221,6 +235,7 @@ Nick / `10gt12nc` author filter：
 Nick / `10gt12nc` author filter：
 
 - 本輪未找到 Nick / `10gt12nc` 直接修改 `AgentBonusWashJob`、`AgentBonusSettlementJob` 或相關 agent bonus model 的 commit。
+- Step 4 重跑同一組 game_job agent bonus path author filter，結果仍為空。
 
 ## 證據層級判斷
 
@@ -232,12 +247,12 @@ Nick / `10gt12nc` author filter：
 | Nick 實作此 flow | 待確認 | path-specific history 未看到 `10gt12nc`，也無本人確認 |
 | 可寫入正式履歷 | 否 | 需要本人確認、commit、ticket、MR 或 production issue evidence |
 
-## Step 3 結論
+## Step 4 結論
 
-這條 flow 已完成 Step 3 主學習包。它是高價值 code-backed 面試素材，但目前不更新正式履歷 / 自傳。
+這條 flow 已完成 Step 4 面試收斂。它是高價值 code-backed 面試素材，但目前不更新正式履歷 / 自傳。
 
 下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```

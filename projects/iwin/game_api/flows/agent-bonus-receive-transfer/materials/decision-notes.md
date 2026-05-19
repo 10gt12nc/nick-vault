@@ -1,7 +1,7 @@
 # agent-bonus-receive-transfer decision notes
 
 更新時間：2026-05-19
-Step：3
+Step：4
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## Decision 1：Mongo `agent_money` 應是佣金可領餘額 source of truth

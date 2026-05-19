@@ -2,7 +2,7 @@
 
 中文名稱：代理佣金領取 / 轉帳
 更新時間：2026-05-19
-Step：3
+Step：4
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -10,7 +10,7 @@ Step：3
 
 這條 flow 是 `game_api` 的代理佣金操作入口：玩家成為代理後，可以查可領佣金、把佣金轉給下級，或把可領佣金領到遊戲錢包。
 
-它不是單純查詢頁。它跨了 `game_api` API、Mongo `agent_money`、Mongo 轉帳 / 領取紀錄、Redis `GameAgent:{rid}` projection、`game_job` 佣金計算 / 結算 job，以及 gameserver GM 上分。Step 3 先把 code path、資料狀態與 failure window 讀清楚；目前不更新正式履歷 / 自傳。
+它不是單純查詢頁。它跨了 `game_api` API、Mongo `agent_money`、Mongo 轉帳 / 領取紀錄、Redis `GameAgent:{rid}` projection、`game_job` 佣金計算 / 結算 job，以及 gameserver GM 上分。Step 4 已把 code path、資料狀態與 failure window 收斂成面試案例；目前不更新正式履歷 / 自傳。
 
 ## 已確認與待確認
 
@@ -250,22 +250,22 @@ sequenceDiagram
 
 原因是本輪 path-specific history 未看到 Nick / `10gt12nc` direct path evidence，也尚未有 Nick 本人確認此 flow 是他做過或維護過。
 
-## Step 3 結論
+## Step 4 結論
 
-`agent-bonus-receive-transfer` 已完成 Step 3 主學習包。這條 flow 的價值在於它把「佣金計算結果」轉成「可領餘額、轉帳、錢包上分」，很適合談 Mongo / Redis / GM command 的一致性與重領風險。
+`agent-bonus-receive-transfer` 已完成 Step 4 面試收斂。這條 flow 的價值在於它把「佣金計算結果」轉成「可領餘額、轉帳、錢包上分」，很適合談 Mongo / Redis / GM command 的一致性與重領風險。
 
-下一步應做 Step 4，轉成正式面試 case；仍不更新正式履歷 / 自傳，也不做完整 `game_api contribution claim consolidation`。
+下一步應做 Step 5 單條 flow claim gate；仍不更新正式履歷 / 自傳，也不做完整 `game_api contribution claim consolidation`。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
 
-- Step 3 已讀清 code path、資料狀態與 failure window。
-- Step 4 可以把這條 flow 轉成 30 秒 / 3 分鐘 / STAR / Lead 追問。
+- Step 4 已整理成 30 秒 / 3 分鐘 / STAR / Lead 追問。
+- Step 5 要確認此單條 flow 是否有 Nick / `10gt12nc` evidence 或本人確認可支撐更高 claim。
 - 這輪不更新正式履歷；完整 `game_api contribution claim consolidation` 仍要等本批代表 flows 都完成 Step 5。

@@ -1,10 +1,10 @@
 # agent-bonus-receive-transfer claim boundary
 
 更新時間：2026-05-19
-Step：3
+Step：4
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
-## Step 3 判定
+## Step 4 判定
 
 結論：可作 code-backed 面試素材，暫不更新正式履歷 / 自傳。
 
@@ -13,6 +13,7 @@ Step：3
 - Flow 本身已由 Controller、Service、Mongo model、Redis key、GM command 與 `game_job` 上游 job code 確認。
 - path-specific history 未看到 Nick / `10gt12nc` 直接修改 `AgentShareServiceImpl`、`ShareCommonService`、Partner share endpoints、AgentBonusWash / Settlement 或相關 model。
 - Nick 尚未本人確認這條代理佣金 flow 是他做過或維護過。
+- Step 4 已整理成一句話、30 秒、2 分鐘、5 分鐘、STAR、Senior / Platform / Owner 口吻與常見追問。
 
 ## 可以主張
 
@@ -26,6 +27,7 @@ Step：3
 - 「我分析過一條代理佣金領取 / 轉帳 flow，重點是可領餘額、Redis projection 與 GM wallet side effect 的一致性。」
 - 「我會先把 Mongo `agent_money` 定成 source of truth，Redis 當 projection，再補 operation id 與 reconciliation。」
 - 「短時間 lock 只能防連點，不是 money flow idempotency。」
+- 「這條目前是 code-backed 分析案例，我不會把它包裝成我主導開發。」
 
 ## 目前不能主張
 
@@ -46,5 +48,5 @@ Step：3
 ## 下一步
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```

@@ -56,6 +56,7 @@
 - 已完成 `game_api partner-deposit-withdraw-bill Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為 Partner API 上分 / 下分 / 查單的 code-backed 面試案例。
 - 已補上待辦事項優先規則：當 Nick 要的是「待辦、缺口、KB 維護、優先順序」時，AI 先維護 todo / KB / inventory，只列候選下一步並等待 Nick 下 Step；不得把缺口自動開工成 flow Step。
 - 已完成 `game_api agent-bonus-receive-transfer Step 3`，建立代理佣金領取 / 轉帳主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳，也不做完整 `game_api contribution claim consolidation`。
+- 已完成 `game_api agent-bonus-receive-transfer Step 4`，轉成代理佣金領取 / 轉帳的正式面試 case；目前仍只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 
 ## 下一步
 
@@ -67,31 +68,31 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
-1. `game_api agent-bonus-receive-transfer Step 4`：Step 3 已完成；下一步把代理佣金領取 / 轉帳 flow 轉成正式面試 case。
+1. `game_api agent-bonus-receive-transfer Step 5`：Step 4 已完成；下一步做單條 flow claim gate，確認是否有 Nick / `10gt12nc` evidence 或本人確認可升級 claim。
 2. `game_job contribution claim consolidation`：Top 5 代表 flows 已完成 Step 5，才可做 project-level 貢獻收斂；需重讀所有 game_job flow KB、掃 Nick / `10gt12nc` code commits / branches / 重要 diff，統一成「可放履歷 / 可面試講 / 不可誇大」三層。
 3. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
 4. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
 5. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
-### 1. iwin game_api agent-bonus-receive-transfer Step 4
+### 1. iwin game_api agent-bonus-receive-transfer Step 5
 
 建議下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
 
-- `agent-bonus-receive-transfer` Step 3 已完成，結論是 code-backed 面試素材、不更新正式履歷。
-- Step 4 要把代理佣金、Mongo money balance、Redis projection、GM 上分與 failure window 收斂成 30 秒 / 3 分鐘 / STAR / 追問稿。
+- `agent-bonus-receive-transfer` Step 4 已完成，結論是 code-backed 面試素材、不更新正式履歷。
+- Step 5 要確認這條 flow 是否有 Nick / `10gt12nc` path evidence 或本人確認；若沒有，就正式收斂為不進履歷。
 - 仍不是完整 `game_api contribution claim consolidation`；本批代表 flows 尚未都完成 Step 5。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_api agent-bonus-receive-transfer Step 4`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin game_api agent-bonus-receive-transfer Step 5`。以下是近期各 project 的局部下一步：
 
-1. `game_api`：`agent-bonus-receive-transfer Step 4`，把第三順位 money-like flow 轉成面試 case。
+1. `game_api`：`agent-bonus-receive-transfer Step 5`，把第三順位 money-like flow 做單條 flow claim gate。
 2. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
 3. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
 4. `game_job`：`contribution claim consolidation`，因為 Top 5 代表 flows 已完成 Step 5 但尚未 project-level 收斂。
@@ -116,12 +117,12 @@ iwin game_api agent-bonus-receive-transfer Step 4
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_api` 的 coupon 與 partner 兩條 flow 已完成 Step 5，`agent-bonus-receive-transfer` 已完成 Step 3，下一步是同 flow Step 4；`game_job` Top 5 代表 flows 已完成但尚未 project-level claim，可排在 game_api 下一條 flow 後或 Nick 指定時做 consolidation。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_api` 的 coupon 與 partner 兩條 flow 已完成 Step 5，`agent-bonus-receive-transfer` 已完成 Step 4，下一步是同 flow Step 5；`game_job` Top 5 代表 flows 已完成但尚未 project-level claim，可排在 game_api 下一條 flow 後或 Nick 指定時做 consolidation。
 
 ## 下一個 prompt
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 4
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。
