@@ -381,14 +381,14 @@ Step 4 已整理完整面試稿：
 下一步只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
 
 - `app_bi` 已完成四條主要分析 flow 的 Step 5 判定。
 - `payment-order-status-repair` 在 app_bi 只看到人工修正入口，真正 money correctness 要回到 `/Users/nick/Git/iwin/payment`。
-- 下一步做 `iwin game_api partner-deposit-withdraw-bill Step 5` 會補 game_api 第二條代表 flow，不會直接把 app_bi 人工入口或單條 game_api flow 寫成完整 project owner。
+- 下一步做 `iwin game_api agent-bonus-receive-transfer Step 5` 會補 game_api 第三條代表 flow，不會直接把 app_bi 人工入口或單條 game_api flow 寫成完整 project owner。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

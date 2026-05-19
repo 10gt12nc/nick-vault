@@ -1,6 +1,6 @@
 # iwin app_bi Architecture Map
 
-更新時間：2026-05-15
+更新時間：2026-05-19
 文件角色：project-level 定位地圖
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
@@ -31,6 +31,7 @@
 
 | Flow | 類型 | 狀態 | 履歷 |
 | --- | --- | --- | --- |
+| `contribution-claim-consolidation` | project-level claim 收口 | 已完成 | limited / negative；不放正式履歷主成果 |
 | `point-control-admin-operation` | 後台控制面 / control plane | Step 5 | 不更新正式履歷 |
 | `admin-config-redis-sync` | 設定同步 / Redis projection | Step 5 | 不更新正式履歷 |
 | `daily-game-record-summary` | 報表查詢 / batch projection | Step 5 | 不更新正式履歷 |
@@ -56,11 +57,11 @@
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
 
-- app_bi 主要分析 flow 已完成 Step 5 並收斂為面試分析素材。
-- 最高價值候選 `payment-order-status-repair` 在 app_bi 只看到人工入口。
-- 真正 money correctness 要回到 payment repo 找 callback、訂單狀態機、wallet side effect 與對帳 flow。
+- app_bi project-level claim 已完成 limited / negative consolidation。
+- 真正 money correctness 已回到 payment repo 收口；game_job 也已完成 project-level consolidation。
+- 下一步回 `game_api` 未完成的代表 flow。

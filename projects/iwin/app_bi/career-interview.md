@@ -1,12 +1,12 @@
 # iwin app_bi Career / Interview
 
-更新時間：2026-05-15
+更新時間：2026-05-19
 文件角色：project-level 保守面試素材
 證據層級：分析素材 / learning-only；專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 結論
 
-`app_bi` 可以作為面試中的「後台入口如何追 production flow」素材，但目前不更新正式履歷 / 自傳。
+`app_bi` 已完成 `contribution-claim-consolidation.md` 的 limited / negative 收口。它可以作為面試中的「後台入口如何追 production flow」素材，但目前不更新正式履歷 / 自傳，也不作獨立履歷成果。
 
 可以說：
 
@@ -58,13 +58,13 @@
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
 
-- app_bi 已收斂為入口 / 分析素材。
-- 下一步先補 `game_api` 第二條代表 flow。
+- app_bi 已完成 limited / negative consolidation。
+- 下一步回 `game_api` 第三條代表 flow Step 5。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

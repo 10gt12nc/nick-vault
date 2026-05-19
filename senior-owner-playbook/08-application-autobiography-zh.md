@@ -13,6 +13,8 @@
 
 > 2026-05-19 game_job consolidation 補充：投遞自傳可保守寫 Nick 參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整；仍不寫主導完整第三方紀錄備份、完整 retention policy owner 或量化改善。
 
+> 2026-05-19 app_bi consolidation：已完成 `projects/iwin/app_bi/contribution-claim-consolidation.md`。結論是 limited / negative consolidation：`app_bi` 只作後台入口 / BI / control plane 的 code-backed 面試分析素材，不新增投遞自傳主成果。
+
 ## 使用原則
 
 - 不寫人生流水帳。

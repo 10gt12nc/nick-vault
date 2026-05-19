@@ -95,6 +95,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | 已收斂 |
+| iwin | app_bi | `contribution-claim-consolidation` | app_bi limited / negative 收口 | 中 | 已完成 | 專案存在 / code-backed；Nick app_bi direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂 |
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 可作 flow evidence；不代表完整 project | 已收斂 |
 | iwin | game_api | `partner-deposit-withdraw-bill` | Partner API 上分 / 下分 / 查單 | 很高 | Step 5 | 專案存在 / code-backed；未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_api | `agent-bonus-receive-transfer` | 代理佣金領取 / 轉帳 | 高 | Step 4 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | queue 第 1，先做 Step 5 |

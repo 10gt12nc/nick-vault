@@ -4,15 +4,18 @@
 
 `app_bi` 是 PHP / ThinkPHP 後台與 BI 專案，主要價值是理解 iwin 後台操作入口、BI / 報表查詢、設定同步、金流人工修正入口、遊戲紀錄查詢與權限邊界。它不是目前 Nick 履歷裡的主要後端成果來源；沒有下游後端 repo evidence 前，不把 `app_bi` 包裝成完整後端 owner 或真實開發成果。
 
+`contribution-claim-consolidation.md` 已完成 limited / negative 收口：`app_bi` 不放正式履歷主成果，只作後台入口 / BI / control plane 的 code-backed 面試分析素材。
+
 ## 讀檔順序
 
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. [architecture-map.md](architecture-map.md)：app_bi 作為後台 / BI / control plane 的定位地圖。
 4. [career-interview.md](career-interview.md)：project-level 保守面試素材與履歷邊界。
-5. `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
-6. `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
-7. `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+5. [contribution-claim-consolidation.md](contribution-claim-consolidation.md)：project-level limited / negative 履歷 claim 收口。
+6. `flows/{flow-name}/flow.md`：單條 flow 的主研究報告。
+7. `flows/{flow-name}/career-interview.md`：該 flow 的保守面試 / 履歷素材。
+8. `flows/{flow-name}/materials/`：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 
 ## 目前狀態
 
@@ -22,6 +25,7 @@
 | `step2-flow-comparison.md` | 已重整 | 已同步新 Step 1 候選排序、證據層級與後台入口邊界 |
 | `architecture-map.md` | 已補齊 | 只作定位地圖，不取代 flow 深挖 |
 | `career-interview.md` | 已補齊 | project-level 保守素材；不更新正式履歷 |
+| `contribution-claim-consolidation.md` | 已完成 | limited / negative consolidation；不放正式履歷主成果 |
 | `flows/point-control-admin-operation/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/admin-config-redis-sync/` | Step 5，新版可讀結構 | `flow.md` 已補白話導讀、Code 分層、架構圖、流程圖；不更新正式履歷 |
 | `flows/daily-game-record-summary/` | Step 5，新版可讀結構 | 已確認 app_bi 查詢端與 game_job producer；已轉保守面試 case；已判定不更新正式履歷 |
@@ -53,6 +57,11 @@
 - `/Users/nick/Git/iwin/app_bi`：已 fetch；本地 `main=4a206a2`，`origin/main=fd9881f`，本地落後 4 commit；未 pull、未 checkout、未改公司 repo。
 - `/Users/nick/Git/iwin/payment`：已 fetch；目前分支 `k3s` 與 `origin/k3s` 同步在 `e8be8a1`；僅作下一步候選 repo，不代表已掃 payment flow。
 
+2026-05-19 consolidation 補記：
+
+- `/Users/nick/Git/iwin/app_bi` 已再次 fetch；本地 `main=4a206a2`，`origin/main=fd9881f`，ahead / behind `0 / 4`。
+- Nick / `10gt12nc` 在 app_bi 的 author log 只看到 KB / catalog 建立與 revert，未看到主要 app_bi flow direct contribution。
+
 因此：`app_bi` 既有分析可作已讀學習素材，但若未來要重新升級 app_bi evidence 或 claim，必須先由 Nick 決定是否更新本地 app_bi 工作樹或改看遠端 diff。
 
 ## 履歷邊界
@@ -74,7 +83,7 @@
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 5
 ```
 
 原因：
@@ -84,8 +93,8 @@ iwin game_api partner-deposit-withdraw-bill Step 5
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
-- `app_bi` 主要分析 flow 已收斂；目前只作後台入口 / BI / control plane 的 code-backed 面試素材。
-- 下一步先做 `game_api partner-deposit-withdraw-bill Step 5`；不把 app_bi 人工修正入口包裝成完整 payment owner，也不把 game_api 單條 coupon flow 直接包裝成完整 project owner。
+- `app_bi contribution claim consolidation` 已完成，結論是不放正式履歷主成果。
+- 下一步先做 `game_api agent-bonus-receive-transfer Step 5`；`game_api` 本批代表 flows 未完成前，仍不能做完整 project-level consolidation。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

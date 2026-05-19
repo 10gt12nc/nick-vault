@@ -12,6 +12,8 @@
 
 > 2026-05-19 game_job consolidation 補充：Nick / `10gt12nc` 在 `game_job` GSC Mongo backup job path 有 `d11b1f4`、`bf92773` direct commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。仍不得寫成主導完整第三方遊戲紀錄備份、完整 Antplay / GSC / Oneapi retention policy owner、已驗證 production enable 或改善 X%。
 
+> 2026-05-19 app_bi consolidation：已完成 `projects/iwin/app_bi/contribution-claim-consolidation.md`。結論是 limited / negative consolidation：`app_bi` 只作後台入口 / BI / control plane 的 code-backed 面試分析素材，不新增正式履歷主成果；不得寫成 Nick 主導完整後台、BI owner、payment repair owner 或 runtime config owner。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）

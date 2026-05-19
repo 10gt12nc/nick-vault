@@ -58,6 +58,7 @@
 - 已完成 `game_api agent-bonus-receive-transfer Step 3`，建立代理佣金領取 / 轉帳主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳，也不做完整 `game_api contribution claim consolidation`。
 - 已完成 `game_api agent-bonus-receive-transfer Step 4`，轉成代理佣金領取 / 轉帳的正式面試 case；目前仍只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 - 已完成 `iwin game_job contribution claim consolidation`；Nick / `10gt12nc` 在 daily summary 與 GSC backup path 有 direct commits，可把 game_job 升級為「部分真實開發過」，但不寫完整 game_job / BI pipeline / retention owner。
+- 已完成 `iwin app_bi contribution claim consolidation`；這是 limited / negative 收口，結論是不放正式履歷主成果，只作後台入口 / BI / control plane 的 code-backed 面試分析素材。
 
 ## 下一步
 
@@ -71,9 +72,10 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 1. `game_api agent-bonus-receive-transfer Step 5`：Step 4 已完成；下一步做單條 flow claim gate，確認是否有 Nick / `10gt12nc` evidence 或本人確認可升級 claim。
 2. `game_job contribution claim consolidation`：已完成；保留為 project-level claim evidence，不因新規則重做。
-3. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
-4. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
-5. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
+3. `app_bi contribution claim consolidation`：已完成 limited / negative 收口；不放正式履歷主成果。
+4. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
+5. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
+6. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
 ### 1. iwin game_api agent-bonus-receive-transfer Step 5
 
@@ -97,7 +99,7 @@ iwin game_api agent-bonus-receive-transfer Step 5
 1. `game_api`：`agent-bonus-receive-transfer Step 5`，把第三順位 money-like flow 做單條 flow claim gate。
 2. `game_job`：`contribution claim consolidation` 已完成，不因新規則重做。
 3. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
-4. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
+4. `app_bi`：limited / negative contribution claim consolidation 已完成；不放正式履歷主成果。
 5. `third_games_api`：project-local 下一步是 `gsc-transfer-bet-settle-rollback Step 5`。
 6. `iwin_gameserver`：先做 `center-http-deposit-withdraw Step 4`，不要過早完整 consolidation。
 7. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
