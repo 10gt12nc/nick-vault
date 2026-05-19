@@ -428,7 +428,7 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 原因：
 
 - 本檔只是 Step 1 candidate flow 盤點。
-- 單條 coupon flow 已完成 Step 5，且已補到 Nick / `10gt12nc` path-specific commits，可保守更新正式履歷 / 自傳。
+- 單條 coupon flow 已完成 Step 5，且已補到 Nick / `10gt12nc` path-specific commits，可作 project contribution consolidation evidence。
 - 其他 `game_api` flow 仍不可因 coupon evidence 自動升級。
 
 ## 下一步建議
@@ -436,11 +436,11 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_job daily-game-data-summary Step 5
+iwin game_api contribution claim consolidation
 ```
 
 原因：
 
 - coupon Step 5 已完成，下一步回到跨 iwin queue。
-- `game_job daily-game-data-summary` 已完成 Step 4，下一步應做 Step 5 claim gate。
+- 單條 coupon Step 5 不能直接代表整個 `game_api` project 履歷結論；下一步應做 project-level contribution consolidation。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

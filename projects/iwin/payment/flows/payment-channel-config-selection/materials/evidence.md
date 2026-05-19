@@ -309,5 +309,5 @@ app_bi 補查：
 ## 下一步
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin game_api contribution claim consolidation
 ```

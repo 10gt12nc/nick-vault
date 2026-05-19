@@ -323,7 +323,7 @@ Step 3 暫不做：
 ## 下一步
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -333,23 +333,23 @@ iwin iwin_gameserver contribution claim consolidation
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin game_api contribution claim consolidation
 ```
 
 為什麼現在做它：
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
-- 目前總 queue 已移到 `iwin_gameserver`，需要先做 project-level contribution claim consolidation。
-- 下一步回到 iwin queue，收斂已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
+- 目前總 queue 已移到 `game_api contribution claim consolidation`，先補單條 coupon Step 5 之後的 project-level claim 邊界。
+- 下一步回到 iwin queue，補 `game_api coupon-redeem-credit-grant` Step 5 之後的 project-level contribution consolidation。
 
 會產出什麼：
 
-- 補 `game_api coupon-redeem-credit-grant` 的 claim boundary、path-specific evidence 判斷與是否更新履歷 / 自傳的結論。
+- 補 `game_api` 的 Nick / `10gt12nc` commits、branches、重要 diff、coupon flow evidence 與其他 candidate flow 邊界。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- payment 履歷 / 自傳已保守更新；`game_api coupon-redeem-credit-grant` 需等 Step 5 claim gate 判斷。
+- payment 履歷 / 自傳已保守更新且不因新規則重做；`game_api` 需先做 contribution consolidation 才能確認 coupon evidence 如何放入正式履歷。
 
 是否需要 commit / push：
 

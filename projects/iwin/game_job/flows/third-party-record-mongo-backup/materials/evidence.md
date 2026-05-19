@@ -275,7 +275,7 @@ Step 5 判斷：
 
 ## 履歷判斷
 
-本 Step 5 可保守更新正式履歷。
+本 Step 5 可作 game_job project contribution consolidation evidence。
 
 可寫：
 

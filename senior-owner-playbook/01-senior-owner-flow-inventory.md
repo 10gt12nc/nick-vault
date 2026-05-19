@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，payment 的 Top 5 代表 flow 與 contribution claim 已先保守收斂，但不是全 payment project 完成；不需要因新規則重做 payment。`game_job` 已完成多條 Step 5，包含 daily summary、third-party Mongo backup、coin-flow projection、online-payment cleaning、partition creation，但尚未做 project-level contribution claim consolidation；下一步應先做 `game_job contribution claim consolidation`。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成，但 gameserver 排在 game_job consolidation 之後。
+- 若目標是最快產出 Senior Backend 履歷素材，依最新 KB 先把已出現正向履歷 evidence、但尚未 project-level consolidation 的 project 補齊。`game_api coupon-redeem-credit-grant` 已完成 Step 5 且有 Nick / `10gt12nc` direct commits，下一步先做 `game_api contribution claim consolidation`。`payment` 已完成 project-level consolidation，不需要因新規則重做。`game_job` 已完成多條 Step 5，但尚未做 project-level consolidation，排在 game_api 之後。`iwin_gameserver` 再排在 game_job 之後。
 - 2026-05-19 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，但不得寫成主導完整金流或全部 provider owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
@@ -94,39 +94,40 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | 已收斂 |
-| iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 是，保守更新 | 已收斂 |
+| iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 待 project consolidation 確認 | 已收斂 |
+| iwin | game_api | `contribution-claim-consolidation` | game_api 實際開發貢獻收斂 | 高 | 待做 | 待整合 coupon flow evidence、Nick / `10gt12nc` commits、branches、重要 diff 與其他 game_api flow 邊界 | 待確認 | queue 第 1 |
 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 高 | 已完成 | 本人確認 + 真實開發過 + code-backed | 是，保守更新 | 履歷 claim 已收斂；不是全 payment project 完成 |
 | iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 單條 flow code-backed；project-level 有多 provider callback / sign 維護 evidence | 併入 payment project bullet | 已收斂 |
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 單條 flow code-backed；withdraw insert / null-safety 有有限維護 evidence | 不單獨寫自動出款 owner | 已收斂 |
 | iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：多 provider request / callback / query / withdraw evidence；整體金流 owner 不誇大 | 是，保守更新 | 已收斂 |
 | iwin | payment | `manual-order-review-repair` | 人工審核 / 補單 / 訂單修復 | 中高 | Step 5 | code-backed；不單獨升級人工修復 owner | 否，作面試素材 | 已收斂 |
 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 5 | code-backed；不單獨升級支付設定 owner | 否，作面試素材 | 已收斂 |
-| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 2 |
-| iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 commits | 是，保守更新 | 已收斂 |
-| iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 5 | 局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢 / batch size 調整 commits | 是，併入 game_job batch bullet | 已收斂 |
+| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 4 |
+| iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 commits | 待 project consolidation 確認 | 已收斂 |
+| iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 5 | 局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢 / batch size 調整 commits | 待 project consolidation 確認 | 已收斂 |
 | iwin | game_job | `coin-flow-batch-projection` | 金幣流水清算 / 玩家行為投影 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_job | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_job | `partition-table-creation` | 每日 / 每月分表建立 | 中低 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
-| iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 待做 | 待掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 game_job flow evidence | 待確認 | queue 第 1 |
+| iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 待做 | 待掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 game_job flow evidence | 待確認 | queue 第 2 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂，待回 ranking |
-| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 待做 | 待掃 Nick / `10gt12nc` commits、branches、重要 diff | 待確認 | queue 第 2 |
+| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 待做 | 待掃 Nick / `10gt12nc` commits、branches、重要 diff | 待確認 | queue 第 3 |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 3 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 待 contribution consolidation 後再決定 Step 4 / Step 5 |
-| iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 4 |
+| iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 5 |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-iwin game_job contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因:
 
-- `payment` 已完成 project-level consolidation，不需要因新規則重做。
-- `game_job` 已累積多條 Step 5 flow evidence，但尚未做 project-level Nick / `10gt12nc` contribution consolidation。
-- 下一步要先確認 game_job 哪些內容是 Nick 真實開發、哪些只能 code-backed 面試講、哪些不可誇大。
-- consolidation 後再決定是否更新正式履歷 / 自傳，或回到下一個 project。
+- `game_api coupon-redeem-credit-grant` 已完成 Step 5，且已有 Nick / `10gt12nc` direct path evidence。
+- 依最新 KB，單條 flow Step 5 不能直接代表整個 `game_api` project 履歷結論；要先做 project-level contribution consolidation。
+- consolidation 要把 coupon evidence、其他 game_api candidate flow、Nick / `10gt12nc` commits、branches、重要 diff 分成「可放履歷 / 可面試講 / 不可誇大」三層。
+- `payment` 已完成 consolidation，不需要重做；`game_job` 排在 game_api 後面。
 
 ## 近期候選 Queue
 
@@ -134,14 +135,15 @@ iwin game_job contribution claim consolidation
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 多條 Step 5 已完成，但尚未 project-level consolidation | `iwin game_job contribution claim consolidation` |
-| 2 | iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 履歷 claim gate；避免把 code-backed gameserver 分析誤寫成真實開發 | `iwin iwin_gameserver contribution claim consolidation` |
-| 3 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，下一步可做 claim gate | 待 iwin_gameserver center_http flow 後再排 |
-| 4 | iwin | game_api / game_job | `settled-bets-kafka` | Settled bets Kafka | MQ reliability / settlement / audit | `game_api Step 1` 或 `game_job Step 1` |
-| 5 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
-| 5 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
-| 6 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
-| 7 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
+| 1 | iwin | game_api | `contribution-claim-consolidation` | game_api 實際開發貢獻收斂 | coupon Step 5 已有 direct evidence，但尚未 project-level consolidation | `iwin game_api contribution claim consolidation` |
+| 2 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 多條 Step 5 已完成，但尚未 project-level consolidation | `iwin game_job contribution claim consolidation` |
+| 3 | iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 履歷 claim gate；避免把 code-backed gameserver 分析誤寫成真實開發 | `iwin iwin_gameserver contribution claim consolidation` |
+| 4 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin third_games_api gsc-transfer-bet-settle-rollback Step 5` |
+| 5 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
+| 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
+| 7 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
+| 8 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
+| 9 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
 
 ## Domain Backlog
 

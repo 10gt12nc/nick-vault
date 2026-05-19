@@ -195,7 +195,7 @@ Game 分表 template：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 3
+iwin game_job contribution claim consolidation
 ```
 
-原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job` 目前 Top 5 flow 都已收斂。依目前跨 project queue，下一條最值得做的是 `iwin_gameserver center-http-deposit-withdraw Step 3`，補中心錢包上分 / 下分的 money correctness 素材。
+原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job` 目前 Top 5 flow 都已收斂。依最新 KB，下一條最值得做的是 `game_job contribution claim consolidation`，先收斂本 project 的履歷 claim 邊界。

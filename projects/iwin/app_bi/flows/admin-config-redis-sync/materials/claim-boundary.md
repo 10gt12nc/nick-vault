@@ -91,12 +91,12 @@ Step 4 面試稿可以聚焦:
 
 ## Step 5 後下一步
 
-`game-round-record-query` Step 5 已完成；app_bi 主要 flow 已收斂，目前下一步轉到 `iwin payment contribution claim consolidation`。
+`game-round-record-query` Step 5 已完成；app_bi 主要 flow 已收斂，目前下一步轉到 `iwin game_api contribution claim consolidation`，先補 coupon Step 5 之後的 project-level claim 邊界。
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
@@ -104,7 +104,7 @@ iwin payment contribution claim consolidation
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment contribution claim consolidation`，回到真正 money correctness source of truth。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin game_api contribution claim consolidation`，先補已完成 coupon Step 5 的 project-level claim 邊界。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

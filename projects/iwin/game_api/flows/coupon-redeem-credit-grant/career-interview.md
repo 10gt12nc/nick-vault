@@ -6,7 +6,7 @@
 
 ## 面試定位
 
-這份可作為正式履歷 / 面試素材，但必須用保守口徑。Nick / `10gt12nc` 在 `game_api` coupon flow 與 `iwin_gameserver` bet target handler 有 path-specific commits，可說「參與 / 開發」；不可說主導完整 coupon system、修復 production 雙領事故或設計 Redis lock。
+這份可作為 `game_api` project contribution consolidation 的 strong evidence 與面試素材，但正式履歷 / 自傳仍以 project-level consolidation 結論為準。Nick / `10gt12nc` 在 `game_api` coupon flow 與 `iwin_gameserver` bet target handler 有 path-specific commits，可說「參與 / 開發」；不可說主導完整 coupon system、修復 production 雙領事故或設計 Redis lock。
 
 可用語氣：
 
@@ -116,11 +116,11 @@ Result：
 ## Step 5 結論
 
 - 可形成履歷 bullet，證據是 `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 的 commits。
-- 正式履歷用「參與 / 開發優惠券兌換上分 / 打碼要求 flow」。
+- 正式履歷候選口徑可用「參與 / 開發優惠券兌換上分 / 打碼要求 flow」，但需先經 `game_api contribution claim consolidation` 確認 project-level 邊界。
 - 仍不寫主導、完整 owner、production incident 或量化改善。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
+- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 仍以 `game_api contribution claim consolidation` 為準。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

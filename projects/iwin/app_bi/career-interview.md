@@ -58,13 +58,13 @@
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
 
 - app_bi 已收斂為入口 / 分析素材。
-- 下一步應補 money correctness 的後端 source of truth。
+- 下一步先補 `game_api` 已完成 coupon Step 5 之後的 project-level claim 邊界。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

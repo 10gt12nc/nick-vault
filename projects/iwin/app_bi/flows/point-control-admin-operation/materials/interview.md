@@ -241,7 +241,7 @@
 下一步只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
@@ -249,4 +249,4 @@ iwin payment contribution claim consolidation
 - 本 flow 已完成 Step 1-5。
 - Step 5 已判定不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin payment contribution claim consolidation`，回到真正 money correctness source of truth。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin game_api contribution claim consolidation`，先補已完成 coupon Step 5 的 project-level claim 邊界。

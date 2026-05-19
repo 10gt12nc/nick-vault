@@ -10,9 +10,9 @@ Step：5
 
 這條 flow 是玩家使用優惠券兌換碼後，由 `game_api` 驗證登入與資格，再呼叫遊戲中心 GM command 幫玩家上分，並設定對應打碼要求。
 
-本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_api` coupon 入口 / service / DAO / mapper / entity 以及 `iwin_gameserver` bet target handler 有 path-specific commits，因此可保守寫成「真實開發過」；但仍不可寫成 Nick 主導完整 coupon 系統、完整 reward owner、Redis lock 設計者或 production 雙領事故修復者。
+本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_api` coupon 入口 / service / DAO / mapper / entity 以及 `iwin_gameserver` bet target handler 有 path-specific commits，因此可作「真實開發過」候選 evidence；正式 05 / 08 仍需 project-level consolidation；但仍不可寫成 Nick 主導完整 coupon 系統、完整 reward owner、Redis lock 設計者或 production 雙領事故修復者。
 
-2026-05-19 Step 5 已補到 Nick / `10gt12nc` path-specific commit evidence，可保守轉入正式履歷 claim。暫不升 Level 3，原因是目前 Step 5 目的已達成；若未來要主張更強的 production incident / 防雙領修復 / owner 經驗，才需要再追逐 commit diff、下游 bill no 去重語意與 production deploy 證據。
+2026-05-19 Step 5 已補到 Nick / `10gt12nc` path-specific commit evidence，可作正式履歷 claim 的 strong evidence。暫不升 Level 3，原因是目前 Step 5 目的已達成；若未來要主張更強的 production incident / 防雙領修復 / owner 經驗，才需要再追逐 commit diff、下游 bill no 去重語意與 production deploy 證據。
 
 已確認：
 
@@ -214,7 +214,7 @@ sequenceDiagram
 
 ## Step 5 履歷 / 自傳 claim gate
 
-Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
+Step 5 已完成：本 flow 可作 `game_api` project contribution consolidation 的 strong evidence；正式履歷 / 自傳仍以 project-level consolidation 結論為準。
 
 已確認 evidence：
 
@@ -236,11 +236,11 @@ Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 下一步：
 
 ```text
-iwin game_job daily-game-data-summary Step 5
+iwin game_api contribution claim consolidation
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
+- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 仍以 `game_api contribution claim consolidation` 為準。
 - 可面試講：code-backed / 分析過。可講優惠券兌換上分、跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。

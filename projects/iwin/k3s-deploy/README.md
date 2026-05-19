@@ -69,14 +69,14 @@
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
 - `gameserver-phased-rollout` 已可作 rollout / rollback 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
-- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
-- 等 payment contribution consolidation 完成後，再回來判斷 k3s-deploy 是否需要 Step 5 claim gate。
+- 本 project-local 下一步應完成 `gameserver-phased-rollout` Step 5 claim gate；全域 Career Track 另依 inventory queue 執行。
+- Step 5 只判斷本 flow claim boundary；沒有 Nick direct evidence 前，預期仍不更新正式履歷 / 自傳。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

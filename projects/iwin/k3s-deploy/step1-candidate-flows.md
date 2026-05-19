@@ -467,7 +467,7 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：

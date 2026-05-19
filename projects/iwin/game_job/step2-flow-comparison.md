@@ -17,7 +17,7 @@
 4. `online-payment-data-cleaning` 已完成 Step 5，可作 payment reporting projection 的 code-backed 面試 case；正式履歷 / 自傳不更新。
 5. `partition-table-creation` 已完成 Step 5，可作 table rollover / schema rollout / batch 前置依賴的 code-backed 面試素材；正式履歷 / 自傳不更新。
 
-本 Step 2 本身不更新履歷；後續 `daily-game-data-summary` 與 `third-party-record-mongo-backup` 已完成 Step 5 claim gate，可保守更新正式履歷 / 自傳。其他候選 flow 仍需各自完成 claim gate。
+本 Step 2 本身不更新履歷；後續 `daily-game-data-summary` 與 `third-party-record-mongo-backup` 已完成 Step 5 claim gate，可作 game_job project contribution consolidation evidence。其他候選 flow 仍需各自完成 claim gate。
 
 ## 自動重讀紀錄
 
@@ -75,7 +75,7 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `iwin iwin_gameserver center-http-deposit-withdraw Step 3`
+1. `iwin game_job contribution claim consolidation`
    - 原因：`game_job` Top 5 flow 都已完成 Step 5；目前 queue 下一條是中心錢包上分 / 下分。
    - 產出：建立 center_http deposit / withdraw 主學習包，補 money correctness / wallet mutation / idempotency 素材。
    - 是否更新履歷：否。
@@ -265,10 +265,10 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 3
+iwin game_job contribution claim consolidation
 ```
 
 原因：
 
 - `partition-table-creation` Step 5 已完成，正式履歷 / 自傳不更新。
-- `game_job` Top 5 flow 都已收斂；下一步回到目前跨 project queue。
+- `game_job` Top 5 flow 都已收斂，但尚未做 project-level contribution consolidation。

@@ -324,7 +324,7 @@ Step 3 必須至少補：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：

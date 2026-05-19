@@ -133,7 +133,7 @@ Step 5 重查：
 - `flow.md`：同步 Step 5 結論與下一步。
 - `career-interview.md`：同步面試素材可用、履歷不可用與下一條建議。
 - `projects/iwin/game_job/README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`：同步本 flow 已完成 Step 5。
-- `senior-owner-playbook/01-senior-owner-flow-inventory.md`、`06-todo.md`：當時同步下一步回到 `online-payment-data-cleaning Step 3`；目前 `partition-table-creation` Step 5 已完成，下一步為 `iwin_gameserver center-http-deposit-withdraw Step 3`。
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`、`06-todo.md`：當時同步下一步回到 `online-payment-data-cleaning Step 3`；目前 `partition-table-creation` Step 5 已完成，下一步為 `game_job contribution claim consolidation`。
 
 未更新：
 

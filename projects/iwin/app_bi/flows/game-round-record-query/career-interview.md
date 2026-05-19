@@ -137,14 +137,14 @@ Step 5 已完成；目前不放入：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，不更新正式履歷 / 自傳。
 - `app_bi` 主要 flow 已收斂；下一個高價值方向是金流 source of truth。
-- `iwin payment contribution claim consolidation` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接寫履歷。
+- `iwin game_api contribution claim consolidation` 會收斂 coupon Step 5 的 project-level claim boundary，不會直接把單條 flow 寫成完整 project owner。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

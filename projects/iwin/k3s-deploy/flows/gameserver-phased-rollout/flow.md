@@ -314,7 +314,7 @@ Step 4 的收斂重點：
 Step 4 已建立，下一步建議做 Step 5：做最後 claim gate，決定這條 flow 只保留為面試案例，或是否有足夠 Nick evidence 能整理成非常保守的 project-level career note。
 
 ```text
-iwin payment contribution claim consolidation
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

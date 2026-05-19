@@ -354,7 +354,7 @@ sequenceDiagram
 只推薦一件事：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin game_api contribution claim consolidation
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

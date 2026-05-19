@@ -11,7 +11,7 @@ Step：5
 
 - `真實開發過`：Nick / `10gt12nc` 參與 `game_job` 每日遊戲資料彙總 batch / BI projection 開發與維護。
 - `真實開發過`：Nick / `10gt12nc` 參與 PG / Antplay 資料日 / 時區窗口修正、job 拆分、新增玩家 / 留存與備份 / 清理相關調整。
-- 可更新正式履歷 / 自傳，但只能用「參與 / 開發 / 維護」口徑，不寫主導完整 BI pipeline / game_job owner。
+- 可作 project contribution consolidation evidence；若正式履歷 / 自傳要採用，只能用「參與 / 開發 / 維護」口徑，不寫主導完整 BI pipeline / game_job owner。
 
 ## Step 4 更新摘要
 

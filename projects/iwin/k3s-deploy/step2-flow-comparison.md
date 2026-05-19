@@ -349,7 +349,7 @@ Step 3 已依此範圍補讀 / 標示待確認：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：

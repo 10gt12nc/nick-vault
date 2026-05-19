@@ -446,7 +446,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
@@ -457,4 +457,4 @@ iwin payment contribution claim consolidation
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
-- `iwin payment contribution claim consolidation` 會收斂 payment provider callback 的 Step 5 claim boundary，不會直接把 app_bi 人工修正入口寫成完整 payment owner。
+- `iwin game_api contribution claim consolidation` 會收斂 coupon Step 5 的 project-level claim boundary，不會直接把 app_bi 入口或 game_api 單條 flow 寫成完整 project owner。

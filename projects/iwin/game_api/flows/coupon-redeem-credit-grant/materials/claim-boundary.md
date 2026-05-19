@@ -5,7 +5,7 @@
 
 ## Step 5 判定
 
-結論：可保守更新正式履歷 / 自傳。
+結論：可作 `game_api` project contribution consolidation 的 strong evidence；正式履歷 / 自傳仍以 project-level consolidation 結論為準。
 
 原因：
 
@@ -44,7 +44,7 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 - 「這類 flow 不適合只靠本地 transaction，要補 DB unique、下游 idempotency key、狀態機與對帳。」
 - 「Redis lock 可以降低重複提交，但 money correctness 的底線仍應在 DB unique 和下游 idempotency。」
 
-## 可寫入正式履歷
+## 可作正式履歷候選 evidence
 
 - 參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游上分 / 打碼處理。
 - 梳理並處理 coupon 兌換 flow 的本地 record、玩家錢包 side effect、打碼要求與使用次數更新邊界。
@@ -89,7 +89,7 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 - 確認哪些 branch / commit 有部署到 production。
 - 確認是否有可公開、不洩漏內部資訊的成果描述。
 
-## 正式履歷更新
+## 正式履歷更新條件
 
 本輪可更新：
 
@@ -98,6 +98,6 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
+- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 仍以 `game_api contribution claim consolidation` 為準。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon / reward 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。

@@ -28,7 +28,7 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
-| `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可保守更新履歷 / 自傳 |
+| `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可作 `game_job` project contribution consolidation evidence |
 | `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
 | `flows/third-party-record-mongo-backup/flow.md` | Step 5 | 已完成 Mongo backup / delete / retention flow 學習包、面試 case 與 claim gate |
 | `flows/third-party-record-mongo-backup/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；可保守寫局部 GSC backup 分批處理經驗 |
@@ -86,17 +86,17 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 3
+iwin game_job contribution claim consolidation
 ```
 
 原因：
 
 - `partition-table-creation` Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。
-- `game_job` 目前 Top 5 flow 都已收斂；下一步應回到目前跨 project queue，做 `iwin_gameserver center-http-deposit-withdraw Step 3`，補中心錢包上分 / 下分的 money correctness 素材。
+- `game_job` 目前 Top 5 flow 都已收斂，但尚未做 project-level contribution consolidation；下一步應先收斂「可放履歷 / 可面試講 / 不可誇大」三層。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：真實開發過。Nick / `10gt12nc` 有 `daily-game-data-summary` path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
-- 可放履歷：局部真實開發過。Nick / `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 分批處理維護」。
+- 可作履歷候選 evidence：局部真實開發過。Nick / `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 commits，可候選寫法為「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 分批處理維護」；正式 05 / 08 仍以 `game_job contribution claim consolidation` 為準。
 - 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正；可用 third-party Mongo backup 說明 copy-then-delete、idempotency、batch size 與 retention policy；可用 coin flow 說明 Redis checkpoint、多來源增量 projection、custom date replay、MySQL 累加 upsert 與 Mongo delete+insert 的一致性邊界；可用 online payment data cleaning 說明 payment order reporting projection、last_modify_time 資料日、Redis distinct uid、Mongo insert projection、MySQL economic day log delete+insert、downstream daily total 與 replay-safe 設計；可用 partition table 說明 table rollover、schema template、partial success、schema drift 與 fail-fast。coin flow、online payment data cleaning 與 partition table 目前不寫正式履歷。
 - 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、完整第三方紀錄備份 owner、金幣流水清算 owner、schema migration owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

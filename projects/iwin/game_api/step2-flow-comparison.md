@@ -22,7 +22,7 @@ coupon-redeem-credit-grant
 
 第二順位是 `partner-deposit-withdraw-bill`。它的價值甚至可能更高，但需要較早補下游 wallet / GM handler / partner idempotency evidence；以目前 Step 2 來看，coupon 更適合作為 `game_api` 第一條完整 flow 學習包。
 
-本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可保守更新正式履歷 / 自傳。
+本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可作 project contribution consolidation evidence。
 
 ## 自動重讀紀錄
 
@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 5 claim gate，下一步轉 `game_job daily-game-data-summary Step 5`
+建議：已完成 Step 5 claim gate，下一步轉 `game_api contribution claim consolidation`
 證據層級：真實開發過 + code-backed
 
 ### 已確認
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可保守更新正式履歷。
+Step 5 後可作 project contribution consolidation evidence；正式 05 / 08 仍需先做 `game_api contribution claim consolidation`。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,7 +213,7 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可保守形成履歷 / 自傳安全 claim。下一步轉 `game_job daily-game-data-summary Step 5`。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `game_api contribution claim consolidation`。
 
 ## 2. `partner-deposit-withdraw-bill`
 
@@ -479,22 +479,22 @@ Step 5 已完成：可保守形成履歷 / 自傳安全 claim。下一步轉 `ga
 只推薦一件事：
 
 ```text
-iwin game_job daily-game-data-summary Step 5
+iwin game_api contribution claim consolidation
 ```
 
 為什麼現在做它：
 
 - `coupon-redeem-credit-grant` 已完成 Step 5。
-- 同 project 第一條 flow 已收斂，下一步回到 queue 中已完成 Step 4 的 `game_job daily-game-data-summary`。
+- 同 project 第一條 flow 已收斂，但尚未做 project-level contribution consolidation。
 
 會產出什麼：
 
-- 更新 `game_job daily-game-data-summary` 的 claim boundary、path-specific evidence 判斷與是否更新履歷 / 自傳。
+- 整合 coupon flow evidence、Nick / `10gt12nc` commits、branches、重要 diff 與其他 game_api candidate flow 邊界。
 - 同步 README / inventory 下一步。
 
 是否更新履歷：
 
-- `coupon-redeem-credit-grant` 已保守更新履歷 / 自傳；下一條 `game_job daily-game-data-summary` 需等 Step 5 判斷。
+- `coupon-redeem-credit-grant` 已有 strong evidence；正式履歷 / 自傳需以 `game_api contribution claim consolidation` 結論為準。
 
 是否需要 commit / push：
 

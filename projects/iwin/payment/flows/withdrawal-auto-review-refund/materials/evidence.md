@@ -166,4 +166,4 @@ payment log grep 找到：
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api coupon-redeem-credit-grant Step 5`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api contribution claim consolidation`。

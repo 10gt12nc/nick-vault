@@ -74,7 +74,7 @@
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api contribution claim consolidation
 ```
 
 原因：
@@ -85,7 +85,7 @@ iwin payment contribution claim consolidation
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi` 主要分析 flow 已收斂；目前只作後台入口 / BI / control plane 的 code-backed 面試素材。
-- 下一步先做 `payment` project-level contribution consolidation，修正履歷主力經驗；不把 app_bi 人工修正入口包裝成完整 payment owner。
+- 下一步先做 `game_api` project-level contribution consolidation；不把 app_bi 人工修正入口包裝成完整 payment owner，也不把 game_api 單條 coupon flow 直接包裝成完整 project owner。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

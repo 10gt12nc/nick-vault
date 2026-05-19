@@ -203,7 +203,7 @@ Owner 要追問：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 3
+iwin game_job contribution claim consolidation
 ```
 
-原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。`partition-table-creation` 也已完成 Step 5，`game_job` Top 5 flow 已收斂；下一步回到目前跨 project queue。
+原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。`partition-table-creation` 也已完成 Step 5，`game_job` Top 5 flow 已收斂；下一步做 `game_job contribution claim consolidation`。
