@@ -313,10 +313,10 @@ Owner 判斷：
 
 ## 14. 下一步
 
-後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 5，project-level payment contribution consolidation 已完成。下一步回到 `game_api partner-deposit-withdraw-bill Step 4`。
+後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 5，project-level payment contribution consolidation 已完成。下一步回到 `game_api partner-deposit-withdraw-bill Step 5`。
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

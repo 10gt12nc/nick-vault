@@ -2,7 +2,7 @@
 
 中文名稱：Partner API 上分 / 下分 / 查單
 更新時間：2026-05-19
-Step：3
+Step：4
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
@@ -260,18 +260,18 @@ Owner 判斷：
 
 `partner-deposit-withdraw-bill` 是 `game_api` 第二條值得深挖的 money flow。它比 coupon 更接近正式 partner money API：有外部系統呼叫、有訂單、有上下分、有查單、有下游 wallet side effect。
 
-目前 Step 3 已足以支撐 Step 4 面試整理。下一步應把這些內容收斂成可講版本、追問 Q&A 與 claim boundary；仍不做 `game_api contribution claim consolidation`，因為本批代表 flows 尚未都完成 Step 5。
+目前 Step 4 已把這些內容收斂成可講版本、追問 Q&A、STAR 與 claim boundary；仍不做 `game_api contribution claim consolidation`，因為本批代表 flows 尚未都完成 Step 5。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 原因：
 
-- Step 3 已把入口、狀態、上下分、查單與風險窗口讀清楚。
-- Step 4 會把這條 flow 轉成面試可講素材。
-- 這輪不更新正式履歷；Step 4 只做 code-backed 面試整理。
+- Step 4 已把這條 flow 轉成面試可講素材。
+- Step 5 應做單條 flow claim gate，確認是否有 Nick evidence。
+- 這輪不更新正式履歷；Step 5 也不能直接代表完整 `game_api` project consolidation。

@@ -47,7 +47,7 @@ Step 4 當時尚未補到 Nick path-specific evidence，因此不更新正式履
 | --- | --- | --- |
 | `README.md` | 已同步 | Step 5 完成後已更新 flow 狀態與下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 候選 flow 盤點仍成立 |
-| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 5；`partner-deposit-withdraw-bill` 已完成 Step 3，下一步轉 Step 4 |
+| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 5；`partner-deposit-withdraw-bill` 已完成 Step 4，下一步轉 Step 5 |
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 使用新 flow package 結構；面試案例、evidence 與 claim boundary 已補齊 |
 
 ## Code Repo 最新狀態

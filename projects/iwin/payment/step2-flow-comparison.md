@@ -323,7 +323,7 @@ Step 3 暫不做：
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -333,14 +333,14 @@ iwin game_api partner-deposit-withdraw-bill Step 4
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 為什麼現在做它：
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
-- 目前總 queue 已移到 `game_api partner-deposit-withdraw-bill Step 4`，收斂 game_api 第二條代表 money API flow 的面試素材。
-- 下一步回到 iwin queue，補 `game_api partner-deposit-withdraw-bill Step 4`，先完成第二條代表 money API flow。
+- 目前總 queue 已移到 `game_api partner-deposit-withdraw-bill Step 5`，收斂 game_api 第二條代表 money API flow 的面試素材。
+- 下一步回到 iwin queue，補 `game_api partner-deposit-withdraw-bill Step 5`，先完成第二條代表 money API flow。
 
 會產出什麼：
 

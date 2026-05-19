@@ -137,14 +137,14 @@ Step 5 已完成；目前不放入：
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，不更新正式履歷 / 自傳。
 - `app_bi` 主要 flow 已收斂；下一個高價值方向是金流 source of truth。
-- `iwin game_api partner-deposit-withdraw-bill Step 4` 會補 game_api 第二條代表 flow，不會直接把單條 flow 寫成完整 project owner。
+- `iwin game_api partner-deposit-withdraw-bill Step 5` 會補 game_api 第二條代表 flow，不會直接把單條 flow 寫成完整 project owner。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

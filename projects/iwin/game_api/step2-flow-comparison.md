@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 5 claim gate；第二順位 `partner-deposit-withdraw-bill` 已完成 Step 3，下一步做 Step 4
+建議：已完成 Step 5 claim gate；第二順位 `partner-deposit-withdraw-bill` 已完成 Step 4，下一步做 Step 5
 證據層級：真實開發過 + code-backed
 
 ### 已確認
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 3，下一步應做 Step 4。
+Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 4，下一步應做 Step 5。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,12 +213,12 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 已補到 Step 3，下一步轉 Step 4。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 已補到 Step 4，下一步轉 Step 5。
 
 ## 2. `partner-deposit-withdraw-bill`
 
 中文名稱：Partner API 上分 / 下分 / 查單
-建議：Step 3 已完成；下一步做 Step 4
+建議：Step 4 已完成；下一步做 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
@@ -287,12 +287,12 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit
 
 ### 結論
 
-第二順位已進 Step 3。這條是 `game_api` 最接近正式 partner money API 的代表 flow；下一步應做 Step 4 面試收斂，仍不直接做完整 project contribution consolidation。
+第二順位已進 Step 4。這條是 `game_api` 最接近正式 partner money API 的代表 flow；下一步應做 Step 5 單條 flow claim gate，仍不直接做完整 project contribution consolidation。
 
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 ## 3. `agent-bonus-receive-transfer`
@@ -487,13 +487,13 @@ iwin game_api partner-deposit-withdraw-bill Step 4
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 為什麼現在做它：
 
-- `partner-deposit-withdraw-bill` Step 3 已完成。
-- 同 project 第二條代表 money API 已讀清楚，但還需要 Step 4 面試收斂；暫不做完整 project-level contribution consolidation。
+- `partner-deposit-withdraw-bill` Step 4 已完成。
+- 同 project 第二條代表 money API 已讀清楚且完成面試收斂；下一步做 Step 5 單條 flow claim gate，暫不做完整 project-level contribution consolidation。
 
 會產出什麼：
 

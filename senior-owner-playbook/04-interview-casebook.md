@@ -363,6 +363,40 @@ Lead / Architect 追問：
 - per-channel readiness 要存在哪裡、誰看？
 - fail closed 對營收有影響時，owner decision 怎麼取捨？
 
+## 案例 10：Partner API 上分 / 下分 / 查單
+
+對應 flow：
+
+- `game_api/partner-deposit-withdraw-bill`
+
+證據邊界：
+
+- 已完成 Step 4，可作 code-backed 面試素材。
+- 目前未看到 Nick / `10gt12nc` 直接修改 partner flow path 的 evidence；不得寫成正式履歷，也不得說 Nick 主導 partner API 或 wallet reconciliation。
+- `origin/k3s` 有 sign replay / secret log 安全性修正方向，但 production deploy 與 Nick 貢獻待確認。
+
+面試主軸：
+
+這是外部 partner money API 到內部 gameserver wallet side effect 的典型 boundary case。`game_api` 會驗參數與 sign，先寫 Mongo 訂單，再送 GM command 做上分 / 下分，最後更新訂單狀態；查單則查 Mongo 每日分表。Senior 要能拆出 partner idempotency、Mongo order、GM wallet side effect、pending / unknown state 與 reconciliation。
+
+可講重點：
+
+- `NewPay` / `Withdraw` 每次產生 `yyyyMMdd-UUID` billNos；目前未看到外部 partner order id 作為 idempotency key。
+- `saveCoin(status=1)`、GM command、`updCoin(status=0)` 是三段，不在同一個 transaction。
+- GM 成功但 `updCoin` 失敗時，partner 查單可能 pending，但玩家錢包已異動。
+- generic exception branch 未看到 `updCoin`，可能留下 pending order。
+- `updCoin` 用當日 collection，跨日補償時可能找錯原單 collection。
+- `BillInfo` / `BillList` 跨每日 collection 查詢；若部分 collection 查詢失敗，可能形成 partial result。
+
+Lead / Architect 追問：
+
+- partner API success contract 是 GM accepted，還是 wallet applied + local order success？
+- partner timeout 重送時，用什麼 idempotency key 判斷同一筆 business request？
+- 下游 gameserver 是否支援同 billNos idempotent replay？
+- pending aging order 要由誰掃、用哪個 source of truth 收斂？
+- 查單 partial failure 是 fail whole request，還是回 partial 並標示？
+- sign replay prevention 的 nonce key、TTL 與 secret log policy 怎麼定？
+
 ## 面試回答公式
 
 ```text

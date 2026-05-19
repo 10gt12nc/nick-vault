@@ -84,7 +84,7 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 4`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 5`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

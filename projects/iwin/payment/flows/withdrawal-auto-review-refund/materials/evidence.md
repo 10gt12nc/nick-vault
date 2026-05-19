@@ -166,4 +166,4 @@ payment log grep 找到：
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 4`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 5`。

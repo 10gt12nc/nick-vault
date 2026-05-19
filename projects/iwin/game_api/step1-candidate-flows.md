@@ -436,11 +436,11 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```
 
 原因：
 
-- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 3 也已完成。
-- 下一步應把第二順位 `partner-deposit-withdraw-bill` 收斂成 Step 4 面試素材；仍不直接做完整 `game_api` project 履歷結論。
+- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 4 也已完成。
+- 下一步應對第二順位 `partner-deposit-withdraw-bill` 做 Step 5 單條 flow claim gate；仍不直接做完整 `game_api` project 履歷結論。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

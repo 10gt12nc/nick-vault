@@ -1,9 +1,21 @@
 # partner-deposit-withdraw-bill evidence
 
 更新時間：2026-05-19
-Step：3
+Step：4
 掃描等級：Level 2 Flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 4 更新摘要
+
+2026-05-19 Step 4 重新 fetch `game_api` remote refs，確認 local `main` 與 `origin/main` 仍同步，並把 Step 3 的 code-backed flow 收斂成面試素材：
+
+- `career-interview.md`：補一句話、30 秒、2 分鐘、5 分鐘、STAR、不同職缺講法與 Step 5 下一步。
+- `materials/interview.md`：補 3 分鐘講法、常見追問、Lead / Architect 追問、反問面試官與 Step 5 待補。
+- `materials/claim-boundary.md`：維持 code-backed 面試素材；未看到 Nick / `10gt12nc` direct path evidence 前，不更新正式履歷 / 自傳。
+- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 4，下一步為 Step 5。
+- `senior-owner-playbook/04-interview-casebook.md`：新增 Partner API 上分 / 下分 / 查單案例索引。
+
+Step 4 不新增正式履歷 claim，也不執行 `game_api contribution claim consolidation`。
 
 ## 自動重讀紀錄
 
@@ -31,14 +43,15 @@ Step：3
 | --- | --- | --- |
 | `README.md` | 本輪需同步 | 新增第二條 flow 後，讀檔順序與下一步要改 Step 4 |
 | `step1-candidate-flows.md` | 可沿用 | 已列出此 flow 為第二順位候選 |
-| `step2-flow-comparison.md` | 本輪需同步 | 此 flow 從 Step 2 candidate 進到 Step 3 |
+| `step2-flow-comparison.md` | 本輪需同步 | 此 flow 從 Step 3 進到 Step 4 |
 | `flows/coupon-redeem-credit-grant/` | 可沿用 | 第一條 flow 已 Step 5，但不代表整個 `game_api` project 完成 |
+| `flows/partner-deposit-withdraw-bill/flow.md` | 可沿用 | Step 3 主分析完整，Step 4 只需收斂面試素材 |
 
 ## Code Repo 最新狀態
 
 Source repo：`/Users/nick/Git/iwin/game_api`
 
-- 已執行 `git fetch --all --prune`。
+- Step 3 已執行 `git fetch --all --prune`；Step 4 開始前已再次執行 `git fetch --all --prune`。
 - 本機 branch：`main`
 - local HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
 - `origin/main` HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
@@ -214,12 +227,12 @@ Nick / `10gt12nc` author filter：
 | Nick 實作此 flow | 待確認 | 本輪 path-specific history 未看到 `10gt12nc` |
 | 可寫入正式履歷 | 否 | 需要本人確認、commit、ticket、MR 或 production issue evidence |
 
-## Step 3 結論
+## Step 4 結論
 
-這條 flow 已完成 Step 3 主分析包，可進 Step 4 面試整理。
+這條 flow 已完成 Step 4 面試整理，可進 Step 5 單條 flow claim gate。
 
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 4
+iwin game_api partner-deposit-withdraw-bill Step 5
 ```

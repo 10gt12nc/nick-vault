@@ -4,7 +4,7 @@
 
 ## 讀檔順序
 
-1. [game_api](game_api/README.md)：玩家端 / partner API orchestration，`coupon-redeem-credit-grant` 已到 Step 5 且有 Nick / `10gt12nc` direct evidence；`partner-deposit-withdraw-bill` 已到 Step 3，目前下一步做 Step 4。
+1. [game_api](game_api/README.md)：玩家端 / partner API orchestration，`coupon-redeem-credit-grant` 已到 Step 5 且有 Nick / `10gt12nc` direct evidence；`partner-deposit-withdraw-bill` 已到 Step 4，目前下一步做 Step 5。
 2. [payment](payment/README.md)：金流 / 充值 / 提現 orchestration，Top 5 flow 與 project-level contribution consolidation 已完成；不因新規則重做。
 3. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
 4. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 已到 Step 5；下一步可排 `game_job contribution claim consolidation`，但必須掃 code + 所有 flow KB。
@@ -16,7 +16,7 @@
 
 | Project | 目前內容 | 下一步 |
 | --- | --- | --- |
-| `game_api` | Step 1 / Step 2；`coupon-redeem-credit-grant` 已完成 Step 5，且有 direct evidence；`partner-deposit-withdraw-bill` 已完成 Step 3，暫不做完整 consolidation | `iwin game_api partner-deposit-withdraw-bill Step 4` |
+| `game_api` | Step 1 / Step 2；`coupon-redeem-credit-grant` 已完成 Step 5，且有 direct evidence；`partner-deposit-withdraw-bill` 已完成 Step 4，暫不做完整 consolidation | `iwin game_api partner-deposit-withdraw-bill Step 5` |
 | `payment` | Top 5 flow 與 project-level contribution consolidation 已完成；`payment-order-provider-request` 已有 Nick / `10gt12nc` path-specific evidence | 不因新規則重做；後續只在 Nick 指定新 payment flow 時追加 |
 | `app_bi` | Step 1 / Step 2 / architecture / career；4 條主要 flow 已完成 Step 5 | 已收斂；不搶履歷 claim |
 | `game_job` | Step 1 / Step 2；Top 5 代表 flows 已完成 Step 5，其中 daily summary / GSC backup 有 direct evidence | `iwin game_job contribution claim consolidation` |
