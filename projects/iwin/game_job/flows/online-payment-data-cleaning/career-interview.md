@@ -1,18 +1,18 @@
 # online-payment-data-cleaning career-interview
 
-完成狀態：Step 3。
+完成狀態：Step 4。
 
 證據層級：專案存在 / code-backed。這條 flow 目前沒有足夠 Nick / `10gt12nc` direct path evidence 可寫成真實開發過；面試時只能說「我分析過 / code-backed 梳理過」，不能說「我開發 / 主導」。
 
 ## 一句話版本
 
-這是一條 payment order reporting projection：從成功的 `payment_order_{yyyy_m}` 讀充值 / 提現訂單，整理成 Mongo 支付分布、MySQL `economic_data_day_log`，再供 `daily_economic_data_total` 計算 profit、付費率、ARPU / ARPPU 等營運指標。
+這是一條 payment order reporting projection：從成功的 `payment_order_{yyyy_m}` 讀充值 / 提現訂單，整理成 Mongo 支付分布、MySQL `economic_data_day_log`，再供 `DailyEconomicDataTotalJob` 計算 profit、付費率、ARPU / ARPPU 等營運指標。
 
 ## 30 秒版本
 
 我分析過一條充值 / 提現資料清洗 batch。它不是金流 callback 或錢包交易核心，而是從 payment order 月表讀成功訂單，用最後修改時間當資料日，按線上、線下、快捷、代理、首充、新註冊與提現分類，產生 BI / economic reporting projection。
 
-這條 flow 的重點是 reporting correctness。Mongo 指標是 insert 型 projection，MySQL economic day log 是 delete+insert，Redis 又用 hash 做 distinct uid 去重；所以重跑與失敗恢復不能只看 job 成功，要看 source order、資料日、Redis 去重、Mongo / MySQL 寫入與下游 daily total 是否一致。
+這條 flow 的重點是 reporting correctness。Mongo 指標是 insert 型 projection，MySQL `economic_data_day_log` 是 delete+insert，Redis 又用 hash 做 distinct uid 去重；所以重跑與失敗恢復不能只看 job 成功，要看 source order、資料日、Redis 去重、Mongo / MySQL 寫入與下游 daily total 是否一致。
 
 ## 3 分鐘版本
 
@@ -39,7 +39,7 @@
 
 Situation：營運看到某天某 channel / cps 的充值金額、提現金額、首充人數或 ARPU 不合理。
 
-Task：定位問題是 payment source order、資料日、projection 重跑、Redis 去重、還是下游 daily total。
+Task：定位問題是 payment source order、資料日、projection 重跑、Redis 去重，還是下游 daily total。
 
 Action：
 
@@ -52,6 +52,38 @@ Action：
 7. 若要重跑，先定義清理範圍：Mongo 指標、economic day log、amount distribution 與 Redis distinct key 要一起看。
 
 Result：可以把問題拆成 source、classification、dedupe、projection、downstream 五個邊界，避免把 reporting 異常誤判成 provider callback 或錢包交易錯誤。
+
+## 面試官追問
+
+### Q1：這條是不是金流？
+
+不是。它讀成功訂單產生報表，不做 provider callback、不改訂單狀態、不改錢包。它靠近 money reporting，但不是 payment source of truth。
+
+### Q2：為什麼資料日用 `last_modify_time` 有風險？
+
+因為它代表訂單最後修改日，不一定是 create time 或 provider event time。late callback、人工補單或修單可能把原本昨天建立的訂單算到今天。這不一定錯，但必須和 business 的成功日定義對齊。
+
+### Q3：這條 flow idempotent 嗎？
+
+不能簡單說 idempotent。`payment_amount*` 是 upsert，`economic_data_day_log` 是 delete+insert，Mongo 指標是 insert，Redis 又保存 distinct uid。每段 state 語意不同，所以 replay SOP 要分段定義。
+
+### Q4：如果你 owner，第一步補什麼？
+
+先補 observability 與 replay SOP：
+
+- source order count、pay / withdraw count。
+- Mongo insert count / duplicate count。
+- `economic_data_day_log` delete count / insert count。
+- Redis distinct key 清理規則。
+- downstream `daily_economic_data_total` 重算順序。
+
+### Q5：如果要把它設計成 replay-safe，會怎麼改？
+
+我會先定義資料日與唯一鍵，再把 projection 改成 deterministic output：Mongo 指標用 date + channel + cps + metric 維度 upsert 或先按完整 scope 清理；MySQL day log 使用 staging table 或 versioned snapshot，等全量建完再切換；Redis 去重不要成為 replay 的唯一依據，必要時改由 source order group by 或可重建的 staging 結果產生人數。
+
+### Q6：這可以寫履歷嗎？
+
+目前不建議寫成正式履歷成果。它缺 Nick direct contribution evidence，只能作 code-backed 面試分析素材。若之後有本人確認、MR、ticket 或 commit 補強，Step 5 再決定是否能寫成保守履歷點。
 
 ## 可面試講
 
@@ -68,8 +100,12 @@ Result：可以把問題拆成 source、classification、dedupe、projection、d
 - 不說已驗證 production enable。
 - 不寫任何量化改善。
 
+## Step 5 預期
+
+若沒有新增 Nick 本人確認、MR、ticket、commit 或 production issue evidence，Step 5 大概率只會完成 claim gate，正式履歷 / 自傳不更新；此 flow 保留為 code-backed 面試案例。
+
 ## 下一步
 
 ```text
-iwin game_job online-payment-data-cleaning Step 4
+iwin game_job online-payment-data-cleaning Step 5
 ```

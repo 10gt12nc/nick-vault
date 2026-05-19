@@ -8,6 +8,8 @@
 
 證據層級：專案存在 / code-backed；目前沒有足夠 Nick / `10gt12nc` direct path evidence 可標成真實開發過。
 
+Step 4 補充：已把 Step 3 主學習包轉成正式面試 case，補 30 秒 / 3 分鐘說法、STAR、Lead 追問、replay-safe 設計回答與 claim 邊界。這次仍未新增 direct contribution evidence，因此正式履歷 / 自傳不更新。
+
 ## KB / vault 重讀
 
 已重讀：
@@ -50,6 +52,21 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - 未掃 production deployment 實際 enable 狀態。
 - 未掃 `payment` repo source of truth。
 - 未掃 app_bi 查詢端如何讀 Mongo `online_*` 或 `daily_economic_data_total`。
+
+## Step 4 產出紀錄
+
+本次更新：
+
+- `career-interview.md`：完成 Step 4 正式面試 case，補面試官追問與 replay-safe 設計回答。
+- `materials/interview.md`：補正式口語稿、STAR、Q&A 與可用句子。
+- `materials/claim-boundary.md`：更新為 Step 4 判定，仍不更新正式履歷 / 自傳。
+- `flow.md`、project README、Step 1 / Step 2、flow inventory 與 todo：同步下一步到 Step 5。
+
+本次沒有：
+
+- 沒有修改 `/Users/nick/Git/iwin/game_job` 公司 repo。
+- 沒有更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+- 沒有把此 flow 標成 Nick 真實開發過。
 
 ## 已讀 code path
 

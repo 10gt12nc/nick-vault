@@ -2,7 +2,7 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job online-payment-data-cleaning Step 3` 主報告。
+本文件是 `iwin game_job online-payment-data-cleaning Step 3` 主報告；Step 4 已完成正式面試 case。
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料。
 
@@ -203,7 +203,7 @@ Owner 要追問：
 只推薦一件事：
 
 ```text
-iwin game_job online-payment-data-cleaning Step 4
+iwin game_job online-payment-data-cleaning Step 5
 ```
 
-原因：Step 3 已建立主學習包；下一步應把這條轉成可面試的 case，重點放在「不是 payment truth，但會影響 money reporting」的 consistency / replay / observability。
+原因：Step 4 已把這條轉成正式面試 case；下一步應做 claim gate，確認是否有新增 Nick 本人確認、MR、ticket、commit 或 production issue evidence。若沒有，正式履歷 / 自傳不更新，只保留為 code-backed 面試案例。
