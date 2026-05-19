@@ -136,14 +136,14 @@ Result：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5。
-- 下一步應回到同 project 的 candidate ranking，選下一條未完成 flow。
-- `center-http-deposit-withdraw` 同樣是 money correctness flow，後續會產出 Step 3 主報告；本輪先不排它，先收斂 payment 履歷 claim。
+- 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
+- 下一步應把 `center-http-deposit-withdraw` 轉成正式面試 case。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

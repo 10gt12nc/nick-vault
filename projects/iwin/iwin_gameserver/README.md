@@ -12,7 +12,10 @@
 4. [flows/third-party-transfer-in-out/flow.md](flows/third-party-transfer-in-out/flow.md)：Step 3 單條 flow 主研究報告。
 5. [flows/third-party-transfer-in-out/career-interview.md](flows/third-party-transfer-in-out/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 6. [flows/third-party-transfer-in-out/materials/](flows/third-party-transfer-in-out/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
-7. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
+7. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 3 主學習包。
+8. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的初版面試素材。
+9. [flows/center-http-deposit-withdraw/materials/](flows/center-http-deposit-withdraw/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+10. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
 
 ## 目前狀態
 
@@ -24,6 +27,8 @@
 | `step2-flow-comparison.md` | 已建立 | 候選 flow 技術點、子模組範圍與風險比較 |
 | `flows/third-party-transfer-in-out/flow.md` | Step 3 已建立 | 第三方遊戲投派整合 / 投注派彩退款，Level 2 深掃 |
 | `flows/third-party-transfer-in-out/career-interview.md` | Step 5 已完成 | 保守面試案例，含履歷 / 自傳邊界 |
+| `flows/center-http-deposit-withdraw/flow.md` | Step 3 已建立 | center_http 玩家上分 / 下分，Level 2 深掃 |
+| `flows/center-http-deposit-withdraw/career-interview.md` | Step 3 初版 | 初版面試素材；Step 4 需轉正式 case |
 | `career-interview.md` | Step 5 已建立 | project-level career / interview boundary；正式履歷暫不更新 |
 
 ## KB 更新後深度檢查
@@ -89,17 +94,17 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
-- `third-party-transfer-in-out` 已完成 Step 5，正式履歷 / 自傳暫不更新。
-- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
-- 等 payment contribution consolidation 完成後，再回到同 project candidate ranking，判斷是否做 `center-http-deposit-withdraw`。
+- `center-http-deposit-withdraw` Step 3 已建立主學習包。
+- 下一步應把它轉成可面試 case，聚焦 timeout / retry / idempotency、gameserver wallet mutation 與上游 payment / game_api order boundary。
+- Step 4 主要產出面試案例，未補 direct evidence 前不更新正式履歷 / 自傳。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
+- 可放履歷：目前不因 `iwin_gameserver` 新增正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 的直接 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 與 center_http 上分 / 下分說明玩家餘額、DB proxy、log writer、failure window、idempotency 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合、完整上分 / 下分 owner 或解決 duplicate callback production incident。

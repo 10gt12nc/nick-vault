@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：已完成第一條候選 flow Step 5；下一步回到候選 ranking
+狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 3
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -10,7 +10,7 @@
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
 1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
-2. payment / game_api 透過 center_http 對玩家上分 / 下分。待 payment consolidation 後再排 Step 3。
+2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 3，下一步 Step 4。
 3. 打碼目標設定與查詢。
 4. 遊戲 spin / 結算 / log_reel 投注流水。
 5. dbproxy 的 MySQL / Redis 查寫代理。
@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `iwin payment contribution claim consolidation` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 4` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -192,6 +192,7 @@ source repo 狀態：
 
 中文名稱：center_http 玩家上分 / 下分
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+狀態：Step 3 已完成，主報告見 `flows/center-http-deposit-withdraw/flow.md`
 
 為什麼重要：
 
@@ -211,13 +212,14 @@ source repo 狀態：
 
 待確認：
 
-- `onDeposit()` / `onWithdraw()` 完整資料流。
-- payment / game_api 上游 state machine。
+- payment / game_api 所有上游 state machine 是否都已有完整防重。
 - 失敗後是否人工補單、重送或對帳。
+- gameserver 層是否另有 `billNos` unique / processed record 未掃到。
 
 履歷邊界：
 
 - 不可只憑 gameserver code 寫 Nick 負責金流上下分。
+- Step 3 後仍不更新正式履歷 / 自傳；先作 code-backed 面試素材。
 - 若後續選它，必須同步掃 `payment` / `game_api`。
 
 ### 3. `bet-target-set-query`
@@ -334,32 +336,29 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-下一條候選 `center-http-deposit-withdraw` Step 3 應優先讀：
+`center-http-deposit-withdraw` Step 3 已完成。若進 Step 4，應優先重讀：
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
-- `slots-center/src/main/java/com/slots/sql/job/HttpAntplayTransferInOut.java`
-- `slots-center/src/main/java/com/slots/sql/job/HttpPGTransferInOut.java`
-- `slots-center/src/main/java/com/slots/sql/job/HttpGSCTransferInOut.java`
-- `slots-center/src/main/java/com/slots/center/job/http/AntplayTransferInOutJob.java`
-- `slots-center/src/main/java/com/slots/center/job/http/PGTransferInOutJob.java`
-- `slots-center/src/main/java/com/slots/center/job/http/GSCTransferInOutJob.java`
-- `slots-games/slots-game-common/src/main/java/com/slots/game/common/data/AddCenterCoinAP.java`
-- `slots-games/slots-game-common/src/main/java/com/slots/game/common/data/AddCenterCoinPG.java`
-- `slots-games/slots-game-common/src/main/java/com/slots/game/common/data/AddCenterCoinGSC.java`
-- `slots-games/slots-game-common/src/main/java/com/slots/game/common/data/GamePlayer.java`
-- `slots-game-log/src/main/java/**` 的 PG / GSC / Antplay log writer。
-- 相關 upstream repo：`third_games_api`、`game_api` 或其他 third-party adapter，待 Step 2 定位。
+- `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
+- `slots-center/src/main/java/com/slots/center/job/http/NewBillJob.java`
+- `slots-center/src/main/java/com/slots/center/job/http/BaseHttpPlayerGameJob.java`
+- `slots-center/src/main/java/com/slots/center/data/PlayerData.java`
+- `payment/src/main/java/cn/com/payment/service/impl/withdraw/BaseServiceImpl.java`
+- `payment/src/main/java/cn/com/payment/service/impl/PayTypeServiceImpl.java`
+- `game_api/src/main/java/com/slots/web/common/gmintfc/service/GmIntfcComponent.java`
+- `game_api/src/main/java/com/slots/web/service/partner/impl/PartnerServiceImpl.java`
+- `game_api/src/main/java/com/slots/web/service/tbwebmanager/impl/CouponRedeemServiceImpl.java`
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
-- Step 2 已完成，`third-party-transfer-in-out` 也已完成 Step 5。
-- 完成一條 flow 後，下一步應回到同 project 候選 ranking，而不是跨 project。
-- `center-http-deposit-withdraw` 仍是下一條高價值 money flow；但本輪先完成 payment contribution consolidation，再回來排 Step 3。
+- `center-http-deposit-withdraw` Step 3 已完成主學習包。
+- 下一步要轉成正式面試 case，聚焦 timeout / retry / duplicate bill、gameserver wallet mutation 與上游 order boundary。
+- 未補 Nick direct evidence 前不更新正式履歷 / 自傳。

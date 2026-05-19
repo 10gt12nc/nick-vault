@@ -10,7 +10,7 @@
 
 - `career-interview.md`：將 Step 4 面試素材收斂成 Step 5 結論，明確標示正式履歷 / 自傳暫不更新。
 - `materials/claim-boundary.md`：補正式履歷、自傳、面試、project-level career boundary。
-- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從本 flow Step 5 改為同 project 下一條候選 `iwin payment contribution claim consolidation`。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：後續已回到同 project 下一條候選 `center-http-deposit-withdraw`，並完成 Step 3。
 - `projects/iwin/iwin_gameserver/career-interview.md`：新增 project-level career / interview boundary，避免後續誤把 code-backed analysis 寫成 Nick 個人成果。
 
 Step 5 結論：

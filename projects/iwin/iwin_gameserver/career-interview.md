@@ -1,6 +1,6 @@
 # iwin_gameserver Career / Interview Boundary
 
-更新時間：2026-05-15
+更新時間：2026-05-19
 證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻依三層 claim gate 判斷
 
 ## Project-level 結論
@@ -18,6 +18,7 @@
 | Flow | Step 狀態 | 可用方式 | 正式履歷判斷 |
 | --- | --- | --- | --- |
 | `third-party-transfer-in-out` | Step 5 已完成 | 面試分析素材：wallet correctness、idempotency、failure window、reconciliation、observability | 暫不放正式履歷 / 自傳 |
+| `center-http-deposit-withdraw` | Step 3 已完成 | 面試分析素材：center_http 上分 / 下分、payment / game_api order boundary、wallet mutation、timeout retry、`billNos` idempotency | 暫不放正式履歷 / 自傳；Step 4 後再整理正式 case |
 
 ## 可安全使用的 project 語氣
 
@@ -55,17 +56,17 @@
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
-- `third-party-transfer-in-out` 已完成 Step 5，正式履歷暫不更新。
-- 同 project 的下一條最高價值候選是 `center-http-deposit-withdraw`。
-- 下一步會產出單條 flow 主報告，不會更新正式履歷；若後續補到 Nick 本人 evidence，再回頭評估履歷。
+- `center-http-deposit-withdraw` Step 3 已完成，已有 code-backed 主學習包。
+- 下一步要轉成可面試 case，重點是 timeout / retry / duplicate bill、gameserver wallet mutation 與上游 order consistency。
+- 未補 Nick 本人 direct evidence 前，不更新正式履歷 / 自傳。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
+- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 的 MR / ticket / commit / production issue / 本人確認。
+- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 與 center_http 上分 / 下分說明玩家餘額、DB proxy、log writer、failure window、idempotency 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合、完整上分 / 下分 owner 或解決 duplicate callback production incident。

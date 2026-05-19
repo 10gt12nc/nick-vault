@@ -238,14 +238,14 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5，正式履歷 / 自傳暫不更新。
-- Step 5 完成後應回到同 project candidate ranking，而不是跳其他 project。
-- `center-http-deposit-withdraw` 是下一條最高價值 money flow，適合進 Step 3 主報告。
+- 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
+- 下一步應把 `center-http-deposit-withdraw` 轉成正式面試 case。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
