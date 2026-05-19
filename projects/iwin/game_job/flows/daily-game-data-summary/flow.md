@@ -362,10 +362,10 @@ Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 3
+iwin game_job partition-table-creation Step 4
 ```
 
-原因：本 flow Step 5 已收斂，且同 project 的 `third-party-record-mongo-backup`、`coin-flow-batch-projection` 與 `online-payment-data-cleaning` 也已完成 Step 5；下一步回同 project ranking 做 `partition-table-creation Step 3`。
+原因：本 flow Step 5 已收斂，且同 project 的 `third-party-record-mongo-backup`、`coin-flow-batch-projection` 與 `online-payment-data-cleaning` 也已完成 Step 5；`partition-table-creation` Step 3 已完成，下一步做 Step 4。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

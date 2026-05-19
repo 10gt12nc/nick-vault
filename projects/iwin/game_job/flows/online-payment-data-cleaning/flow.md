@@ -203,7 +203,7 @@ Owner 要追問：
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 3
+iwin game_job partition-table-creation Step 4
 ```
 
 原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。依同 project ranking，下一條未完成 candidate 是 `partition-table-creation`，可作 table rollover / schema rollout / batch 前置依賴的可靠性補充。

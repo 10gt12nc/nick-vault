@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、金幣流水 / 玩家行為 projection、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 5，目前是 code-backed 面試 case，不更新正式履歷 / 自傳。`online-payment-data-cleaning` 已完成 Step 5，目前也是 code-backed 面試 case，不更新正式履歷 / 自傳。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner 或負責上游 gameserver 到 app_bi 全鏈路。
+它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」。`third-party-record-mongo-backup` 也已完成 Step 5，可保守列為「局部真實開發過」：GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection` 已完成 Step 5，目前是 code-backed 面試 case，不更新正式履歷 / 自傳。`online-payment-data-cleaning` 已完成 Step 5，目前也是 code-backed 面試 case，不更新正式履歷 / 自傳。`partition-table-creation` 已完成 Step 3，目前只作 table rollover / schema rollout 的 code-backed 面試素材。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner、完整 schema migration owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -18,7 +18,9 @@
 8. [flows/coin-flow-batch-projection/career-interview.md](flows/coin-flow-batch-projection/career-interview.md)：該 flow 的 Step 4 正式面試 case。
 9. [flows/online-payment-data-cleaning/flow.md](flows/online-payment-data-cleaning/flow.md)：充值 / 提現資料清洗與每日經濟資料 Step 3 主報告。
 10. [flows/online-payment-data-cleaning/career-interview.md](flows/online-payment-data-cleaning/career-interview.md)：該 flow 的 Step 4 正式面試 case。
-11. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
+11. [flows/partition-table-creation/flow.md](flows/partition-table-creation/flow.md)：每日 / 每月分表建立 Step 3 主報告。
+12. [flows/partition-table-creation/career-interview.md](flows/partition-table-creation/career-interview.md)：該 flow 的保守面試素材。
+13. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
 
 ## 目前狀態
 
@@ -34,6 +36,8 @@
 | `flows/coin-flow-batch-projection/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
 | `flows/online-payment-data-cleaning/flow.md` | Step 5 | 已完成充值 / 提現資料清洗與每日經濟資料主學習包、正式面試 case 與 claim gate；目前 code-backed，不更新履歷 |
 | `flows/online-payment-data-cleaning/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
+| `flows/partition-table-creation/flow.md` | Step 3 | 已完成每日 / 每月分表建立主學習包；目前 code-backed，不更新履歷 |
+| `flows/partition-table-creation/career-interview.md` | Step 3 | 已補 30 秒 / 3 分鐘 / STAR 初稿；下一步轉正式 Step 4 面試 case |
 
 ## 專案定位
 
@@ -82,17 +86,17 @@
 只推薦一件事：
 
 ```text
-iwin game_job partition-table-creation Step 3
+iwin game_job partition-table-creation Step 4
 ```
 
 原因：
 
-- `online-payment-data-cleaning` Step 5 已完成，已把 payment order reporting projection、資料日、Redis 去重、Mongo insert、MySQL delete+insert 與下游 daily economic total 的一致性風險轉成正式面試 case，並完成不更新正式履歷 / 自傳的 claim gate。
-- 依同 project ranking，下一條未完成 candidate 是 `partition-table-creation`；它價值較低，但可補 table rollover / schema rollout / batch 前置依賴的可靠性題。
+- `partition-table-creation` Step 3 已完成，已把 table rollover、SQL template、`CREATE TABLE IF NOT EXISTS`、多 channel DB partial success、schema drift 與 `player_bet_demo-mouth.sql` 檔名風險整理成主報告。
+- 下一步應轉成正式面試 case；目前未補 direct evidence 前不更新正式履歷 / 自傳。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：真實開發過。Nick / `10gt12nc` 有 `daily-game-data-summary` path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
 - 可放履歷：局部真實開發過。Nick / `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 分批處理維護」。
-- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正；可用 third-party Mongo backup 說明 copy-then-delete、idempotency、batch size 與 retention policy；可用 coin flow 說明 Redis checkpoint、多來源增量 projection、custom date replay、MySQL 累加 upsert 與 Mongo delete+insert 的一致性邊界；可用 online payment data cleaning 說明 payment order reporting projection、last_modify_time 資料日、Redis distinct uid、Mongo insert projection、MySQL economic day log delete+insert、downstream daily total 與 replay-safe 設計。coin flow 與 online payment data cleaning 目前不寫正式履歷。
-- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、完整第三方紀錄備份 owner、金幣流水清算 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。
+- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正；可用 third-party Mongo backup 說明 copy-then-delete、idempotency、batch size 與 retention policy；可用 coin flow 說明 Redis checkpoint、多來源增量 projection、custom date replay、MySQL 累加 upsert 與 Mongo delete+insert 的一致性邊界；可用 online payment data cleaning 說明 payment order reporting projection、last_modify_time 資料日、Redis distinct uid、Mongo insert projection、MySQL economic day log delete+insert、downstream daily total 與 replay-safe 設計；可用 partition table 說明 table rollover、schema template、partial success、schema drift 與 fail-fast。coin flow、online payment data cleaning 與 partition table 目前不寫正式履歷。
+- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、完整第三方紀錄備份 owner、金幣流水清算 owner、schema migration owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。
