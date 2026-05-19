@@ -11,7 +11,7 @@
 - 已補上大專案 / 子專案地圖規則：地圖只用來定位 repo 與 flow，不取代 production flow。
 - 已補上初階到資深的軟硬實力矩陣：作為定期檢查表，不作為新的發散學習主線。
 - 已重整 `app_bi` Step 1 / Step 2，並把已完成 flow 收斂成新版 `flow.md + career-interview.md + materials/` 結構。
-- 已修正 Step 主線規則：AI 不可自行把「下游定位 / 補 evidence / 補 decision-notes / 架構圖」升級成新下一步；Step 3 乾淨後預設進 Step 4。
+- 已修正 Step 主線規則：AI 不可自行把「下游定位 / 補 evidence / 補 decision-notes / 架構圖」升級成新下一步；Step 3 乾淨且未牽涉履歷 / claim 風險時，預設進 Step 4。
 - 已完成 `app_bi point-control-admin-operation Step 4`，轉成保守面試 case，未更新履歷。
 - 已完成 `app_bi point-control-admin-operation Step 5` 的「不更新履歷 / 自傳」判定；這不是履歷深掃，也不是 Nick 開發痕跡確認。未補 Nick 本人 MR / ticket / commit / production issue 前，只保留為面試分析 case，不放入正式履歷。
 - 已完成 `app_bi admin-config-redis-sync Step 1-5`，已遷移為新版結構；目前只作後台設定同步 Redis 的分析與面試素材，不更新履歷。
@@ -29,9 +29,9 @@
 - 已依 2026-05-15 KB 深度檢查 `app_bi`，補齊 project-level `architecture-map.md` 與 `career-interview.md`，並把 app_bi 本地落後 `origin/main` 4 commit 的 source repo 狀態寫入 Step / evidence；正式履歷仍不更新。
 - 已完成 `game_job Step 1`，建立 `projects/iwin/game_job/README.md` 與 `step1-candidate-flows.md`；目前只作 Java batch / BI projection / third-party record backup 的候選 flow 盤點，不更新履歷。
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
-- 已完成 `game_api coupon-redeem-credit-grant Step 5`，確認 `10gt12nc` 有 game_api / iwin_gameserver coupon path-specific commits；可保守更新正式履歷 / 自傳，不寫主導完整 coupon / reward owner。
-- 已完成 `game_job daily-game-data-summary Step 5`，確認 `10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 path-specific commits；可保守更新正式履歷 / 自傳，不寫完整 BI pipeline owner。
-- 已完成 `game_job third-party-record-mongo-backup Step 5`，確認 `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 direct commits；可保守更新正式履歷 / 自傳為局部 GSC Mongo backup 分批處理經驗，不寫完整第三方紀錄備份 owner。
+- 已完成 `game_api coupon-redeem-credit-grant Step 5`，確認 `10gt12nc` 有 game_api / iwin_gameserver coupon path-specific commits；可作 game_api project contribution consolidation evidence，不寫主導完整 coupon / reward owner。
+- 已完成 `game_job daily-game-data-summary Step 5`，確認 `10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 path-specific commits；可作 game_job project contribution consolidation evidence，不寫完整 BI pipeline owner。
+- 已完成 `game_job third-party-record-mongo-backup Step 5`，確認 `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 direct commits；可作 game_job project contribution consolidation evidence，不寫完整第三方紀錄備份 owner。
 - 已完成 `game_job coin-flow-batch-projection Step 4`，建立金幣流水 / 玩家行為 projection 主學習包並轉成正式面試 case；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 - 已完成 `game_job coin-flow-batch-projection Step 5`，確認目前未見足夠 Nick / `10gt12nc` direct path evidence；正式履歷 / 自傳不更新，只保留為 code-backed 面試素材。
 - 已完成 `game_job online-payment-data-cleaning Step 3`，建立充值 / 提現資料清洗與每日經濟資料主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。

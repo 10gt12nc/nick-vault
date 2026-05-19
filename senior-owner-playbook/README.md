@@ -15,6 +15,15 @@
 
 核心不是「產很多文件」，而是把 Nick 過去碰過的遊戲平台、金流、錢包、注單、報表、MQ、K8s / K3s、觀測性與後台控制流程，整理成能讀、能問、能面試、能轉成履歷的學習系統。
 
+## 兩條主線
+
+本 playbook 同時維護兩條線，不要混在一起：
+
+- `Flow Track`：整理系統 flow 與面試 case。固定主線是 Step 1 找 candidate flows、Step 2 排序、Step 3 單條 flow 深掃、Step 4 轉面試 case、Step 5 單條 flow claim gate。
+- `Career Track`：整理履歷、自傳與 project-level 經驗。正式更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 前，要先做 project contribution claim consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence 與 archive 履歷素材。
+
+Flow Step 5 可以提供「這條 flow 能不能作履歷 / 面試素材」的證據，但不能直接代表整個 project 的履歷結論。當 Nick 追問「我是不是做過很多」、「履歷怎麼寫」、「這個 project 經驗怎麼放」時，下一步優先走 Career Track。
+
 ## 目前檔案
 
 - [00-operating-rules.md](00-operating-rules.md)：這套資料以後怎麼維護，避免再次變亂。
@@ -76,6 +85,7 @@ AI 必須自動：
 - 重讀 KB、project 既有文件與相關 code 最新狀態。
 - 檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB。
 - 判斷本次是 Level 1 / Level 2 / Level 3。
+- 判斷本次是 Flow Track 還是 Career Track；牽涉履歷、自傳、Nick 真實貢獻時，不得只用單條 flow Step 5 代替 project contribution claim consolidation。
 - 寫清楚已掃、未掃、推測與待確認。
 - 如果上一個 Step 不乾淨，先建議重整，不直接跳下一步。
 - 自動判斷是否要維護 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB。

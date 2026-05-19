@@ -21,20 +21,20 @@
 - 投遞用自傳已整理。
 - 未來專案資料夾 `projects/` 已建立。
 - 已有 `app_bi` 四條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`、`daily-game-record-summary`、`game-round-record-query`。但它們目前仍屬於後台 / BI / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
-- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback` Step 5、`payment/withdrawal-auto-review-refund` Step 5、`payment/payment-order-provider-request` Step 5、`game_api/coupon-redeem-credit-grant` Step 4、`game_job/daily-game-data-summary` Step 4、`third_games_api/gsc-transfer-bet-settle-rollback` Step 4、`iwin_gameserver/third-party-transfer-in-out` Step 5、`k3s-deploy/gameserver-phased-rollout` Step 4。`payment-order-provider-request` 已有 Nick path-specific commits，可用「參與 provider 對接與維護」口徑；其他未補 Nick evidence 的 flow 仍不能升級成履歷主張。
+- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback`、`payment/withdrawal-auto-review-refund`、`payment/payment-order-provider-request`、`payment/manual-order-review-repair`、`payment/payment-channel-config-selection`、`game_api/coupon-redeem-credit-grant`、`game_job/daily-game-data-summary`、`game_job/third-party-record-mongo-backup`、`game_job/coin-flow-batch-projection`、`game_job/online-payment-data-cleaning`、`game_job/partition-table-creation`、`third_games_api/gsc-transfer-bet-settle-rollback`、`iwin_gameserver/third-party-transfer-in-out`、`k3s-deploy/gameserver-phased-rollout`。`payment` 已完成 project contribution claim consolidation，可用「參與 provider 對接、維護與金流後台修補」口徑；其他 project 仍要各自做 contribution consolidation，不能只靠單條 flow Step 5 直接升級成履歷主張。
 
 ### 尚未完成
 
 - 尚未完成 3-5 條同時具備 high-value backend depth、完整 evidence、claim boundary 與 Nick 本人 evidence 的主力 production case，例如 payment callback、wallet transfer、Kafka settlement、game settlement。
 - 尚未完成 3-5 條可作為 Senior 面試主力的後端案例；目前已有素材，但多數仍停在 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 - 尚未把 3 條主力後端 case 打磨成可穩定口說、可抗追問的 3 分鐘版本。
-- 尚未依 evidence 最終更新履歷 bullet。
+- 已有部分 evidence-backed 履歷 bullet，但仍需要繼續收斂 3-5 條可抗追問的主力 production case，並對各 project 分開做 contribution consolidation。
 
 所以目前狀態是：
 
 ```text
 準備系統已完成。
-已有 app_bi 入門 case 與多條 iwin 保守面試素材。
+已有 app_bi 入門 case、多條 iwin 保守面試素材與 payment project-level 履歷 claim。
 Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case。
 ```
 

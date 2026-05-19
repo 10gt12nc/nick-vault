@@ -158,7 +158,7 @@ Nick 不需要每次重複提醒「重讀 KB / 重讀 code / 維護規則」。
 5. 深挖成 `flow.md` + `materials/evidence.md`。
 6. 把 evidence / decision / interview / claim 邊界收進 `materials/`。
 7. 轉成該 flow 的 `career-interview.md`。
-8. 判斷是否更新履歷。
+8. 做 Step 5 單條 flow claim gate；若要碰正式履歷 / 自傳，改走 project contribution claim consolidation。
 
 不要一次掃全部專案。
 

@@ -561,6 +561,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - senior-owner-playbook/08-application-autobiography-zh.md
 
 規則：
+- 先判斷這是單條 flow Step 5 還是 project-level Career Track；單條 flow Step 5 只輸出 claim gate 與 consolidation 建議，不直接更新正式 05 / 08。
 - 沒有 evidence 不更新。
 - Nick 本人確認是 evidence，但要標清楚；本人確認可以支撐「參與 / 維護 / 開發」，不自動支撐「主導 / 全權 owner / 改善 X%」。
 - 不寫主導、獨立完成、改善 X%，除非有明確證據。
@@ -631,7 +632,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 如果 Step 2 完成，下一步是 Step 3。
 - 如果 project 尚未做 contribution consolidation，且現在牽涉履歷 / 自傳 / claim / 真實開發經驗，下一步是 `{project} contribution claim consolidation`。
 - 如果 Step 3 完成且文件乾淨，且沒有履歷 / 自傳 / contribution claim gate 風險，下一步是 Step 4。
-- 如果 Step 4 完成，下一步才檢查 Step 5 / 履歷。
+- 如果 Step 4 完成，下一步才檢查 Step 5 單條 flow claim gate；若要更新 05 / 08，先走 project contribution claim consolidation。
 - evidence / 下游 / decision-notes / 架構圖只能作為補充或待確認，不能取代 Step 主線。
 
 原因：

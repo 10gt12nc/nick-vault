@@ -69,7 +69,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，payment 的 Top 5 代表 flow 與 contribution claim 已先保守收斂，但不是全 payment project 完成；`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 5` 都已收斂到可用 claim。`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5`、`game_job partition-table-creation Step 5` 也已完成但不更新正式履歷 / 自傳。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成；因為 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
+- 若目標是最快產出 Senior Backend 履歷素材，payment 的 Top 5 代表 flow 與 contribution claim 已先保守收斂，但不是全 payment project 完成；`game_api coupon-redeem-credit-grant Step 5`、`game_job daily-game-data-summary Step 5` 與 `game_job third-party-record-mongo-backup Step 5` 都已收斂到可作 project contribution consolidation evidence。`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5` 與 `game_job partition-table-creation Step 5` 也已完成但不更新正式履歷 / 自傳。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成；因為 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
 - 2026-05-19 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，但不得寫成主導完整金流或全部 provider owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
@@ -83,7 +83,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | `Step 2` | 已做 flow ranking |
 | `Step 3` | 已有單條 flow 深挖 |
 | `Step 4` | 已轉面試 case |
-| `Step 5` | 已檢查履歷 / 自傳是否更新 |
+| `Step 5` | 已完成單條 flow claim gate；正式履歷 / 自傳仍以 project contribution consolidation 為準 |
 | `暫停` | 目前 evidence 不足或價值不夠，先不做 |
 
 ## 目前進度

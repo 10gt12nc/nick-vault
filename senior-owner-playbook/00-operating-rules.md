@@ -434,10 +434,10 @@ Step 1：找 candidate flows
 Step 2：比較 candidate flows
 Step 3：單條 flow 深挖
 Step 4：轉面試 case
-Step 5：檢查是否更新履歷 / 自傳
+Step 5：單條 flow claim gate
 ```
 
-AI 不准把 playbook 檔名編號解讀成 flow 進度，也不准回答成「還有 Step 6~16」。
+Step 5 只判斷該 flow 是否能作履歷 / 面試素材，並輸出 claim boundary。正式更新 `05` / `08` 必須走 Career Track 的 project contribution claim consolidation。AI 不准把 playbook 檔名編號解讀成 flow 進度，也不准回答成「還有 Step 6~16」。
 
 ### 參考 workspace 邊界
 
@@ -500,8 +500,10 @@ Step 1：找 candidate flows
 Step 2：比較 candidate flows
 Step 3：單條 flow 深挖
 Step 4：轉面試 case
-Step 5：檢查是否更新履歷 / 自傳
+Step 5：單條 flow claim gate
 ```
+
+Step 5 不是 project-level 履歷結論。若 Nick 問的是整個 project 經驗、履歷、自傳、真實開發貢獻，下一步必須轉 Career Track 的 project contribution claim consolidation。
 
 AI 可以在 Step 3 內補 `materials/evidence.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`，也可以把下游 repo、runtime consumer、GM receiver 標成待確認。若既有 flow 是舊平鋪格式，先讀同名舊檔並標註待遷移。
 
