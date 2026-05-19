@@ -17,7 +17,7 @@ third-party-transfer-in-out
 
 原因是它橫跨 `slots-center`、`slots-games/slots-game-common`、`slots-game-log` 與可能的上游 adapter，直接牽涉玩家餘額、投注 / 有效投注、派彩 / 退款、log 與 idempotency。這比先做純 module map 或 dbproxy class summary 更接近 Senior / Owner 的 production flow。
 
-Step 5 結論是：此 flow 可作面試分析素材，但不更新正式履歷 / 自傳。第二條候選 `center-http-deposit-withdraw` 已完成 Step 3，下一步建議進 Step 4。
+Step 5 結論是：此 flow 可作面試分析素材，但不更新正式履歷 / 自傳。第二條候選 `center-http-deposit-withdraw` 已完成 Step 3。因為目標牽涉履歷 claim，下一步應先做 `iwin_gameserver contribution claim consolidation`，再決定是否進 Step 4 或更新履歷。
 
 本輪不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 
@@ -112,7 +112,7 @@ source repo 狀態：
 | 排名 | Flow | 中文名稱 | 涉及 module | Senior / Owner 價值 | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | `slots-center`、`slots-games/slots-game-common`、`slots-game-log`、上游 adapter 待確認 | 高 | 上游 repo、idempotency、log / coin 寫入順序未完整確認 | Step 5 已完成；正式履歷暫不更新 |
-| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未完整掃，gameserver 防重待確認 | Step 3 已完成；下一步 Step 4 |
+| 2 | `center-http-deposit-withdraw` | center_http 玩家上分 / 下分 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `game_api` | 高 | 上游 state machine 未完整掃，gameserver 防重待確認；Nick direct evidence 未 consolidation | Step 3 已完成；先做 contribution claim consolidation |
 | 3 | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | `slots-gate`、`slots-center`、`slots-games`、單一 game module、`slots-game-log` | 高 | 必須先選代表 game；不能一次掃 27 個 game | 暫不跳，等選定遊戲 |
 | 4 | `bet-target-set-query` | 打碼目標設定與查詢 | `slots-center`、`slots-dbproxy`、`slots-common`、上游 `payment` / `app_bi` 待確認 | 中高 | 打碼資料落點與投注扣減邏輯未追完 | 可作後續 money rule flow |
 | 5 | `dbproxy-cache-db-write-path` | DB proxy Redis / MySQL 查寫路徑 | `slots-common`、`slots-dbproxy` | 中高 | 容易變 class summary；需綁定具體業務 flow | 作輔助深挖，不先單獨做 |
@@ -158,7 +158,7 @@ Step 5 已補：
 
 ### 2. `center-http-deposit-withdraw`
 
-建議狀態：Step 3 已完成；下一步 Step 4
+建議狀態：Step 3 已完成；先做 project-level contribution claim consolidation
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 已確認：
@@ -173,7 +173,7 @@ Step 3 結論：
 
 - 這條 flow 是 gameserver runtime wallet mutation，不等於完整 payment order source of truth。
 - gameserver 主要路徑目前未看到明確 `billNos` duplicate guard，因此 timeout / retry 後的重複加扣是 owner 重點。
-- 正式履歷暫不更新；先作 code-backed 面試素材。
+- 正式履歷暫不更新；先作 code-backed 面試素材。下一步需先做 `iwin_gameserver contribution claim consolidation`，避免把 code-backed 分析誤寫成真實開發經驗。
 
 ### 3. `game-spin-settlement-log-reel`
 
@@ -227,11 +227,12 @@ Step 3 結論：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成主學習包。
-- 下一步要把它轉成正式面試 case，聚焦上游 timeout、`billNos` idempotency、gameserver wallet mutation 與 activity side effects。
-- 未補 direct evidence 前不更新正式履歷 / 自傳。
+- 但 `iwin_gameserver` 尚未做 project-level Nick / `10gt12nc` contribution consolidation。
+- 下一步要先把 gameserver 的 commits、branches、重要 diff 與既有 flow evidence 分成「可放履歷 / 可面試講 / 不可誇大」。
+- consolidation 後再決定是否回到 `center-http-deposit-withdraw Step 4`。

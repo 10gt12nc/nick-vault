@@ -311,6 +311,8 @@ Config：
 - 可面試講：code-backed / 分析過。
 - 不可誇大：不是主導完整系統 owner、不是全部功能 owner、沒有 metric 不寫改善百分比。
 
+優先級：contribution consolidation 是履歷 claim gate，優先於「Step 3 完成後進 Step 4」或「Step 5 後回候選 ranking」。只要下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，就先做 `{project} contribution claim consolidation`。
+
 ### 14. Claim Boundary
 
 明確列：

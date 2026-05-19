@@ -94,14 +94,14 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已建立主學習包。
-- 下一步應把它轉成可面試 case，聚焦 timeout / retry / idempotency、gameserver wallet mutation 與上游 payment / game_api order boundary。
-- Step 4 主要產出面試案例，未補 direct evidence 前不更新正式履歷 / 自傳。
+- 但目前 `iwin_gameserver` 的正式履歷 claim 仍缺 project-level Nick / `10gt12nc` 貢獻收斂。
+- 下一步應先掃全部 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence，整理「可放履歷 / 可面試講 / 不可誇大」三層，再決定哪些 gameserver flow 能進履歷或只作面試素材。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

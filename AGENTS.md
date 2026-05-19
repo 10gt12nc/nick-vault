@@ -72,7 +72,8 @@
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
-- 如果 Step 3 已完成且文件乾淨，下一步預設是 Step 4，不是下游定位或其他自創任務。
+- 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若目前 project 已累積 code-backed flow，但尚未做 project-level contribution consolidation，且 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或 AI 準備建議 Step 4 / Step 5 / 更新履歷前，必須先建議並執行 `{project} contribution claim consolidation`。這個 consolidation 是履歷 claim gate，不是亂創新 Step；做完後才回到 Step 4 / Step 5 或下一條 flow。
+- 如果 Step 3 已完成且文件乾淨，且不涉及履歷 / 自傳 / contribution claim gate，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果只有 Step 1，下一步預設是 Step 2；沒有 Step 2 時，不得直接跳 Step 3 / 建 flow folder。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
 - 如果下一步是繼續同一條 flow，優先建議往 failure / consistency / interview / claim boundary 補齊，而不是立刻換新 flow。
@@ -85,6 +86,7 @@
 - 架構圖與流程圖是 `flow.md` 的教學入口，不是新 Step、不是額外任務、也不是要畫沒有 evidence 的大圖。圖只畫本 flow 已確認或明確標示待確認的上下游。
 - `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
 - 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。
+- 即使 Nick 沒先說「我做很多」，只要某 project 已經開始形成可面試 code-backed 素材，而 AI 的下一步會影響履歷 claim 或 Nick 明確追問履歷價值，就要先做該 project 的 contribution consolidation；不得因為「Step 3 乾淨預設 Step 4」而跳過 claim gate。
 
 ## Flow 格式
 

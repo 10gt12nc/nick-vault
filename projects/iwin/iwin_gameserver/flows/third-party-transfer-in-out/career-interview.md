@@ -136,14 +136,15 @@ Result：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
-- 下一步應把 `center-http-deposit-withdraw` 轉成正式面試 case。
+- 但 `iwin_gameserver` 尚未做 project-level contribution claim consolidation。
+- 下一步應先確認 Nick / `10gt12nc` 真實貢獻範圍，再決定是否更新履歷或回到 Step 4。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

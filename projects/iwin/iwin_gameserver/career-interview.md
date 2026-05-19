@@ -56,14 +56,15 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成，已有 code-backed 主學習包。
-- 下一步要轉成可面試 case，重點是 timeout / retry / duplicate bill、gameserver wallet mutation 與上游 order consistency。
-- 未補 Nick 本人 direct evidence 前，不更新正式履歷 / 自傳。
+- 但 `iwin_gameserver` 尚未做 project-level contribution claim consolidation。
+- 下一步要先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence，確認哪些是「真實開發過」、哪些只是「code-backed / 分析過」。
+- 做完 consolidation 後，再決定是否回到 `center-http-deposit-withdraw Step 4` 或更新履歷 / 自傳。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

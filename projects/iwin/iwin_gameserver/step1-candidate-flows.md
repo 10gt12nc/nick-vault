@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 4` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `iwin_gameserver contribution claim consolidation` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -354,11 +354,12 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成主學習包。
-- 下一步要轉成正式面試 case，聚焦 timeout / retry / duplicate bill、gameserver wallet mutation 與上游 order boundary。
-- 未補 Nick direct evidence 前不更新正式履歷 / 自傳。
+- 但 `iwin_gameserver` 尚未做 project-level contribution claim consolidation。
+- 要先釐清 Nick / `10gt12nc` 在 gameserver 的真實開發範圍，再決定哪些 flow 能放履歷、哪些只能面試講。
+- 未補 direct evidence 前不更新正式履歷 / 自傳。

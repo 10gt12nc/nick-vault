@@ -56,25 +56,26 @@
 
 ## 下一步
 
-### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
+### 1. iwin iwin_gameserver contribution claim consolidation
 
 建議下一步：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `iwin_gameserver center-http-deposit-withdraw` Step 3 已完成，已有主學習包與 evidence。
-- 下一步應轉成 Step 4 面試 case，聚焦 center_http timeout / retry / duplicate bill、gameserver wallet mutation 與上游 payment / game_api order boundary。
-- 未補 Nick direct evidence 前，Step 4 只整理面試素材，不更新正式履歷 / 自傳。
+- 但 `iwin_gameserver` 尚未做 project-level contribution claim consolidation。
+- 下一步要先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence，整理「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」三層。
+- consolidation 後再決定是否回到 `center-http-deposit-withdraw Step 4` 或更新履歷 / 自傳。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin iwin_gameserver contribution claim consolidation`。以下是近期各 project 的局部下一步：
 
-1. `iwin_gameserver`：`center-http-deposit-withdraw Step 4`。
+1. `iwin_gameserver`：`contribution claim consolidation`。
 2. `game_job`：Top 5 flow 已收斂；除非 Nick 指定新 flow，先不重做。
 3. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
 4. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
@@ -99,12 +100,12 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5` 與 `game_job partition-table-creation Step 5` 已完成但不更新履歷，下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment、game_api coupon、game_job daily summary 與 game_job third-party Mongo backup 都已收斂，`game_job coin-flow-batch-projection Step 5`、`game_job online-payment-data-cleaning Step 5` 與 `game_job partition-table-creation Step 5` 已完成但不更新履歷。`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成，但 gameserver 尚未做 project-level claim，下一步先做 `iwin_gameserver contribution claim consolidation`。
 
 ## 下一個 prompt
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

@@ -329,6 +329,14 @@ flow、履歷、自傳與面試素材都要標註來源層級：
 
 當 Nick 表示某個 project / repo 是主力開發經驗，或 AI 發現正式履歷低估該 repo 時，必須先做 project-level contribution consolidation，再更新 05 / 08。
 
+這條規則的優先級高於 Step 慣性。也就是說，如果目前 project 已累積 code-backed flow，但尚未做 contribution consolidation，且出現以下任一情況，下一步必須先做 `{project} contribution claim consolidation`，不能直接跳 Step 4 / Step 5 / 下一條 flow：
+
+- Nick 問「不用履歷嗎」、「怎麼沒有經驗」、「能不能放履歷」、「contribution claim consolidation」或質疑履歷 claim。
+- AI 準備更新 `05-resume-master-zh.md`、`08-application-autobiography-zh.md`、project-level career boundary 或正式 claim。
+- AI 已完成一條高價值 code-backed flow，但該 project 尚未判斷 Nick / `10gt12nc` 的真實開發範圍。
+
+`contribution claim consolidation` 是履歷 claim gate，不是新的 flow Step，也不是亂創任務。它的目的只是防止把「分析過 code」誤寫成「Nick 真實開發過」，也防止只因單條 flow 缺 direct path evidence 就抹掉整個 project 經驗。
+
 contribution consolidation 必須至少掃：
 
 - 全部 Nick / `10gt12nc` commits。
@@ -344,7 +352,7 @@ contribution consolidation 必須至少掃：
 2. `可面試講：code-backed / 分析過`：系統存在且 AI 已深掃，可用於解釋架構、failure window、owner decision，但不包裝成 Nick 的成果。
 3. `不可誇大`：不得寫主導完整系統、全權 owner、完整架構師、改善百分比、全部 provider / 全部 flow owner，除非有更強 evidence。
 
-重要：單條 flow 的 Step 5 只判斷那條 flow 能不能進履歷；不能拿來否定整個 project 的履歷價值。像 `iwin/payment` 這種主力金流 repo，若 Nick 確認「開發很多」，下一步應做 project-level contribution consolidation，而不是直接說 payment 都不能寫。
+重要：單條 flow 的 Step 5 只判斷那條 flow 能不能進履歷；不能拿來否定整個 project 的履歷價值。像 `iwin/payment` 這種主力金流 repo，若 Nick 確認「開發很多」，下一步應做 project-level contribution consolidation，而不是直接說 payment 都不能寫。像 `iwin_gameserver` 這種已累積 code-backed money flow 但尚未確認 Nick 貢獻的 repo，若下一步牽涉履歷價值，也應先做 contribution consolidation，再決定是否回 Step 4 / Step 5。
 
 ### Flow 完成後的下一步
 
@@ -486,7 +494,7 @@ AI 可以在 Step 3 內補 `materials/evidence.md`、`materials/claim-boundary.m
 
 - 如果上一個 Step 不乾淨，先建議重整上一個 Step。
 - 如果 Nick 明確說「補 evidence」、「補 decision-notes」、「下游定位」、「架構圖」，才做該補充任務。
-- 如果 Nick 只問「下一步」，且目前 Step 3 已完成，預設回答 Step 4。
+- 如果 Nick 只問「下一步」，且目前 Step 3 已完成、沒有履歷 / 自傳 / contribution claim gate 風險，預設回答 Step 4。
 - 如果某條 flow 已完成 Step 5，預設回到同 project 的 candidate ranking，選下一條未完成 flow；不要直接跳其他 project。
 
 ## 不複製舊檔
@@ -750,12 +758,14 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
 - 要說清楚 commit / push 狀態；小修輕量自查後 commit，重大改動全掃確認後 commit；若需要 push，直接觸發 `git push` approval 視窗。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
-- 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
+- 如果 project 尚未做 contribution consolidation，且下一步會影響履歷 claim 或 Nick 正在追問履歷價值，必須先建議 `{project} contribution claim consolidation`，優先於「Step 3 乾淨後 Step 4」。
+- 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成、沒有履歷 / 自傳 / contribution claim gate 風險，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。
 
 建議順序：
 
 0. 若 Nick 明確要求地圖，才補最小地圖；否則不要插入新流程。
+0.5. 若 project 尚未做 contribution consolidation，且目前問題牽涉履歷 / 自傳 / claim 或 Nick 對「是否有經驗」提出質疑，先做 `{project} contribution claim consolidation`。
 1. Step 1 完成後：建議做 Step 2，比較 candidate flows。
 2. Step 2 完成後：建議挑排名最高且 evidence 足夠的單一 flow 做 Step 3。
 3. Step 3 完成後：建議補 failure scenarios、consistency、idempotency、retry、compensation、reconciliation。
