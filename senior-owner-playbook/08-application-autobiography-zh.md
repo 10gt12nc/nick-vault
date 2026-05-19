@@ -7,7 +7,7 @@
 
 > 2026-05-19 payment consolidation：已完成 `projects/iwin/payment/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 iwin payment 多個第三方金流 provider request / callback / query / withdraw 對接與維護，以及 payment / withdraw order consistency bugfix；仍不寫主導完整金流、全部 provider owner、完整 wallet / reconciliation owner 或量化改善。
 
-> 2026-05-19 game_api coupon Step 5：已完成 `projects/iwin/game_api/flows/coupon-redeem-credit-grant/` claim gate。投遞自傳可保守寫 Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發；仍不寫主導完整活動獎勵系統、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
+> 2026-05-19 game_api consolidation：已完成 `projects/iwin/game_api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發；`partner-deposit-withdraw-bill` 與 `agent-bonus-receive-transfer` 只作 code-backed 面試素材，邀請好友轉盤只作補充 evidence。仍不寫主導完整活動獎勵系統、Partner API、代理佣金、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
 
 > 2026-05-19 game_job consolidation：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護；仍不寫主導完整 BI pipeline、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或量化改善。
 

@@ -93,10 +93,10 @@ System Owner：
 - partner flow 本身可作 code-backed 面試素材。
 - 目前不能寫成 Nick 真實開發過。
 - 若 Nick 本人未來確認參與此 flow，要標成「本人確認，待 commit / ticket 補強」，並再回頭更新 claim boundary。
-- 完整 `game_api contribution claim consolidation` 仍要等 Step 2 本批代表 flows 都完成 Step 5。
+- 後續 `game_api contribution claim consolidation` 已完成；本 flow 仍維持 code-backed 面試素材，不更新正式履歷。
 
 下一步：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

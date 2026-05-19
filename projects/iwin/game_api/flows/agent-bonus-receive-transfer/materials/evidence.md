@@ -12,9 +12,9 @@ Step：5
 - `career-interview.md`：維持 code-backed 面試素材，更新 Step 5 結論與下一步。
 - `materials/interview.md`：維持面試講法，更新為 Step 5 完成狀態。
 - `materials/claim-boundary.md`：補 Step 5 claim gate；未看到 Nick / `10gt12nc` direct path evidence 前，不更新正式履歷 / 自傳。
-- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 5，下一步改為 `game_api contribution claim consolidation`。
+- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 5；後續 `game_api contribution claim consolidation` 已完成。
 
-Step 5 不新增正式履歷 claim，也不執行 `game_api contribution claim consolidation`。
+Step 5 不新增正式履歷 claim。後續 `game_api contribution claim consolidation` 已完成，仍維持本 flow 只作面試素材。
 
 ## 自動重讀紀錄
 
@@ -251,7 +251,7 @@ Nick / `10gt12nc` author filter：
 - 本 flow 是 `專案存在 / code-backed` 面試素材。
 - 目前不能升級成 `真實開發過`。
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md` 的正式履歷 / 自傳主成果。
-- 可在未來 `game_api contribution claim consolidation` 中作為「可面試講：分析過」素材；正式履歷主 evidence 仍以 coupon flow 與其他 Nick direct evidence 為主。
+- 已在 `game_api contribution claim consolidation` 中作為「可面試講：分析過」素材；正式履歷主 evidence 仍以 coupon flow 與其他 Nick direct evidence 為主。
 
 ## 證據層級判斷
 
@@ -270,5 +270,5 @@ Nick / `10gt12nc` author filter：
 下一步：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

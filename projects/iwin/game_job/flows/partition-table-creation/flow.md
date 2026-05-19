@@ -195,7 +195,7 @@ Game 分表 template：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
-原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job contribution claim consolidation` 已完成，下一步回到 `game_api` 未完成的代表 flow。
+原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job contribution claim consolidation` 已完成，下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。

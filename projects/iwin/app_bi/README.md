@@ -83,7 +83,7 @@
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
@@ -94,7 +94,7 @@ iwin game_api agent-bonus-receive-transfer Step 5
 - `daily-game-record-summary` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi contribution claim consolidation` 已完成，結論是不放正式履歷主成果。
-- 下一步先做 `game_api agent-bonus-receive-transfer Step 5`；`game_api` 本批代表 flows 未完成前，仍不能做完整 project-level consolidation。
+- 下一步先做 `iwin_gameserver center-http-deposit-withdraw Step 4`；`game_api` 本批代表 flows 未完成前，仍不能做完整 project-level consolidation。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

@@ -597,7 +597,7 @@ Owner 風險：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
@@ -606,7 +606,7 @@ iwin game_api agent-bonus-receive-transfer Step 5
 - Step 5 判定不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin game_api agent-bonus-receive-transfer Step 5`，收斂 game_api 第三條代表 flow 的面試素材。
+- `game-round-record-query` Step 5 已完成；下一步轉 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`，收斂 iwin_gameserver center_http 上分 / 下分的面試素材。
 - 若本次有改檔，完成自查後 commit；若需要 push，直接觸發 `git push` approval 視窗。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

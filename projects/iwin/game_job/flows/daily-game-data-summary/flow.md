@@ -362,10 +362,10 @@ Step 5 已完成：本 flow 可作 game_job project contribution consolidation e
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
-原因：本 flow Step 5 已收斂，且 `game_job contribution claim consolidation` 已完成；下一步回到 `game_api` 未完成的代表 flow。
+原因：本 flow Step 5 已收斂，且 `game_job contribution claim consolidation` 已完成；下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

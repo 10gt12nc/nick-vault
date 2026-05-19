@@ -75,7 +75,7 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `iwin game_api agent-bonus-receive-transfer Step 5`
+1. `iwin iwin_gameserver center-http-deposit-withdraw Step 4`
    - 原因：`game_job` contribution claim consolidation 已完成；`game_api` 第三順位 flow 已完成 Step 4，下一步做單條 flow claim gate。
    - 產出：確認代理佣金領取 / 轉帳 flow 是否有 Nick / `10gt12nc` direct evidence 或只能保留為 code-backed 面試素材。
    - 是否更新履歷：否。
@@ -265,7 +265,7 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：

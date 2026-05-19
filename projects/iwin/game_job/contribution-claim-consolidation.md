@@ -207,5 +207,5 @@ branch contains：
 下一步回到 `game_api`，把已完成 Step 4 的第三順位 flow 做 Step 5，避免 `game_api` 卡在未完成代表 flows 而不能 project-level consolidation。
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

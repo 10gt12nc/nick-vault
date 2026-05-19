@@ -97,8 +97,8 @@ Result：這條 flow 可以支撐 Senior Backend 面試中的 idempotency、tran
 
 ## Step 5 結論
 
-Step 5 已完成，這條 flow 已正式收斂為 code-backed 面試案例。重新確認後，目前沒有 Nick / `10gt12nc` agent bonus path direct evidence，也沒有本人確認，因此不升級成真實開發過、不寫正式履歷。下一步可做 `game_api contribution claim consolidation`，但那是 project-level claim gate。
+Step 5 已完成，這條 flow 已正式收斂為 code-backed 面試案例。重新確認後，目前沒有 Nick / `10gt12nc` agent bonus path direct evidence，也沒有本人確認，因此不升級成真實開發過、不寫正式履歷。後續 `game_api contribution claim consolidation` 已完成，仍維持本判斷。
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

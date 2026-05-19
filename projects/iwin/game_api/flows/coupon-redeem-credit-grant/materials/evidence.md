@@ -11,7 +11,7 @@ Step：5
 
 - `真實開發過`：Nick / `10gt12nc` 參與 `game_api` coupon redeem flow 開發。
 - `真實開發過`：Nick / `10gt12nc` 參與 `iwin_gameserver` coupon bet target handler 對接。
-- 可作正式履歷 / 自傳候選 evidence；若採用只能用「參與 / 開發」口徑，不寫主導完整 coupon / reward system，且需等 Step 2 本批代表 flows 完成後再經 `game_api contribution claim consolidation`。
+- 可作正式履歷 / 自傳 evidence；已經由 `game_api contribution claim consolidation` 確認只能用「參與 / 開發」口徑，不寫主導完整 coupon / reward system。
 
 ## Step 4 更新摘要
 

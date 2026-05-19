@@ -2,7 +2,7 @@
 
 本資料夾整理 `/Users/nick/Git/iwin/game_api` 的專案知識。
 
-`game_api` 是 iwin 玩家端 / partner API 聚合層，主要價值是理解玩家登入註冊、遊戲入口、戰績查詢、優惠券兌換、partner 上下分 / 查單、代理分潤領取與活動獎勵流程。它比 `app_bi` 更接近 production API 與 money / state transition。`coupon-redeem-credit-grant` 已完成 Step 5，Nick / `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 有直接 commit evidence，可作未來 project-level contribution consolidation 的 strong evidence。`partner-deposit-withdraw-bill` 也已完成 Step 5，但未見 Nick direct path evidence，只作 code-backed 面試素材。`agent-bonus-receive-transfer` 已完成 Step 5，結論是 code-backed 面試素材，不更新正式履歷。Step 2 本批代表 flows 已完成 Step 5，下一步可做 `game_api contribution claim consolidation`；收口前，仍不得寫成主導完整玩家端 API、完整 partner API 或 reward system owner。
+`game_api` 是 iwin 玩家端 / partner API 聚合層，主要價值是理解玩家登入註冊、遊戲入口、戰績查詢、優惠券兌換、partner 上下分 / 查單、代理分潤領取與活動獎勵流程。它比 `app_bi` 更接近 production API 與 money / state transition。`coupon-redeem-credit-grant` 已完成 Step 5，Nick / `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 有直接 commit evidence，已在 project-level contribution consolidation 中收斂為可放履歷的保守 claim。`partner-deposit-withdraw-bill` 與 `agent-bonus-receive-transfer` 都已完成 Step 5，但目前未見 Nick direct path evidence，只作 code-backed 面試素材，不更新正式履歷。仍不得寫成主導完整玩家端 API、完整 partner API 或 reward system owner。
 
 ## 讀檔順序
 
@@ -17,6 +17,7 @@
 9. [flows/agent-bonus-receive-transfer/flow.md](flows/agent-bonus-receive-transfer/flow.md)：第三條代表 money-like flow，代理佣金領取 / 轉帳，已完成 Step 5。
 10. [flows/agent-bonus-receive-transfer/career-interview.md](flows/agent-bonus-receive-transfer/career-interview.md)：該 flow 的 Step 5 code-backed 面試素材。
 11. [flows/agent-bonus-receive-transfer/materials/](flows/agent-bonus-receive-transfer/materials/)：Step 5 掃描範圍、evidence、decision、interview、claim boundary。
+12. [contribution-claim-consolidation.md](contribution-claim-consolidation.md)：project-level contribution claim consolidation，已完成；正式履歷只採 coupon 保守 claim。
 
 ## 目前狀態
 
@@ -27,7 +28,7 @@
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 已完成優惠券兌換上分 / 打碼要求 Level 2+ claim gate；`10gt12nc` 在 coupon Controller / Service / DAO / mapper / entity 與 gameserver bet target handler 有 path-specific commits，可作 project contribution consolidation evidence |
 | `flows/partner-deposit-withdraw-bill/` | Step 5 已完成 | 已完成 Partner API 上分 / 下分 / 查單 Level 2 code-backed flow 深掃、面試素材與單條 flow claim gate；目前未看到 Nick / `10gt12nc` direct path evidence，不更新正式履歷 |
 | `flows/agent-bonus-receive-transfer/` | Step 5 已完成 | 已完成代理佣金領取 / 轉帳 Level 2 flow 深掃、面試收斂與單條 flow claim gate；確認 `game_api` API、Mongo `agent_money`、Redis projection、GM 上分與 `game_job` 佣金結算關聯；目前未看到 Nick / `10gt12nc` direct path evidence，不更新正式履歷 |
-| `contribution-claim-consolidation.md` | 待做 | 三條代表 flow 均已完成 Step 5；下一步可做 project-level contribution claim consolidation |
+| `contribution-claim-consolidation.md` | 已完成 | 已掃 repo-wide Nick / `10gt12nc` commits、branches、重要 diff、三條代表 flow evidence 與履歷素材；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 |
 
 ## 專案定位
 
@@ -47,6 +48,7 @@
 已確認：
 
 - Nick / `10gt12nc` 實際參與 `coupon-redeem-credit-grant` flow 的 `game_api` 入口、service、DAO、mapper、entity 與 `iwin_gameserver` 打碼 handler；詳見 flow evidence / claim boundary。
+- 已完成 `game_api` project-level contribution consolidation；coupon 可放履歷，partner / agent bonus 目前只作面試素材。
 
 待確認：
 
@@ -63,6 +65,7 @@
 - `coupon-redeem-credit-grant` 可作 Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發的候選 evidence，包含 API、service、DB record、GM command orchestration 與下游 bet target handler 對接。
 - `partner-deposit-withdraw-bill` 已完成 Step 5，可作 code-backed 面試素材，用來說明 partner 上分 / 下分 / 查單、Mongo 訂單狀態、GM command、idempotency 與 reconciliation 風險；目前不作正式履歷 claim。
 - `agent-bonus-receive-transfer` 已完成 Step 5，可作代理佣金、Mongo / Redis projection、GM command consistency 的 code-backed 面試素材；目前不作正式履歷 claim。
+- repo-wide 掃描看到 Nick / `10gt12nc` 有邀請好友轉盤活動 direct commits，但該活動尚未整理成完整 flow package；目前只作補充 evidence，不放正式履歷主成果。
 - 其他 `game_api` flow 仍需各自完成 claim gate，不能因 coupon evidence 擴大成整個 `game_api` owner。
 
 目前不能說：
@@ -77,17 +80,17 @@
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
-- `agent-bonus-receive-transfer` Step 5 已完成，已正式收斂成 code-backed 面試素材。
-- 下一步應做 project-level contribution claim consolidation，確認 `game_api` 整體能如何保守寫進履歷與面試。
-- 本批代表 flows 已完成到 Step 5；下一步可做 `game_api contribution claim consolidation`。
+- `game_api` 本批代表 flow 與 project-level contribution consolidation 已完成。
+- `payment`、`game_job`、`app_bi` 的 contribution consolidation 也已收斂。
+- `iwin_gameserver` 的 `center-http-deposit-withdraw` 已完成 Step 3，下一步應先轉 Step 4 面試 case，不要直接跳 project-level consolidation。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：coupon flow 可作單條 flow evidence。完整 project-level claim 需下一步做 `game_api contribution claim consolidation` 後才定稿。
+- 可放履歷：coupon flow 已通過 project-level consolidation，可用「參與 / 開發」口徑保守寫入。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導完整 coupon / reward 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。
+- 不可誇大：不得寫成 Nick 主導完整 coupon / reward 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner、Partner API owner、代理佣金 owner 或完整 wallet / reconciliation owner。

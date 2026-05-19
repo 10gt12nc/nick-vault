@@ -254,14 +254,14 @@ sequenceDiagram
 
 `agent-bonus-receive-transfer` 已完成 Step 5 單條 flow claim gate。這條 flow 的價值在於它把「佣金計算結果」轉成「可領餘額、轉帳、錢包上分」，很適合談 Mongo / Redis / GM command 的一致性與重領風險。
 
-本輪重新 fetch `game_api` 與 `game_job`，重跑 agent bonus path-specific history 與 Nick / `10gt12nc` author filter；目前未看到 Nick direct path evidence，也沒有本人確認。因此本 flow 正式收斂為「code-backed 面試素材，不進正式履歷」。完整 `game_api contribution claim consolidation` 應在下一步做 project-level 收口，重讀三條 Step 5 flows 與 repo-wide Nick evidence。
+本輪重新 fetch `game_api` 與 `game_job`，重跑 agent bonus path-specific history 與 Nick / `10gt12nc` author filter；目前未看到 Nick direct path evidence，也沒有本人確認。因此本 flow 正式收斂為「code-backed 面試素材，不進正式履歷」。後續 `game_api contribution claim consolidation` 已完成，仍維持本判斷。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：

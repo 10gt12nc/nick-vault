@@ -110,8 +110,8 @@ Result：這條 flow 可以作為 Senior Backend 面試案例，用來講 money-
 
 本 flow 已完成 Step 5 面試收斂。它可作為 code-backed 面試案例，但不更新正式履歷 / 自傳。
 
-Step 5 已重新確認 Nick / `10gt12nc` evidence 與本人確認缺口：目前未看到 agent bonus path direct evidence，也沒有本人確認，因此不能說我開發或主導這條 flow。完整 `game_api contribution claim consolidation` 可作下一步，但要以 project 為單位重掃三條 Step 5 flows 與 repo-wide Nick evidence。
+Step 5 已重新確認 Nick / `10gt12nc` evidence 與本人確認缺口：目前未看到 agent bonus path direct evidence，也沒有本人確認，因此不能說我開發或主導這條 flow。後續 `game_api contribution claim consolidation` 已完成，仍維持本 flow 只作 code-backed 面試素材。
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

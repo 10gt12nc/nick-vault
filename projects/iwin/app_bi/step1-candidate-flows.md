@@ -446,7 +446,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
@@ -457,4 +457,4 @@ iwin game_api agent-bonus-receive-transfer Step 5
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
 - `app_bi` 主要分析 flow 已收斂；下一步應轉去真正 money correctness source of truth。
-- `iwin game_api agent-bonus-receive-transfer Step 5` 會補 game_api 第三條代表 flow，不會直接把 app_bi 入口或 game_api 單條 flow 寫成完整 project owner。
+- `iwin iwin_gameserver center-http-deposit-withdraw Step 4` 會補 iwin_gameserver center_http 代表 flow，不會直接把 app_bi 入口或 game_api 單條 flow 寫成完整 project owner。

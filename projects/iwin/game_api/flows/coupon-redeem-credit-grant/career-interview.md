@@ -116,11 +116,11 @@ Result：
 ## Step 5 結論
 
 - 可形成履歷 bullet，證據是 `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 的 commits。
-- 正式履歷候選口徑可用「參與 / 開發優惠券兌換上分 / 打碼要求 flow」，但需等 Step 2 本批代表 flows 完成後，再經 `game_api contribution claim consolidation` 確認 project-level 邊界。
+- 正式履歷口徑可用「參與 / 開發優惠券兌換上分 / 打碼要求 flow」；已經由 `game_api contribution claim consolidation` 確認 project-level 邊界。
 - 仍不寫主導、完整 owner、production incident 或量化改善。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 需等 Step 2 本批代表 flows 完成後，再由 `game_api contribution claim consolidation` 統一判斷。
+- 可作履歷 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，且已經由 `game_api contribution claim consolidation` 統一判斷，可保守寫成「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

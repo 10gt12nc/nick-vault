@@ -70,7 +70,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
-- 若目標是最快產出 Senior Backend 履歷素材，依最新 KB 先檢查 Step 2 定義的本批代表 flows 是否都完成。`payment` 與 `game_job` 已完成 project-level consolidation，不需要因新規則重做。`game_api` 目前 `coupon-redeem-credit-grant` 與 `partner-deposit-withdraw-bill` 都已到 Step 5，`agent-bonus-receive-transfer` 已到 Step 5，本批代表 flows 已完成，下一步做 `game_api contribution claim consolidation`。
+- 若目標是最快產出 Senior Backend 履歷素材，依最新 KB 先檢查 Step 2 定義的本批代表 flows 是否都完成。`payment`、`game_job`、`game_api` 已完成 project-level consolidation，不需要因新規則重做。`game_api` 正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
 - 2026-05-19 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，但不得寫成主導完整金流或全部 provider owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
@@ -98,7 +98,8 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `contribution-claim-consolidation` | app_bi limited / negative 收口 | 中 | 已完成 | 專案存在 / code-backed；Nick app_bi direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂 |
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 可作 flow evidence；不代表完整 project | 已收斂 |
 | iwin | game_api | `partner-deposit-withdraw-bill` | Partner API 上分 / 下分 / 查單 | 很高 | Step 5 | 專案存在 / code-backed；未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
-| iwin | game_api | `agent-bonus-receive-transfer` | 代理佣金領取 / 轉帳 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂；待 project-level consolidation |
+| iwin | game_api | `agent-bonus-receive-transfer` | 代理佣金領取 / 轉帳 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
+| iwin | game_api | `contribution-claim-consolidation` | game_api 實際開發貢獻收斂 | 高 | 已完成 | 部分真實開發過 + code-backed；coupon direct evidence；partner / agent bonus interview-only | 是，保守使用 coupon | 履歷 claim 已收斂 |
 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 高 | 已完成 | 本人確認 + 真實開發過 + code-backed | 是，保守更新 | 履歷 claim 已收斂；不是全 payment project 完成 |
 | iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 單條 flow code-backed；project-level 有多 provider callback / sign 維護 evidence | 併入 payment project bullet | 已收斂 |
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 單條 flow code-backed；withdraw insert / null-safety 有有限維護 evidence | 不單獨寫自動出款 owner | 已收斂 |
@@ -122,14 +123,15 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 目前只推薦一件事:
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因:
 
 - `game_job` contribution claim consolidation 已完成，不需要重做。
 - `payment` 已完成 consolidation，不需要重做。
-- `game_api` 本批代表 flows 已完成 Step 5；下一步做 project-level contribution claim consolidation。
+- `game_api` contribution claim consolidation 已完成，不需要重做。
+- `iwin_gameserver` 的 `center-http-deposit-withdraw` 已完成 Step 3，下一步先轉 Step 4 面試 case，不要過早做 project-level consolidation。
 
 ## 近期候選 Queue
 
@@ -137,9 +139,9 @@ iwin game_api contribution claim consolidation
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | game_api | `contribution claim consolidation` | game_api project-level 履歷 claim 收口 | 三條代表 flow 已完成 Step 5；下一步重掃 repo-wide Nick evidence、三條 flow evidence 與履歷邊界 | `iwin game_api contribution claim consolidation` |
-| 2 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
-| 3 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | gameserver 的 Step 2 本批代表 flows 尚未完成；先把 center_http 從 Step 3 往後收斂，再做完整 project consolidation | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
+| 1 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | gameserver 的 Step 2 本批代表 flows 尚未完成；先把 center_http 從 Step 3 往後收斂，再做完整 project consolidation | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
+| 2 | iwin | game_api | `contribution claim consolidation` | game_api project-level 履歷 claim 收口 | 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已完成 |
+| 3 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 4 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin third_games_api gsc-transfer-bet-settle-rollback Step 5` |
 | 5 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |

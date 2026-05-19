@@ -49,5 +49,5 @@ Step：5
 ## 下一步
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

@@ -436,11 +436,11 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 5 也已完成，`agent-bonus-receive-transfer` Step 5 已完成。
-- 下一步應做 `game_api contribution claim consolidation`，把三條代表 flow 與 repo-wide Nick evidence 收成 project-level 履歷邊界。
+- `game_api contribution claim consolidation` 已完成；下一步回 `iwin_gameserver` 已完成 Step 3 的代表 flow。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

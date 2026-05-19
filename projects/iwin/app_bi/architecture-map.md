@@ -57,11 +57,11 @@
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - app_bi project-level claim 已完成 limited / negative consolidation。
 - 真正 money correctness 已回到 payment repo 收口；game_job 也已完成 project-level consolidation。
-- 下一步回 `game_api` 未完成的代表 flow。
+- 下一步回 `iwin_gameserver center-http-deposit-withdraw Step 4`。

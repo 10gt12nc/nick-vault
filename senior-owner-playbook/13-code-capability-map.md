@@ -152,7 +152,7 @@ Lead / Architect 候選能力可以準備，但目前應以「候選能力 / 思
 
 下一步不是開始寫大量專案 case，也不是一次掃完所有 repo。`projects/` 規範已建立後，應依 `01-senior-owner-flow-inventory.md` 與 `06-todo.md` 只選一條最值得做的 flow：
 
-- 若目標是最快收斂 Senior Backend 履歷 / 面試素材，`iwin payment contribution claim consolidation` 已完成，不需要因新規則重做；`game_api` 目前 coupon 與 partner 都已到 Step 5，`agent-bonus-receive-transfer` 已到 Step 4，下一步先做 `iwin game_api agent-bonus-receive-transfer Step 5`，確認第三順位 money-like flow 的單條 claim gate；`game_job` Top 5 代表 flows 已完成 Step 5，之後可做 `iwin game_job contribution claim consolidation`。單條 flow Step 5 只提供 evidence，不直接代表整個 project 的履歷結論。
+- 若目標是最快收斂 Senior Backend 履歷 / 面試素材，`iwin payment contribution claim consolidation`、`iwin game_job contribution claim consolidation`、`iwin game_api contribution claim consolidation` 都已完成，不需要因新規則重做；`game_api` 正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。下一步可回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`，先完成 gameserver 代表 flow 的面試 case；單條 flow Step 5 只提供 evidence，不直接代表整個 project 的履歷結論。
 - 若目標是開新 domain 做差異化題材，可先做 `math-core` / `*-math` Step 1，但仍要先建立 Step 1 / Step 2，不可直接寫成履歷 claim。
 
 每個 case 都必須：

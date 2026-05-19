@@ -66,7 +66,7 @@
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | `game_job contribution claim consolidation` 已完成；目前下一步回 `game_api agent-bonus-receive-transfer Step 5` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | `game_job contribution claim consolidation` 已完成；目前下一步回 `iwin_gameserver center-http-deposit-withdraw Step 4` |
 
 ## 掃描等級判斷
 
@@ -379,7 +379,7 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
