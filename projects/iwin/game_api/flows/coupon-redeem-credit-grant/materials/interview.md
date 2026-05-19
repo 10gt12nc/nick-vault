@@ -1,8 +1,8 @@
 # coupon-redeem-credit-grant interview material
 
-更新時間：2026-05-15
-對應 Step：Step 4 面試案例
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+對應 Step：Step 5 claim gate 已完成
+證據層級：真實開發過 + code-backed
 
 ## Step 4 前檢查
 
@@ -14,7 +14,7 @@
 | `materials/claim-boundary.md` | 本輪補強 | Step 4 需補面試可說 / 不可說 |
 | `career-interview.md` | 本輪重寫 | 轉成 30 秒 / 2 分鐘 / 5 分鐘 / STAR / 反問面試官 |
 
-Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
+Step 5 已更新正式履歷 / 自傳的保守 claim；本面試稿仍維持「可講實作，也要講不可誇大」。
 
 ## 面試主軸
 
@@ -34,7 +34,7 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 
 ## 30 秒版本
 
-我分析過 `game_api` 的 coupon redeem flow。入口是 `GET /coupons/redeem`，它會驗 token、查 coupon setting、查 coupon record 防同 uid / 同 IP 重複使用，再呼叫 `iwin_gameserver` 做 `DEPOSIT` 上分，接著用 `SET_BET_TARGET_COUPON` 加打碼要求，最後才寫本地 `coupon_record` 和更新 `used_count`。
+我參與過 `game_api` 的 coupon redeem flow。入口是 `GET /coupons/redeem`，它會驗 token、查 coupon setting、查 coupon record 防同 uid / 同 IP 重複使用，再呼叫 `iwin_gameserver` 做 `DEPOSIT` 上分，接著用 `SET_BET_TARGET_COUPON` 加打碼要求，最後才寫本地 `coupon_record` 和更新 `used_count`。
 
 這條 flow 最值得談的是：它跨 Redis、MySQL、GM HTTP command、玩家錢包和打碼狀態，不是一個本地 DB transaction。我的 owner 建議會是 DB unique constraint、下游 idempotency key、pending state machine 和 reconciliation。
 
@@ -146,4 +146,4 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 - partial success。
 - reconciliation。
 
-但目前仍不更新正式履歷 / 自傳。下一步應做 Step 5：只判斷是否能形成安全履歷 bullet，預期仍會因缺 Nick 本人 evidence 而保守不放正式履歷。
+Step 5 已完成，可保守更新正式履歷 / 自傳。面試時可說「參與 / 開發 coupon redeem flow」，但仍不可說主導完整 coupon / reward 系統、設計 Redis lock 或修復 production 雙領事故。

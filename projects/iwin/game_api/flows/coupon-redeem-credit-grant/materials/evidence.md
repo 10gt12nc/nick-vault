@@ -1,9 +1,17 @@
 # coupon-redeem-credit-grant evidence
 
-更新時間：2026-05-15
-Step：3
-掃描等級：Level 2 Flow 深掃；Step 4 面試收斂
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+掃描等級：Level 2+ claim gate；Step 4 面試收斂後補 Nick path-specific history 與重要 diff
+證據層級：真實開發過 + code-backed
+
+## Step 5 更新摘要
+
+2026-05-19 Step 5 重新 fetch `game_api` 與 `iwin_gameserver` remote refs，並掃 coupon path-specific history。結論從「缺 Nick evidence，暫不放履歷」改為：
+
+- `真實開發過`：Nick / `10gt12nc` 參與 `game_api` coupon redeem flow 開發。
+- `真實開發過`：Nick / `10gt12nc` 參與 `iwin_gameserver` coupon bet target handler 對接。
+- 可更新正式履歷 / 自傳，但只能用「參與 / 開發」口徑，不寫主導完整 coupon / reward system。
 
 ## Step 4 更新摘要
 
@@ -15,7 +23,7 @@ Step：3
 - `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
 - `senior-owner-playbook/04-interview-casebook.md`、`01-senior-owner-flow-inventory.md`：同步新增 / 更新此 flow 的面試案例索引。
 
-Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
+Step 4 當時尚未補到 Nick path-specific evidence，因此不更新正式履歷 master，也不新增 `真實開發過` claim；此限制已由 2026-05-19 Step 5 claim gate 重新覆核並更新。
 
 ## 自動重讀紀錄
 
@@ -37,10 +45,10 @@ Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 已同步 | Step 4 完成後已更新 flow 狀態與下一步 |
+| `README.md` | 已同步 | Step 5 完成後已更新 flow 狀態與下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 候選 flow 盤點仍成立 |
-| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 4，下一步指向 Step 5 |
-| `flows/coupon-redeem-credit-grant/` | Step 4 已完成 | 使用新 flow package 結構；面試案例已補齊 |
+| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 5，下一步轉 `game_job daily-game-data-summary Step 5` |
+| `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 使用新 flow package 結構；面試案例、evidence 與 claim boundary 已補齊 |
 
 ## Code Repo 最新狀態
 
@@ -58,17 +66,17 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
 | `flow.md` | 可沿用 | 已有白話導讀、Code 分層、最小架構圖、正常流程圖、逐步說明與 Senior / Owner 分析 |
-| `career-interview.md` | 可沿用 | 保守標示只能作面試學習素材，不寫 Nick 真實開發 |
+| `career-interview.md` | 已同步 | Step 5 後改為可保守作為 Nick 真實開發過的面試素材 |
 | `materials/evidence.md` | 本輪補強 | 補上 KB 更新後覆核與最新 remote refs 狀態 |
 | `materials/decision-notes.md` | 可沿用 | 已涵蓋 DB unique、idempotency key、state machine、Redis lock、reconciliation |
 | `materials/interview.md` | 可沿用 | 已有面試開場、架構講法、failure window 與追問 |
-| `materials/claim-boundary.md` | 可沿用 | 已清楚標示可說 / 不可說與需要補的 Nick evidence |
+| `materials/claim-boundary.md` | 已同步 | 已清楚標示可寫入正式履歷、可面試講與不可誇大的邊界 |
 
 深度等級覆核：
 
 - 本 flow 目前仍判定為 Level 2 Flow 深掃足夠。
-- 不建議直接升 Level 3，因為尚未取得 Nick 本人 MR / ticket / production issue evidence，也未確認 production 實際部署 `origin/k3s` lock；直接逐檔逐行追完整 commit diff，對正式履歷 claim 的增益有限。
-- 若下一步要把這條 flow 轉成更強 evidence 或正式履歷 claim，再建議 Level 3，重點應放在 coupon path-specific commit diff、下游 `billNo` 去重語意、production branch / deploy evidence 與 Nick 本人參與證據。
+- 不建議直接升 Level 3，因為 Step 5 已足以支撐保守正式履歷 claim；但尚未確認 production 實際部署 `origin/k3s` lock，也沒有 production incident / ticket evidence，可避免把履歷推到「防雙領 owner」或「完整 coupon owner」。
+- 若未來要把這條 flow 轉成更強 production incident / owner claim，再建議 Level 3，重點應放在 coupon path-specific commit diff、下游 `billNo` 去重語意、production branch / deploy evidence 與 Nick 本人 ticket / MR / incident 證據。
 
 ### `/Users/nick/Git/iwin/game_api`
 
@@ -83,7 +91,7 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 | local HEAD | `39bb6e38210bb79c6e68a6a6d818cb87986d39f0` |
 | `origin/main` HEAD | `39bb6e38210bb79c6e68a6a6d818cb87986d39f0` |
 | local vs `origin/main` | ahead 0 / behind 0 |
-| `origin/k3s` HEAD | `c43bba5a27493d28e4e8a00db27c08f98ca4fff2` |
+| `origin/k3s` HEAD | `1dff58f5a4fdc5b95ec2a236d013e3b5b359cc61` |
 | worktree | clean |
 
 ### `/Users/nick/Git/iwin/iwin_gameserver`
@@ -99,6 +107,7 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 | local HEAD | `30a9fcb95bfda33b582deeb4e149eb06bed4afe3` |
 | `origin/main` HEAD | `30a9fcb95bfda33b582deeb4e149eb06bed4afe3` |
 | local vs `origin/main` | ahead 0 / behind 0 |
+| `origin/k3s` HEAD | `2519d64ccc11f9fade69cdefe23f225e571640c7` |
 | worktree | clean |
 
 ## 本次實際掃描範圍
@@ -222,14 +231,19 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 
 ### Branch history
 
-`game_api` path-specific log 顯示 coupon 相關 commit：
+`game_api` path-specific log 顯示 coupon 相關 commit，且 author / committer 皆為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
 
-- `39bb6e3 feat(#): 兑换码功能 CouponReason`
-- `e52492e feat(#): 兑换码功能 urlWhites`
-- `3921fc0 feat(#): 兑换码功能 method 'GET'`
-- `35cc004 fix: 修正iP 提示语言`
-- `752f435 feat(#): 兑换码功能`
-- 多個 earlier coupon feature commits
+- `8683e32 feat(#): 兑换码功能`：新增 `CouponRedeemController`、`CouponRedeemServiceImpl`、`CouponRecordDao`、`CouponSettingDao`、mapper、DTO / entity、GM command name、LogUser 查詢等 coupon flow 主體。
+- `c2dabf7 feat(#): 兑换码功能 ##`：調整 GM command 與 service 細節。
+- `752f435 feat(#): 兑换码功能`：調整 `CouponRecord`、service 與 mapper 欄位。
+- `39bb6e3 feat(#): 兑换码功能 CouponReason`：新增 `CouponReason` 並調整 service。
+- 另有 `e52492e`、`3921fc0`、`35cc004`、`9843b15`、`89b698f`、`3d283d2`、`e9d63b1`、`d7d9ed3` 等 coupon 相關 commits。
+
+重要 diff 摘要：
+
+- `8683e32` 新增 coupon redeem API / service / DAO / mapper / entity，約 614 行，形成 `GET /coupons/redeem` 到 coupon setting / record / GM command 的主體。
+- `39bb6e3` 新增 `CouponReason`，讓 coupon GM 上分 reason 不只是魔法數字。
+- `752f435` 補 coupon record / LogUser / mapper 欄位，支撐後續 record 與玩家條件判斷。
 
 `origin/k3s` 重要 diff：
 
@@ -237,10 +251,29 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 - 本文件只採 coupon service diff；不搬運 profile / config 內容。
 - coupon service 新增 `coupon:lock:{uid}:{couponCode}`，用 `redisService.setIfAbsent(..., 10_000L)` 搶 lock，finally delete lock。
 
-`iwin_gameserver` path-specific log 顯示 coupon 下游：
+`iwin_gameserver` path-specific log 顯示 coupon 下游，且 author / committer 皆為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
 
 - `30a9fcb feat(#): 兑换码功能 betCnt`
 - `6c99dd3 feat(#): 兑换码功能 #`
+
+重要 diff 摘要：
+
+- `6c99dd3` 新增 / 擴充 `SpinBetTargetConst` 與 `HttpService` coupon bet target command handler。
+- `30a9fcb` 調整 `HttpService` coupon bet count / target count 處理。
+
+### Step 5 claim 判斷
+
+可升級為 `真實開發過`：
+
+- Nick 參與玩家優惠券兌換上分 / 打碼要求 flow 開發。
+- Nick 參與 `game_api` coupon API、service orchestration、DAO / mapper / entity 與 GM command 對接。
+- Nick 參與 `iwin_gameserver` coupon bet target handler 對接 / 調整。
+
+仍只能 code-backed / 不可誇大：
+
+- `origin/k3s` Redis lock 防雙倍兌換 commit `7e4861e` 的 author 不是 `10gt12nc`，且有 Co-Authored-By Claude；不可寫成 Nick 設計 Redis lock 或修復 production 雙領事故。
+- 未確認 production 實際跑 `origin/k3s` lock。
+- 未確認下游 `billNo` 去重、完整 reconciliation、人工補償 dashboard 或 production incident。
 
 ## 推測 / 待確認
 
@@ -259,8 +292,8 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 - Redis lock TTL 單位是否被團隊約定為秒；目前 `EX` 指向秒。
 - 是否存在非 code 的補單 / reconciliation procedure。
 
-## 本輪不更新正式履歷原因
+## Step 5 結論
 
-- 沒有 Nick 本人 evidence。
-- 雖然 flow code-backed，但目前只能作為學習與面試分析素材。
-- Step 3 主要產出是 flow understanding，不是 final resume claim。
+- 更新正式履歷 / 自傳：是，保守更新。
+- 可寫：「參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游打碼 handler。」
+- 不可寫：主導完整 coupon / reward system、設計 Redis lock、修復 production 雙領 bug、完整 wallet / reconciliation owner、改善 X%。

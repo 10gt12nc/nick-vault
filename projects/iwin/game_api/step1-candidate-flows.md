@@ -35,7 +35,7 @@
 - `projects/README.md`
 - `projects/iwin/app_bi/README.md`
 - `projects/iwin/app_bi/step1-candidate-flows.md`
-- `projects/iwin/game_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
+- `projects/iwin/game_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5 並收斂。
 
 已重讀參考文件：
 
@@ -428,19 +428,19 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 原因：
 
 - 本檔只是 Step 1 candidate flow 盤點。
-- 單條 coupon flow 已完成 Step 4，但還沒有 Nick 本人 evidence。
-- 沒有 Nick 本人 evidence，不可更新正式履歷 / 自傳。
+- 單條 coupon flow 已完成 Step 5，且已補到 Nick / `10gt12nc` path-specific commits，可保守更新正式履歷 / 自傳。
+- 其他 `game_api` flow 仍不可因 coupon evidence 自動升級。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job daily-game-data-summary Step 5
 ```
 
 原因：
 
-- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
-- Step 5 會判定是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
+- coupon Step 5 已完成，下一步回到跨 iwin queue。
+- `game_job daily-game-data-summary` 已完成 Step 4，下一步應做 Step 5 claim gate。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

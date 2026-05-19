@@ -29,7 +29,7 @@
 - 已依 2026-05-15 KB 深度檢查 `app_bi`，補齊 project-level `architecture-map.md` 與 `career-interview.md`，並把 app_bi 本地落後 `origin/main` 4 commit 的 source repo 狀態寫入 Step / evidence；正式履歷仍不更新。
 - 已完成 `game_job Step 1`，建立 `projects/iwin/game_job/README.md` 與 `step1-candidate-flows.md`；目前只作 Java batch / BI projection / third-party record backup 的候選 flow 盤點，不更新履歷。
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
-- 已完成 `game_api coupon-redeem-credit-grant Step 4`，轉成優惠券兌換上分 / 打碼要求的保守面試 case；目前仍不更新正式履歷 / 自傳。
+- 已完成 `game_api coupon-redeem-credit-grant Step 5`，確認 `10gt12nc` 有 game_api / iwin_gameserver coupon path-specific commits；可保守更新正式履歷 / 自傳，不寫主導完整 coupon / reward owner。
 - 已完成 `game_job daily-game-data-summary Step 4`，轉成 batch correctness / BI projection 的保守面試 case；目前仍不更新正式履歷 / 自傳。
 - 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為金流 callback consistency / compensation 的保守面試素材。
 - 已完成 `payment withdrawal-auto-review-refund Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為提款、自動審核 / 自動出款、失敗退款的一致性與補償面試素材。
@@ -46,29 +46,30 @@
 
 ## 下一步
 
-### 1. iwin game_api coupon-redeem-credit-grant Step 5
+### 1. iwin game_job daily-game-data-summary Step 5
 
 建議下一步：
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin game_job daily-game-data-summary Step 5
 ```
 
 原因：
 
 - payment project-level contribution consolidation 已完成，履歷 / 自傳已保守同步。
-- `game_api coupon-redeem-credit-grant` 已完成 Step 4，下一步應按 KB 做 Step 5 claim gate。
-- 產出要判斷優惠券兌換上分 flow 是否能更新履歷 / 自傳，並補 claim boundary。
+- `game_api coupon-redeem-credit-grant` 已完成 Step 5，履歷 / 自傳已保守同步。
+- `game_job daily-game-data-summary` 已完成 Step 4，下一步應按 KB 做 Step 5 claim gate。
+- 產出要判斷每日遊戲資料彙總 flow 是否能更新履歷 / 自傳，並補 claim boundary。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_api coupon-redeem-credit-grant Step 5`。以下是 payment consolidation 完成後，各 project 的局部下一步：
+目前總優先是 `iwin game_job daily-game-data-summary Step 5`。以下是近期各 project 的局部下一步：
 
-1. `game_api`：`coupon-redeem-credit-grant Step 5`。
-2. `game_job`：`daily-game-data-summary Step 5`。
-3. `iwin_gameserver`：判斷是否做 `center-http-deposit-withdraw Step 3`。
-4. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
-5. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
+1. `game_job`：`daily-game-data-summary Step 5`。
+2. `iwin_gameserver`：判斷是否做 `center-http-deposit-withdraw Step 3`。
+3. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
+4. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
+5. `game_api`：`coupon-redeem-credit-grant Step 5` 已收斂；下一條需回 Step 2 ranking 選。
 6. `payment`：Top 5 flow 與 contribution consolidation 已收斂；之後除非 Nick 指定新 payment flow，先不重做。
 7. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
 
@@ -89,12 +90,12 @@ iwin game_api coupon-redeem-credit-grant Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment 真實開發經驗已收斂，下一步回到 `game_api coupon-redeem-credit-grant Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment 與 game_api coupon 已收斂，下一步回到 `game_job daily-game-data-summary Step 5`。
 
 ## 下一個 prompt
 
 ```text
-iwin game_api coupon-redeem-credit-grant Step 5
+iwin game_job daily-game-data-summary Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

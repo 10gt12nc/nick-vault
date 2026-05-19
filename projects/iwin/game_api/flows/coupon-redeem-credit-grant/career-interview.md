@@ -1,16 +1,16 @@
 # coupon-redeem-credit-grant：保守面試素材
 
-更新時間：2026-05-15
-對應 Step：Step 4 面試案例
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+對應 Step：Step 5 claim gate 已完成
+證據層級：真實開發過 + code-backed
 
 ## 面試定位
 
-這份不是正式履歷，也不是 Nick 已實作 claim。它是 code-backed 的 Senior / Owner 面試分析素材：用一條真實存在的優惠券兌換上分 flow，練習怎麼談跨系統 money side effect、idempotency、transaction boundary、partial success、reconciliation 與不可誇大的邊界。
+這份可作為正式履歷 / 面試素材，但必須用保守口徑。Nick / `10gt12nc` 在 `game_api` coupon flow 與 `iwin_gameserver` bet target handler 有 path-specific commits，可說「參與 / 開發」；不可說主導完整 coupon system、修復 production 雙領事故或設計 Redis lock。
 
 可用語氣：
 
-- 「我分析過一條優惠券兌換上分 flow。」
+- 「我參與過一條優惠券兌換上分 / 打碼要求 flow 的開發，也用它分析跨系統 money side effect。」
 - 「我會把風險拆成 coupon record、玩家錢包、打碼要求與對帳。」
 - 「如果我是 owner，我會優先補 DB unique、下游 idempotency key、狀態機與 reconciliation。」
 
@@ -23,7 +23,7 @@
 
 ## 30 秒版本
 
-我分析過 `game_api` 的優惠券兌換上分 flow。它不是單純查 coupon 再寫 record，而是 API 先驗 token、coupon 資格、同 uid / 同 IP 限制，接著送 GM command 到 `iwin_gameserver` 幫玩家上分，再送第二個 GM command 設定打碼要求，最後才寫 `coupon_record` 和更新 `used_count`。
+我參與過 `game_api` 的優惠券兌換上分 flow。它不是單純查 coupon 再寫 record，而是 API 先驗 token、coupon 資格、同 uid / 同 IP 限制，接著送 GM command 到 `iwin_gameserver` 幫玩家上分，再送第二個 GM command 設定打碼要求，最後才寫 `coupon_record` 和更新 `used_count`。
 
 我會把面試重點放在三個風險：第一，`main` 上是 check-then-insert，DB schema 也不是 unique key，併發下可能雙領；第二，deposit 成功但 bet target 或本地 record 失敗，會造成 partial success；第三，`coupon_record`、wallet log、bet target log、`used_count` 之間需要 reconciliation。
 
@@ -74,8 +74,8 @@ Action：
 
 Result：
 
-- 形成一個可面試討論的 owner analysis case：同 uid 同 coupon 的 DB unique、下游 idempotency key、pending state machine、partial success 補償與 reconciliation 是核心風險。
-- 目前仍只屬於 `專案存在 / code-backed` 與 `分析素材 / learning-only`，不能寫成 Nick 主導成果。
+- 完成一條玩家 coupon 兌換上分 / 打碼要求 flow 的開發與下游 handler 對接，後續也能把它轉成 owner analysis case：同 uid 同 coupon 的 DB unique、下游 idempotency key、pending state machine、partial success 補償與 reconciliation 是核心風險。
+- 履歷可寫「參與 / 開發」，但不能寫成 Nick 主導完整 coupon / reward 系統。
 
 ## 面試回答草稿
 
@@ -107,20 +107,20 @@ Result：
 
 ## 目前不能講
 
-- 不能說我主導 coupon 兌換系統。
+- 不能說我主導完整 coupon 兌換系統。
 - 不能說我修過 production 雙領 bug。
 - 不能說我設計或部署了 Redis lock。
 - 不能說已確認 production 使用 `origin/k3s`。
 - 不能說有改善百分比或 owner 權限。
 
-## Step 5 待補
+## Step 5 結論
 
-- 判斷是否能形成履歷 bullet。
-- 若沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，正式履歷應暫不放。
-- 若 Nick 補到本人 evidence，再重新評估是否能標成 `真實開發過`，並保守描述實際角色。
+- 可形成履歷 bullet，證據是 `10gt12nc` 在 `game_api` 與 `iwin_gameserver` coupon 相關 path 的 commits。
+- 正式履歷用「參與 / 開發優惠券兌換上分 / 打碼要求 flow」。
+- 仍不寫主導、完整 owner、production incident 或量化改善。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 coupon flow 的 MR / ticket / commit / production issue / 本人確認。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。
+- 不可誇大：不得寫成 Nick 主導完整 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。

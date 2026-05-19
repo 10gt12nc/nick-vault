@@ -22,7 +22,7 @@ coupon-redeem-credit-grant
 
 第二順位是 `partner-deposit-withdraw-bill`。它的價值甚至可能更高，但需要較早補下游 wallet / GM handler / partner idempotency evidence；以目前 Step 2 來看，coupon 更適合作為 `game_api` 第一條完整 flow 學習包。
 
-不更新正式履歷 / 自傳。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件只作候選 flow 比較與學習規劃。
+本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可保守更新正式履歷 / 自傳。
 
 ## 自動重讀紀錄
 
@@ -43,9 +43,9 @@ coupon-redeem-credit-grant
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步為 coupon flow 下一步 Step 5 |
+| `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步為 coupon flow Step 5 完成 |
 | `step1-candidate-flows.md` | 可沿用 | 已有 Top 5 flow、證據層級、未掃範圍；但 Step 1 發生在新 fetch 規則前，本輪補遠端狀態 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前第一條 flow 已完成 Step 4，下一步是 Step 5 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前第一條 flow 已完成 Step 5 並收斂 |
 
 ## Code Repo 最新狀態
 
@@ -131,8 +131,8 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 4，下一步做 Step 5 履歷 / 自傳邊界判定
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+建議：已完成 Step 5 claim gate，下一步轉 `game_job daily-game-data-summary Step 5`
+證據層級：真實開發過 + code-backed
 
 ### 已確認
 
@@ -196,11 +196,11 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-目前不可更新正式履歷。
+Step 5 後可保守更新正式履歷。
 
-若未來補到 Nick evidence，可以保守轉成：
+Step 5 已補到 Nick evidence，可以保守寫成：
 
-- 參與 / 維護優惠券兌換 flow 的一致性與防重複提交分析。
+- 參與 / 開發優惠券兌換上分 / 打碼要求 flow，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游打碼 handler。
 - 不能寫「主導設計優惠券系統」或「改善 X%」。
 
 ### 結論
@@ -213,7 +213,7 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-下一步是 Step 5：判定是否能形成履歷 / 自傳安全 claim。目前仍缺 Nick 本人 evidence，預期不更新正式履歷。
+Step 5 已完成：可保守形成履歷 / 自傳安全 claim。下一步轉 `game_job daily-game-data-summary Step 5`。
 
 ## 2. `partner-deposit-withdraw-bill`
 
@@ -479,25 +479,22 @@ Step 4 已完成：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job daily-game-data-summary Step 5
 ```
 
 為什麼現在做它：
 
-- Step 4 已把 coupon flow 收斂成保守面試案例。
-- 同一條 flow 還沒完成 Step 5，依 KB 不應直接跳新 flow。
-- Step 5 只做履歷 / 自傳 claim 邊界判定，不預設更新正式履歷。
+- `coupon-redeem-credit-grant` 已完成 Step 5。
+- 同 project 第一條 flow 已收斂，下一步回到 queue 中已完成 Step 4 的 `game_job daily-game-data-summary`。
 
 會產出什麼：
 
-- 更新 `materials/claim-boundary.md` 的 Step 5 判定。
-- 如 evidence 不足，明確標示不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- 更新 `game_job daily-game-data-summary` 的 claim boundary、path-specific evidence 判斷與是否更新履歷 / 自傳。
 - 同步 README / inventory 下一步。
 
 是否更新履歷：
 
-- 只有補到 Nick 本人 MR / ticket / commit / production issue / 本人確認才考慮。
-- 目前預期不更新正式履歷 / 自傳。
+- `coupon-redeem-credit-grant` 已保守更新履歷 / 自傳；下一條 `game_job daily-game-data-summary` 需等 Step 5 判斷。
 
 是否需要 commit / push：
 

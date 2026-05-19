@@ -1,18 +1,18 @@
 # coupon-redeem-credit-grant flow
 
-更新時間：2026-05-15
-Step：3
-完成狀態：Step 4 已補面試案例
-掃描等級：Level 2 Flow 深掃
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+完成狀態：Step 5 claim gate 已完成
+掃描等級：Level 2+ claim gate
+證據層級：真實開發過 + code-backed
 
 ## 閱讀定位
 
 這條 flow 是玩家使用優惠券兌換碼後，由 `game_api` 驗證登入與資格，再呼叫遊戲中心 GM command 幫玩家上分，並設定對應打碼要求。
 
-本文件只把它當成 code-backed flow analysis。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，不可寫成 Nick 真實開發或主導成果。
+本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_api` coupon 入口 / service / DAO / mapper / entity 以及 `iwin_gameserver` bet target handler 有 path-specific commits，因此可保守寫成「真實開發過」；但仍不可寫成 Nick 主導完整 coupon 系統、完整 reward owner、Redis lock 設計者或 production 雙領事故修復者。
 
-2026-05-15 KB 更新後已重新覆核：本 flow 仍屬 Level 2 Flow 深掃完成狀態，可沿用。暫不升 Level 3，原因是目前尚未補到 Nick 本人 evidence 與 production deploy evidence；若未來要轉正式履歷 claim，再追逐 commit diff、下游 bill no 去重語意與 production branch 證據。
+2026-05-19 Step 5 已補到 Nick / `10gt12nc` path-specific commit evidence，可保守轉入正式履歷 claim。暫不升 Level 3，原因是目前 Step 5 目的已達成；若未來要主張更強的 production incident / 防雙領修復 / owner 經驗，才需要再追逐 commit diff、下游 bill no 去重語意與 production deploy 證據。
 
 已確認：
 
@@ -25,7 +25,6 @@ Step：3
 
 待確認：
 
-- Nick 是否實際參與 coupon flow。
 - production 實際跑 `main` 還是 `k3s` branch。
 - GM command 成功回應是否代表下游帳本與玩家狀態已 durable。
 - 是否有人工補單、對帳 dashboard 或 production runbook。
@@ -213,18 +212,35 @@ sequenceDiagram
 
 詳細面試素材見 [career-interview.md](career-interview.md)。
 
-## Step 4 狀態與下一步
+## Step 5 履歷 / 自傳 claim gate
 
-Step 4 已完成：已把這條 flow 轉成保守面試案例，重點放在「跨系統 side effect 的一致性與 idempotency 設計」。本輪不更新正式履歷。
+Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 
-下一步最值得做 Step 5：檢查是否能形成履歷 / 自傳安全 claim。以目前 evidence 來看，預期仍會判定不更新正式履歷，除非 Nick 補本人 MR / ticket / commit / production issue / 本人確認。
+已確認 evidence：
+
+- `game_api` `8683e32` / `10gt12nc`：新增 coupon redeem controller、service、DAO、mapper、entity、GM command name 與 LogUser 查詢。
+- `game_api` `c2dabf7`、`752f435`、`39bb6e3` / `10gt12nc`：後續調整 GM command、record 欄位與 `CouponReason`。
+- `iwin_gameserver` `6c99dd3`、`30a9fcb` / `10gt12nc`：新增 / 調整 coupon bet target handler。
+
+可寫入履歷：
+
+- 參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command、`iwin_gameserver` 上分與打碼要求，處理跨系統 money side effect 與本地兌換紀錄邊界。
+
+不可誇大：
+
+- 不寫主導完整 coupon / reward 系統。
+- 不寫修復 production 雙領事故。
+- 不寫設計 Redis lock；`origin/k3s` lock commit author 不是 `10gt12nc`，且 Co-Authored-By Claude。
+- 不寫完整 wallet / reconciliation owner。
+
+下一步：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job daily-game-data-summary Step 5
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；缺 Nick 本人 coupon flow 直接 evidence。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。
 - 可面試講：code-backed / 分析過。可講優惠券兌換上分、跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 coupon 系統、修復雙領 production bug、設計 Redis lock 或負責完整玩家端 API owner。
+- 不可誇大：不得寫成 Nick 主導完整 coupon 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。

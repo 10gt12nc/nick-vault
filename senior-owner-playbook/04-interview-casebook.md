@@ -199,9 +199,9 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 此案例只作面試分析素材，不更新正式履歷 / 自傳。
-- 目前是 `專案存在 / code-backed`；Nick 本人 MR / ticket / commit / production issue / 本人確認待補。
-- `origin/k3s` 有 Redis lock 修正，但 production 是否部署待確認；不可說成 Nick 修復雙領。
+- 已完成 Step 5 claim gate，可保守更新正式履歷 / 自傳。
+- `10gt12nc` 在 `game_api` coupon Controller / Service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler 有 path-specific commits。
+- `origin/k3s` 有 Redis lock 修正，但 commit author 不是 `10gt12nc` 且 production 是否部署待確認；不可說成 Nick 設計 Redis lock 或修復雙領。
 
 面試主軸：
 
