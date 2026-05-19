@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job third-party-record-mongo-backup Step 3` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job third-party-record-mongo-backup Step 4` |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job third-party-record-mongo-backup Step 3` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job third-party-record-mongo-backup Step 4` |
 
 ## 掃描等級判斷
 
@@ -212,7 +212,7 @@ source repo 狀態：
 ### 2. `third-party-record-mongo-backup`
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+證據層級：專案存在 / code-backed；Nick / `10gt12nc` 有 GSC 分批查詢 commit 線索，待 Step 5 claim gate 判斷
 
 為什麼重要：
 
@@ -225,24 +225,33 @@ source repo 狀態：
 - `ThirdLogAntplayNewJob` 將 `third_log_antplay_new` 早於保留門檻的資料分批搬到 backup collection，再依 `_id` 刪原 collection。
 - `ThirdTransactionAntplayNewJob` 對 `third_transaction_antplay_new` 做同型備份清理。
 - 兩條 new job 在目前設定中 enable flag 為 true。
-- history 包含 `antplay_new_bak_job`、`feature/gsc_record_backup`、GSC 批次大小調整。
+- `ThirdLogGscJob` 與 `ThirdTransactionGscJob` 已補 Level 2 讀過，採同型 backup / delete / retention；main config 目前 GSC disabled。
+- history 包含 Antplay / GSC backup job 初版、Antplay 分批化、GSC 分批查詢與 batch size 調整。
 
 推測：
 
 - GSC 與舊 Antplay / Oneapi job 也屬於同一類 third-party record retention flow，但本次只讀 new Antplay 類別較完整。
 - upstream 寫入者可能在 `third_games_api`、`game_api` 或 provider integration repo。
 
-待確認：
+已完成補充：
+
+- `projects/iwin/game_job/flows/third-party-record-mongo-backup/flow.md`
+- `projects/iwin/game_job/flows/third-party-record-mongo-backup/career-interview.md`
+- `projects/iwin/game_job/flows/third-party-record-mongo-backup/materials/evidence.md`
+
+仍待確認：
 
 - backup insert 成功但 delete 失敗、delete 成功但 backup 未完整時的處理策略。
 - `_id` 型別與 VO id mapping 是否完全穩定。
-- GSC job 的完整 code path 與 batch size history。
 - production retention policy 是否為 14 天搬移、30 天清理。
+- backup collection 是否保留原 `_id` 與 unique index。
+- app_bi / 後台是否查 backup collection。
 
 履歷邊界：
 
 - 目前只可作資料保留與 batch safety 分析素材。
-- 不可說 Nick 設計 third-party audit backup。
+- Step 3 不更新履歷；`10gt12nc` 的 GSC 分批查詢 commit 要到 Step 5 判斷。
+- 不可說 Nick 設計 third-party audit backup 或 owner 完整 retention policy。
 
 ### 3. `coin-flow-batch-projection`
 
@@ -356,11 +365,11 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 3
+iwin game_job third-party-record-mongo-backup Step 4
 ```
 
 原因：
 
 - `daily-game-data-summary` evidence 最厚，且已有 `app_bi daily-game-record-summary` 查詢端可對照。
 - `daily-game-data-summary` 已完成 Step 5，正式履歷 / 自傳已保守同步。
-- 同 project 下一條最值得做 `third-party-record-mongo-backup`，補 Mongo backup / delete partial failure 與 retention policy。
+- `third-party-record-mongo-backup` 已完成 Step 3，下一步應轉成 Step 4 面試 case / decision notes。

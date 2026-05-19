@@ -362,10 +362,10 @@ Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 3
+iwin game_job third-party-record-mongo-backup Step 4
 ```
 
-原因：本 flow Step 5 已收斂；依同 project candidate ranking，下一條最值得做 `third-party-record-mongo-backup`，可補資料備份 / 刪除 partial failure 與 audit retention 題。
+原因：本 flow Step 5 已收斂，且同 project 下一條 `third-party-record-mongo-backup` 也已完成 Step 3；下一步應把它轉成 Step 4 面試 case / decision framing。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

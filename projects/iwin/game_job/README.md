@@ -12,7 +12,9 @@
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 價值與風險比較。
 3. [flows/daily-game-data-summary/flow.md](flows/daily-game-data-summary/flow.md)：每日遊戲資料彙總 Step 3 主報告。
 4. [flows/daily-game-data-summary/career-interview.md](flows/daily-game-data-summary/career-interview.md)：該 flow 的保守面試 / 履歷素材。
-5. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
+5. [flows/third-party-record-mongo-backup/flow.md](flows/third-party-record-mongo-backup/flow.md)：第三方遊戲紀錄 Mongo 備份與清理 Step 3 主報告。
+6. [flows/third-party-record-mongo-backup/career-interview.md](flows/third-party-record-mongo-backup/career-interview.md)：該 flow 的保守面試素材。
+7. 證據、技術決策、面試稿與 claim 邊界放 `flows/{flow-name}/materials/`。
 
 ## 目前狀態
 
@@ -22,6 +24,8 @@
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
 | `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可保守更新履歷 / 自傳 |
 | `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
+| `flows/third-party-record-mongo-backup/flow.md` | Step 3 | 已完成 Mongo backup / delete / retention flow 學習包；先作 code-backed 面試素材 |
+| `flows/third-party-record-mongo-backup/career-interview.md` | Step 3 | 已補保守面試回答；不更新正式履歷，待 Step 5 claim gate |
 
 ## 專案定位
 
@@ -65,14 +69,14 @@
 只推薦一件事：
 
 ```text
-iwin game_job third-party-record-mongo-backup Step 3
+iwin game_job third-party-record-mongo-backup Step 4
 ```
 
 原因：
 
-- `daily-game-data-summary` Step 5 已完成，履歷 / 自傳已保守同步。
-- 同 project 下一條最值得做的是 `third-party-record-mongo-backup`，它是資料保留、backup / delete partial failure 與 audit retention 的 batch safety 題。
-- 依 KB，一條 flow 完成 Step 5 後，下一步回到同 project candidate ranking 選下一條未完成 flow。
+- `third-party-record-mongo-backup` Step 3 已完成，正常流程、主要 failure window、upstream writer 關係與 evidence 邊界已收斂。
+- 下一步應把它轉成 Step 4 面試 case / decision notes，而不是直接升履歷。
+- Step 5 才判斷 `10gt12nc` 的 GSC 分批查詢 commit 是否足以形成局部真實開發 claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
