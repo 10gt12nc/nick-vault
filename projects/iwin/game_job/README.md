@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness，但目前仍未確認 Nick 本人 MR / ticket / commit / production issue；所有內容先標為 `專案存在 / code-backed` 或 `分析素材 / learning-only`，不可直接寫成 Nick 主導成果。
+它比 `app_bi` 更接近 production projection / batch correctness。`daily-game-data-summary` 已完成 Step 5，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence，可保守列為「真實開發過」；仍不得寫成主導完整 BI pipeline、完整 game_job owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -20,8 +20,8 @@
 | --- | --- | --- |
 | `step1-candidate-flows.md` | Step 1 | Level 1 掃描，已找出 Top candidate flows |
 | `step2-flow-comparison.md` | Step 2 | 已比較候選 flow 價值 / 風險；選出 `daily-game-data-summary` 作為第一條 Step 3 flow |
-| `flows/daily-game-data-summary/flow.md` | Step 3 | 已建立每日遊戲資料彙總 flow 學習包；Nick 貢獻依三層 claim gate 判斷 |
-| `flows/daily-game-data-summary/career-interview.md` | Step 4 | 已轉成 Senior Backend 面試 case study；仍不更新正式履歷 |
+| `flows/daily-game-data-summary/flow.md` | Step 5 | 已完成每日遊戲資料彙總 flow 學習包與 claim gate；可保守更新履歷 / 自傳 |
+| `flows/daily-game-data-summary/career-interview.md` | Step 5 | 已轉成 Senior Backend 面試 case study，並補可用 / 不可誇大履歷邊界 |
 
 ## 專案定位
 
@@ -39,41 +39,43 @@
 
 待確認：
 
-- Nick 實際參與過哪些 `game_job` 功能。
-- 哪些 flow 有 Nick 本人 MR / ticket / commit / production issue evidence。
+- Nick 是否參與過 `game_job` 其他 flow。
+- 哪些其他 flow 有 Nick 本人 MR / ticket / commit / production issue evidence。
 - 第三方投注紀錄、GSC / Antplay / PG upstream writer 與 app_bi 查詢端的完整鏈路。
 - production 實際啟用哪些 cron job 與部署設定。
 
 ## 履歷邊界
 
-目前只能說：
+目前可以說：
 
 - 可用來分析 iwin 批次任務、BI projection、分表、報表資料清洗與第三方遊戲紀錄備份流程。
-- 可作為面試時說明「我如何檢查 batch correctness / projection consistency / retry replay boundary」的分析素材。
+- `daily-game-data-summary` 可保守寫成 Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護，包含資料日 / 時區窗口、delete + insert 重跑、summary / retention、新增玩家與歷史資料備份 / 清理。
+- 其他 `game_job` flow 仍需各自完成 claim gate，不能因 daily summary evidence 擴大成整個 `game_job` owner。
 
 目前不能說：
 
 - Nick 主導 `game_job`。
 - Nick 負責完整 BI / game data pipeline。
-- Nick 是第三方遊戲紀錄備份或每日資料彙總的 owner。
-- 單靠 Step 1 把 batch / projection 題目寫進正式履歷。
+- Nick 是第三方遊戲紀錄備份 owner。
+- Nick 主導完整上游 gameserver -> game_job -> app_bi 報表鏈路。
+- 寫任何未驗證的量化改善，例如報表正確率、查帳時間或效能改善 X%。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job third-party-record-mongo-backup Step 3
 ```
 
 原因：
 
-- `daily-game-data-summary` 已可作 batch correctness 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
-- 目前履歷主線應先修正 `payment`：Nick 已確認 payment 實際開發很多，且已有 `10gt12nc` provider evidence。
-- 等 payment contribution consolidation 完成後，再回來判斷 game_job 是否需要 Step 5 claim gate。
+- `daily-game-data-summary` Step 5 已完成，履歷 / 自傳已保守同步。
+- 同 project 下一條最值得做的是 `third-party-record-mongo-backup`，它是資料保留、backup / delete partial failure 與 audit retention 的 batch safety 題。
+- 依 KB，一條 flow 完成 Step 5 後，下一步回到同 project candidate ranking 選下一條未完成 flow。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 daily summary / BI batch 的直接 evidence。
-- 可面試講：code-backed / 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
-- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題、負責上游 gameserver 到 app_bi 全鏈路。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 有 `daily-game-data-summary` path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
+- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、報表正確性與資料日邊界修正。
+- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

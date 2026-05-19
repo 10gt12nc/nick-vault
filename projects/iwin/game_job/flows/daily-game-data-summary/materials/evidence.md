@@ -1,9 +1,17 @@
 # daily-game-data-summary Evidence
 
-更新時間：2026-05-15（Step 4 面試 case 更新）
-Step：4
-掃描等級：Level 2
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+掃描等級：Level 2+ claim gate；Step 4 面試收斂後補 Nick path-specific history 與重要 diff
+證據層級：真實開發過 + code-backed
+
+## Step 5 更新摘要
+
+2026-05-19 Step 5 重新 fetch `game_job`、`app_bi` 與 `iwin_gameserver` remote refs，並掃 daily summary path-specific history。結論從「缺 Nick evidence，暫不放履歷」改為：
+
+- `真實開發過`：Nick / `10gt12nc` 參與 `game_job` 每日遊戲資料彙總 batch / BI projection 開發與維護。
+- `真實開發過`：Nick / `10gt12nc` 參與 PG / Antplay 資料日 / 時區窗口修正、job 拆分、新增玩家 / 留存與備份 / 清理相關調整。
+- 可更新正式履歷 / 自傳，但只能用「參與 / 開發 / 維護」口徑，不寫主導完整 BI pipeline / game_job owner。
 
 ## Step 4 更新摘要
 
@@ -16,7 +24,7 @@ Step：4
 
 本次沒有新增 production claim，沒有更新正式履歷 / 自傳，沒有修改公司 repo。
 
-Step 4 掃描等級仍是 Level 2 補讀，不做 Level 3。原因：目前沒有 Nick 本人 MR / ticket / commit / production issue evidence；Step 4 目標是把已確認的 code-backed flow 轉成保守可講案例，不追完整逐 commit 履歷 claim。
+Step 4 當時尚未補到 Nick path-specific evidence，因此不更新正式履歷 / 自傳；此限制已由 2026-05-19 Step 5 claim gate 重新覆核並更新。
 
 ## KB 更新後 Step 3 邊界保留
 
@@ -54,12 +62,12 @@ Step 4 開始前已重新檢查 Step 3：
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 可沿用 / 本次同步 | 專案入口清楚；本次補上 Step 4 完成狀態 |
+| `projects/iwin/game_job/README.md` | 可沿用 / 本次同步 | 專案入口清楚；本次補上 Step 5 完成狀態 |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 | 已做 Level 1 candidate flow 掃描，且沒有直接跳 Step 3 |
 | `projects/iwin/game_job/step2-flow-comparison.md` | 可沿用 | 已比較候選 flow 與風險，符合 Step 2 前置規則 |
-| `flow.md` | 可沿用 / 本次同步 | 主報告閱讀層次完整；已補 Step 4 面試 case 狀態 |
-| `career-interview.md` | 本次重整 | 轉成 Step 4 case study，補 30 秒、3 分鐘、追問、Senior 能力與保守履歷候選 |
-| `materials/evidence.md` | 本次同步 | 補 Step 4 掃描與文件更新範圍 |
+| `flow.md` | 可沿用 / 本次同步 | 主報告閱讀層次完整；已補 Step 5 claim gate 狀態 |
+| `career-interview.md` | 本次重整 | 轉成 Step 5 可用履歷 / 面試素材，補可說與不可誇大邊界 |
+| `materials/evidence.md` | 本次同步 | 補 Step 5 掃描、Nick path-specific history 與重要 diff |
 | `materials/decision-notes.md` | 可沿用 | 已整理 delete + insert、new player state、timezone、backup 等 owner decision |
 | `materials/interview.md` | 本次重整 | 補完整 drill、白板口述與面試紅線 |
 | `materials/claim-boundary.md` | 可沿用 | 明確禁止主導 / 設計 / 修正 claim |
@@ -74,9 +82,9 @@ Step 4 開始前已重新檢查 Step 3：
 
 | Repo | Branch | Local HEAD | Remote HEAD | Ahead / Behind | 本輪用途 |
 | --- | --- | --- | --- | --- | --- |
-| `/Users/nick/Git/iwin/game_job` | `main` | `23908f474efb5cfe5a3ce2bc780fb67a0860c4c2` | `origin/main` 同 HEAD | 0 / 0 | 主 flow 深掃 |
+| `/Users/nick/Git/iwin/game_job` | `main` | `23908f474efb5cfe5a3ce2bc780fb67a0860c4c2` | `origin/main` 同 HEAD | 0 / 0 | 主 flow 深掃；`origin/k3s` HEAD `b5da7dbf55301965b408cc92ad2021632f4a8db4` |
 | `/Users/nick/Git/iwin/app_bi` | `main` | `4a206a28ab8f5be4329602cdc510ee9ea41efb25` | `fd9881fc417e01f960d758b4b91ba1a10b507855` | behind 4 | 下游查詢 local snapshot；需補 remote diff |
-| `/Users/nick/Git/iwin/iwin_gameserver` | `main` | `30a9fcb95bfda33b582deeb4e149eb06bed4afe3` | `origin/main` 同 HEAD | 0 / 0 | upstream writer 線索掃描 |
+| `/Users/nick/Git/iwin/iwin_gameserver` | `main` | `30a9fcb95bfda33b582deeb4e149eb06bed4afe3` | `origin/main` 同 HEAD | 0 / 0 | upstream writer 線索掃描；`origin/k3s` HEAD `2519d64ccc11f9fade69cdefe23f225e571640c7` |
 | `/Users/nick/Git/iwin/game_api` | `main` | `39bb6e38210bb79c6e68a6a6d818cb87986d39f0` | `origin/main` 同 HEAD | 0 / 0 | log_reel 查詢線索掃描 |
 | `/Users/nick/Git/iwin/third_games_api` | `beta` | `4915ea5a5000d61eb36717203ea4c6afc45322fa` | `origin/beta` 同 HEAD | 0 / 0 | log_reel 查詢線索掃描 |
 
@@ -86,14 +94,17 @@ Step 4 開始前已重新檢查 Step 3：
 
 已看遠端分支清單：`origin/main`、`origin/k3s`、`origin/feature/gsc_record_backup`、`origin/antplay_new_bak_job`、`origin/nick-DailyReport`、`origin/feature/setBlacklistHset`、`origin/antplay-pg-mongo`、`origin/fix-ci-deploy`、`origin/beta`、`origin/feature/RD-128`、`origin/ci_test`、`origin/feature/RD-71`。
 
-已看本 flow path-specific log，重點包含：
+已看本 flow path-specific log，重點包含，且下列 daily summary 相關 commits 的 author / committer 為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
 
+- `4174d3f`：新增每日遊戲資料彙總早期 job / service / mapper / quartz / config 主體。
+- `562f1e6`：重整 `GameDailyJob`、`GameDailyServiceImpl`、`GameDailyDao.xml` 等每日彙總主 path。
+- `31a3dd7`：修正 select + insert path。
+- `aecf2b4`：每日遊戲資料彙總備份 / 清理。
+- `babfc2b`、`661ba5d`：新增玩家 / 留存調整。
+- `3a7fd8b`：拆分 PG / Antplay 與 Iwin job 排程。
+- `696acf7`：PG 時區修正。
 - `d9edfa7`：Antplay timezone 修正。
-- `696acf7`：PG timezone 修正。
-- `3a7fd8b`：PG / Antplay 與 Iwin job 切分。
-- `661ba5d`、`90a8c22`、`babfc2b`：新增玩家 / 留存調整。
-- `52ee53d`：每日彙總跨時區修正。
-- `aecf2b4` 起一系列 `#247`：每日遊戲資料彙總與備份功能演進。
+- `52ee53d` 起一系列 `#247`：每日遊戲資料彙總與跨時區功能演進。
 
 未做：未 checkout 遠端分支、未逐檔逐行掃所有 module、未逐一閱讀每個相關 commit 的完整 diff。
 
@@ -191,6 +202,9 @@ Step 4 開始前已重新檢查 Step 3：
 
 | Commit | 訊息 | 本 flow 意義 |
 | --- | --- | --- |
+| `4174d3f` | `feat(#247): 新增每日游戏数据汇总 修` | 新增每日遊戲資料彙總早期 job / service / mapper / quartz / config 主體，約 475 行 |
+| `562f1e6` | `feat(#247): 新增每日游戏数据汇总` | 重整 `GameDailyJob`、service、DAO / mapper 與手動入口，形成主要 daily summary path |
+| `31a3dd7` | `feat(#247): 新增每日游戏数据汇总 fix select + insert` | 調整 select + insert 重跑 / 寫入 path |
 | `3a7fd8b` | `fix: 台灣早上8點先匯總 PG antplay , 下午一點做 iwin` | 將舊每日彙總拆成 PG / Antplay 與 Iwin 兩個 job，代表平台資料日 / cron 時間有實際修正歷史 |
 | `696acf7` | `fix(#384): PG對帳時區從GMT+1 改成GMT+8` | PG 查詢窗口曾修正，證明時區是 production correctness 風險 |
 | `d9edfa7` | `fix(#403): Iwin game-job 計算antplay 遊戲數據彙總，改為GMT+0` | Antplay 查詢窗口曾修正，並調整排程秒數 |
@@ -198,6 +212,21 @@ Step 4 開始前已重新檢查 Step 3：
 | `661ba5d` | `fix: 新增每日游戏数据汇总 新增人数` | 新增玩家計算曾調整 |
 | `babfc2b` | `fix: 新增每日游戏数据汇总 新增人数、留存` | 留存與新增玩家邏輯曾調整 |
 | `52ee53d` | `fix: 新增每日游戏数据汇总 跨時區` | 跨時區問題曾進入修正歷史 |
+
+### Step 5 claim 判斷
+
+可升級為 `真實開發過`：
+
+- Nick 參與每日遊戲資料彙總 batch / BI projection 開發與維護。
+- Nick 參與 `game_job` daily summary job / service / DAO / mapper / config / quartz path。
+- Nick 參與 PG / Antplay / Iwin job 拆分、資料日 / 時區窗口、新增玩家 / 留存、備份 / 清理相關調整。
+
+仍只能 code-backed / 不可誇大：
+
+- 未確認 Nick 主導完整 BI / game data pipeline。
+- 未確認 production incident / ticket context。
+- `app_bi` 本機仍落後 `origin/main` 4 commit，下游最新查詢不能宣稱已完整掃。
+- upstream `log_reel` writer 只做線索掃描，不可寫成 Nick 負責完整上游投注落表。
 
 ## 待確認
 
@@ -208,7 +237,8 @@ Step 4 開始前已重新檢查 Step 3：
 - backup insert 與 delete 是否在 transaction 內，或是否有 rows count reconciliation。
 - `app_bi` origin/main 新增的 4 commit 是否改變 `DailyGameDataSummary()` 查詢邏輯。
 - upstream `log_reel` writer 的完整資料日定義與第三方平台 settlement 邊界。
-- Nick 是否有本人 MR / ticket / commit / production issue evidence。
+- production issue / ticket / MR review context。
+- 是否有可公開且不洩漏內部資訊的量化結果。
 
 ## Evidence 分級
 
@@ -225,7 +255,12 @@ Step 4 開始前已重新檢查 Step 3：
 
 `待確認`：
 
-- Nick 本人參與。
 - Production 啟用狀態。
 - 下游最新 remote 行為。
 - 上游完整 writer flow。
+
+## Step 5 結論
+
+- 更新正式履歷 / 自傳：是，保守更新。
+- 可寫：「參與 BI 批次報表資料流維護，協助處理遊戲每日彙總 projection 的資料日邊界、重跑一致性、新增玩家 / 留存與下游查詢正確性。」
+- 不可寫：主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路、修復 production incident、改善 X%。

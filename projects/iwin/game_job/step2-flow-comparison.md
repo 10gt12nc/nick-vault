@@ -1,9 +1,9 @@
 # iwin game_job Step 2：候選 Flow 技術點與風險比較
 
-更新時間：2026-05-15
+更新時間：2026-05-19
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：已建立；目前第一條 flow 已完成 Step 4，下一步 Step 5
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+狀態：已建立；目前第一條 flow 已完成 Step 5
+證據層級：第一條 flow 為真實開發過 + code-backed；其他候選 flow 依三層 claim gate 判斷
 
 ## 本次結論
 
@@ -15,7 +15,7 @@
 2. 第二順位是 `third-party-record-mongo-backup`，它有明確的分批搬移 / 刪除流程，適合分析 partial failure 與資料保留策略。
 3. 第三順位是 `coin-flow-batch-projection`，Senior 價值可能更高，但 Step 1 evidence 還不足；需要 Step 3 前先補 `handleLogReelData()`、`handleLogJackpotData()`、`handleTaxtData()` 的完整 path。
 
-不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
+本 Step 2 本身不更新履歷；後續 `daily-game-data-summary` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可保守更新正式履歷 / 自傳。其他候選 flow 仍需各自完成 claim gate。
 
 ## 自動重讀紀錄
 
@@ -44,7 +44,7 @@
 | --- | --- | --- |
 | `README.md` | 已同步 | 專案狀態已同步到 `daily-game-data-summary` Step 5 下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 掃描範圍、候選 flow 與 evidence 邊界已清楚 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 補上 Step 2，比較候選 flow；目前第一條 flow 已完成 Step 4 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 補上 Step 2，比較候選 flow；目前第一條 flow 已完成 Step 5 |
 
 ## 比較前提
 
@@ -63,7 +63,7 @@
 
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整 | upstream `log_reel` writer 與 app_bi 查詢端已在 Step 3 標示邊界 | 已完成 Step 4，下一步 Step 5 |
+| 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整，且有 `10gt12nc` path-specific commits | upstream `log_reel` writer 與 app_bi 查詢端已在 Step 3 標示邊界 | 已完成 Step 5 |
 | 2 | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Antplay new log / transaction backup code 清楚，且有 GSC / Antplay branch history | backup / delete partial failure、GSC 完整 path、retention policy 未深挖 | 排第二條 Step 3 候選 |
 | 3 | `coin-flow-batch-projection` | 金幣流水清算 / 遊戲行為投影 | 高但未收斂 | Redis checkpoint、跨日 task finish、多資料源 projection 線索清楚 | 核心 handle method 未完整讀完；source of truth 未定位 | 先補 path 後再 Step 3 |
 | 4 | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | `payment_order_{yyyy_m}` 讀取與支付分類清楚 | payment source of truth 在 `payment` repo；目前只是 reporting projection | 暫不優先，之後可接 payment flow |
@@ -73,15 +73,11 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `iwin payment contribution claim consolidation`
-   - 原因：Step 3 / Step 4 已完成，下一步只能做 claim gate。
+1. `game_job third-party-record-mongo-backup Step 3`
+   - 原因：`daily-game-data-summary` 已完成 Step 5；同 project 下一條最值得做 Mongo backup / delete / retention safety flow。
    - 產出：單條 flow 學習包，包含 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md`。
-   - 是否更新履歷：否，至少等 Step 4 / Step 5 且補到 Nick 本人 evidence。
-2. `game_job third-party-record-mongo-backup Step 3`
-   - 原因：資料備份 / 刪除 flow 有明確 partial failure 問題，適合作第二條 batch safety case。
-   - 產出：Mongo backup / retention / delete safety flow。
-   - 是否更新履歷：否。
-3. `game_job coin-flow-batch-projection Step 2 補掃`
+   - 是否更新履歷：否，先做 Step 3；等 Step 5 且補到 Nick evidence 再判斷。
+2. `game_job coin-flow-batch-projection Step 2 補掃`
    - 原因：價值可能最高，但 Step 1 尚未完整讀核心 handle method。
    - 產出：補足是否值得 Step 3 的 evidence。
    - 是否更新履歷：否。
@@ -93,7 +89,7 @@
 ### 1. `daily-game-data-summary`
 
 中文名稱：每日遊戲資料彙總
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+證據層級：真實開發過 + code-backed
 
 已確認：
 
@@ -123,12 +119,12 @@ Senior / Owner 價值：
 - `log_reel` writer 與資料日 definition。
 - `log_game_daily_record_new_players` 在重跑時是否需要同步清理。
 - app_bi 查詢欄位與 `sub_type` 是否完全對齊。
-- Nick 是否實際維護過相關 commit / ticket。
+- production issue / ticket / MR review context。
 
 判斷：
 
-- 適合作第一條 Step 3。
-- 但 Step 3 只能標 `專案存在 / code-backed`，不得寫成 Nick 實作成果。
+- 已完成 Step 5，可保守寫成 Nick 參與 / 開發 / 維護成果。
+- 不得寫成完整 BI pipeline owner。
 
 ### 2. `third-party-record-mongo-backup`
 
@@ -258,11 +254,11 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job third-party-record-mongo-backup Step 3
 ```
 
 原因：
 
-- Step 3 / Step 4 已完成，下一步是 Step 5 claim gate。
-- Step 5 會檢查是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
-- 產出是 claim boundary 判定，不是新的候選排序。
+- `daily-game-data-summary` Step 5 已完成，正式履歷 / 自傳已保守同步。
+- 同 project 下一條 flow 應回 Step 2 ranking，選 `third-party-record-mongo-backup` 做 Step 3。
+- 產出是 Mongo backup / delete / retention flow 學習包，不是新的候選排序。

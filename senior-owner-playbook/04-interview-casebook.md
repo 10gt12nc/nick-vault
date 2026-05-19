@@ -137,6 +137,13 @@ GSC transfer 保守邊界：
 對應 flow：
 
 - `app_bi/daily-game-record-summary`
+- `game_job/daily-game-data-summary`
+
+證據邊界：
+
+- `game_job/daily-game-data-summary` 已完成 Step 5 claim gate，可保守更新正式履歷 / 自傳。
+- `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits。
+- `app_bi` 查詢端仍只作下游 local snapshot；上游 writer 只做線索掃描，不可寫成完整 BI pipeline owner。
 
 面試主軸：
 

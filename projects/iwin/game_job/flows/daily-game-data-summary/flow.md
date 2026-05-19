@@ -1,9 +1,9 @@
 # daily-game-data-summary Flow
 
-更新時間：2026-05-15（Step 4 面試 case 更新）
-Step：3
-掃描等級：Level 2 單條 flow 深挖
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+掃描等級：Level 2+ claim gate
+證據層級：真實開發過 + code-backed
 
 ## 閱讀定位
 
@@ -11,13 +11,13 @@ Step：3
 
 本文件先讓初階 / 中階讀者看懂「它在做什麼、資料怎麼走、code 在哪裡」，後半才進入 Senior / Owner 角度的 consistency、重跑、failure window、observability 與面試邊界。
 
-本輪沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，所以不得把這條 flow 寫成 Nick 真實開發過；只能作為 code-backed 分析素材。
+本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_job` 每日遊戲資料彙總相關 job / service / mapper / config path 有一串 `#247` commits，也有 `#384` PG 時區修正、`#403` Antplay GMT+0 修正、job 拆分、新增玩家 / 留存與備份 / 清理調整。因此可保守寫成「真實開發過」；但仍不可寫成 Nick 主導完整 BI pipeline、完整 game_job owner、修復 production incident 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## KB 更新後深度檢查結論
 
 2026-05-15 依最新 KB 重新檢查後，判斷本 Step 3 主報告可沿用。本 flow 已補齊 remote refs、branch / log 掃描範圍、未掃邊界與既有文件狀態；Step 4 則在此基礎上把 flow 轉成面試 case study。
 
-重要邊界不變：`app_bi` 本機 `main` 落後 `origin/main` 4 commit，只能當 local snapshot；upstream writer 只做線索掃描；目前仍沒有 Nick 本人 evidence。
+2026-05-19 Step 5 重新 fetch `game_job`、`app_bi`、`iwin_gameserver` remote refs，並補掃 Nick / `10gt12nc` path-specific history。`game_job` local `main` 與 `origin/main` 同步；`app_bi` 本機 `main` 仍落後 `origin/main` 4 commit，只能當 local snapshot；upstream writer 只做線索掃描。
 
 ## 白話導讀
 
@@ -333,27 +333,42 @@ Iwin job 在正常彙總後，會把：
 
 詳細面試素材見 `career-interview.md`；claim 邊界見 `materials/claim-boundary.md`。
 
-## Step 4 面試 Case 狀態
+## Step 5 履歷 / 自傳 claim gate
 
-已完成 Step 4：
+Step 5 已完成：本 flow 可保守更新正式履歷 / 自傳。
 
-- `career-interview.md`：30 秒摘要、3 分鐘版本、面試官追問、保守回答、Senior 能力與履歷候選句。
-- `materials/interview.md`：更細的追問 drill、白板口述、面試紅線與可展示能力。
+已確認 evidence：
 
-重要邊界不變：目前仍沒有 Nick 本人 evidence，所以 Step 4 只產出面試分析素材，不更新正式履歷。
+- `game_job` `4174d3f` / `10gt12nc`：新增每日遊戲資料彙總早期 job / service / mapper / quartz / config 主體。
+- `game_job` `562f1e6`、`31a3dd7` / `10gt12nc`：重整 `GameDailyJob`、`GameDailyServiceImpl`、`GameDailyDao.xml`，處理 select + insert / 欄位與計算修正。
+- `game_job` `aecf2b4` / `10gt12nc`：加入每日遊戲資料彙總備份 / 清理策略。
+- `game_job` `babfc2b`、`661ba5d` / `10gt12nc`：調整新增玩家與留存。
+- `game_job` `3a7fd8b` / `10gt12nc`：將 PG / Antplay 與 Iwin job 拆分排程。
+- `game_job` `696acf7`、`d9edfa7` / `10gt12nc`：修正 PG / Antplay 資料日時區窗口。
+
+可寫入履歷：
+
+- 參與每日遊戲資料彙總 batch / BI projection 開發與維護，處理 `log_reel` 投注明細到 `log_game_daily_record` 的彙總、資料日 / 時區窗口、delete + insert 重跑、summary / retention、新增玩家與歷史資料備份 / 清理。
+
+不可誇大：
+
+- 不寫主導完整 BI / game data pipeline。
+- 不寫完整 game_job owner。
+- 不寫負責上游 gameserver 到 app_bi 全鏈路。
+- 不寫已修復 production incident 或改善 X%。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_job third-party-record-mongo-backup Step 3
 ```
 
-原因：Step 3 / Step 4 已完成；下一步只能檢查是否值得進 Step 5 更新履歷 / 自傳。若仍沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，Step 5 應明確結論為「不更新正式履歷，只保留為分析素材」。
+原因：本 flow Step 5 已收斂；依同 project candidate ranking，下一條最值得做 `third-party-record-mongo-backup`，可補資料備份 / 刪除 partial failure 與 audit retention 題。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；缺 Nick 本人 daily summary / BI batch 直接 evidence。
-- 可面試講：code-backed / 分析過。可講 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
-- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題或負責全鏈路。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
+- 可面試講：code-backed / 實作過 + 分析過。可講 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup、資料日修正與報表正確性。
+- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整 BI pipeline owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。

@@ -1,8 +1,8 @@
 # daily-game-data-summary Interview Drill
 
-更新時間：2026-05-15
-Step：4
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+證據層級：真實開發過 + code-backed
 
 ## Case 定位
 
@@ -14,13 +14,13 @@ Step：4
 
 使用前提：
 
-- 可作 Senior Backend 面試分析案例。
-- 不可作 Nick 正式履歷成果。
-- 若被問是否本人主導，要明確回答「目前沒有 evidence，不能這樣 claim」。
+- 可作 Senior Backend 面試分析案例，也可保守作正式履歷素材。
+- 可說 Nick 參與 / 開發 / 維護 daily summary batch。
+- 若被問是否本人主導，要明確回答「不是完整 BI pipeline owner」。
 
 ## 30 秒版本
 
-我看過一條遊戲每日資料彙總批次。它把投注 log 日分表彙總成 BI 查詢 projection，包含玩家數、投注次數、投注額、輸贏、新增玩家與留存。這類 flow 的核心風險不是 SQL 寫法，而是跨平台資料日與時區窗口、delete + insert 重跑空窗、`new_players` 跨日累積狀態，以及下游報表是否可能讀到半成品。
+我參與過一條遊戲每日資料彙總批次。它把投注 log 日分表彙總成 BI 查詢 projection，包含玩家數、投注次數、投注額、輸贏、新增玩家與留存。這類 flow 的核心風險不是 SQL 寫法，而是跨平台資料日與時區窗口、delete + insert 重跑空窗、`new_players` 跨日累積狀態，以及下游報表是否可能讀到半成品。
 
 ## 3 分鐘版本
 
@@ -85,7 +85,7 @@ Step：4
 
 回答：
 
-> 目前不建議。它是很好的分析案例，但沒有 Nick 本人 MR、ticket、commit 或 production issue evidence 前，只能當 code-backed learning case。要放履歷，至少要補到本人參與範圍與可驗證結果。
+> 可以保守放，因為 `10gt12nc` 在 daily summary 相關 path 有 commit evidence。我的寫法會是「參與 BI 批次報表資料流維護 / 每日遊戲資料彙總 projection」，不會寫成主導完整 BI pipeline 或有量化改善。
 
 ## 可以展現的 Senior 能力
 
@@ -97,7 +97,7 @@ Step：4
 
 > 我會先定義每一層的對帳指標，而不是只看最後報表有沒有數字。
 
-證據層級：`分析素材 / learning-only`。
+證據層級：`真實開發過 + 分析素材`。
 
 ### Idempotency / replay boundary
 
@@ -107,7 +107,7 @@ Step：4
 
 > 我不會因為主表有 delete + insert 就說整條 flow idempotent，因為 new player 和 backup 是不同 state model。
 
-證據層級：`專案存在 / code-backed` + `分析素材 / learning-only`。
+證據層級：`真實開發過 + code-backed` + `分析素材 / learning-only`。
 
 ### Timezone correctness
 
@@ -155,7 +155,7 @@ side state:
 
 不要說：
 
-- 我修了 #384 / #403。
+- 我主導修了 #384 / #403 production incident。
 - 我主導這條 pipeline。
 - 我設計每日遊戲資料彙總。
 - 我保證 production cron / enable flag。
@@ -163,14 +163,14 @@ side state:
 
 可以說：
 
-- 我分析過這條 code-backed flow。
+- 我參與過 daily summary batch / projection 開發與維護。
 - 我會用它說明 batch projection correctness 的檢查方式。
 - 我看到主要風險在 time window、re-run boundary、累積狀態、backup cleanup 與下游讀取一致性。
 
 ## 保守履歷候選句
 
-目前不使用。若未來補到 Nick 本人 evidence，可候選：
+可保守使用：
 
 > 參與 BI 批次報表資料流維護，協助檢查遊戲每日彙總 projection 的資料日邊界、重跑一致性與下游查詢正確性。
 
-目前證據層級：`待確認`。
+目前證據層級：`真實開發過 + code-backed`。

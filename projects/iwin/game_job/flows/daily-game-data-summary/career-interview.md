@@ -1,20 +1,20 @@
 # daily-game-data-summary Career / Interview Notes
 
-更新時間：2026-05-15
-Step：4
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-19
+Step：5
+證據層級：真實開發過 + code-backed
 
 ## 使用邊界
 
-這份文件是 Step 4 的面試 case study。它把 Step 3 的 flow 分析轉成 Senior Backend 面試可講的版本，但仍不是正式履歷成果。
+這份文件是 Step 5 後的履歷 / 面試素材。它把 Step 3 的 flow 分析與 Step 4 的面試 case 收斂成可保守使用的職涯素材。
 
-沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，不能說「我主導」、「我設計」、「我修正」或「我負責完整資料管線」。可以說的是：這是一個 code-backed 的 batch projection 分析案例，我會用它說明自己如何檢查報表批次的 correctness。
+Nick / `10gt12nc` 在 `game_job` daily summary 相關 path 有直接 commits，可說「參與 / 開發 / 維護」。仍不能說「我主導完整 BI pipeline」、「我負責完整資料管線」、「我修復 production incident」或「改善 X%」。
 
 ## 30 秒摘要
 
-我分析過一條遊戲每日資料彙總批次：它從投注 log 日分表彙總玩家投注、贏分、新增玩家與留存，寫到 BI 查詢用 projection。這類 flow 的難點不是 SQL group by，而是資料日與時區窗口、delete + insert 重跑空窗、`new_players` 這種跨日累積狀態，以及下游報表是否可能讀到半成品。
+我參與過一條遊戲每日資料彙總批次：它從投注 log 日分表彙總玩家投注、贏分、新增玩家與留存，寫到 BI 查詢用 projection。這類 flow 的難點不是 SQL group by，而是資料日與時區窗口、delete + insert 重跑空窗、`new_players` 這種跨日累積狀態，以及下游報表是否可能讀到半成品。
 
-證據層級：`專案存在 / code-backed`；「我分析過」屬 `分析素材 / learning-only`。
+證據層級：`真實開發過 + code-backed`；owner 改善建議仍屬 `分析素材 / learning-only`。
 
 ## 3 分鐘版本
 
@@ -24,9 +24,9 @@ Step：4
 
 Senior 角度我會看四個點。第一，delete + insert 雖然方便重跑，但刪除後到完成前會有空窗，下游如果沒有完成標記可能讀到不完整資料。第二，新增玩家表是跨日累積狀態，不像主 projection 可以單日刪掉重建，重跑舊日期可能改變結果。第三，PG / Antplay 的時區窗口在 history 裡有修正紀錄，代表資料日邊界是 production correctness 風險。第四，backup insert 後 delete 若沒有 transaction、unique key 或 rows count reconciliation，失敗時可能 duplicate 或遺失資料。
 
-我不會把它包裝成交易主鏈路。這是 BI projection flow，source of truth 應回到 `log_reel` 與上游遊戲 / 第三方 settlement。
+我不會把它包裝成交易主鏈路。這是 BI projection flow，source of truth 應回到 `log_reel` 與上游遊戲 / 第三方 settlement；我能講的是參與 daily summary batch / projection 的開發維護與 correctness 分析，不是完整資料平台 owner。
 
-證據層級：flow 結構、job / mapper / commit history 為 `專案存在 / code-backed`；改善建議為 `分析素材 / learning-only`。
+證據層級：daily summary job / mapper / commit history 為 `真實開發過 + code-backed`；改善建議為 `分析素材 / learning-only`。
 
 ## 面試官可能追問
 
@@ -76,39 +76,39 @@ Senior 角度我會看四個點。第一，delete + insert 雖然方便重跑，
 
 保守回答：
 
-> 目前我不能說這是我主導或實作的成果。我可以說我讀過這條 flow，並把它整理成 batch projection correctness 的分析案例；如果要寫成我的專案成果，需要再補我本人 MR、ticket、commit 或 production issue evidence。
+> 我可以說我參與過這條 daily summary batch / projection 的開發與維護，因為 `10gt12nc` 在相關 path 有 commit evidence；但我不會說自己主導完整 BI pipeline，也不會說負責上游 gameserver 到 app_bi 的全鏈路。
 
 ## 可以展現的 Senior 能力
 
 | 能力 | 可講內容 | 證據層級 |
 | --- | --- | --- |
-| Batch correctness | 從 source log、projection、summary、下游查詢逐層驗證 | 分析素材 / learning-only |
-| Timezone boundary | PG / Antplay 查詢窗口跨分表，且 history 有時區修正 | 專案存在 / code-backed |
-| Re-run safety | delete + insert 可補跑，但需注意下游半成品與累積狀態 | 分析素材 / learning-only |
-| State modeling | `new_players` 是跨日累積狀態，不是單日 projection | 專案存在 / code-backed |
+| Batch correctness | 從 source log、projection、summary、下游查詢逐層驗證 | 真實開發過 + 分析素材 |
+| Timezone boundary | PG / Antplay 查詢窗口跨分表，且 history 有時區修正 | 真實開發過 + code-backed |
+| Re-run safety | delete + insert 可補跑，但需注意下游半成品與累積狀態 | 真實開發過 + 分析素材 |
+| State modeling | `new_players` 是跨日累積狀態，不是單日 projection | 真實開發過 + code-backed |
 | Reconciliation | backup + delete 需要 rows count、unique key 或完成標記 | 分析素材 / learning-only |
-| Claim discipline | 不把 code-backed flow 誇大成 Nick 主導成果 | 待確認 / claim-boundary |
+| Claim discipline | 可講參與 / 開發，不誇大成完整 owner | claim-boundary |
 
 ## 對應履歷 Bullet
 
-目前不建議寫入正式履歷。
+可保守寫入正式履歷。
 
-若未來補到 Nick 本人參與 evidence，可考慮保守候選句：
+正式履歷候選句：
 
 > 參與 BI 批次報表資料流維護，協助檢查遊戲每日彙總 projection 的資料日邊界、重跑一致性與下游查詢正確性。
 
-目前證據層級：`待確認`。未補本人 evidence 前不可使用。
+證據層級：`真實開發過 + code-backed`。可用，但不要寫主導完整 BI pipeline。
 
 ## 不能誇大的地方
 
 - 不能說 Nick 主導每日遊戲資料彙總。
 - 不能說 Nick 設計 game_job BI projection 架構。
-- 不能說 Nick 修正 PG / Antplay 時區問題。
+- 不能說 Nick 獨立主導 PG / Antplay 時區問題完整事故修復；可說參與相關時區窗口修正。
 - 不能說 Nick 負責 app_bi 報表或 upstream gameserver 全鏈路。
 - 不能說已確認 production enable flag、正式 cron 或完整上游 writer。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 daily summary / BI batch 的直接 evidence。
-- 可面試講：code-backed / 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
-- 不可誇大：不得寫成 Nick 主導 game_job BI projection、修復 PG / Antplay 時區問題、負責上游 gameserver 到 app_bi 全鏈路。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 有 daily summary path-specific commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。
+- 可面試講：code-backed / 實作過 + 分析過。可用 daily game data summary 說明 batch projection、delete-insert 重跑、一致性、時區分表、backup / cleanup 與報表正確性。
+- 不可誇大：不得寫成 Nick 主導完整 game_job BI projection、完整資料平台 owner、負責上游 gameserver 到 app_bi 全鏈路或有未驗證量化改善。
