@@ -429,6 +429,6 @@ Step 5 claim gate 結論：
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：本 flow 目前不單獨升級成真實開發成果；若要放履歷，先併入 `iwin payment contribution claim consolidation` 統一判斷。
+- 可放履歷：本 flow 目前不單獨升級成真實開發成果；project-level consolidation 已完成，payment 履歷只保守寫多 provider callback / sign / response parsing 維護，不寫 callback owner。
 - 可面試講：code-backed / 分析過。可講本 flow 的 money correctness、狀態轉移、冪等、retry、補償、人工修復或 config consistency。
 - 不可誇大：不得寫成 Nick 主導完整 payment / wallet owner、設計完整金流架構、建立完整 reconciliation 或解決 production incident。

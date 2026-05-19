@@ -1,8 +1,8 @@
 # iwin payment Step 2：候選 Flow 比較
 
-更新時間：2026-05-15
+更新時間：2026-05-19
 掃描等級：Level 1.5 Flow 比較
-狀態：已建立
+狀態：已建立；Top 5 flow Step 5 與 project-level contribution consolidation 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -20,7 +20,7 @@ payment-provider-callback
 - bug history 線索強：全分支 log 有 provider callback 格式變更、重複回調、withdraw notify consumer retry / refund 相關修正。
 - 它可以自然帶出 `withdrawal-auto-review-refund` 和 `manual-order-review-repair` 的邊界，但不會一開始就陷入單一 provider request 細節。
 
-不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件只作 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+本 Step 2 本身不更新履歷；後續已完成 `contribution-claim-consolidation.md`，payment project-level 可保守更新履歷為「參與多個第三方金流 provider 對接與維護、provider sign / response parsing bugfix、payment / withdraw order consistency 修正」。
 
 ## 自動重讀紀錄
 
@@ -310,14 +310,22 @@ Step 3 暫不做：
 - 不宣稱 Nick 主導金流 callback。
 - 不把下游 game lobby / center 腦補成已確認；沒掃到就標待確認。
 
-## 本次不更新的內容
+## 後續已完成
 
-- `flows/payment-provider-callback/` 已完成 Step 5 claim gate；下一步不重做此 flow。
-- `flows/withdrawal-auto-review-refund/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
-- `flows/manual-order-review-repair/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
-- `flows/payment-channel-config-selection/` 已完成 Step 5 claim gate；不更新正式履歷 / 自傳。
-- 不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`：Nick 本人 evidence 不足。
-- 不更新共用 KB：本輪沒有新增通用規則，只套用既有 Step 2 / remote freshness / multi-module 規則。
+- `flows/payment-provider-callback/` 已完成 Step 5 claim gate。
+- `flows/withdrawal-auto-review-refund/` 已完成 Step 5 claim gate。
+- `flows/payment-order-provider-request/` 已完成 Step 5 claim gate，並確認多 provider request / callback / query / withdraw evidence。
+- `flows/manual-order-review-repair/` 已完成 Step 5 claim gate。
+- `flows/payment-channel-config-selection/` 已完成 Step 5 claim gate。
+- `contribution-claim-consolidation.md` 已完成 project-level Nick / `10gt12nc` commits、branches、重要 diff 與本人確認收斂。
+- `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 已同步保守 payment 說法。
+
+## 下一步
+
+```text
+iwin game_api coupon-redeem-credit-grant Step 5
+```
+
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
 
 ## 下一步建議
@@ -325,12 +333,13 @@ Step 3 暫不做：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 為什麼現在做它：
 
 - payment Top 5 flow 已完成到 Step 5。
+- project-level contribution consolidation 已完成。
 - 下一步回到 iwin queue，收斂已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
 
 會產出什麼：
@@ -340,9 +349,9 @@ iwin payment contribution claim consolidation
 
 是否更新履歷：
 
-- `payment-order-provider-request` 已可保守更新正式履歷；`manual-order-review-repair` Step 5 判定不更新正式履歷。
+- payment 履歷 / 自傳已保守更新；`game_api coupon-redeem-credit-grant` 需等 Step 5 claim gate 判斷。
 
 是否需要 commit / push：
 
-- Step 3 完成後自動 commit。
+- Step 5 完成後依規則自動 commit。
 - 不需要 push，除非 Nick 明確要求。

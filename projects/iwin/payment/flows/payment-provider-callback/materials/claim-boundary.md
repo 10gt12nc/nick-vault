@@ -23,7 +23,7 @@
 
 下一步：
 
-- 回到 `payment` project candidate ranking，選下一條未完成 flow。
+- payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api coupon-redeem-credit-grant Step 5`。
 - 目前同 project 第二優先是 `withdrawal-auto-review-refund`。
 
 ## 真實開發過
@@ -98,6 +98,6 @@
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不單獨升級成本 flow 的真實開發成果；但不得否定 Nick 在 `payment` 的整體實際開發經驗。若放履歷，應先併入 project-level payment contribution consolidation。
+- 可放履歷：目前不單獨升級成本 flow 的真實開發成果；但不得否定 Nick 在 `payment` 的整體實際開發經驗。project-level payment contribution consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
 - 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
 - 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

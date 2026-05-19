@@ -89,7 +89,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 都完成 Step 5，下一步轉 `iwin payment contribution claim consolidation` |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 與 project-level contribution consolidation 都已完成，下一步回到 `game_api coupon-redeem-credit-grant Step 5` |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
@@ -413,13 +413,14 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 為什麼現在做它：
 
-- `payment-channel-config-selection` Step 5 已完成。
-- payment Top 5 flow 已完成到 Step 5，下一個高價值工作是收斂 iwin queue 裡已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
+- payment Top 5 flow 已完成到 Step 5。
+- project-level contribution consolidation 已完成。
+- 下一個高價值工作是收斂 iwin queue 裡已完成 Step 4 的 `game_api coupon-redeem-credit-grant`。
 
 會產出什麼：
 
@@ -428,7 +429,7 @@ iwin payment contribution claim consolidation
 
 是否更新履歷：
 
-- 本 payment flow 已判定不更新。下一條 `game_api coupon-redeem-credit-grant` 需等 Step 5 claim gate 才能判斷。
+- payment project-level 履歷說法已保守更新。下一條 `game_api coupon-redeem-credit-grant` 需等 Step 5 claim gate 才能判斷。
 
 是否需要 commit / push：
 

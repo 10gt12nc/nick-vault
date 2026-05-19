@@ -40,36 +40,36 @@
 - 已完成 `payment payment-channel-config-selection Step 3`，建立支付列表 / 商戶 / 玩家層級 / 提現設定選擇的 runtime config 主學習包；目前只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-channel-config-selection Step 4`，轉成可面試 case；目前仍只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-channel-config-selection Step 5`，判定不更新正式履歷 / 自傳；payment Top 5 flow 已收斂。
-- Nick 已明確補充 `payment` 實際開發很多；下一步必須先做 payment project-level contribution consolidation，不能只用單條 flow Step 5 低估 payment 履歷經驗。
+- 已完成 `iwin payment contribution claim consolidation`；Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但仍不寫完整金流 owner。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
 - 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
 
 ## 下一步
 
-### 1. iwin payment contribution claim consolidation
+### 1. iwin game_api coupon-redeem-credit-grant Step 5
 
 建議下一步：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 原因：
 
-- Nick 已本人確認 `payment` 實際開發很多，這是 claim evidence，不能被單條 flow 的 path-specific evidence 判斷抹掉。
-- 需要全面掃 Nick / `10gt12nc` commits、branches、重要 diff、既有 payment flows 與本人確認內容。
-- 產出要分三層：可放履歷的真實開發經驗、可面試講的 code-backed / 分析素材、不可誇大的邊界。
+- payment project-level contribution consolidation 已完成，履歷 / 自傳已保守同步。
+- `game_api coupon-redeem-credit-grant` 已完成 Step 4，下一步應按 KB 做 Step 5 claim gate。
+- 產出要判斷優惠券兌換上分 flow 是否能更新履歷 / 自傳，並補 claim boundary。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先仍是 `iwin payment contribution claim consolidation`。以下是 payment consolidation 完成後，各 project 才回頭銜接的局部下一步：
+目前總優先是 `iwin game_api coupon-redeem-credit-grant Step 5`。以下是 payment consolidation 完成後，各 project 的局部下一步：
 
-1. `payment`：`iwin payment contribution claim consolidation`
-2. `game_api`：待 payment consolidation 後，再做 `coupon-redeem-credit-grant Step 5`。
-3. `game_job`：待 payment consolidation 後，再做 `daily-game-data-summary Step 5`。
-4. `third_games_api`：待 payment consolidation 後，再做 `gsc-transfer-bet-settle-rollback Step 5`。
-5. `iwin_gameserver`：待 payment consolidation 後，再判斷是否做 `center-http-deposit-withdraw Step 3`。
-6. `k3s-deploy`：待 payment consolidation 後，再做 `gameserver-phased-rollout Step 5`。
+1. `game_api`：`coupon-redeem-credit-grant Step 5`。
+2. `game_job`：`daily-game-data-summary Step 5`。
+3. `iwin_gameserver`：判斷是否做 `center-http-deposit-withdraw Step 3`。
+4. `third_games_api`：`gsc-transfer-bet-settle-rollback Step 5`。
+5. `k3s-deploy`：`gameserver-phased-rollout Step 5`。
+6. `payment`：Top 5 flow 與 contribution consolidation 已收斂；之後除非 Nick 指定新 payment flow，先不重做。
 7. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
 
 ### 3. 每條完成後自動判斷是否更新
@@ -89,12 +89,12 @@ iwin payment contribution claim consolidation
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，先做 `iwin payment contribution claim consolidation`，把 payment 真實開發經驗收斂進履歷邊界，再回到 `game_api coupon-redeem-credit-grant Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，payment 真實開發經驗已收斂，下一步回到 `game_api coupon-redeem-credit-grant Step 5`。
 
 ## 下一個 prompt
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

@@ -213,5 +213,5 @@ app_bi `bill_check` / `repairOrderService` / repair UI 相關 path 的 `10gt12nc
 ## 下一步
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

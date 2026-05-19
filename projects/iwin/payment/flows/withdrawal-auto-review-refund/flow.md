@@ -407,10 +407,10 @@ Step 5 claim gate 結論：
 - 面試可講提款 money correctness、扣分後建單 failure window、自動審核條件、provider accepted 不等於成功、失敗退款防重複、`billNo` cross-system trace 與 reconciliation 邊界。
 - 不可說 Nick 主導 / 設計自動出款，不可說 Nick 修過重複退款 bug，不可說下游 game lobby 已確認具備 `billNo` exactly-once 去重。
 
-下一步應回到 `payment` project 的候選 flow ranking，選下一條未完成且價值高的 flow；目前同 project 下一條候選是 `payment-order-provider-request`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api coupon-redeem-credit-grant Step 5`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：本 flow 目前不單獨升級成真實開發成果；若要放履歷，先併入 `iwin payment contribution claim consolidation` 統一判斷。
+- 可放履歷：本 flow 目前不單獨升級成真實開發成果；project-level consolidation 已完成，withdraw 相關只保守寫 insert consistency / null-safety 維護，不寫自動出款 owner。
 - 可面試講：code-backed / 分析過。可講本 flow 的 money correctness、狀態轉移、冪等、retry、補償、人工修復或 config consistency。
 - 不可誇大：不得寫成 Nick 主導完整 payment / wallet owner、設計完整金流架構、建立完整 reconciliation 或解決 production incident。

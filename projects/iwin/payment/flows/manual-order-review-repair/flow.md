@@ -347,18 +347,18 @@ sequenceDiagram
 - `payment-order-provider-request` Step 5。
 - `manual-order-review-repair` Step 5。
 
-後續狀態更新：第五條 `payment-channel-config-selection` 已完成 Step 3，下一步同 flow 做 Step 4。
+後續狀態更新：第五條 `payment-channel-config-selection` 已完成 Step 5，project-level contribution consolidation 也已完成。
 
 ## 13. 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：本 flow 目前不單獨升級成真實開發成果；若要放履歷，先併入 `iwin payment contribution claim consolidation` 統一判斷。
+- 可放履歷：本 flow 目前不單獨升級成真實開發成果；project-level consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
 - 可面試講：code-backed / 分析過。可講本 flow 的 money correctness、狀態轉移、冪等、retry、補償、人工修復或 config consistency。
 - 不可誇大：不得寫成 Nick 主導完整 payment / wallet owner、設計完整金流架構、建立完整 reconciliation 或解決 production incident。

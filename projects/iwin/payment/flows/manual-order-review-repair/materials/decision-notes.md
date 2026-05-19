@@ -33,5 +33,5 @@
 ## 下一步
 
 ```text
-iwin payment contribution claim consolidation
+iwin game_api coupon-redeem-credit-grant Step 5
 ```

@@ -3,11 +3,9 @@
 這份是正式投遞履歷時使用的自傳版本，不取代 `05-resume-master-zh.md`。
 `05-resume-master-zh.md` 是母稿，這份是從母稿濃縮後的投遞版。
 
-> 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔前，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。
+> 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔其他 project 前，仍必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。
 
-> 2026-05-18 更新規則：Nick 已明確確認 `iwin/payment` 實際開發很多。正式改寫投遞自傳中的 payment 經驗前，必須先完成 `iwin payment contribution claim consolidation`，把本人確認、Nick / `10gt12nc` commits、branches、重要 diff 與既有 payment flow evidence 對齊；不得只因單條 flow 缺直接 path evidence 就弱化整個 payment 經驗。
-
-> 2026-05-18 iwin 文件同步：`projects/iwin` 下各 project / flow 已先補齊「可放履歷 / 可面試講 / 不可誇大」分層。自傳目前仍維持保守版，不追加主導、owner 或量化改善；payment 主力經驗需等 contribution consolidation 完成後再重寫。
+> 2026-05-19 payment consolidation：已完成 `projects/iwin/payment/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 iwin payment 多個第三方金流 provider request / callback / query / withdraw 對接與維護，以及 payment / withdraw order consistency bugfix；仍不寫主導完整金流、全部 provider owner、完整 wallet / reconciliation owner 或量化改善。
 
 ## 使用原則
 
@@ -22,7 +20,7 @@
 
 我是一名以 Java 後端為主的工程師，具 4 年以上博弈 / 遊戲平台相關經驗，主要工作集中在平台 API、營運後台、第三方 provider 串接、金流 / 錢包流程、事件流與既有系統維護。相較於單純 CRUD 開發，我更習慣從 production flow 的角度理解系統，關注資料如何流動、狀態如何轉換、失敗後如何補償，以及營運人員是否能查詢與追蹤問題。
 
-過去在智湧科技期間，我負責博弈平台 API 與舊系統維護，累積線上問題排查、需求調整、跨部門協作與 JSP / SSM 舊系統維護經驗，也曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路。現職於瀚鼎後，我接觸更複雜的遊戲平台與微服務環境，包含第三方金流 provider 對接與維護、遊戲 provider、錢包轉點、下注結算、Kafka / MQ、排程報表、後台權限與 K3s / observability 相關資料。
+過去在智湧科技期間，我負責博弈平台 API 與舊系統維護，累積線上問題排查、需求調整、跨部門協作與 JSP / SSM 舊系統維護經驗，也曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路。現職於瀚鼎後，我接觸更複雜的遊戲平台與微服務環境，實際參與多個第三方金流 provider request / callback / query / withdraw 對接與維護，也接觸遊戲 provider、錢包轉點、下注結算、Kafka / MQ、排程報表、後台權限與 K3s / observability 相關資料。
 
 我目前希望往 Senior Java Backend / Platform Backend 方向發展，持續強化交易一致性、冪等、補償、對帳、Kafka / MQ、資料庫效能與系統設計能力。我的優勢是能接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤與資料流梳理，建立可維護、可追蹤、可交接的系統理解。
 
@@ -32,7 +30,7 @@
 
 早期在智湧科技期間，我主要負責博弈平台 API 與舊系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能與營運需求。那段經驗讓我長期接觸線上問題、需求調整、測試環境排查與跨部門溝通，也累積 JSP / SSM 舊系統維護、局部重構、log 分析與資料狀態排查能力。我也曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
 
-現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、後台營運功能、第三方金流 provider request / callback / query 對接維護、第三方遊戲 provider、金流 / 錢包、下注 / 派彩 / rollback、Kafka / MQ、scheduled job、報表查詢、RBAC / 權限與部署維運相關資料。這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致，都是我在整理與理解系統時會特別關注的風險。
+現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、後台營運功能、第三方金流 provider request / callback / query / withdraw 對接維護、第三方遊戲 provider、金流 / 錢包、下注 / 派彩 / rollback、Kafka / MQ、scheduled job、報表查詢、RBAC / 權限與部署維運相關資料。我也處理過 payment / withdraw order 建單一致性與 provider sign / response parsing 類問題。這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致，都是我在整理與理解系統時會特別關注的風險。
 
 我也具備接手文件不足或服務邊界複雜系統的經驗，會透過 code reading、log 追蹤、資料表與 Redis / MQ 流向梳理，重建核心 flow 的理解，讓後續維護、交接與問題排查更有依據。在效能與穩定性方面，我接觸過大量資料批次處理、MongoDB cursor / stream、JVM / GC 觀察、Redis 熱點資料與 SQL 查詢調整等方向，也理解這些問題背後真正要處理的是可恢復性、可觀測性與資料一致性。
 
