@@ -201,4 +201,4 @@ iwin game_api contribution claim consolidation
 
 - payment project-level contribution consolidation 已先保守收斂，但不是 payment 全專案完成。
 - 目前總 queue 已移到 `game_api contribution claim consolidation`，因為 coupon Step 5 已有 direct evidence，但尚未做 project-level consolidation。
-- 會產出 gameserver 的「可放履歷 / 可面試講 / 不可誇大」三層判斷。
+- 會產出 game_api 的「可放履歷 / 可面試講 / 不可誇大」三層判斷。

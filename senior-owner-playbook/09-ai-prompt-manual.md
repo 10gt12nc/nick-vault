@@ -18,6 +18,7 @@
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
 - Flow 線與履歷 / 自傳線分開：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。
+- 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
@@ -29,6 +30,7 @@
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - Nick 本人明確確認做過的內容也是 evidence。AI 不得只因單條 flow 沒有直接 path-specific commit 就否定整個 project 經驗；需標成「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，再補 contribution consolidation。
 - contribution consolidation 是履歷 claim gate，優先於 Step 慣性。若 project 已有 code-backed flow 但尚未做 consolidation，且 Nick 追問履歷價值、AI 準備更新履歷 / 自傳 / project-level career boundary，或下一步會影響「真實開發過」判斷，必須先做 `{project} contribution claim consolidation`，不能直接因 Step 3 完成就跳 Step 4。
+- 但如果 Nick 只要求「待辦 / 缺口 / 優先順序」，AI 先把 contribution consolidation 或 flow Step 列成待辦，不自動執行；等 Nick 明確下 `project contribution claim consolidation` 或 `flow Step N` 才開始深掃與改 flow 文件。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。但如果正在處理履歷 / 自傳 / contribution claim gate，先做 `{project} contribution claim consolidation`。
 - 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。

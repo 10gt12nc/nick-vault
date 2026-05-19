@@ -23,6 +23,8 @@ AI 都必須套用同一套規則。
 
 重要優先級：若只是學系統或準備單條面試 case，走 Flow Track。若要判斷 Nick 經驗、履歷、自傳、project claim，走 Career Track。`project contribution claim consolidation` 不要求 project 所有 candidate flow 都做到 Step 5；它可以在任一代表 flow 完成、Nick 追問履歷、或準備更新 05 / 08 前先做。
 
+若 Nick 當下要求的是「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」，這屬於 `Planning / KB Governance Track`，優先於 Flow Track 的 Step 慣性。AI 必須先把 todo / KB / inventory / project README 的缺口整理清楚，只列出下一步候選與理由，等待 Nick 指定要做哪個 Step 或哪個 consolidation；不得把自己列出的缺口自動升級成已授權執行的 flow Step。
+
 AI 需要自動維護：
 
 - 自動重讀 KB。
@@ -776,6 +778,7 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 要說清楚會產出哪些檔案或更新哪些既有檔案。
 - 要說清楚是否會更新履歷；預設不更新履歷，除非 Nick 明確要求或 evidence 已足夠。
 - 要說清楚 commit / push 狀態；小修輕量自查後 commit，重大改動全掃確認後 commit；若需要 push，直接觸發 `git push` approval 視窗。
+- 若 Nick 要的是待辦事項、缺口清單、KB 維護或優先順序，下一步只更新 todo / KB / index，並停在「請 Nick 下 Step」；不得直接替 Nick 開始 Flow Track 的 Step 4 / Step 5。
 - 如果同一條 flow 還沒完整，優先建議繼續補這條 flow，而不是換下一條。
 - 如果 project 尚未做 contribution consolidation，且下一步會影響履歷 claim 或 Nick 正在追問履歷價值，必須先建議 `{project} contribution claim consolidation`，優先於「Step 3 乾淨後 Step 4」。
 - 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成、沒有履歷 / 自傳 / contribution claim gate 風險，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
@@ -783,8 +786,9 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 
 建議順序：
 
-0. 若 Nick 明確要求地圖，才補最小地圖；否則不要插入新流程。
-0.5. 若 project 尚未做 contribution consolidation，且目前問題牽涉履歷 / 自傳 / claim 或 Nick 對「是否有經驗」提出質疑，先做 `{project} contribution claim consolidation`。
+0. 若 Nick 明確要求待辦事項、缺口清單、KB 維護或優先順序，先維護 todo / KB / index，列清楚缺口與建議，不自動執行 flow Step。
+0.5. 若 Nick 明確要求地圖，才補最小地圖；否則不要插入新流程。
+0.6. 若 project 尚未做 contribution consolidation，且目前問題牽涉履歷 / 自傳 / claim 或 Nick 對「是否有經驗」提出質疑，先做 `{project} contribution claim consolidation`。
 1. Step 1 完成後：建議做 Step 2，比較 candidate flows。
 2. Step 2 完成後：建議挑排名最高且 evidence 足夠的單一 flow 做 Step 3。
 3. Step 3 完成後：建議補 failure scenarios、consistency、idempotency、retry、compensation、reconciliation。

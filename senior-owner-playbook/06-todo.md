@@ -53,8 +53,23 @@
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`，判定暫不更新正式履歷 / 自傳；下一條回到同 project ranking。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 3`，建立 center_http 上分 / 下分主學習包；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
+- 已補上待辦事項優先規則：當 Nick 要的是「待辦、缺口、KB 維護、優先順序」時，AI 先維護 todo / KB / inventory，只列候選下一步並等待 Nick 下 Step；不得把缺口自動開工成 flow Step。
 
 ## 下一步
+
+### 0. 待辦事項優先規則
+
+Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須先維護本檔與相關 index，不直接開工 flow Step。
+
+目前深掃 `nick-vault` 後，應放入待辦的缺口：
+
+1. `game_api contribution claim consolidation`：缺 project-level 貢獻收斂。`coupon-redeem-credit-grant` Step 5 有 direct evidence，但不能直接代表整個 `game_api` project 履歷結論。
+2. `game_job contribution claim consolidation`：缺 project-level 貢獻收斂。`daily-game-data-summary` 與 `third-party-record-mongo-backup` 有正向 evidence，其他 flow 多為 code-backed，需統一成「可放履歷 / 可面試講 / 不可誇大」三層。
+3. `iwin_gameserver contribution claim consolidation`：缺 project-level 貢獻收斂。已有 gameserver money / wallet 類 code-backed flow，但不能把分析素材誤寫成 Nick 真實開發。
+4. 舊 flow-level 語氣待修：`game_api/coupon-redeem-credit-grant` 與 `game_job/daily-game-data-summary` 的部分 evidence / interview 文字仍有「更新正式履歷 / 自傳：是」或「Step 5 已更新 05 / 08」的舊語氣；新 KB 下應改成「可作 project consolidation evidence，正式 05 / 08 以 project-level consolidation 為準」。這是文件語氣修正，不是要重做 flow。
+5. `payment` 小修待辦：project-level consolidation 已完成，但少數 flow-level 檔仍寫「本 flow 可更新 05 / 08」的舊語氣；應統一改成「已由 payment contribution consolidation 收斂，單 flow 不直接決定正式履歷」。
+6. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
+7. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
 ### 1. iwin game_api contribution claim consolidation
 

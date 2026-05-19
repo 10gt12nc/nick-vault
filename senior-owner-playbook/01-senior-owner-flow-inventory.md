@@ -11,6 +11,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 ## 使用規則
 
 - 每次只做一條 flow。
+- 如果 Nick 要的是待辦事項、缺口清單、KB 維護或優先順序，本檔只用來列候選與排序；AI 不得因為本檔出現 queue 就自動執行 Step 4 / Step 5，必須等 Nick 明確下 Step 或 consolidation。
 - 已完成 Step 5 只代表單條 flow 完成，不代表整個 project 完成。
 - 履歷欄位只表示「能不能考慮」，不代表已寫進 `05-resume-master-zh.md`。
 - 證據欄位要分清楚：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
