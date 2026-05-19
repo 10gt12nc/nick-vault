@@ -14,7 +14,7 @@
 1. `daily-game-data-summary`：每日遊戲資料彙總，價值最高；有跨時區、重跑刪除、個人資料與 summary 資料分層、留存計算、備份清理。
 2. `third-party-record-mongo-backup`：第三方遊戲紀錄 Mongo 備份與清理；有批次查詢、insert backup、delete origin、保留天數與 partial failure 風險。
 3. `coin-flow-batch-projection`：金幣流水清算；有 log_reel / jackpot / taxt 多資料源、Redis checkpoint、跨日切換、MySQL user behaviour projection 與 Mongo coin flow projection。已完成 Step 5，不更新正式履歷 / 自傳。
-4. `online-payment-data-cleaning`：支付 / 提現資料清洗；從 payment order 分表彙整充值、提現、首充、代理充值與經濟資料。
+4. `online-payment-data-cleaning`：支付 / 提現資料清洗；從 payment order 分表彙整充值、提現、首充、代理充值與經濟資料。已完成 Step 3。
 5. `partition-table-creation`：每日 / 每月分表建立；支撐 log / BI table rollover，屬於可靠性輔助 flow。
 
 本 Step 1 本身不更新履歷；後續 `daily-game-data-summary` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可保守更新正式履歷 / 自傳。其他候選 flow 仍需各自完成 claim gate。
@@ -62,11 +62,11 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job online-payment-data-cleaning Step 3` |
+| `projects/iwin/game_job/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `game_job online-payment-data-cleaning Step 4` |
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job online-payment-data-cleaning Step 3` |
+| `senior-owner-playbook/06-todo.md` | 已同步 | 目前下一步已更新為 `game_job online-payment-data-cleaning Step 4` |
 
 ## 掃描等級判斷
 
@@ -302,7 +302,7 @@ source repo 狀態：
 ### 4. `online-payment-data-cleaning`
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+證據層級：專案存在 / code-backed；已完成 Step 3，Nick 貢獻依三層 claim gate 判斷
 
 為什麼重要：
 
@@ -314,6 +314,7 @@ source repo 狀態：
 - `OnlinePaymentDataJob` 讀 `payment_order_{yyyy_m}`。
 - 依 `billType` 分充值 / 提現，依 reason、tradeType、onlineType、channelType 做分類。
 - 透過 `OnlineDataHandleService` 寫每日支付、線下支付、代理充值、首充、提款與 economic data。
+- Step 3 已確認 Mongo `online_*` insert projection、MySQL `economic_data_day_log` delete+insert、`payment_amount*` upsert 與 `DailyEconomicDataTotalJob` 下游依賴。
 
 推測：
 
@@ -325,11 +326,13 @@ source repo 狀態：
 - `OnlineDataHandleService` 各 handler 的寫入表與重跑策略。
 - 跨月 payment order 分表與 date boundary。
 - 是否有 callback / repair 後重新清洗的流程。
+- `payment` repo source order 寫入與 app_bi 查詢端尚未深掃。
 
 履歷邊界：
 
 - 目前不直接寫金流成果。
 - 可作 payment reporting projection 的輔助題。
+- Step 3 後仍不可寫履歷，需 Step 4 / Step 5 claim gate。
 
 ### 5. `partition-table-creation`
 
@@ -376,10 +379,10 @@ source repo 狀態：
 只推薦一件事：
 
 ```text
-iwin game_job online-payment-data-cleaning Step 3
+iwin game_job online-payment-data-cleaning Step 4
 ```
 
 原因：
 
-- `coin-flow-batch-projection` 已完成 Step 5，正式履歷 / 自傳不更新。
-- 同 project 下一條候選 flow 是 `online-payment-data-cleaning`，可補 payment order reporting projection / reconciliation 視角。
+- `online-payment-data-cleaning` 已完成 Step 3，下一步應轉成正式面試 case。
+- 目前預期未補 direct evidence 前不更新正式履歷 / 自傳。

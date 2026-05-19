@@ -138,10 +138,10 @@ Code-backed 分析遊戲金幣流水 / 玩家行為 batch projection，梳理 Re
 只推薦一件事：
 
 ```text
-iwin game_job online-payment-data-cleaning Step 3
+iwin game_job online-payment-data-cleaning Step 4
 ```
 
 原因：
 
 - `coin-flow-batch-projection` 已完成 Step 5 claim gate，正式履歷 / 自傳不更新。
-- 同 project 下一條最值得深挖的是 `online-payment-data-cleaning`，可接 payment order reporting projection 與 reconciliation 視角，但需小心不要誇大成 payment source of truth。
+- `online-payment-data-cleaning` Step 3 已完成，下一步應轉成正式面試 case。
