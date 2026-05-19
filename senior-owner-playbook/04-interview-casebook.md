@@ -371,7 +371,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 code-backed 面試素材。
+- 已完成 Step 5，可作 code-backed 面試素材。
 - 目前未看到 Nick / `10gt12nc` 直接修改 partner flow path 的 evidence；不得寫成正式履歷，也不得說 Nick 主導 partner API 或 wallet reconciliation。
 - `origin/k3s` 有 sign replay / secret log 安全性修正方向，但 production deploy 與 Nick 貢獻待確認。
 

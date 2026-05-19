@@ -1,9 +1,21 @@
 # partner-deposit-withdraw-bill evidence
 
 更新時間：2026-05-19
-Step：4
-掃描等級：Level 2 Flow 深掃
+Step：5
+掃描等級：Level 2 Flow 深掃 + Step 5 單條 flow claim gate
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
+
+## Step 5 更新摘要
+
+2026-05-19 Step 5 再次重新 fetch `game_api` remote refs，確認 source repo 最新性，並重跑 partner 相關 path-specific history / Nick author filter。
+
+結論：
+
+- `game_api` local `main` 與 `origin/main` 同步。
+- partner flow path history 仍未找到 Nick / `10gt12nc` direct path commit。
+- `origin/k3s` 的 partner sign replay / secret log 修正方向仍由 Arnold 提交，不能寫成 Nick 成果。
+- 本 flow 完成 Step 5，但只保留為 code-backed 面試素材；不更新正式履歷 / 自傳。
+- 不做完整 `game_api contribution claim consolidation`，因 Step 2 本批代表 flows 尚未都完成 Step 5。
 
 ## Step 4 更新摘要
 
@@ -41,17 +53,18 @@ Step 4 不新增正式履歷 claim，也不執行 `game_api contribution claim c
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 本輪需同步 | 新增第二條 flow 後，讀檔順序與下一步要改 Step 4 |
+| `README.md` | 本輪需同步 | 第二條 flow 已完成 Step 5，下一步改回 Step 2 ranking 的第三順位 |
 | `step1-candidate-flows.md` | 可沿用 | 已列出此 flow 為第二順位候選 |
-| `step2-flow-comparison.md` | 本輪需同步 | 此 flow 從 Step 3 進到 Step 4 |
+| `step2-flow-comparison.md` | 本輪需同步 | 此 flow 從 Step 4 進到 Step 5；下一步回到第三順位 |
 | `flows/coupon-redeem-credit-grant/` | 可沿用 | 第一條 flow 已 Step 5，但不代表整個 `game_api` project 完成 |
-| `flows/partner-deposit-withdraw-bill/flow.md` | 可沿用 | Step 3 主分析完整，Step 4 只需收斂面試素材 |
+| `flows/partner-deposit-withdraw-bill/flow.md` | 可沿用 / 本輪同步 | Step 3 / Step 4 內容可用；Step 5 補 claim gate 結論 |
 
 ## Code Repo 最新狀態
 
 Source repo：`/Users/nick/Git/iwin/game_api`
 
 - Step 3 已執行 `git fetch --all --prune`；Step 4 開始前已再次執行 `git fetch --all --prune`。
+- Step 5 開始前已再次執行 `git fetch --all --prune`。
 - 本機 branch：`main`
 - local HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
 - `origin/main` HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
@@ -216,6 +229,7 @@ archive / vault reference：
 Nick / `10gt12nc` author filter：
 
 - 本輪未找到 Nick / `10gt12nc` 直接修改上述 partner flow path 的 commit。
+- Step 5 重跑同一組 partner flow path author filter，結果仍為空。
 
 ## 證據層級判斷
 
@@ -225,14 +239,16 @@ Nick / `10gt12nc` author filter：
 | 這條 flow 涉及 money correctness | code-backed + analysis | 上下分、訂單、查單與 wallet side effect |
 | main branch sign replay 防護不足 | code-backed + analysis | time window throw 註解、無 nonce；`origin/k3s` 已修 |
 | Nick 實作此 flow | 待確認 | 本輪 path-specific history 未看到 `10gt12nc` |
-| 可寫入正式履歷 | 否 | 需要本人確認、commit、ticket、MR 或 production issue evidence |
+| 可寫入正式履歷 | 否 | Step 5 判定仍缺本人確認、commit、ticket、MR 或 production issue evidence |
 
-## Step 4 結論
+## Step 5 結論
 
-這條 flow 已完成 Step 4 面試整理，可進 Step 5 單條 flow claim gate。
+這條 flow 已完成 Step 5 單條 flow claim gate。它可以作為 code-backed 面試案例，但目前不能寫成 Nick 真實開發過。
+
+下一步回到 `game_api` Step 2 ranking，做第三順位 `agent-bonus-receive-transfer` 的 Step 3。仍不做完整 `game_api contribution claim consolidation`。
 
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```

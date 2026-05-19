@@ -22,7 +22,7 @@ coupon-redeem-credit-grant
 
 第二順位是 `partner-deposit-withdraw-bill`。它的價值甚至可能更高，但需要較早補下游 wallet / GM handler / partner idempotency evidence；以目前 Step 2 來看，coupon 更適合作為 `game_api` 第一條完整 flow 學習包。
 
-本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可作 project contribution consolidation evidence。
+本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可作 project contribution consolidation evidence。`partner-deposit-withdraw-bill` 也已完成 Step 5，但只作 code-backed 面試素材，不作正式履歷 claim。
 
 ## 自動重讀紀錄
 
@@ -45,7 +45,7 @@ coupon-redeem-credit-grant
 | --- | --- | --- |
 | `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步為 coupon flow Step 5 完成 |
 | `step1-candidate-flows.md` | 可沿用 | 已有 Top 5 flow、證據層級、未掃範圍；但 Step 1 發生在新 fetch 規則前，本輪補遠端狀態 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前第一條 flow 已完成 Step 5 並收斂 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前前兩條 flow 已完成 Step 5 並收斂，下一步回第三順位 |
 
 ## Code Repo 最新狀態
 
@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 5 claim gate；第二順位 `partner-deposit-withdraw-bill` 已完成 Step 4，下一步做 Step 5
+建議：已完成 Step 5 claim gate；第二順位 `partner-deposit-withdraw-bill` 也已完成 Step 5，下一步回第三順位 `agent-bonus-receive-transfer`
 證據層級：真實開發過 + code-backed
 
 ### 已確認
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 4，下一步應做 Step 5。
+Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 5，下一步應做第三順位 `agent-bonus-receive-transfer` Step 3。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,12 +213,12 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 已補到 Step 4，下一步轉 Step 5。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 也已補到 Step 5，下一步轉 `agent-bonus-receive-transfer` Step 3。
 
 ## 2. `partner-deposit-withdraw-bill`
 
 中文名稱：Partner API 上分 / 下分 / 查單
-建議：Step 4 已完成；下一步做 Step 5
+建議：Step 5 已完成；保留為 code-backed 面試素材，下一步回第三順位 flow
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
@@ -287,12 +287,12 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit
 
 ### 結論
 
-第二順位已進 Step 4。這條是 `game_api` 最接近正式 partner money API 的代表 flow；下一步應做 Step 5 單條 flow claim gate，仍不直接做完整 project contribution consolidation。
+第二順位已完成 Step 5。這條是 `game_api` 最接近正式 partner money API 的代表 flow，但目前未見 Nick / `10gt12nc` direct path evidence，只作 code-backed 面試素材，仍不直接做完整 project contribution consolidation。
 
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```
 
 ## 3. `agent-bonus-receive-transfer`
@@ -487,13 +487,13 @@ iwin game_api partner-deposit-withdraw-bill Step 5
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```
 
 為什麼現在做它：
 
-- `partner-deposit-withdraw-bill` Step 4 已完成。
-- 同 project 第二條代表 money API 已讀清楚且完成面試收斂；下一步做 Step 5 單條 flow claim gate，暫不做完整 project-level contribution consolidation。
+- `partner-deposit-withdraw-bill` Step 5 已完成。
+- 同 project 前兩條代表 flow 已收斂；下一步做第三順位 `agent-bonus-receive-transfer` Step 3，暫不做完整 project-level contribution consolidation。
 
 會產出什麼：
 

@@ -1,10 +1,10 @@
 # partner-deposit-withdraw-bill interview notes
 
 更新時間：2026-05-19
-Step：4
+Step：5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
-## Step 4 結論
+## Step 5 結論
 
 這條 flow 已可作 code-backed 面試案例。主軸是：
 
@@ -14,7 +14,7 @@ Step：4
 - GM timeout / partial success / pending order reconciliation。
 - 查單分日 collection 的 partial result 風險。
 
-不更新正式履歷 / 自傳，原因是目前未看到 Nick / `10gt12nc` direct path evidence。
+不更新正式履歷 / 自傳。Step 5 重新 fetch source repo 並重跑 partner path-specific history 後，仍未看到 Nick / `10gt12nc` direct path evidence。
 
 ## 面試主軸
 
@@ -84,18 +84,19 @@ System Owner：
 
 - 聚焦 source of truth、success contract、補償責任、客服查帳流程與風險溝通。
 
-## Step 5 待補
+## Step 5 claim gate
 
-Step 5 應只做單條 flow claim gate，不做完整 `game_api` project consolidation。
+本輪已完成單條 flow claim gate，不做完整 `game_api` project consolidation。
 
-需要補：
+判定：
 
-- 重新確認 path-specific history 是否仍無 Nick / `10gt12nc` direct evidence。
-- 若 Nick 本人確認做過，要標為「本人確認，待 commit / ticket 補強」。
-- 若仍無 direct evidence，Step 5 結論應維持：不更新正式履歷，只保留 code-backed 面試素材。
+- partner flow 本身可作 code-backed 面試素材。
+- 目前不能寫成 Nick 真實開發過。
+- 若 Nick 本人未來確認參與此 flow，要標成「本人確認，待 commit / ticket 補強」，並再回頭更新 claim boundary。
+- 完整 `game_api contribution claim consolidation` 仍要等 Step 2 本批代表 flows 都完成 Step 5。
 
 下一步：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```

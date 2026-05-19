@@ -1,10 +1,10 @@
 # partner-deposit-withdraw-bill claim boundary
 
 更新時間：2026-05-19
-Step：4
+Step：5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
-## Step 4 判定
+## Step 5 判定
 
 結論：可作 code-backed 面試素材，不更新正式履歷 / 自傳。
 
@@ -12,6 +12,7 @@ Step：4
 
 - Flow 本身已由 Controller、validation、sign、PartnerService、Mongo order、GM command 與查單 code 確認。
 - Step 4 已整理成面試講法、Q&A、STAR 與 Lead / Architect 追問。
+- Step 5 已重新 fetch source repo 並重跑 partner path-specific history。
 - path-specific history 未看到 Nick / `10gt12nc` 直接修改 PartnerController、PartnerServiceImpl、PartnerLogServiceImpl、ValidatedServiceImpl、PartnerLoginDto 或 BillInfo。
 - Nick 尚未本人確認這條 partner flow 是他做過或維護過。
 
@@ -52,9 +53,10 @@ Step：4
 - production issue / incident / support ticket。
 - `coin_change_log` schema / index。
 - gameserver 對 `billNos` 的 duplicate handling。
+- 若未來 Nick 本人確認此 flow 參與經驗，需另標為「本人確認，待 commit / ticket 補強」，不能直接覆蓋本次 Step 5 結論。
 
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```

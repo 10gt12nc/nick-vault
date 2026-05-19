@@ -77,7 +77,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_api/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/game_api/README.md` | 已建立 / 已同步 | 專案入口，已同步 coupon 與 partner 兩條 flow 已完成 Step 5，下一步回 Step 2 ranking 第三順位 |
 | `projects/iwin/game_api/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | workspace 舊分析 `docs/專案分析/game_api.md` | 可參考 / 不搬運 | 有專案概覽與 API / DB / Redis 線索，但含舊環境資訊與敏感配置，不能直接複製進 vault |
 
@@ -87,7 +87,7 @@
 
 原因：
 
-- 本檔是 `game_api` Step 1 的歷史盤點；目前 project 已建立，且第一條 `coupon-redeem-credit-grant` flow 已完成 Step 4。
+- 本檔是 `game_api` Step 1 的歷史盤點；目前 project 已建立，且 `coupon-redeem-credit-grant`、`partner-deposit-withdraw-bill` 都已完成 Step 5。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 flow。
 - `game_api` 候選很多，直接 Level 2 容易選錯 flow。
 - Level 3 目前不值得，因為還沒選定 flow，也還沒確認 Nick 本人 evidence。
@@ -436,11 +436,11 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```
 
 原因：
 
-- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 4 也已完成。
-- 下一步應對第二順位 `partner-deposit-withdraw-bill` 做 Step 5 單條 flow claim gate；仍不直接做完整 `game_api` project 履歷結論。
+- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 5 也已完成。
+- 下一步應對第三順位 `agent-bonus-receive-transfer` 做 Step 3 深掃；仍不直接做完整 `game_api` project 履歷結論。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

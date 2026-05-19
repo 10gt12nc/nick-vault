@@ -2,15 +2,17 @@
 
 中文名稱：Partner API 上分 / 下分 / 查單
 更新時間：2026-05-19
-Step：4
-掃描等級：Level 2 Flow 深掃
+Step：5
+掃描等級：Level 2 Flow 深掃 + Step 5 單條 flow claim gate
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
 ## 閱讀定位
 
 這條 flow 是 `game_api` 對 partner 暴露的 money API：partner 可以呼叫 `NewPay` 幫玩家上分、呼叫 `Withdraw` 從玩家帳上扣分，並用 `BillInfo` / `BillList` 查詢訂單狀態。
 
-它不是一般查詢 API。它同時碰到 partner 簽章、玩家帳號定位、金額倍率換算、Mongo 訂單分日表、GM command、玩家錢包副作用與查單 reconciliation。Step 3 的重點是先把 code flow 讀懂，並標出 Senior / Owner 需要追的風險窗口；目前不更新正式履歷。
+它不是一般查詢 API。它同時碰到 partner 簽章、玩家帳號定位、金額倍率換算、Mongo 訂單分日表、GM command、玩家錢包副作用與查單 reconciliation。
+
+Step 5 判定：這條 flow 可作 code-backed 面試素材，不更新正式履歷 / 自傳。2026-05-19 重新 fetch `game_api` 後，partner 相關 path 仍未看到 Nick / `10gt12nc` direct path commit；也未有 Nick 本人確認此 flow 是他做過或維護過。
 
 ## 已確認與待確認
 
@@ -256,22 +258,40 @@ Owner 判斷：
 
 原因是本輪 path-specific history 沒看到 Nick / `10gt12nc` 直接修改此 flow；這條目前只能作 code-backed 面試素材，不能升正式履歷 claim。
 
-## Step 3 結論
+## Step 5 claim gate
+
+結論：不更新正式履歷 / 自傳。
+
+已確認：
+
+- Flow 本身是高價值 partner money API，可用來講 sign、idempotency、Mongo order、GM command、wallet side effect、查單與 reconciliation。
+- `game_api` source repo 已重新 fetch；local `main` 與 `origin/main` 同步。
+- path-specific history 目前只看到 Arnold 的 first commit、k3s migration、login null guard 與 security update。
+- Nick / `10gt12nc` author filter 在 partner 相關 path 沒有命中。
+
+保守使用方式：
+
+- 可以說「我分析過一條 partner 上下分 / 查單 flow，能指出 consistency / idempotency / reconciliation 風險」。
+- 不說「我開發 partner 上下分 flow」。
+- 不說「我主導 partner API、wallet、查單或 reconciliation」。
+- 不把 `origin/k3s` 的 nonce / replay prevention 寫成 Nick 的成果。
+
+## Step 5 結論
 
 `partner-deposit-withdraw-bill` 是 `game_api` 第二條值得深挖的 money flow。它比 coupon 更接近正式 partner money API：有外部系統呼叫、有訂單、有上下分、有查單、有下游 wallet side effect。
 
-目前 Step 4 已把這些內容收斂成可講版本、追問 Q&A、STAR 與 claim boundary；仍不做 `game_api contribution claim consolidation`，因為本批代表 flows 尚未都完成 Step 5。
+目前 Step 5 已完成單條 flow claim gate；仍不做 `game_api contribution claim consolidation`，因為 Step 2 本批代表 flows 尚未都完成 Step 5。下一步要回到同 project ranking，做第三順位 `agent-bonus-receive-transfer` 的 Step 3。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin game_api agent-bonus-receive-transfer Step 3
 ```
 
 原因：
 
-- Step 4 已把這條 flow 轉成面試可講素材。
-- Step 5 應做單條 flow claim gate，確認是否有 Nick evidence。
-- 這輪不更新正式履歷；Step 5 也不能直接代表完整 `game_api` project consolidation。
+- coupon 與 partner 兩條代表 flow 已完成 Step 5。
+- `game_api` Step 2 ranking 的第三順位是 `agent-bonus-receive-transfer`，仍屬 money-like balance / GM 上分 / Redis projection 題材。
+- 這輪不更新正式履歷；完整 `game_api contribution claim consolidation` 要等本批代表 flows 都完成 Step 5。
