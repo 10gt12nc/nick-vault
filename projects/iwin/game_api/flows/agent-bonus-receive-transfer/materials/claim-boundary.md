@@ -1,19 +1,20 @@
 # agent-bonus-receive-transfer claim boundary
 
 更新時間：2026-05-19
-Step：4
+Step：5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
-## Step 4 判定
+## Step 5 判定
 
 結論：可作 code-backed 面試素材，暫不更新正式履歷 / 自傳。
 
 原因：
 
 - Flow 本身已由 Controller、Service、Mongo model、Redis key、GM command 與 `game_job` 上游 job code 確認。
-- path-specific history 未看到 Nick / `10gt12nc` 直接修改 `AgentShareServiceImpl`、`ShareCommonService`、Partner share endpoints、AgentBonusWash / Settlement 或相關 model。
+- Step 5 重新 fetch `game_api` 與 `game_job` 後，path-specific history 仍未看到 Nick / `10gt12nc` 直接修改 `AgentShareServiceImpl`、`ShareCommonService`、Partner share endpoints、AgentBonusWash / Settlement 或相關 model。
+- repo-wide Nick / `10gt12nc` evidence 顯示 `game_api` 直接 commits 主要集中在 coupon 兌換與邀請轉盤活動，`game_job` 直接 commits 主要集中在每日彙總、GSC 分批查詢與 coupon ActivityJob / CouponRecord 相關，不在此 flow。
 - Nick 尚未本人確認這條代理佣金 flow 是他做過或維護過。
-- Step 4 已整理成一句話、30 秒、2 分鐘、5 分鐘、STAR、Senior / Platform / Owner 口吻與常見追問。
+- Step 5 已完成單條 flow claim gate，結論是「分析過 / code-backed」，不是「真實開發過」。
 
 ## 可以主張
 
@@ -40,7 +41,7 @@ Step：4
 ## 待補 evidence
 
 - Nick 本人確認是否做過此 flow。
-- `10gt12nc` 是否在其他 branch / ticket / MR 修改過代理佣金 API 或 job。
+- ticket / MR / production issue 是否能補強代理佣金 API 或 job 的個人貢獻。
 - production issue / support ticket。
 - `agent_money` 實際 Mongo index。
 - gameserver `GM_CMD_DEPOSIT` 對 billNos 的 duplicate handling。
@@ -48,5 +49,5 @@ Step：4
 ## 下一步
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```

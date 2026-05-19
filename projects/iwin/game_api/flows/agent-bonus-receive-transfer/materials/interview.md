@@ -1,10 +1,10 @@
 # agent-bonus-receive-transfer interview notes
 
 更新時間：2026-05-19
-Step：4
+Step：5
 證據層級：專案存在 / code-backed；Nick 貢獻待確認
 
-## Step 4 前檢查
+## Step 5 前檢查
 
 Step 3 已完成，且可沿用：
 
@@ -13,7 +13,7 @@ Step 3 已完成，且可沿用：
 - `materials/decision-notes.md`：已補 Mongo source of truth、短 lock vs idempotency、pending / unknown、雙邊 balance、job lifecycle。
 - `materials/claim-boundary.md`：已明確標示 code-backed，不更新正式履歷。
 
-本輪 Step 4 只做面試收斂，不新增履歷 claim。
+本輪 Step 5 只做面試收斂，不新增履歷 claim。
 
 ## 面試主軸
 
@@ -95,10 +95,10 @@ Result：這條 flow 可以支撐 Senior Backend 面試中的 idempotency、tran
 - 我負責完整代理分潤 / 佣金結算系統。
 - 這條已可直接寫進正式履歷。
 
-## Step 4 結論
+## Step 5 結論
 
-Step 4 已完成，這條 flow 已經可以作為 code-backed 面試案例使用。下一步是 Step 5 單條 flow claim gate，確認是否有任何 Nick / `10gt12nc` evidence 或本人確認可以支撐更高 claim；若沒有，就正式收斂為「面試素材，不進正式履歷」。
+Step 5 已完成，這條 flow 已正式收斂為 code-backed 面試案例。重新確認後，目前沒有 Nick / `10gt12nc` agent bonus path direct evidence，也沒有本人確認，因此不升級成真實開發過、不寫正式履歷。下一步可做 `game_api contribution claim consolidation`，但那是 project-level claim gate。
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```

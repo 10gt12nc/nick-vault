@@ -57,6 +57,7 @@
 - 已補上待辦事項優先規則：當 Nick 要的是「待辦、缺口、KB 維護、優先順序」時，AI 先維護 todo / KB / inventory，只列候選下一步並等待 Nick 下 Step；不得把缺口自動開工成 flow Step。
 - 已完成 `game_api agent-bonus-receive-transfer Step 3`，建立代理佣金領取 / 轉帳主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳，也不做完整 `game_api contribution claim consolidation`。
 - 已完成 `game_api agent-bonus-receive-transfer Step 4`，轉成代理佣金領取 / 轉帳的正式面試 case；目前仍只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
+- 已完成 `game_api agent-bonus-receive-transfer Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為代理佣金領取 / 轉帳的 code-backed 面試案例。
 - 已完成 `iwin game_job contribution claim consolidation`；Nick / `10gt12nc` 在 daily summary 與 GSC backup path 有 direct commits，可把 game_job 升級為「部分真實開發過」，但不寫完整 game_job / BI pipeline / retention owner。
 - 已完成 `iwin app_bi contribution claim consolidation`；這是 limited / negative 收口，結論是不放正式履歷主成果，只作後台入口 / BI / control plane 的 code-backed 面試分析素材。
 
@@ -70,33 +71,33 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
-1. `game_api agent-bonus-receive-transfer Step 5`：Step 4 已完成；下一步做單條 flow claim gate，確認是否有 Nick / `10gt12nc` evidence 或本人確認可升級 claim。
+1. `game_api contribution claim consolidation`：三條代表 flow 已完成 Step 5；下一步做 project-level claim gate，重掃 repo-wide Nick evidence 與三條 flow evidence。
 2. `game_job contribution claim consolidation`：已完成；保留為 project-level claim evidence，不因新規則重做。
 3. `app_bi contribution claim consolidation`：已完成 limited / negative 收口；不放正式履歷主成果。
 4. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
 5. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
 6. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
-### 1. iwin game_api agent-bonus-receive-transfer Step 5
+### 1. iwin game_api contribution claim consolidation
 
 建議下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
 
 原因：
 
 - `game_job` contribution claim consolidation 已完成。
-- `agent-bonus-receive-transfer` Step 4 已完成，結論是 code-backed 面試素材、不更新正式履歷。
-- Step 5 要確認這條 flow 是否有 Nick / `10gt12nc` path evidence 或本人確認；若沒有，就正式收斂為不進履歷。
-- 仍不是完整 `game_api contribution claim consolidation`；本批代表 flows 尚未都完成 Step 5。
+- 三條代表 flow 已完成 Step 5；其中 coupon 有 Nick direct evidence，partner 與 agent bonus 目前只作 code-backed 面試素材。
+- 下一步要把三條 flow 和 repo-wide Nick evidence 收成 project-level 履歷 claim 邊界。
+- 現在已達完整 `game_api contribution claim consolidation` 條件。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_api agent-bonus-receive-transfer Step 5`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin game_api contribution claim consolidation`。以下是近期各 project 的局部下一步：
 
-1. `game_api`：`agent-bonus-receive-transfer Step 5`，把第三順位 money-like flow 做單條 flow claim gate。
+1. `game_api`：`contribution claim consolidation`，三條代表 flow 已完成 Step 5，下一步做 project-level 履歷 claim 收口。
 2. `game_job`：`contribution claim consolidation` 已完成，不因新規則重做。
 3. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
 4. `app_bi`：limited / negative contribution claim consolidation 已完成；不放正式履歷主成果。
@@ -121,12 +122,12 @@ iwin game_api agent-bonus-receive-transfer Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment` 與 `game_job` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_api` 的 coupon 與 partner 兩條 flow 已完成 Step 5，`agent-bonus-receive-transfer` 已完成 Step 4，下一步做同 flow Step 5。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment` 與 `game_job` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_api` 的 coupon、partner、agent bonus 三條代表 flow 已完成 Step 5，下一步做 `game_api contribution claim consolidation`。
 
 ## 下一個 prompt
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

@@ -397,6 +397,38 @@ Lead / Architect 追問：
 - 查單 partial failure 是 fail whole request，還是回 partial 並標示？
 - sign replay prevention 的 nonce key、TTL 與 secret log policy 怎麼定？
 
+## 案例 11：代理佣金領取 / 轉帳
+
+對應 flow：
+
+- `game_api/agent-bonus-receive-transfer`
+
+證據邊界：
+
+- 已完成 Step 5，可作 code-backed 面試素材。
+- 目前未看到 Nick / `10gt12nc` 直接修改 agent bonus API、Mongo model、Redis lock、`game_job` agent bonus wash / settlement path 的 evidence；不得寫成正式履歷，也不得說 Nick 主導代理分潤或佣金結算。
+- `game_api` repo-wide Nick evidence 主要集中在 coupon 與邀請轉盤活動；`game_job` repo-wide Nick evidence 主要集中在每日彙總、GSC 分批查詢與 coupon ActivityJob / CouponRecord 相關。
+
+面試主軸：
+
+這是 money-like balance flow，不是單純後台查詢。`game_job` 先把每日佣金累加到 Mongo `agent_money.money`，`game_api` 再提供代理轉帳與領取。轉帳會更新雙邊 Mongo balance、Redis projection 與 audit log；領取會先送 GM deposit，再清 Mongo 可領餘額、更新 Redis、寫領取 log。Senior 要能拆出 Mongo source of truth、Redis projection、GM wallet side effect、短 lock vs idempotency、pending / unknown state 與 reconciliation。
+
+可講重點：
+
+- Mongo `agent_money` 比較像佣金可領餘額 source of truth，Redis `GameAgent:{rid}` 是 projection。
+- `Bonus:ReceiveLook:{rid}` 只能擋短時間連點，不是 money flow idempotency。
+- `bonusReceive` 每次 GM 上分使用新的 UUID billNos；GM 成功但 Mongo 清零失敗後，重送可能形成第二次 wallet side effect。
+- `transferReceive` 先扣轉出者、再加轉入者、再更新 Redis、最後寫兩筆 log；任一步失敗都需要 operation id / 補償或 reconciliation。
+- `Daily:Task:{date}.purchase_status` 是 game_job 與 game_api 的粗粒度互斥，應定義更清楚的 job lifecycle。
+
+Lead / Architect 追問：
+
+- 佣金可領餘額、Redis projection、gameserver wallet balance 三者誰是 source of truth？
+- GM timeout 時，同一筆領取要怎麼用 deterministic billNos 重試？
+- 轉帳雙邊 balance update 失敗時，是補償、重放，還是人工修復？
+- audit log 在最後才寫，失敗時客服怎麼查帳？
+- game_job settlement 與玩家領取同時發生時，fail closed 的條件怎麼定？
+
 ## 面試回答公式
 
 ```text

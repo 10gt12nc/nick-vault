@@ -280,18 +280,18 @@ Owner 判斷：
 
 `partner-deposit-withdraw-bill` 是 `game_api` 第二條值得深挖的 money flow。它比 coupon 更接近正式 partner money API：有外部系統呼叫、有訂單、有上下分、有查單、有下游 wallet side effect。
 
-目前 Step 5 已完成單條 flow claim gate；仍不做 `game_api contribution claim consolidation`，因為 Step 2 本批代表 flows 尚未都完成 Step 5。第三順位 `agent-bonus-receive-transfer` 已完成 Step 4，下一步做 Step 5。
+目前 Step 5 已完成單條 flow claim gate；第三順位 `agent-bonus-receive-transfer` 也已完成 Step 5。三條代表 flow 都已收斂，下一步可做 `game_api contribution claim consolidation`。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
 
 原因：
 
-- coupon 與 partner 兩條代表 flow 已完成 Step 5。
+- coupon、partner 與 agent bonus 三條代表 flow 已完成 Step 5。
 - `game_api` Step 2 ranking 的第三順位是 `agent-bonus-receive-transfer`，仍屬 money-like balance / GM 上分 / Redis projection 題材。
 - 這輪不更新正式履歷；完整 `game_api contribution claim consolidation` 要等本批代表 flows 都完成 Step 5。

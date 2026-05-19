@@ -22,7 +22,7 @@ coupon-redeem-credit-grant
 
 第二順位是 `partner-deposit-withdraw-bill`。它的價值甚至可能更高，但需要較早補下游 wallet / GM handler / partner idempotency evidence；以當時 Step 2 來看，coupon 更適合作為 `game_api` 第一條完整 flow 學習包。
 
-本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可作 project contribution consolidation evidence。`partner-deposit-withdraw-bill` 也已完成 Step 5，但只作 code-backed 面試素材，不作正式履歷 claim。第三順位 `agent-bonus-receive-transfer` 已完成 Step 4，下一步是 Step 5 單條 flow claim gate。
+本 Step 2 本身不更新履歷 / 自傳；後續 `coupon-redeem-credit-grant` 已完成 Step 5 claim gate，Nick / `10gt12nc` 有 path-specific commits，可作 project contribution consolidation evidence。`partner-deposit-withdraw-bill` 也已完成 Step 5，但只作 code-backed 面試素材，不作正式履歷 claim。第三順位 `agent-bonus-receive-transfer` 已完成 Step 5，也只作 code-backed 面試素材。三條代表 flow 都已完成 Step 5，下一步可做 `game_api contribution claim consolidation`。
 
 ## 自動重讀紀錄
 
@@ -43,9 +43,9 @@ coupon-redeem-credit-grant
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步 coupon / partner Step 5 與 agent bonus Step 4 |
+| `README.md` | 可沿用 / 已同步 | 專案入口乾淨；目前已同步 coupon / partner Step 5 與 agent bonus Step 5 |
 | `step1-candidate-flows.md` | 可沿用 | 已有 Top 5 flow、證據層級、未掃範圍；但 Step 1 發生在新 fetch 規則前，本輪補遠端狀態 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前前兩條 flow 已完成 Step 5，第三順位已完成 Step 4，下一步 Step 5 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | Step 2 主文件；目前前兩條 flow 已完成 Step 5，第三順位已完成 Step 5，下一步 project-level consolidation |
 
 ## Code Repo 最新狀態
 
@@ -124,7 +124,7 @@ coupon-redeem-credit-grant
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `coupon-redeem-credit-grant` | 先做 Step 3 | 高 | 高 | 中 | 中高 | 近期 main commit + k3s 修正都指向 coupon；money / idempotency / GM command failure window 清楚 |
 | 2 | `partner-deposit-withdraw-bill` | 第二條候選 | 很高 | 中高 | 高 | 高 | 真正 partner money API，但下游 wallet / GM / partner idempotency 要補很多 |
-| 3 | `agent-bonus-receive-transfer` | Step 4 已完成，下一步 Step 5 | 高 | 中 | 高 | 中 | Mongo money balance + Redis projection + GM 上分，已補收益計算 job 關聯 |
+| 3 | `agent-bonus-receive-transfer` | Step 5 已完成 | 高 | 中 | 高 | 中 | Mongo money balance + Redis projection + GM 上分，已補收益計算 job 關聯 |
 | 4 | `game-record-dynamic-table-query` | 後續作 troubleshooting case | 中 | 高 | 中 | 中 | 動態分表與查詢正確性清楚，但不是 money side effect 主線 |
 | 5 | `login-register-token-cache` | 後續作 high-traffic / auth case | 中 | 中高 | 中 | 中 | 高流量入口，但 money correctness 較弱，且分支太多 |
 
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 5，第三順位 `agent-bonus-receive-transfer` 已完成 Step 4，下一步應做 Step 5。
+Step 5 後可作 flow evidence；但目前仍不足以做完整 `game_api contribution claim consolidation`。第二順位 `partner-deposit-withdraw-bill` 已補到 Step 5，第三順位 `agent-bonus-receive-transfer` 已完成 Step 5，下一步應做 Step 5。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,7 +213,7 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 也已補到 Step 5，`agent-bonus-receive-transfer` 已完成 Step 4，下一步轉 Step 5。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit-withdraw-bill` 也已補到 Step 5，`agent-bonus-receive-transfer` 已完成 Step 5，下一步轉 Step 5。
 
 ## 2. `partner-deposit-withdraw-bill`
 
@@ -292,13 +292,13 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。`partner-deposit
 下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
 
 ## 3. `agent-bonus-receive-transfer`
 
 中文名稱：代理佣金領取 / 轉帳
-建議：Step 4 已完成；下一步 Step 5 claim gate
+建議：Step 5 已完成；保留為 code-backed 面試素材，下一步做 project-level consolidation
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 已確認
@@ -487,22 +487,22 @@ iwin game_api agent-bonus-receive-transfer Step 5
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
 
 為什麼現在做它：
 
-- `agent-bonus-receive-transfer` Step 4 已完成，已收斂成可面試案例。
-- 同 project 前兩條代表 flow 已收斂；下一步做第三順位 `agent-bonus-receive-transfer` Step 5，暫不做完整 project-level contribution consolidation。
+- `agent-bonus-receive-transfer` Step 5 已完成，已收斂成 code-backed 面試素材。
+- 同 project 三條代表 flow 已收斂；下一步做 project-level contribution consolidation。
 
 會產出什麼：
 
-- 重新確認 Nick / `10gt12nc` evidence、本人確認缺口與單條 flow claim 邊界。
+- 重新確認 Nick / `10gt12nc` repo-wide evidence、三條 flow evidence、本人確認缺口與 project-level claim 邊界。
 - 同步 README / inventory 下一步。
 
 是否更新履歷：
 
-- `coupon-redeem-credit-grant` 已有 strong evidence；正式履歷 / 自傳只能保守沿用單條 flow claim，完整 project claim 需等更多代表 flow 後再 consolidation。
+- `coupon-redeem-credit-grant` 已有 strong evidence；正式履歷 / 自傳仍要等 project-level consolidation 後再決定。
 
 是否需要 commit / push：
 

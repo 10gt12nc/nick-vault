@@ -15,7 +15,7 @@ Step：5
 - partner flow path history 仍未找到 Nick / `10gt12nc` direct path commit。
 - `origin/k3s` 的 partner sign replay / secret log 修正方向仍由 Arnold 提交，不能寫成 Nick 成果。
 - 本 flow 完成 Step 5，但只保留為 code-backed 面試素材；不更新正式履歷 / 自傳。
-- 不做完整 `game_api contribution claim consolidation`，因 Step 2 本批代表 flows 尚未都完成 Step 5。
+- 當時不做完整 `game_api contribution claim consolidation`；現在 agent bonus 也已完成 Step 5，下一步可做 project-level consolidation。
 
 ## Step 4 更新摘要
 
@@ -245,10 +245,10 @@ Nick / `10gt12nc` author filter：
 
 這條 flow 已完成 Step 5 單條 flow claim gate。它可以作為 code-backed 面試案例，但目前不能寫成 Nick 真實開發過。
 
-第三順位 `agent-bonus-receive-transfer` 已完成 Step 4，下一步做 Step 5。仍不做完整 `game_api contribution claim consolidation`。
+第三順位 `agent-bonus-receive-transfer` 已完成 Step 5。三條代表 flow 都已收斂，下一步可做完整 `game_api contribution claim consolidation`。
 
 下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 5
+iwin game_api contribution claim consolidation
 ```
