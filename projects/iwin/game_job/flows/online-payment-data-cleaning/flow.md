@@ -2,13 +2,13 @@
 
 ## 閱讀定位
 
-本文件是 `iwin game_job online-payment-data-cleaning Step 3` 主報告；Step 4 已完成正式面試 case。
+本文件是 `iwin game_job online-payment-data-cleaning Step 3` 主報告；Step 4 已完成正式面試 case，Step 5 已完成 claim gate。
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料。
 
 掃描深度：Level 2。已讀 `game_job` 的 Quartz 入口、`OnlinePaymentDataJob`、`OnlineDataHandleService`、`OnlineHandlerServerBase`、payment order mapper、economic day log mapper、`DailyEconomicDataTotalJob` 下游讀取與 path-specific history。這不是 Level 3 逐 commit diff 全量鑑識，也不是 production incident 復盤。
 
-證據層級：專案存在 / code-backed。這條 flow 目前沒有足夠 Nick / `10gt12nc` direct path evidence 可寫成真實開發過；可先作 payment reporting projection、replay safety、Redis 去重與下游 daily economic summary 的面試分析素材。
+證據層級：專案存在 / code-backed。這條 flow 目前沒有足夠 Nick / `10gt12nc` direct path evidence 可寫成真實開發過；Step 5 判定正式履歷 / 自傳不更新，保留為 payment reporting projection、replay safety、Redis 去重與下游 daily economic summary 的面試分析素材。
 
 ## 白話導讀
 
@@ -203,7 +203,7 @@ Owner 要追問：
 只推薦一件事：
 
 ```text
-iwin game_job online-payment-data-cleaning Step 5
+iwin game_job partition-table-creation Step 3
 ```
 
-原因：Step 4 已把這條轉成正式面試 case；下一步應做 claim gate，確認是否有新增 Nick 本人確認、MR、ticket、commit 或 production issue evidence。若沒有，正式履歷 / 自傳不更新，只保留為 code-backed 面試案例。
+原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。依同 project ranking，下一條未完成 candidate 是 `partition-table-creation`，可作 table rollover / schema rollout / batch 前置依賴的可靠性補充。

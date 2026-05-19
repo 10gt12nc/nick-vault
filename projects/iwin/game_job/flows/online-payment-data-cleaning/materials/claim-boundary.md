@@ -1,6 +1,6 @@
 # Claim Boundary: online-payment-data-cleaning
 
-## Step 4 判定
+## Step 5 最終判定
 
 目前判定：不更新正式履歷 / 自傳。
 
@@ -11,7 +11,7 @@
 - 已深讀 `OnlinePaymentDataJob` 核心 path，確認它是 payment reporting projection。
 - Step 4 已整理成可面試的 code-backed case，但不是 direct contribution evidence。
 - path-specific history 沒有看到 Nick / `10gt12nc` direct commit 可以證明 Nick 真實開發這條 flow。
-- 目前沒有 Nick 本人確認、MR、ticket、production issue 可補強。
+- Step 5 補查 direct path history、Nick / `10gt12nc` author commits、keyword history 與 production config 線索後，仍沒有 Nick 本人確認、MR、ticket、production issue 可補強。
 
 ## 可說
 
@@ -28,13 +28,15 @@
 - 我改善了支付報表正確率或效能 X%。
 - production 實際啟用狀態已確認。
 
-## Step 5 前需要補的 evidence
+## 若未來要升級，需要補的 evidence
 
 - Nick 本人確認是否實際參與過 online payment data cleaning。
 - `10gt12nc` 在 direct path 的 commit / branch / MR / ticket。
 - `payment` repo 是否有對應 source order 寫入 / 修復 commits，可把本 flow 和 payment source 串成更完整 case。
 - app_bi / BI 查詢端是否使用 Mongo `online_*` 或 `daily_economic_data_total`，以及是否有重複 / replay 風險。
 
-## Step 5 初步預期
+## 正式履歷 / 自傳判定
 
-若沒有新增 evidence，Step 5 大概率只會完成 claim gate：正式履歷 / 自傳不更新；保留為 code-backed 面試案例。若 Nick 補充本人確認，Step 5 可改判為「本人確認 + code-backed，待 commit / ticket 補強」，但仍不能寫成主導完整 payment owner。
+不更新 `senior-owner-playbook/05-resume-master-zh.md` 與 `senior-owner-playbook/08-application-autobiography-zh.md`。
+
+原因：這條 flow 很適合面試說明 money reporting projection，但目前 evidence 只支持「我分析過 / code-backed」，不支持「我開發 / 參與維護」。若 Nick 未來補充本人確認，可改判為「本人確認 + code-backed，待 commit / ticket 補強」，但仍不能寫成主導完整 payment owner。

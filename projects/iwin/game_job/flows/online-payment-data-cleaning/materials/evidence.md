@@ -8,7 +8,9 @@
 
 證據層級：專案存在 / code-backed；目前沒有足夠 Nick / `10gt12nc` direct path evidence 可標成真實開發過。
 
-Step 4 補充：已把 Step 3 主學習包轉成正式面試 case，補 30 秒 / 3 分鐘說法、STAR、Lead 追問、replay-safe 設計回答與 claim 邊界。這次仍未新增 direct contribution evidence，因此正式履歷 / 自傳不更新。
+Step 4 補充：已把 Step 3 主學習包轉成正式面試 case，補 30 秒 / 3 分鐘說法、STAR、Lead 追問、replay-safe 設計回答與 claim 邊界。
+
+Step 5 判定：已補查最新 remote refs、direct path history、Nick / `10gt12nc` author evidence、keyword history 與 production config 線索；仍未新增 direct contribution evidence，因此正式履歷 / 自傳不更新。本 flow 保留為 code-backed 面試案例。
 
 ## KB / vault 重讀
 
@@ -53,6 +55,12 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - 未掃 `payment` repo source of truth。
 - 未掃 app_bi 查詢端如何讀 Mongo `online_*` 或 `daily_economic_data_total`。
 
+補充：
+
+- `origin/k3s` / `dev-20260507-1405` 有 `c7352f2 feat(quartz): 對齊 prod 啟用 33 支 cron job`，其中 `src/main/resources/application-quartz.yml` 的 `onlinePaymentDataEnable=true`。
+- 但目前 `main` 的 `config/application-quartz.yml` 與 `src/main/resources/application-quartz.yml` 仍是 `onlinePaymentDataEnable=false`。
+- 因此只能說「有 k3s / prod 對齊分支啟用線索」，不能說已驗證 production 實際啟用。
+
 ## Step 4 產出紀錄
 
 本次更新：
@@ -67,6 +75,22 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - 沒有修改 `/Users/nick/Git/iwin/game_job` 公司 repo。
 - 沒有更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
 - 沒有把此 flow 標成 Nick 真實開發過。
+
+## Step 5 claim gate 產出紀錄
+
+本次補查：
+
+- direct path history：`OnlinePaymentDataJob.java`、`OnlineDataHandleService.java`、`OnlineHandlerServerBase.java`、`OnlinePaymentDataJobQuartz.java`、`PaymentOrderDao.xml`、`EconomicDataDayLogDao.xml`、`DailyEconomicDataTotalDao.xml`、`payment_order-month.sql`、`payment_diamond-month.sql`。
+- Nick / `10gt12nc` direct path author history：上述 direct path 沒有命中。
+- keyword history：`online payment`、`payment data`、`economic data`、`payment_order`、`OnlinePayment`。
+- downstream economic total path history：`DailyEconomicDataTotalJob.java`、`DailyEconomicDataTotalDao.java`、`DailyEconomicDataTotalDao.xml`。
+- production config 線索：`origin/k3s` 的 `c7352f2` 顯示 `onlinePaymentDataEnable=true`，但 main 仍為 false。
+
+Step 5 判定：
+
+- 可面試講：payment order reporting projection、資料日、Redis distinct uid、Mongo insert projection、MySQL delete+insert、downstream daily total、replay-safe 設計。
+- 不可放正式履歷：目前沒有 Nick direct path evidence，不能寫成真實開發 / 參與維護。
+- 不更新正式履歷 / 自傳。
 
 ## 已讀 code path
 
@@ -138,6 +162,7 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - `--author='10gt12nc|Nick|nick'` 在上述 direct path 沒有命中。
 - 目前不可把此 flow 標為 Nick 真實開發過。
 - `5346303` 變更的是 `DailyEconomicDataTotalJob` / `DailyEconomicDataTotalDao`，不是 `OnlinePaymentDataJob` direct path；可作下游 delete / insert 順序風險參考，不作 Nick contribution evidence。
+- Nick / `10gt12nc` 在較大範圍 `src/main/java/com/job/biTask`、`mapper/bilog`、`initBiTable` 有 daily summary、GSC backup、coupon 等 commits，但沒有命中本 flow direct path；不能把其他 game_job contribution 擴張成 online payment data cleaning。
 
 ## 已確認風險
 

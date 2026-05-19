@@ -1,6 +1,6 @@
 # Decision Notes: online-payment-data-cleaning
 
-完成狀態：Step 3。
+完成狀態：Step 5。
 
 用途：整理這條 payment reporting projection 的 owner decision、取捨與面試 framing。
 
@@ -115,9 +115,9 @@ Owner 判斷：
 - 若目標是可重算報表，人數去重最好能從 source SQL deterministic 重算。
 - 若用 Redis，replay SOP 要包含清理對應 date / service key。
 
-## Step 3 後仍不可升級的點
+## Step 5 claim gate 後仍不可升級的點
 
 - 不可寫 Nick 真實開發這條 flow，因 direct path 未見 Nick / `10gt12nc` commit。
 - 不可說這條是 payment callback / wallet source of truth。
-- 不可說 production 已驗證啟用，因 main config disabled。
+- 不可說 production 已驗證啟用；`origin/k3s` 有 prod 對齊啟用線索，但 main config disabled，實際部署仍未驗證。
 - 不可寫改善支付報表正確率、查帳時間或效能 X%。

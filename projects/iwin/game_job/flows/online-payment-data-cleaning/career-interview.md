@@ -1,8 +1,8 @@
 # online-payment-data-cleaning career-interview
 
-完成狀態：Step 4。
+完成狀態：Step 5。
 
-證據層級：專案存在 / code-backed。這條 flow 目前沒有足夠 Nick / `10gt12nc` direct path evidence 可寫成真實開發過；面試時只能說「我分析過 / code-backed 梳理過」，不能說「我開發 / 主導」。
+證據層級：專案存在 / code-backed。Step 5 已完成 claim gate：這條 flow 目前沒有足夠 Nick / `10gt12nc` direct path evidence 可寫成真實開發過；面試時只能說「我分析過 / code-backed 梳理過」，不能說「我開發 / 主導」。正式履歷 / 自傳不更新。
 
 ## 一句話版本
 
@@ -100,12 +100,18 @@ Result：可以把問題拆成 source、classification、dedupe、projection、d
 - 不說已驗證 production enable。
 - 不寫任何量化改善。
 
-## Step 5 預期
+## Step 5 判定
 
-若沒有新增 Nick 本人確認、MR、ticket、commit 或 production issue evidence，Step 5 大概率只會完成 claim gate，正式履歷 / 自傳不更新；此 flow 保留為 code-backed 面試案例。
+本次補查最新 remote refs、direct path history、Nick / `10gt12nc` author evidence 與 production config 線索後，仍未找到可把此 flow 標成 Nick 真實開發的直接證據。
+
+判定：
+
+- 正式履歷 / 自傳不更新。
+- 可保留為 code-backed 面試案例。
+- 不擴大成 payment owner、payment reporting owner 或完整 BI pipeline owner。
 
 ## 下一步
 
 ```text
-iwin game_job online-payment-data-cleaning Step 5
+iwin game_job partition-table-creation Step 3
 ```

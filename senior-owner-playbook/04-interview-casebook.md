@@ -199,6 +199,38 @@ Lead / Architect 追問：
 - retention policy 誰決定？30 天後 hard delete 是否合規？
 - 多 instance 或 manual endpoint 同時跑同 collection 怎麼鎖？
 
+## 案例 6-3：Payment reporting projection / replay-safe 報表
+
+對應 flow：
+
+- `game_job/online-payment-data-cleaning`
+
+證據邊界：
+
+- 已完成 Step 5 claim gate，只作 code-backed 面試 case，不更新正式履歷 / 自傳。
+- direct path history 未見 Nick / `10gt12nc` commit；不能說 Nick 開發或主導此 flow。
+- 這是 payment order reporting projection，不是 provider callback、payment source of truth、錢包上分或提款出款核心。
+
+面試主軸：
+
+payment order 進入 BI / economic reporting 後，仍然會影響 money reporting correctness。Senior 要能分清 source order、資料日、Redis distinct uid、Mongo insert projection、MySQL `economic_data_day_log` delete+insert 與 downstream daily total 的一致性邊界。
+
+可講重點：
+
+- `payment_order_{yyyy_m}` 成功訂單不是直接等於報表，需要經過 status、資料日、reason / tradeType / onlineType 分類。
+- `last_modify_time` 作為資料日會受 late callback、人工補單或修單影響。
+- Mongo insert、MySQL delete+insert、MySQL upsert、Redis 去重四種 state 語意不同，重跑策略不能混在一起。
+- `economic_data_day_log` 的空窗會傳到 `daily_economic_data_total`，影響 profit、pay rate、ARPU / ARPPU。
+- replay-safe 設計要先定義資料日與 projection 唯一鍵，再考慮 upsert、staging / versioned snapshot 與 downstream 重算順序。
+
+Lead / Architect 追問：
+
+- 如果 Mongo 已 insert，但 `economic_data_day_log` delete 後掛掉，下游會看到什麼？
+- `last_modify_time`、create time、provider event time 哪個才是報表資料日？
+- Redis distinct uid TTL 到期後，custom date replay 的人數語意是否一致？
+- Mongo 指標要保存 snapshot history 還是 deterministic latest state？
+- 怎麼避免 reporting 異常被誤判成 provider callback 或 wallet transaction 錯？
+
 ## 案例 7：遊戲局紀錄查詢 / 玩家申訴排查
 
 對應 flow：

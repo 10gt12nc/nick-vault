@@ -2,7 +2,7 @@
 
 更新時間：2026-05-19
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：已建立；目前前三條 flow 已完成 Step 5，第四條已完成 Step 4
+狀態：已建立；目前前四條 flow 已完成 Step 5
 證據層級：`daily-game-data-summary` 為真實開發過 + code-backed；`third-party-record-mongo-backup` 為局部真實開發過 + code-backed；其他候選 flow 依三層 claim gate 判斷
 
 ## 本次結論
@@ -14,7 +14,7 @@
 1. 第一條最值得做的是 `daily-game-data-summary`，因為它 evidence 最厚，且同時具備 batch correctness、時區邊界、重跑清除、projection consistency、retention 計算與備份清理。
 2. 第二順位 `third-party-record-mongo-backup` 已完成 Step 5，可保守寫局部 GSC Mongo backup 分批查詢與 batch size 調整。
 3. `coin-flow-batch-projection` 已完成 Step 5，Senior 價值已收斂到 Redis checkpoint、多來源增量 projection、custom date replay、MySQL 累加 upsert 與 Mongo delete+insert 的 consistency 題；正式履歷 / 自傳不更新。
-4. `online-payment-data-cleaning` 已完成 Step 4，可作 payment reporting projection 的 code-backed 面試 case；正式履歷 / 自傳暫不更新。
+4. `online-payment-data-cleaning` 已完成 Step 5，可作 payment reporting projection 的 code-backed 面試 case；正式履歷 / 自傳不更新。
 
 本 Step 2 本身不更新履歷；後續 `daily-game-data-summary` 與 `third-party-record-mongo-backup` 已完成 Step 5 claim gate，可保守更新正式履歷 / 自傳。其他候選 flow 仍需各自完成 claim gate。
 
@@ -67,16 +67,16 @@
 | 1 | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | job / service / mapper / 時區修正 / 重跑刪除 / 備份清理 evidence 最完整，且有 `10gt12nc` path-specific commits | upstream `log_reel` writer 與 app_bi 查詢端已在 Step 3 標示邊界 | 已完成 Step 5 |
 | 2 | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Antplay new / GSC log 與 transaction backup code 已 Step 3 深挖，Step 4 已轉面試 case，Step 5 已確認 `10gt12nc` GSC 分批查詢 / batch size 調整局部 claim | production enable、backup unique/idempotency、app_bi / 後台查詢端未確認 | 已完成 Step 5 |
 | 3 | `coin-flow-batch-projection` | 金幣流水清算 / 遊戲行為投影 | 高 | Step 5 已完成；Step 3 / 4 已深挖 `CoinFlowJob`、source mapper、Redis checkpoint、MySQL user behaviour、Mongo coin flow projection 與正式面試 case | production enable、upstream writer、BI 查詢端、Nick direct contribution 未確認 | 已完成 Step 5，不更新履歷 |
-| 4 | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | Step 4 已完成；`payment_order_{yyyy_m}`、Mongo `online_*`、MySQL `economic_data_day_log`、`payment_amount*` 與 downstream `daily_economic_data_total` 邊界已清楚，已轉正式面試 case | payment source of truth 在 `payment` repo；目前只是 reporting projection，Nick direct contribution 未確認 | 下一條 Step 5 |
-| 5 | `partition-table-creation` | 每日 / 每月分表建立 | 中低 | SQL template 與 channel DB 建表流程清楚 | 支撐性 flow，面試主題性較弱 | 作其他 flow 的可靠性補充 |
+| 4 | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | Step 5 已完成；`payment_order_{yyyy_m}`、Mongo `online_*`、MySQL `economic_data_day_log`、`payment_amount*` 與 downstream `daily_economic_data_total` 邊界已清楚，已轉正式面試 case | payment source of truth 在 `payment` repo；目前只是 reporting projection，Nick direct contribution 未確認 | 已完成 Step 5，不更新履歷 |
+| 5 | `partition-table-creation` | 每日 / 每月分表建立 | 中低 | SQL template 與 channel DB 建表流程清楚 | 支撐性 flow，面試主題性較弱 | 下一條 Step 3 |
 
 ## 下一步排序
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `game_job online-payment-data-cleaning Step 5`
-   - 原因：Step 4 正式面試 case 已完成；下一步要做 claim gate。
-   - 產出：確認是否有新增 Nick direct evidence，更新 `materials/claim-boundary.md` 與必要索引；大概率不更新正式履歷 / 自傳。
+1. `game_job partition-table-creation Step 3`
+   - 原因：前四條較高價值 flow 已完成 Step 5；同 project 下一條未完成 candidate 是每日 / 每月分表建立。
+   - 產出：建立 table rollover / schema rollout / batch 前置依賴的主學習包。
    - 是否更新履歷：否。
 
 本輪只推薦第一項。
@@ -264,10 +264,10 @@ Senior / Owner 價值：
 只推薦一件事：
 
 ```text
-iwin game_job online-payment-data-cleaning Step 5
+iwin game_job partition-table-creation Step 3
 ```
 
 原因：
 
-- `online-payment-data-cleaning` Step 4 已完成。
-- 同 flow 下一步應做 Step 4，整理成正式面試 case；目前預期未補 direct evidence 前不更新履歷。
+- `online-payment-data-cleaning` Step 5 已完成，正式履歷 / 自傳不更新。
+- 下一條未完成 candidate 是 `partition-table-creation`，可作其他 batch flow 的可靠性補充。
