@@ -245,10 +245,10 @@ Nick / `10gt12nc` author filter：
 
 這條 flow 已完成 Step 5 單條 flow claim gate。它可以作為 code-backed 面試案例，但目前不能寫成 Nick 真實開發過。
 
-下一步回到 `game_api` Step 2 ranking，做第三順位 `agent-bonus-receive-transfer` 的 Step 3。仍不做完整 `game_api contribution claim consolidation`。
+第三順位 `agent-bonus-receive-transfer` 已完成 Step 3，下一步做 Step 4。仍不做完整 `game_api contribution claim consolidation`。
 
 下一步：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 3
+iwin game_api agent-bonus-receive-transfer Step 4
 ```

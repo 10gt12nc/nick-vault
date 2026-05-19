@@ -13,7 +13,7 @@
 
 1. `coupon-redeem-credit-grant`：優惠券兌換上分與打碼要求，近期 commit 密集，money correctness 與 failure window 明顯，建議第一條深挖。
 2. `partner-deposit-withdraw-bill`：partner API 上分 / 下分 / 查單，直接涉及金額、訂單狀態、GM command 與 Mongo 分日表。
-3. `agent-bonus-receive-transfer`：代理佣金領取 / 轉帳，涉及 Mongo money balance、Redis projection、GM 上分與防重複提交。
+3. `agent-bonus-receive-transfer`：代理佣金領取 / 轉帳，涉及 Mongo money balance、Redis projection、GM 上分與防重複提交；已完成 Step 3，下一步 Step 4。
 4. `game-record-dynamic-table-query`：玩家 / partner 遊戲戰績查詢，涉及按日動態表、分頁、金額倍率與 troubleshooting。
 5. `login-register-token-cache`：玩家登入註冊、token、Redis cache、停服白名單、shareinstall / 第三方登入，屬於高流量入口。
 
@@ -77,7 +77,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/game_api/README.md` | 已建立 / 已同步 | 專案入口，已同步 coupon 與 partner 兩條 flow 已完成 Step 5，下一步回 Step 2 ranking 第三順位 |
+| `projects/iwin/game_api/README.md` | 已建立 / 已同步 | 專案入口，已同步 coupon / partner 已完成 Step 5，agent bonus 已完成 Step 3，下一步 Step 4 |
 | `projects/iwin/game_api/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | workspace 舊分析 `docs/專案分析/game_api.md` | 可參考 / 不搬運 | 有專案概覽與 API / DB / Redis 線索，但含舊環境資訊與敏感配置，不能直接複製進 vault |
 
@@ -436,11 +436,11 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 只推薦一件事：
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 3
+iwin game_api agent-bonus-receive-transfer Step 4
 ```
 
 原因：
 
-- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 5 也已完成。
-- 下一步應對第三順位 `agent-bonus-receive-transfer` 做 Step 3 深掃；仍不直接做完整 `game_api` project 履歷結論。
+- coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 5 也已完成，`agent-bonus-receive-transfer` Step 3 已完成。
+- 下一步應對第三順位 `agent-bonus-receive-transfer` 做 Step 4 面試收斂；仍不直接做完整 `game_api` project 履歷結論。
 - 需要 commit；不需要 push，除非 Nick 明確要求。

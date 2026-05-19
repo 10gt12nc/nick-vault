@@ -58,5 +58,5 @@ Step：5
 ## 下一步
 
 ```text
-iwin game_api agent-bonus-receive-transfer Step 3
+iwin game_api agent-bonus-receive-transfer Step 4
 ```
