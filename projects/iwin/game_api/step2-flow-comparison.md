@@ -131,7 +131,7 @@ coupon-redeem-credit-grant
 ## 1. `coupon-redeem-credit-grant`
 
 中文名稱：優惠券兌換上分 / 打碼要求
-建議：已完成 Step 5 claim gate，下一步轉 `game_api contribution claim consolidation`
+建議：已完成 Step 5 claim gate；因目前只有單條完整 flow，下一步轉第二順位 `partner-deposit-withdraw-bill Step 3`
 證據層級：真實開發過 + code-backed
 
 ### 已確認
@@ -196,7 +196,7 @@ Step 3 已補讀：
 
 ### 履歷邊界
 
-Step 5 後可作 project contribution consolidation evidence；正式 05 / 08 仍需先做 `game_api contribution claim consolidation`。
+Step 5 後可作 flow evidence；但目前只有單條完整 flow，不足以做完整 `game_api contribution claim consolidation`。下一步應補 `partner-deposit-withdraw-bill Step 3`。
 
 Step 5 已補到 Nick evidence，可以保守寫成：
 
@@ -213,7 +213,7 @@ Step 4 已完成：
 - `flows/coupon-redeem-credit-grant/materials/interview.md`
 - `flows/coupon-redeem-credit-grant/materials/claim-boundary.md`
 
-Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `game_api contribution claim consolidation`。
+Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `partner-deposit-withdraw-bill Step 3`，補足 Step 2 本批代表 flows。
 
 ## 2. `partner-deposit-withdraw-bill`
 
@@ -479,13 +479,13 @@ Step 5 已完成：可形成單條 flow 安全 claim evidence。下一步轉 `ga
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 為什麼現在做它：
 
 - `coupon-redeem-credit-grant` 已完成 Step 5。
-- 同 project 第一條 flow 已收斂，但尚未做 project-level contribution consolidation。
+- 同 project 第一條 flow 已收斂，但 Step 2 本批代表 flows 未完成，不足以做完整 project-level contribution consolidation。
 
 會產出什麼：
 
@@ -494,7 +494,7 @@ iwin game_api contribution claim consolidation
 
 是否更新履歷：
 
-- `coupon-redeem-credit-grant` 已有 strong evidence；正式履歷 / 自傳需以 `game_api contribution claim consolidation` 結論為準。
+- `coupon-redeem-credit-grant` 已有 strong evidence；正式履歷 / 自傳只能保守沿用單條 flow claim，完整 project claim 需等更多代表 flow 後再 consolidation。
 
 是否需要 commit / push：
 

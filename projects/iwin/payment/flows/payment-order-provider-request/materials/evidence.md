@@ -179,5 +179,5 @@ payment：
 ## 下一步
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```

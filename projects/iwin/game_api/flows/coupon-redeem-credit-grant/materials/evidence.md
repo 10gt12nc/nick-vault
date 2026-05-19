@@ -11,7 +11,7 @@ Step：5
 
 - `真實開發過`：Nick / `10gt12nc` 參與 `game_api` coupon redeem flow 開發。
 - `真實開發過`：Nick / `10gt12nc` 參與 `iwin_gameserver` coupon bet target handler 對接。
-- 可作正式履歷 / 自傳候選 evidence；若採用只能用「參與 / 開發」口徑，不寫主導完整 coupon / reward system，且需先經 `game_api contribution claim consolidation`。
+- 可作正式履歷 / 自傳候選 evidence；若採用只能用「參與 / 開發」口徑，不寫主導完整 coupon / reward system，且需等 Step 2 本批代表 flows 完成後再經 `game_api contribution claim consolidation`。
 
 ## Step 4 更新摘要
 
@@ -47,7 +47,7 @@ Step 4 當時尚未補到 Nick path-specific evidence，因此不更新正式履
 | --- | --- | --- |
 | `README.md` | 已同步 | Step 5 完成後已更新 flow 狀態與下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 候選 flow 盤點仍成立 |
-| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 5，下一步轉 `game_api contribution claim consolidation` |
+| `step2-flow-comparison.md` | 已同步 | 已更新本 flow 狀態為 Step 5；因 Step 2 本批代表 flows 未完成，下一步轉 `partner-deposit-withdraw-bill Step 3` |
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 使用新 flow package 結構；面試案例、evidence 與 claim boundary 已補齊 |
 
 ## Code Repo 最新狀態

@@ -407,7 +407,7 @@ Step 5 claim gate 結論：
 - 面試可講提款 money correctness、扣分後建單 failure window、自動審核條件、provider accepted 不等於成功、失敗退款防重複、`billNo` cross-system trace 與 reconciliation 邊界。
 - 不可說 Nick 主導 / 設計自動出款，不可說 Nick 修過重複退款 bug，不可說下游 game lobby 已確認具備 `billNo` exactly-once 去重。
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api contribution claim consolidation`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 3`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

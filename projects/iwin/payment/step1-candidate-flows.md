@@ -89,7 +89,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 與 project-level contribution consolidation 都已完成，下一步回到 `game_api contribution claim consolidation` |
+| `projects/iwin/payment/README.md` | 已建立 / 已同步 | 專案入口，已同步目前 payment Top 5 flow 與 project-level contribution consolidation 都已完成，下一步回到 `game_api partner-deposit-withdraw-bill Step 3` |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 / 需接 payment | 已正確標出 payment repair 不能只在 `app_bi` 深挖 |
 | workspace 舊 payment 文件 | 可參考 / 不搬運 | 有舊 KB 與專案文件，但可能含環境資訊與敏感配置，不能直接複製進 vault |
@@ -413,14 +413,14 @@ production 風險：
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 為什麼現在做它：
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂。
 - 這不代表 payment 全專案完成；只是目前履歷 claim 已足夠保守使用。
-- 目前總 queue 已移到 `game_api contribution claim consolidation`，先補單條 coupon Step 5 之後的 project-level claim 邊界。
+- 目前總 queue 已移到 `game_api partner-deposit-withdraw-bill Step 3`，先補 game_api 第二條代表 money API flow。
 
 會產出什麼：
 

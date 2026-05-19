@@ -351,14 +351,14 @@ code-backed runtime config consistency 面試案例
 不是正式履歷成果
 ```
 
-payment project 目前 Top 5 代表 flow 都已完成到 Step 5，project-level contribution consolidation 也已完成；這代表履歷 claim 已先保守收斂，不代表全 payment project 都整理完。下一步依目前總 queue，先做 `game_api contribution claim consolidation`。
+payment project 目前 Top 5 代表 flow 都已完成到 Step 5，project-level contribution consolidation 也已完成；這代表履歷 claim 已先保守收斂，不代表全 payment project 都整理完。下一步依目前總 queue，先做 `game_api partner-deposit-withdraw-bill Step 3`。
 
 ## 13. 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

@@ -231,12 +231,12 @@ Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`ga
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - Step 3 已建立主學習包。
-- 但本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim。
+- 但本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim；下一步先轉 Step 4 面試 case。
 - 下一步應先做 `iwin_gameserver` project-level contribution consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence。
 - consolidation 後再決定是否把本 flow 轉 Step 4 面試 case，或是否有足夠 evidence 更新履歷 / 自傳。

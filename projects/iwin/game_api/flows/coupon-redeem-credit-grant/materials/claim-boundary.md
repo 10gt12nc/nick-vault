@@ -98,6 +98,6 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 仍以 `game_api contribution claim consolidation` 為準。
+- 可作履歷候選 evidence：真實開發過。Nick / `10gt12nc` 有 coupon flow path-specific commits，可候選寫法為「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」；正式 05 / 08 需等 Step 2 本批代表 flows 完成後，再由 `game_api contribution claim consolidation` 統一判斷。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon / reward 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。

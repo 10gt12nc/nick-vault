@@ -60,4 +60,4 @@
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api contribution claim consolidation`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 3`。

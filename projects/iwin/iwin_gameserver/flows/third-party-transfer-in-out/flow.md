@@ -238,7 +238,7 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：

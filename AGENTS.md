@@ -28,7 +28,7 @@
 - 新建或重整後的 flow 資料夾，預設只讓 Nick 直接讀 `flow.md` 與該 flow 的 `career-interview.md`；其他 evidence、decision、interview、claim 邊界要收在 `materials/`，避免主閱讀面混亂。既有 `iwin` 舊資料夾這輪先不搬，等 Nick 明確要求再遷移。
 - flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
 - Nick 本人明確說「我做過 / 我開發很多 / 這是我負責或參與的」時，屬於 `本人確認` evidence，不能被 AI 當成沒有 evidence。AI 必須把它和 commit / MR / ticket 一起納入 claim 判斷，但仍要保守標示為「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，不得反過來把 Nick 的經驗抹掉。
-- Flow 線與履歷 / 自傳線必須分開：Flow 線是 `Step 1 -> Step 2 -> 單條 flow Step 3 -> Step 4 -> Step 5`，負責系統理解、深掃規範、面試 case 與單條 flow claim gate；履歷 / 自傳線是 `project contribution claim consolidation -> 05 / 08`，負責 project-level 經驗包裝。`05-resume-master-zh.md` / `08-application-autobiography-zh.md` 原則上只吃 project-level consolidation 結果，不直接吃單條 flow Step 5 結論。單條 flow Step 5 不能代表整個 project 履歷結論；project contribution consolidation 也不要求全 project 所有 flow 都 Step 5。
+- Flow 線與履歷 / 自傳線必須分開：Flow 線是 `Step 1 -> Step 2 -> 單條 flow Step 3 -> Step 4 -> Step 5`，負責系統理解、深掃規範、面試 case 與單條 flow claim gate；履歷 / 自傳線是 `project contribution claim consolidation -> 05 / 08`，負責 project-level 經驗包裝。`05-resume-master-zh.md` / `08-application-autobiography-zh.md` 原則上只吃 project-level consolidation 結果，不直接吃單條 flow Step 5 結論。單條 flow Step 5 不能代表整個 project 履歷結論；完整 project contribution consolidation 預設必須等 Step 2 定義的本批代表 flows 都完成到 Step 5。
 - 參考 workspace 正確路徑：
   - `/Users/nick/Git/iwin/iwin-workspace`
   - `/Users/nick/Git/antplay/math-workspace`
@@ -74,7 +74,7 @@
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 下一步判斷必須先看 Nick 當下是不是在要求「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」。若是，AI 只能先維護 todo / KB / index，把缺口列清楚並等待 Nick 指定下一個 flow Step；不得把自己列出的缺口自動當成已授權執行 Step 4 / Step 5。
-- 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若目前 project 已累積 code-backed flow，但尚未做 project-level contribution consolidation，且 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或 AI 準備建議 Step 4 / Step 5 / 更新履歷前，必須先建議並執行 `{project} contribution claim consolidation`。這個 consolidation 是履歷 claim gate，不是亂創新 Step；做完後才回到 Step 4 / Step 5 或下一條 flow。
+- 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若目前 project 已累積 code-backed flow，但尚未做 project-level contribution consolidation，且 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或 AI 準備建議 Step 4 / Step 5 / 更新履歷前，必須先檢查 Step 2 定義的本批代表 flows 是否都完成到 Step 5。未完成時，只能回 Step 2 ranking 繼續同 project 下一條 flow；都完成後才建議並執行 `{project} contribution claim consolidation`。這個 consolidation 是履歷 claim gate，不是亂創新 Step。
 - 如果 Step 3 已完成且文件乾淨，且不涉及履歷 / 自傳 / contribution claim gate，下一步預設是 Step 4，不是下游定位或其他自創任務。
 - 如果只有 Step 1，下一步預設是 Step 2；沒有 Step 2 時，不得直接跳 Step 3 / 建 flow folder。
 - 如果某條 flow 已完成 Step 5，下一步預設回到同 project 的 candidate flow ranking，選下一條未完成 flow；不要自動跨 project。
@@ -88,9 +88,9 @@
 - 架構圖與流程圖是 `flow.md` 的教學入口，不是新 Step、不是額外任務、也不是要畫沒有 evidence 的大圖。圖只畫本 flow 已確認或明確標示待確認的上下游。
 - `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 只有在專案整理到足夠完整後才做最終版。最終更新前必須深度掃描 code 分支、path-specific history、重要 commit diff、所有 KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
 - 履歷 / 自傳更新不得只根據單條 flow Step 5 直接寫入。若要更新 05 / 08，必須先有對應 project 的 contribution claim consolidation，或在本輪先完成它。
-- 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。必須先做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。
-- 即使 Nick 沒先說「我做很多」，只要某 project 已經開始形成可面試 code-backed 素材，而 AI 的下一步會影響履歷 claim 或 Nick 明確追問履歷價值，就要先做該 project 的 contribution consolidation；不得因為「Step 3 乾淨預設 Step 4」而跳過 claim gate。
-- contribution consolidation 不要求該 project 所有 candidate flow 都做到 Step 5。它掃的是 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認與已完成 flow evidence，用來先建立履歷 claim 邊界；可在任一代表 flow 完成、Nick 追問履歷、或準備更新履歷前執行。
+- 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。必須先確認 Step 2 定義的本批代表 flows 是否都完成到 Step 5；都完成後才做 project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、所有 flow KB、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。若本批代表 flows 未完成，先補同 project 下一條 flow。
+- 即使 Nick 沒先說「我做很多」，只要某 project 已經開始形成可面試 code-backed 素材，而 AI 的下一步會影響履歷 claim 或 Nick 明確追問履歷價值，也要先檢查 Step 2 定義的本批代表 flows 是否都完成到 Step 5；完成後才做該 project 的 contribution consolidation，未完成時先補同 project 下一條 flow。
+- 完整 project-level contribution consolidation 預設要等該 project 的 Step 2 所定義「本批代表 flows / Top candidate flows」全部完成到 Step 5，或 Nick 明確縮小本批 consolidation scope 並接受只做 limited consolidation。consolidation 除了掃 code，也必須重讀該 project 所有 flow KB：`flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/claim-boundary.md`、`materials/interview.md`、`materials/decision-notes.md`、README / Step 文件。若只有單條 flow Step 5，只能保留為單條 flow claim evidence；不得推薦或命名為完整 project consolidation，下一步應回 Step 2 ranking 繼續做同 project 下一條 flow。
 
 ## Flow 格式
 

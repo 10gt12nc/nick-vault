@@ -61,41 +61,43 @@
 
 Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須先維護本檔與相關 index，不直接開工 flow Step。
 
+完整 `contribution claim consolidation` 只能在 Step 2 定義的本批代表 flows 全部完成 Step 5 後進行；執行時除了掃 code，也要重讀該 project 所有 flow KB。未完成前只能列為待辦或做單條 flow claim evidence，不能升級成完整 project 履歷結論。
+
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
-1. `game_api contribution claim consolidation`：缺 project-level 貢獻收斂。`coupon-redeem-credit-grant` Step 5 有 direct evidence，但不能直接代表整個 `game_api` project 履歷結論。
-2. `game_job contribution claim consolidation`：缺 project-level 貢獻收斂。`daily-game-data-summary` 與 `third-party-record-mongo-backup` 有正向 evidence，其他 flow 多為 code-backed，需統一成「可放履歷 / 可面試講 / 不可誇大」三層。
-3. `iwin_gameserver contribution claim consolidation`：缺 project-level 貢獻收斂。已有 gameserver money / wallet 類 code-backed flow，但不能把分析素材誤寫成 Nick 真實開發。
+1. `game_api partner-deposit-withdraw-bill Step 3`：`game_api` 目前只有 `coupon-redeem-credit-grant` 一條完整 Step 5 flow，Step 2 本批代表 flows 未完成；先補 Step 2 第二順位 money API。
+2. `game_job contribution claim consolidation`：Top 5 代表 flows 已完成 Step 5，才可做 project-level 貢獻收斂；需重讀所有 game_job flow KB、掃 Nick / `10gt12nc` code commits / branches / 重要 diff，統一成「可放履歷 / 可面試講 / 不可誇大」三層。
+3. `iwin_gameserver center-http-deposit-withdraw Step 4`：gameserver 也不應過早做完整 consolidation；先把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
 4. 舊 flow-level 語氣待修：`game_api/coupon-redeem-credit-grant` 與 `game_job/daily-game-data-summary` 的部分 evidence / interview 文字仍有「更新正式履歷 / 自傳：是」或「Step 5 已更新 05 / 08」的舊語氣；新 KB 下應改成「可作 project consolidation evidence，正式 05 / 08 以 project-level consolidation 為準」。這是文件語氣修正，不是要重做 flow。
 5. `payment` 小修待辦：project-level consolidation 已完成，但少數 flow-level 檔仍寫「本 flow 可更新 05 / 08」的舊語氣；應統一改成「已由 payment contribution consolidation 收斂，單 flow 不直接決定正式履歷」。
 6. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
 7. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 
-### 1. iwin game_api contribution claim consolidation
+### 1. iwin game_api partner-deposit-withdraw-bill Step 3
 
 建議下一步：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 原因：
 
 - `game_api coupon-redeem-credit-grant` 已完成 Step 5，且已有 Nick / `10gt12nc` path-specific direct commits。
-- 依最新 KB，單條 flow Step 5 不能直接代表整個 `game_api` project 履歷結論；正式 05 / 08 要吃 project-level consolidation。
-- 下一步要先掃 Nick / `10gt12nc` commits、branches、重要 diff、coupon flow evidence 與其他 game_api candidate flow 邊界，整理「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」三層。
-- `payment` 已完成 project-level consolidation，不需要因新規則重做；`game_job` 排在 game_api 之後。
+- 但只有一條 flow 不足以做完整 project-level consolidation；剛剛已修正 KB，避免單條 flow 直接升級成完整 project 履歷結論。
+- 下一步回 Step 2 ranking，做第二順位 `partner-deposit-withdraw-bill Step 3`，補足 partner 上分 / 下分 / 查單這條更接近 money API 的代表 flow。
+- 這輪不更新正式履歷；只建立第二條 flow 的深掃學習包。
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin game_api contribution claim consolidation`。以下是近期各 project 的局部下一步：
+目前總優先是 `iwin game_api partner-deposit-withdraw-bill Step 3`。以下是近期各 project 的局部下一步：
 
-1. `game_api`：`contribution claim consolidation`，因為 coupon Step 5 已有 direct evidence，但尚未 project-level 收斂。
+1. `game_api`：`partner-deposit-withdraw-bill Step 3`，因為 coupon 只有單條完整 flow，還不能做完整 project consolidation。
 2. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
 3. `app_bi`：主要 flow 已收斂；不回 app_bi 搶履歷 claim。
-4. `game_job`：`contribution claim consolidation`，因為多條 Step 5 已完成但尚未 project-level 收斂。
+4. `game_job`：`contribution claim consolidation`，因為 Top 5 代表 flows 已完成 Step 5 但尚未 project-level 收斂。
 5. `third_games_api`：project-local 下一步是 `gsc-transfer-bet-settle-rollback Step 5`。
-6. `iwin_gameserver`：`contribution claim consolidation`，排在 game_api / game_job 之後。
+6. `iwin_gameserver`：先做 `center-http-deposit-withdraw Step 4`，不要過早完整 consolidation。
 7. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
 
 ### 3. 每條完成後自動判斷是否更新
@@ -115,12 +117,12 @@ iwin game_api contribution claim consolidation
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，先補 `game_api contribution claim consolidation`，避免單條 coupon Step 5 直接代表整個 project；`payment` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_job` 多條 Step 5 已完成但尚未 project-level claim，排在 game_api 之後；`iwin_gameserver center-http-deposit-withdraw Step 3` 已完成，但 gameserver 排在 game_job consolidation 之後。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment` 的履歷 claim 已先保守收斂，不需要因新規則重做；`game_api` 因目前只有 coupon 一條完整 flow，先做 `partner-deposit-withdraw-bill Step 3` 補本批代表 flows；`game_job` Top 5 代表 flows 已完成但尚未 project-level claim，可排在 game_api 下一條 flow 後或 Nick 指定時做 consolidation。
 
 ## 下一個 prompt
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

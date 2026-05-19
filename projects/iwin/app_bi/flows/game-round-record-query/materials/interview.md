@@ -206,7 +206,7 @@ Step 5 補充：`iwin_gameserver` 的 log writer / Antplay-GSC 戰績相關 path
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 原因：

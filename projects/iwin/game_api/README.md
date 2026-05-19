@@ -19,7 +19,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 production flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 coupon、partner 上下分、代理分潤、戰績查詢、登入註冊；建議先深挖 coupon |
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 已完成優惠券兌換上分 / 打碼要求 Level 2+ claim gate；`10gt12nc` 在 coupon Controller / Service / DAO / mapper / entity 與 gameserver bet target handler 有 path-specific commits，可作 project contribution consolidation evidence |
-| `contribution-claim-consolidation.md` | 待做 | 依最新 KB，單條 coupon Step 5 不能直接代表整個 `game_api` project 履歷結論 |
+| `contribution-claim-consolidation.md` | 暫緩 | 依最新 KB，單條 coupon Step 5 不能直接代表整個 `game_api` project；先補第二條代表 flow |
 
 ## 專案定位
 
@@ -67,16 +67,16 @@
 只推薦一件事：
 
 ```text
-iwin game_api contribution claim consolidation
+iwin game_api partner-deposit-withdraw-bill Step 3
 ```
 
 原因：
 
 - `coupon-redeem-credit-grant` Step 5 已完成，且已有 Nick / `10gt12nc` direct path evidence。
-- 單條 coupon Step 5 不能直接代表整個 `game_api` project 履歷結論；下一步應做 project-level contribution consolidation。
+- 但單條 coupon Step 5 不能代表完整 `game_api` project；下一步應回 Step 2 ranking，補第二順位 `partner-deposit-withdraw-bill`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：待 project-level consolidation 後確認。Nick / `10gt12nc` 在 coupon redeem 相關 `game_api` 與 `iwin_gameserver` code 有 path-specific commits，可作「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」的 strong evidence。
+- 可放履歷：coupon flow 可作單條 flow evidence。完整 project-level consolidation 暫緩，等 `game_api` 補足更多代表 flow 後再做。
 - 可面試講：code-backed / 分析過。可用 coupon redeem credit grant 說明跨系統 money side effect、transaction boundary、idempotency、partial success 與 reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 coupon / reward 系統、修復雙領 production bug、設計 Redis lock、負責完整玩家端 API owner 或完整 wallet / reconciliation owner。

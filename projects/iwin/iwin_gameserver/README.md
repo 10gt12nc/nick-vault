@@ -94,14 +94,14 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已建立主學習包。
-- 但目前 `iwin_gameserver` 的正式履歷 claim 仍缺 project-level Nick / `10gt12nc` 貢獻收斂。
-- 下一步應先掃全部 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence，整理「可放履歷 / 可面試講 / 不可誇大」三層，再決定哪些 gameserver flow 能進履歷或只作面試素材。
+- 但 Step 2 本批代表 flows 尚未完成，不應過早做完整 project-level consolidation。
+- 下一步先把 center_http 上分 / 下分轉成 Step 4 面試 case；完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
