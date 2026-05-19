@@ -1,15 +1,16 @@
 # Claim Boundary: coin-flow-batch-projection
 
-## Step 4 判定
+## Step 5 判定
 
-目前判定：不更新正式履歷 / 自傳。
+最終判定：不更新正式履歷 / 自傳。
 
 證據層級：專案存在 / code-backed。
 
 原因：
 
 - 已深讀 `CoinFlowJob` 核心 path，並已轉成 Step 4 正式面試 case。
-- path-specific history 沒有足夠 Nick / `10gt12nc` direct commit 可以證明 Nick 真實開發這條 flow。
+- Step 5 已再次查核 source repo 狀態與 path-specific history；`CoinFlowJob.java` / coin flow model / mapper path 未看到足夠 Nick / `10gt12nc` direct ownership evidence。
+- `10gt12nc` 在相鄰 mapper / coin flow 相關 path 可見的 commit 主要是 daily summary 類調整，不能外推成 Nick 真實開發 `coin-flow-batch-projection`。
 - 目前沒有 Nick 本人確認、MR、ticket、production issue 可補強。
 
 ## 可說
@@ -26,13 +27,22 @@
 - 我改善了報表正確率或效能 X%。
 - production 實際啟用狀態已確認。
 
-## Step 5 前需要補的 evidence
+## 正式履歷 / 自傳
+
+本輪不更新：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+
+原因是 evidence 只能支撐「code-backed 分析過」，不足以支撐「真實開發過」或「參與開發 / 維護」。
+
+## 未來若要升級 claim 需要補的 evidence
 
 - Nick 本人確認是否實際參與過 coin flow。
 - `10gt12nc` 在 coin flow direct path 的 commit / branch / MR / ticket。
 - production issue 或修復紀錄。
 - app_bi / BI 查詢端是否把此 projection 用於重要報表。
 
-## Step 5 初步預期
+## 最終用法
 
-若沒有新增 evidence，Step 5 大概率維持「不更新正式履歷 / 自傳」。這條可留作 code-backed 面試 case，展示 batch projection、checkpoint consistency、replay 與 observability 分析能力。
+這條保留為 code-backed 面試 case，展示 batch projection、checkpoint consistency、replay 與 observability 分析能力；不放正式履歷，不包裝成 Nick 主導或真實開發成果。

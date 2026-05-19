@@ -236,18 +236,18 @@ delete active by _id
 - 不可說 Nick owner 完整 Antplay / GSC audit retention。
 - 不可說這條 flow 已改善查帳效率或 storage 成本。
 
-Step 5 前只能保守標成 code-backed / 分析過；`10gt12nc` 的 GSC 分批查詢 commit 要在 claim gate 再判斷是否能升級成「局部真實開發過」。
+Step 5 已完成，`10gt12nc` 的 GSC 分批查詢 / batch size 調整 commit 可保守升級成「局部真實開發過」；仍不可擴大成完整第三方紀錄備份 owner。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin game_job coin-flow-batch-projection Step 5
+iwin game_job online-payment-data-cleaning Step 3
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，claim 已收斂為局部真實開發過。
-- `coin-flow-batch-projection` Step 4 已完成，下一步應做 Step 5 claim gate。
-- 目前預期未補 direct evidence 前不更新履歷。
+- `coin-flow-batch-projection` Step 5 已完成，正式履歷 / 自傳不更新。
+- 同 project 下一條候選 flow 是 `online-payment-data-cleaning`，可補 payment order reporting projection / reconciliation 視角。

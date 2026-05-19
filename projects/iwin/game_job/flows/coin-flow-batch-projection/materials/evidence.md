@@ -6,7 +6,7 @@
 
 掃描等級：Level 2。
 
-證據層級：專案存在 / code-backed；Step 4 已轉正式面試 case，Nick 貢獻待 Step 5 claim gate。
+證據層級：專案存在 / code-backed；Step 5 已完成 claim gate，正式履歷 / 自傳不更新。
 
 ## KB / vault 重讀
 
@@ -43,6 +43,7 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - ahead / behind：`0 / 0`
 - 工作區：乾淨
 - Step 4 前已再次 fetch，local / remote HEAD 仍一致。
+- Step 5 前已再次 fetch，local / remote HEAD 仍一致。
 
 未做：
 
@@ -111,6 +112,11 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - 相關 coin flow / mapper path 可見 `10gt12nc` 的 daily summary 類 commits，但這些不是 coin flow direct ownership evidence。
 - 目前不可把此 flow 標為 Nick 真實開發過。
 
+Step 5 重查：
+
+- `git log --all` 於 `CoinFlowJob.java`、coin flow model、`CoinFlowUtils.java`、`UserGameBehaviourDao.xml`、`LogReelDao.xml`、`LogJackpotDao.xml`、`LogTaxtDao.xml` 只看到 first commit、2026 k3s / Java 21 遷移，以及 `10gt12nc` 的 daily summary 類相鄰 mapper commits。
+- `git log --all --author='10gt12nc|Nick|nick'` 於同組 path 只看到 daily summary 類 commits，不能當作 coin flow direct contribution。
+
 ## Step 4 產出
 
 已更新：
@@ -118,6 +124,23 @@ Repo：`/Users/nick/Git/iwin/game_job`
 - `career-interview.md`：正式 30 秒、3 分鐘、STAR、常見追問、Lead / Architect 追問、可說 / 不可說。
 - `materials/interview.md`：面試口語開場、深入講法、STAR 素材、追問回答與可用句子。
 - `materials/claim-boundary.md`：更新 Step 4 判定；未補 direct evidence 前不更新正式履歷 / 自傳。
+
+## Step 5 產出
+
+已更新：
+
+- `materials/claim-boundary.md`：完成 Step 5 claim gate，最終判定不更新正式履歷 / 自傳。
+- `flow.md`：同步 Step 5 結論與下一步。
+- `career-interview.md`：同步面試素材可用、履歷不可用與下一條建議。
+- `projects/iwin/game_job/README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`：同步本 flow 已完成 Step 5。
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`、`06-todo.md`：同步下一步回到 `online-payment-data-cleaning Step 3`。
+
+未更新：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+
+原因：目前 evidence 只能支撐 code-backed 面試分析，不足以支撐真實開發或參與維護 claim。
 
 ## 已確認風險
 
