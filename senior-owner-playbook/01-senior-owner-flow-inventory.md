@@ -50,7 +50,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | 21 | `buffer-id` | 若是 ID generator，可當 platform 小亮點，需確認 |
 | 22 | `ci-template` | CI 標準化素材，中等偏輔助 |
 | 23 | `antplay-docker-deploys` | Docker deploy / env 管理，價值看 production 接近度 |
-| 24 | `bi_share` | 可能偏 BI / share 報表，需 Step 1 確認 |
+| 24 | `bi_share` | 已做 rolling / scoped negative consolidation；偏 legacy Laravel 分享 / 佣金 / BI 報表，未見 Nick direct commits，不當正式履歷主線 |
 | 25 | `shareinstall-back` | 安裝歸因 / tracking / reward 可能有價值，但目前未知 |
 | 26 | `payment-thirdparty-simulator` | 支援 payment 測試，不當主專案 |
 | 27 | `platform-mock` | mock / contract 支援，不當主線 |
@@ -115,15 +115,16 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 已完成 | 部分真實開發過 + code-backed；daily summary + GSC backup direct evidence | 是，保守更新 | 履歷 claim 已收斂 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂，待回 ranking |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 3 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 3，先做 Step 4 |
-| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 可做 rolling / scoped | 可先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow KB | 待確認 | 但目前下一步仍先做 center_http Step 4 |
+| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 可做 rolling / scoped | 可先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow KB | 待確認 | Career Track 下一步 |
 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 5 |
+| iwin | bi_share | `contribution-claim-consolidation` | bi_share rolling / scoped negative 收口 | 中低 | 已完成 | 專案存在 / code-backed；Nick bi_share direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂；若要深挖先做 Step 1 |
 
 ## 下一步推薦
 
 目前只推薦一件事:
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因:
@@ -131,7 +132,8 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 - `game_job` contribution claim consolidation 已完成，不需要重做。
 - `payment` 已完成 consolidation，不需要重做。
 - `game_api` contribution claim consolidation 已完成，不需要重做。
-- `iwin_gameserver` 的 `center-http-deposit-withdraw` 已完成 Step 3，下一步先轉 Step 4 面試 case，不要過早做 project-level consolidation。
+- `app_bi` 與 `bi_share` 都已完成 rolling / scoped negative 收口，不放正式履歷主成果。
+- 若近期優先是履歷風險收斂，`iwin_gameserver` 比繼續補 legacy BI 題材更值得先做 rolling / scoped contribution consolidation；後續 Flow Track 仍照舊補 `center-http-deposit-withdraw Step 4`。
 
 ## 近期候選 Queue
 
@@ -148,6 +150,8 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 | 7 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
 | 8 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | provider integration / request log / adapter contract | `ugsoft-connector-api Step 1` |
 | 9 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
+
+Career Track 補充：若 Nick 明確要「先把 contribution consolidation 用完」，近期可先做 `iwin iwin_gameserver contribution claim consolidation`；這是 rolling / scoped 履歷風險收斂，不取代 `center-http-deposit-withdraw Step 4`。
 
 ## Domain Backlog
 
