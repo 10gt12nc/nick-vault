@@ -29,6 +29,8 @@
 
 > 2026-05-20 ugsoft-workspace consolidation：已完成 `projects/ugsoft/ugsoft-workspace/contribution-claim-consolidation.md`。投遞自傳不新增 workspace 主成果；只可作 supporting context，說明有跨 repo system reconstruction、工程規範、local / deploy harness、runbook、provider migration 與 SerialSyncJob 風險整理能力。不得寫成完整 workspace / DevOps / release owner，也不得反向包裝成 service code 貢獻。
 
+> 2026-05-20 antplay-slot-admin-api consolidation：已完成 `projects/antplay/antplay-slot-admin-api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay 後台 API / 商戶控制面開發維護，範圍包含 admin / merchant auth、商戶白名單、Game API 白名單同步、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / 風控通知與 Quartz job；仍不寫主導完整 AntPlay slot platform、完整 game runtime、完整 wallet / reconciliation、完整風控平台或完整 RabbitMQ architecture owner。
+
 ## 使用原則
 
 - 不寫人生流水帳。

@@ -127,21 +127,21 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | ugsoft | ugsoft-admin-api | `contribution-claim-consolidation` | 後台 API / control plane / RabbitMQ 非同步資料處理收口 | 中高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入後台 API / async data processing | 已收斂；下一步可掃 `ugsoft-connector-api` |
 | ugsoft | ugsoft-connector-api | `contribution-claim-consolidation` | provider connector / gateway / transfer wallet / MQ 收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入 provider connector / transfer wallet / MQ | 已收斂；Flow Track 可做 Step 1 |
 | ugsoft | ugsoft-workspace | `contribution-claim-consolidation` | workspace / docs / harness / runbook 收口 | 低 | 已完成 / 2026-05-20 | supporting evidence；主要 author 為 `arnold`，是否 Nick 公司帳號待本人確認 | 否，不放 standalone 正式履歷主成果 | 已收斂；回 `ugsoft-connector-api Step 1` |
+| antplay | antplay-slot-admin-api | `contribution-claim-consolidation` | 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 非同步收口 | 中高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入後台 API / risk ops / async data processing | 已收斂；Flow Track 可做 Step 1 |
 
 ## 下一步推薦
 
-本輪若繼續 ugsoft 線，只推薦一件事:
+本輪若繼續 antplay 線，只推薦一件事:
 
 ```text
-ugsoft ugsoft-connector-api Step 1
+antplay antplay-slot-admin-api Step 1
 ```
 
 原因:
 
-- `ugsoft-admin-api`、`ugsoft-connector-api` 與 `ugsoft-workspace` 的 Career Track rolling consolidation 都已完成。
-- `ugsoft-connector-api` 已可保守補履歷，但還缺 Flow Track 的 Step 1 / Step 2 來挑代表 flow，否則面試時只有 claim，沒有完整 case package。
-- `ugsoft-workspace` 只作 supporting evidence，不當 Flow Track 主題。
-- 最值得先拆的是 provider transfer / callback / MQ 類 flow。
+- `antplay-slot-admin-api` 的 Career Track rolling consolidation 已完成。
+- 這個 repo 已可保守補後台 API / risk ops / async data processing 履歷，但還缺 Flow Track 的 Step 1 / Step 2 來挑代表 flow，否則面試時只有 claim，沒有完整 case package。
+- 最值得先拆的是 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步。
 - 若 Nick 要回原 iwin queue，仍回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 ## 近期候選 Queue

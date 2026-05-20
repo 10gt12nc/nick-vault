@@ -104,6 +104,10 @@ Git repo:
 - push / bot / notify: `antplay-push`、`antplay-push-grpc`、`antplay-bot`、`antplay-tg-notify`
 - 前端 / 工具 / mock / workspace: 依 flow 需要作參考
 
+整理狀態:
+
+- `antplay-slot-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / 商戶控制面、JWT / RBAC、商戶 / Game API 白名單、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / 風控通知與 Quartz job 類履歷素材；不寫完整 AntPlay slot platform、game runtime、wallet / reconciliation 或完整 RabbitMQ owner。
+
 ## DevOps / primestar
 
 來源路徑:
