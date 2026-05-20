@@ -292,7 +292,7 @@ Step 3 成本:
 
 ## 7. 第一條 Step 3 建議範圍
 
-若 Nick 下:
+此 Step 3 建議已於 2026-05-20 完成，原始起手式為:
 
 ```text
 antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 3
@@ -342,5 +342,7 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 3
+antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 4
 ```
+
+2026-05-20 更新：此 flow Step 3 已完成，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據。

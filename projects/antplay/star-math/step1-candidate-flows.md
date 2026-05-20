@@ -319,10 +319,10 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 ## 9. Step 1 結論
 
-`*-math` 值得繼續做 Flow Track。下一步必須做 Step 2，比較候選 flow 的技術點、證據強度、跨 module 邊界與履歷 / 面試價值；不得直接跳單條 Step 3。
+`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，且第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 3。
 
 建議下一步:
 
 ```text
-antplay *-math Step 2
+antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 4
 ```
