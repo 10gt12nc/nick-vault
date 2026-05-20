@@ -1,12 +1,12 @@
 # iwin app_bi contribution claim consolidation
 
-更新時間：2026-05-19
-掃描等級：Level 2 limited / negative project-level claim consolidation
+更新時間：2026-05-20
+掃描等級：Level 2 rolling / scoped negative project-level claim consolidation
 證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick app_bi direct contribution 未確認
 
 ## 結論
 
-`app_bi` 已完成 project-level limited / negative consolidation。
+`app_bi` 已完成 project-level rolling / scoped negative consolidation。
 
 結論很保守：
 
@@ -14,7 +14,7 @@
 2. 可作面試分析素材，用來說明「如何從後台 / BI / control plane 入口追真正 production flow」。
 3. 不可寫成 Nick 主導完整後台、BI owner、payment repair owner、game report owner、runtime config owner，或後台到下游完整後端 owner。
 
-`app_bi` 的價值是入口，不是 claim source。真正可放履歷的後端成果，應以 `payment`、`game_job`、`game_api`、`iwin_gameserver`、`third_games_api` 等後端 / runtime repo 的 direct evidence 為準。
+`app_bi` 的價值是入口，不是主要 claim source。真正可放履歷的後端成果，應以 `payment`、`game_job`、`game_api`、`iwin_gameserver`、`third_games_api` 等後端 / runtime repo 的 direct evidence 為準。後續如果 Flow Track 在後端 repo 補到更強 evidence，可回填本文件，把 `app_bi` 對應入口標成輔助脈絡。
 
 ## 本次自動重讀
 
@@ -24,6 +24,7 @@
 - `senior-owner-playbook/00-operating-rules.md`
 - `senior-owner-playbook/09-ai-prompt-manual.md`
 - `senior-owner-playbook/03-flow-learning-package-template.md`
+- 2026-05-20 新規則：contribution consolidation 可先做 rolling / scoped 版，Flow Track 後續照舊回填；本文件依此規則重新確認。
 
 已重讀 project 文件：
 
@@ -69,7 +70,7 @@
 - 工作樹：乾淨
 - 遠端分支：`origin/main`、`origin/beta`、`origin/coupontrade`、`origin/feature/GSC`、`origin/feature/ModifyfirstRechargeAwardList`、`origin/feature/PG`、`origin/feature/RD-152`、`origin/feature/RD-20`、`origin/feature/RD-26`、`origin/feature/RD-89`、`origin/feature/gitlab-ci`、`origin/feature/merchantSettingToRedis`、`origin/feature/shareRoulette`、`origin/feature/xsczcx_index_add_column`、`origin/gitlab-test`、`origin/k3s`、`origin/k3s-laravel`、`origin/test-ci`
 
-本輪只 fetch remote refs，沒有 pull、merge、checkout、rebase 或修改公司 repo。
+2026-05-20 本輪重新 fetch remote refs，`origin/k3s-laravel` 有更新；沒有 pull、merge、checkout、rebase 或修改公司 repo。
 
 注意：本地 `main` 落後 `origin/main` 4 commit；本輪可用現有 flow 文件與 remote log 做 consolidation，但不能宣稱已用最新 working tree 逐檔驗證 app_bi。
 
@@ -152,13 +153,13 @@ repo-wide Nick / `10gt12nc` author log 在 `app_bi` 目前只看到 KB / catalog
 
 理由：
 
-- 這是 limited / negative consolidation。
+- 這是 rolling / scoped negative consolidation。
 - 結論是不新增 app_bi 正式履歷成果。
 - 既有 05 / 08 已有泛化的「後台營運功能 / 報表查詢 / RBAC / 權限 / 營運工具」描述，足以涵蓋 app_bi 的輔助定位。
 
 ## 下一步建議
 
-下一步回到 `game_api`，把已完成 Step 4 的第三順位 flow 做 Step 5，避免 `game_api` 卡在未完成代表 flows 而不能 project-level consolidation。
+下一步維持回 `iwin_gameserver`，先把已完成 Step 3 的 `center-http-deposit-withdraw` 轉成面試 case。`app_bi` 本身已收斂，不需要重做或放正式履歷主成果。
 
 ```text
 iwin iwin_gameserver center-http-deposit-withdraw Step 4

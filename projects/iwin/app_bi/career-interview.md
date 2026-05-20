@@ -6,7 +6,7 @@
 
 ## 結論
 
-`app_bi` 已完成 `contribution-claim-consolidation.md` 的 limited / negative 收口。它可以作為面試中的「後台入口如何追 production flow」素材，但目前不更新正式履歷 / 自傳，也不作獨立履歷成果。
+`app_bi` 已完成 `contribution-claim-consolidation.md` 的 rolling / scoped negative 收口。它可以作為面試中的「後台入口如何追 production flow」素材，但目前不更新正式履歷 / 自傳，也不作獨立履歷成果。
 
 可以說：
 
@@ -63,8 +63,8 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 原因：
 
-- app_bi 已完成 limited / negative consolidation。
-- 下一步回 `game_api` 第三條代表 flow Step 5。
+- app_bi 已完成 rolling / scoped negative consolidation。
+- 下一步回 `iwin_gameserver center-http-deposit-withdraw Step 4`，把後端 runtime 上分 / 下分代表 flow 轉成面試 case。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

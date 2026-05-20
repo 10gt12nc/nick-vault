@@ -31,7 +31,7 @@
 
 | Flow | 類型 | 狀態 | 履歷 |
 | --- | --- | --- | --- |
-| `contribution-claim-consolidation` | project-level claim 收口 | 已完成 | limited / negative；不放正式履歷主成果 |
+| `contribution-claim-consolidation` | project-level claim 收口 | 已完成 | rolling / scoped negative；不放正式履歷主成果 |
 | `point-control-admin-operation` | 後台控制面 / control plane | Step 5 | 不更新正式履歷 |
 | `admin-config-redis-sync` | 設定同步 / Redis projection | Step 5 | 不更新正式履歷 |
 | `daily-game-record-summary` | 報表查詢 / batch projection | Step 5 | 不更新正式履歷 |
@@ -62,6 +62,6 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 原因：
 
-- app_bi project-level claim 已完成 limited / negative consolidation。
+- app_bi project-level claim 已完成 rolling / scoped negative consolidation。
 - 真正 money correctness 已回到 payment repo 收口；game_job 也已完成 project-level consolidation。
 - 下一步回 `iwin_gameserver center-http-deposit-withdraw Step 4`。

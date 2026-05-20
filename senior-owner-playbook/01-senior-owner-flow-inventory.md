@@ -95,7 +95,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | app_bi | `admin-config-redis-sync` | 後台設定同步 Redis | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `daily-game-record-summary` | 每日遊戲資料彙總 | 中 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂 |
 | iwin | app_bi | `game-round-record-query` | 遊戲局紀錄查詢 | 中 | Step 5 | app_bi 專案存在 / iwin_gameserver 有 Nick commit 線索 | 否 | 已收斂 |
-| iwin | app_bi | `contribution-claim-consolidation` | app_bi limited / negative 收口 | 中 | 已完成 | 專案存在 / code-backed；Nick app_bi direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂 |
+| iwin | app_bi | `contribution-claim-consolidation` | app_bi rolling / scoped negative 收口 | 中 | 已完成 | 專案存在 / code-backed；Nick app_bi direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂 |
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 可作 flow evidence；不代表完整 project | 已收斂 |
 | iwin | game_api | `partner-deposit-withdraw-bill` | Partner API 上分 / 下分 / 查單 | 很高 | Step 5 | 專案存在 / code-backed；未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_api | `agent-bonus-receive-transfer` | 代理佣金領取 / 轉帳 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
@@ -115,7 +115,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 已完成 | 部分真實開發過 + code-backed；daily summary + GSC backup direct evidence | 是，保守更新 | 履歷 claim 已收斂 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂，待回 ranking |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 3 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 3，先做 Step 4 |
-| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 暫緩 | 等 Step 2 本批代表 flows 完成 Step 5 後，再掃 code + flow KB | 待確認 | 暫緩，不排在 center_http 前 |
+| iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 可做 rolling / scoped | 可先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow KB | 待確認 | 但目前下一步仍先做 center_http Step 4 |
 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 5 |
 
 ## 下一步推薦
