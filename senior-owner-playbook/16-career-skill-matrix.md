@@ -209,6 +209,247 @@ production flow
 5. 每條補 claim boundary，避免履歷誇大。
 6. 再補大專案地圖，讓跨 repo flow 不會迷路。
 
+## 8 週軟硬實力養成計劃
+
+這份計劃對標 Nick 目前目標：
+
+```text
+Senior Java Backend / Platform Backend / System Owner 候選
+```
+
+原則：
+
+- 不用先補滿所有技術。
+- 每週都要回到 production flow，不做純讀書焦慮。
+- 每週同時補硬實力、軟實力與面試輸出。
+- 產出比閱讀重要；能講、能查、能證明，才算補到。
+
+### 第 1-2 週：Money Correctness 主力 Flow
+
+主題：
+
+- `payment-provider-callback`
+- `payment-order-provider-request`
+- `withdrawal-auto-review-refund`
+
+硬實力：
+
+- transaction boundary。
+- idempotency key / terminal state guard。
+- provider callback retry / timeout。
+- request / response sign verification。
+- payment / withdraw order state transition。
+
+軟實力：
+
+- 面對金流問題時先分「狀態、責任邊界、可查證資料」。
+- 不急著說重構，先說怎麼止血、查證、補償。
+- 能向非工程角色說明：為什麼 timeout 不能直接當失敗。
+
+產出：
+
+- 1 份 3 分鐘 `payment` case。
+- 5 個追問：重複 callback、DB 成功 MQ 失敗、provider timeout、人工補單、對帳。
+- 1 條保守履歷 bullet。
+
+### 第 3 週：Provider / Wallet / Game Runtime
+
+主題：
+
+- `third-party-transfer-in-out`
+- `center-http-deposit-withdraw`
+- `coupon-redeem-credit-grant`
+
+硬實力：
+
+- wallet mutation hook。
+- bet / settle / refund / transfer-in-out。
+- provider transaction id / round id / player balance。
+- partial success / compensation。
+- downstream command / callback boundary。
+
+軟實力：
+
+- 能把多服務流程拆成「入口、下游、source of truth、projection」。
+- 能清楚說哪些是自己做過，哪些是 code-backed 分析。
+- 被問「這是不是你主導」時保守但不失分。
+
+產出：
+
+- 1 份 third-party provider / wallet case。
+- 1 張 state / failure window 對照表。
+- 1 段 claim boundary 口說稿。
+
+### 第 4 週：Batch / Projection / Mongo Backup
+
+主題：
+
+- `daily-game-data-summary`
+- `third-party-record-mongo-backup`
+- `coin-flow-batch-projection`
+
+硬實力：
+
+- batch replay。
+- delete + insert 重跑。
+- cursor / stream / batch size。
+- Redis checkpoint。
+- source log vs report projection。
+
+軟實力：
+
+- 能說明報表不等於交易真相。
+- 能先確認資料來源，再談修報表。
+- 能把「可重跑、可追蹤、可停止」說成 owner decision。
+
+產出：
+
+- 1 份 batch correctness case。
+- 5 個追問：重跑、漏資料、重複累加、Mongo 記憶體、checkpoint 已前進但 projection 缺資料。
+
+### 第 5 週：Kafka / MQ Reliability
+
+主題：
+
+- `settled-bets-kafka`
+- `bet-record-request-log-mq`
+- `request-log-monitor-alert-mq`
+
+硬實力：
+
+- at-least-once。
+- consumer idempotency。
+- retry / DLQ / compensation。
+- ordering / partition key。
+- request log / audit / source of truth 差異。
+
+軟實力：
+
+- 面試時不要只說「用 Kafka 解耦」。
+- 要能說「解耦後如何觀測、重送、補償」。
+- 能說清楚哪些訊息可以重放，哪些副作用要 guard。
+
+產出：
+
+- 1 份 Kafka / MQ reliability case。
+- 1 份「MQ 不是保證一致性」的口說稿。
+
+### 第 6 週：K8s / Observability / Rollout
+
+主題：
+
+- `gameserver-phased-rollout`
+- `observability-pipeline`
+- `k3s-migration-track`
+
+硬實力：
+
+- Docker / K8s 基礎。
+- rollout / rollback。
+- probe / resource。
+- log pipeline / trace / correlation id。
+- release provenance。
+
+軟實力：
+
+- 不把自己包裝成 SRE owner。
+- 能說明後端工程師需要讀懂部署訊號，才能排 production issue。
+- 能把 rollout 風險拆成「功能、流量、資料、觀測」。
+
+產出：
+
+- 1 份 rollout / observability case。
+- 1 份「我不是 DevOps owner，但能讀懂部署與 log 訊號」的保守說法。
+
+### 第 7 週：System Design / Owner Decision
+
+主題：
+
+- 選前 3-4 週最強 flow 各補 `decision-notes.md`。
+
+硬實力：
+
+- Option A / B / C。
+- trade-off。
+- migration strategy。
+- rollback / feature flag / compatibility。
+- audit / permission / operation risk。
+
+軟實力：
+
+- 能說「短期先補觀測與 guard，長期再重構」。
+- 能說服，也能承認限制。
+- 能把技術決策翻成風險、成本與驗證方式。
+
+產出：
+
+- 3 個 owner decision 問答。
+- 1 份 3 分鐘 career summary。
+
+### 第 8 週：Mock Interview / Resume Calibration
+
+主題：
+
+- 3 條主力 case 串成面試包。
+- 05 / 08 / 17 對齊目標職缺。
+
+硬實力：
+
+- 快速定位 flow。
+- 快速畫 state / failure。
+- 快速回答追問。
+
+軟實力：
+
+- 誠實 claim boundary。
+- 不被薪資與自信拉垮。
+- 能把「我分析過」與「我做過」說清楚。
+
+產出：
+
+- 30 秒自我介紹。
+- 3 分鐘 career summary。
+- 3 條 production case。
+- 15 個追問。
+- 104 欄位版履歷微調。
+- 薪資說法：主談、底線、進取。
+
+## 每週固定節奏
+
+每週只做一個主題，建議節奏：
+
+```text
+Day 1-2：重讀 flow.md / evidence / career-interview
+Day 3：補 failure / consistency / decision-notes
+Day 4：整理 3 分鐘口說與 5 個追問
+Day 5：回填 05 / 08 / 17 或 claim boundary
+Day 6-7：複述、修稿、休息，不硬開新坑
+```
+
+## 軟實力養成重點
+
+Nick 目前最需要補的軟實力不是「變外向」，而是以下 6 件事：
+
+1. **需求澄清**：先問 source of truth、終態、異常處理、誰會查。
+2. **風險表達**：把技術風險說成營運可理解的狀態風險。
+3. **保守承認邊界**：做過、參與、分析、建議要分開。
+4. **Owner decision**：能說先做什麼、不做什麼、為什麼。
+5. **面試穩定度**：不用背稿，但要能用固定骨架講 flow。
+6. **AI 工具控管**：能說自己用 AI 提效，但判斷、驗證、review 由自己負責。
+
+## 硬實力養成重點
+
+Nick 目前最需要補的硬實力不是所有新技術，而是以下 8 件事：
+
+1. transaction / lock / isolation。
+2. idempotency / retry / compensation。
+3. reconciliation / audit trail。
+4. Kafka / RabbitMQ reliability。
+5. SQL index / slow query / batch processing。
+6. Redis cache / projection / stale data。
+7. K8s rollout / observability 基礎。
+8. system design trade-off / migration strategy。
+
 ## 檢查問題
 
 每完成一條 flow，就問：

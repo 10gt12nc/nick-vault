@@ -237,6 +237,8 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 4. K8s / Docker / observability 基礎：不用裝成 SRE，但要能讀 rollout、pod log、probe、resource 與 log pipeline。
 5. AI-assisted workflow：作加分項，講 code reading、diff review、文件同步、測試檢查、commit 收斂；不要講「AI 幫我寫」。
 
+完整 8 週軟硬實力養成計劃維護在 `16-career-skill-matrix.md`。原則是每週只補一個 production 主題，每週都要產出 3 分鐘 case、5 個追問與 claim boundary，不做純讀書焦慮。
+
 ## 2026 趨勢觀察
 
 2026 的後端職缺仍看重 Java / Backend / cloud / Kubernetes / CI/CD / system stability，但更偏向「可驗證經驗」與「能把 AI 工具放進工程流程」。目前應關注：
