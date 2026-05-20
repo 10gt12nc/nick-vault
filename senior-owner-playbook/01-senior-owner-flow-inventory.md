@@ -75,6 +75,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 2026-05-20 補充：`iwin_gameserver` 已完成 rolling / scoped contribution consolidation。Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits；可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」，不得寫成完整 gameserver owner、完整 wallet owner、完整上分 / 下分 owner 或完整 idempotency / reconciliation owner。
 - 2026-05-20 補充：`iwin-workspace` 已完成 rolling / scoped contribution consolidation。Nick / `10gt12nc` 有大量 KB / docs / environment index / tool direct commits，但 repo 本身不是 production service，不新增 standalone 正式履歷主成果；只作工作方法、cross-repo system reconstruction 與 knowledge governance supporting evidence。
 - 2026-05-20 補充：`ugsoft-admin-api` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record 與 Quartz / report job 有大量 direct commits；可保守寫「參與 UGSoft 後台 API / control plane 與非同步資料處理開發維護」，不得寫成完整 UG 平台、完整 provider gateway、完整 wallet / money flow 或完整 RabbitMQ architecture owner。
+- 2026-05-20 補充：`ugsoft-connector-api` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 AntPlay / DerPlay provider adapter、login / balance / transfer in-out / bet-settle / callback、request / bet record MQ、transfer wallet compensation、分表與 circuit breaker code-backed reliability 有 direct commits / code evidence；可保守寫「參與 UGSoft provider connector / gateway 開發維護」，不得寫成完整 connector architecture owner、全部 provider owner、完整 wallet / ledger / reconciliation owner 或 exactly-once / outbox owner。
 - 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
@@ -124,20 +125,21 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 5 |
 | iwin | bi_share | `contribution-claim-consolidation` | bi_share rolling / scoped negative 收口 | 中低 | 已完成 | 專案存在 / code-backed；Nick bi_share direct contribution 未確認 | 否，不放正式履歷主成果 | 已收斂；若要深挖先做 Step 1 |
 | ugsoft | ugsoft-admin-api | `contribution-claim-consolidation` | 後台 API / control plane / RabbitMQ 非同步資料處理收口 | 中高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入後台 API / async data processing | 已收斂；下一步可掃 `ugsoft-connector-api` |
+| ugsoft | ugsoft-connector-api | `contribution-claim-consolidation` | provider connector / gateway / transfer wallet / MQ 收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入 provider connector / transfer wallet / MQ | 已收斂；Flow Track 可做 Step 1 |
 
 ## 下一步推薦
 
 本輪若繼續 ugsoft 線，只推薦一件事:
 
 ```text
-ugsoft ugsoft-connector-api contribution claim consolidation
+ugsoft ugsoft-connector-api Step 1
 ```
 
 原因:
 
-- `ugsoft-admin-api` 已完成 rolling contribution consolidation，能保守補後台 API / RabbitMQ / Quartz 素材。
-- 若要讓 ugsoft 形成更強的 Senior Backend / Platform Backend 故事，下一個最有價值的是 `ugsoft-connector-api`，因為 provider gateway / integration / idempotency / retry 證據應從 connector repo 取得。
-- `ugsoft-admin-api` 不應反向包裝成完整 provider gateway owner。
+- `ugsoft-admin-api` 與 `ugsoft-connector-api` 的 Career Track rolling consolidation 都已完成。
+- `ugsoft-connector-api` 已可保守補履歷，但還缺 Flow Track 的 Step 1 / Step 2 來挑代表 flow，否則面試時只有 claim，沒有完整 case package。
+- 最值得先拆的是 provider transfer / callback / MQ 類 flow。
 - 若 Nick 要回原 iwin queue，仍回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 ## 近期候選 Queue
@@ -153,7 +155,7 @@ ugsoft ugsoft-connector-api contribution claim consolidation
 | 5 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成並於 2026-05-20 重新覆核；GoldenPay direct evidence 已補入；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 7 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
-| 8 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | `ugsoft-admin-api` 已收斂；若要補 ugsoft provider integration，下一步應掃 connector repo | `ugsoft ugsoft-connector-api contribution claim consolidation` |
+| 8 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | Career Track 已收斂；下一步應做 Step 1 / Step 2 挑 provider transfer / callback / MQ 代表 flow | `ugsoft ugsoft-connector-api Step 1` |
 | 9 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
 
 Career Track 補充：`iwin iwin_gameserver contribution claim consolidation` 已完成 rolling / scoped 履歷風險收斂。若後續新增 gameserver flow 或完成 `center-http-deposit-withdraw Step 5`，要回填校正 project-level claim。

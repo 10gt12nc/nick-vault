@@ -1,0 +1,227 @@
+# ugsoft-connector-api Contribution Claim Consolidation
+
+日期: 2026-05-20
+
+## 結論
+
+`ugsoft-connector-api` 可以列為 Nick 真實開發過、且履歷價值高於一般後台 CRUD 的 provider connector / gateway repo。Nick / `10gt12nc` 在 `origin/master` 與相關分支可見大量 direct commits，範圍包含:
+
+- AntPlay adapter：login / info / balance / request log / transfer API / bet record。
+- DerPlay adapter：login / prepare enter game、balance、transfer in / out / out-all、single transaction、bet record。
+- callback path：AntPlay / DerPlay callback 驗簽、balance / bet-settle、成功後送 bet record MQ。
+- transfer wallet：provider position、provider switch 時 inner transfer、transfer in/out before-after balance / query order。
+- request log / bet record MQ：單一錢包 callback 寫 MQ、跨日 `pt_day`、currency default、job sync。
+- reliability：Circuit Breaker fast-fail、deadlock compensation、DB partition / schema route、white IP filter。
+
+履歷可以保守寫:
+
+> 參與 UGSoft provider connector / gateway 開發與維護，串接 AntPlay / DerPlay 等第三方遊戲 provider，處理 login、balance、transfer in / out、bet-settle、callback、request / bet record MQ、熔斷與轉帳錢包補償等流程。
+
+不要寫:
+
+- 主導完整 UGSoft 平台。
+- 主導全部 provider integration。
+- 主導完整 wallet / ledger / reconciliation。
+- 建立 exactly-once / outbox。
+- 完整架構 owner 或量化改善。
+
+## Evidence Summary
+
+| 類別 | 判斷 | Evidence |
+| --- | --- | --- |
+| 直接開發 | 真實開發過 | `origin/master` 自 2024 起約 179 筆 Nick / `10gt12nc` commits |
+| Provider adapter | 真實開發過 | `feat: ugAdapter`、`adapter 串AntPlay`、`adapter 串DerPlay` 系列 commits |
+| Transfer wallet | 真實開發過 | AntPlay / DerPlay transfer in / out / out-all、provider position、deadlock compensation commits |
+| Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
+| MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
+| Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
+| final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
+
+## Source Scan Record
+
+來源 repo:
+
+```text
+/Users/nick/Git/ugsoft/ugsoft-connector-api
+```
+
+掃描方式:
+
+- 已執行 `git fetch --all --prune` 更新 remote refs。
+- local branch: `Nick_Test`
+- local HEAD: `c2cab730c0cd6ead6d92a038ef56f97987577059`
+- remote HEAD: `origin/develop`
+- `origin/develop`: `079aa6603b50db3c185e383295ca5966bbe272fb`
+- `origin/master`: `482000c7af9cf80b1cb38d1f2a5b589673710c41`
+- local vs `origin/master` ahead / behind: `0 / 55`
+- local vs `origin/develop` ahead / behind: `190 / 0`
+- source repo 工作樹不乾淨：有 `.DS_Store`、test、docs 等 local changes / untracked files。本次只讀 remote objects，不改 source repo，不把本機髒檔當正式 evidence。
+- remote HEAD 雖指向 `origin/develop`，但 AntPlay / DerPlay adapter 與 latest tags 位於 `origin/master`；本次 provider connector claim 以 fetched `origin/master` 為主要 evidence，`origin/develop` 作背景。
+
+本次掃描範圍:
+
+- `git log origin/master --author='10gt12nc|Nick|nick'`
+- `git log origin/develop --author='10gt12nc|Nick|nick'`
+- `git log --all --author='10gt12nc|Nick|nick'`
+- `git show --stat --name-only` 抽查 key commits
+- `src/main/java/com/ps/domain/connector/controller`
+- `src/main/java/com/ps/domain/connector/service`
+- `src/main/java/com/ps/domain/connector/adapter`
+- `src/main/java/com/ps/domain/connector/vo`
+- `src/main/java/com/ps/domain/api/game/facade/TransferFacade.java`
+- `src/main/java/com/ps/domain/game/slot/...` 相關 bet record / compensation / job path
+- `src/main/java/com/ps/common/rabbitMq` / `RabbitMQConfig` / `RabbitMq`
+- `docs/circuit-breaker.md` 只讀摘要，未複製內部測試 URL。
+- vault 既有 `projects/`、`senior-owner-playbook/`、`archive/` 內 ugsoft / resume 關鍵字
+
+未完成:
+
+- 未做 `ugsoft-connector-api` 全量 Step 1 / Step 2。
+- 未逐條 flow 建立 `flow.md` / `career-interview.md`。
+- 未逐檔逐行 Level 3。
+- 未驗證每個 provider adapter 是否已實際上線。
+
+## Important Commit Evidence
+
+### UG Adapter / Provider gateway 初版
+
+- `98eb9b9`：`feat: codex實作ugAdapter //todo:測試`，新增 `UgAdapterController`、多個 action handler、idempotency / transfer order / wallet service、callback / transfer controller 與 VO。
+- `a22282f` / `e236a59` / `33fb737` / `52d52be`：`ugAdapter` login / info / balance / betSettle / transfer、移動到 connector、命名與欄位說明。
+- 這組 evidence 可支撐「參與 connector gateway 初版與 action handler / idempotency 概念」，但因後續 `origin/master` 已收斂到 `domain/connector` adapter path，正式說法要以 AntPlay / DerPlay adapter 為主。
+
+### AntPlay adapter
+
+- `9913ed2` 到 `5e4448a`：`adapter 串AntPlay` login / info / balance / login log 系列。
+- `842a3df`：`adapter 串AntPlay balance`。
+- `92ad98b`：`adapter 串AntPlay requestLog`。
+- `575996d` / `80828c1` / `04473d5`：AntPlay Transfer API 與 bet record。
+- `59121a3`：`adapter 串AntPlay bet_settle back串AntPlay回傳格式`。
+
+主要 code path:
+
+- `ConnectClientController`
+- `ConnectClientService`
+- `ConnectAntplayAdapter`
+- `AdapterClient`
+- `ConnectCallbackService`
+
+### DerPlay adapter
+
+- `48ee13b` / `afff4b1` / `04e2c84`：DerPlay login / transfer in / out / balance / out-all。
+- `1a1c0b1` / `92b6a1f`：DerPlay single transaction。
+- `6c20862` / `f82eda6` / `fe16c76`：DerPlay transaction bet record。
+- `df1fdcf`：DerPlay 單一錢包日期修正。
+
+主要 code path:
+
+- `ConnectDerPlayAdapter`
+- `CallbackDerplayService`
+- `DerPlayService`
+- `DerPlayAuthTokenRepository`
+
+### Callback / Bet record MQ / async
+
+- `e95b353`：`单一钱包：回调时候写mq`，新增 / 調整 RabbitMQ config、callback service、`ConnectBetRecordMqService` 與 MQ DTO。
+- `120c0fb`：callback 寫 MQ log。
+- `a173cf3`：`feat: mq`，包含 `ConnectBetRecordMqService`、AntPlay / DerPlay bet record sync job、repository 與 schedule service。
+- `3e9d0d0` / `2369690`：MQ 跨日 `pt_day`、request log MQ 時間差風險。
+- `edf8f26` / `ac6d25c` / `5747ff3`：job MQ currency default 修正。
+
+可支撐:
+
+- 參與 callback 後的 bet record eventual consistency pipeline。
+- 參與 MQ payload normalization、時間 / 分區 / currency 邊界修正。
+
+不可誇大:
+
+- 不說完整 outbox / exactly-once。
+- 不說完整 reconciliation owner。
+
+### Transfer wallet / compensation
+
+- `54078fe` / `a2b2af5` / `31d7a46`：轉帳錢包 deadlock 補償，涉及 `AgentApiFacade`、`GameFacade`、`GameFlowFacade`、`BetRecordManageService`、`TransferBalanceService` 與 compensation path。
+- `ConnectClientService` 在 transfer wallet agent login 時維護 provider position；provider switch 時 best-effort transfer out 舊 provider，再 transfer in 新 provider。
+- `ConnectDerPlayAdapter` 的 transfer in / out 會做 before balance、create transfer order、transfer chip、query order、after balance。
+
+可支撐:
+
+- 參與 transfer wallet provider position / provider switch / compensation 類問題。
+- 面試可講 failure window：transfer out 成功但 transfer in 失敗、query order 不一致、callback / MQ 落後。
+
+不可誇大:
+
+- 不說完整 wallet source of truth owner。
+- 不說已完整解決所有 deadlock / reconciliation。
+
+### DB partition / schema / request log
+
+- `6f6caa7` 到 `311ece0`：`feat(#167)` bet record / request log 拆表、查詢、SQL / notify count / delay 修正。
+- `5f7edc9` 到 `72f7dc0`：DB switch、`@UseSchema`、schema route / table existence / partition v2。
+- `d3e0002`：RequestLog 改 RabbitMQ 非同步。
+
+可支撐:
+
+- 參與高量資料分表、request / bet record query 與 job retry 類 maintenance。
+
+### Circuit Breaker / provider reliability
+
+`origin/master` 存在:
+
+- `ConnectorCircuitBreaker`
+- `ConnectAdapterExecute`
+- `docs/circuit-breaker.md`
+
+主要能力:
+
+- provider-level Resilience4j circuit breaker。
+- `ConnectAdapterExecute` 包住 HTTP request、request log、response log、elapsed time、非 200 response、`CallNotPermittedException` fast-fail。
+- AntPlay / DerPlay provider 分別有 circuit breaker instance。
+
+claim 邊界:
+
+- 可面試講「code-backed 分析 / 參與維護或理解 provider fail-fast」。
+- 是否由 Nick 主導設計 circuit breaker，仍待補 commit / ticket；不在履歷主 bullet 寫主導。
+
+## Resume Claim
+
+可放履歷:
+
+- 參與 UGSoft provider connector / gateway 開發與維護，串接 AntPlay / DerPlay 等第三方遊戲 provider，處理 login、balance、transfer in / out、bet-settle、callback 與 transaction / bet record 查詢。
+- 參與 callback 後 request / bet record MQ 非同步資料處理，處理 `pt_day`、currency、provider bet id、job sync 與資料入庫邊界。
+- 參與 transfer wallet provider position、provider switch、deadlock compensation 與分表 / schema route 類維護。
+
+可面試講:
+
+- Provider adapter contract 怎麼統一到 `ConnectAdapter` / `AdapterClient`。
+- 商戶端 `/connect/client/*` 如何驗簽、驗 currency、驗 game / agent，然後轉到 provider adapter。
+- AntPlay / DerPlay 的 amount unit、currency、language、sign、cert / token 差異。
+- Callback 成功後為什麼送 bet record MQ，MQ eventual consistency 的 duplicate / missing / late message 風險。
+- DerPlay transfer in / out 為什麼要 before balance、create order、transfer chip、query order、after balance。
+- Provider switch / transfer wallet position 的 failure window。
+- Circuit breaker fast-fail 的好處與不能解決的問題。
+
+不可誇大:
+
+- 不說主導完整 UGSoft connector architecture。
+- 不說全部 provider integration owner。
+- 不說完整 wallet / ledger / reconciliation owner。
+- 不說 MQ exactly-once、outbox、完整 DLQ 設計。
+- 不說量化改善或完整事故 owner。
+
+## 05 / 08 更新口徑
+
+建議加到履歷 / 自傳時，用一個保守句子併入現職主軸:
+
+> 參與 UGSoft provider connector / gateway 開發維護，串接 AntPlay / DerPlay 等第三方遊戲 provider 的 login、balance、transfer in / out、bet-settle、callback 與 request / bet record MQ，並處理 transfer wallet、分表與 provider fail-fast 相關維護。
+
+若正式投遞篇幅有限，`ugsoft-connector-api` 可和 `ugsoft-admin-api` 合併成一段:
+
+> 參與 UGSoft 後台 API 與 provider connector 維護，範圍包含後台權限 / 白名單、AntPlay / DerPlay provider adapter、transfer wallet、request / bet record MQ、Quartz / report job 與 provider fail-fast。
+
+## Suggested Next
+
+如果繼續 ugsoft，下一步應做 Flow Track Step 1 / Step 2，避免只有履歷線、沒有可面試的完整 flow package。最值得先選的是 provider transfer / callback flow。
+
+```text
+ugsoft ugsoft-connector-api Step 1
+```
