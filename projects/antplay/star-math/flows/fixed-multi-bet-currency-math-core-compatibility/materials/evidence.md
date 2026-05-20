@@ -5,8 +5,9 @@
 - Vault branch: `main`
 - Vault path: `projects/antplay/star-math`
 - Source root: `/Users/nick/Git/antplay`
-- Depth: Level 2 deep scan
+- Depth: Level 2 deep scan + Step 4 interview consolidation
 - 本輪沒有重複 retry 內網 GitLab fetch；依本地 refs / local branch / local log 判斷。
+- 2026-05-20 Step 4 補充：重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/decision-notes.md`、`materials/claim-boundary.md`；未新增公司 repo 掃描，不改公司 repo。
 
 ## Source Repo Status
 
@@ -103,3 +104,9 @@
 - 沒有跑 Java tests。
 - 沒有深掃上游 game-api caller。
 - 沒有採用 dirty 的 `setl-math` 工作樹內容作正式 evidence。
+
+## Step 4 Output Evidence
+
+- `career-interview.md` 已改為 Step 4 面試主稿，包含 30 秒、2 分鐘、5 分鐘講法、Senior / Lead / Architect 追問與履歷句。
+- `materials/interview.md` 已補完整追問答法、強回答句、弱回答避雷與 evidence-backed claim matrix。
+- Step 4 沒有新增履歷 master / 自傳正式 claim；正式更新仍要等 Step 5 或 project-level contribution consolidation 回填。

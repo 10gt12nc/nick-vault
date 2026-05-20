@@ -1,35 +1,99 @@
 # Career Interview - fixedMultiBet / Currency / Math-Core Compatibility
 
-## Evidence Level
+## Step 4 Reading Position
 
-- `真實開發過 + code-backed`
-- 依據: Nick / `10gt12nc` 在 `math-core`、`sdt-math`、`sfm-math`、`slc-math` 有相關 direct commits；本輪逐行讀過代表 code path。
-- 限制: 部分內網遠端未確認最新狀態；這份先作 Step 3 單條 flow 面試素材，不直接更新 05/08。
+- Project: `antplay *-math`
+- Flow: `fixed-multi-bet-currency-math-core-compatibility`
+- Step: Step 4
+- Evidence level: `真實開發過 + code-backed`
+- Interview theme: slot math contract compatibility、money-like correctness、multi-module rollout trade-off
+- Boundary: 可講參與維護與相容調整；不可講主導完整 slot math 平台、完整 RTP 策略或全部 `*-math` module。
 
-## 30 秒說法
+這份 Step 4 的用途，是把 Step 3 的 code / evidence 轉成面試能講的 case。主軸不是「我加了幾個欄位」，而是「多個 slot math module 之間，怎麼讓下注金額語意、debug、jackpot、前端結果一致，又不一次改壞大量 module」。
 
-我參與過 AntPlay slot math core 與多個 math module 的維護，其中一條比較有代表性的 flow 是 fixedMultiBet / currency 相容。這不是單純加欄位，而是要讓 core interface、debug bet、module input、totalBet、jackpot scaling 和前端結果欄位一致，避免「下注額顯示、派彩、jackpot 或測試工具」用到不同倍數。
+## 30 秒回答
 
-## 2 分鐘說法
+我參與過 AntPlay slot math core 與多個 math module 維護，其中一個代表案例是 fixedMultiBet / currency 相容。這類調整表面上是加參數，但實際上要確保 core contract、debug bet、module input、totalBet、jackpot scaling 和結果欄位都用同一組下注上下文，否則前端顯示、測試工具、派彩或 jackpot 會出現金額語意不一致。
 
-這個 flow 的背景是 slot math module 很多，不可能一次要求所有 module 同步重構，所以 core contract 用 default method 保持相容；新 module 或有需求的 module 再 override currency / fixedMultiBet 版本。
+## 2 分鐘回答
 
-實作上，`math-core` 先提供帶 currency / fixedMultiBet 的入口與 debug VO。到 module 端，像 `sdt` / `slc` 會在 factory 建 inputData，帶入 currency、fixedMultiBet、RTP flag、debug RNG；operator service 負責 currency multiplier 和 agent override；`AbstractSlotMath` 再用同一組上下文算 totalBet、win 與 jackpot multiplier。這裡要避免的不是 compile error，而是金額語意錯誤：例如 totalBet 有乘 fixedMultiBet，但 jackpot 沒乘，或 debug bet 沒帶 currency，測試就會失真。
+AntPlay 的 slot math module 很多，不可能一次強制所有 module 都改新介面，所以 `math-core` 採 default fallback：新的 `currency` / `fixedMultiBet` method 先保持舊 module 可編譯、可運行，再由有需求的 module 逐步 override。
 
-我會把這種 flow 當成 money-like correctness 來看，雖然 math module 本身不處理 DB transaction，但它提供上游下注扣款、派彩與對帳需要相信的計算結果。
+到 module 端，像 `sdt` / `slc` 會在 factory 建立 inputData，把 `currency`、`fixedMultiBet`、RTP flag、debug RNG 這些上下文帶進一次 spin；operator service 會處理 agent override 和 currency multiplier；`AbstractSlotMath` 再用同一組上下文計算 totalBet、派彩和 jackpot multiplier。這裡最怕的不是 compile error，而是金額語意錯：例如 totalBet 有乘 fixedMultiBet，但 jackpot 沒乘；或 debug bet 沒帶 currency，導致測試和正式下注不同。
 
-## 可放履歷句
+我會把這類 flow 當成 money-like correctness 來看。math module 本身沒有 DB transaction，也不做 rollback；但它的輸出會被上游用來扣款、派彩、對帳，所以它必須可重算、可驗證，而且同一筆 spin 的金額上下文必須一致。
 
-參與 AntPlay slot math core 與多個 slot math module 維護，處理 fixedMultiBet、currency、debug bet、totalBet / jackpot scaling 等相容性與驗證問題。
+## 5 分鐘深講版
 
-## 可追問重點
+這個案例可以拆成三個層次講。
 
-- 為什麼 core 要用 default fallback，而不是一次改破所有 module？
-- fixedMultiBet 應該乘在哪些地方？
-- currency multiplier 用 ThreadLocal 有什麼風險？
-- debug bet 如果沒有帶 currency / fixedMultiBet，會造成什麼問題？
-- 這種 flow 和真正的錢包交易 transaction boundary 差在哪？
+第一層是 core contract。`math-core` 加了帶 `currency` / `fixedMultiBet` 的入口，但用 default method fallback 到舊方法。這是很典型的多 module rollout trade-off：保留 backward compatibility，降低一次改破大量遊戲 module 的風險；代價是不能只看 core 有新 method 就宣稱所有 module 都完整支援。
 
-## 保守邊界
+第二層是 module implementation。`sdt` 是比較完整的代表：factory 把 fixedMultiBet 和 currency 放進 inputData，operator service 用 currency multiplier，`AbstractSlotMath` 在 way game totalBet 裡乘 fixedMultiBet，jackpot 也用 `lineBet * fixedMultiBet` 和最大 bet 做比例縮放，最後 `SlotBetResult` 也補 fixedMultiBet 給前端核對。`slc` 可作 jackpot scaling 旁證，`sfm` 則顯示不是每個 module 的落地程度都一樣，主要是 currency multiplier 與 math-core compatibility。
 
-這個案例可以講「參與維護與相容調整」，不能講「主導完整 slot math 平台」、「設計完整 RTP 策略」、「負責全部 math module certification」。
+第三層是 owner risk。這不是資料庫交易，但它是交易前置計算。風險不在於 code 會不會跑，而在於同一筆 bet 的 `lineBet`、currency multiplier、fixedMultiBet、totalBet、totalWin、jackpot reward 和 debug output 是否一致。只要有一層漏掉，就可能導致前端、測試、上游扣款或 jackpot 顯示的語意對不上。
+
+## Senior 面試追問
+
+### Q1. 為什麼 core 要用 default fallback？
+
+因為 `*-math` module 數量很多，核心介面一改就可能影響很多遊戲。default fallback 讓舊 module 可以先保持可運行，新 module 或需求明確的 module 再 override。這是風險比較低的漸進 rollout。
+
+要補一句 trade-off：fallback 也會造成假象，caller 可能以為 fixedMultiBet 生效，但實際 module 沒 override 就仍走舊算法，所以一定要逐 module 驗證。
+
+### Q2. fixedMultiBet 只乘 totalBet 就好了嗎？
+
+不夠。fixedMultiBet 至少要進 inputData、resultTemp、totalBet、jackpot multiplier、debug/test input，以及前端或 caller 可核對的 result 欄位。只乘 totalBet 會讓 jackpot、debug output 或前端顯示仍可能和實際下注語意不一致。
+
+### Q3. currency multiplier 用 ThreadLocal 有什麼風險？
+
+好處是不用一路傳參數，module 內很多 helper 可以讀同一個上下文。風險是同一個 thread 被 reuse 時，如果入口沒有正確 set 或 clear，就可能用到上一筆的 multiplier。所以 normal bet、free spin、debug bet、init config 等入口都要一致初始化，最好也有測試覆蓋不同 currency。
+
+### Q4. 這算 transaction consistency 嗎？
+
+不是 DB transaction consistency。math module 沒有扣款、commit、rollback；它是 pure calculation / contract consistency。但因為它的 result 會被上游交易拿來扣款、派彩、對帳，所以它仍然是 money-like correctness。面試時我會把責任邊界講清楚：交易補償在上游 wallet / game-api，math module 負責輸出可信、可重算、語意一致的結果。
+
+### Q5. 如果要驗證，你會怎麼做？
+
+我會用固定 RNG 做 deterministic 測試，組幾組 currency multiplier、fixedMultiBet、agent override、normal/freeSpin/debug path，比較 totalBet、totalWin、jackpot reward、result 欄位和前端需要的值是否一致。也會特別測 fallback module，確認它是「保守不支援」而不是誤以為支援。
+
+## Lead / Architect 追問
+
+### Q1. 你會把 fixedMultiBet / currency 提升到 core result contract 嗎？
+
+我會先看上游是否需要跨遊戲統一顯示、對帳或 debug。如果只是個別遊戲前端需要，module 自己補欄位風險較低；如果上游 runtime / admin / report 都需要統一核對，才值得把 fixedMultiBet / currency 提升到 `AbstractBetResult` 或共用 result contract。否則 core contract 變大會增加所有 module 的改版成本。
+
+### Q2. 你怎麼避免所有 module 落地程度不一致？
+
+我不會只靠 interface。會建立 module compatibility checklist：入口是否 override、debugBet 是否帶參數、InputData 是否保存、totalBet 是否乘正確倍數、jackpot 是否同步、result 是否可核對、test 是否覆蓋。高風險 module 先做，低風險 module 保留 fallback 但明確標示支援程度。
+
+### Q3. 如果 production 發現 jackpot 金額比例錯，你會先看哪裡？
+
+我會先確認同一筆 spin 的 lineBet、fixedMultiBet、currency、maxBet / nowBet、jackpot balance payload 是否一致，再看 totalBet 和 jackpot multiplier 是否使用同一個下注上下文。接著用固定 RNG 或 debug bet 重現，確認是 input 漏帶、currency multiplier 錯、module fallback，還是 jackpot scaling 公式不一致。
+
+## 可用履歷句
+
+參與 AntPlay slot math core 與多個 slot math module 維護，處理 fixedMultiBet、currency、debug bet、totalBet / jackpot scaling 等相容性與驗證問題，確保遊戲數學輸出與上游下注金額語意一致。
+
+## 不建議寫的履歷句
+
+- 主導 AntPlay 完整 slot math 平台。
+- 負責全部 `*-math` module 與完整 RTP 策略。
+- 設計完整遊戲數學模型與 certification 流程。
+- 負責錢包交易 rollback / reconciliation。
+
+## 面試講法收斂
+
+這個 case 最適合拿來展現三種能力：
+
+- Backend contract sense: core interface 變更如何保持相容。
+- Money correctness sense: 即使不是 DB transaction，也知道金額語意要一致。
+- Owner trade-off: 不一次改破大量 module，而是用代表 module + checklist 漸進落地。
+
+## 下一步
+
+Step 4 已把面試 case 收斂完成。下一步應做 Step 5，判斷這條 flow 能否作為單條履歷 claim、哪些可放履歷、哪些只適合面試講。
+
+```text
+antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5
+```

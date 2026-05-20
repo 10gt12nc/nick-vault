@@ -319,10 +319,10 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 ## 9. Step 1 結論
 
-`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，且第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 3。
+`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，且第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 4。
 
 建議下一步:
 
 ```text
-antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 4
+antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5
 ```

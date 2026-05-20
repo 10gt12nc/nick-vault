@@ -28,3 +28,12 @@
 - 實際 release / issue / MR context。
 - test result 或 simulation output。
 - 其他 high-evidence `*-math` module 的相同 pattern。
+
+## Step 4 面試邊界
+
+面試時可以把這條 flow 定位成「多 module math contract 相容與 money-like correctness」，但要主動說明：
+
+- 這是單條 flow 的 Step 4 面試 case，不是全 `*-math` final consolidation。
+- 已深掃代表 path：`math-core`、`sdt-math`、`sfm-math`、`slc-math`。
+- 未深掃上游 game-api caller 與全部 71 個 `*-math` repo。
+- 沒有 production incident / ticket evidence 時，不主動包裝成事故處理案例。
