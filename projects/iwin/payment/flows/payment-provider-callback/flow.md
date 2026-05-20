@@ -425,7 +425,7 @@ Step 5 claim gate 結論：
 - 面試可講 money correctness、callback trust boundary、MQ retry、提現失敗退款防重複補償、`billNo` cross-system trace 與人工 repair boundary。
 - 不可說 Nick 主導 / 設計 payment callback，不可說修復 pay4z 重複退款，不可說下游 wallet 已確認 exactly-once。
 
-下一步應回到 `payment` project 的候選 flow ranking，選下一條未完成且價值高的 flow；目前同 project 第二優先是 `withdrawal-auto-review-refund`。
+後續狀態更新：payment Top 5 代表 flow 與 project-level contribution consolidation 已完成；目前 payment project-local 不自動開新 flow，下一步回到 iwin Career Track 的 `iwin_gameserver contribution claim consolidation`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

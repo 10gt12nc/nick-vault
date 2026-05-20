@@ -124,11 +124,11 @@ Step 5 證據更新：Pay4z / NaNapay / BFPAY / NimTestPay 相關 commits 由 `1
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：真實開發過。Nick / `10gt12nc` 在 Pay4z、NaNapay、BFPAY、NimTestPay 與 `createOrderNo` 相關 commits / branches 有 path-specific evidence，可保守寫「參與第三方金流 provider request / callback / query 對接與維護」。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 在 Pay4z、NaNapay、BFPAY、GoldenPay、NimTestPay 與 `createOrderNo` 相關 commits / branches 有 path-specific evidence，可保守寫「參與第三方金流 provider request / callback / query 對接與維護」。
 - 可面試講：code-backed / 分析過。可用本 flow 說明 provider request、callback、query、timeout unknown、訂單狀態與查單補償風險。
 - 不可誇大：不是主導完整金流 owner。不得寫成主導 iwin payment、對接全部 provider、設計完整 provider 架構、建立完整 reconciliation 或改善成功率 X%。

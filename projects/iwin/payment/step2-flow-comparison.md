@@ -323,7 +323,7 @@ Step 3 暫不做：
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -333,23 +333,23 @@ iwin game_api partner-deposit-withdraw-bill Step 5
 只推薦一件事：
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 為什麼現在做它：
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
-- 目前總 queue 已移到 `game_api partner-deposit-withdraw-bill Step 5`，收斂 game_api 第二條代表 money API flow 的面試素材。
-- 下一步回到 iwin queue，補 `game_api partner-deposit-withdraw-bill Step 5`，先完成第二條代表 money API flow。
+- 目前總 queue 已移到 `iwin_gameserver contribution claim consolidation`，先收斂 iwin_gameserver 的履歷 / 面試 claim 風險。
+- 下一步回到 iwin queue，補 `iwin_gameserver contribution claim consolidation`；Flow Track 後續仍回 `center-http-deposit-withdraw Step 4`。
 
 會產出什麼：
 
-- 補 `game_api` 的 Nick / `10gt12nc` commits、branches、重要 diff、coupon flow evidence 與其他 candidate flow 邊界。
+- 補 `iwin_gameserver` 的 Nick / `10gt12nc` commits、branches、重要 diff、既有 flow KB 與可放履歷 / 可面試 / 不可誇大邊界。
 - 同步 `projects/iwin/payment/README.md`、共用 inventory / todo 的下一步狀態。
 
 是否更新履歷：
 
-- payment 履歷 / 自傳已保守更新且不因新規則重做；`game_api` 需先做 contribution consolidation 才能確認 coupon evidence 如何放入正式履歷。
+- payment 履歷 / 自傳已保守更新且 2026-05-20 已重新覆核；`iwin_gameserver` 是否能放履歷要等 contribution consolidation 判斷。
 
 是否需要 commit / push：
 

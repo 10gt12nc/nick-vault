@@ -172,12 +172,12 @@ payment：
 ## Step 5 結論
 
 - 本 flow 已完成 Step 5 claim gate。
-- Nick 個人貢獻不應再維持「待確認」：至少 Pay4z / NaNapay / BFPAY / NimTestPay 相關 provider request / query / callback code 有 `10gt12nc` path-specific commits 與 Nick branch evidence。
+- Nick 個人貢獻不應再維持「待確認」：至少 Pay4z / NaNapay / BFPAY / GoldenPay / NimTestPay 相關 provider request / query / callback code 有 `10gt12nc` path-specific commits 與 Nick branch / direct commit evidence。
 - 正式履歷可保守更新為「參與第三方金流 provider request / callback / query 對接與維護」，不寫主導、不寫全權 owner、不寫量化改善。
 - 核心講法仍是：`payment_order` 先建 `WAIT`，`billNo` 帶到 provider 當 merchant order id；provider accepted 後仍要等 callback / 查單確認，`newPay` success 不等於上分。
 
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```

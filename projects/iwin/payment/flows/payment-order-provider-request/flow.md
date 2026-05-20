@@ -7,7 +7,7 @@
 - 專案：`/Users/nick/Git/iwin/payment`。
 - 完成狀態：Step 5，Level 2+ claim gate；2026-05-18 建立主學習包、轉成面試 case，並完成 Nick 個人貢獻判定。
 - 證據層級：`真實開發過` / `專案存在 / code-backed` 混合。
-- Nick 個人貢獻層級：`部分 provider request 真實開發過`。已從 source repo path-specific history 確認 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 在 `origin/pay4z-Nick` / `origin/NaNapay_Nick` / `origin/feature/nimtestpay-dev` 等分支與相關 commits 中，新增或修改 Pay4z、NaNapay、BFPAY、NimTestPay 這類 provider request / query / callback code。整體 `payment` 金流架構、全部 provider、完整 reconciliation owner 仍不得誇大。
+- Nick 個人貢獻層級：`部分 provider request 真實開發過`。已從 source repo path-specific history 確認 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 在 `origin/pay4z-Nick` / `origin/NaNapay_Nick` / `origin/feature/nimtestpay-dev` / GoldenPay 相關 commits 中，新增或修改 Pay4z、NaNapay、BFPAY、GoldenPay、NimTestPay 這類 provider request / query / callback code。整體 `payment` 金流架構、全部 provider、完整 reconciliation owner 仍不得誇大。
 - 是否只確認到入口：否。已確認玩家支付選擇、provider controller `/newPay`、訂單建立、商戶設定、簽章、金額單位轉換、provider HTTP request、回傳支付資訊、失敗標 `ERROR`、查單入口；但 DB unique key、provider accepted 後無 callback 的自動 reconciliation、完整 request / callback raw log 仍是 `待確認`。
 
 本 flow 的核心問題是：
@@ -297,7 +297,7 @@ Owner 判斷：
 
 - Nick 有 code history 可支撐「參與多個 iwin payment provider request / callback / query 對接與維護」。
 - 最強 evidence 是 Pay4z：`origin/pay4z-Nick` 與 `7853917 feat(#285): pay4z 对接` 新增 `Pay4zController` / `Pay4zServiceImpl`，包含 `/newPay`、callback、查單、簽章、金額單位與 merchant order id。
-- 也可用 NaNapay、BFPAY、NimTestPay 作輔助 evidence，但要分清楚 production provider、query / fix、local / SIT manual testing。
+- 也可用 NaNapay、BFPAY、GoldenPay、NimTestPay 作輔助 evidence，但要分清楚 production provider、query / fix、provider integration、local / SIT manual testing；GoldenPay 目前只標 code-backed provider integration，不寫 production owner。
 - 可以用它談 provider integration、簽章、金額單位、merchant order id、HTTP timeout、查單 / callback / reconciliation。
 
 不能說：
@@ -313,14 +313,14 @@ Owner 判斷：
 
 ## 14. 下一步
 
-後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 5，project-level payment contribution consolidation 已完成。下一步回到 `game_api partner-deposit-withdraw-bill Step 5`。
+後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 5，project-level payment contribution consolidation 已完成並於 2026-05-20 重新覆核，補入 GoldenPay direct evidence。下一步回到 iwin Career Track 的 `iwin_gameserver contribution claim consolidation`。
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：真實開發過。Nick / `10gt12nc` 的 Pay4z、NaNapay、BFPAY、NimTestPay 與 `createOrderNo` 相關 commits / branches 可支撐「參與第三方金流 provider request / callback / query 對接與維護」。
+- 可放履歷：真實開發過。Nick / `10gt12nc` 的 Pay4z、NaNapay、BFPAY、GoldenPay、NimTestPay 與 `createOrderNo` 相關 commits / branches 可支撐「參與第三方金流 provider request / callback / query 對接與維護」。
 - 可面試講：code-backed / 分析過。可講 provider request、callback、query、timeout unknown、訂單狀態與查單補償。
 - 不可誇大：不是主導完整金流 owner；不得寫全部 provider、完整架構 owner、完整 reconciliation 或量化改善。

@@ -39,4 +39,4 @@ Step 4 已補齊面試 case，不需要改履歷，重點結論是：
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `game_api partner-deposit-withdraw-bill Step 5`。
+payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `iwin_gameserver contribution claim consolidation`。

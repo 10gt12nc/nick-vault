@@ -45,7 +45,7 @@
 ## 下一步
 
 ```text
-iwin game_api partner-deposit-withdraw-bill Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
