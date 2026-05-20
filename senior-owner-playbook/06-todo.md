@@ -70,6 +70,7 @@
 - 已完成 `ugsoft ugsoft-workspace contribution claim consolidation`；2026-05-20 rolling 收口。這是 workspace / docs / harness / runbook supporting evidence，可支撐 cross-repo system reconstruction、工程規範、local / deploy harness、migration / release 風險整理；不新增 standalone 正式履歷主成果，也不反向包裝成 service runtime code。
 - 已完成 `antplay antplay-slot-admin-api contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 admin / merchant auth、商戶 / Game API 白名單、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / 風控通知與 Quartz job 有大量 direct commits，可保守補入後台 API / risk ops / async data processing 經驗；不寫完整 AntPlay slot platform、game runtime、wallet / reconciliation 或完整 RabbitMQ owner。
 - 已完成 `antplay antplay-slot-game-api contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 game init、bet / settle / rollback、轉帳錢包、bet record / request log 分表、RabbitMQ request log、Quartz 補通知、RTP / dark pool / player control 有大量 direct commits，可保守補入 game runtime / betting-settlement / transfer wallet / async log 經驗；不寫完整 AntPlay slot platform、完整遊戲數學 / RTP 策略、wallet / ledger / reconciliation 或完整 RabbitMQ / Kafka owner。
+- 已完成 `antplay antplay-slot-game-job contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 Kafka consumer / Quartz job、代理玩家報表 projection、activity accumulated bet、big-win notification、report currency / key 修正與 db partition / job config 有 direct commits，可保守補入 job / event processing / report projection / notification 經驗；不寫完整 Kafka event platform、settle pool / risk / jackpot、BI / report platform 或完整 AntPlay slot platform owner。
 
 ## 下一步
 
@@ -94,6 +95,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 11. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
 12. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 antplay，應做 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
 13. `antplay-slot-game-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 antplay，應做 Flow Track Step 1 / Step 2，挑 slot bet-settle-rollback、transfer-wallet-money-in-out、request-log-rabbitmq-async、bet-record-sharding-schema-route 代表 flow。
+14. `antplay-slot-game-job contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若延續本 repo，應做 Flow Track Step 1 / Step 2，挑 proxy-user-data-report-projection、big-win-notification、activity-accumulated-bet-voucher、settle-pool-monitor 代表 flow。
 
 ### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
@@ -111,7 +113,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 2. iwin 各 project 局部下一步
 
-目前 antplay 線已完成 `antplay-slot-admin-api` 與 `antplay-slot-game-api` rolling contribution consolidation。若 Nick 要繼續 antplay，下一步優先做 `antplay-slot-game-api Step 1`，把 slot bet-settle-rollback、transfer-wallet-money-in-out、request-log-rabbitmq-async、bet-record-sharding-schema-route 拆成可面試的 Flow Track；若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
+目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api` 與 `antplay-slot-game-job` rolling contribution consolidation。若 Nick 要最大化交易主線，下一步優先做 `antplay-slot-game-api Step 1`；若要延續本輪 game-job，則做 `antplay-slot-game-job Step 1`，把 proxy-user-data-report-projection、big-win-notification、activity-accumulated-bet-voucher、settle-pool-monitor 拆成可面試的 Flow Track。若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 以下是近期各 project 的局部下一步：
 
@@ -129,6 +131,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 12. `ugsoft-workspace`：contribution consolidation 已完成；只作 workspace / docs / harness / runbook supporting evidence，不作正式履歷主成果。
 13. `antplay-slot-admin-api`：contribution consolidation 已完成；可作 AntPlay 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理素材。下一步建議 Step 1 / Step 2。
 14. `antplay-slot-game-api`：contribution consolidation 已完成；可作 AntPlay 遊戲 API runtime / 下注結算 / 轉帳錢包 / 分表 / RabbitMQ request log 素材。下一步建議 Step 1 / Step 2。
+15. `antplay-slot-game-job`：contribution consolidation 已完成；可作 AntPlay job / event processing、Kafka / Quartz、報表 projection、activity accumulated bet 與 big-win notification 素材。下一步建議 Step 1 / Step 2。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -147,12 +150,12 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`third_games_api` rolling consolidation 也已完成但不新增 standalone 正式履歷主成果。下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`third_games_api` rolling consolidation 也已完成但不新增 standalone 正式履歷主成果。下一步可回 Flow Track 補 `center-http-deposit-withdraw Step 4`，或延續 antplay 做 `antplay-slot-game-job Step 1`。
 
 ## 下一個 prompt
 
 ```text
-antplay antplay-slot-game-api Step 1
+antplay antplay-slot-game-job Step 1
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

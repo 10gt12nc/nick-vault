@@ -1,0 +1,32 @@
+# antplay-slot-game-job
+
+`antplay-slot-game-job` 是 AntPlay slot 系列的 Java / Spring Boot job / event processing repo，涵蓋 Kafka consumer、Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、分表 / job config 與部分 settle pool / risk 相關後續維護。
+
+## Status
+
+| 項目 | 狀態 |
+| --- | --- |
+| contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
+| Flow Track | 未開始 |
+| 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
+| 下一步 | `antplay antplay-slot-game-job Step 1` |
+
+## Claim Boundary
+
+可保守說:
+
+- 參與 `antplay-slot-game-job` job / event processing 開發維護。
+- 處理 Kafka `settled_bets` consumer、Quartz report job、代理玩家報表聚合、活動累積投注、big-win notification 與 db partition / job config 類維護。
+- 參與報表 key / currency / daily summary 類資料一致性修正與 job schedule 防呆。
+
+不可誇大:
+
+- 不寫主導完整 AntPlay slot platform。
+- 不寫完整 Kafka event platform、exactly-once、outbox 或完整 replay architecture owner。
+- 不寫完整 settle pool / risk / jackpot owner；後續 commit 顯示其他人有大量接續開發。
+- 不寫完整 BI / report platform owner。
+- 不寫完整遊戲數學 / RTP 策略 owner。
+
+## Files
+
+- [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/contribution-claim-consolidation.md)

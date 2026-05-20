@@ -108,6 +108,7 @@ Git repo:
 
 - `antplay-slot-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / 商戶控制面、JWT / RBAC、商戶 / Game API 白名單、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / 風控通知與 Quartz job 類履歷素材；不寫完整 AntPlay slot platform、game runtime、wallet / reconciliation 或完整 RabbitMQ owner。
 - `antplay-slot-game-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作遊戲 API runtime、game init、bet / settle / rollback、轉帳錢包、bet record / request log 分表、RabbitMQ request log、Quartz 補通知、RTP / dark pool / player control 類履歷素材；不寫完整 AntPlay slot platform、完整遊戲數學 / RTP 策略、wallet / ledger / reconciliation 或完整 RabbitMQ / Kafka owner。
+- `antplay-slot-game-job`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有 direct commits，可保守作 Kafka / Quartz job、代理玩家報表 projection、activity accumulated bet、big-win notification、report currency / key 修正與 db partition / job config 類履歷素材；不寫完整 Kafka event platform、完整 settle pool / risk / jackpot owner 或完整 BI / report platform owner。
 
 ## DevOps / primestar
 
