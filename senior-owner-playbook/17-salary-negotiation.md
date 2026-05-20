@@ -10,7 +10,7 @@ Nick 不應只用「4 年 Java 後端」談薪，而應用以下定位：
 Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / bet-settle production flow 經驗
 ```
 
-這個定位的價值不是技術名詞多，而是能接手高交易、跨服務、第三方 provider、狀態一致性、retry / compensation、報表 projection 與 legacy system takeover。
+這個定位的價值不是技術名詞多，而是能接手高交易、跨服務、第三方 provider、狀態一致性、retry / compensation、報表 projection、缺乏交接文件的既有平台與 legacy system takeover。
 
 ## 市場錨點
 
@@ -50,6 +50,7 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 - Platform Backend。
 - Gaming / Payment / Wallet / Provider Integration Backend。
 - 職務需要接 legacy production flow、第三方 provider、MQ / batch、交易一致性或報表 projection。
+- 職務需要整理缺乏交接文件的既有平台，讓系統恢復可維護、可交接狀態。
 
 ### 進取開價
 
@@ -63,6 +64,7 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 - 職缺明確要求 Senior Backend / Platform Backend。
 - 需要金流 / 錢包 / provider gateway / bet-settle / MQ / Kafka / 高交易系統經驗。
 - 需要接手複雜 production flow、跨 repo service boundary 或 legacy system takeover。
+- 需要協助團隊重建服務 / 部署 / 資料流脈絡，補齊維運文件與交接脈絡。
 - 公司是高壓、高工時、高責任範圍，或期待接近 owner decision。
 
 ## 建議底線
@@ -106,7 +108,7 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 ### 對方問「為什麼是這個區間」
 
 ```text
-我的經驗不只是在單一 API 或 CRUD，而是長期接觸遊戲平台、金流 / 錢包、第三方 provider、下注結算、MQ / batch、報表 projection 與 legacy 系統維護。這類工作需要處理 callback 重送、provider timeout、retry 重複副作用、狀態一致性與線上可追蹤性，所以我會用 Senior Java Backend / Platform Backend 的職責範圍來評估待遇。
+我的經驗不只是在單一 API 或 CRUD，而是長期接觸遊戲平台、金流 / 錢包、第三方 provider、下注結算、MQ / batch、報表 projection 與 legacy 系統維護，也有在缺乏完整交接文件時協助梳理兩套既有平台、恢復可維護狀態的經驗。這類工作需要處理 callback 重送、provider timeout、retry 重複副作用、狀態一致性、線上可追蹤性與跨 repo 系統理解，所以我會用 Senior Java Backend / Platform Backend 的職責範圍來評估待遇。
 ```
 
 ### 對方壓低到 9 萬以下
@@ -132,6 +134,7 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接。
 - 參與 AntPlay slot game API / job / math module、UGSoft provider connector / gateway、RabbitMQ / Kafka / Quartz 非同步處理。
 - 能透過 code reading、log、git history、DB / Redis / MQ 流向重建 production flow。
+- 能在交接文件不足時，協助梳理服務、部署環境、資料流與維運脈絡，讓既有平台恢復可維護 / 可交接狀態。
 
 不可誇大：
 

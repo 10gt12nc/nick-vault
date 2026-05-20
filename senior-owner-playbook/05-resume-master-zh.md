@@ -38,7 +38,7 @@
 
 ## 目前可直接使用履歷版（Rolling）
 
-> 狀態：2026-05-20 依目前所有 Contribution Claim Consolidation 匯總。這版可以先拿去寫履歷 / LinkedIn / 104，但不是 final；後續每條 flow 深掃、Step 5 或新 evidence 都要回填修正。
+> 狀態：2026-05-20 依目前所有 Contribution Claim Consolidation 匯總，並補讀 Nick 舊 104 PDF 履歷。這版可以先拿去寫履歷 / LinkedIn / 104，但不是 final；後續每條 flow 深掃、Step 5 或新 evidence 都要回填修正。
 
 ### 建議職稱定位
 
@@ -62,7 +62,7 @@ Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider
 - 參與 AntPlay slot math core / 多個 math module 維護與驗證，處理 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
 - 參與每日遊戲資料彙總 batch / BI projection 與第三方遊戲紀錄備份維護，處理資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存、Mongo 分批查詢與 batch size 調整。
 - 參與 UGSoft / AntPlay 後台 API / control plane 維護，處理 login / JWT / RBAC、商戶 / provider 白名單、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / bet record 與 Quartz / report job。
-- 透過跨 repo code reading、git history、schema / Redis / MQ / log flow 梳理與文件化，重建複雜既有系統的 production flow，支援後續維護、交接與面試 case 整理。
+- 在缺乏完整交接文件的情況下，協助主管梳理兩套既有平台的服務、部署環境、資料流與維運脈絡；透過跨 repo code reading、git history、schema / Redis / MQ / log flow 梳理與文件化，重建複雜既有系統的 production flow，讓平台逐步恢復到可維護、可交接的狀態。
 
 後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
 `2020/10 - 2023/04｜Java / SSM / Spring Boot｜博弈平台 API、舊系統維護`
@@ -97,7 +97,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 `2023/10 - 至今｜台北｜博弈 / 遊戲平台後端、平台整合、營運後台、事件流與維運`
 
 - 參與中大型博弈 / 遊戲平台後端系統維護與功能開發，工作範圍涵蓋 Java / Spring Boot API、後台營運功能、第三方 provider 串接、金流 / 錢包相關流程、排程報表、Redis / MQ / DB 資料流與部署環境理解。
-- 接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤、資料流梳理與文件化，重建核心 flow 的理解，降低後續維護與交接成本。
+- 接手缺乏完整交接文件、服務邊界複雜的既有系統，協助主管梳理兩套平台的服務、部署環境、資料流與維運脈絡；透過 code reading、log 追蹤、git history、資料流梳理與文件化，重建核心 flow 的理解，讓平台逐步恢復到可維護、可交接的狀態。
 - 參與 AntPlay 後台 API / 商戶控制面開發維護，處理 admin / merchant auth、商戶白名單、Game API 白名單同步、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控，以及 RabbitMQ request log / 風控通知與 Quartz job 維護；不寫主導完整 AntPlay slot platform 或完整遊戲 runtime。
 - 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正；不寫主導完整 slot platform、完整遊戲數學或完整錢包 owner。
 - 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / report 分表與 job config；不寫主導完整 Kafka event platform、settle pool / risk / jackpot 或完整 BI / report platform。
@@ -122,7 +122,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 `2020/10 - 2023/04｜台北｜博弈平台 API、舊系統維護、線上問題排查`
 
 - 負責博弈平台後端 API 開發與既有系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能與營運需求。
-- 長期處理線上問題、需求調整與測試環境支援，累積 log 分析、資料狀態排查、跨部門溝通與舊系統維護經驗。
+- 長期處理線上問題、需求調整與測試環境支援，曾在維運組支援 A / B 平台與其他專案的 issue 排查，舊履歷記錄約每月 30 件線上問題、2 張需求單與 3 張 Bug 單；正式履歷可保守寫「高頻線上問題支援」，若要使用精確數字需再補 ticket 系統或本人確認。
 - 維護 JSP / SSM 等舊系統，進行局部重構、查詢調整與功能修補，降低既有功能變更風險。
 - 曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
 

@@ -37,6 +37,8 @@
 
 > 2026-05-20 antplay math consolidation：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md` 與 `projects/antplay/star-math/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay slot math core / 多個 math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整；仍不寫主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner。`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。
 
+> 2026-05-20 舊 104 PDF 履歷補讀：可補入「缺乏完整交接文件時，協助主管梳理兩套既有平台並恢復可維護 / 可交接狀態」的 legacy takeover / system reconstruction 口徑。舊 PDF 中對主管、流程、PM / QA 缺位、假敏捷等負面描述不得放入正式投遞稿；Kafka 架構建置、後台 API 架構、RTP 工具、效能改善等較強 claim 仍需依目前 project consolidation / commit evidence 保守降調。
+
 ## 使用原則
 
 - 不寫人生流水帳。
@@ -62,12 +64,13 @@
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，範圍包含 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
 - 參與 AntPlay slot 遊戲 API / runtime、UGSoft provider connector / gateway、AntPlay slot job / event processing、RabbitMQ / Kafka / Quartz job、bet record / report 分表與 request log / bet record 非同步資料處理。
 - 參與每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
-- 透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 production flow，協助後續維護、交接與問題排查。
+- 在缺乏完整交接文件的情況下，協助主管梳理兩套既有平台的服務、部署環境、資料流與維運脈絡；透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 production flow，協助平台逐步恢復到可維護、可交接的狀態。
 
 後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
 2020/10 - 2023/04
 
 - 負責博弈平台 API 與既有系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能、營運需求與線上問題排查。
+- 曾在維運組支援 A / B 博弈平台與其他專案的高頻線上問題、需求調整與 Bug 排查；舊履歷記錄約每月 30 件線上問題、2 張需求單與 3 張 Bug 單，正式投遞可視篇幅保守寫成「高頻線上問題支援」。
 - 維護 JSP / SSM 舊系統，處理需求調整、測試環境排查、log 分析、資料狀態確認與局部重構。
 - 曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
 
@@ -94,7 +97,7 @@
 
 我適合 Senior Java Backend / Platform Backend 類型職缺，尤其是需要接手複雜既有系統、串接第三方 provider、維護高交易 flow、處理非同步事件與排程報表的團隊。我的強項不是只完成單點功能，而是能把入口、資料狀態、交易邊界、失敗重試、補償與觀測串起來，讓系統問題可以被定位、被追蹤、被交接。
 
-過去經驗讓我熟悉博弈 / 遊戲平台常見的 production 風險，例如金流 callback 重送、provider timeout、下注結算 rollback、MQ 消費失敗、報表 projection 與交易真相不一致、legacy code 文件不足與跨 repo service boundary 不清楚。我會用保守、可驗證的方式閱讀 code、追 git history、比對 log / DB / Redis / MQ 流向，先建立可靠的系統理解，再進一步處理維護、修正與優化。
+過去經驗讓我熟悉博弈 / 遊戲平台常見的 production 風險，例如金流 callback 重送、provider timeout、下注結算 rollback、MQ 消費失敗、報表 projection 與交易真相不一致、legacy code 文件不足與跨 repo service boundary 不清楚。我也曾在缺乏完整交接文件的情況下，協助主管梳理兩套既有平台並恢復可維護狀態。我會用保守、可驗證的方式閱讀 code、追 git history、比對 log / DB / Redis / MQ 流向，先建立可靠的系統理解，再進一步處理維護、修正與優化。
 
 我不會把尚未證實的分析成果包裝成主導經驗；但對於實際參與過的 provider 串接、金流 / 錢包、遊戲 API、slot job、math module、報表 batch 與 legacy system takeover，我能在面試中用 code-backed flow 說清楚實作邊界、風險判斷與取捨。我期待加入重視穩定性、可維護性與長期工程品質的後端團隊，持續往能承擔 production owner decision 的方向成長。
 
