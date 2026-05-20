@@ -12,6 +12,7 @@
 6. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`contribution-claim-consolidation` 已完成 rolling / scoped 收口；第三方 provider 投派整合可保守放履歷，`center-http-deposit-withdraw` 下一步做 Step 4。
 7. [k3s-deploy](k3s-deploy/README.md)：K3s / Kustomize deploy manifests，`gameserver-phased-rollout` 已到 Step 4；project-local 下一步是 Step 5 claim gate。
 8. [bi_share](bi_share/README.md)：PHP / Laravel 分享、佣金與 BI 報表 legacy repo；rolling / scoped negative contribution consolidation 已完成，不放正式履歷主成果。
+9. [iwin-workspace](iwin-workspace/README.md)：workspace / KB / docs / environment index；contribution consolidation 已完成，不新增 standalone 正式履歷主成果，只作工作方法與 cross-repo reconstruction supporting evidence。
 
 ## 目前內容
 
@@ -25,6 +26,7 @@
 | `iwin_gameserver` | architecture / Step 1 / Step 2；`third-party-transfer-in-out` 已完成 Step 5 並於 2026-05-20 project consolidation 升級為部分真實開發過；`center-http-deposit-withdraw` 已完成 Step 3 | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
 | `k3s-deploy` | architecture / Step 1 / Step 2；`gameserver-phased-rollout` 已完成 Step 4 面試案例 | project-local 下一步：`iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | `bi_share` | rolling / scoped negative contribution consolidation 已完成；未見 Nick / `10gt12nc` direct production commits | 不放正式履歷主成果；若要深挖，先做 `iwin bi_share Step 1` |
+| `iwin-workspace` | rolling / scoped contribution consolidation 已完成；有 Nick / `10gt12nc` KB / docs / environment index direct commits，但不是 production service | 不放 standalone 正式履歷主成果；作 cross-repo KB / system reconstruction supporting evidence |
 
 ## 共用邊界
 
@@ -39,6 +41,7 @@
 - `third_games_api` 偏第三方遊戲 provider callback / seamless wallet adapter。
 - `k3s-deploy` 偏 dev-k3s deployment topology、rollout / rollback、config / secret 與 observability。
 - `bi_share` 偏 PHP / Laravel legacy 分享、佣金、BI 報表、匯出與 GM repair 入口。
+- `iwin-workspace` 偏 workspace / KB / docs / environment index，不是業務 service source of truth。
 
 待確認：
 
@@ -48,6 +51,7 @@
 - `bi_share` 已完成 rolling / scoped negative consolidation：目前未見 Nick direct production commits，僅作 legacy BI / 分享 / 佣金 / 報表分析素材。
 - `third_games_api` 已完成 rolling / scoped contribution consolidation：本 repo 僅掃到局部測試 / merge 線索，不新增 standalone 正式履歷主成果；下游 `iwin_gameserver` direct evidence 已在 `iwin_gameserver` consolidation 正確歸位。
 - `iwin_gameserver` 已完成 rolling / scoped contribution consolidation：Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、log projection 有 direct commits；正式履歷可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」。
+- `iwin-workspace` 已完成 rolling / scoped contribution consolidation：有大量 KB / docs / environment index direct commits，但只支撐工作方法與系統理解能力，不新增 standalone 正式履歷主成果。
 
 履歷邊界：
 
@@ -57,6 +61,7 @@
 - `bi_share` 不新增正式履歷主成果；若面試提到，只能說分析過 legacy BI / 分享 / 佣金報表系統與 projection / repair 風險。
 - `third_games_api` 不新增 standalone 正式履歷主成果；若面試提到，只能說分析過第三方遊戲 provider adapter / seamless wallet callback / Mongo audit / gameserver transaction boundary。
 - `iwin_gameserver` 可新增保守第三方 provider 投派整合履歷 claim，但不可寫成完整 gameserver owner、完整 wallet owner、完整上分 / 下分 owner 或完整 provider integration owner。
+- `iwin-workspace` 不新增 standalone 正式履歷主成果；若提到，只能作接手文件不足、跨 repo KB、schema / config / history 梳理的 supporting evidence。
 - 不寫「主導完整金流 / 遊戲錢包 / DevOps owner」，除非後續補到足夠 evidence。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

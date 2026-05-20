@@ -64,6 +64,7 @@
 - 已完成 `iwin game_api contribution claim consolidation`；2026-05-20 已重新覆核。Nick / `10gt12nc` 在 coupon redeem / grant 與 `iwin_gameserver` bet target handler 有 direct commits，可把 `game_api` 升級為「部分真實開發過」，但正式履歷只採 coupon 保守 claim；partner / agent bonus 只作 code-backed 面試素材。
 - 已完成 `iwin bi_share contribution claim consolidation`；未掃到 Nick / `10gt12nc` direct production commits，結論是不放正式履歷主成果，只作 legacy Laravel / 分享 / 佣金 / BI 報表 / GM repair 的 code-backed 面試分析素材。
 - 已完成 `iwin iwin_gameserver contribution claim consolidation`；2026-05-20 rolling / scoped 收口。Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits，可保守放「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」；center-http 上分 / 下分仍是 code-backed 面試素材，不擴張成完整 gameserver / wallet owner。
+- 已完成 `iwin iwin-workspace contribution claim consolidation`；2026-05-20 rolling / scoped 收口。Nick / `10gt12nc` 有大量 workspace KB / docs / environment index / tool commits，可支撐 cross-repo system reconstruction 與知識庫治理能力，但不新增 standalone 正式履歷主成果，不反向包裝成子 repo 業務開發。
 
 ## 下一步
 
@@ -82,6 +83,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 5. `game_job contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；保留為 project-level claim evidence，不因新規則重做。
 6. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
+8. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
 
 ### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
@@ -109,6 +111,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 6. `third_games_api`：rolling / scoped contribution consolidation 已完成；project-local flow 下一步仍可做 `gsc-transfer-bet-settle-rollback Step 5`，但目前不搶履歷。
 7. `iwin_gameserver`：Career Track consolidation 已完成；Flow Track 下一步是 `center-http-deposit-withdraw Step 4`。
 8. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
+9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
 
 ### 3. 每條完成後自動判斷是否更新
 

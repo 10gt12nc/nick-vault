@@ -21,6 +21,8 @@
 
 > 2026-05-20 iwin_gameserver consolidation：已完成 `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，範圍限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection；仍不寫主導完整 gameserver、完整遊戲錢包、完整 provider integration、完整上分 / 下分或完整 idempotency / reconciliation。
 
+> 2026-05-20 iwin-workspace consolidation：已完成 `projects/iwin/iwin-workspace/contribution-claim-consolidation.md`。投遞自傳不新增 workspace 主成果；只可作 supporting context，說明 Nick 有跨 repo code reading、schema / Redis / MQ / 運維文件與 git history 梳理能力。不得寫成完整 DevOps owner、workspace owner 或子 repo 業務開發。
+
 ## 使用原則
 
 - 不寫人生流水帳。

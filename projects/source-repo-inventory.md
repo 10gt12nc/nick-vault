@@ -8,7 +8,7 @@
 
 - 只能讀這些公司 / 來源 repo，不能改。
 - 真正長期整理內容只放 `nick-vault/projects/`。
-- `*-workspace` 通常是維護 / KB / 工作區參考，不當成業務 code 主體。
+- `*-workspace` 通常是維護 / KB / 工作區參考，不當成業務 code 主體；若有 contribution consolidation，也只能支撐工作方法與 cross-repo reconstruction，不反向包裝成子 repo 業務開發。
 - `*-math` 先群組記錄；除非 Nick 指定，不逐一展開。
 - 每次要寫履歷或自傳前，必須另補 Nick 本人 evidence，例如 MR / ticket / commit / production issue / 本人確認。
 
@@ -39,7 +39,7 @@ Git repo:
 
 - 核心後端候選: `payment`、`game_api`、`game_job`、`iwin_gameserver`、`third_games_api`
 - 後台 / BI / control plane: `app_bi`、`bi_share`
-- client / deploy / simulator / workspace: 依 flow 需要作參考
+- client / deploy / simulator / workspace: 依 flow 需要作參考；`iwin-workspace` 已完成 rolling consolidation，不新增 standalone 正式履歷主成果
 
 ## ugsoft
 
