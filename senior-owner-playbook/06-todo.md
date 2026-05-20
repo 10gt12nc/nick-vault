@@ -6,6 +6,7 @@
 - 從待刪區重新建立 `senior-owner-playbook/`。
 - 建立新入口、維護規則、flow inventory、學習路線、flow 模板、面試案例與唯一履歷自傳。
 - 已補 `08-application-autobiography-zh.md` 的 104 欄位版：工作經驗、專長、自傳、自我推薦；`05` 維持母稿 / 證據池定位，`08` 維持投遞可貼定位。
+- 已新增 `17-salary-negotiation.md`：維護 104 / 面試用薪資談判定位、期望待遇區間、底線、口頭說法與不可誇大邊界；正式談 offer 前仍需重查當下行情。
 - 已建立全 vault 共用自動維護規則：每次 project / flow / Step 任務前自動重讀 KB、既有文件與相關 code 最新狀態，完成後自動判斷是否維護 README、Step 文件、evidence、claim boundary、todo 或共用 KB。
 - 已補上舊文件自動排查規則：AI 必須自己檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB；上一個 Step 不乾淨時，優先重整舊文件，不直接跳下一步。
 - 已補上技術硬底子與決策比較模組：每條高價值 flow 可新增 `decision-notes.md`，整理技術選型、差異比較、trade-off、owner decision 與面試追問。
