@@ -1,28 +1,28 @@
 # third-party-transfer-in-out：保守面試素材
 
-更新時間：2026-05-15
-對應 Step：Step 5 履歷 / 自傳邊界已完成
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-20
+對應 Step：Step 5 履歷 / 自傳邊界已完成；project-level consolidation 已升級
+證據層級：部分真實開發過 + code-backed
 
 ## 面試定位
 
-這份不是正式履歷，也不是 Nick 已實作 claim。它是 code-backed 的 Senior / Owner 面試分析素材：用一條真實存在的 gameserver money flow，練習怎麼談 transaction boundary、idempotency、retry / compensation、reconciliation 與 observability。
+這份已從單純 code-backed 分析素材升級：2026-05-20 project-level consolidation 找到 Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 投派整合、money job、`GamePlayer` log dispatch 與 log reel path 的 direct commits。它可以作為正式履歷的保守 project-level claim，也可以作為 Senior / Owner 面試案例。
 
 可用語氣：
 
-- 「我分析過一條第三方遊戲投派整合 flow。」
+- 「我參與過一條第三方遊戲投派整合與 log projection 相關開發。」
 - 「我會把風險拆成 wallet correctness、idempotency、log consistency。」
 - 「如果我是 owner，我會優先補防重與 reconciliation。」
 
 避免語氣：
 
-- 「我主導了這條 flow。」
+- 「我主導了完整 flow / 完整 gameserver wallet。」
 - 「我修好了重複扣款。」
 - 「我設計了整套遊戲錢包架構。」
 
 ## 30 秒版本
 
-我分析過 iwin gameserver 的第三方遊戲投派整合 flow，重點不是只看 HTTP 入口，而是追投注 / 派彩 / 退款如何進入 gameserver、如何改玩家錢包、如何送戰績與打碼 log，以及中間有哪些 consistency 和 idempotency 風險。
+我參與過 iwin gameserver 第三方遊戲 provider 投派整合與 log projection 相關開發，重點不是只看 HTTP 入口，而是追投注 / 派彩 / 退款如何進入 gameserver、如何改玩家錢包、如何送戰績與打碼 log，以及中間有哪些 consistency 和 idempotency 風險。
 
 這條 flow 最值得談的是：錢包成功後會先回 HTTP OK，後續才送戰績與打碼 log，所以要定義 OK 語意、防重 key、重試與對帳補償。
 
@@ -77,7 +77,7 @@ Action：
 Result：
 
 - 形成一個可面試討論的 owner analysis case：OK response 語意、wallet 防重、log projection 補償與 reconciliation 是核心風險。
-- 目前仍只屬於 `專案存在 / code-backed` 與 `分析素材 / learning-only`，不能寫成 Nick 主導成果。
+- 目前已可作為 `部分真實開發過 + code-backed` 的保守面試案例，但不能寫成 Nick 主導完整 gameserver 或完整遊戲錢包成果。
 
 ## 面試回答草稿
 
@@ -109,7 +109,7 @@ Result：
 
 ## 目前不能講
 
-- 不能說我主導這條 flow。
+- 不能說我主導完整 flow 或完整 gameserver wallet。
 - 不能說我修過這條 production bug。
 - 不能說已確認防重完整。
 - 不能說有改善百分比或 owner 權限。
@@ -118,18 +118,18 @@ Result：
 
 正式判斷：
 
-- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
-- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
-- 本 flow 只保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
-- 若 Nick 補 MR / ticket / commit / production issue / 本人確認，再重新評估是否能標成 `真實開發過`。
+- 更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 本 flow 併入 `iwin_gameserver` project-level 第三方 provider 投派整合 claim。
+- 仍不寫完整 owner、production incident、完整防重 / 對帳或量化改善。
 
-可暫存的保守履歷句型，現階段不放正式履歷：
+可用的保守履歷句型：
 
 ```text
-分析 iwin gameserver 第三方遊戲投注 / 派彩 / 退款 flow，拆解 wallet mutation、log projection、idempotency 與 reconciliation 風險。
+參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，處理 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out flow 與 log projection。
 ```
 
-這句只能在面試或自我練習中用「分析過」語氣，不可改成「主導 / 實作 / 改善」。
+這句可以放正式履歷，但不可改成「主導完整 / owner / 改善 X%」。
 
 ## 下一步建議
 
@@ -143,11 +143,11 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 - 本 flow 已完成 Step 5。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
-- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case；完整 consolidation 等本批代表 flows 完成 Step 5 後再做。
+- Career Track 的 rolling / scoped contribution consolidation 已完成。
+- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case；後續完成 Step 5 或新增 gameserver flow 時再回填校正 project-level claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
+- 可放履歷：可併入 `iwin_gameserver` project-level 第三方 provider 投派整合 claim。
+- 可面試講：部分真實開發過 + code-backed。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner 或解決 duplicate callback production incident。

@@ -1,9 +1,9 @@
 # third-party-transfer-in-out Step 3：第三方遊戲投派整合 / 投注派彩退款
 
-更新時間：2026-05-15
+更新時間：2026-05-20
 掃描等級：Level 2 單條 flow 深掃
-狀態：Step 5 已完成履歷 / 自傳邊界
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+狀態：Step 5 已完成；2026-05-20 project-level consolidation 已升級履歷 claim
+證據層級：部分真實開發過 + code-backed
 
 ## 閱讀定位
 
@@ -18,6 +18,8 @@
 - `PlayerData` 產生 currency log 與玩家統計 side effect。
 
 本輪只對 `/Users/nick/Git/iwin/third_games_api` 做最小 upstream 關聯掃描，用來確認 command 是由 adapter 組到 gameserver；未把 third_games_api 當完整 Step 3 主體。
+
+2026-05-20 補充：project-level consolidation 已找到 Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 投派整合、money job、`GamePlayer` log dispatch 與 log reel path 的 direct commits。因此本 flow 可併入正式履歷的保守 project-level claim；但仍不得寫成 Nick 主導完整 gameserver、完整 wallet owner 或完整防重 / 對帳架構。
 
 ## 白話導讀
 
@@ -214,7 +216,7 @@ Owner 角度應追問：
 
 不可誇大：
 
-- 不能說 Nick 主導或實作這條 flow。
+- 不能說 Nick 主導完整這條 flow 或完整 gameserver wallet；只能說有 Antplay / GSC / PG 相關 path 的直接開發 evidence。
 - 不能說已確認 production incident、改善百分比或正式 owner 決策。
 - 不能說 gameserver 已具備完整防重；本輪 Step 3 的結論反而是「防重未確認，是高風險待查點」。
 
@@ -228,10 +230,9 @@ Owner 角度應追問：
 
 Step 5 結論：
 
-- 本 flow 可保留為 Senior / Owner 面試分析素材。
-- 不更新正式履歷 master。
-- 不更新投遞用自傳。
-- 若 Nick 後續補本人 MR / ticket / commit / production issue / 本人確認，再重新評估是否升級成 `真實開發過` 或正式成果。
+- 本 flow 可作為 Senior / Owner 面試案例，也可併入 project-level 正式履歷 claim。
+- 已更新正式履歷 master 與投遞用自傳，但只採保守第三方 provider 投派整合口徑。
+- 若要升級為完整 owner、incident、完整防重 / 對帳 claim，仍需更多 evidence。
 
 ## 下一步建議
 
@@ -243,13 +244,12 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 原因：
 
-- 本 flow 已完成 Step 5，正式履歷 / 自傳暫不更新。
+- 本 flow 已完成 Step 5，且已由 project-level consolidation 升級為保守履歷 evidence。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 3。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
-- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case；完整 consolidation 等本批代表 flows 完成 Step 5 後再做。
+- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case；後續完成 Step 5 時再回填校正 project-level claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；缺 Nick 本人對本 flow 的直接 evidence。
-- 可面試講：code-backed / 分析過。可講 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
+- 可放履歷：可併入 `iwin_gameserver` project-level 第三方 provider 投派整合 claim。
+- 可面試講：部分真實開發過 + code-backed。可講 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner 或解決 duplicate callback production incident。

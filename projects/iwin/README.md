@@ -9,7 +9,7 @@
 3. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
 4. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；不因新規則重做。
 5. [third_games_api](third_games_api/README.md)：第三方遊戲 provider adapter，`gsc-transfer-bet-settle-rollback` 已到 Step 4，rolling / scoped contribution consolidation 已完成；不新增 standalone 正式履歷主成果。
-6. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`third-party-transfer-in-out` 已到 Step 5，`center-http-deposit-withdraw` 已到 Step 3；下一步先做 `center-http-deposit-withdraw Step 4`，暫不做完整 consolidation。
+6. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`contribution-claim-consolidation` 已完成 rolling / scoped 收口；第三方 provider 投派整合可保守放履歷，`center-http-deposit-withdraw` 下一步做 Step 4。
 7. [k3s-deploy](k3s-deploy/README.md)：K3s / Kustomize deploy manifests，`gameserver-phased-rollout` 已到 Step 4；project-local 下一步是 Step 5 claim gate。
 8. [bi_share](bi_share/README.md)：PHP / Laravel 分享、佣金與 BI 報表 legacy repo；rolling / scoped negative contribution consolidation 已完成，不放正式履歷主成果。
 
@@ -21,8 +21,8 @@
 | `payment` | Top 5 flow 與 project-level contribution consolidation 已完成並於 2026-05-20 重新覆核；`payment-order-provider-request` 已有 Nick / `10gt12nc` path-specific evidence，GoldenPay direct commits 已補入 claim | 不因新規則重做；後續只在 Nick 指定新 payment flow 時追加 |
 | `app_bi` | Step 1 / Step 2 / architecture / career；4 條主要 flow 已完成 Step 5 | 已收斂；不搶履歷 claim |
 | `game_job` | Step 1 / Step 2；Top 5 代表 flows 與 project-level contribution consolidation 已完成並於 2026-05-20 重新覆核，其中 daily summary / GSC backup 有 direct evidence | 已收斂，不因新規則重做 |
-| `third_games_api` | Step 1 / Step 2；`gsc-transfer-bet-settle-rollback` 已完成 Step 4 面試案例；rolling / scoped contribution consolidation 已完成，不新增 standalone 正式履歷主成果 | Career Track 下一步：`iwin iwin_gameserver contribution claim consolidation`；project-local flow 可在 Nick 指定時做 `gsc-transfer-bet-settle-rollback Step 5` |
-| `iwin_gameserver` | architecture / Step 1 / Step 2；`third-party-transfer-in-out` 已完成 Step 5；`center-http-deposit-withdraw` 已完成 Step 3；Step 2 本批代表 flows 未完成 | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
+| `third_games_api` | Step 1 / Step 2；`gsc-transfer-bet-settle-rollback` 已完成 Step 4 面試案例；rolling / scoped contribution consolidation 已完成，不新增 standalone 正式履歷主成果 | project-local flow 可在 Nick 指定時做 `gsc-transfer-bet-settle-rollback Step 5` |
+| `iwin_gameserver` | architecture / Step 1 / Step 2；`third-party-transfer-in-out` 已完成 Step 5 並於 2026-05-20 project consolidation 升級為部分真實開發過；`center-http-deposit-withdraw` 已完成 Step 3 | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
 | `k3s-deploy` | architecture / Step 1 / Step 2；`gameserver-phased-rollout` 已完成 Step 4 面試案例 | project-local 下一步：`iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | `bi_share` | rolling / scoped negative contribution consolidation 已完成；未見 Nick / `10gt12nc` direct production commits | 不放正式履歷主成果；若要深挖，先做 `iwin bi_share Step 1` |
 
@@ -46,7 +46,8 @@
 - `game_job` 已完成 project-level consolidation：daily summary / GSC backup 有 direct evidence，可保守放履歷；其他 flow 只作面試素材。
 - 其他 iwin repo 若未補 Nick 本人 MR / ticket / commit / production issue / 本人確認，仍只作 code-backed 面試素材，不搶先放正式履歷。
 - `bi_share` 已完成 rolling / scoped negative consolidation：目前未見 Nick direct production commits，僅作 legacy BI / 分享 / 佣金 / 報表分析素材。
-- `third_games_api` 已完成 rolling / scoped contribution consolidation：本 repo 僅掃到局部測試 / merge 線索，不新增 standalone 正式履歷主成果；下游 `iwin_gameserver` direct evidence 要在 `iwin_gameserver` consolidation 正確歸位。
+- `third_games_api` 已完成 rolling / scoped contribution consolidation：本 repo 僅掃到局部測試 / merge 線索，不新增 standalone 正式履歷主成果；下游 `iwin_gameserver` direct evidence 已在 `iwin_gameserver` consolidation 正確歸位。
+- `iwin_gameserver` 已完成 rolling / scoped contribution consolidation：Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、log projection 有 direct commits；正式履歷可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」。
 
 履歷邊界：
 
@@ -55,6 +56,7 @@
 - 其他 iwin flow 目前預設標為 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 - `bi_share` 不新增正式履歷主成果；若面試提到，只能說分析過 legacy BI / 分享 / 佣金報表系統與 projection / repair 風險。
 - `third_games_api` 不新增 standalone 正式履歷主成果；若面試提到，只能說分析過第三方遊戲 provider adapter / seamless wallet callback / Mongo audit / gameserver transaction boundary。
+- `iwin_gameserver` 可新增保守第三方 provider 投派整合履歷 claim，但不可寫成完整 gameserver owner、完整 wallet owner、完整上分 / 下分 owner 或完整 provider integration owner。
 - 不寫「主導完整金流 / 遊戲錢包 / DevOps owner」，除非後續補到足夠 evidence。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

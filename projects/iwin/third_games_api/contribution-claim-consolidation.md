@@ -128,7 +128,7 @@
 - `third_games_api` 本 repo 內 Nick / `10gt12nc` direct commits 偏測試用與 branch merge。
 - GSC / OneAPI / Antplay provider adapter 主體 commit 多為 Derek / arnold。
 - 已完成的 GSC transfer flow 目前是 code-backed analysis，不是 Nick 真實開發 evidence。
-- 下游 `iwin_gameserver` 的強 evidence 應等 `iwin_gameserver contribution claim consolidation` 統一收口。
+- 下游 `iwin_gameserver` 的強 evidence 已由 `iwin_gameserver contribution claim consolidation` 統一收口，不反向包裝成 `third_games_api` 成果。
 
 若需要在履歷大段落中保留第三方遊戲經驗，建議仍用既有保守口徑：
 
@@ -198,11 +198,11 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - `third_games_api` rolling consolidation 已完成，結論是 interview-only / no standalone resume bullet。
 - 真正較強的第三方遊戲 direct evidence 在 `iwin_gameserver`，包含 Antplay / GSC / PG command、log、投派整合相關 `10gt12nc` commits。
-- 做 `iwin_gameserver contribution claim consolidation` 可以把這些 evidence 正確歸位，避免把下游 direct commits 錯包到 `third_games_api`。
+- `iwin_gameserver contribution claim consolidation` 已把這些 evidence 正確歸位，避免把下游 direct commits 錯包到 `third_games_api`；下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。

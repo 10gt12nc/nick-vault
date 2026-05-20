@@ -18,6 +18,8 @@
 
 > 2026-05-20 third_games_api consolidation：已完成 `projects/iwin/third_games_api/contribution-claim-consolidation.md`。結論是 rolling / scoped consolidation：`third_games_api` 本 repo 只掃到局部測試 / merge 線索，不新增 standalone 正式履歷主成果；GSC transfer / OneAPI / Antplay provider adapter 保留為 code-backed 面試素材。較強的 Antplay / GSC / PG direct evidence 位於下游 `iwin_gameserver`，應由 `iwin_gameserver` consolidation 正確歸位，不反向包裝成 `third_games_api` owner。
 
+> 2026-05-20 iwin_gameserver consolidation：已完成 `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 第三方 provider 投派整合、money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits；可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」。`center-http-deposit-withdraw` 仍只作 code-backed 面試素材；不得寫成主導完整 gameserver、完整 wallet owner、完整 provider integration owner、完整上分 / 下分 owner 或已建立完整 idempotency / reconciliation。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
@@ -32,7 +34,7 @@
 - 修正或維護 payment / withdraw order 建單一致性與 provider callback / sign 類問題，例如 BeanUtil copied id 造成 order insert collision 的風險、Pay4z / NaNapay / SitoBank / OnePay 類 provider 驗簽與欄位格式問題；不寫完整 reconciliation 或量化事故改善。
 - 參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游上分 / 打碼處理；可面試延伸 transaction boundary、idempotency、partial success 與 reconciliation，但不寫主導完整活動獎勵系統或修復 production 雙領事故。
 - 參與每日遊戲資料彙總 batch / BI projection 開發與維護，處理 `log_reel` 投注明細到 `log_game_daily_record` 的彙總、資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存與歷史資料備份 / 清理；並參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整；不寫主導完整 BI pipeline、完整資料平台 owner 或完整第三方紀錄備份 owner。
-- 參與第三方遊戲 provider integration 與遊戲結算相關流程，涵蓋登入、轉入轉出、下注 / 派彩、rollback、交易同步、紀錄保存與報表鏈路，聚焦玩家餘額、provider transaction 與 round log 的一致性。
+- 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，處理 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out flow、center_http command、玩家餘額異動 hook、log reel / bet log projection 與 bet_result / refund 邊界；聚焦 provider transaction、玩家餘額與 round log 一致性，不寫主導完整 gameserver 或完整遊戲錢包 owner。
 - 維護或分析 Kafka / RabbitMQ / scheduled job 等非同步流程，理解 retry、DLT、補償、request log、資料重跑與營運查詢在 production 中的重要性。
 - 參與後台控制面與營運工具維護，包含 RBAC / 權限、報表查詢、玩家 / 商戶 / provider 設定、白名單、quota、Quartz job 與操作稽核等場景。
 - 參與或分析 K3s / Docker / CI / observability 相關部署與維運資料，理解 service rollout、probe、resource、log pipeline、release provenance 與事故排查需求。
@@ -105,4 +107,4 @@
 - 可使用：參與、維護、分析、梳理、協助、優化、整理、提出改善方向。
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
-- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api 已完成 project-level consolidation，coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler；partner / agent bonus 只作面試素材，邀請好友轉盤只作補充 evidence。game_job 已完成 project-level consolidation；daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理；third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。third_games_api 已完成 rolling consolidation，但不新增 standalone 正式履歷主成果；相關 provider adapter 僅作面試素材，下游 gameserver direct evidence 等 iwin_gameserver consolidation 收口。仍不可寫成主導完整金流、完整 reward system、完整 Partner API、完整代理佣金、完整 BI pipeline、完整第三方紀錄備份、完整 third_games_api provider adapter、全部 provider owner 或已建立完整 reconciliation。
+- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api 已完成 project-level consolidation，coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler；partner / agent bonus 只作面試素材，邀請好友轉盤只作補充 evidence。game_job 已完成 project-level consolidation；daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理；third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。third_games_api 已完成 rolling consolidation，但不新增 standalone 正式履歷主成果；相關 provider adapter 僅作面試素材。iwin_gameserver 已完成 rolling consolidation，第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接可用「參與 / 開發 / 維護」口徑，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、center_http command、money job、log projection。仍不可寫成主導完整金流、完整 reward system、完整 Partner API、完整代理佣金、完整 BI pipeline、完整第三方紀錄備份、完整 third_games_api provider adapter、完整 gameserver、完整遊戲錢包、全部 provider owner 或已建立完整 reconciliation。

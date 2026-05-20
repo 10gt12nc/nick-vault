@@ -22,7 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 third-party game integration flow 候選 |
 | `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 4 已轉成保守面試 case；保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only`，尚未更新正式履歷 |
-| `contribution-claim-consolidation.md` | 已完成 rolling / scoped | `third_games_api` 本 repo 只有局部測試 / merge 線索，不新增正式履歷主成果；下游 `iwin_gameserver` direct evidence 待該 project consolidation 收口 |
+| `contribution-claim-consolidation.md` | 已完成 rolling / scoped | `third_games_api` 本 repo 只有局部測試 / merge 線索，不新增正式履歷主成果；下游 `iwin_gameserver` direct evidence 已由該 project consolidation 收口 |
 
 ## 專案定位
 
@@ -53,7 +53,7 @@
 
 - 可用來理解 / 分析第三方遊戲 provider callback、seamless wallet、下注派彩與 rollback 的後端整合風險。
 - 可作為 Senior Backend 面試素材的 evidence base；`gsc-transfer-bet-settle-rollback` 已完成 Step 4，可講 code-backed 分析，不更新正式履歷。
-- 下游 `iwin_gameserver` 的 Antplay / GSC / PG direct commits 另待 `iwin_gameserver contribution claim consolidation` 正確歸位。
+- 下游 `iwin_gameserver` 的 Antplay / GSC / PG direct commits 已於 `iwin_gameserver contribution claim consolidation` 正確歸位，不反向包裝成 `third_games_api` direct contribution。
 
 目前不能說：
 
@@ -67,14 +67,14 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - `third_games_api` rolling consolidation 已完成，結論是不新增 standalone 正式履歷主成果。
-- 較強的第三方遊戲 direct evidence 在下游 `iwin_gameserver`，包含 Antplay / GSC / PG command、log、投派整合相關 `10gt12nc` commits。
-- 下一步先做 `iwin_gameserver contribution claim consolidation`，把 evidence 正確歸位；若 Nick 之後要 project-local flow 收斂，再回來做 `gsc-transfer-bet-settle-rollback Step 5`。
+- 較強的第三方遊戲 direct evidence 已歸到下游 `iwin_gameserver`，包含 Antplay / GSC / PG command、log、投派整合相關 `10gt12nc` commits。
+- 下一步回到目前總 queue 的 `iwin_gameserver center-http-deposit-withdraw Step 4`；若 Nick 之後要 project-local flow 收斂，再回來做 `gsc-transfer-bet-settle-rollback Step 5`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

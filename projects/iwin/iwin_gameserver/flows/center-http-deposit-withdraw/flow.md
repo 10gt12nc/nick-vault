@@ -238,5 +238,5 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 - Step 3 已建立主學習包。
 - 但本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim；下一步先轉 Step 4 面試 case。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
-- 下一步先把本 flow 轉 Step 4 面試 case；完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
+- Career Track 的 rolling / scoped contribution consolidation 已完成。
+- 下一步先把本 flow 轉 Step 4 面試 case；後續完成 Step 5 時再回填校正 project-level claim。

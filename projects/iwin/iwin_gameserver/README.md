@@ -9,13 +9,14 @@
 1. [architecture-map.md](architecture-map.md)：最小專案地圖。
 2. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 3. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 技術點與風險比較。
-4. [flows/third-party-transfer-in-out/flow.md](flows/third-party-transfer-in-out/flow.md)：Step 3 單條 flow 主研究報告。
-5. [flows/third-party-transfer-in-out/career-interview.md](flows/third-party-transfer-in-out/career-interview.md)：該 flow 的保守面試 / 履歷素材。
-6. [flows/third-party-transfer-in-out/materials/](flows/third-party-transfer-in-out/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
-7. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 3 主學習包。
-8. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的初版面試素材。
-9. [flows/center-http-deposit-withdraw/materials/](flows/center-http-deposit-withdraw/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
-10. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
+4. [contribution-claim-consolidation.md](contribution-claim-consolidation.md)：project-level rolling / scoped 履歷 claim 收口。
+5. [flows/third-party-transfer-in-out/flow.md](flows/third-party-transfer-in-out/flow.md)：第三方遊戲投派整合主研究報告。
+6. [flows/third-party-transfer-in-out/career-interview.md](flows/third-party-transfer-in-out/career-interview.md)：該 flow 的面試 / 履歷素材。
+7. [flows/third-party-transfer-in-out/materials/](flows/third-party-transfer-in-out/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+8. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 3 主學習包。
+9. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的初版面試素材。
+10. [flows/center-http-deposit-withdraw/materials/](flows/center-http-deposit-withdraw/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
+11. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
 
 ## 目前狀態
 
@@ -26,10 +27,11 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 Flow 掃描，列出 Top 5 候選 |
 | `step2-flow-comparison.md` | 已建立 | 候選 flow 技術點、子模組範圍與風險比較 |
 | `flows/third-party-transfer-in-out/flow.md` | Step 3 已建立 | 第三方遊戲投派整合 / 投注派彩退款，Level 2 深掃 |
-| `flows/third-party-transfer-in-out/career-interview.md` | Step 5 已完成 | 保守面試案例，含履歷 / 自傳邊界 |
+| `flows/third-party-transfer-in-out/career-interview.md` | Step 5 已完成；2026-05-20 已升級 claim | 有 Nick / `10gt12nc` direct commits，可併入 project-level 第三方 provider 投派整合履歷 claim |
 | `flows/center-http-deposit-withdraw/flow.md` | Step 3 已建立 | center_http 玩家上分 / 下分，Level 2 深掃 |
 | `flows/center-http-deposit-withdraw/career-interview.md` | Step 3 初版 | 初版面試素材；Step 4 需轉正式 case |
-| `career-interview.md` | Step 5 已建立 | project-level career / interview boundary；正式履歷暫不更新 |
+| `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 | rolling / scoped project-level claim 收口；第三方 provider 投派整合可保守放履歷，center-http 上下分仍 interview-only |
+| `career-interview.md` | 已更新 | project-level career / interview boundary；正式履歷可保守補第三方 provider 投派整合 |
 
 ## KB 更新後深度檢查
 
@@ -45,11 +47,17 @@
 - `/Users/nick/Git/iwin/iwin_gameserver` 已重新 fetch，`main` 與 `origin/main` 一致。
 - `/Users/nick/Git/iwin/third_games_api` 已重新 fetch，`beta` 與 `origin/beta` 一致。
 
+2026-05-20 更新：
+
+- 已完成 [contribution-claim-consolidation.md](contribution-claim-consolidation.md)。
+- `third-party-transfer-in-out` 不再只是分析素材；Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 投派整合、money job、`GamePlayer` log dispatch 與 log reel path 有直接 commits。
+- `center-http-deposit-withdraw` 仍未看到 Nick / `10gt12nc` 對 `DEPOSIT/WITHDRAW` path 的 direct commits，維持 code-backed 面試素材。
+
 仍待確認：
 
-- Nick 本人是否實際參與 `iwin_gameserver` 或此 flow。
-- `third-party-transfer-in-out` Step 5 結論：暫不形成正式履歷 / 自傳 claim；只保留為面試分析素材。
-- 若要把此 flow 升級成強 evidence 或履歷 claim，仍需 Level 3 path-specific commit diff、MR / ticket / production issue 或 Nick 本人確認。
+- 完整 project final consolidation 仍需等本批代表 flows 後續校正。
+- `center-http-deposit-withdraw` Step 4 / Step 5 尚未完成。
+- 若要寫成更強 owner claim，仍需 MR / ticket / production issue、設計紀錄或 Nick 本人補充具體責任。
 
 ## 專案定位
 
@@ -70,10 +78,11 @@
 
 ## 履歷邊界
 
-目前只能說：
+目前可以說：
 
-- `iwin_gameserver` 可作為分析 iwin 遊戲 runtime、錢包、投注 / 派彩 / 退款與資料一致性的 code-backed 素材。
-- 可用來準備 Senior / Owner 面試案例，但仍需補 Nick 本人 evidence。
+- Nick / `10gt12nc` 在 `iwin_gameserver` 第三方遊戲 provider 投派整合、gameserver wallet mutation hook、log reel / bet log projection 有直接 code evidence。
+- 正式履歷可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」，並限定在 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out flow 與 log projection。
+- `center-http-deposit-withdraw` 可作為上分 / 下分 money flow 的 code-backed 面試素材，但目前不新增正式履歷 claim。
 
 目前不能說：
 
@@ -82,12 +91,10 @@
 - Nick 獨立完成第三方遊戲整合、錢包、投注結算或 dbproxy。
 - 任何改善百分比、正式架構師責任或全權 owner claim。
 
-Step 5 結論：
+2026-05-20 consolidation 結論：
 
-- `third-party-transfer-in-out` 已完成履歷 / 自傳邊界整理。
-- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
-- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
-- 若 Nick 後續補本人 MR / ticket / commit / production issue / 本人確認，再重新評估是否升級。
+- 更新 `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`，但只採保守第三方 provider 投派整合 claim。
+- 不把第三方投派 commits 擴張成完整 gameserver owner、完整遊戲錢包 owner 或完整上分 / 下分 owner。
 
 ## 下一步建議
 
@@ -100,11 +107,11 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已建立主學習包。
-- 但 Step 2 本批代表 flows 尚未完成，不應過早做完整 project-level consolidation。
-- 下一步先把 center_http 上分 / 下分轉成 Step 4 面試 case；完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
+- Career Track 的 rolling / scoped contribution consolidation 已完成。
+- 下一步先把 center_http 上分 / 下分轉成 Step 4 面試 case；後續若完成 Step 5 或新增 gameserver flow，再回填校正 project-level claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不因 `iwin_gameserver` 新增正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 的直接 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 與 center_http 上分 / 下分說明玩家餘額、DB proxy、log writer、failure window、idempotency 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合、完整上分 / 下分 owner 或解決 duplicate callback production incident。
+- 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
+- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分仍用 code-backed / 分析過語氣。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner 或解決 duplicate callback production incident。

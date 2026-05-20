@@ -354,7 +354,7 @@ sequenceDiagram
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

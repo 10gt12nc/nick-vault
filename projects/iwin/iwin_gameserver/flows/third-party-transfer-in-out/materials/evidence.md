@@ -1,8 +1,23 @@
 # third-party-transfer-in-out Evidence
 
-更新時間：2026-05-15
-掃描等級：Level 2 單條 flow 深掃；Step 5 履歷 / 自傳邊界收斂
-證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-20
+掃描等級：Level 2 單條 flow 深掃；2026-05-20 project-level contribution consolidation 已補 Level 3-oriented commit evidence
+證據層級：部分真實開發過 + code-backed
+
+## 2026-05-20 Contribution consolidation 補充
+
+`projects/iwin/iwin_gameserver/contribution-claim-consolidation.md` 已重掃 Nick / `10gt12nc` commits、branches、path-specific history 與代表性 diff。本 flow 不再只標為「分析素材」。
+
+已確認 direct evidence：
+
+- Antplay 投派整合：`4843791`、`bb6bb9e` 與多個 `feat(#144)` commits，涉及 `HttpService.java`、`AntplayTransferInOutJob.java`、`HttpAntplayTransferInOut.java`、`AddCenterCoinAP.java`、`GamePlayer.java`。
+- GSC 投注 / 派彩 / log：`116e8ec`、`deee1b8`、`053e2be`，涉及 `GSCTransferInOutJob.java`、`HttpGSCTransferInOut.java`、`LogReelGSCBetJob.java`、`LogReelGSCSettleJob.java`、`AddCenterCoinGSC.java`、`GamePlayer.java`。
+- PG 投派 / refund / bet_result：`b58eb58`、`a5fbcb3`、`a889980`、`571b6fa`、`73b2524`，涉及 `PGTransferInOutJob.java`、`HttpPGTransferInOut.java`、`LogReelPGBetJob.java`、`LogReelPGSettleJob.java`、`LogReelPGRefundJob.java`、`AddCenterCoinPG.java`。
+
+履歷判斷：
+
+- 可併入 `iwin_gameserver` project-level 第三方 provider 投派整合 claim。
+- 不可寫成完整 gameserver owner、完整 wallet owner、完整防重 / 對帳 owner 或 production incident 改善。
 
 ## Step 5 更新摘要
 
@@ -13,12 +28,12 @@
 - `README.md`、`step2-flow-comparison.md`、`flow.md`：後續已回到同 project 下一條候選 `center-http-deposit-withdraw`，並完成 Step 3。
 - `projects/iwin/iwin_gameserver/career-interview.md`：新增 project-level career / interview boundary，避免後續誤把 code-backed analysis 寫成 Nick 個人成果。
 
-Step 5 結論：
+原 Step 5 結論已被 2026-05-20 consolidation 更新：
 
-- 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
-- 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
-- 本 flow 保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
-- 若要升級為正式履歷 claim，需要 Nick 本人 MR / ticket / commit / production issue / 本人確認。
+- 更新 `senior-owner-playbook/05-resume-master-zh.md`。
+- 更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
+- 本 flow 可作為 `部分真實開發過 + code-backed` evidence。
+- 若要升級成完整 owner claim，仍需要 MR / ticket / production issue / 設計決策 evidence。
 
 ## Step 4 更新摘要
 

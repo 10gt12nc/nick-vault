@@ -360,6 +360,6 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成主學習包。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
+- Career Track 的 rolling / scoped contribution consolidation 已完成。
 - 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
-- 完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
+- 後續若 `center-http-deposit-withdraw` 完成 Step 5，再回填校正 project-level claim。

@@ -1,6 +1,6 @@
 # third-party-transfer-in-out Claim Boundary
 
-更新時間：2026-05-15
+更新時間：2026-05-20
 
 ## Evidence labels
 
@@ -12,19 +12,20 @@
 | HTTP OK 在 wallet mutation 後、log side effect 前送出 | 專案存在 / code-backed | 已讀 `sendMoneyChange2Center()` |
 | gameserver wallet 層防重未確認 | 分析素材 / learning-only | 本輪未看到明確 guard，但不能宣稱一定沒有 |
 | 可用於 Senior / Owner 面試討論 | 分析素材 / learning-only | Step 4 已整理 30 秒 / 2 分鐘 / 5 分鐘版本 |
-| project-level career boundary | 分析素材 / learning-only | Step 5 已新增 project-level `career-interview.md` |
-| Nick 實作或主導此 flow | 待確認 | 需要 MR / ticket / commit / 本人確認 |
+| project-level career boundary | 部分真實開發過 + code-backed | 2026-05-20 project-level consolidation 已找到 Nick / `10gt12nc` direct commits |
+| Nick 實作此 flow 的部分 gameserver path | 真實開發過 + code-backed | Antplay / GSC / PG center_http command、money job、`GamePlayer` log dispatch、log reel path 有 direct commits |
+| Nick 主導完整此 flow | 待確認 | 仍需要 MR / ticket / production owner evidence |
 | production incident / 改善比例 | 待確認 | 本輪沒有證據 |
 
 ## Step 5 結論
 
 | 用途 | 判斷 | 原因 |
 | --- | --- | --- |
-| 正式履歷 master | 暫不更新 | 缺 Nick 本人 MR / ticket / commit / production issue / 本人確認 |
-| 投遞用自傳 | 暫不更新 | 不能寫成 Nick 主導成果；也不適合塞入「熟悉」型空泛描述 |
-| 面試素材 | 可用 | 必須用「我分析過 / 如果我是 owner」語氣 |
-| project-level career 索引 | 可更新 | 只整理可說 / 不可說與下一步，不新增正式 claim |
-| 未來升級 claim | 待確認 | 補本人 evidence 後再重評 |
+| 正式履歷 master | 可保守更新 | 只能併入 project-level 第三方 provider 投派整合 claim |
+| 投遞用自傳 | 可保守更新 | 用「參與」口徑，不寫主導完整 gameserver |
+| 面試素材 | 可用 | 可說有直接開發 evidence，但 owner / incident / 改善仍不可誇大 |
+| project-level career 索引 | 已更新 | 由 `contribution-claim-consolidation.md` 統一收口 |
+| 未來升級 claim | 待確認 | 若要寫完整 owner，仍需更多 evidence |
 
 ## 可放面試
 
@@ -32,30 +33,30 @@
 - 這條 flow 的 code 顯示 wallet update、HTTP response、log write 是分段完成，因此 owner 需要定義 OK 語意與補償策略。
 - 如果要強化，我會先補防重 key 與 reconciliation，而不是只加 log。
 
-## 暫不放正式履歷
+## 可放正式履歷的範圍
 
-目前不建議把這條 flow 放進正式履歷 master，除非後續補到 Nick 本人 evidence。可先放在面試準備素材。
+2026-05-20 project-level consolidation 後，本 flow 可併入正式履歷 master，但只能用保守 project-level 句型。
 
-暫存句型，現階段不可放正式履歷：
+可用句型：
 
 ```text
-分析 iwin gameserver 第三方遊戲投注 / 派彩 / 退款 flow，拆解 wallet mutation、log projection、idempotency 與 reconciliation 風險。
+參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，處理 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out flow 與 log projection。
 ```
 
-原因：這句的安全動詞是「分析」，不是「實作 / 主導 / 改善」。若放進正式履歷，容易被讀成 Nick 個人成果，現階段 evidence 不足。
+限制：不能寫成主導完整第三方遊戲整合、完整 gameserver wallet owner、完整防重 / 對帳架構或 production incident 改善。
 
 ## Step 4 面試可用說法
 
 可說：
 
-- 「我分析過 iwin gameserver 的第三方遊戲投派整合 flow。」
+- 「我參與過 iwin gameserver 的第三方遊戲投派整合與 log projection 相關開發。」
 - 「我會把它拆成 adapter、gameserver wallet、log server 三段來看。」
 - 「我看到的 owner 風險是 wallet update 和 log projection 不在同一 transaction，所以要處理 idempotency 與 reconciliation。」
 - 「如果我要改善，會先確認 provider idempotency key，再設計 wallet mutation 前的防重。」
 
 不可說：
 
-- 「我負責第三方遊戲投派整合。」
+- 「我負責完整第三方遊戲投派整合。」
 - 「我設計了 gameserver wallet 防重。」
 - 「我解決了 duplicate callback 問題。」
 - 「我建立了 outbox / reconciliation 系統。」
@@ -70,6 +71,6 @@
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合或解決 duplicate callback production incident。
+- 可放履歷：可併入 `iwin_gameserver` project-level 第三方 provider 投派整合 claim，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out 與 log projection。
+- 可面試講：真實開發過 + code-backed。可用 gameserver wallet transfer flow 說明 provider transfer in/out、玩家餘額、DB proxy、log writer、failure window 與 reconciliation。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner 或解決 duplicate callback production incident。

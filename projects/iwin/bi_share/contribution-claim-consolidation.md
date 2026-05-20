@@ -252,8 +252,8 @@ git log --all --author='10gt12nc|Nick|nick'
 
 ## 下一步建議
 
-下一步若繼續先補 contribution consolidation，建議做 `iwin_gameserver`。它比 `bi_share` 更接近遊戲 runtime / wallet / bet source of truth，也更可能支撐 Senior Backend 面試主線。
+`bi_share` 已完成 negative consolidation；`iwin_gameserver` contribution consolidation 也已完成。下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

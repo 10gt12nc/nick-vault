@@ -18,7 +18,7 @@
 - `game_api` 與 `iwin_gameserver` 都已重新 `git fetch --all --prune`。
 - 兩個 repo 的本機 `main` 都與 `origin/main` 同步，工作樹乾淨。
 - 重新跑 repo-wide Nick / `10gt12nc` author log，`game_api` 仍只看到 coupon 與邀請好友轉盤兩組 direct evidence。
-- `iwin_gameserver` 有更多 Nick / `10gt12nc` gameserver commits，但在本文件只採與 `game_api coupon` 下游直接相關的 `6c99dd3`、`30a9fcb`；其他 gameserver evidence 應放到 `iwin_gameserver contribution claim consolidation`，不反向擴張 `game_api` claim。
+- `iwin_gameserver` 有更多 Nick / `10gt12nc` gameserver commits，但在本文件只採與 `game_api coupon` 下游直接相關的 `6c99dd3`、`30a9fcb`；其他 gameserver evidence 已放到 `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`，不反向擴張 `game_api` claim。
 - 重讀 05 / 08 / todo / inventory 與 archive 搜尋結果後，沒有新增足以把 partner / agent bonus 升級成 Nick 真實開發過的 evidence。
 
 ## 本次重讀與掃描範圍
@@ -199,10 +199,12 @@ repo-wide Nick / `10gt12nc` commits：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
+- `game_api` project-level contribution consolidation 已完成。
+- `iwin_gameserver contribution claim consolidation` 已完成，下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 
 - `game_api` 本批代表 flow 與 project-level contribution claim 已收斂。
 - `payment`、`game_job`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。

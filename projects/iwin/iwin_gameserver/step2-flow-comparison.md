@@ -173,7 +173,7 @@ Step 3 結論：
 
 - 這條 flow 是 gameserver runtime wallet mutation，不等於完整 payment order source of truth。
 - gameserver 主要路徑目前未看到明確 `billNos` duplicate guard，因此 timeout / retry 後的重複加扣是 owner 重點。
-- 正式履歷暫不更新；先作 code-backed 面試素材。下一步先做 `center-http-deposit-withdraw Step 4`；完整 `iwin_gameserver contribution claim consolidation` 等 Step 2 本批代表 flows 完成 Step 5 後再做。
+- 正式履歷暫不因本 flow 更新；先作 code-backed 面試素材。下一步先做 `center-http-deposit-withdraw Step 4`。`iwin_gameserver contribution claim consolidation` 已於 2026-05-20 完成 rolling / scoped 收口，第三方 provider 投派整合可保守放履歷；本 flow 若後續完成 Step 5 再回填校正。
 
 ### 3. `game-spin-settlement-log-reel`
 
@@ -233,6 +233,6 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成主學習包。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
+- Career Track 的 rolling / scoped contribution consolidation 已完成。
 - 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
-- 完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
+- 後續若本 flow 完成 Step 5，再回填校正 project-level claim。

@@ -323,7 +323,7 @@ Step 3 暫不做：
 ## 下一步
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 - 不建立 architecture-map：本輪 module 邊界已放在 Step 2，足夠支撐第一條 flow 選擇；未來如果 payment flow 變多，再考慮補 project-level map。
@@ -333,14 +333,13 @@ iwin iwin_gameserver contribution claim consolidation
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 為什麼現在做它：
 
 - payment Top 5 代表 flow 已完成到 Step 5，project-level contribution consolidation 已先保守收斂，但不是全 payment project 完成。
-- 目前總 queue 已移到 `iwin_gameserver contribution claim consolidation`，先收斂 iwin_gameserver 的履歷 / 面試 claim 風險。
-- 下一步回到 iwin queue，補 `iwin_gameserver contribution claim consolidation`；Flow Track 後續仍回 `center-http-deposit-withdraw Step 4`。
+- `iwin_gameserver contribution claim consolidation` 已完成，下一步回到 iwin queue 補 `center-http-deposit-withdraw Step 4`。
 
 會產出什麼：
 

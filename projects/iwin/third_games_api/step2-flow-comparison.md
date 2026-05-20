@@ -324,12 +324,12 @@ Step 3 必須至少補：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - 後續 `third_games_api contribution claim consolidation` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但不優先於目前 Career Track。
-- 較強的第三方遊戲 direct evidence 在下游 `iwin_gameserver`，應先做 `iwin_gameserver contribution claim consolidation` 正確歸位。
+- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但不優先於目前總 queue。
+- 較強的第三方遊戲 direct evidence 已由 `iwin_gameserver contribution claim consolidation` 正確歸位；下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

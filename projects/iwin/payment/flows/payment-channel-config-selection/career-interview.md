@@ -77,7 +77,7 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 ## 下一步
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

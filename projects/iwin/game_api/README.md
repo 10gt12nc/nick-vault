@@ -80,12 +80,13 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
 
 原因：
 
 - `game_api` 本批代表 flow 與 project-level contribution consolidation 已完成。
+- `iwin_gameserver contribution claim consolidation` 已完成，下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 - 2026-05-20 已重新 fetch / 重讀 / 覆核，結論仍維持：正式履歷只採 coupon 保守 claim。
 - `payment`、`game_job`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
 - 若近期目標是先把履歷 / 面試 claim 風險收斂，下一個最值得做的是 `iwin_gameserver` rolling / scoped contribution consolidation；Flow Track 之後仍可回 `center-http-deposit-withdraw Step 4`。

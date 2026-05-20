@@ -20,6 +20,7 @@
 - 已掃上游 `payment` / `game_api` 主要呼叫入口。
 - 但尚未看到 Nick / `10gt12nc` 對本 flow 的直接 MR / ticket / production issue 或明確 path-specific commit。
 - `10gt12nc` 在 `game_api coupon` 與 `iwin_gameserver coupon` 有 evidence，但不能自動擴張成完整 center_http deposit / withdraw owner。
+- 2026-05-20 `iwin_gameserver` contribution consolidation 已確認 Nick / `10gt12nc` 有第三方 provider 投派整合 direct commits；這能支撐 third-party transfer in/out claim，但仍不能自動擴張成本 flow 的 `DEPOSIT/WITHDRAW` direct development claim。
 
 ## 可放履歷
 

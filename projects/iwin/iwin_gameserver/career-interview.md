@@ -1,55 +1,52 @@
 # iwin_gameserver Career / Interview Boundary
 
-更新時間：2026-05-19
-證據層級：專案存在 / code-backed；分析素材 / learning-only；Nick 貢獻依三層 claim gate 判斷
+更新時間：2026-05-20
+證據層級：部分真實開發過 + code-backed；center-http 上分 / 下分仍為分析素材 / learning-only
 
 ## Project-level 結論
 
-`iwin_gameserver` 可以作為 Senior Java Backend / Platform Backend 面試中的 money flow 分析素材，但目前不建議直接放進正式履歷 master 或投遞用自傳。
+`iwin_gameserver` 可以保守放進正式履歷 master 與投遞用自傳，但範圍必須限定在本輪已掃到直接 evidence 的第三方遊戲 provider 投派整合。
 
 原因：
 
-- 已有 code-backed evidence 能支持「系統存在、flow 存在、風險點存在」。
-- 尚未有 Nick 本人 MR / ticket / commit / production issue / 本人確認。
-- 因此不能把 `iwin_gameserver` 寫成 Nick 主導、實作、改善或擔任 owner 的成果。
+- Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 投派整合、money job、`PlayerData` 餘額異動 hook、`GamePlayer` log dispatch 與 log reel path 有 direct commits。
+- 這能支撐「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」。
+- 仍不能把 `iwin_gameserver` 寫成 Nick 主導完整遊戲伺服器、完整 wallet owner、完整 provider owner 或已建立完整 idempotency / reconciliation。
 
 ## 已完成 flow
 
 | Flow | Step 狀態 | 可用方式 | 正式履歷判斷 |
 | --- | --- | --- | --- |
-| `third-party-transfer-in-out` | Step 5 已完成 | 面試分析素材：wallet correctness、idempotency、failure window、reconciliation、observability | 暫不放正式履歷 / 自傳 |
+| `third-party-transfer-in-out` | Step 5 已完成；project consolidation 已升級 | 有直接開發 evidence 的面試案例：wallet correctness、idempotency、failure window、reconciliation、observability | 可併入 project-level 第三方 provider 投派整合保守 claim |
 | `center-http-deposit-withdraw` | Step 3 已完成 | 面試分析素材：center_http 上分 / 下分、payment / game_api order boundary、wallet mutation、timeout retry、`billNos` idempotency | 暫不放正式履歷 / 自傳；Step 4 後再整理正式 case |
 
 ## 可安全使用的 project 語氣
 
 可說：
 
-- 「我分析過 iwin gameserver 的 money flow，重點看玩家餘額、投注 / 派彩 / 退款、log projection 與對帳風險。」
+- 「我參與過 iwin gameserver 第三方遊戲 provider 投派整合與 log projection 相關開發，範圍包含 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out flow。」
 - 「我會把 gameserver flow 拆成入口、wallet mutation、log / report projection、reconciliation 幾層來看。」
 - 「這類 flow 的 owner 風險是防重、response 語意、retry / compensation 與 observability。」
 
 不可說：
 
 - 「我主導 iwin_gameserver。」
-- 「我負責遊戲錢包或第三方遊戲整合。」
+- 「我負責完整遊戲錢包或全部第三方遊戲整合。」
 - 「我解決過重複扣款 / 派彩 production incident。」
 - 「我建立完整 idempotency / outbox / reconciliation 架構。」
 - 「我改善錯帳率或效能 X%。」
 
-## 若要升級成履歷素材需要的 evidence
+## 已升級與仍需 evidence
 
-至少需要其中一類：
+已升級：
 
-- Nick 本人確認實際參與範圍。
-- MR / commit / ticket 能對上 Nick 與此 flow 的具體修改。
-- production issue / incident 能證明 Nick 參與排查或修復。
-- 可公開或可整理的設計紀錄，能證明 Nick 的 owner decision。
+- 第三方 provider 投派整合：已由 Nick / `10gt12nc` commits 支撐，採「參與 / 開發 / 維護」口徑。
 
-升級後仍需分層寫法：
+仍需補 evidence 才能升級：
 
-- 只做排查：寫成「分析 / 排查 / 釐清」。
-- 有修改 code：寫成「實作 / 修正」但限定 scope。
-- 有 owner decision：才可寫「制定策略 / 推動改善」，並避免誇大成全系統 owner。
+- `center-http-deposit-withdraw` 的 direct development claim。
+- 完整 gameserver wallet owner、dbproxy owner、idempotency / reconciliation owner。
+- production incident / 改善比例。
 
 ## 下一步建議
 
@@ -62,12 +59,11 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 原因：
 
 - `center-http-deposit-withdraw` Step 3 已完成，已有 code-backed 主學習包。
-- Step 2 本批代表 flows 尚未完成，不應先做完整 project-level contribution consolidation。
-- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
-- 完整 consolidation 等本批代表 flows 都完成 Step 5 後，再掃 code + 所有 flow KB。
+- Career Track 的 rolling / scoped consolidation 已完成。
+- 下一步回 Flow Track，把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
-- 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 gameserver wallet transfer flow 與 center_http 上分 / 下分說明玩家餘額、DB proxy、log writer、failure window、idempotency 與 reconciliation。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、獨立完成第三方遊戲整合、完整上分 / 下分 owner 或解決 duplicate callback production incident。
+- 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 flow 與 log projection。
+- 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分仍用 code-backed / 分析過語氣。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner或解決 duplicate callback production incident。

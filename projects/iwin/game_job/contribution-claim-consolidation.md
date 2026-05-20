@@ -220,8 +220,8 @@ branch contains：
 
 ## 下一步建議
 
-下一步若繼續先收斂履歷 / 面試 claim，建議做 `iwin_gameserver` contribution consolidation。`game_job` 已重新覆核，不需要因本輪重做。
+`game_job` 已重新覆核，不需要因本輪重做；`iwin_gameserver` contribution consolidation 也已完成。下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 
 ```text
-iwin iwin_gameserver contribution claim consolidation
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```
