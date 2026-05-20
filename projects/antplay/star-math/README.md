@@ -1,0 +1,29 @@
+# *-math
+
+`*-math` 是 AntPlay 多個 slot game math module 的群組 consolidation。因 repo 數量很多，本資料夾用 `star-math` 作安全路徑名稱，避免在檔名中使用 `*`。
+
+## Status
+
+| 項目 | 狀態 |
+| --- | --- |
+| contribution claim consolidation | 已完成 / rolling / grouped / 2026-05-20 |
+| Flow Track | 未開始 |
+| 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math module 維護 / RTP / reel strip / debug / fixedMultiBet / purchasable free spin |
+| 下一步 | `antplay *-math Step 1` |
+
+## Claim Boundary
+
+可保守說:
+
+- 參與多個 AntPlay slot math module 的維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 類調整。
+- 強 evidence module 包含 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。
+
+不可誇大:
+
+- 不寫主導全部 `*-math`。
+- 不寫完整遊戲數學 / RTP 策略 owner。
+- 不寫完整 math release / certification / simulator owner。
+
+## Files
+
+- [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/contribution-claim-consolidation.md)
