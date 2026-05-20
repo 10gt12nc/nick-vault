@@ -187,8 +187,8 @@ Step 5 判定：這條 flow 可作為 `*-math` grouped 履歷 bullet 的強化 e
 - 不說這條 flow 已確認 production incident / ticket。
 - 不說 math module 負責 wallet rollback / reconciliation。
 
-後續 Flow Track 回到 Step 2 ranking，下一條建議做 `rtp-reel-strip-simulation-validation Step 3`，補足 slot math 差異化題材。
+後續 Flow Track 已回到 Step 2 ranking，且 `rtp-reel-strip-simulation-validation Step 3` 已完成。下一步建議繼續同一條做 Step 4，補足 slot math 差異化面試題材。
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 3
+antplay *-math rtp-reel-strip-simulation-validation Step 4
 ```

@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / grouped / 2026-05-20 |
-| Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成 |
+| Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 3 已完成 |
 | 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math module 維護 / RTP / reel strip / debug / fixedMultiBet / purchasable free spin |
-| 下一步 | `antplay *-math rtp-reel-strip-simulation-validation Step 3` |
+| 下一步 | `antplay *-math rtp-reel-strip-simulation-validation Step 4` |
 
 ## Claim Boundary
 
@@ -28,6 +28,8 @@
 
 - [flows/fixed-multi-bet-currency-math-core-compatibility/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/fixed-multi-bet-currency-math-core-compatibility/flow.md)
 - [flows/fixed-multi-bet-currency-math-core-compatibility/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/fixed-multi-bet-currency-math-core-compatibility/career-interview.md)
+- [flows/rtp-reel-strip-simulation-validation/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/flow.md)
+- [flows/rtp-reel-strip-simulation-validation/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/contribution-claim-consolidation.md)

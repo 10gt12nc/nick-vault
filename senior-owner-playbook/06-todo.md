@@ -94,7 +94,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 `contribution claim consolidation` 可以先做 rolling / scoped 版，用來支援近期履歷與面試材料；不必等 Step 2 定義的本批代表 flows 全部完成 Step 5。執行時除了掃 code，也要重讀該 project 已完成 flow KB 與目前可讀的 project 文件。未完成 flow 必須標為待深掃 / 待回填，不能宣稱 final 或全 project 已完整深掃；final consolidation 才等本批代表 flows 全部 Step 5 後再校正。
 
-2026-05-20 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成。這條 flow 可作 `*-math` grouped 履歷 bullet 的強化 evidence；下一步回 Step 2 ranking 做 `rtp-reel-strip-simulation-validation Step 3`。
+2026-05-20 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 3` 已完成。這兩條都可作 `*-math` grouped 履歷 bullet 的強化 evidence；下一步繼續同一條做 `rtp-reel-strip-simulation-validation Step 4`。
 
 來源 repo 若是內網 GitLab 或 remote 不可達，fetch 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹保守分析，並標示未確認最新遠端。不要把內網 URL、IP 或敏感 remote 細節寫進 vault。
 
@@ -114,7 +114,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 12. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 antplay，應做 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
 13. `antplay-slot-game-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 antplay，應做 Flow Track Step 1 / Step 2，挑 slot bet-settle-rollback、transfer-wallet-money-in-out、request-log-rabbitmq-async、bet-record-sharding-schema-route 代表 flow。
 14. `antplay-slot-game-job contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若延續本 repo，應做 Flow Track Step 1 / Step 2，挑 proxy-user-data-report-projection、big-win-notification、activity-accumulated-bet-voucher、settle-pool-monitor 代表 flow。
-15. `math-core / *-math contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成；下一步做 `rtp-reel-strip-simulation-validation Step 3`。
+15. `math-core / *-math contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 3` 已完成；下一步做 `rtp-reel-strip-simulation-validation Step 4`。
 16. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
 
 ### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
@@ -133,7 +133,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 2. iwin 各 project 局部下一步
 
-目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` rolling contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成；若 Nick 要補差異化題材，下一步優先做 `rtp-reel-strip-simulation-validation Step 3`；若要最大化交易主線，則做 `antplay-slot-game-api Step 1`。若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
+目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` rolling contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 3` 已完成；若 Nick 要補差異化題材，下一步優先做 `rtp-reel-strip-simulation-validation Step 4`；若要最大化交易主線，則做 `antplay-slot-game-api Step 1`。若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 以下是近期各 project 的局部下一步：
 
@@ -153,7 +153,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 14. `antplay-slot-game-api`：contribution consolidation 已完成；可作 AntPlay 遊戲 API runtime / 下注結算 / 轉帳錢包 / 分表 / RabbitMQ request log 素材。下一步建議 Step 1 / Step 2。
 15. `antplay-slot-game-job`：contribution consolidation 已完成；可作 AntPlay job / event processing、Kafka / Quartz、報表 projection、activity accumulated bet 與 big-win notification 素材。下一步建議 Step 1 / Step 2。
 16. `math-core`：contribution consolidation 已完成；可作 slot math core / contract / debug tooling 素材。下一步建議 Step 1 / Step 2。
-17. `*-math`：contribution consolidation 已完成，`fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成；可作多個 slot math module / RTP / reel strip / debug / fixedMultiBet 素材。下一步建議 `rtp-reel-strip-simulation-validation Step 3`，不平均掃 71 repo。
+17. `*-math`：contribution consolidation 已完成，`fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 3` 已完成；可作多個 slot math module / RTP / reel strip / debug / fixedMultiBet 素材。下一步建議 `rtp-reel-strip-simulation-validation Step 4`，不平均掃 71 repo。
 18. `math-workspace`：contribution consolidation 已完成；只作 cross-math KB / validation workflow supporting evidence。
 19. `platform-mock`：contribution consolidation 已完成；只作 provider failure injection supporting evidence。
 20. `buffer-id`：contribution consolidation 已完成；未見 Nick direct commits，只作 learning-only。
@@ -176,12 +176,12 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，下一步可做 `rtp-reel-strip-simulation-validation Step 3`，或回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 3` 已完成，下一步可做 `rtp-reel-strip-simulation-validation Step 4`，或回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 
 ## 下一個 prompt
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 3
+antplay *-math rtp-reel-strip-simulation-validation Step 4
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

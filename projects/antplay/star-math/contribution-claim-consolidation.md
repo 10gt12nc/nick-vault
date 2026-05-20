@@ -123,8 +123,8 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence，且第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；下一步回 Step 2 ranking 做第二條代表 flow，不要平均深挖 71 個 repo。
+`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 3；下一步繼續同一條 flow 做 Step 4，不要平均深挖 71 個 repo。
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 3
+antplay *-math rtp-reel-strip-simulation-validation Step 4
 ```

@@ -292,6 +292,8 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 目前最值得 Step 2 比較的是 `fixedMultiBet / currency / math-core compatibility` 與 `RTP / reel strip / simulation validation`。前者更貼 Senior Backend / money correctness；後者更有 slot math 差異化。
 
+2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；`rtp-reel-strip-simulation-validation` 已完成 Step 3。下一步是 `rtp-reel-strip-simulation-validation Step 4`。
+
 ## 7. Claim Boundary
 
 可保守說:
@@ -319,10 +321,10 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 ## 9. Step 1 結論
 
-`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，且第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5。
+`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 3。
 
 建議下一步:
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 3
+antplay *-math rtp-reel-strip-simulation-validation Step 4
 ```
