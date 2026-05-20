@@ -68,7 +68,7 @@
 
 Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須先維護本檔與相關 index，不直接開工 flow Step。
 
-完整 `contribution claim consolidation` 只能在 Step 2 定義的本批代表 flows 全部完成 Step 5 後進行；執行時除了掃 code，也要重讀該 project 所有 flow KB。未完成前只能列為待辦或做單條 flow claim evidence，不能升級成完整 project 履歷結論。
+`contribution claim consolidation` 可以先做 rolling / scoped 版，用來支援近期履歷與面試材料；不必等 Step 2 定義的本批代表 flows 全部完成 Step 5。執行時除了掃 code，也要重讀該 project 已完成 flow KB 與目前可讀的 project 文件。未完成 flow 必須標為待深掃 / 待回填，不能宣稱 final 或全 project 已完整深掃；final consolidation 才等本批代表 flows 全部 Step 5 後再校正。
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 

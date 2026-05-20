@@ -17,7 +17,7 @@
 - 只輸出整理後的新內容，不複製舊檔。
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
-- Flow 線與履歷 / 自傳線分開：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。
+- Flow 線與履歷 / 自傳線分開但互相回填：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。contribution consolidation 可以先做 rolling / scoped 版，flows 之後照舊深掃並回填履歷素材。
 - 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
@@ -29,11 +29,11 @@
 - `flow.md` 必須先有初階 / 中階可讀區，包含白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才進 Senior / Owner 的 consistency、failure window、trade-off、owner decision。不要讓 Nick 需要自己從附錄拼出主報告。
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
 - Nick 本人明確確認做過的內容也是 evidence。AI 不得只因單條 flow 沒有直接 path-specific commit 就否定整個 project 經驗；需標成「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，再補 contribution consolidation。
-- contribution consolidation 是履歷 claim gate，但完整 project-level consolidation 預設要等 Step 2 定義的本批代表 flows 全部完成到 Step 5。若 project 只有單條 flow Step 5，AI 只能把它當該 flow 的 claim evidence，下一步回 Step 2 ranking 補同 project 下一條高價值 flow；不得推薦或執行完整 `{project} contribution claim consolidation`，除非 Nick 明確說要做 limited claim check，且文件必須標明不是全 project 結論。
-- 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。AI 必須同步 todo / inventory / project README，標示「已達 consolidation 條件 / 待收口」。
+- contribution consolidation 是履歷 claim gate，可以先做 rolling / scoped project-level consolidation，不必等 Step 2 定義的本批代表 flows 全部完成到 Step 5。若 project 只有單條 flow Step 5，也可以做 rolling consolidation，但文件必須標明不是 final / 全量深掃，並列出未完成 flow、未深掃路徑與待回填 evidence。
+- 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。若本批代表 flows 尚未全部完成但 Nick 要先補履歷，則做 rolling consolidation，並同步 todo / inventory / project README，標示「rolling consolidation 已做 / flow 深掃未完 / 待回填」。
 - 但如果 Nick 只要求「待辦 / 缺口 / 優先順序」，AI 先把 contribution consolidation 或 flow Step 列成待辦，不自動執行；等 Nick 明確下 `project contribution claim consolidation` 或 `flow Step N` 才開始深掃與改 flow 文件。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
-- 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。若正在處理履歷 / 自傳 / contribution claim gate，必須先確認 Step 2 定義的本批代表 flows 是否都完成 Step 5；未完成時回同 project 下一條 flow，完成後才做 `{project} contribution claim consolidation`。
+- 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。若正在處理履歷 / 自傳 / contribution claim gate，可以先做 `{project} contribution claim consolidation` 的 rolling / scoped 版；未完成 flows 要標為待回填，不能宣稱 final。
 - 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / monorepo / 多 service 專案，Step 1 / Step 2 必須先整理 root module、submodule、service instance、tooling / config 邊界，並比較候選 flow 會跨哪些 module。這不是 class summary，而是避免跳過架構邊界。
 - 單條 flow 做到 Step 5 只代表該 flow 完成，不代表整個 project 完成；下一步要先回同 project 的 candidate ranking 選下一條未完成 flow，不要自行跨 project。
@@ -554,7 +554,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 重要：
 
 - Step 5 是 Flow Track 的最後一站，只判斷單條 flow。
-- 正式 05 / 08 履歷自傳屬於 Career Track，原則上必須先有 project contribution claim consolidation。
+- 正式 05 / 08 履歷自傳屬於 Career Track，原則上必須先有 project contribution claim consolidation；rolling consolidation 的保守結論可以先支援近期投遞，final consolidation 之後再校正。
 - 單條 flow Step 5 可以輸出「可放履歷 / 可面試講 / 不可誇大」的 evidence，供 project consolidation 使用。
 - 若 project 尚未 consolidation，不得只憑單條 flow Step 5 直接更新 05 / 08。
 
@@ -571,9 +571,9 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 可以寫參與、維護、分析、梳理、協助、優化、提出改善方向。
 - 履歷只補高價值且能面試講清楚的內容。
 - 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / `archive/` / KB 所有履歷自傳素材。
-- 若 Nick 指出某 repo 是主力開發經驗，且要求履歷收斂，也要先確認 Step 2 定義的本批代表 flows 是否已完成到 Step 5；完整 project-level contribution consolidation 必須掃全部 Nick / `10gt12nc` commits、branches、重要 diff、所有已完成 flow KB、已完成 flow evidence 與本人確認內容，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。若本批代表 flows 未完成，先補同 project 下一條代表 flow；若 Nick 明確只要求部分 scope，標成 limited consolidation。
-- 若 Nick 沒明確說「我做很多」，但 AI 已整理出高價值 code-backed flow，且下一步要碰履歷 / 自傳 / claim boundary，也要先確認 Step 2 定義的本批代表 flows 是否都完成到 Step 5。這是避免兩種錯誤：把分析成果誇大成 Nick 成果，或因單條 flow 缺 direct evidence 就低估整個 repo 經驗。
-- 完整 contribution consolidation 預設要求 Step 2 定義的本批代表 flows 全部完成到 Step 5，不能只靠單條 flow 代表整個 project。它是掃 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認、既有 flow evidence 與所有 flow KB，先界定履歷 claim；若 Nick 明確只要部分 scope，必須標成 limited consolidation。
+- 若 Nick 指出某 repo 是主力開發經驗，且要求履歷收斂，可以先做 rolling project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow KB、已完成 flow evidence、本人確認內容與目前可讀的 project 文件，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。若本批代表 flows 未完成，標成待回填，不阻塞履歷線。
+- 若 Nick 沒明確說「我做很多」，但 AI 已整理出高價值 code-backed flow，且下一步要碰履歷 / 自傳 / claim boundary，也可以先做 rolling consolidation。這是避免兩種錯誤：把分析成果誇大成 Nick 成果，或因單條 flow 缺 direct evidence 就低估整個 repo 經驗。
+- final contribution consolidation 才要求 Step 2 定義的本批代表 flows 全部完成到 Step 5；rolling consolidation 不能只靠單條 flow 宣稱全 project 已完整深掃。它是掃 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認、既有 flow evidence 與已完成 flow KB，先界定履歷 claim；未完成 flows 必須標成待回填。
 - 每條履歷 claim 都要標註證據層級：真實開發過 / 專案存在 / 分析素材 / 待確認。
 
 請先列：
@@ -633,7 +633,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 如果 Step 1 完成，下一步是 Step 2。
 - 如果 Step 1 完成但 Step 2 文件不存在，下一步只能是 Step 2，不能直接跳 Step 3 / 建 flow folder。
 - 如果 Step 2 完成，下一步是 Step 3。
-- 如果 project 尚未做 contribution consolidation，且現在牽涉履歷 / 自傳 / claim / 真實開發經驗，先判斷 Step 2 定義的本批代表 flows 是否都完成到 Step 5。全部完成時，下一步是 `{project} contribution claim consolidation`；未完成時，下一步回 Step 2 ranking 補下一條代表 flow。
+- 如果 project 尚未做 contribution consolidation，且現在牽涉履歷 / 自傳 / claim / 真實開發經驗，下一步可以是 `{project} contribution claim consolidation` rolling / scoped 版；未完成代表 flows 要列為待回填，之後再回 Step 2 ranking 補下一條代表 flow。
 - 如果 Step 3 完成且文件乾淨，且沒有履歷 / 自傳 / contribution claim gate 風險，下一步是 Step 4。
 - 如果 Step 4 完成，下一步才檢查 Step 5 單條 flow claim gate；若要更新 05 / 08，先走 project contribution claim consolidation。
 - evidence / 下游 / decision-notes / 架構圖只能作為補充或待確認，不能取代 Step 主線。

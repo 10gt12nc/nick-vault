@@ -175,14 +175,14 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 
 Flow 文件負責 Flow Track：系統理解、深掃 evidence、面試 case、單條 flow claim gate。
 
-履歷 / 自傳負責 Career Track：project-level contribution consolidation 與 05 / 08 最終說法。
+履歷 / 自傳負責 Career Track：project-level contribution consolidation 與 05 / 08 說法。
 
 規則：
 
 - Flow Step 5 只判斷單條 flow，不代表整個 project 完成，也不直接決定 05 / 08。
 - Project contribution consolidation 可以引用 flow evidence，但主要掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認與 archive 履歷素材。
 - 更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 前，必須先有 project-level consolidation 結論。
-- 完整 contribution consolidation 預設要等 Step 2 定義的本批代表 flows 全部完成到 Step 5。只有單條 flow Step 5 時，先保留為 flow evidence，回 Step 2 ranking 補下一條高價值 flow；除非 Nick 明確要求 limited claim check，且文件必須標明不是全 project 結論。
+- contribution consolidation 可以先做 rolling / scoped 版，不必等 Step 2 定義的本批代表 flows 全部完成到 Step 5；但必須標明不是 final，列出已完成 flow、未完成 flow、未深掃路徑與待回填 evidence。final consolidation 才等本批代表 flows 全部 Step 5 後校正。
 
 ## 拆檔規則
 
@@ -318,15 +318,15 @@ Config：
 
 只寫可證明或本人確認的內容。沒有 metric 不寫改善百分比。
 
-如果 Nick 明確確認某 project / repo 實際開發很多，單條 flow 的 Step 5 不足以代表整個 project 的履歷結論。要先確認 Step 2 定義的本批代表 flows 是否都完成到 Step 5；都完成後才做 project-level contribution consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff、所有 flow KB 與本人確認內容，再把經驗分成：
+如果 Nick 明確確認某 project / repo 實際開發很多，單條 flow 的 Step 5 不足以代表整個 project 的履歷結論。可以先做 project-level rolling contribution consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow KB、目前 project 文件與本人確認內容，再把經驗分成：
 
 - 可放履歷：真實開發過。
 - 可面試講：code-backed / 分析過。
 - 不可誇大：不是主導完整系統 owner、不是全部功能 owner、沒有 metric 不寫改善百分比。
 
-優先級：contribution consolidation 是履歷 claim gate，但完整 consolidation 仍必須先看 Step 2 定義的本批代表 flows 是否都完成 Step 5。若下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，AI 必須先判斷本批代表 flows 狀態；未完成時回同 project 下一條 flow，全部完成後才做 `{project} contribution claim consolidation`。
+優先級：contribution consolidation 是履歷 claim gate。若下一步會影響履歷 / 自傳 / project-level career boundary，或 Nick 追問「這能不能算經驗」，且該 project 尚未做 consolidation，AI 可以先做 `{project} contribution claim consolidation` 的 rolling / scoped 版；未完成的代表 flows 要列入待回填，Flow Track 之後照舊補 Step 3~5。
 
-完整 contribution consolidation 預設就是等 Step 2 定義的本批代表 flows 全部完成到 Step 5 後再做。不要把單條 flow Step 5 誤當完整 project consolidation。完整 contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認、所有已完成 flow KB 與多條代表 flow evidence；若本批代表 flows 未完成，下一步先補同 project 下一條代表 flow。
+不要把單條 flow Step 5 誤當 final project consolidation。rolling contribution consolidation 掃的是人的貢獻線：Nick / `10gt12nc` commits、branches、重要 diff、本人確認、已完成 flow KB 與目前可讀的代表 flow evidence；若本批代表 flows 未完成，consolidation 要標清楚未完成項，之後回同 project 下一條代表 flow 補深度。
 
 ### 14. Claim Boundary
 
