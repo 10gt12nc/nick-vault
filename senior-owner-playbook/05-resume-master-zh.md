@@ -36,6 +36,60 @@
 
 > 2026-05-20 antplay math consolidation：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md`、`projects/antplay/star-math/contribution-claim-consolidation.md`、`projects/antplay/math-workspace/contribution-claim-consolidation.md`、`projects/antplay/platform-mock/contribution-claim-consolidation.md`、`projects/antplay/buffer-id/contribution-claim-consolidation.md`。`math-core` 與 `*-math` 可保守寫 Nick 參與 AntPlay slot math core / math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整；`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。仍不得寫成主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner 或完整 ID generator owner。
 
+## 目前可直接使用履歷版（Rolling）
+
+> 狀態：2026-05-20 依目前所有 Contribution Claim Consolidation 匯總。這版可以先拿去寫履歷 / LinkedIn / 104，但不是 final；後續每條 flow 深掃、Step 5 或新 evidence 都要回填修正。
+
+### 建議職稱定位
+
+Senior Java Backend Engineer / Platform Backend Engineer
+
+### 一句話定位
+
+Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider 串接、金流 / 錢包、遊戲下注結算、事件流、排程報表、後台控制面與 slot math module 維護；擅長接手文件不足的既有系統，透過 code reading、log 追蹤與資料流梳理重建 production flow，關注交易一致性、冪等、補償、對帳與可觀測性。
+
+### 履歷精簡工作經驗
+
+後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
+`2023/10 - 至今｜Java / Spring Boot｜博弈 / 遊戲平台後端`
+
+- 參與中大型博弈 / 遊戲平台後端開發與維護，涵蓋 Java / Spring Boot API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面與 slot math module 維護。
+- 參與多個第三方金流 provider request / callback / query / withdraw 對接與維護，處理簽章驗證、金額單位、merchant order id、callback ack、查單、provider response parsing 與 payment / withdraw order consistency 類問題。
+- 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，處理 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、center command、玩家餘額異動 hook、log reel / bet log projection 與 refund 邊界。
+- 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正。
+- 參與 UGSoft provider connector / gateway 開發維護，串接 AntPlay / DerPlay 等第三方遊戲 provider 的 login、balance、transfer in / out、bet-settle、callback、request / bet record MQ、transfer wallet compensation、分表與 provider fail-fast。
+- 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表 projection、活動累積投注、big-win notification、bet record / report 分表與 job config。
+- 參與 AntPlay slot math core / 多個 math module 維護與驗證，處理 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
+- 參與每日遊戲資料彙總 batch / BI projection 與第三方遊戲紀錄備份維護，處理資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存、Mongo 分批查詢與 batch size 調整。
+- 參與 UGSoft / AntPlay 後台 API / control plane 維護，處理 login / JWT / RBAC、商戶 / provider 白名單、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / bet record 與 Quartz / report job。
+- 透過跨 repo code reading、git history、schema / Redis / MQ / log flow 梳理與文件化，重建複雜既有系統的 production flow，支援後續維護、交接與面試 case 整理。
+
+後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
+`2020/10 - 2023/04｜Java / SSM / Spring Boot｜博弈平台 API、舊系統維護`
+
+- 負責博弈平台後端 API 與既有系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 支援平台功能、營運需求與線上問題排查。
+- 維護 JSP / SSM 舊系統，進行局部重構、查詢調整與功能修補，累積 log 分析、資料狀態排查、跨部門溝通與 legacy system 維護經驗。
+- 曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
+
+### 技術關鍵字
+
+Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、Redis、Kafka、RabbitMQ、Quartz、REST API、gRPC / ProtoBuf、JWT / RBAC、Docker、K3s / Kubernetes、OpenObserve / log pipeline、第三方金流、transfer wallet、provider gateway、bet / settle / rollback、slot math、RTP / reel strip、BI projection。
+
+### 可強調的專案包
+
+| 專案包 | 可用說法 | 證據狀態 |
+| --- | --- | --- |
+| iwin payment | 多 provider 金流 request / callback / query / withdraw、sign / response parsing、order consistency | 本人確認 + direct commits + code-backed |
+| iwin gameserver / game_api / game_job | 第三方遊戲 provider 投派、coupon 上分、daily summary、Mongo backup | 部分真實開發過 + code-backed |
+| UGSoft connector / admin | provider connector、transfer wallet、request / bet record MQ、後台 control plane | 真實開發過 + code-backed |
+| AntPlay game-api / game-job / admin-api | slot runtime、bet / settle / rollback、job / event processing、後台風控監控 | 真實開發過 + code-backed |
+| AntPlay math-core / *-math | slot math core、RTP / reel strip、debug bet、fixedMultiBet、buy free、simulation | 真實開發過 + code-backed |
+| workspace / mock / BI 入口 | cross-repo reconstruction、testing support、後台入口理解 | supporting / interview-only |
+
+### 履歷不可誇大
+
+不要寫「主導完整金流」、「完整 wallet / ledger / reconciliation owner」、「完整遊戲數學模型 / RTP 策略 owner」、「完整 AntPlay / UGSoft platform owner」、「全部 provider owner」、「完整 Kafka / RabbitMQ exactly-once / outbox owner」、「完整 DevOps / K8s owner」、「改善 X%」；除非後續補 MR / ticket / production incident / metric。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）

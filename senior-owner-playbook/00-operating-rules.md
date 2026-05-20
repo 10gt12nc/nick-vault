@@ -21,6 +21,8 @@ AI 都必須套用同一套規則。
 1. `Flow Track`：負責系統理解與面試案例。固定主線是 `Step 1 project candidate flows -> Step 2 flow ranking -> 單條 flow Step 3 深掃 -> Step 4 面試 case -> Step 5 單條 flow claim gate`。每條 flow 一樣要依深掃規範讀 code、history、evidence、failure window、consistency、claim boundary。Flow Step 5 只回答「這條 flow 本身能不能作履歷素材」，不能回答「整個 project 履歷怎麼寫」。
 2. `Career Track`：負責履歷 / 自傳 / project-level 經驗整理。固定主線是 `project contribution claim consolidation -> 05 resume / 08 autobiography`。consolidation 要以 project 為包裝單位，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence 與 archive 履歷素材。履歷 / 自傳可以引用 flow，但主要結論來自 project-level consolidation，不直接吃單條 flow Step 5。
 
+當 Nick 要求「先把目前所有 contribution consolidation 匯總成 05 / 08，讓我能寫履歷」時，走 `rolling resume package`：AI 要彙總已完成的 project-level contribution consolidation，更新 `05-resume-master-zh.md` 的可直接使用履歷版與 `08-application-autobiography-zh.md` 的投遞版，並標示為目前可用草稿 / 非 final。後續每次 flow 深掃、Step 5 或新的 consolidation，都要回填修正 05 / 08，而不是等所有 flow 做完才讓 Nick 開始寫履歷。
+
 重要優先級：若只是學系統或準備單條面試 case，走 Flow Track。若要判斷 Nick 經驗、履歷、自傳、project claim，走 Career Track。完整 `project contribution claim consolidation` 預設要等該 project 的 Step 2 所定義「本批代表 flows / Top candidate flows」全部完成到 Step 5；若 Nick 明確縮小本批 consolidation scope，只能標成 limited consolidation。若只有單條 flow Step 5，只能保留為單條 flow claim evidence；不得推薦或命名為完整 project consolidation，下一步應回 Step 2 ranking 繼續做同 project 下一條 flow。
 
 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」狀態。Nick 問「下一步、缺啥、履歷、自傳、能不能放、contribution claim consolidation」時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。AI 必須在 project README、todo 或 inventory 明確標示「已達 consolidation 條件 / 待收口」，避免把已可收口的 project 和一般 flow queue 混在一起。

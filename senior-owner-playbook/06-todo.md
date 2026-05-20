@@ -76,6 +76,7 @@
 - 已完成 `antplay math-workspace contribution claim consolidation`；2026-05-20 rolling 收口。Nick 有 workspace KB / docs commits，只作 cross-math code reading / validation workflow supporting evidence，不作 standalone 正式履歷主成果。
 - 已完成 `antplay platform-mock contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 有局部 bet / money_inout failure injection commits，只作 provider rollback / compensation testing supporting evidence，不作正式主成果。
 - 已完成 `antplay buffer-id contribution claim consolidation`；2026-05-20 rolling 收口。未掃到 Nick / `10gt12nc` direct commits，只作 ID generator learning-only。
+- 已完成 `rolling resume package`；2026-05-20 依目前所有 Contribution Claim Consolidation 匯總 `05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`，新增目前可直接使用履歷版 / 投遞版。這是可先投遞的草稿，不是 final；後續 flow 深掃、Step 5 或新 consolidation 必須回填修正。
 
 ## 下一步
 
@@ -144,6 +145,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 18. `math-workspace`：contribution consolidation 已完成；只作 cross-math KB / validation workflow supporting evidence。
 19. `platform-mock`：contribution consolidation 已完成；只作 provider failure injection supporting evidence。
 20. `buffer-id`：contribution consolidation 已完成；未見 Nick direct commits，只作 learning-only。
+21. `rolling resume package`：已完成目前可用版；後續所有 flow / contribution 更新都要回填 05 / 08。
 
 ### 3. 每條完成後自動判斷是否更新
 
