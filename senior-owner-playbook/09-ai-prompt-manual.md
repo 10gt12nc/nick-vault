@@ -18,7 +18,7 @@
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
 - Flow 線與履歷 / 自傳線分開但互相回填：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。contribution consolidation 可以先做 rolling / scoped 版，flows 之後照舊深掃並回填履歷素材。
-- 若 Nick 要先把所有 contribution consolidation 匯成 05 / 08，AI 要產出 `rolling resume package`：更新 05 的可直接使用履歷版、08 的投遞版，標示目前可用但非 final，並保留「後續 flow 深掃互相回填」規則。
+- 若 Nick 要先把所有 contribution consolidation 匯成 05 / 08，AI 要產出 `rolling resume package`：更新 05 的可直接使用履歷版、08 的投遞版，標示目前可用但非 final，並保留「後續 flow 深掃互相回填」規則。`05` 是母稿與證據池；`08` 是投遞輸出版，必須維持 104 可貼欄位：工作經驗、專長、自傳、自我推薦。
 - 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。

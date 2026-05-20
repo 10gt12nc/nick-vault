@@ -50,6 +50,54 @@
 
 > 狀態：2026-05-20 依目前所有 Contribution Claim Consolidation 匯總。這版先給投遞 / 履歷使用；後續 flow 深掃與新 evidence 會再回填修正。
 
+### 104 欄位版
+
+#### 工作經驗
+
+後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
+2023/10 - 至今
+
+- 參與中大型博弈 / 遊戲平台後端開發與維護，工作範圍包含 Java / Spring Boot API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面與既有系統維護。
+- 參與多個第三方金流 provider request / callback / query / withdraw 對接與維護，處理 provider sign、response parsing、callback 重送、timeout、訂單狀態一致性與 withdraw order 建單一致性等問題。
+- 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，範圍包含 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
+- 參與 AntPlay slot 遊戲 API / runtime、UGSoft provider connector / gateway、AntPlay slot job / event processing、RabbitMQ / Kafka / Quartz job、bet record / report 分表與 request log / bet record 非同步資料處理。
+- 參與每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
+- 透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 production flow，協助後續維護、交接與問題排查。
+
+後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
+2020/10 - 2023/04
+
+- 負責博弈平台 API 與既有系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能、營運需求與線上問題排查。
+- 維護 JSP / SSM 舊系統，處理需求調整、測試環境排查、log 分析、資料狀態確認與局部重構。
+- 曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
+
+#### 專長
+
+- 後端語言與框架：Java、Spring Boot、Spring MVC、SSM、MyBatis、Spring Data JPA、REST API、gRPC / ProtoBuf。
+- 高交易與平台 flow：第三方金流 provider、payment / withdraw order、callback / query / withdraw、transfer wallet、bet / settle / rollback、request log / bet record、provider gateway / connector。
+- 資料庫與快取：MySQL、MongoDB、Redis、分表、索引與查詢效能、cursor / stream、批次資料處理、資料狀態排查。
+- 非同步與排程：Kafka、RabbitMQ、ActiveMQ、Quartz、batch job、report projection、retry / compensation、idempotency、consistency、reconciliation。
+- 遊戲與平台領域：博弈 / 遊戲平台、第三方遊戲 provider、slot game API / runtime、slot math module、RTP / reel strip、buy free / free spin、jackpot / symbol。
+- 工程與維運理解：Docker、K3s、OpenObserve、log tracing、git history / diff 追蹤、legacy system takeover、跨 repo system reconstruction。
+
+#### 自傳
+
+我是一名以 Java 後端為主的工程師，具 4 年以上博弈 / 遊戲平台相關經驗，主要工作集中在平台 API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面、slot math module 與既有系統維護。相較於只看單一 API 是否完成，我更習慣從 production flow 的角度理解系統：入口在哪裡、資料如何流動、狀態如何轉換、哪裡是 source of truth、哪些只是 cache 或 report，以及失敗後如何補償、對帳與追蹤。
+
+早期在智湧科技期間，我主要負責博弈平台 API 與舊系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能與營運需求。那段經驗讓我長期接觸線上問題、需求調整、測試環境排查與跨部門溝通，也累積 JSP / SSM 舊系統維護、局部重構、log 分析與資料狀態排查能力。現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，參與過第三方金流 provider 對接維護、payment / withdraw order consistency 修正、第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、AntPlay slot game API / job、UGSoft connector / gateway、RabbitMQ / Kafka / Quartz 非同步處理、每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份，以及 slot math core / math module 維護與驗證。
+
+這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如金流 callback 重送、provider timeout、下注扣款與派彩 rollback、MQ 消費失敗、retry 重複副作用、報表 projection 與交易真相不一致、slot math core contract 變更影響多個 game module，都是我在整理與理解系統時會特別關注的風險。因此我會透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 flow 的理解，讓後續維護、交接與問題排查更有依據。
+
+未來我希望往 Senior Java Backend / Platform Backend / System Owner 方向發展。我的目標不是追逐新技術名詞，而是持續累積能支撐 production 的能力：交易一致性、冪等、補償、對帳、Kafka / MQ、資料庫效能、系統設計、部署風險控制與跨團隊溝通。若有機會加入重視穩定性、可維護性與工程品質的團隊，我希望以務實、可落地的方式參與核心服務維護與系統演進。
+
+#### 自我推薦
+
+我適合 Senior Java Backend / Platform Backend 類型職缺，尤其是需要接手複雜既有系統、串接第三方 provider、維護高交易 flow、處理非同步事件與排程報表的團隊。我的強項不是只完成單點功能，而是能把入口、資料狀態、交易邊界、失敗重試、補償與觀測串起來，讓系統問題可以被定位、被追蹤、被交接。
+
+過去經驗讓我熟悉博弈 / 遊戲平台常見的 production 風險，例如金流 callback 重送、provider timeout、下注結算 rollback、MQ 消費失敗、報表 projection 與交易真相不一致、legacy code 文件不足與跨 repo service boundary 不清楚。我會用保守、可驗證的方式閱讀 code、追 git history、比對 log / DB / Redis / MQ 流向，先建立可靠的系統理解，再進一步處理維護、修正與優化。
+
+我不會把尚未證實的分析成果包裝成主導經驗；但對於實際參與過的 provider 串接、金流 / 錢包、遊戲 API、slot job、math module、報表 batch 與 legacy system takeover，我能在面試中用 code-backed flow 說清楚實作邊界、風險判斷與取捨。我期待加入重視穩定性、可維護性與長期工程品質的後端團隊，持續往能承擔 production owner decision 的方向成長。
+
 ### 300-600 字版
 
 我是一名以 Java 後端為主的工程師，具 4 年以上博弈 / 遊戲平台相關經驗，主要工作集中在平台 API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面與既有系統維護。相較於只完成單一 API，我更習慣從 production flow 的角度理解系統，關注資料如何流動、狀態如何轉換、失敗後如何補償，以及營運人員是否能查詢與追蹤問題。
