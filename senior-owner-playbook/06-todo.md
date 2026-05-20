@@ -29,6 +29,7 @@
 - 已依 2026-05-15 KB 深度檢查 `app_bi`，補齊 project-level `architecture-map.md` 與 `career-interview.md`，並把 app_bi 本地落後 `origin/main` 4 commit 的 source repo 狀態寫入 Step / evidence；正式履歷仍不更新。
 - 已完成 `game_job Step 1`，建立 `projects/iwin/game_job/README.md` 與 `step1-candidate-flows.md`；目前只作 Java batch / BI projection / third-party record backup 的候選 flow 盤點，不更新履歷。
 - 已完成 `third_games_api gsc-transfer-bet-settle-rollback Step 4`，轉成 GSC seamless wallet callback 的保守面試 case；目前仍不更新履歷 / 自傳。
+- 已完成 `iwin third_games_api contribution claim consolidation`；2026-05-20 rolling / scoped 收口。`third_games_api` 本 repo 只有局部測試 / merge 線索，不新增 standalone 正式履歷主成果；下游 `iwin_gameserver` Antplay / GSC / PG direct evidence 要在 `iwin_gameserver` consolidation 正確歸位。
 - 已完成 `game_api coupon-redeem-credit-grant Step 5`，確認 `10gt12nc` 有 game_api / iwin_gameserver coupon path-specific commits；可作 game_api project contribution consolidation evidence，不寫主導完整 coupon / reward owner。
 - 已完成 `game_job daily-game-data-summary Step 5`，確認 `10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 path-specific commits；可作 game_job project contribution consolidation evidence，不寫完整 BI pipeline owner。
 - 已完成 `game_job third-party-record-mongo-backup Step 5`，確認 `10gt12nc` 有 GSC backup 分批查詢與 batch size 調整 direct commits；可作 game_job project contribution consolidation evidence，不寫完整第三方紀錄備份 owner。
@@ -75,7 +76,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 1. `iwin_gameserver contribution claim consolidation`：若近期先補履歷風險收斂，先做 rolling / scoped consolidation；它不取代 Flow Track，後續仍要回 `center-http-deposit-withdraw Step 4`。
 2. `iwin_gameserver center-http-deposit-withdraw Step 4`：Flow Track 的 project-local 下一步，把 center_http 上分 / 下分這條代表 flow 從 Step 3 往後收斂。
-3. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
+3. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 project-local flow 待辦，等 Nick 下 Step 再做；目前 contribution consolidation 已先完成，結論是不新增 standalone 正式履歷主成果。
 4. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 5. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
 6. `game_job contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；保留為 project-level claim evidence，不因新規則重做。
@@ -106,7 +107,7 @@ iwin iwin_gameserver contribution claim consolidation
 3. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，2026-05-20 已重新覆核並補入 GoldenPay direct evidence，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
 4. `app_bi`：rolling / scoped negative contribution claim consolidation 已完成；不放正式履歷主成果。
 5. `bi_share`：rolling / scoped negative contribution claim consolidation 已完成；不放正式履歷主成果。
-6. `third_games_api`：project-local 下一步是 `gsc-transfer-bet-settle-rollback Step 5`。
+6. `third_games_api`：rolling / scoped contribution consolidation 已完成；project-local flow 下一步仍可做 `gsc-transfer-bet-settle-rollback Step 5`，但目前不搶履歷。
 7. `iwin_gameserver`：Career Track 下一步可先做 `contribution claim consolidation`；Flow Track 下一步仍是 `center-http-deposit-withdraw Step 4`。
 8. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
 
@@ -127,7 +128,7 @@ iwin iwin_gameserver contribution claim consolidation
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，不需要因新規則重做；下一步可先做 `iwin_gameserver contribution claim consolidation`，再回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence；`third_games_api` rolling consolidation 也已完成但不新增 standalone 正式履歷主成果。下一步可先做 `iwin_gameserver contribution claim consolidation`，再回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
 
 ## 下一個 prompt
 

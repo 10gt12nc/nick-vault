@@ -411,11 +411,12 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
-- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
-- Step 5 會判定是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
+- 後續 `third_games_api contribution claim consolidation` 已完成，結論是不新增 standalone 正式履歷主成果。
+- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但目前 Career Track 更該先把下游 `iwin_gameserver` 的 direct evidence 正確收口。
+- 做 `iwin_gameserver contribution claim consolidation` 會確認 Antplay / GSC / PG direct commits 哪些可放履歷、哪些只作面試素材。
 - 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

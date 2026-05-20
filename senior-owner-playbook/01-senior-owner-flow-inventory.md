@@ -106,7 +106,8 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | payment | `payment-order-provider-request` | 充值建單與 provider request | 高 | Step 5 | 部分真實開發過：多 provider request / callback / query / withdraw evidence；整體金流 owner 不誇大 | 是，保守更新 | 已收斂 |
 | iwin | payment | `manual-order-review-repair` | 人工審核 / 補單 / 訂單修復 | 中高 | Step 5 | code-backed；不單獨升級人工修復 owner | 否，作面試素材 | 已收斂 |
 | iwin | payment | `payment-channel-config-selection` | 支付列表 / 商戶設定選擇 | 中 | Step 5 | code-backed；不單獨升級支付設定 owner | 否，作面試素材 | 已收斂 |
-| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 4 |
+| iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 4 | 專案存在 / code-backed；rolling consolidation 後仍不作 Nick 正式成果 | 否，作面試素材 | project-local 可做 Step 5 |
+| iwin | third_games_api | `contribution-claim-consolidation` | third_games_api rolling / scoped 收口 | 中高 | 已完成 / 2026-05-20 | 專案存在 / code-backed；本 repo 只有局部測試 / merge 線索；下游 gameserver direct evidence 另歸 iwin_gameserver | 否，不放 standalone 正式履歷主成果 | 已收斂 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 commits | 是，併入 game_job project bullet | 已收斂 |
 | iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 5 | 局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢 / batch size 調整 commits | 是，併入 game_job project bullet | 已收斂 |
 | iwin | game_job | `coin-flow-batch-projection` | 金幣流水清算 / 玩家行為投影 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
@@ -144,7 +145,7 @@ iwin iwin_gameserver contribution claim consolidation
 | 1 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | gameserver 的 Step 2 本批代表 flows 尚未完成；先把 center_http 從 Step 3 往後收斂，再做完整 project consolidation | `iwin iwin_gameserver center-http-deposit-withdraw Step 4` |
 | 2 | iwin | game_api | `contribution claim consolidation` | game_api project-level 履歷 claim 收口 | 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已完成 |
 | 3 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
-| 4 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin third_games_api gsc-transfer-bet-settle-rollback Step 5` |
+| 4 | iwin | third_games_api | `contribution-claim-consolidation` | third_games_api rolling / scoped 履歷 claim 收口 | 已完成；不新增 standalone 正式履歷主成果，下游 direct evidence 待 iwin_gameserver 收口 | 已完成 |
 | 5 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成並於 2026-05-20 重新覆核；GoldenPay direct evidence 已補入；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 7 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |

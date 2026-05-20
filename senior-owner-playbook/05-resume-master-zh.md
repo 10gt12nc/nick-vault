@@ -16,6 +16,8 @@
 
 > 2026-05-20 bi_share consolidation：已完成 `projects/iwin/bi_share/contribution-claim-consolidation.md`。結論是 rolling / scoped negative consolidation：目前未掃到 Nick / `10gt12nc` direct production commits，`bi_share` 只作 legacy Laravel / 分享 / 佣金 / BI 報表 / GM repair 的 code-backed 面試分析素材，不新增正式履歷主成果；不得寫成 Nick 主導分享系統、佣金系統、BI 報表、Laravel 升級或 k3s 遷移。
 
+> 2026-05-20 third_games_api consolidation：已完成 `projects/iwin/third_games_api/contribution-claim-consolidation.md`。結論是 rolling / scoped consolidation：`third_games_api` 本 repo 只掃到局部測試 / merge 線索，不新增 standalone 正式履歷主成果；GSC transfer / OneAPI / Antplay provider adapter 保留為 code-backed 面試素材。較強的 Antplay / GSC / PG direct evidence 位於下游 `iwin_gameserver`，應由 `iwin_gameserver` consolidation 正確歸位，不反向包裝成 `third_games_api` owner。
+
 ## 一、工作經驗
 
 ### 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
@@ -103,4 +105,4 @@
 - 可使用：參與、維護、分析、梳理、協助、優化、整理、提出改善方向。
 - 謹慎使用：主導、負責整體架構、獨立完成、改善 X%、帶領團隊。
 - 需要補證據：Java 版本升級全程、完整 RBAC 重構、Kafka outbox / exactly-once、gRPC 實作範圍、RTP / 遊戲數學主要職責、效能量化、事故改善數字、正式 Lead / Architect 職責。
-- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api 已完成 project-level consolidation，coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler；partner / agent bonus 只作面試素材，邀請好友轉盤只作補充 evidence。game_job 已完成 project-level consolidation；daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理；third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。仍不可寫成主導完整金流、完整 reward system、完整 Partner API、完整代理佣金、完整 BI pipeline、完整第三方紀錄備份、全部 provider owner 或已建立完整 reconciliation。
+- 已補較強 code evidence：iwin payment provider request / callback / query / withdraw 對接與維護可用「參與」口徑，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 path-specific commits；payment / withdraw order insert consistency bugfix 也可保守使用。game_api 已完成 project-level consolidation，coupon redeem / grant flow 可用「參與 / 開發」口徑，包含 `game_api` coupon API / service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler；partner / agent bonus 只作面試素材，邀請好友轉盤只作補充 evidence。game_job 已完成 project-level consolidation；daily summary 可用「參與 / 開發 / 維護」口徑，包含 daily summary job / service / mapper / config、時區窗口、新增玩家 / 留存與備份 / 清理；third-party Mongo backup 可用「局部參與 / 維護」口徑，限 GSC backup 分批查詢與 batch size 調整。third_games_api 已完成 rolling consolidation，但不新增 standalone 正式履歷主成果；相關 provider adapter 僅作面試素材，下游 gameserver direct evidence 等 iwin_gameserver consolidation 收口。仍不可寫成主導完整金流、完整 reward system、完整 Partner API、完整代理佣金、完整 BI pipeline、完整第三方紀錄備份、完整 third_games_api provider adapter、全部 provider owner 或已建立完整 reconciliation。

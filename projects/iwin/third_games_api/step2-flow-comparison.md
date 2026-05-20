@@ -312,23 +312,24 @@ Step 3 必須至少補：
 已更新：
 
 - `projects/iwin/third_games_api/README.md`：同步目前下一步。
-- `projects/iwin/third_games_api/step2-flow-comparison.md`：回補目前 Step 5 下一步。
+- `projects/iwin/third_games_api/step2-flow-comparison.md`：已回補目前 Career Track 下一步。
 
 未更新：
 
 - `senior-owner-playbook/04-interview-casebook.md`：本輪只校正 iwin 文件狀態，不新增面試案例。
-- `senior-owner-playbook/05-resume-master-zh.md`、`08-application-autobiography-zh.md`：沒有 Nick 本人 evidence，不更新。
+- `senior-owner-playbook/05-resume-master-zh.md`、`08-application-autobiography-zh.md`：後續 rolling consolidation 已補 claim boundary note，但不新增正式成果 bullet。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
-- Step 2 / Step 3 / Step 4 已完成，下一步是 Step 5 claim gate。
-- Step 5 會檢查是否有 Nick 本人 evidence；目前預期不更新正式履歷 / 自傳。
+- 後續 `third_games_api contribution claim consolidation` 已完成，結論是不新增 standalone 正式履歷主成果。
+- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但不優先於目前 Career Track。
+- 較強的第三方遊戲 direct evidence 在下游 `iwin_gameserver`，應先做 `iwin_gameserver contribution claim consolidation` 正確歸位。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

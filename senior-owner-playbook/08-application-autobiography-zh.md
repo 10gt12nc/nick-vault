@@ -17,6 +17,8 @@
 
 > 2026-05-20 bi_share consolidation：已完成 `projects/iwin/bi_share/contribution-claim-consolidation.md`。結論是 rolling / scoped negative consolidation：目前未掃到 Nick / `10gt12nc` direct production commits，`bi_share` 只作 legacy Laravel / 分享 / 佣金 / BI 報表 / GM repair 的 code-backed 面試分析素材，不新增投遞自傳主成果。
 
+> 2026-05-20 third_games_api consolidation：已完成 `projects/iwin/third_games_api/contribution-claim-consolidation.md`。結論是 rolling / scoped consolidation：`third_games_api` 本 repo 只掃到局部測試 / merge 線索，不新增投遞自傳主成果；GSC transfer / OneAPI / Antplay provider adapter 只作 code-backed 面試素材。下游 `iwin_gameserver` 的 Antplay / GSC / PG direct evidence 待 `iwin_gameserver` consolidation 收口。
+
 ## 使用原則
 
 - 不寫人生流水帳。
