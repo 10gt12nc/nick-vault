@@ -183,6 +183,12 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 
 目前可以主打的是：Java Backend / Platform Backend、金流 / provider 串接、MQ / batch、legacy takeover、AI-assisted engineering workflow。真正能不能談到 `115,000-135,000`，取決於面試時能否把 3 條以上 production flow 講清楚。
 
+目前月薪 `80,000` 不應被當成能力上限。它比較像目前公司 / 組織 / 職級 / 薪資帶的定價，不是外部市場的最終定價。是否真的能脫離 8 萬錨點，要靠外部投遞與面試驗證：
+
+- 沒面試：履歷定位或職缺選擇要修。
+- 有面試但被追問打穿：flow 還不夠熟。
+- 有 offer 接近 `100,000-120,000`：代表目前薪資主要是組織定價問題，不是能力只能到 8 萬。
+
 ## 面試前必做清單
 
 面試前至少準備：
