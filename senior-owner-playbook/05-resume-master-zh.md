@@ -36,6 +36,8 @@
 
 > 2026-05-20 antplay math consolidation：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md`、`projects/antplay/star-math/contribution-claim-consolidation.md`、`projects/antplay/math-workspace/contribution-claim-consolidation.md`、`projects/antplay/platform-mock/contribution-claim-consolidation.md`、`projects/antplay/buffer-id/contribution-claim-consolidation.md`。`math-core` 與 `*-math` 可保守寫 Nick 參與 AntPlay slot math core / math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整；`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。仍不得寫成主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner 或完整 ID generator owner。
 
+> 2026-05-20 AI-assisted workspace 補充：`iwin-workspace`、`ugsoft-workspace`、`math-workspace` 等 `*-workspace` 可支撐 Nick 具備 AI-assisted engineering workflow / knowledge-base driven development 經驗：用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填，把 legacy system reconstruction 變成可追蹤閉環。這是工程方法與自我推薦加分項，不是 standalone production 主成果；不得寫成 AI 自動主導 production 開發、完整 DevOps owner 或用 AI 取代工程判斷。
+
 ## 目前可直接使用履歷版（Rolling）
 
 > 狀態：2026-05-20 依目前所有 Contribution Claim Consolidation 匯總，並補讀 Nick 舊 104 PDF 履歷。這版可以先拿去寫履歷 / LinkedIn / 104，但不是 final；後續每條 flow 深掃、Step 5 或新 evidence 都要回填修正。
@@ -84,7 +86,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 | UGSoft connector / admin | provider connector、transfer wallet、request / bet record MQ、後台 control plane | 真實開發過 + code-backed |
 | AntPlay game-api / game-job / admin-api | slot runtime、bet / settle / rollback、job / event processing、後台風控監控 | 真實開發過 + code-backed |
 | AntPlay math-core / *-math | slot math core、RTP / reel strip、debug bet、fixedMultiBet、buy free、simulation | 真實開發過 + code-backed |
-| workspace / mock / BI 入口 | cross-repo reconstruction、testing support、後台入口理解 | supporting / interview-only |
+| workspace / mock / BI 入口 | cross-repo reconstruction、AI-assisted development loop、testing support、後台入口理解 | supporting / interview-only |
 
 ### 履歷不可誇大
 
@@ -134,6 +136,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 - REST API、gRPC / ProtoBuf 或契約式通訊、服務間整合、provider gateway、後台營運系統
 - Spring Security / JWT / RBAC / role-based control plane
 - 既有系統逆向、code reading、log analysis、production flow reconstruction
+- AI-assisted engineering workflow、knowledge-base driven development、diff review、commit 收斂、KB 回填
 
 ### 資料與一致性
 

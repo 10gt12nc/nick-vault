@@ -39,6 +39,8 @@
 
 > 2026-05-20 舊 104 PDF 履歷補讀：可補入「缺乏完整交接文件時，協助主管梳理兩套既有平台並恢復可維護 / 可交接狀態」的 legacy takeover / system reconstruction 口徑。舊 PDF 中對主管、流程、PM / QA 缺位、假敏捷等負面描述不得放入正式投遞稿；Kafka 架構建置、後台 API 架構、RTP 工具、效能改善等較強 claim 仍需依目前 project consolidation / commit evidence 保守降調。
 
+> 2026-05-20 AI-assisted workspace 補充：`*-workspace` 經驗可作工程方法加分項，保守寫成 AI-assisted engineering workflow / knowledge-base driven development：用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。正式投遞可放在專長 / 自我推薦，不建議作工作經驗主 bullet；不得寫成 AI 自動完成 production 開發或 Nick 主導完整 AI 平台。
+
 ## 使用原則
 
 - 不寫人生流水帳。
@@ -81,7 +83,7 @@
 - 資料庫與快取：MySQL、MongoDB、Redis、分表、索引與查詢效能、cursor / stream、批次資料處理、資料狀態排查。
 - 非同步與排程：Kafka、RabbitMQ、ActiveMQ、Quartz、batch job、report projection、retry / compensation、idempotency、consistency、reconciliation。
 - 遊戲與平台領域：博弈 / 遊戲平台、第三方遊戲 provider、slot game API / runtime、slot math module、RTP / reel strip、buy free / free spin、jackpot / symbol。
-- 工程與維運理解：Docker、K3s、OpenObserve、log tracing、git history / diff 追蹤、legacy system takeover、跨 repo system reconstruction。
+- 工程與維運理解：Docker、K3s、OpenObserve、log tracing、git history / diff 追蹤、legacy system takeover、跨 repo system reconstruction、AI-assisted engineering workflow、knowledge-base driven development。
 
 #### 自傳
 
@@ -99,7 +101,7 @@
 
 過去經驗讓我熟悉博弈 / 遊戲平台常見的 production 風險，例如金流 callback 重送、provider timeout、下注結算 rollback、MQ 消費失敗、報表 projection 與交易真相不一致、legacy code 文件不足與跨 repo service boundary 不清楚。我也曾在缺乏完整交接文件的情況下，協助主管梳理兩套既有平台並恢復可維護狀態。我會用保守、可驗證的方式閱讀 code、追 git history、比對 log / DB / Redis / MQ 流向，先建立可靠的系統理解，再進一步處理維護、修正與優化。
 
-我不會把尚未證實的分析成果包裝成主導經驗；但對於實際參與過的 provider 串接、金流 / 錢包、遊戲 API、slot job、math module、報表 batch 與 legacy system takeover，我能在面試中用 code-backed flow 說清楚實作邊界、風險判斷與取捨。我期待加入重視穩定性、可維護性與長期工程品質的後端團隊，持續往能承擔 production owner decision 的方向成長。
+我不會把尚未證實的分析成果包裝成主導經驗；但對於實際參與過的 provider 串接、金流 / 錢包、遊戲 API、slot job、math module、報表 batch 與 legacy system takeover，我能在面試中用 code-backed flow 說清楚實作邊界、風險判斷與取捨。我也具備 AI-assisted 開發閉環經驗，能用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填，讓複雜系統分析可追蹤、可交接。我期待加入重視穩定性、可維護性與長期工程品質的後端團隊，持續往能承擔 production owner decision 的方向成長。
 
 ### 300-600 字版
 
