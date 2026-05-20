@@ -65,6 +65,7 @@
 - 已完成 `iwin bi_share contribution claim consolidation`；未掃到 Nick / `10gt12nc` direct production commits，結論是不放正式履歷主成果，只作 legacy Laravel / 分享 / 佣金 / BI 報表 / GM repair 的 code-backed 面試分析素材。
 - 已完成 `iwin iwin_gameserver contribution claim consolidation`；2026-05-20 rolling / scoped 收口。Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits，可保守放「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」；center-http 上分 / 下分仍是 code-backed 面試素材，不擴張成完整 gameserver / wallet owner。
 - 已完成 `iwin iwin-workspace contribution claim consolidation`；2026-05-20 rolling / scoped 收口。Nick / `10gt12nc` 有大量 workspace KB / docs / environment index / tool commits，可支撐 cross-repo system reconstruction 與知識庫治理能力，但不新增 standalone 正式履歷主成果，不反向包裝成子 repo 業務開發。
+- 已完成 `ugsoft ugsoft-admin-api contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record 與 Quartz / report job 有大量 direct commits，可保守補入後台 API / control plane 與非同步資料處理經驗；不寫完整 UG 平台、完整 provider gateway、完整 wallet / money flow 或完整 RabbitMQ architecture owner。
 
 ## 下一步
 
@@ -84,6 +85,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 6. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 8. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
+9. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，下一步先掃 `ugsoft-connector-api`。
 
 ### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
@@ -101,7 +103,9 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 2. iwin 各 project 局部下一步
 
-目前總優先是 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。以下是近期各 project 的局部下一步：
+目前 ugsoft 線已插隊完成 `ugsoft-admin-api` contribution consolidation。若 Nick 要繼續 ugsoft，下一步優先掃 `ugsoft-connector-api`；若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
+
+以下是近期各 project 的局部下一步：
 
 1. `game_api`：`contribution claim consolidation` 已完成；正式履歷只採 coupon 保守 claim，不因新規則重做。
 2. `game_job`：`contribution claim consolidation` 已完成，不因新規則重做。
@@ -112,6 +116,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 7. `iwin_gameserver`：Career Track consolidation 已完成；Flow Track 下一步是 `center-http-deposit-withdraw Step 4`。
 8. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
 9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
+10. `ugsoft-admin-api`：contribution consolidation 已完成；可作後台 API / async data processing 履歷素材。下一個 ugsoft repo 建議 `ugsoft-connector-api`。
 
 ### 3. 每條完成後自動判斷是否更新
 
@@ -135,7 +140,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ## 下一個 prompt
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+ugsoft ugsoft-connector-api contribution claim consolidation
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

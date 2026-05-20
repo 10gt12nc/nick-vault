@@ -63,6 +63,10 @@ Git repo:
 - 前端 / 官網: `ugsoft-admin-web`、`official-web-v3`
 - workspace: `ugsoft-workspace`
 
+整理狀態:
+
+- `ugsoft-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / control plane、RabbitMQ / Quartz / report job 類履歷素材；不寫完整 UG 平台或 provider gateway owner。
+
 ## antplay
 
 來源路徑:
