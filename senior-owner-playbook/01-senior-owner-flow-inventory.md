@@ -99,7 +99,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_api | `coupon-redeem-credit-grant` | 優惠券兌換上分 / 打碼要求 | 高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 game_api / iwin_gameserver coupon commits | 可作 flow evidence；不代表完整 project | 已收斂 |
 | iwin | game_api | `partner-deposit-withdraw-bill` | Partner API 上分 / 下分 / 查單 | 很高 | Step 5 | 專案存在 / code-backed；未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_api | `agent-bonus-receive-transfer` | 代理佣金領取 / 轉帳 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
-| iwin | game_api | `contribution-claim-consolidation` | game_api 實際開發貢獻收斂 | 高 | 已完成 | 部分真實開發過 + code-backed；coupon direct evidence；partner / agent bonus interview-only | 是，保守使用 coupon | 履歷 claim 已收斂 |
+| iwin | game_api | `contribution-claim-consolidation` | game_api 實際開發貢獻收斂 | 高 | 已完成 / 2026-05-20 已覆核 | 部分真實開發過 + code-backed；coupon direct evidence；partner / agent bonus interview-only | 是，保守使用 coupon | 履歷 claim 已收斂，不因本輪重做 |
 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 高 | 已完成 | 本人確認 + 真實開發過 + code-backed | 是，保守更新 | 履歷 claim 已收斂；不是全 payment project 完成 |
 | iwin | payment | `payment-provider-callback` | 金流 provider callback | 高 | Step 5 | 單條 flow code-backed；project-level 有多 provider callback / sign 維護 evidence | 併入 payment project bullet | 已收斂 |
 | iwin | payment | `withdrawal-auto-review-refund` | 玩家提款、自動審核 / 自動出款與失敗退款 | 高 | Step 5 | 單條 flow code-backed；withdraw insert / null-safety 有有限維護 evidence | 不單獨寫自動出款 owner | 已收斂 |

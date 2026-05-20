@@ -1,8 +1,8 @@
 # iwin game_api Contribution Claim Consolidation
 
-更新時間：2026-05-19
+更新時間：2026-05-20
 掃描等級：Level 2+ project-level contribution consolidation
-狀態：已完成
+狀態：已完成；2026-05-20 已重新 fetch / 重讀 / 覆核
 證據層級：部分真實開發過 + code-backed；正式 claim 只採保守口徑
 
 ## 結論
@@ -12,6 +12,14 @@
 `partner-deposit-withdraw-bill` 與 `agent-bonus-receive-transfer` 已完成 Step 5，但目前未見 Nick / `10gt12nc` direct path evidence，只保留為 code-backed 面試素材，不寫進正式履歷主成果。
 
 補充：repo-wide 掃描也看到 Nick / `10gt12nc` 曾開發邀請好友轉盤活動相關 path，但該 flow 尚未整理成完整 flow package，因此目前只作補充 evidence，不升級成正式履歷主 bullet。
+
+2026-05-20 重新覆核後，結論不變：
+
+- `game_api` 與 `iwin_gameserver` 都已重新 `git fetch --all --prune`。
+- 兩個 repo 的本機 `main` 都與 `origin/main` 同步，工作樹乾淨。
+- 重新跑 repo-wide Nick / `10gt12nc` author log，`game_api` 仍只看到 coupon 與邀請好友轉盤兩組 direct evidence。
+- `iwin_gameserver` 有更多 Nick / `10gt12nc` gameserver commits，但在本文件只採與 `game_api coupon` 下游直接相關的 `6c99dd3`、`30a9fcb`；其他 gameserver evidence 應放到 `iwin_gameserver contribution claim consolidation`，不反向擴張 `game_api` claim。
+- 重讀 05 / 08 / todo / inventory 與 archive 搜尋結果後，沒有新增足以把 partner / agent bonus 升級成 Nick 真實開發過的 evidence。
 
 ## 本次重讀與掃描範圍
 
@@ -43,12 +51,20 @@
 | `/Users/nick/Git/iwin/game_api` | `main` | `39bb6e38210bb79c6e68a6a6d818cb87986d39f0` | `origin/main` 同 HEAD | 0 / 0 | 已 fetch，主分支同步 |
 | `/Users/nick/Git/iwin/iwin_gameserver` | `main` | `30a9fcb95bfda33b582deeb4e149eb06bed4afe3` | `origin/main` 同 HEAD | 0 / 0 | 已 fetch，主分支同步 |
 
+2026-05-20 重新覆核：
+
+- `/Users/nick/Git/iwin/game_api`：重新 fetch，`main` / `origin/main` 仍為 `39bb6e38210bb79c6e68a6a6d818cb87986d39f0`，ahead / behind `0 / 0`，工作樹乾淨。
+- `/Users/nick/Git/iwin/iwin_gameserver`：重新 fetch，`main` / `origin/main` 仍為 `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`，ahead / behind `0 / 0`，工作樹乾淨。
+- `game_api` remote branches 仍包含 `origin/beta`、`origin/bugs/write_black_list`、`origin/coupon`、`origin/feature/RD-128`、`origin/fix-ci-deploy`、`origin/fix-performance`、`origin/k3s`、`origin/main`、`origin/test`。
+- `iwin_gameserver` remote branches 仍包含 `origin/AntPlay-transferInOut`、`origin/Nick-GSC_PG`、`origin/Nick-review`、`origin/beta`、`origin/feature/RD-162`、`origin/feature/RD-188`、`origin/k3s`、`origin/main`、`origin/nick-LocalDevTest`、`origin/rate-script`。
+
 未做：
 
 - 未修改公司 source repo。
 - 未 checkout / merge / rebase 公司 source repo。
 - 未把 config、secret、internal endpoint 或敏感內容寫入 vault。
 - 未掃完整 `game_api` 每個 feature 的逐行全量 history；本次聚焦 contribution claim consolidation 所需的 repo-wide Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow evidence。
+- 2026-05-20 重新覆核沒有做 Level 3 全量逐檔逐行；本輪目標是確認已完成 consolidation 是否仍正確。若 Nick 要把邀請好友轉盤、登入註冊、戰績查詢或其他 game_api 功能放履歷，應另開 Flow Track 深掃。
 
 ## Repo-wide Nick / `10gt12nc` evidence
 
@@ -183,11 +199,11 @@ repo-wide Nick / `10gt12nc` commits：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `game_api` 本批代表 flow 與 project-level contribution claim 已收斂。
-- `payment`、`game_job`、`app_bi` 的 contribution consolidation 也已收斂。
-- `iwin_gameserver` 的 `center-http-deposit-withdraw` 已完成 Step 3，下一步應先把同條 flow 轉成面試 case，不要直接跳 project-level consolidation。
+- `payment`、`game_job`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
+- 若近期目標是先把履歷 / 面試 claim 風險收斂，`iwin_gameserver` 目前比重做 `game_api` 更值得做 rolling / scoped consolidation；後續 Flow Track 仍可回 `center-http-deposit-withdraw Step 4`。

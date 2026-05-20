@@ -4,7 +4,7 @@
 
 ## 讀檔順序
 
-1. [game_api](game_api/README.md)：玩家端 / partner API orchestration，三條代表 flow 與 project-level contribution consolidation 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
+1. [game_api](game_api/README.md)：玩家端 / partner API orchestration，三條代表 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
 2. [payment](payment/README.md)：金流 / 充值 / 提現 orchestration，Top 5 flow 與 project-level contribution consolidation 已完成；不因新規則重做。
 3. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
 4. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 與 project-level contribution consolidation 已完成；不因新規則重做。
@@ -17,7 +17,7 @@
 
 | Project | 目前內容 | 下一步 |
 | --- | --- | --- |
-| `game_api` | 三條代表 flow 已完成 Step 5；project-level contribution consolidation 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已收斂，不因新規則重做 |
+| `game_api` | 三條代表 flow 已完成 Step 5；project-level contribution consolidation 已完成並於 2026-05-20 重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已收斂，不因新規則重做 |
 | `payment` | Top 5 flow 與 project-level contribution consolidation 已完成；`payment-order-provider-request` 已有 Nick / `10gt12nc` path-specific evidence | 不因新規則重做；後續只在 Nick 指定新 payment flow 時追加 |
 | `app_bi` | Step 1 / Step 2 / architecture / career；4 條主要 flow 已完成 Step 5 | 已收斂；不搶履歷 claim |
 | `game_job` | Step 1 / Step 2；Top 5 代表 flows 與 project-level contribution consolidation 已完成，其中 daily summary / GSC backup 有 direct evidence | 已收斂，不因新規則重做 |

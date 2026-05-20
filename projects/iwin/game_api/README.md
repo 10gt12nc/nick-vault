@@ -28,7 +28,7 @@
 | `flows/coupon-redeem-credit-grant/` | Step 5 已完成 | 已完成優惠券兌換上分 / 打碼要求 Level 2+ claim gate；`10gt12nc` 在 coupon Controller / Service / DAO / mapper / entity 與 gameserver bet target handler 有 path-specific commits，可作 project contribution consolidation evidence |
 | `flows/partner-deposit-withdraw-bill/` | Step 5 已完成 | 已完成 Partner API 上分 / 下分 / 查單 Level 2 code-backed flow 深掃、面試素材與單條 flow claim gate；目前未看到 Nick / `10gt12nc` direct path evidence，不更新正式履歷 |
 | `flows/agent-bonus-receive-transfer/` | Step 5 已完成 | 已完成代理佣金領取 / 轉帳 Level 2 flow 深掃、面試收斂與單條 flow claim gate；確認 `game_api` API、Mongo `agent_money`、Redis projection、GM 上分與 `game_job` 佣金結算關聯；目前未看到 Nick / `10gt12nc` direct path evidence，不更新正式履歷 |
-| `contribution-claim-consolidation.md` | 已完成 | 已掃 repo-wide Nick / `10gt12nc` commits、branches、重要 diff、三條代表 flow evidence 與履歷素材；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 |
+| `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 已重新覆核 | 已掃 repo-wide Nick / `10gt12nc` commits、branches、重要 diff、三條代表 flow evidence 與履歷素材；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 |
 
 ## 專案定位
 
@@ -80,14 +80,15 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
 - `game_api` 本批代表 flow 與 project-level contribution consolidation 已完成。
-- `payment`、`game_job`、`app_bi` 的 contribution consolidation 也已收斂。
-- `iwin_gameserver` 的 `center-http-deposit-withdraw` 已完成 Step 3，下一步應先轉 Step 4 面試 case，不要直接跳 project-level consolidation。
+- 2026-05-20 已重新 fetch / 重讀 / 覆核，結論仍維持：正式履歷只採 coupon 保守 claim。
+- `payment`、`game_job`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
+- 若近期目標是先把履歷 / 面試 claim 風險收斂，下一個最值得做的是 `iwin_gameserver` rolling / scoped contribution consolidation；Flow Track 之後仍可回 `center-http-deposit-withdraw Step 4`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
