@@ -440,9 +440,9 @@ iwin payment Step 1
 
 ### playbook 編號不是 flow Step
 
-`senior-owner-playbook/01~16` 是文件編號，用來分類工具箱、規則、學習路線、面試、履歷與能力矩陣。
+`senior-owner-playbook/01~17` 是文件編號，用來分類工具箱、規則、學習路線、面試、履歷、能力矩陣與薪資談判。
 
-它不是 project flow 的 Step 1~16。
+它不是 project flow 的 Step 1~17。
 
 project flow 的 Step 固定只有：
 
