@@ -31,6 +31,8 @@
 
 > 2026-05-20 antplay-slot-admin-api consolidation：已完成 `projects/antplay/antplay-slot-admin-api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay 後台 API / 商戶控制面開發維護，範圍包含 admin / merchant auth、商戶白名單、Game API 白名單同步、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、RabbitMQ request log / 風控通知與 Quartz job；仍不寫主導完整 AntPlay slot platform、完整 game runtime、完整 wallet / reconciliation、完整風控平台或完整 RabbitMQ architecture owner。
 
+> 2026-05-20 antplay-slot-game-api consolidation：已完成 `projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay slot 遊戲 API / runtime 開發維護，範圍包含 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正；仍不寫主導完整 AntPlay slot platform、完整遊戲數學 / RTP 策略、完整 wallet / ledger / reconciliation、完整 RabbitMQ / Kafka architecture owner 或 exactly-once / outbox owner。
+
 ## 使用原則
 
 - 不寫人生流水帳。
