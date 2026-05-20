@@ -429,6 +429,40 @@ Lead / Architect 追問：
 - audit log 在最後才寫，失敗時客服怎麼查帳？
 - game_job settlement 與玩家領取同時發生時，fail closed 的條件怎麼定？
 
+## 案例 12：Slot math contract / fixedMultiBet / currency 相容
+
+對應 flow：
+
+- `antplay/*-math/fixed-multi-bet-currency-math-core-compatibility`
+
+證據邊界：
+
+- 已完成 Step 5，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作 Senior Backend 面試主案例。
+- Nick / `10gt12nc` 在 `math-core`、`sdt-math`、`sfm-math` 有 direct commits；`slc-math` 作 code-backed 旁證與部分 direct evidence。
+- 已深掃代表 path：`math-core`、`sdt-math`、`sfm-math`、`slc-math`。
+- 未深掃全部 71 個 `*-math` repo、未深掃上游 game-api caller、未補 production incident / ticket evidence。
+
+面試主軸：
+
+Slot math module 的 fixedMultiBet / currency 調整不是單純加欄位，而是多 module contract compatibility 與 money-like correctness。Senior 要能說清楚 core interface default fallback、module input、currency multiplier、totalBet、jackpot scaling、debug bet 與 result 欄位如何使用同一組下注上下文。
+
+可講重點：
+
+- `math-core` default fallback 是多 module rollout 安全網，不是全部 module 完整支援的證明。
+- fixedMultiBet 不只影響 totalBet，也要看 jackpot multiplier、debug / test input 與前端可核對 result。
+- currency multiplier 用 ThreadLocal 可降低傳參成本，但要注意入口初始化與 thread reuse。
+- math module 不負責 wallet rollback，但它的輸出會被上游扣款 / 派彩 / 對帳依賴，所以仍要用 money-like correctness 檢查。
+- module compatibility 要用 checklist 管：入口 override、InputData、calculation、jackpot、result、test coverage。
+
+Lead / Architect 追問：
+
+- 為什麼不一次強制所有 `*-math` module 改新 interface？
+- 如果 caller 以為 fixedMultiBet 生效，但 module fallback 忽略了，怎麼偵測？
+- currency multiplier 應該 ThreadLocal、明確傳參，還是放進 immutable spin context？
+- fixedMultiBet / currency 要不要提升到 core result contract？
+- 如果 jackpot 金額比例錯，排查順序是 lineBet、fixedMultiBet、currency、maxBet / nowBet、jackpot balance payload 哪一層？
+- 如何設計 module compatibility matrix 與 release checklist？
+
 ## 面試回答公式
 
 ```text

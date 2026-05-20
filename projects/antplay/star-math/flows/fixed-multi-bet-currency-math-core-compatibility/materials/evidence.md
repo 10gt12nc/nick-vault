@@ -5,9 +5,10 @@
 - Vault branch: `main`
 - Vault path: `projects/antplay/star-math`
 - Source root: `/Users/nick/Git/antplay`
-- Depth: Level 2 deep scan + Step 4 interview consolidation
+- Depth: Level 2 deep scan + Step 5 claim gate
 - 本輪沒有重複 retry 內網 GitLab fetch；依本地 refs / local branch / local log 判斷。
 - 2026-05-20 Step 4 補充：重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/decision-notes.md`、`materials/claim-boundary.md`；未新增公司 repo 掃描，不改公司 repo。
+- 2026-05-20 Step 5 補充：重讀 Step 3/4 flow package、project README、Step 1/2、inventory、todo 與 interview casebook；本輪只做單條 flow claim gate，不更新 05 / 08。
 
 ## Source Repo Status
 
@@ -110,3 +111,10 @@
 - `career-interview.md` 已改為 Step 4 面試主稿，包含 30 秒、2 分鐘、5 分鐘講法、Senior / Lead / Architect 追問與履歷句。
 - `materials/interview.md` 已補完整追問答法、強回答句、弱回答避雷與 evidence-backed claim matrix。
 - Step 4 沒有新增履歷 master / 自傳正式 claim；正式更新仍要等 Step 5 或 project-level contribution consolidation 回填。
+
+## Step 5 Claim Gate Evidence
+
+- Step 5 判定：可作為 `*-math` grouped 履歷 bullet 的強化 evidence。
+- Step 5 判定：可作 Senior Backend 面試主案例，主軸是 contract compatibility、money-like correctness、multi-module rollout trade-off。
+- Step 5 限制：不代表完整 `*-math` final consolidation；不代表全部 71 個 repo 已完成相同 flow 深掃。
+- Step 5 限制：不直接更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`，後續由 project-level consolidation / rolling resume package 回填。

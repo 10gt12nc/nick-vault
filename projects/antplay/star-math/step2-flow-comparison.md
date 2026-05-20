@@ -342,7 +342,7 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5
+antplay *-math rtp-reel-strip-simulation-validation Step 3
 ```
 
-2026-05-20 更新：此 flow Step 4 已完成，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據。
+2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
