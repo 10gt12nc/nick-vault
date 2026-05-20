@@ -123,8 +123,8 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence；下一步應做 Flow Track Step 1，先從強 evidence module 中挑代表 flow，不要平均深挖 71 個 repo。
+`*-math` 已有很強 career evidence，且 Flow Track Step 1 已完成；下一步應做 Step 2，比較 strong evidence module 內的代表 flow，不要平均深挖 71 個 repo。
 
 ```text
-antplay *-math Step 1
+antplay *-math Step 2
 ```

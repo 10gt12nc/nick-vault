@@ -79,7 +79,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 2026-05-20 補充：`antplay-slot-game-job` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 Kafka consumer / Quartz job、代理玩家報表 projection、activity accumulated bet、big-win notification、report currency / key 修正與 db partition / job config 有 direct commits；可保守寫「參與 AntPlay slot job / event processing 開發維護」，不得寫成完整 Kafka event platform、完整 settle pool / risk / jackpot owner 或完整 BI / report platform owner。
 - 2026-05-20 補充：`math-core` 與 `*-math` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 `math-core` 有 slot math contract / debugBet / RTP / symbol direct commits；71 個 `*-math` repo 中有 49 個有 direct commits，強 evidence 是 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。可保守寫「參與 AntPlay slot math core / math module 維護與驗證」，不得寫成完整遊戲數學模型、全部 math module、完整 RTP 策略或完整 simulator / certification owner。
 - 2026-05-20 補充：`math-workspace` 已完成 rolling consolidation，只作 cross-math KB / validation workflow supporting evidence；`platform-mock` 只有局部 failure injection commits，只作 provider failure testing supporting evidence；`buffer-id` 未見 Nick direct commits，只作 learning-only。
-- 若目標是差異化面試題，下一個新 domain 可先做 `math-core` / `*-math` Step 1。
+- 若目標是差異化面試題，`*-math` Step 1 已完成；下一步做 `antplay *-math Step 2`，比較 fixedMultiBet / RTP / buy free / jackpot 等代表 flow。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
 ## 狀態定義
@@ -134,7 +134,8 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | antplay | antplay-slot-game-api | `contribution-claim-consolidation` | 遊戲 API runtime / 下注結算 / 轉帳錢包 / RabbitMQ request log 收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有大量 direct commits | 是，保守補入 game runtime / betting-settlement / transfer wallet / async log | 已收斂；Flow Track 可做 Step 1 |
 | antplay | antplay-slot-game-job | `contribution-claim-consolidation` | Kafka / Quartz job / 報表 projection / big-win notification 收口 | 中高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有 direct commits | 是，保守補入 job / event processing / report projection / notification | 已收斂；Flow Track 可做 Step 1 |
 | antplay | math-core | `contribution-claim-consolidation` | slot math core contract / debugBet / RTP / symbol 收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；Nick / `10gt12nc` 有 direct commits | 是，保守補入 slot math core / contract / debug tooling | 已收斂；Flow Track 可做 Step 1 |
-| antplay | `*-math` | `contribution-claim-consolidation` | 多個 slot math module 維護與驗證收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；49 / 71 repo 有 direct commits，6 個強 evidence module | 是，保守補入 slot math module / RTP / reel strip / debug / fixedMultiBet | 已收斂；Flow Track 可做 Step 1 |
+| antplay | `*-math` | `contribution-claim-consolidation` | 多個 slot math module 維護與驗證收口 | 高 | 已完成 / 2026-05-20 | 真實開發過 + code-backed；49 / 71 repo 有 direct commits，6 個強 evidence module | 是，保守補入 slot math module / RTP / reel strip / debug / fixedMultiBet | 已收斂；Flow Track Step 1 已完成 |
+| antplay | `*-math` | `step1-candidate-flows` | fixedMultiBet / RTP / buy free / jackpot 候選 flow 盤點 | 高 | Step 1 / 2026-05-20 | 真實開發過 + code-backed；依本地 refs，部分 remote 未確認最新 | 否，先作 Flow Track 選題 | 下一步 Step 2 |
 | antplay | math-workspace | `contribution-claim-consolidation` | math KB / validation workflow supporting 收口 | 低 | 已完成 / 2026-05-20 | 真實做過 KB / docs / workspace 維護；不是 runtime service | 否，不放 standalone 主成果 | 已收斂；回 math source repo |
 | antplay | platform-mock | `contribution-claim-consolidation` | provider mock / failure injection supporting 收口 | 中低 | 已完成 / 2026-05-20 | 局部真實開發過；failure injection commits | 否，作 testing supporting evidence | 已收斂；不優先 |
 | antplay | buffer-id | `contribution-claim-consolidation` | ID generator learning-only 收口 | 低 | 已完成 / 2026-05-20 | 未見 Nick direct commits | 否，只作 learning-only | 已收斂；不優先 |
@@ -144,13 +145,13 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 本輪若繼續 antplay 線，只推薦一件事:
 
 ```text
-antplay *-math Step 1
+antplay *-math Step 2
 ```
 
 原因:
 
 - `math-core` / `*-math` 已經補出強 career evidence，是目前 antplay 線最有差異化的 Senior 面試素材。
-- `*-math` 不該平均深挖 71 個 repo；Step 1 先從 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math` 挑代表 flow。
+- `*-math` Step 1 已完成；Step 2 要比較 `fixedMultiBet / currency / math-core compatibility`、`RTP / reel strip / simulation validation`、`buy free / scatter / RTP_3`、`jackpot scaling` 等候選 flow。
 - 若 Nick 要最大化交易主線而不是 math 差異化，另一條路是 `antplay antplay-slot-game-api Step 1`。
 - 若 Nick 要回原 iwin queue，仍回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
@@ -168,7 +169,7 @@ antplay *-math Step 1
 | 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成並於 2026-05-20 重新覆核；GoldenPay direct evidence 已補入；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 7 | antplay | antplay-slot-game-api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback | 高交易遊戲 flow、rollback、交易一致性 | `antplay-slot-game-api Step 1` |
 | 8 | antplay | antplay-slot-game-job | `proxy-user-data-report-projection` | 代理玩家報表 projection | Kafka / Quartz / report projection，可補 event processing case | `antplay antplay-slot-game-job Step 1` |
-| 9 | antplay | `*-math` | `slot-math-module-validation` | Slot math module / RTP / reel strip / debug validation | 差異化最高，已有 strong direct evidence；先挑代表 module，不平均掃 71 repo | `antplay *-math Step 1` |
+| 9 | antplay | `*-math` | `slot-math-module-validation` | Slot math module / RTP / reel strip / debug validation | 差異化最高，Step 1 已挑出 fixedMultiBet / RTP / buy free / jackpot 候選 flow | `antplay *-math Step 2` |
 | 10 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | Career Track 已收斂；下一步應做 Step 1 / Step 2 挑 provider transfer / callback / MQ 代表 flow | `ugsoft ugsoft-connector-api Step 1` |
 | 11 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
 

@@ -58,6 +58,7 @@
 - 每次 Nick 下 `project stepN`、`某 flow Step N`、`下一步`、`繼續` 時，AI 必須自動重讀本 vault KB、既有專案文件與相關 code 最新狀態，不需要 Nick 另外提醒「重讀 KB / 重讀 code」。
 - 自動重讀至少包含：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、該 project 既有 README / Step 文件 / flow 文件、相關 code repo 的 branch / log / 關鍵入口。
 - 掃公司 / 來源 code repo 前，必須先確認遠端 refs 是否最新：預設執行 `git fetch --all --prune` 或等效方式更新 remote refs，然後記錄 local HEAD、`origin/{branch}` HEAD、是否 ahead / behind。公司 repo 只能讀，不得自動 `pull`、merge、checkout、rebase 或改工作樹；若本機落後遠端，要標示「本機未更新 / 待 Nick 確認」，除非 Nick 明確同意才更新工作樹。
+- 若公司 / 來源 repo 的 remote 是內網 GitLab 或當下網路不可達，`git fetch` 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹繼續保守分析，並在 evidence 標示「fetch 失敗 / 未確認最新遠端 / 依本地 refs 判斷」。不要把內網 URL、IP 或敏感 remote 細節寫入 vault。
 - 自動重讀後，AI 必須主動檢查既有 Step / flow 文件是否是舊規則、舊格式、舊 evidence 或不符合目前 KB；如果發現不一致，要先標出「需重整 / 需補 evidence / 可沿用」，不能等 Nick 追問。
 - 如果既有 Step 已存在但品質不足，下一步建議必須優先指向「重整既有 Step」或「補齊舊文件邊界」，而不是直接跳到下一個 Step。
 - 每次產出或更新後，AI 也要自動維護對應共用索引 / 規則 / project README / Step 文件的連動關係；如果判斷不該更新，需簡短說明原因。

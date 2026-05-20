@@ -146,6 +146,8 @@ branch: codex/iwin-iwin-gameserver
 4. KB 更新可以短暫用 `codex/kb-rules` 或同類 branch / worktree 隔離，避免共用 index 污染；但自查通過後應優先合回 `main`，不得讓 KB 長期只存在某個 project branch。
 5. 這些同步規則只適用 `nick-vault`；公司 / 來源 code repo 仍只能 fetch remote refs，不得自動 pull / merge / checkout / rebase 或改工作樹。
 
+若公司 / 來源 repo remote 是內網 GitLab 或目前網路不可達，`git fetch` 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹做保守分析，並在 evidence 標示「fetch 失敗 / 未確認最新遠端 / 依本地 refs 判斷」。不得把內網 URL、IP 或敏感 remote 細節寫入 vault。
+
 project / submodule branch 可以合回 `main` 的時機：
 
 1. 該批 Step / flow 已完成到可讀閉環，例如 Step 文件、flow 主報告、career-interview、materials evidence / claim boundary 與 README / 共用索引已同步。

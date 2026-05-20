@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / grouped / 2026-05-20 |
-| Flow Track | 未開始 |
+| Flow Track | Step 1 已完成 |
 | 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math module 維護 / RTP / reel strip / debug / fixedMultiBet / purchasable free spin |
-| 下一步 | `antplay *-math Step 1` |
+| 下一步 | `antplay *-math Step 2` |
 
 ## Claim Boundary
 
@@ -26,4 +26,5 @@
 
 ## Files
 
+- [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/contribution-claim-consolidation.md)
