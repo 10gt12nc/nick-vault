@@ -342,9 +342,9 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 5
+antplay *-math buy-free-scatter-rtp3-result-contract Step 3
 ```
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
 
-2026-05-20 更新：`rtp-reel-strip-simulation-validation` 已完成 Step 4，材料位於 `flows/rtp-reel-strip-simulation-validation/`。下一步照 Flow Track 做 Step 5 claim gate；不直接更新 05 / 08。
+2026-05-20 更新：`rtp-reel-strip-simulation-validation` 已完成 Step 5，材料位於 `flows/rtp-reel-strip-simulation-validation/`。本 flow 只強化 `*-math` grouped bullet，不直接更新 05 / 08；下一步回 Step 2 ranking 做 Rank 3 `buy-free-scatter-rtp3-result-contract Step 3`。

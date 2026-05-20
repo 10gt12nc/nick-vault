@@ -130,3 +130,11 @@
 - 本次 Step 4 未重新深挖 source repo；沿用 Step 3 Level 2 evidence，並重新確認 `sph-math` / `spn-math` 本地 `HEAD` 與 `origin/master` refs 一致、工作樹 clean。
 - 本次 Step 4 只更新 `nick-vault` 面試稿、索引與下一步；未改公司 / 來源 repo。
 - 仍未確認最新遠端，因前序已標示內網 / remote 不可達時不反覆重試，依本地 refs 保守分析。
+
+## 10. Step 5 追加紀錄
+
+- 2026-05-20 已完成 Step 5 單條 flow claim gate。
+- 本次 Step 5 重讀 KB、flow 主檔、career-interview、evidence、interview、claim-boundary、project README、Step 1 / Step 2、contribution consolidation、inventory、todo 與 casebook。
+- 本次 Step 5 未重新深挖 source repo；沿用 Step 3 Level 2 source evidence 與 Step 4 面試整理。因內網 GitLab / remote 不可達規則，本輪不反覆 fetch，仍標示為依本地 refs 保守分析。
+- 本次只更新 `nick-vault` 文件與索引；未改公司 / 來源 repo。
+- 05 / 08 本輪不直接更新；本 flow 只作 `*-math` grouped 履歷 bullet 的強化 evidence。

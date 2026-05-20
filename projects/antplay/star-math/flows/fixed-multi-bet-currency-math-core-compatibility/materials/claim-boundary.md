@@ -67,5 +67,5 @@
 這條 flow 已完成 Step 5。依 KB，單條 flow 完成不代表整個 `*-math` Flow Track 完成；下一步應回 Step 2 ranking，做第二條代表 flow：
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 5
+antplay *-math buy-free-scatter-rtp3-result-contract Step 3
 ```

@@ -3,12 +3,14 @@
 ## 0. Step 4 定位
 
 - Flow: `rtp-reel-strip-simulation-validation`
-- Status: Step 4 / 正式面試 case
+- Status: Step 5 / 正式面試 case + 單條 flow claim gate 已完成
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 主要 evidence: `sph-math` RTP / JP / simulation commits，`spn-math` RTP_3 / buy free / `lastSymbols` commits
 - Claim boundary: 可說參與 slot math module 維護與驗證；不說完整 RTP 策略 owner、完整遊戲數學模型 owner 或 certification owner
 
 這份是面試可直接講的版本。若面試官不是遊戲產業背景，先用「高風險 domain logic 的 validation」來講；若對方懂遊戲，才展開 RTP / reel strip / free trigger / jackpot hit rate。
+
+Step 5 已確認：本 case 可作 `*-math` grouped 履歷 bullet 的強化 evidence，但不獨立寫成完整 RTP owner / game math model owner / certification owner。
 
 ## 1. 30 秒摘要
 

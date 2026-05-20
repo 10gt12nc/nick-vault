@@ -3,10 +3,10 @@
 ## 0. 定位
 
 - Flow: `rtp-reel-strip-simulation-validation`
-- Status: Step 4 / 正式面試素材
+- Status: Step 5 / 單條 flow claim gate 已完成
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 來源: `sph-math`、`spn-math` 本地 code / git history
-- 注意: 這是 Step 4 面試稿；正式履歷 claim 仍等 Step 5 做單條 flow claim gate。
+- 注意: 這是單條 flow 的 claim gate；正式履歷仍只併入 `*-math` grouped bullet，不獨立寫成 RTP owner。
 
 ## 1. 可以怎麼講
 
@@ -46,14 +46,42 @@
 - 不說「我完整負責全部 `*-math` repo」。
 - 不說「我保證改善多少 RTP / hit rate」，除非後續補 GDD / validation report / metric evidence。
 
-## 5. Step 4 收斂結果
+## 5. Step 5 Claim Gate
 
-Step 4 已收斂為：
+### 5.1 判定
 
-- 30 秒摘要。
-- 3 分鐘正式面試 case。
-- 7 個 Senior 追問。
-- Lead / Architect 追問。
-- 面對「你不是 math owner 吧？」的保守回答。
+這條 flow 可以強化既有 `*-math` grouped 履歷 bullet，也可以作為面試時的 high-risk domain validation case。它不應獨立寫成「RTP owner」或「完整遊戲數學模型 owner」。
 
-下一步 Step 5 只做單條 flow claim gate，不直接代表整個 `*-math` project 履歷結論。
+| Claim | 判定 | 安全說法 |
+| --- | --- | --- |
+| 履歷主成果 | 可用，但只併入 grouped bullet | 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、simulation validation、buy free / scatter、jackpot / symbol 與 fixedMultiBet / currency 類調整 |
+| 面試案例 | 可用，且很有差異化 | 我參與 / 維護 / 驗證過 slot math module 的 RTP / reel strip simulation validation，能把 target、tolerance、runtime path、state reset 與 release gate 講清楚 |
+| 個人 ownership | 保守 | 我不是完整 RTP 策略 owner，但有 direct commits 與 code-backed analysis 支撐我參與過維護與驗證 |
+| 05 / 08 更新 | 本輪不直接更新 | 後續若重整履歷，可把本 flow 作為 `*-math` grouped bullet 的 evidence |
+
+### 5.2 可放履歷
+
+建議只放在 `*-math` grouped bullet，不單獨拆成一條：
+
+> 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、simulation validation、buy free / scatter、jackpot / symbol 與 fixedMultiBet / currency 類調整。
+
+若職缺偏遊戲後端 / 遊戲平台，可在面試或自傳短補：
+
+> 參與 slot math module RTP / reel strip 模擬驗證與 high-risk domain logic 檢查，協助確認 Base RTP、Free trigger、Free RTP、Jackpot hit rate 與 runtime math path 一致性。
+
+### 5.3 不可寫
+
+- 不寫「我設計 RTP」。
+- 不寫「我主導完整遊戲數學模型」。
+- 不寫「我負責 certification」。
+- 不寫「我建立完整 simulator platform」。
+- 不寫「我完整負責全部 `*-math` repo」。
+- 不寫改善百分比，除非後續補 GDD、validation report、ticket 或監控 evidence。
+
+### 5.4 下一步
+
+`fixed-multi-bet-currency-math-core-compatibility` 與本 flow 都已完成 Step 5。下一步回到 Step 2 ranking，做 Rank 3：
+
+```text
+antplay *-math buy-free-scatter-rtp3-result-contract Step 3
+```

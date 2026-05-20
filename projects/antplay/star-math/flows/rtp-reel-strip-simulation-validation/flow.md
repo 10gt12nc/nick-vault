@@ -4,7 +4,7 @@
 
 - Domain / Project: `antplay *-math`
 - Flow slug: `rtp-reel-strip-simulation-validation`
-- 完成狀態: Step 4 / 已轉面試 case
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成
 - 掃描深度: Level 2 Flow 深掃
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 主要 source repo: `/Users/nick/Git/antplay/sph-math`
@@ -217,12 +217,20 @@ sequenceDiagram
 - 負責 certification / full simulator platform。
 - 保證所有 `*-math` repo 都完整深掃或都由 Nick 主導。
 
-## 14. Step 4 結論
+## 14. Step 5 Claim Gate 結論
 
-`rtp-reel-strip-simulation-validation` 已完成 Step 4，正式面試稿位於 `materials/interview.md`，保守履歷 / 面試素材位於 `career-interview.md`。正式履歷 05 / 08 本輪不更新，因為 `*-math` project-level rolling consolidation 已有保守 grouped bullet；下一步 Step 5 只做單條 flow claim gate，不代表整個 `*-math` project final consolidation。
+`rtp-reel-strip-simulation-validation` 已完成 Step 5。正式面試稿位於 `materials/interview.md`，單條 flow 的 claim gate 位於 `career-interview.md` 與 `materials/claim-boundary.md`。
+
+本 flow 的履歷判斷是「強化 `*-math` grouped bullet」，不是獨立新增一條完整 RTP / 遊戲數學 owner 經歷。05 / 08 本輪不直接更新，因為 `*-math` project-level rolling consolidation 已有保守 grouped bullet；若後續重整履歷版本，可把本 flow 作為支撐 evidence。
+
+可安全使用的結論：
+
+- 可放履歷：併入 `*-math` grouped bullet，寫參與 slot math module RTP / reel strip / simulation validation 維護。
+- 可面試講：用 high-risk domain validation case 展開 target / tolerance、runtime path、state reset、sample size 與 release gate。
+- 不可誇大：不寫主導完整 RTP 策略、完整遊戲數學模型、certification 或 full simulator platform。
 
 ## 15. 下一步
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 5
+antplay *-math buy-free-scatter-rtp3-result-contract Step 3
 ```

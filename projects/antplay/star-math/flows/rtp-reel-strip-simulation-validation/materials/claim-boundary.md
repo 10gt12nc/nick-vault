@@ -46,6 +46,19 @@
 - MR / ticket / reviewer comment。
 - 上線後 RTP / hit rate monitoring 或 incident evidence。
 
-## 5. 本 flow Step 4 判定
+## 5. 本 flow Step 5 判定
 
-本 flow 已完成 Step 4 面試 case。正式履歷 master 不因 Step 4 單獨更新；要更新 05 / 08，仍以 `*-math` project-level contribution consolidation 的 grouped claim 為準。下一步 Step 5 只判斷這條 flow 的 claim gate，不能直接代表整個 `*-math` project final consolidation。
+本 flow 已完成 Step 5 單條 flow claim gate。正式履歷 master 不因單條 flow 直接新增 standalone bullet；要更新 05 / 08，仍以 `*-math` project-level contribution consolidation 的 grouped claim 為準。
+
+Step 5 gate 結論:
+
+- 可放履歷：只併入 `*-math` grouped bullet，作 RTP / reel strip / simulation validation 的強化 evidence。
+- 可面試講：可作完整 3 分鐘 high-risk domain validation case。
+- 不可誇大：不寫成完整 RTP 策略 owner、完整遊戲數學模型 owner、certification owner 或 full simulator platform owner。
+- 本輪 05 / 08：不直接更新；後續 rolling resume update 可引用本 flow evidence。
+
+下一步回 Step 2 ranking，做 Rank 3:
+
+```text
+antplay *-math buy-free-scatter-rtp3-result-contract Step 3
+```

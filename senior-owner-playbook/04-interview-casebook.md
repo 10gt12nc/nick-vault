@@ -471,7 +471,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作遊戲數學 / high-risk domain validation 面試案例。
+- 已完成 Step 5，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作遊戲數學 / high-risk domain validation 面試案例；正式履歷不單獨寫成完整 RTP owner。
 - Nick / `10gt12nc` 在 `sph-math` 有 RTP / JP / simulation / histogram / trigger log 相關 commits；在 `spn-math` 有 RTP_3 / buy free / scatter / `lastSymbols` 相關 commits。
 - 已深掃代表 path：`sph-math` 的 `RTPConstants`、`Ratio_RTP_*`、`GenerateByRatio`、`Simulate`、`ProcessGameSpin`、`SlotReelStripTable`、`AbstractSlotMath`，並用 `spn-math` 作對照。
 - 未掃正式 GDD / certification 文件、未掃 game-api runtime caller、未深掃全部 71 個 `*-math` repo。
