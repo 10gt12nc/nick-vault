@@ -10,6 +10,7 @@
 - 已依 2026-05-20 最新 104 職缺快照與舊履歷補強後定位，重新上修 `17-salary-negotiation.md`：104 建議填月薪 115,000-135,000 / 年薪 160-190 萬，面試主談年薪 160-180 萬，底線月薪 100,000。
 - 已補讀 Nick 舊 104 PDF 履歷，吸收可用素材：兩套缺乏交接文件平台的 legacy takeover / system reconstruction、早期高頻線上問題支援、ActiveMQ + Redis + Quartz 內部分享；負面主管 / 流程描述與未驗證強 claim 不放正式投遞稿。
 - 已補 `*-workspace` 的 AI-assisted engineering workflow 定位：可支撐 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填的開發閉環，放在工程方法 / 自我推薦 / 談薪支撐，不作 standalone production 主成果。
+- 已補求職現實判斷：`進取` 是特定對口職缺的談判上限，不是保證；Nick 可以投 10 萬以上職缺，但要靠 3 條以上 production flow case 證明。近期優先把 payment callback、third-party provider / wallet、batch / projection flow 練熟，並採邊待邊投節奏。
 - 已建立全 vault 共用自動維護規則：每次 project / flow / Step 任務前自動重讀 KB、既有文件與相關 code 最新狀態，完成後自動判斷是否維護 README、Step 文件、evidence、claim boundary、todo 或共用 KB。
 - 已補上舊文件自動排查規則：AI 必須自己檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB；上一個 Step 不乾淨時，優先重整舊文件，不直接跳下一步。
 - 已補上技術硬底子與決策比較模組：每條高價值 flow 可新增 `decision-notes.md`，整理技術選型、差異比較、trade-off、owner decision 與面試追問。

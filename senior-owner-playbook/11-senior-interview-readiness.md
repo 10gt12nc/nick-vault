@@ -168,6 +168,21 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 
 目前履歷 master 是保守版，可以支撐投遞。但正式投遞前要依職缺調整標題與前 5 個 bullet，不要每個職缺都丟同一份。
 
+### 10 萬以上現實判斷
+
+可以投 10 萬以上職缺，也可以把月薪 `100,000` 當底線，但目前不能說「穩拿」。比較準確的定位是：
+
+```text
+有資格去談 10 萬以上，但要用 production case 證明。
+```
+
+需要避免兩種極端：
+
+- 太自卑：把自己壓成一般 4 年 CRUD Java 後端，只敢填 `90,000` 以下。
+- 太美化：把整理過的 flow、AI-assisted workflow 或 code-backed analysis 說成完整主導成果。
+
+目前可以主打的是：Java Backend / Platform Backend、金流 / provider 串接、MQ / batch、legacy takeover、AI-assisted engineering workflow。真正能不能談到 `115,000-135,000`，取決於面試時能否把 3 條以上 production flow 講清楚。
+
 ## 面試前必做清單
 
 面試前至少準備：
@@ -185,19 +200,66 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 建議先做：
 
 1. `payment-provider-callback`
-2. `transfer-wallet-transfer-in-out`
-3. `settled-bets-kafka`
+2. `third-party-transfer-in-out` / `transfer-wallet-transfer-in-out`
+3. `daily-game-data-summary` / `third-party-record-mongo-backup`
 
 理由：
 
 - 金流 callback 對 Senior 面試價值最高。
-- Transfer wallet 最能講 state / timeout / compensation。
-- Kafka flow 能補上 async / reliability / observability。
+- 第三方遊戲 provider / wallet / bet-settle 最能講 state、timeout、compensation 與 provider transaction。
+- Batch / projection / Mongo backup 能補上 retry、重跑、資料一致性、記憶體壓力與資料保留策略。
 
 這三條完成後，再補：
 
-4. `bet-settlement`
-5. `observability-pipeline`
+4. `settled-bets-kafka` 或其他 Kafka / MQ flow
+5. `observability-pipeline` / rollout / K3s 類 case
+
+每條 case 必須能講：
+
+- 入口在哪。
+- DB / Redis / MQ / provider 怎麼走。
+- 失敗會發生在哪個 window。
+- 怎麼避免重複扣款、重複派彩、重複寫報表或資料漏投。
+- 哪些是 Nick 真實開發過，哪些是 code-backed 分析。
+- 如果重做，會怎麼改。
+
+## 近期學習優先級
+
+1. 交易一致性 / 冪等 / 補償 / 對帳：金流、錢包、provider、下注結算都吃這條主軸。
+2. Kafka / RabbitMQ 實戰語言：retry、DLQ、重送、順序性、重複消費、觀測與補償。
+3. SQL / MySQL transaction / lock / index：要能講 transaction boundary、慢查與索引判斷。
+4. K8s / Docker / observability 基礎：不用裝成 SRE，但要能讀 rollout、pod log、probe、resource 與 log pipeline。
+5. AI-assisted workflow：作加分項，講 code reading、diff review、文件同步、測試檢查、commit 收斂；不要講「AI 幫我寫」。
+
+## 2026 趨勢觀察
+
+2026 的後端職缺仍看重 Java / Backend / cloud / Kubernetes / CI/CD / system stability，但更偏向「可驗證經驗」與「能把 AI 工具放進工程流程」。目前應關注：
+
+- AI-assisted development workflow。
+- Java / Spring Boot 現代化。
+- Kafka / MQ reliability。
+- K8s / cloud / observability。
+- 金流 / 帳務 / 對帳一致性。
+- Legacy modernization。
+
+趨勢來源需要定期重查；目前參考 2026-05-20 查到的 104 Senior Backend 職缺、Robert Walters Taiwan 2026 tech hiring trend、iThome 2026 CIO / CISO AI 軟體工程觀察。
+
+## 求職節奏
+
+若公司狀態沒有立刻危險，建議邊待邊投，不建議裸辭。理由：
+
+- flows 還沒練到自然講。
+- 目前信心不穩，裸辭會削弱談薪。
+- 需要面試回饋來校正履歷與 case。
+- 有現職時，談薪與選擇權比較好。
+
+建議節奏：
+
+```text
+2 週：整理 3 條主力 flow 面試講稿
+4 週：開始投 104 / LinkedIn，目標 10-15 個職缺
+6-8 週：用面試回饋修履歷、case 與薪資策略
+```
 
 ## 最誠實的結論
 

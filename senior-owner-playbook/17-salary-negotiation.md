@@ -68,6 +68,8 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 年薪約 190-210 萬
 ```
 
+`進取` 不是亂喊價，也不是保證能拿到；意思是「這個價位不是每家公司都會給，但遇到職務範圍剛好吃 Nick 的金流 / provider / legacy takeover / AI-assisted workflow 經驗時，可以拿來開價或談上限」。
+
 適用情境：
 
 - 職缺明確要求 Senior Backend / Platform Backend。
@@ -93,6 +95,18 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 - 工時與壓力合理。
 
 不要因為擔心沒有 offer 就主動把自己壓到一般 4 年 CRUD Java 後端價位。舊 PDF 曾填 `96,000 元以上`，但在目前履歷補強後，`96,000` 只能視為底線附近，不應再作主談價。
+
+## 現實邊界
+
+Nick 可以投 10 萬以上職缺，也可以把 `100,000` 當底線，但不能把 10 萬以上視為穩拿。更準確的判斷是：
+
+```text
+有資格去談 10 萬以上，但需要用 3 條以上 production flow case 證明，不是靠履歷文字或 AI 整理結論。
+```
+
+AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evidence、舊履歷、本人描述與可包裝素材；它能提高定位清晰度，但不能保證面試表現、公司預算、競爭者強度或 offer 結果。
+
+若面試時對方只把職缺當一般 CRUD / 維護工程師，合理落點可能只到 `90,000-110,000`。若對方需要金流、provider、MQ / batch、legacy takeover 或 AI-assisted workflow，才有機會談到 `115,000-135,000` 甚至進取區間。
 
 ## 104 期望待遇寫法
 
