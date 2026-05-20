@@ -27,6 +27,8 @@
 
 > 2026-05-20 ugsoft-connector-api consolidation：已完成 `projects/ugsoft/ugsoft-connector-api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 UGSoft provider connector / gateway 開發維護，串接 AntPlay / DerPlay 等第三方遊戲 provider 的 login、balance、transfer in / out、bet-settle、callback、request / bet record MQ、transfer wallet compensation、分表與 provider fail-fast；仍不寫主導完整 connector architecture、全部 provider owner、完整 wallet / ledger / reconciliation owner 或 exactly-once / outbox owner。
 
+> 2026-05-20 ugsoft-workspace consolidation：已完成 `projects/ugsoft/ugsoft-workspace/contribution-claim-consolidation.md`。投遞自傳不新增 workspace 主成果；只可作 supporting context，說明有跨 repo system reconstruction、工程規範、local / deploy harness、runbook、provider migration 與 SerialSyncJob 風險整理能力。不得寫成完整 workspace / DevOps / release owner，也不得反向包裝成 service code 貢獻。
+
 ## 使用原則
 
 - 不寫人生流水帳。

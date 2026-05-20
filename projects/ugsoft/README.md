@@ -16,11 +16,12 @@
 | `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | contribution consolidation 已完成 / rolling | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | `ugsoft ugsoft-connector-api Step 1` |
 | `ugsoft-admin-web` | 後台前端 | 未開始 | 通常只作入口 | 待 Nick 指定 |
 | `official-web-v3` | 官網 | 未開始 | 不當主線 | 待 Nick 指定 |
-| `ugsoft-workspace` | workspace / docs | 未開始 | supporting evidence | 待 Nick 指定 |
+| `ugsoft-workspace` | workspace / docs / harness / runbook | contribution consolidation 已完成 / rolling | supporting evidence；不放 standalone 正式履歷主成果 | 已收斂；回 `ugsoft-connector-api Step 1` |
 
 ## Claim Boundary
 
 - `ugsoft-admin-api` 有 Nick / `10gt12nc` 大量 direct commits，範圍包含 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record、Quartz / report job 維護。
 - `ugsoft-connector-api` 有 Nick / `10gt12nc` 大量 direct commits，範圍包含 AntPlay / DerPlay provider adapter、login / balance / transfer in-out / bet-settle / callback、request / bet record MQ、transfer wallet compensation、分表與 circuit breaker code-backed reliability。
+- `ugsoft-workspace` 是 workspace / docs / harness repo。source git author 主要是 `arnold`，本次未命中 `10gt12nc` / `Nick` author；若 `arnold` 是 Nick 公司帳號，可作 workspace / docs / tooling 真實貢獻，否則待本人確認。無論如何都只作 cross-repo system reconstruction / runbook / harness supporting evidence，不反向包裝成 service runtime code。
 - 可以放履歷的是「參與後台控制面與非同步資料處理開發維護」，不是「主導完整 UG 平台」。
 - connector/provider gateway 可以保守使用 `ugsoft-connector-api` consolidation 結論，但完整 flow 面試包仍需 Step 1 / Step 2 後逐條深掃。

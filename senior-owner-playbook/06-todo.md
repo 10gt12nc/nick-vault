@@ -67,6 +67,7 @@
 - 已完成 `iwin iwin-workspace contribution claim consolidation`；2026-05-20 rolling / scoped 收口。Nick / `10gt12nc` 有大量 workspace KB / docs / environment index / tool commits，可支撐 cross-repo system reconstruction 與知識庫治理能力，但不新增 standalone 正式履歷主成果，不反向包裝成子 repo 業務開發。
 - 已完成 `ugsoft ugsoft-admin-api contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record 與 Quartz / report job 有大量 direct commits，可保守補入後台 API / control plane 與非同步資料處理經驗；不寫完整 UG 平台、完整 provider gateway、完整 wallet / money flow 或完整 RabbitMQ architecture owner。
 - 已完成 `ugsoft ugsoft-connector-api contribution claim consolidation`；2026-05-20 rolling 收口。Nick / `10gt12nc` 在 AntPlay / DerPlay provider adapter、login / balance / transfer in-out / bet-settle / callback、request / bet record MQ、transfer wallet compensation、分表與 provider reliability 有 direct commits / code evidence，可保守補入 provider connector / gateway 經驗；不寫完整 connector architecture owner、全部 provider owner、完整 wallet / ledger / reconciliation owner 或 exactly-once / outbox owner。
+- 已完成 `ugsoft ugsoft-workspace contribution claim consolidation`；2026-05-20 rolling 收口。這是 workspace / docs / harness / runbook supporting evidence，可支撐 cross-repo system reconstruction、工程規範、local / deploy harness、migration / release 風險整理；不新增 standalone 正式履歷主成果，也不反向包裝成 service runtime code。
 
 ## 下一步
 
@@ -88,6 +89,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 8. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
 9. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，下一步先掃 `ugsoft-connector-api`。
 10. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 ugsoft，應做 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
+11. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
 
 ### 1. iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
@@ -105,7 +107,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 
 ### 2. iwin 各 project 局部下一步
 
-目前 ugsoft 線已完成 `ugsoft-admin-api` 與 `ugsoft-connector-api` rolling contribution consolidation。若 Nick 要繼續 ugsoft，下一步優先做 `ugsoft-connector-api Step 1`，把 provider transfer / callback / MQ 拆成可面試的 Flow Track；若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
+目前 ugsoft 線已完成 `ugsoft-admin-api`、`ugsoft-connector-api` 與 `ugsoft-workspace` rolling contribution consolidation。若 Nick 要繼續 ugsoft，下一步優先做 `ugsoft-connector-api Step 1`，把 provider transfer / callback / MQ 拆成可面試的 Flow Track；若回 iwin 線，則回 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
 
 以下是近期各 project 的局部下一步：
 
@@ -120,6 +122,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
 10. `ugsoft-admin-api`：contribution consolidation 已完成；可作後台 API / async data processing 履歷素材。
 11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。下一步建議 Step 1 / Step 2。
+12. `ugsoft-workspace`：contribution consolidation 已完成；只作 workspace / docs / harness / runbook supporting evidence，不作正式履歷主成果。
 
 ### 3. 每條完成後自動判斷是否更新
 
