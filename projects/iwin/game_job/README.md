@@ -4,7 +4,7 @@
 
 `game_job` 是 Java / Spring Boot / Quartz 的批次任務專案，主要負責 BI / 報表投影、遊戲資料日彙總、第三方遊戲紀錄備份、金幣流水 / 玩家行為 projection、分表建立、支付與玩家行為資料清洗，以及部分 Redis queue / task state 輔助能力。
 
-它比 `app_bi` 更接近 production projection / batch correctness。`contribution-claim-consolidation.md` 已完成 project-level 收口：`daily-game-data-summary` 可保守列為「真實開發過」，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence；`third-party-record-mongo-backup` 可保守列為「局部真實開發過」，限 GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection`、`online-payment-data-cleaning`、`partition-table-creation` 已完成 Step 5，目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner、完整 schema migration owner 或負責上游 gameserver 到 app_bi 全鏈路。
+它比 `app_bi` 更接近 production projection / batch correctness。`contribution-claim-consolidation.md` 已完成 project-level 收口，並於 2026-05-20 重新覆核：`daily-game-data-summary` 可保守列為「真實開發過」，Nick / `10gt12nc` 在每日遊戲資料彙總、備份 / 清理、PG / Antplay 時區修正、job 拆分、新增玩家 / 留存等 path 有直接 commit evidence；`third-party-record-mongo-backup` 可保守列為「局部真實開發過」，限 GSC Mongo backup job 分批查詢與 batch size 調整。`coin-flow-batch-projection`、`online-payment-data-cleaning`、`partition-table-creation` 已完成 Step 5，目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。仍不得寫成主導完整 BI pipeline、完整 game_job owner、完整第三方紀錄備份 owner、完整金幣流水 owner、完整 payment reporting owner、完整 schema migration owner 或負責上游 gameserver 到 app_bi 全鏈路。
 
 ## 讀檔順序
 
@@ -39,7 +39,7 @@
 | `flows/online-payment-data-cleaning/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
 | `flows/partition-table-creation/flow.md` | Step 5 | 已完成每日 / 每月分表建立主學習包、正式面試 case 與 claim gate；目前 code-backed，不更新履歷 |
 | `flows/partition-table-creation/career-interview.md` | Step 5 | 已補 30 秒 / 3 分鐘 / STAR / Lead 追問；只能作 code-backed 面試素材 |
-| `contribution-claim-consolidation.md` | 已完成 | 已收斂 project-level 可放履歷 / 可面試講 / 不可誇大三層 |
+| `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 已重新覆核 | 已收斂 project-level 可放履歷 / 可面試講 / 不可誇大三層 |
 
 ## 專案定位
 
@@ -88,14 +88,14 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```
 
 原因：
 
-- `game_job` contribution claim consolidation 已完成。
-- `game_api agent-bonus-receive-transfer` 已完成 Step 4，下一步做單條 flow claim gate。
-- `game_api` 本批代表 flows 未完成前，仍不能做完整 project-level consolidation。
+- `game_job` contribution claim consolidation 已完成，2026-05-20 重新覆核後結論不變。
+- `game_api`、`payment`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
+- 若近期目標是先把履歷 / 面試 claim 風險收斂，下一個最值得做的是 `iwin_gameserver` rolling / scoped contribution consolidation；Flow Track 之後仍可回 `center-http-deposit-withdraw Step 4`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

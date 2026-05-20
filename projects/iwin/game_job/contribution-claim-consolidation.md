@@ -1,7 +1,8 @@
 # iwin game_job contribution claim consolidation
 
-更新時間：2026-05-19
+更新時間：2026-05-20
 掃描等級：Level 2+ project-level claim consolidation
+狀態：已完成；2026-05-20 已重新 fetch / 重讀 / 覆核
 證據層級：部分真實開發過 + code-backed
 
 ## 結論
@@ -13,6 +14,14 @@
 3. `coin-flow-batch-projection`、`online-payment-data-cleaning`、`partition-table-creation`：可作 code-backed 面試素材；目前不放正式履歷。
 
 正式履歷可寫 `game_job` 的「參與 batch / projection / retention job 開發與維護」口徑，但不得寫成 Nick 主導完整 `game_job`、完整 BI pipeline、完整資料平台 owner、完整第三方紀錄備份 owner、完整金幣流水 / payment reporting owner、schema migration owner，或任何未驗證量化改善。
+
+2026-05-20 重新覆核後，結論不變：
+
+- `game_job` 已重新 `git fetch --all --prune`，本機 `main` 與 `origin/main` 同步，工作樹乾淨。
+- `third_games_api` 已重新 fetch，因 GSC backup flow 只用它作 writer 對照；本機 `beta` 與 `origin/beta` 同步，工作樹乾淨。
+- 重新跑 repo-wide Nick / `10gt12nc` author log，仍命中 daily summary、GSC backup、coupon / 邀請好友轉盤補充 commit；本文件正式 claim 只採 daily summary 與 GSC backup。
+- 重新掃主要 path log 後，`coin-flow-batch-projection`、`online-payment-data-cleaning`、`partition-table-creation` 仍沒有足夠 Nick direct path evidence，維持 code-backed 面試素材。
+- 重讀 05 / 08 / todo / inventory 後，沒有新增足以把 `game_job` 擴張成完整 BI pipeline owner 的 evidence。
 
 ## 本次自動重讀
 
@@ -67,6 +76,12 @@
 
 本輪只 fetch remote refs，沒有 pull、merge、checkout、rebase 或修改公司 repo。
 
+2026-05-20 重新覆核：
+
+- `/Users/nick/Git/iwin/game_job`：重新 fetch，`main` / `origin/main` 仍為 `23908f474efb5cfe5a3ce2bc780fb67a0860c4c2`，ahead / behind `0 / 0`，工作樹乾淨。
+- remote branches 仍包含 `origin/antplay-pg-mongo`、`origin/antplay_new_bak_job`、`origin/beta`、`origin/ci_test`、`origin/feature/RD-128`、`origin/feature/RD-71`、`origin/feature/gsc_record_backup`、`origin/feature/setBlacklistHset`、`origin/fix-ci-deploy`、`origin/k3s`、`origin/main`、`origin/nick-DailyReport`。
+- `/Users/nick/Git/iwin/third_games_api`：重新 fetch，`beta` / `origin/beta` 仍為 `4915ea5a5000d61eb36717203ea4c6afc45322fa`，ahead / behind `0 / 0`，工作樹乾淨；本輪只作 GSC writer 對照，不擴張成 third_games_api flow claim。
+
 ## 掃描範圍
 
 已掃：
@@ -87,6 +102,7 @@
 - 未深掃 app_bi 最新 remote HEAD 的下游查詢端。
 - 未深掃 upstream gameserver / third_games_api 的完整 source-of-truth flow。
 - 未補 MR、ticket、incident、metric 或 performance before / after。
+- 2026-05-20 重新覆核沒有做 Level 3 全量逐檔逐行；本輪目標是確認已完成 consolidation 是否仍正確。若 Nick 要把其他 game_job flow 放履歷，應另做對應 flow 的 Step 3~5 或補本人確認 / ticket / commit evidence。
 
 ## repo-wide Nick / 10gt12nc commit 分類
 
@@ -204,8 +220,8 @@ branch contains：
 
 ## 下一步建議
 
-下一步回到 `game_api`，把已完成 Step 4 的第三順位 flow 做 Step 5，避免 `game_api` 卡在未完成代表 flows 而不能 project-level consolidation。
+下一步若繼續先收斂履歷 / 面試 claim，建議做 `iwin_gameserver` contribution consolidation。`game_job` 已重新覆核，不需要因本輪重做。
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver contribution claim consolidation
 ```

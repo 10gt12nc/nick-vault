@@ -112,7 +112,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_job | `coin-flow-batch-projection` | 金幣流水清算 / 玩家行為投影 | 高 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_job | `online-payment-data-cleaning` | 充值 / 提現資料清洗與每日經濟資料 | 中 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
 | iwin | game_job | `partition-table-creation` | 每日 / 每月分表建立 | 中低 | Step 5 | 專案存在 / code-backed；目前未見 Nick direct path evidence | 否，先作面試素材 | 已收斂 |
-| iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 已完成 | 部分真實開發過 + code-backed；daily summary + GSC backup direct evidence | 是，保守更新 | 履歷 claim 已收斂 |
+| iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 已完成 / 2026-05-20 已覆核 | 部分真實開發過 + code-backed；daily summary + GSC backup direct evidence | 是，保守更新 | 履歷 claim 已收斂，不因本輪重做 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | 已收斂，待回 ranking |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 3 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 3，先做 Step 4 |
 | iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 可做 rolling / scoped | 可先掃 Nick / `10gt12nc` commits、branches、重要 diff 與既有 flow KB | 待確認 | Career Track 下一步 |

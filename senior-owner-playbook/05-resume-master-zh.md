@@ -8,7 +8,7 @@
 
 > 2026-05-19 game_api consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/game_api/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_api` coupon Controller / Service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler 有 path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。`partner-deposit-withdraw-bill` 與 `agent-bonus-receive-transfer` 目前只作 code-backed 面試素材；邀請好友轉盤活動有 direct commits，但尚未做完整 flow package，只作補充 evidence。仍不得寫成主導完整 coupon / reward system、Partner API、代理佣金、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
 
-> 2026-05-19 game_job consolidation：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
+> 2026-05-19 game_job consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
 
 > 2026-05-19 game_job consolidation 補充：Nick / `10gt12nc` 在 `game_job` GSC Mongo backup job path 有 `d11b1f4`、`bf92773` direct commits，可保守寫「參與 GSC 第三方遊戲紀錄 Mongo 備份 job 的分批查詢與 batch size 調整」。仍不得寫成主導完整第三方遊戲紀錄備份、完整 Antplay / GSC / Oneapi retention policy owner、已驗證 production enable 或改善 X%。
 

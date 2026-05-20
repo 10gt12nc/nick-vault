@@ -58,7 +58,7 @@
 - 已完成 `game_api agent-bonus-receive-transfer Step 3`，建立代理佣金領取 / 轉帳主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。後續 `game_api contribution claim consolidation` 已完成，仍維持本 flow 不進正式履歷。
 - 已完成 `game_api agent-bonus-receive-transfer Step 4`，轉成代理佣金領取 / 轉帳的正式面試 case；目前仍只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 - 已完成 `game_api agent-bonus-receive-transfer Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為代理佣金領取 / 轉帳的 code-backed 面試案例。
-- 已完成 `iwin game_job contribution claim consolidation`；Nick / `10gt12nc` 在 daily summary 與 GSC backup path 有 direct commits，可把 game_job 升級為「部分真實開發過」，但不寫完整 game_job / BI pipeline / retention owner。
+- 已完成 `iwin game_job contribution claim consolidation`；2026-05-20 已重新覆核。Nick / `10gt12nc` 在 daily summary 與 GSC backup path 有 direct commits，可把 game_job 升級為「部分真實開發過」，但不寫完整 game_job / BI pipeline / retention owner。
 - 已完成 `iwin app_bi contribution claim consolidation`；已依 rolling / scoped 規則重新確認為 negative 收口，結論是不放正式履歷主成果，只作後台入口 / BI / control plane 的 code-backed 面試分析素材。
 - 已完成 `iwin game_api contribution claim consolidation`；2026-05-20 已重新覆核。Nick / `10gt12nc` 在 coupon redeem / grant 與 `iwin_gameserver` bet target handler 有 direct commits，可把 `game_api` 升級為「部分真實開發過」，但正式履歷只採 coupon 保守 claim；partner / agent bonus 只作 code-backed 面試素材。
 - 已完成 `iwin bi_share contribution claim consolidation`；未掃到 Nick / `10gt12nc` direct production commits，結論是不放正式履歷主成果，只作 legacy Laravel / 分享 / 佣金 / BI 報表 / GM repair 的 code-backed 面試分析素材。
@@ -78,7 +78,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 3. `third_games_api gsc-transfer-bet-settle-rollback Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；目前不自動執行。
 4. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
 5. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
-6. `game_job contribution claim consolidation`：已完成；保留為 project-level claim evidence，不因新規則重做。
+6. `game_job contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；保留為 project-level claim evidence，不因新規則重做。
 7. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 8. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 
