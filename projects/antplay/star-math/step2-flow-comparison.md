@@ -342,9 +342,9 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 4
+antplay *-math rtp-reel-strip-simulation-validation Step 5
 ```
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
 
-2026-05-20 更新：`rtp-reel-strip-simulation-validation` 已完成 Step 3，材料位於 `flows/rtp-reel-strip-simulation-validation/`。下一步照 Flow Track 做 Step 4，轉成正式面試 case；不直接更新 05 / 08。
+2026-05-20 更新：`rtp-reel-strip-simulation-validation` 已完成 Step 4，材料位於 `flows/rtp-reel-strip-simulation-validation/`。下一步照 Flow Track 做 Step 5 claim gate；不直接更新 05 / 08。

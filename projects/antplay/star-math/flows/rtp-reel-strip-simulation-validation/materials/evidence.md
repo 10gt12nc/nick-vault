@@ -123,3 +123,10 @@
 - 不足以說 Nick 主導完整 RTP 策略。
 - 不足以說 Nick 是完整 game math model owner。
 - 不足以說 Nick 負責 certification / full simulator platform。
+
+## 9. Step 4 追加紀錄
+
+- 2026-05-20 已完成 Step 4 正式面試 case。
+- 本次 Step 4 未重新深挖 source repo；沿用 Step 3 Level 2 evidence，並重新確認 `sph-math` / `spn-math` 本地 `HEAD` 與 `origin/master` refs 一致、工作樹 clean。
+- 本次 Step 4 只更新 `nick-vault` 面試稿、索引與下一步；未改公司 / 來源 repo。
+- 仍未確認最新遠端，因前序已標示內網 / remote 不可達時不反覆重試，依本地 refs 保守分析。

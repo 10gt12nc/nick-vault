@@ -3,20 +3,22 @@
 ## 0. 定位
 
 - Flow: `rtp-reel-strip-simulation-validation`
-- Status: Step 3 完成後的初版面試素材
+- Status: Step 4 / 正式面試素材
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 來源: `sph-math`、`spn-math` 本地 code / git history
-- 注意: 這不是 Step 4 正式面試稿；Step 4 會再收斂成完整 30 秒 / 3 分鐘 / 追問版本。
+- 注意: 這是 Step 4 面試稿；正式履歷 claim 仍等 Step 5 做單條 flow claim gate。
 
 ## 1. 可以怎麼講
 
 30 秒版本：
 
-> 我參與過 AntPlay 多個 slot math module 的維護與驗證，其中一類是 RTP / reel strip simulation。這類不是線上交易 API，但會影響長期派彩正確性。我會看 RTP target、symbol ratio、candidate reel strip、simulation rounds、Base RTP、free trigger、Free RTP 和 Jackpot hit rate，並確認 simulation 走的是實際 `math.spin` path，而不是另外手寫一套驗證邏輯。
+> 我參與過 AntPlay 多個 slot math module 的維護與驗證，其中一類是 RTP / reel strip simulation validation。這類不是線上交易 API，但會影響長期派彩正確性。我會看 target / tolerance、symbol ratio、candidate reel strip、simulation rounds，並拆 Base RTP、free trigger、Free RTP 和 Jackpot hit rate，確認 simulation 走的是實際 `math.spin` path。
 
-2 分鐘版本：
+3 分鐘版本：
 
-> Slot math 的輪帶調整不能只看單次結果，因為一個 symbol ratio 或 scatter plan 會同時影響 Base RTP、免費局觸發率、Free RTP、buy free 體感和 Jackpot hit rate。以 `sph-math` 為例，模擬流程會從 `RTPConstants` 讀目標與 tolerance，再從 `Ratio_RTP_*` 產候選輪帶，放到 `RTP_REEL_STRIP_OPTIMIZER`，用 `P21008SlotMath` 的 `spin` 跑大量 rounds。結果會和目標區間比對，不在範圍內就繼續嘗試下一組。這讓我面對高風險 domain logic 時，不只看功能能不能跑，而是會拆 source of truth、runtime path、統計指標與 release gate。
+> Slot math 的輪帶調整不能只看單次結果，因為一個 symbol ratio 或 scatter plan 會同時影響 Base RTP、免費局觸發率、Free RTP、buy free 體感和 Jackpot hit rate。以 `sph-math` 為例，模擬流程會從 `RTPConstants` 讀目標與 tolerance，再從 `Ratio_RTP_*` 產候選輪帶，放到 `RTP_REEL_STRIP_OPTIMIZER`，用 `P21008SlotMath` 的 `spin` 跑大量 rounds。結果會拆成 Base RTP、FG trigger、Free RTP、JP hit rate 和目標區間比對，不在範圍內就繼續嘗試下一組。
+>
+> 我會特別注意 validation path 是否走真實 runtime code、是否只看總 RTP、feature state 有沒有 reset，例如 `spn-math` 的 `lastSymbols`。所以我不把自己說成完整 RTP 策略 owner，但可以說我參與過 slot math module 的維護與驗證，能把高風險 domain logic 的 source of truth、runtime path、統計指標與 release gate 講清楚。
 
 ## 2. Senior 能力點
 
@@ -44,12 +46,14 @@
 - 不說「我完整負責全部 `*-math` repo」。
 - 不說「我保證改善多少 RTP / hit rate」，除非後續補 GDD / validation report / metric evidence。
 
-## 5. 待 Step 4 收斂
+## 5. Step 4 收斂結果
 
-Step 4 要把這條整理成：
+Step 4 已收斂為：
 
 - 30 秒摘要。
 - 3 分鐘正式面試 case。
-- 5 個 Senior 追問。
+- 7 個 Senior 追問。
 - Lead / Architect 追問。
 - 面對「你不是 math owner 吧？」的保守回答。
+
+下一步 Step 5 只做單條 flow claim gate，不直接代表整個 `*-math` project 履歷結論。

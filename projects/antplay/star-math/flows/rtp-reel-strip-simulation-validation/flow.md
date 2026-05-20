@@ -4,7 +4,7 @@
 
 - Domain / Project: `antplay *-math`
 - Flow slug: `rtp-reel-strip-simulation-validation`
-- 完成狀態: Step 3 / Flow 學習包
+- 完成狀態: Step 4 / 已轉面試 case
 - 掃描深度: Level 2 Flow 深掃
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 主要 source repo: `/Users/nick/Git/antplay/sph-math`
@@ -217,12 +217,12 @@ sequenceDiagram
 - 負責 certification / full simulator platform。
 - 保證所有 `*-math` repo 都完整深掃或都由 Nick 主導。
 
-## 14. Step 3 結論
+## 14. Step 4 結論
 
-`rtp-reel-strip-simulation-validation` 已完成 Step 3。這條 flow 的價值很高，但目前仍是 Flow Track 的系統理解階段；下一步應做 Step 4，把它轉成可面試的 3 分鐘 case 與追問回答。正式履歷 05 / 08 本輪不更新，因為 `*-math` project-level rolling consolidation 已有保守 grouped bullet，單條 flow Step 3 不直接改履歷 master。
+`rtp-reel-strip-simulation-validation` 已完成 Step 4，正式面試稿位於 `materials/interview.md`，保守履歷 / 面試素材位於 `career-interview.md`。正式履歷 05 / 08 本輪不更新，因為 `*-math` project-level rolling consolidation 已有保守 grouped bullet；下一步 Step 5 只做單條 flow claim gate，不代表整個 `*-math` project final consolidation。
 
 ## 15. 下一步
 
 ```text
-antplay *-math rtp-reel-strip-simulation-validation Step 4
+antplay *-math rtp-reel-strip-simulation-validation Step 5
 ```

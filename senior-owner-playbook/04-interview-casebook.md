@@ -463,6 +463,40 @@ Lead / Architect 追問：
 - 如果 jackpot 金額比例錯，排查順序是 lineBet、fixedMultiBet、currency、maxBet / nowBet、jackpot balance payload 哪一層？
 - 如何設計 module compatibility matrix 與 release checklist？
 
+## 案例 13：RTP / 輪帶模擬與驗證
+
+對應 flow：
+
+- `antplay/*-math/rtp-reel-strip-simulation-validation`
+
+證據邊界：
+
+- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作遊戲數學 / high-risk domain validation 面試案例。
+- Nick / `10gt12nc` 在 `sph-math` 有 RTP / JP / simulation / histogram / trigger log 相關 commits；在 `spn-math` 有 RTP_3 / buy free / scatter / `lastSymbols` 相關 commits。
+- 已深掃代表 path：`sph-math` 的 `RTPConstants`、`Ratio_RTP_*`、`GenerateByRatio`、`Simulate`、`ProcessGameSpin`、`SlotReelStripTable`、`AbstractSlotMath`，並用 `spn-math` 作對照。
+- 未掃正式 GDD / certification 文件、未掃 game-api runtime caller、未深掃全部 71 個 `*-math` repo。
+
+面試主軸：
+
+RTP / reel strip validation 不是線上交易 API，但會影響 production payout correctness。Senior 要能把 target / tolerance、symbol ratio、candidate reel strip、simulation rounds、Base RTP、FG trigger、Free RTP、Jackpot hit rate、runtime path 一致性與 state reset 串起來，而不是只說「調輪帶」。
+
+可講重點：
+
+- 總 RTP 接近不夠，還要拆 Base RTP、Free trigger、Free RTP、Jackpot hit rate。
+- simulation 要走真實 `P21008SlotMath#spin` / `AbstractSlotMath#init`，不能和 production runtime 分叉。
+- `flagRTP="RTP_REEL_STRIP_OPTIMIZER"` 是候選輪帶接到 runtime path 的關鍵 routing。
+- `spn-math` 的 `lastSymbols` 顯示 feature state 會跨 spin 影響驗證，helper 必須 reset / carry 正確。
+- release gate 應保存 target source、rounds / attempts、seed 或 candidate reel strip、output summary、accepted production diff 與 reviewer note。
+
+Lead / Architect 追問：
+
+- 如果總 RTP pass，但 free trigger 偏高，會怎麼處理？
+- simulation pass，上線後 RTP 偏差，回查順序是什麼？
+- 要如何避免 simulation 和 production runtime path 分叉？
+- `GenerateByRatio` 若沒有固定 seed，怎麼讓 validation 可重跑 / 可追溯？
+- GDD target、code constants、production reel strip diff 要怎麼做 traceability？
+- 這和 payment consistency 的相同與不同是什麼？
+
 ## 面試回答公式
 
 ```text

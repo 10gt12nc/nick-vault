@@ -46,6 +46,6 @@
 - MR / ticket / reviewer comment。
 - 上線後 RTP / hit rate monitoring 或 incident evidence。
 
-## 5. 本 flow Step 3 判定
+## 5. 本 flow Step 4 判定
 
-本 flow 已足夠支撐 Step 4 面試 case。正式履歷 master 不因 Step 3 單獨更新；要更新 05 / 08，仍以 `*-math` project-level contribution consolidation 的 grouped claim 為準，並在後續 Step 4 / Step 5 回填。
+本 flow 已完成 Step 4 面試 case。正式履歷 master 不因 Step 4 單獨更新；要更新 05 / 08，仍以 `*-math` project-level contribution consolidation 的 grouped claim 為準。下一步 Step 5 只判斷這條 flow 的 claim gate，不能直接代表整個 `*-math` project final consolidation。
