@@ -27,12 +27,14 @@
 - 我參與過 slot math module jackpot / symbol / prize scaling 類維護與驗證。
 - 我能說清楚 hit condition、balance callback、fixedMultiBet scaling、rounding 與 result contract。
 - 我能說清楚 runtime 如何從 result 取 `jackpotRewardList`，做 force respin、扣池與 record。
+- 這條已完成 Step 5 claim gate，只併入 `*-math` grouped 履歷 bullet，不單獨包裝成 jackpot 平台 owner。
 
 不要說：
 
 - 我主導 jackpot 平台。
 - 我負責 jackpot pool / wallet / settlement。
 - 我設計完整 jackpot 機率模型。
+- 我直接開發 game-api jackpot service / 全部 jackpot runtime callback。
 
 ## 7. 3 分鐘講法
 

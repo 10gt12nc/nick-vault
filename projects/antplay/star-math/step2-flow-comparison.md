@@ -342,7 +342,7 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 5
+antplay *-math special-wild-feature-state-transform Step 3
 ```
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
@@ -354,3 +354,5 @@ antplay *-math jackpot-symbol-hit-and-prize-scaling Step 5
 2026-05-21 更新：`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 3，材料位於 `flows/jackpot-symbol-hit-and-prize-scaling/`。本 flow 補上 `sph-math` 三顆 JP symbol hit、`sdt-math` / `slc-math` wild + JackpotFlip + fixedMultiBet scaling、`math-core` JackpotReward contract；當時只作 Step 3 code-backed 初版，不直接更新 05 / 08。後續已於同日完成 Step 4。
 
 2026-05-21 更新：`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 4，補讀 `antplay-slot-game-api` 的 SDT callback registrar、`JackpotService` result amount / force respin / balance reduce / jackpot record path，已轉成 jackpot result contract consistency 面試 case；下一步做 Step 5 claim gate。
+
+2026-05-21 更新：`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5，單條 flow claim gate 結論是只強化 `*-math` grouped bullet，不單獨新增 jackpot owner 履歷 claim，不直接更新 05 / 08。若繼續 `*-math` Flow Track，下一步回 Rank 5 `special-wild-feature-state-transform Step 3`。

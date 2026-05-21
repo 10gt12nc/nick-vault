@@ -538,7 +538,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的補強 evidence，也可作 slot math jackpot result contract 面試案例；正式履歷不單獨寫成完整 jackpot platform owner。
+- 已完成 Step 5，可作 `*-math` grouped 履歷 bullet 的補強 evidence，也可作 slot math jackpot result contract 面試案例；正式履歷不單獨寫成完整 jackpot platform owner。
 - Nick / `10gt12nc` 在 `sph-math` 有 JP symbol / jackpot list / RTP 相關 direct commits；`sdt-math`、`slc-math`、`math-core` 與 `antplay-slot-game-api` 作 code-backed runtime / contract 對照。
 - 已深掃代表 path：`sph-math` 三顆 JP symbol hit、`sdt-math` / `slc-math` wild + JackpotFlip + fixedMultiBet scaling、`math-core` JackpotReward contract，並補讀 `antplay-slot-game-api` 的 SDT callback registration、`JackpotService` 與 `GameFacade` jackpot amount / force respin / record path。
 - 未確認 SPH / SLC runtime callback registration、完整 wallet / settlement、正式 GDD / validation report、全部 71 個 `*-math` repo。

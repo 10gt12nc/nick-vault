@@ -4,7 +4,7 @@
 
 - Domain / Project: `antplay *-math`
 - Flow slug: `jackpot-symbol-hit-and-prize-scaling`
-- 完成狀態: Step 4 / 面試 case 已完成
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成
 - 掃描深度: Level 2 Flow 深掃
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 - 主要 source repo: `/Users/nick/Git/antplay/sph-math`
@@ -222,7 +222,7 @@ math side 能做到的是：
 | reward list 和 total win 不一致 | 前端有 jackpot，但總贏分漏加或重複加 | factory aggregate 必須明確測試 |
 | free game jackpot list 傳遞錯 | BG / FG jackpot reward 漏接 | free spin input 應傳同一份 jackpot list 或明確合併 |
 | callback 只註冊 SDT | 其他 game module 有 jackpot 但查不到 balance | Step 4 只確認 SDT registrar；SPH / SLC runtime registration 待確認 |
-| game-api 本地分支 / worktree 非完全乾淨 | source 最新性與未提交內容有風險 | 本 Step 只採相關已提交且目前檔案 clean 的 code path；不宣稱遠端最新 |
+| game-api 遠端 fetch 失敗 | source 最新性仍受內網不可達限制 | 本 Step 確認本地 worktree clean、local HEAD 與 local origin ref 0/0；仍不宣稱已確認最新遠端 |
 | force respin 例外被吞掉 | jackpot 超池仍可能放行 | `isForceRespin` catch 後回 false，是 owner 需要追問的風險 |
 
 ## 12. Senior / Owner Decision
@@ -243,7 +243,7 @@ math side 能做到的是：
 - 能說清楚 jackpot symbol / FW trigger、jackpot type、balance callback、下注比例縮放、取整與 `jackpotRewardList` 如何串成完整 result。
 - 能把 slot math 的 jackpot 問題翻成 backend 熟悉的 money correctness、contract consistency、observability 與 failure window。
 
-履歷仍只保守併入 `*-math` grouped bullet：
+履歷判斷：本 flow 可保守併入 `*-math` grouped bullet，作為 jackpot / symbol / fixedMultiBet result contract evidence：
 
 > 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 與模擬驗證調整。
 
@@ -298,4 +298,41 @@ Lead / Architect 追問可講：
 - 不更新 `05` / `08`。
 - 不單獨新增「jackpot 平台」履歷 bullet。
 
-下一步 Step 5 要做單條 flow claim gate，確認這條能不能、以及只能怎麼回填到 `*-math` project-level claim。
+Step 4 當時留下的 Step 5 待辦，是做單條 flow claim gate，確認這條能不能、以及只能怎麼回填到 `*-math` project-level claim；本輪已在下節收斂。
+
+## 16. Step 5 Claim Gate
+
+單條 flow 結論：
+
+- 可放履歷：可以作為 `*-math` grouped bullet 的強化 evidence，支撐「jackpot / symbol、fixedMultiBet、result contract、模擬驗證」這一組能力。
+- 不建議單獨放履歷：不新增「Jackpot 平台 / 獎池系統」獨立 bullet，因為 wallet / settlement / jackpot pool / provider pool 對帳不是本 flow 的 direct owner evidence。
+- 可面試講：可以講成 slot math jackpot result contract consistency，重點是 hit 判斷、balance callback、下注比例縮放、rounding、reward list、total win、force respin 與 jackpot record 的一致性。
+- 不能誇大：不能說主導完整 jackpot platform、完整 RTP / odds 策略、全部 `*-math` jackpot module、完整 wallet / settlement / provider pool owner。
+
+Evidence 分層：
+
+| 範圍 | Step 5 判斷 |
+| --- | --- |
+| `sph-math` JP symbol hit / JP log / simulation | `真實開發過 + code-backed`，可作本 flow 主 direct evidence |
+| `sdt-math` jackpot / fixedMultiBet scaling / debug helper | `真實開發過 + code-backed`，可作 fixedMultiBet jackpot scaling 主 direct evidence |
+| `slc-math` 同型 jackpot scaling | `專案存在 / code-backed`，只作對照與補充，不升級主 claim |
+| `math-core` JackpotReward / Symbol contract | `真實開發過 + code-backed`，可支撐 shared result contract |
+| `antplay-slot-game-api` SDT callback / JackpotService / GameFacade | `專案存在 / code-backed`；本輪 path-specific log 只能支撐 runtime context，不把 jackpot registrar / service 寫成 Nick 直接開發 |
+| SPH / SLC runtime callback registration | 待確認 |
+| wallet / settlement / jackpot pool / provider reconciliation | 未深掃，不 claim |
+
+回填到 `*-math` project-level consolidation 的方式：
+
+> 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 與模擬驗證調整。
+
+這句維持不變。Step 5 只讓「jackpot / symbol」這段更有 code-backed 面試材料，不把履歷寫得更滿。
+
+05 / 08 判斷：
+
+- 不直接更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- 若之後要更新 05 / 08，應由 `*-math` project-level consolidation 或 rolling resume package 統一吃這條 Step 5 結論。
+
+本 flow 收斂狀態：
+
+- `fixed-multi-bet-currency-math-core-compatibility`、`rtp-reel-strip-simulation-validation`、`buy-free-scatter-rtp3-result-contract`、`jackpot-symbol-hit-and-prize-scaling` 四條代表 flow 已完成 Step 5。
+- 下一步回 Step 2 ranking，若繼續 `*-math`，做 Rank 5 `special-wild-feature-state-transform Step 3`。

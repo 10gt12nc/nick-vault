@@ -39,8 +39,9 @@
 
 ## 後續回填條件
 
-Step 4 已補到 SDT runtime caller / jackpot service code-backed context。Step 5 可回填：
+Step 5 已完成，回填結論：
 
-- 是否可把「jackpot result contract consistency」升級成更強面試 case。
-- 是否需要更新 project-level contribution consolidation。
-- 是否仍只留在 grouped bullet，或可在 05 履歷母稿中補成子案例。
+- 「jackpot result contract consistency」可升級成強面試 case。
+- project-level contribution consolidation 可補上本 flow 已完成 Step 5，但履歷口徑仍維持 grouped bullet。
+- 不直接更新 05 / 08；若後續 rolling resume package 更新，這條只作 `*-math` 子案例 evidence。
+- 下一步若繼續 `*-math`，回 Step 2 ranking 做下一條候選 flow，不因本 flow 完成就宣稱整個 `*-math` final consolidation。

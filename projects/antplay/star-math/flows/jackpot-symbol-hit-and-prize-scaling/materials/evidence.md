@@ -3,7 +3,7 @@
 ## 0. 掃描紀錄
 
 - 日期: 2026-05-21
-- 任務: `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4`
+- 任務: `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 5`
 - 掃描深度: Level 2 Flow 深掃
 - Vault branch: `main`
 - Source repos: 只讀
@@ -44,7 +44,7 @@ Source:
 | `sdt-math` | `master` | `146e256` | `origin/master` = `146e256` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
 | `slc-math` | `master` | `1d8a137` | `origin/master` = `1d8a137` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
 | `math-core` | `master` | `7f1533b` | `origin/master` = `7f1533b` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
-| `antplay-slot-game-api` | `develop` | `079aa66` | `origin/develop` = `079aa66` | `0 / 0` | 多處 dirty，但本 Step 讀取的 jackpot 相關檔案 clean | fetch 失敗，依本地 refs |
+| `antplay-slot-game-api` | `develop` | `079aa66` | `origin/develop` = `079aa66` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
 
 ## 3. 主要 Code Path
 
@@ -184,7 +184,9 @@ Nick / `10gt12nc` path-specific commits:
 
 Nick / `10gt12nc` 在本 Step 讀取的 jackpot 相關 path 未掃到明確 path-specific direct commits；本 repo 有大量 Nick commits，但 jackpot registrar / service path 本輪先標 `專案存在 / code-backed`。
 
-判斷: runtime caller / jackpot service 可作面試 case 的 code-backed context；不能拿來升級為 Nick 主導完整 jackpot platform。
+本輪 Step 5 重新補跑 path-specific log，`GameFacade` path 有 Nick / `10gt12nc` commits，但 commit 主題主要是 wallet deadlock 補償、RTP / darkpool / request log / 登入防護等遊戲 API 維護，不足以把 jackpot registrar / jackpot service 升級成 Nick direct jackpot evidence。
+
+判斷: runtime caller / jackpot service 可作面試 case 的 code-backed context；不能拿來升級為 Nick 主導完整 jackpot platform 或直接開發 jackpot service。
 
 ## 5. 已確認 / 推測 / 待確認
 
@@ -217,3 +219,24 @@ Nick / `10gt12nc` 在本 Step 讀取的 jackpot 相關 path 未掃到明確 path
 - 不宣稱完整 jackpot pool / wallet / settlement owner。
 - 不平均掃全部 71 個 `*-math` repo。
 - 不修改公司 source repo。
+
+## 7. Step 5 Claim Gate Evidence
+
+Step 5 結論：
+
+- `sph-math` 與 `sdt-math` 有明確 Nick / `10gt12nc` path-specific direct evidence，可支撐「真實開發過 + code-backed」的 jackpot / symbol / fixedMultiBet scaling 維護經驗。
+- `math-core` 有 JackpotReward / Symbol direct evidence，可支撐 shared contract 維護經驗。
+- `slc-math` 只作同型 pattern 補充，不升級主 claim。
+- `antplay-slot-game-api` 只作 runtime context；可講 code-backed flow，但不說 Nick 直接開發 jackpot callback / jackpot service。
+- 這條 flow 只回填 `*-math` grouped bullet，不單獨更新 05 / 08。
+
+可使用履歷口徑仍是：
+
+> 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 與模擬驗證調整。
+
+不可使用口徑：
+
+- 主導完整 jackpot platform。
+- 負責 jackpot pool / wallet / settlement / provider reconciliation。
+- 設計完整 jackpot odds / RTP 策略。
+- 完整驗證全部 `*-math` jackpot module。
