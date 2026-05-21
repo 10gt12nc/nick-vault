@@ -48,4 +48,4 @@
 
 ## 5. 下一步邊界
 
-本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out Step 3` 已完成；目前下一步是 `transfer-wallet-money-in-out Step 4`，不能把本 flow 當成整個 project 已完成。
+本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out` 已完成 Step 4；目前下一步是 `transfer-wallet-money-in-out Step 5`，不能把本 flow 當成整個 project 已完成。

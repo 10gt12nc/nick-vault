@@ -91,4 +91,25 @@ Source:
 - `transfer-wallet-money-in-out` flow: 專案存在 / code-backed。
 - Nick direct evidence: `54078fe`、`718a207`、`99c63ff`、`aaddfdc`、`3531f42`、`eb2573a`。
 - 非 Nick direct 但重要 context: `67039e6`、`0733906`、`0781f68`、`41cd5ae`。
-- 履歷結論: 待 Step 5 claim gate，不在 Step 3 直接升級。
+- 履歷結論: 待 Step 5 claim gate，不在 Step 4 直接升級。
+
+## 8. Step 4 補充掃描
+
+本輪 Step 4 主要是面試 case 整理，沒有重做 Level 2 code 深掃。補充確認:
+
+| 項目 | 結果 |
+| --- | --- |
+| source working tree | clean |
+| local HEAD | `079aa66` |
+| local `origin/develop` | `079aa66` |
+| ahead / behind | `0 / 0` |
+| recent path log | 近期 transfer wallet path commits 仍是 `260787b`、`54078fe`、`5433c1a`、`41cd5ae`、`83af871` |
+| remote refs | 前輪 fetch 已失敗一次；依 KB 不反覆重試，本輪仍依本地 refs / working tree |
+
+Step 4 產出:
+
+- 30 秒 / 90 秒 / 3 分鐘講法。
+- STAR。
+- failure scenarios。
+- Senior / Lead / Architect 追問。
+- owner 改善方向。

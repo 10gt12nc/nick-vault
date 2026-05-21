@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: Transfer wallet 轉入 / 轉出 / 全額轉出 / 單筆查詢
 - Flow slug: `transfer-wallet-money-in-out`
-- 完成狀態: Step 3 / flow 學習包已建立，待 Step 4 轉面試 case
+- 完成狀態: Step 4 / 面試 case 已完成，待 Step 5 單條 flow claim gate
 - 證據層級: 專案存在 / code-backed；Nick / `10gt12nc` 有 transfer wallet 分表、`@UseSchema` 與 `updatePlayerWallet` deadlock 補償相關 direct commits，但 transfer API 初始建立主要不是 Nick，履歷 claim 要等 Step 5 判斷
 - 本 flow 類型: production money flow / wallet API flow
 - 是否只確認到入口: 否，已追到 controller、facade、service、DB table、Redis balance、request log 與單筆交易查詢
@@ -236,6 +236,7 @@ Owner 要能追問:
 - 為什麼 `transferReferenceId` 和 `transactionId` 是兩種不同 id。
 - Redis short lock 只能做頻率防護，不能當完整 idempotency source。
 - DB + Redis dual-write 的 failure window 與 owner 改善方向。
+- Step 4 已整理 30 秒 / 90 秒 / 3 分鐘說法、STAR、failure scenarios 與 Senior / Lead 追問，主入口看 `career-interview.md`。
 
 履歷目前只可保守:
 
@@ -294,10 +295,10 @@ Source:
 
 ## 14. 下一步
 
-Step 3 已建立主學習包，下一步應轉成可面試案例，補 30 秒 / 90 秒 / 3 分鐘講法、STAR、failure scenario 與 owner 改善方向。
+Step 4 已完成面試 case。下一步應做 Step 5 單條 flow claim gate，追 `10gt12nc` path-specific commits、branch / important diff 與 final code behavior，判斷這條 transfer wallet flow 能否回填 project-level consolidation。
 
 建議下一步:
 
 ```text
-antplay antplay-slot-game-api transfer-wallet-money-in-out Step 4
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 5
 ```

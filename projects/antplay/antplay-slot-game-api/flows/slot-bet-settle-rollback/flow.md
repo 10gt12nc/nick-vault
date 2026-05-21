@@ -280,8 +280,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，後續已完成同 project 下一條候選 flow `transfer-wallet-money-in-out Step 3`；目前下一步應做 `transfer-wallet-money-in-out Step 4`，把 transfer wallet flow 轉成正式面試 case。
+本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out` 已完成 Step 4；目前下一步應做 `transfer-wallet-money-in-out Step 5`，完成 transfer wallet flow 的 claim gate。
 
 ```text
-antplay antplay-slot-game-api transfer-wallet-money-in-out Step 4
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 5
 ```

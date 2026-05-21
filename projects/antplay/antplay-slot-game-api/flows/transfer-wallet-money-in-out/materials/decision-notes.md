@@ -65,3 +65,13 @@ Owner 改善方向:
 - DB / Redis consistency。
 - 分表後查單與 audit。
 - failure window 與 owner repair。
+
+## 6. Step 4 Owner 改善排序
+
+若面試官問「你會先改哪裡」，建議排序:
+
+1. DB unique key / constraint：先確保同一 `transferReferenceId` 不會重複入帳。
+2. Transaction status：由 PENDING 開始，wallet DB update 成功後才 SUCCESS，失敗寫 FAILED。
+3. Conditional wallet update：transfer-out 用 `WHERE balance >= amount` 或 row lock 防負數。
+4. Redis repair：把 Redis 定位成 cache，用 DB / transaction 重建或對帳。
+5. Request log 補寫：audit 不阻塞 money flow，但要能補寫、告警、追查。

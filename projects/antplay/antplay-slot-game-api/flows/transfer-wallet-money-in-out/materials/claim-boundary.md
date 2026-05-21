@@ -2,9 +2,9 @@
 
 日期: 2026-05-21
 
-## 1. Step 3 Claim 狀態
+## 1. Step 4 Claim 狀態
 
-本 flow 目前是 Step 3。
+本 flow 目前是 Step 4。
 
 可以作為 code-backed 面試素材，但還不能單獨升級成履歷 claim。原因是:
 
@@ -32,7 +32,7 @@
 - 不能說 Nick 完整設計 wallet / ledger / reconciliation。
 - 不能說已做完整 exactly-once。
 - 不能說所有 failure compensation / repair 已完整落地。
-- 不能把 Step 3 分析直接寫進 `05 / 08`。
+- 不能把 Step 4 面試素材直接寫進 `05 / 08`。
 
 ## 5. Step 5 要補的 claim gate
 
@@ -43,3 +43,9 @@ Step 5 需要再追:
 - 分表 commits 對 transfer wallet 實際 runtime 的影響。
 - 是否有 branch / MR / ticket 可證明 Nick 實際負責範圍。
 - 與 project-level consolidation 的邊界: 可放履歷、可面試講、不可誇大。
+
+## 6. 下一步
+
+```text
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 5
+```

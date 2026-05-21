@@ -94,8 +94,10 @@ GSC transfer 保守邊界：
 AntPlay slot game API 補充案例：
 
 - `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 5，可作正式面試 case，也可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。
+- `antplay-slot-game-api/transfer-wallet-money-in-out` 已完成 Step 4，可作 transfer wallet money correctness 面試 case；目前仍是 code-backed 面試素材，待 Step 5 claim gate 後才判斷是否回填履歷。
 - Project-level contribution consolidation 已確認 Nick / `10gt12nc` 在 game runtime、bet / settle / rollback、transfer wallet、request log MQ、分表與 runtime 控制有大量 direct commits；本 flow Step 5 補強了下注結算主線 evidence，但不單獨寫成完整 owner claim。
 - 已深掃代表 path：`GameController#bet`、`GameFacade#bet`、`GameFlowFacade#getBeforeBetMoney / afterBet / settle / cancel`、`AgentApiFacade#betSettle / betRollback / sendRequestLogMq`、`BetRecordManageService`、transfer wallet mutation 與 notify jobs。
+- Transfer wallet 已深掃代表 path：`TransferBalanceController#transferIn / transferOut / transferOutAll / transaction`、`TransferBalanceFacade`、`TransferBalanceService`、`TransferRedis`、`TransferPlayerWalletTransaction`、`TransferOrderLookup`。
 
 面試主軸：
 
@@ -117,6 +119,23 @@ Lead / Architect 追問：
 - Notify job 的 retry exhaustion 要如何告警與重放？
 - Request log MQ audit 遺失時，客服 / 事故 RCA 還能從哪裡找 evidence？
 - 若只能先補一件事，transfer wallet deadlock 補償、provider idempotency、outbox / repair table 哪個優先？
+
+Transfer wallet API 面試主軸：
+
+Transfer wallet 轉入 / 轉出不是 CRUD，而是外部 money request 的 idempotency 與 DB / Redis consistency。Senior 要能拆清 `transferReferenceId`、internal `transactionId`、transaction record、order lookup、DB wallet、Redis hot balance 與 request log 的責任。
+
+Transfer wallet 可講重點：
+
+- Redis 3 秒 short lock 只能擋短時間重送，不等於完整 idempotency；長期要靠 DB unique key / transaction status。
+- `pt_transfer_player_wallet_transaction` 記錄 before / after balance，但目前主路徑看到建立時直接 `SUCCESS`，wallet update 後失敗會產生狀態風險。
+- `ag_transfer_order_lookup` 是分表後查單索引，讓 `transferReferenceId` 能找到實際 transaction table / row。
+- DB 應是 source of truth，Redis 是 hot balance cache；DB 成功 Redis 失敗時要 repair / reconciliation。
+- transfer-out 不能只靠 Java 先讀 balance，理想上要 DB conditional update 或 row lock 防止不同 reference 併發扣成負數。
+
+Transfer wallet 保守邊界：
+
+- Step 4 是正式面試 case，不直接代表履歷 claim。
+- Nick / `10gt12nc` direct evidence 目前集中在後續分表 / schema route / `updatePlayerWallet` deadlock 補償改造；API 初版主要不是 Nick，不寫主導完整 transfer wallet。
 
 ## 案例 4：Kafka / MQ 可靠性
 

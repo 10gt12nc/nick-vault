@@ -233,7 +233,7 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 3`。下一步若繼續本 repo，應做 `transfer-wallet-money-in-out Step 4`，把 transfer wallet flow 轉成正式面試 case。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 4`。下一步若繼續本 repo，應做 `transfer-wallet-money-in-out Step 5`，判斷這條 transfer wallet flow 能否回填 project-level consolidation。
 
 ```text
 antplay antplay-slot-game-api Step 1
