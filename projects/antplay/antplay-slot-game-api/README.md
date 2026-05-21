@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 5 已完成 / 2026-05-21 |
+| Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 5 已完成；`request-log-rabbitmq-async` Step 3 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log |
-| 下一步 | `antplay antplay-slot-game-api request-log-rabbitmq-async Step 3` |
+| 下一步 | `antplay antplay-slot-game-api request-log-rabbitmq-async Step 4` |
 
 ## Claim Boundary
 
@@ -20,6 +20,7 @@
 - 參與轉帳錢包 deadlock 補償、bet record 分表 / 查詢、RabbitMQ request log 非同步化、RTP / dark pool / player control 關聯修正。
 - `slot-bet-settle-rollback` Step 5 已確認可作 project-level claim 的強化 evidence；但不單獨寫成完整下注結算 / wallet owner。
 - `transfer-wallet-money-in-out` Step 5 已完成；可回填 project-level transfer wallet / DB + Redis consistency / transaction lookup / 分表 evidence，但不單獨寫成完整 transfer wallet owner。
+- `request-log-rabbitmq-async` Step 3 已完成；已追到 game-api producer、admin-api consumer 與 Nick / `10gt12nc` #774 direct commits，可作 async audit / observability 面試素材，Step 5 前不單獨升級正式履歷 claim。
 
 不可誇大:
 
@@ -35,6 +36,8 @@
 - [flows/slot-bet-settle-rollback/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/career-interview.md)
 - [flows/transfer-wallet-money-in-out/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/flow.md)
 - [flows/transfer-wallet-money-in-out/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/career-interview.md)
+- [flows/request-log-rabbitmq-async/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/request-log-rabbitmq-async/flow.md)
+- [flows/request-log-rabbitmq-async/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/request-log-rabbitmq-async/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md)

@@ -280,8 +280,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out` 也已完成 Step 5；目前下一步應做 `request-log-rabbitmq-async Step 3`，補 async audit / observability case。
+本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out` 也已完成 Step 5，第三條 `request-log-rabbitmq-async` 已完成 Step 3；目前下一步應做 `request-log-rabbitmq-async Step 4`，把 async audit / observability 轉成面試 case。
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 3
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 4
 ```
