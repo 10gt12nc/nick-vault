@@ -1,30 +1,83 @@
 # *-math Contribution Claim Consolidation
 
 日期: 2026-05-20
+Refresh: 2026-05-21（五條代表 flow 全部 Step 5 後的 project-level claim refresh）
 
 ## 結論
 
 `*-math` 群組有明確 Nick / `10gt12nc` direct evidence。71 個 `*-math` repo 中，本輪掃到 49 個有 Nick / `10gt12nc` commits；其中 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math` direct commits 特別多，可保守列為真實開發 / 維護過的 slot math module。
 
+2026-05-21 refresh 後，`*-math` Step 2 本批五條代表 flow 已全部完成 Step 5：
+
+- `fixed-multi-bet-currency-math-core-compatibility`
+- `rtp-reel-strip-simulation-validation`
+- `buy-free-scatter-rtp3-result-contract`
+- `jackpot-symbol-hit-and-prize-scaling`
+- `special-wild-feature-state-transform`
+
+這讓 `*-math` 的 project-level claim 從「rolling / grouped」升級為「本批代表 flows 已回填的 refreshed grouped consolidation」。它仍不是 71 個 repo 全量 Level 3 final consolidation，也不是完整遊戲數學 owner 結論。
+
 履歷可保守寫:
 
-> 參與多個 AntPlay slot math module 維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 與模擬驗證調整。
+> 參與 AntPlay slot math core 與多個 slot math module 維護與驗證，處理 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整。
 
 不要寫:
 
 - 主導全部 `*-math` module。
 - 主導完整遊戲數學模型 / RTP 策略 / 派彩設計。
 - 主導完整 math release / simulator / certification platform。
+- 主導完整 jackpot pool、buy free、Special Wild 或單一遊戲完整 feature owner。
 
 ## Evidence Summary
 
 | 類別 | 判斷 | Evidence |
 | --- | --- | --- |
-| 群組掃描 | rolling / grouped | 掃描 `/Users/nick/Git/antplay/*-math` 共 71 個 repo |
+| 群組掃描 | refreshed / grouped | 掃描 `/Users/nick/Git/antplay/*-math` 共 71 個 repo；2026-05-21 已吸收五條代表 flow Step 5 evidence |
 | direct evidence | 真實開發過 + code-backed | 49 個 repo 有 Nick / `10gt12nc` commits |
 | strongest modules | 真實開發過 + code-backed | `sph-math:125`、`spn-math:116`、`sfm-math:80`、`setl-math:69`、`sdt-math:68`、`slc-math:66` |
 | light-touch modules | 局部真實維護 | 多數 repo 是 1-5 筆，常見為 debug amount、purchasable free spin、RTP 110 reel strip、VND currency 等小調整 |
 | no direct evidence | 不放 Nick claim | 22 個 repo 未掃到 Nick / `10gt12nc` author |
+
+## Representative Flow Refresh
+
+| Flow | Step 5 結論 | 對 project-level claim 的影響 | 不可誇大 |
+| --- | --- | --- | --- |
+| `fixed-multi-bet-currency-math-core-compatibility` | 可作 Senior Backend 主案例 | 強化 SlotMath contract、fixedMultiBet、currency、debug result、money-like correctness | 不說完整 math platform / RTP owner |
+| `rtp-reel-strip-simulation-validation` | 可作高差異化 validation case | 強化 RTP / reel strip / simulation validation | 不說設計完整 RTP 策略或 certification |
+| `buy-free-scatter-rtp3-result-contract` | 可面試講 feature result contract | 強化 buy free / scatter / RTP_3 / result contract | 不說完整 buy free owner 或 wallet / settlement owner |
+| `jackpot-symbol-hit-and-prize-scaling` | 只併入 grouped bullet | 強化 jackpot / symbol、fixedMultiBet、prize scaling、result contract | 不說 jackpot pool / provider pool / settlement owner |
+| `special-wild-feature-state-transform` | 只併入 grouped bullet | 強化特殊 feature state transform / result contract | 不說主導完整 Special Wild、LuckyClover 或單一遊戲 feature |
+
+## 2026-05-21 Source Refresh
+
+本輪為 contribution claim refresh，實際重讀：
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+- `projects/antplay/star-math/README.md`
+- `projects/antplay/star-math/step1-candidate-flows.md`
+- `projects/antplay/star-math/step2-flow-comparison.md`
+- 五條代表 flow 的 `flow.md`、`career-interview.md` 與 claim / evidence 摘要
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+- `senior-owner-playbook/06-todo.md`
+
+代表 source repo 本輪嘗試 fetch：
+
+| Repo | Branch | Local HEAD | Local upstream ref | ahead / behind | 遠端最新性 |
+| --- | --- | --- | --- | --- | --- |
+| `math-core` | `master` | `7f1533b` | `origin/master` = `7f1533b` | `0 / 0` | fetch 失敗，依本地 refs |
+| `sdt-math` | `master` | `146e256` | `origin/master` = `146e256` | `0 / 0` | fetch 失敗，依本地 refs |
+| `sfm-math` | `master` | `ea458d5` | `origin/master` = `ea458d5` | `0 / 0` | fetch 失敗，依本地 refs |
+| `slc-math` | `master` | `1d8a137` | `origin/master` = `1d8a137` | `0 / 0` | fetch 失敗，依本地 refs |
+| `sph-math` | `master` | `17996c5` | `origin/master` = `17996c5` | `0 / 0` | fetch 失敗，依本地 refs |
+| `spn-math` | `master` | `73f32d4` | `origin/master` = `73f32d4` | `0 / 0` | fetch 失敗，依本地 refs |
+| `antplay-slot-game-api` | `develop` | `079aa66` | `origin/develop` = `079aa66` | `0 / 0` | fetch 失敗，依本地 refs；只作 runtime caller context |
+
+本輪沒有修改 source repo。fetch 失敗代表未確認最新遠端；依 KB 不反覆重試，也不把內網 remote 細節寫入 vault。
 
 ## Source Scan Record
 
@@ -98,7 +151,7 @@ srm-math, stc-math, swv-math, szb-math
 
 可放履歷:
 
-- 參與多個 slot math module 的 RTP / reel strip / debug bet / fixedMultiBet / jackpot / buy free 維護與驗證。
+- 參與 AntPlay slot math core 與多個 slot math module 的 RTP / reel strip / debug bet / fixedMultiBet / currency / jackpot / buy free / feature result contract 維護與驗證。
 - 參與 math-core contract 和 module 實作的相容性調整，處理 debug / front-end result / simulation 類支援。
 
 可面試講:
@@ -106,6 +159,7 @@ srm-math, stc-math, swv-math, szb-math
 - Slot math module 和 `math-core` contract 如何互相影響。
 - RTP / reel strip / optimizer / simulation 的迭代方式。
 - debugBet / fixedMultiBet / currency / buy free 改動如何跨 core 和 game module 對齊。
+- jackpot / symbol / feature state transform 如何影響 result contract 與前端顯示。
 - 為什麼只能說參與維護 / 驗證，不能說完整數學策略 owner。
 
 不可誇大:
@@ -119,12 +173,12 @@ srm-math, stc-math, swv-math, szb-math
 
 建議補入履歷 / 自傳的保守句:
 
-> 參與 AntPlay 多個 slot math module 維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 與模擬驗證調整。
+> 參與 AntPlay slot math core 與多個 slot math module 維護與驗證，處理 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整。
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5，第五條代表 flow `special-wild-feature-state-transform` 已完成 Step 5。這些 flow 都只強化 grouped 履歷 bullet，不代表完整 RTP / math / jackpot / feature owner；本批代表 flows 已收斂，下一步可 refresh project-level contribution claim consolidation，檢查 rolling 版是否需吸收五條 Step 5 evidence。
+`*-math` contribution claim consolidation 已 refresh 完成，五條代表 flow 都已回填到 grouped 履歷口徑。下一步若目標是最大化交易主線與 Senior Backend 面試素材，建議切到 `antplay-slot-game-api Step 1`，挑 bet / settle / rollback、transfer wallet、request log / partition 這類 runtime production flow。
 
 ```text
-antplay *-math contribution claim consolidation
+antplay antplay-slot-game-api Step 1
 ```

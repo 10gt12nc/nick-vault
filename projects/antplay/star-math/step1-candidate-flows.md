@@ -292,7 +292,7 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 目前最值得 Step 2 比較的是 `fixedMultiBet / currency / math-core compatibility` 與 `RTP / reel strip / simulation validation`。前者更貼 Senior Backend / money correctness；後者更有 slot math 差異化。
 
-2026-05-21 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；`rtp-reel-strip-simulation-validation` 已完成 Step 5；`buy-free-scatter-rtp3-result-contract` 已完成 Step 5；`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5；`special-wild-feature-state-transform` 已完成 Step 5。本批 Step 2 代表 flows 已收斂，下一步可 refresh project-level contribution claim consolidation。
+2026-05-21 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；`rtp-reel-strip-simulation-validation` 已完成 Step 5；`buy-free-scatter-rtp3-result-contract` 已完成 Step 5；`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5；`special-wild-feature-state-transform` 已完成 Step 5。本批 Step 2 代表 flows 已收斂，且 project-level contribution claim consolidation 已 refresh 完成。
 
 ## 7. Claim Boundary
 
@@ -321,10 +321,10 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 ## 9. Step 1 結論
 
-`*-math` 值得繼續做 Flow Track。2026-05-20 已完成 Step 2，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5。
+`*-math` 值得繼續做 Flow Track。2026-05-21 已完成 Step 2 本批五條代表 flow 的 Step 5，且 `contribution-claim-consolidation.md` 已完成 refreshed grouped claim。
 
 建議下一步:
 
 ```text
-antplay *-math contribution claim consolidation
+antplay antplay-slot-game-api Step 1
 ```

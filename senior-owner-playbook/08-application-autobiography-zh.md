@@ -35,7 +35,7 @@
 
 > 2026-05-20 antplay-slot-game-job consolidation：已完成 `projects/antplay/antplay-slot-game-job/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay slot job / event processing 開發維護，範圍包含 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / report 分表與 job config；仍不寫主導完整 Kafka event platform、完整 settle pool / risk / jackpot owner、完整 BI / report platform、完整遊戲數學 / RTP 策略或完整 AntPlay slot platform。
 
-> 2026-05-20 antplay math consolidation：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md` 與 `projects/antplay/star-math/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 AntPlay slot math core / 多個 math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整；仍不寫主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner。`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。
+> 2026-05-21 antplay math consolidation refresh：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md` 與 `projects/antplay/star-math/contribution-claim-consolidation.md`。`*-math` 五條代表 flow 已全部 Step 5 並回填 project-level claim。投遞自傳可保守寫 Nick 參與 AntPlay slot math core / 多個 math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整；仍不寫主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner、完整 jackpot pool 或完整單一遊戲 feature owner。`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。
 
 > 2026-05-20 舊 104 PDF 履歷補讀：可補入「缺乏完整交接文件時，協助主管梳理兩套既有平台並恢復可維護 / 可交接狀態」的 legacy takeover / system reconstruction 口徑。舊 PDF 中對主管、流程、PM / QA 缺位、假敏捷等負面描述不得放入正式投遞稿；Kafka 架構建置、後台 API 架構、RTP 工具、效能改善等較強 claim 仍需依目前 project consolidation / commit evidence 保守降調。
 
@@ -65,7 +65,7 @@
 - 參與多個第三方金流 provider request / callback / query / withdraw 對接與維護，處理 provider sign、response parsing、callback 重送、timeout、訂單狀態一致性與 withdraw order 建單一致性等問題。
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，範圍包含 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
 - 參與 AntPlay slot 遊戲 API / runtime、UGSoft provider connector / gateway、AntPlay slot job / event processing、RabbitMQ / Kafka / Quartz job、bet record / report 分表與 request log / bet record 非同步資料處理。
-- 參與每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
+- 參與每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整。
 - 在缺乏完整交接文件的情況下，協助主管梳理兩套既有平台的服務、部署環境、資料流與維運脈絡；透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 production flow，協助平台逐步恢復到可維護、可交接的狀態。
 
 後端工程師｜智湧科技（前原繪美術設計，同團隊整併）
@@ -107,7 +107,7 @@
 
 我是一名以 Java 後端為主的工程師，具 4 年以上博弈 / 遊戲平台相關經驗，主要工作集中在平台 API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面與既有系統維護。相較於只完成單一 API，我更習慣從 production flow 的角度理解系統，關注資料如何流動、狀態如何轉換、失敗後如何補償，以及營運人員是否能查詢與追蹤問題。
 
-現職於瀚鼎後，我參與過多個第三方金流 provider request / callback / query / withdraw 對接與維護，也參與第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、AntPlay slot 遊戲 API / runtime、UGSoft provider connector / gateway、AntPlay slot job / event processing、每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份，以及 slot math core / 多個 math module 維護與驗證。這些工作讓我熟悉 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致等高交易場景常見風險。
+現職於瀚鼎後，我參與過多個第三方金流 provider request / callback / query / withdraw 對接與維護，也參與第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、AntPlay slot 遊戲 API / runtime、UGSoft provider connector / gateway、AntPlay slot job / event processing、每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份，以及 slot math core / 多個 math module 維護與驗證。這些工作讓我熟悉 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致，以及 slot math contract 變更影響多個 game module 等高交易 / 高正確性場景常見風險。
 
 我目前希望往 Senior Java Backend / Platform Backend 方向發展，持續強化交易一致性、冪等、補償、對帳、Kafka / MQ、資料庫效能與系統設計能力。我的優勢是能接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤、git history 與資料流梳理，建立可維護、可追蹤、可交接的系統理解。
 
@@ -117,7 +117,7 @@
 
 早期在智湧科技期間，我主要負責博弈平台 API 與舊系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能與營運需求。那段經驗讓我長期接觸線上問題、需求調整、測試環境排查與跨部門溝通，也累積 JSP / SSM 舊系統維護、局部重構、log 分析與資料狀態排查能力。我也曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
 
-現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、第三方金流 provider request / callback / query / withdraw 對接維護、payment / withdraw order consistency 修正、第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、玩家優惠券兌換上分 / 打碼要求 flow、AntPlay slot game init / bet / settle / rollback、UGSoft provider connector / gateway、transfer wallet、request / bet record MQ、AntPlay slot Kafka / Quartz job、代理玩家報表 projection、big-win notification、每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 AntPlay slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol 與模擬驗證調整。
+現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、第三方金流 provider request / callback / query / withdraw 對接維護、payment / withdraw order consistency 修正、第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、玩家優惠券兌換上分 / 打碼要求 flow、AntPlay slot game init / bet / settle / rollback、UGSoft provider connector / gateway、transfer wallet、request / bet record MQ、AntPlay slot Kafka / Quartz job、代理玩家報表 projection、big-win notification、每日遊戲資料彙總 batch / BI projection、第三方遊戲紀錄 Mongo 備份分批處理，以及 AntPlay slot math core / 多個 math module 維護與驗證，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整。
 
 這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如金流 callback 重送、provider timeout、下注扣款與派彩 rollback、MQ 消費失敗、retry 重複副作用、報表 projection 與交易真相不一致、slot math core contract 變更影響多個 game module，都是我在整理與理解系統時會特別關注的風險。因此我會透過 code reading、log 追蹤、git history、資料表、Redis / MQ 流向與文件化，重建核心 flow 的理解，讓後續維護、交接與問題排查更有依據。
 
@@ -137,7 +137,7 @@
 
 早期在智湧科技期間，我主要負責博弈平台 API 與舊系統維護，使用 Java、SSM / Spring Boot、MySQL、Redis 等技術支援平台功能與營運需求。那段經驗讓我長期接觸線上問題、需求調整、測試環境排查與跨部門溝通，也累積 JSP / SSM 舊系統維護、局部重構、log 分析與資料狀態排查能力。我也曾於內部分享 ActiveMQ + Redis + Quartz 的非同步快取處理思路，用於高流量情境下降低 DB 壓力與改善回應穩定性。
 
-現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、後台營運功能、第三方金流 provider request / callback / query / withdraw 對接維護、玩家優惠券兌換上分 / 打碼要求 flow、每日遊戲資料彙總 batch / BI projection、GSC 第三方遊戲紀錄 Mongo 備份分批處理、第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、下注 / 派彩 / refund、UGSoft 後台 API / control plane、AntPlay / DerPlay provider connector、transfer wallet、AntPlay slot Kafka / Quartz job、slot math core / math module 維護與驗證、代理玩家報表 projection、big-win notification、RabbitMQ request log / bet record 非同步資料處理、Quartz / report job、報表查詢、RBAC / 權限與部署維運相關資料。我也處理過 payment / withdraw order 建單一致性與 provider sign / response parsing 類問題。這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致，都是我在整理與理解系統時會特別關注的風險。
+現職於瀚鼎後，我接觸到更複雜的遊戲平台與微服務環境，工作範圍包含 Java / Spring Boot API、後台營運功能、第三方金流 provider request / callback / query / withdraw 對接維護、玩家優惠券兌換上分 / 打碼要求 flow、每日遊戲資料彙總 batch / BI projection、GSC 第三方遊戲紀錄 Mongo 備份分批處理、第三方遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接、下注 / 派彩 / refund、UGSoft 後台 API / control plane、AntPlay / DerPlay provider connector、transfer wallet、AntPlay slot Kafka / Quartz job、slot math core / math module 維護與驗證、代理玩家報表 projection、big-win notification、RabbitMQ request log / bet record 非同步資料處理、Quartz / report job、報表查詢、RBAC / 權限與部署維運相關資料。我也處理過 payment / withdraw order 建單一致性與 provider sign / response parsing 類問題。這類系統的挑戰通常不在單一功能，而在跨服務、跨資料狀態與異常重試的邊界。例如 callback 重送、provider timeout、MQ 消費失敗、retry 重複副作用、報表與交易真相不一致、slot math contract 變更影響多個 game module，都是我在整理與理解系統時會特別關注的風險。
 
 我也具備接手文件不足或服務邊界複雜系統的經驗，會透過 code reading、log 追蹤、資料表與 Redis / MQ 流向梳理，重建核心 flow 的理解，讓後續維護、交接與問題排查更有依據。在效能與穩定性方面，我接觸過大量資料批次處理、MongoDB cursor / stream、JVM / GC 觀察、Redis 熱點資料與 SQL 查詢調整等方向，也理解這些問題背後真正要處理的是可恢復性、可觀測性與資料一致性。
 

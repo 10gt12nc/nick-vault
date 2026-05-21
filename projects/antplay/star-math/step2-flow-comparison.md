@@ -342,7 +342,7 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math contribution claim consolidation
+antplay antplay-slot-game-api Step 1
 ```
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
@@ -357,4 +357,6 @@ antplay *-math contribution claim consolidation
 
 2026-05-21 更新：`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5，單條 flow claim gate 結論是只強化 `*-math` grouped bullet，不單獨新增 jackpot owner 履歷 claim，不直接更新 05 / 08。後續已回 Rank 5 做 `special-wild-feature-state-transform Step 3`。
 
-2026-05-21 更新：`special-wild-feature-state-transform` 已完成 Step 5，材料位於 `flows/special-wild-feature-state-transform/`。本 flow 以 `sfm-math` Special Wild parent / child transform、`extraData` result contract、`acac921 找不到父 wild 前端卡` direct evidence 為主，`slc-math` LuckyClover 只作 code-backed 對照；已加入 `04-interview-casebook.md`，單條 flow claim gate 結論是不單獨更新 05 / 08，只強化 `*-math` grouped bullet。本批五條代表 flow 已全部 Step 5，下一步可 refresh project-level contribution claim consolidation。
+2026-05-21 更新：`special-wild-feature-state-transform` 已完成 Step 5，材料位於 `flows/special-wild-feature-state-transform/`。本 flow 以 `sfm-math` Special Wild parent / child transform、`extraData` result contract、`acac921 找不到父 wild 前端卡` direct evidence 為主，`slc-math` LuckyClover 只作 code-backed 對照；已加入 `04-interview-casebook.md`，單條 flow claim gate 結論是不單獨更新 05 / 08，只強化 `*-math` grouped bullet。本批五條代表 flow 已全部 Step 5，後續已 refresh project-level contribution claim consolidation。
+
+2026-05-21 更新：`contribution-claim-consolidation.md` 已完成 refreshed grouped claim，五條代表 flow 已回填到 project-level 履歷 / 面試邊界。下一步若繼續 antplay，建議切到 `antplay-slot-game-api Step 1` 補 runtime 交易主線。

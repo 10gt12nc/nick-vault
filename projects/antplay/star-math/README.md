@@ -6,16 +6,16 @@
 
 | 項目 | 狀態 |
 | --- | --- |
-| contribution claim consolidation | 已完成 / rolling / grouped / 2026-05-20；本批代表 flows 已全 Step 5，後續可做 final / refresh consolidation |
+| contribution claim consolidation | 已完成 / refreshed grouped / 2026-05-21；本批五條代表 flows 已全 Step 5 並已回填 project-level claim |
 | Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 5 已完成；`buy-free-scatter-rtp3-result-contract` Step 5 已完成；`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成；`special-wild-feature-state-transform` Step 5 已完成 |
-| 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math module 維護 / RTP / reel strip / debug / fixedMultiBet / purchasable free spin |
-| 下一步 | `antplay *-math contribution claim consolidation` |
+| 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math core / math module 維護、RTP / reel strip、debug / fixedMultiBet / currency、buy free、jackpot / symbol、特殊 feature result contract |
+| 下一步 | `antplay antplay-slot-game-api Step 1` |
 
 ## Claim Boundary
 
 可保守說:
 
-- 參與多個 AntPlay slot math module 的維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、buy free / purchasable free spin、jackpot / symbol、currency 類調整。
+- 參與 AntPlay slot math core 與多個 slot math module 的維護與驗證，處理 RTP / reel strip、debug bet、fixedMultiBet、currency、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 類調整。
 - 強 evidence module 包含 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。
 
 不可誇大:
@@ -23,6 +23,7 @@
 - 不寫主導全部 `*-math`。
 - 不寫完整遊戲數學 / RTP 策略 owner。
 - 不寫完整 math release / certification / simulator owner。
+- 不寫完整 jackpot pool、buy free、Special Wild 或單一遊戲 feature owner。
 
 ## Files
 
