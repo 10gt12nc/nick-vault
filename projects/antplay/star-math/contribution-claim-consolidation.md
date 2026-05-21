@@ -123,8 +123,8 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5，第五條代表 flow `special-wild-feature-state-transform` 已完成 Step 4。這些 flow 都只強化 grouped 履歷 bullet，不代表完整 RTP / math / jackpot / feature owner；下一步若繼續 Flow Track，做 `special-wild-feature-state-transform Step 5`。
+`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5，第五條代表 flow `special-wild-feature-state-transform` 已完成 Step 5。這些 flow 都只強化 grouped 履歷 bullet，不代表完整 RTP / math / jackpot / feature owner；本批代表 flows 已收斂，下一步可 refresh project-level contribution claim consolidation，檢查 rolling 版是否需吸收五條 Step 5 evidence。
 
 ```text
-antplay *-math special-wild-feature-state-transform Step 5
+antplay *-math contribution claim consolidation
 ```

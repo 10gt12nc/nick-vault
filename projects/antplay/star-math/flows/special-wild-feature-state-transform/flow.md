@@ -5,7 +5,7 @@
 - Domain / Project: `antplay *-math`
 - Flow: `special-wild-feature-state-transform`
 - 中文名稱: Special Wild / symbol state transform
-- 狀態: Step 4 / Level 2 Flow 深掃 + 面試 case / 2026-05-21
+- 狀態: Step 5 / 單條 flow claim gate 已完成 / 2026-05-21
 - 主樣本: `sfm-math`
 - 對照樣本: `slc-math`
 - Shared contract: `math-core`
@@ -188,7 +188,7 @@ Owner 解讀:
 - `sfm` 可作 Nick direct evidence 的主要例子。
 - `slc` 目前只作 code-backed 對照，不寫 Nick 主導 LuckyClover。
 
-## 9. Step 4 面試 case 結論
+## 9. Step 5 Claim Gate 結論
 
 這條 flow 已能作為 `*-math` 的補充面試案例：它不是最高價值的 money correctness 題，但很適合展示 Nick 能讀懂 slot math feature state、result contract、front-end display data 與 bugfix boundary。
 
@@ -200,12 +200,17 @@ Owner 解讀:
 
 本 flow 不直接更新 `05` / `08`。它只強化 `*-math` grouped bullet 與面試 case。
 
-Step 4 已將本 flow 收成面試 case，定位為「slot math feature state transform / result contract consistency」。正式履歷仍不單獨新增 Special Wild bullet，後續要到 Step 5 再做單條 flow claim gate。
+Step 5 claim gate 結論:
+
+- 可放履歷: 只併入 `*-math` grouped bullet，不新增獨立 Special Wild / feature owner bullet。
+- 可面試講: 可以作 slot math feature state transform / result contract consistency 補充案例，主 evidence 是 `sfm-math` direct commits。
+- 不可誇大: 不說主導完整 Special Wild feature、不說主導完整 slot math model、不說 Nick 主開發 LuckyClover、不說修復 production incident 或改善比例。
+- 05 / 08: 本輪不直接更新；後續若做 `*-math` project-level final consolidation 或 rolling resume package，可引用本 flow 作 grouped evidence。
 
 ## 10. 下一步
 
 ```text
-antplay *-math special-wild-feature-state-transform Step 5
+antplay antplay-slot-game-api Step 1
 ```
 
-下一步要做單條 flow claim gate，判斷本 flow 是否只保留為 `*-math` grouped bullet 的面試 evidence，或是否需要回填 claim boundary。
+`*-math` Step 2 本批五條代表 flow 已全部完成到 Step 5，且 project-level rolling contribution consolidation 已完成。若要繼續 antplay，下一步建議切到交易主線 `antplay-slot-game-api Step 1`；若 Nick 要先做 `*-math final contribution consolidation`，也可以另行指定。

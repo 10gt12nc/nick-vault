@@ -227,3 +227,24 @@ Step 4 產出:
 - 補強 `materials/interview.md` 的 Lead / Architect 追問。
 - 將本 flow 加入 `senior-owner-playbook/04-interview-casebook.md`。
 - 同步 README、Step 文件、inventory、todo 的狀態為 Step 4 完成，下一步 Step 5。
+
+## 10. Step 5 Claim Gate 掃描
+
+- 日期: 2026-05-21
+- 任務: `antplay *-math special-wild-feature-state-transform Step 5`
+- 掃描深度: Level 2 既有 evidence 重讀 + 單條 flow claim gate
+- 本輪未新增 source code path；重讀 Step 3 / Step 4 文件、claim boundary、career-interview、project README、Step 1 / Step 2、contribution consolidation 與共用 inventory。
+- 依 KB 規則再次嘗試 fetch 三個 source repo，皆因內網 remote 不可達失敗一次；未反覆重試，仍依本地 refs 判斷。
+
+| Repo | Branch | Local HEAD | Local upstream ref | ahead / behind | Dirty | 遠端最新性 |
+| --- | --- | --- | --- | --- | ---: | --- |
+| `sfm-math` | `master` | `ea458d5` | `origin/master = ea458d5` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+| `slc-math` | `master` | `1d8a137` | `origin/master = 1d8a137` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+| `math-core` | `master` | `7f1533b` | `origin/master = 7f1533b` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+
+Step 5 結論:
+
+- 可面試講: 是，作 slot math feature state transform / result contract consistency case。
+- 可放履歷: 只併入 `*-math` grouped bullet，不單獨新增 Special Wild claim。
+- 05 / 08: 本輪不直接更新。
+- 不可誇大: 不說主導完整 Special Wild、完整 slot math model、完整 frontend animation owner 或 LuckyClover owner。

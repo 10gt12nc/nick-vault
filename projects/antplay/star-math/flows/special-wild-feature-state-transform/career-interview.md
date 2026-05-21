@@ -3,7 +3,7 @@
 ## 0. 定位
 
 - Flow: `special-wild-feature-state-transform`
-- Step: Step 4 面試 case
+- Step: Step 5 claim gate
 - 證據層級: `sfm-math` 真實開發過 + code-backed；`slc-math` code-backed 補充
 - 是否更新 05 / 08: 否。本 flow 只強化 `*-math` grouped bullet，不單獨新增履歷句。
 
@@ -87,8 +87,29 @@ SFM 是單局 transform，最後收斂回 `W=50`；SLC LuckyClover 是跨 free s
 - 不說 Nick 主開發 LuckyClover；目前 `slc` 只作 code-backed 對照。
 - 不寫改善百分比、RTP 數字或 certification 結論。
 
-## 8. 下一步
+## 8. Step 5 Claim Gate
+
+結論: 本 flow 可面試講、可強化 `*-math` grouped bullet，但不單獨更新正式履歷。
+
+可放履歷:
+
+- 只沿用或微調既有 grouped bullet。
+- 不新增「Special Wild owner」或「完整 feature 設計」獨立條目。
+
+可面試講:
+
+- SFM Special Wild 的 parent / child transform。
+- `extraData` 作為 front-end display contract 與 free game routing input。
+- `acac921 找不到父 wild 前端卡` 代表 unknown fallback 不能用有效 reel 值。
+- `slc` LuckyClover 作 state lifetime 對照，但不寫 Nick 主開發。
+
+不更新 `05` / `08`:
+
+- 原因是這是單條 flow Step 5，不是 project-level final consolidation。
+- `*-math` rolling consolidation 已有 grouped bullet；本 flow 只作後續回填 evidence。
+
+## 9. 下一步
 
 ```text
-antplay *-math special-wild-feature-state-transform Step 5
+antplay antplay-slot-game-api Step 1
 ```

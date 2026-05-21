@@ -571,7 +571,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的補充 evidence，也可作 slot math feature state transform 面試案例；正式履歷不單獨寫成完整 Special Wild owner。
+- 已完成 Step 5，可作 `*-math` grouped 履歷 bullet 的補充 evidence，也可作 slot math feature state transform 面試案例；正式履歷不單獨寫成完整 Special Wild owner。
 - Nick / `10gt12nc` 在 `sfm-math` 有 related path direct commits；強 evidence 包含 `acac921 找不到父 wild 前端卡`、`412ad07 特殊符號 間隔`、`15ba947 初始盤 originalSymbols`。
 - 已深掃代表 path：`sfm-math` 的 `AbstractSlotMath#initTable`、`changeWildState`、`handleSpecialWildType`、`addExtraDataForWilds`、`P21008SlotMath#checkFreeGame`、`SFMMathFactory#processGameSpinResult`、`ExtraData` / `RoundResult`。
 - `slc-math` LuckyClover 只作 code-backed 對照，不能說 Nick 主導 LuckyClover。
