@@ -134,7 +134,7 @@ Step 3 不做:
 
 | 順位 | Flow | 何時做 |
 | --- | --- | --- |
-| 2 | `transfer-wallet-money-in-out` | `slot-bet-settle-rollback` Step 5 後，若要補 wallet consistency，就做這條 |
+| 2 | `transfer-wallet-money-in-out` | Step 3 已完成 / 2026-05-21；下一步做 Step 4 轉正式面試 case |
 | 3 | `request-log-rabbitmq-async` | 要補 async / observability / audit case 時做；scope 較小 |
 | 4 | `bet-record-sharding-schema-route` | bet 主線清楚後，再回頭看 bet record / request log / transfer transaction 分表 |
 | 5 | `runtime-rtp-darkpool-player-control` | game-api 與 `*-math` 邊界更清楚後，再做 runtime decision / math contract |
@@ -158,10 +158,10 @@ Step 3 不做:
 
 ## 9. Step 2 結論
 
-Flow Track 下一步應進入單條 flow Step 3:
+2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 3。Flow Track 下一步應繼續同一條 flow Step 4:
 
 ```text
-antplay antplay-slot-game-api slot-bet-settle-rollback Step 3
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 4
 ```
 
 預期產出:

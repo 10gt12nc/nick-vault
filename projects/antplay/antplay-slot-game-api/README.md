@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `slot-bet-settle-rollback` Step 5 已完成 / 2026-05-21 |
+| Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 3 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log |
-| 下一步 | `antplay antplay-slot-game-api transfer-wallet-money-in-out Step 3` |
+| 下一步 | `antplay antplay-slot-game-api transfer-wallet-money-in-out Step 4` |
 
 ## Claim Boundary
 
@@ -19,6 +19,7 @@
 - 處理 game init、bet / settle / rollback、bet record、transfer wallet、分表、request log MQ、白名單與 auth token 類 runtime 流程。
 - 參與轉帳錢包 deadlock 補償、bet record 分表 / 查詢、RabbitMQ request log 非同步化、RTP / dark pool / player control 關聯修正。
 - `slot-bet-settle-rollback` Step 5 已確認可作 project-level claim 的強化 evidence；但不單獨寫成完整下注結算 / wallet owner。
+- `transfer-wallet-money-in-out` Step 3 已建立 code-backed 學習包；目前先作面試素材，不直接更新 05 / 08，Step 5 前不單獨寫成完整 transfer wallet owner。
 
 不可誇大:
 
@@ -32,6 +33,8 @@
 
 - [flows/slot-bet-settle-rollback/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/flow.md)
 - [flows/slot-bet-settle-rollback/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/career-interview.md)
+- [flows/transfer-wallet-money-in-out/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/flow.md)
+- [flows/transfer-wallet-money-in-out/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md)

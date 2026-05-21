@@ -65,10 +65,9 @@
 - key commits: `#167` bet record / request log 分表、`#374` money-in-out 失敗回調 job、`#684` 白名單、`#774` request log RabbitMQ、`auth_token`、`db_partition` / `db-switch`、`transfer wallet deadlock compensation`
 - source code: `GameController`、`GameFacade`、`GameFlowFacade`、`AgentApiFacade`、`TransferBalanceController`、`TransferBalanceFacade`、`TransferBalanceService`、`BetRecordManageService`、`CompensationService`、Quartz notify / table creator 類路徑
 
-未完成:
+未完成 / 待回填:
 
-- 未做 `antplay-slot-game-api` 全量 Step 1 / Step 2。
-- 未逐條 flow 建立 `flow.md` / `career-interview.md`。
+- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 3` 已完成；其餘 candidate flows 尚未逐條建立 `flow.md` / `career-interview.md`。
 - 未掃 `antplay-slot-game-job`，不能把 game-api claim 擴張成批次 / projection / backup owner。
 - 未逐檔逐行 Level 3。
 
@@ -234,7 +233,7 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；下一步應做 Flow Track Step 1，挑出最值得面試深挖的代表 flow。第一批最值得比較的是「slot bet-settle-rollback」、「transfer-wallet-money-in-out」、「request-log-rabbitmq-async」、「bet-record-sharding-schema-route」。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 3`。下一步若繼續本 repo，應做 `transfer-wallet-money-in-out Step 4`，把 transfer wallet flow 轉成正式面試 case。
 
 ```text
 antplay antplay-slot-game-api Step 1

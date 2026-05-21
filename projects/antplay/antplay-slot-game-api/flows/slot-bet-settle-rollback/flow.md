@@ -280,8 +280,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，下一步應回到同 project 的下一條候選 flow，做 `transfer-wallet-money-in-out Step 3`，補足 transfer-in / transfer-out / transfer-out-all 與 wallet consistency 的 project-local 深掃。
+本 flow 已完成 Step 5。依 Step 2 ranking，後續已完成同 project 下一條候選 flow `transfer-wallet-money-in-out Step 3`；目前下一步應做 `transfer-wallet-money-in-out Step 4`，把 transfer wallet flow 轉成正式面試 case。
 
 ```text
-antplay antplay-slot-game-api transfer-wallet-money-in-out Step 3
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 4
 ```

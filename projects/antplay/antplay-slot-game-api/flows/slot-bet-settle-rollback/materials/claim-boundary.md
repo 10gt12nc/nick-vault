@@ -48,4 +48,4 @@
 
 ## 5. 下一步邊界
 
-本 flow 已完成 Step 5。下一步回同 project Step 2 ranking，做第二順位 `transfer-wallet-money-in-out Step 3`；它會補 transfer-in / transfer-out / transfer-out-all 的 wallet consistency，不能把本 flow 當成整個 project 已完成。
+本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out Step 3` 已完成；目前下一步是 `transfer-wallet-money-in-out Step 4`，不能把本 flow 當成整個 project 已完成。
