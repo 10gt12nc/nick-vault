@@ -342,7 +342,7 @@ fixed-multi-bet-currency-math-core-compatibility
 下一步:
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
 ```
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
@@ -350,3 +350,5 @@ antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 2026-05-20 更新：`rtp-reel-strip-simulation-validation` 已完成 Step 5，材料位於 `flows/rtp-reel-strip-simulation-validation/`。本 flow 只強化 `*-math` grouped bullet，不直接更新 05 / 08；後續已回 Step 2 ranking 做 Rank 3。
 
 2026-05-21 更新：`buy-free-scatter-rtp3-result-contract` 已完成 Step 5，材料位於 `flows/buy-free-scatter-rtp3-result-contract/`。本 flow 補上 `spn-math` RTP_3 / buy free / scatter direct evidence 與 game-api runtime caller，已轉成 pricing / routing / result contract consistency 面試 case，並完成單條 flow claim gate；下一步回 Step 2 ranking 做 Rank 4 `jackpot-symbol-hit-and-prize-scaling Step 3`。
+
+2026-05-21 更新：`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 3，材料位於 `flows/jackpot-symbol-hit-and-prize-scaling/`。本 flow 補上 `sph-math` 三顆 JP symbol hit、`sdt-math` / `slc-math` wild + JackpotFlip + fixedMultiBet scaling、`math-core` JackpotReward contract；目前只作 Step 3 code-backed 初版，不直接更新 05 / 08。下一步做 `jackpot-symbol-hit-and-prize-scaling Step 4`。

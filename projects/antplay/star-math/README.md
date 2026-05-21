@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / grouped / 2026-05-20 |
-| Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 5 已完成；`buy-free-scatter-rtp3-result-contract` Step 5 已完成 |
+| Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 5 已完成；`buy-free-scatter-rtp3-result-contract` Step 5 已完成；`jackpot-symbol-hit-and-prize-scaling` Step 3 已完成 |
 | 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math module 維護 / RTP / reel strip / debug / fixedMultiBet / purchasable free spin |
-| 下一步 | `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3` |
+| 下一步 | `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4` |
 
 ## Claim Boundary
 
@@ -32,6 +32,8 @@
 - [flows/rtp-reel-strip-simulation-validation/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/career-interview.md)
 - [flows/buy-free-scatter-rtp3-result-contract/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/buy-free-scatter-rtp3-result-contract/flow.md)
 - [flows/buy-free-scatter-rtp3-result-contract/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/buy-free-scatter-rtp3-result-contract/career-interview.md)
+- [flows/jackpot-symbol-hit-and-prize-scaling/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/jackpot-symbol-hit-and-prize-scaling/flow.md)
+- [flows/jackpot-symbol-hit-and-prize-scaling/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/flows/jackpot-symbol-hit-and-prize-scaling/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/contribution-claim-consolidation.md)

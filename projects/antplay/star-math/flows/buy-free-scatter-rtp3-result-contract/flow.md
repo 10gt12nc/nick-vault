@@ -259,5 +259,5 @@ Step 5 判定：這條 flow 可作為 `*-math` grouped 履歷 bullet 的強化 e
 ## 15. 下一步
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
 ```

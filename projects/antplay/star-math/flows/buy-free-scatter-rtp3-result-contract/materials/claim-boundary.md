@@ -72,5 +72,5 @@ Step 5 gate 結論:
 下一步:
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
 ```

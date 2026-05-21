@@ -99,5 +99,5 @@ Step 5 判定：
 下一步回 Step 2 ranking，做 Rank 4：
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
 ```
