@@ -6,8 +6,8 @@
 | --- | --- |
 | Flow 中文名稱 | RTP / dark pool / player control runtime decision |
 | Flow slug | `runtime-rtp-darkpool-player-control` |
-| 完成狀態 | Step 4 / 面試案例已完成 |
-| 證據層級 | 真實開發過 + code-backed；本 flow 尚未 Step 5 claim gate |
+| 完成狀態 | Step 5 / 單條 flow claim gate 已完成 |
+| 證據層級 | 真實開發過 + code-backed；可回填 project-level runtime decision claim，但不單獨寫完整 RTP / math / jackpot owner |
 | Flow 類型 | 遊戲 runtime decision / money-risk-adjacent flow |
 | 是否只確認到入口 | 否；已讀 `/game/bet` runtime path、RTP cache、dark pool service、player control、jackpot service、math facade |
 
@@ -244,9 +244,9 @@ MQ:
 - 我會把這條 flow 當成「game API runtime decision」題：每局 bet 不是直接吃 math result，而是先讀 RTP cache、dark pool counters、player control config、jackpot RTP / balance，再決定是否接受結果或 respin。
 - 我會特別講 owner boundary：game-api 負責 runtime orchestration 與資料落點；math-core / game math module 負責 result contract；營運策略與 RTP 設定不是後端單方面決定。
 
-履歷保守 bullet 只能先作 Step 4 草稿:
+履歷保守 bullet 可回填 project-level consolidation:
 
-> 參與 AntPlay slot game API runtime 維護，理解並整理 RTP cache、dark pool、player control、jackpot 與 math result contract 在 `/game/bet` 主流程中的一致性與 failure window。
+> 參與 AntPlay slot game API runtime decision flow 維護，處理 `/game/bet` 中 RTP / dark pool / player control / jackpot 與 math result contract 的整合邊界，協助釐清遊戲結果、池控與下注記錄間的一致性風險。
 
 不能誇大:
 
@@ -311,14 +311,28 @@ Git / history:
 - 未掃 jackpot job / reconciliation job。
 - 未確認最新遠端 refs。
 - 未更新 `05 / 08`。
-- 已完成 Step 4 面試稿；尚未做 Step 5 claim gate。
+- Step 5 已完成單條 flow claim gate；正式履歷 / 自傳仍要由 project-level contribution consolidation 統一更新。
 
-## 16. Step 4 結論
+## 16. Step 5 Claim Gate
 
-`runtime-rtp-darkpool-player-control` Step 4 已完成，現在可作 game-api runtime decision 的正式面試案例。它的價值是把前面四條 money / wallet / MQ / sharding flow 之外的「遊戲結果決策層」補起來，並和 `*-math` 的 math module 經驗形成邊界：game-api 決定何時用哪個 RTP、何時接受 / 重轉結果；math module 產生結果本身。
+Step 5 補讀 path-specific log、重要 diff 與 current blame 後，結論如下。
 
-下一步建議做 Step 5，追 Nick / `10gt12nc` 重要 diff、current blame、math / consumer / reconciliation 邊界，決定本 flow 可否回填 project-level claim。
+可回填 project-level claim:
+
+- Nick / `10gt12nc` 對 `GameFacade#bet` 的 respin loop、2 分鐘 timeout / transfer wallet refund branch、dark pool `maxWin` / `singleBetDp` / `singleWinDp`、player control result 接入與 bet / afterBet failure window 有 direct evidence，核心 commit 是 `a2b2af5`、`54078fe`、`31d7a46`。
+- Nick / `10gt12nc` 對 target RTP / dark pool setting 取捨有歷史修正 evidence，包含 `e0921e7`、`168f951`、`f382d73`、`d2eff9f`、`def5073`、`3922cc0`。但這些多數已成為歷史 context 或被後續改寫，不能寫成現行 RTP cache owner。
+- Nick / `10gt12nc` 對 player control table / schema path 有 direct evidence，包含 `2708045` 與 `718a207` 周邊。但 player control 初版與 MQ producer 主體主要是 Derek，不能寫成 Nick 主導完整 player control。
+- 本 flow 可以保守支撐「game API runtime decision / result acceptance / dark pool failure window」面試與 project-level 履歷素材。
+
+不可升級的 claim:
+
+- 不寫完整 RTP 策略 owner；current `RtpCache` normal / activity / jackpot fallback 主要 blame 到 Arnold / Eliot。
+- 不寫完整遊戲數學 owner；game-api 只透過 `SlotMathFacade` 呼叫 math module，實際 result contract 屬 `math-core` / `*-math` 邊界。
+- 不寫完整 player control / jackpot / dark pool platform owner；player control 初版、jackpot service 主體、additional_info 與 jackpot policy 多數是他人後續 context。
+- 不寫完整補償 / reconciliation 已落地；current develop 中 deadlock compensation 的實際 refund / fail 標記呼叫被後續註解，player control MQ consumer、jackpot / dark pool reconciliation job 也未掃。
+
+本 flow 已完成 Step 5；因 `antplay-slot-game-api` Step 2 本批代表 flows 全部 Step 5，下一步應回到 project-level contribution claim consolidation，將 rolling consolidation refresh 成目前更完整的一版，再決定是否回填 `05 / 08`。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

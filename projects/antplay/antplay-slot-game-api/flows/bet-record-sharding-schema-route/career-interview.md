@@ -88,8 +88,8 @@ Method 看起來有 annotation，但呼叫沒有經過 Spring proxy，例如 sel
 
 ## 後續回填
 
-本 flow 已回填 project-level consolidation。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 4` 已完成；下一步做 Rank 5 Step 5，補 claim gate 與履歷邊界。
+本 flow 已回填 project-level consolidation。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 已完成；下一步做 project-level contribution claim consolidation。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

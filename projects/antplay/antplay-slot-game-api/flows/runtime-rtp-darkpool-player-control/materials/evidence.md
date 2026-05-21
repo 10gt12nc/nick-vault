@@ -4,8 +4,8 @@
 
 | 項目 | 內容 |
 | --- | --- |
-| Step | Step 4 |
-| 掃描深度 | Level 2 Flow 深掃 |
+| Step | Step 5 |
+| 掃描深度 | Level 2+ Flow claim gate；補 path-specific log、重要 diff、current blame |
 | source repo | `/Users/nick/Git/antplay/antplay-slot-game-api` |
 | branch | `develop` |
 | local HEAD | `079aa66` |
@@ -153,16 +153,55 @@ Nick / `10gt12nc` path-specific evidence:
 - Senior 追問：RTP cache miss、Redis counter loss、respin timeout、PlayerControl MQ failure、Jackpot side effect failure。
 - Lead / Architect 追問：runtime evaluator、game-api / math module 邊界、policy service 拆分、可觀測與可回放。
 
-## 8. 本輪未做
+## 8. Step 5 Claim Gate 補充
+
+本輪 Step 5 重新確認 source repo 狀態：
+
+- branch: `develop`
+- local HEAD: `079aa66`
+- local `origin/develop`: `079aa66`
+- ahead / behind: `0 / 0`
+- source working tree: clean
+- remote fetch: 前一輪已失敗一次，依 KB 不反覆重試；本輪依本地 refs / 本地 working tree 保守分析。
+
+本輪補讀：
+
+- `git show --stat` / 重要 diff：`a2b2af5`、`54078fe`、`31d7a46`、`2708045`、`68ca116`、`3922cc0`、`def5073`、`d2eff9f`、`f382d73`、`168f951`、`e0921e7`、`29e537a`、`1ec63e0`、`d9de587`、`9a01dfe`、`32a18d7`。
+- current blame：`GameFacade#bet` RTP selection、respin loop、dark pool `maxWin`、player control branch、additional_info、deadlock catch、dark pool counter update、playerControl setData、jackpot setData caller。
+- current code：`RtpCache`、`PlayerControlService`、`JackpotService`、`SlotMathFacade`。
+
+Step 5 direct evidence:
+
+| Evidence | 判斷 |
+| --- | --- |
+| `a2b2af5` | Nick / `10gt12nc` 大幅改 `GameFacade#bet`，current blame 顯示 respin loop、2 分鐘 timeout、transfer wallet timeout refund branch、math result call、jackpot amount、singleBet / singleWin / dark pool maxWin、player control result、force respin loop 多段仍在現行 code。 |
+| `54078fe` | Nick / `10gt12nc` 將 `afterBet` 納入 try block，導入 `WalletFlag` 追蹤 transfer wallet 是否已變動，補 deadlock catch 的 refund / fail-state 計算邏輯；current develop 後續把實際 refund / fail 標記呼叫註解，仍可作 failure window / compensation attempt evidence。 |
+| `31d7a46` | Nick / `10gt12nc` 補強 deadlock compensation log；可說參與 failure observability / diagnosis，不說完整補償落地。 |
+| `2708045` | Nick / `10gt12nc` 修 `PlayerControlCacheService` 查詢 `ag_player_control` table；可作 player control schema path / query evidence。 |
+| `718a207` 周邊 blame | Nick / `10gt12nc` 對 `PlayerControlService#changePlayerControlStatus` SQL / schema path 有 direct evidence；可作 player control status path 維護 evidence。 |
+| `e0921e7`、`168f951`、`f382d73`、`d2eff9f`、`def5073`、`3922cc0` | Nick / `10gt12nc` 有 target RTP / dark pool setting 取捨與 fallback 修正歷史；多數已被後續 RtpCache / activity RTP / jackpot RTP 改寫，只能作 context，不作現行 RTP cache owner。 |
+| `29e537a`、`1ec63e0`、`d9de587` | 他人後續補 additional_info、jackpot / player control condition、jackpotDpControl；這些是 current behavior context，不歸為 Nick direct contribution。 |
+| `RtpCache` current blame | normal / activity / jackpot RTP fallback 主體多為 Arnold / Eliot；不可寫 Nick 主導完整 RTP cache。 |
+| `PlayerControlService` current blame | 初版、MQ publish 與主要 process logic 多為 Derek / Arnold；Nick 有 schema / status SQL / caller 周邊 evidence，不寫完整 player control owner。 |
+| `JackpotService` current blame | jackpot force respin / setData 主體多為 Arnold / Derek；Nick 只有周邊 schema / caller context，不寫 jackpot owner。 |
+
+Step 5 結論:
+
+- 本 flow 可以回填 `antplay-slot-game-api` project-level claim，口徑是「game API runtime decision / result acceptance / dark pool failure window / RTP and math contract boundary」。
+- 本 flow 不能單獨升級成「完整 RTP 策略、完整遊戲數學、完整 player control / jackpot / dark pool platform owner」。
+- 不直接更新 `05 / 08`；因本批代表 flows 已全部 Step 5，下一步應做 project-level contribution consolidation refresh。
+
+## 9. 本輪未做
 
 - 未改 source repo。
 - 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
-- 未把本 flow 升級成完整履歷 claim。
+- 未把本 flow 升級成完整 RTP / math / jackpot owner claim。
 - 未掃 production DB、live Redis 或內網服務。
-- 未做 Step 5 重要 diff / current blame claim gate。
+- 未掃 player control MQ consumer、jackpot / dark pool reconciliation job。
+- 未做 Level 3 逐檔逐行。
 
-## 9. 下一步
+## 10. 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

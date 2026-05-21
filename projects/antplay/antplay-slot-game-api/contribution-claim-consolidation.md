@@ -12,7 +12,7 @@
 
 2026-05-21 補充：`request-log-rabbitmq-async` 已完成 Step 5。已追到 game-api `AgentApiFacade#sendRequestLogMq` producer、RabbitMQ exchange / queue / routing key、admin-api `RequestLogListener` consumer 與落庫 SQL，並確認 Nick / `10gt12nc` 在 #774 producer / consumer 兩側都有 direct commits。這可以回填 project-level async audit / observability claim；但不單獨寫成完整 RabbitMQ architecture、exactly-once、outbox、DLQ / retry / alert 或 event platform owner，且 routing key / queue key 最終格式修正屬他人 context evidence。
 
-2026-05-21 補充：`runtime-rtp-darkpool-player-control` 已完成 Step 4。已確認 `/game/bet` runtime path 會串 RTP cache、dark pool total bet / win、player control、jackpot RTP / balance 與 `SlotMathFacade` math result contract，並已整理成正式面試案例。這可作 game API runtime decision 的面試素材；尚未 Step 5 claim gate，不直接升級履歷，不寫完整 RTP 策略、遊戲數學、dark pool / player control / jackpot platform owner。
+2026-05-21 補充：`runtime-rtp-darkpool-player-control` 已完成 Step 5。已確認 Nick / `10gt12nc` 在 `GameFacade#bet` respin loop、2 分鐘 timeout / transfer wallet refund branch、dark pool `maxWin` / `singleBetDp` / `singleWinDp`、player control setData caller、deadlock / afterBet failure window 有 direct evidence，可回填 project-level game API runtime decision / result acceptance / dark pool failure window 素材。限制是：current `RtpCache` 主體、player control 初版與 jackpot service 主體多為他人，不寫完整 RTP 策略、遊戲數學、dark pool / player control / jackpot platform owner；current develop 中部分 deadlock compensation 呼叫也已被後續註解。
 
 履歷可以保守寫:
 
@@ -39,7 +39,7 @@
 | slot bet / settle / rollback flow | 真實開發過 + code-backed | `slot-bet-settle-rollback` Step 5 已完成；`a2b2af5`、`54078fe`、`31d7a46`、`d3e0002` 等 direct commits 支撐下注、settle、transfer wallet failure window 與 request log async audit |
 | whitelist / auth token | 真實開發過 | `#684` 白名單功能、`auth_token 擋 game_code` 系列，涉及 `WhiteIpFilter`、`PublicAuthFacade`、`AuthTokenService`、`GameFacade` |
 | Kafka | 只作歷史嘗試，不作現行 claim | `feat(#kafka): kafka JOB` 後有 `Revert "feat(#kafka): kafka JOB"`，不得寫成現行 Kafka production owner |
-| final 全量 flow | 部分完成 / 待補 | Step 1 / Step 2 已完成，第一條代表 flow `slot-bet-settle-rollback` 已完成 Step 5；其餘 candidate flows 尚未深掃，本檔仍是 rolling consolidation |
+| final 全量 flow | 待 project-level refresh | Step 1 / Step 2 已完成；本批代表 flows `slot-bet-settle-rollback`、`transfer-wallet-money-in-out`、`request-log-rabbitmq-async`、`bet-record-sharding-schema-route`、`runtime-rtp-darkpool-player-control` 均已 Step 5；本檔仍是 rolling consolidation，下一步需 refresh / final-ish consolidation |
 
 ## Source Scan Record
 
@@ -73,7 +73,7 @@
 
 未完成 / 待回填:
 
-- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5` 與 `bet-record-sharding-schema-route Step 5` 已完成；`bet-record-sharding-schema-route` 可回填 high-traffic table governance / schema route / partition key evidence，但不單獨寫完整 sharding owner。
+- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 5` 已完成。`runtime-rtp-darkpool-player-control` 可回填 game API runtime decision / result acceptance / dark pool failure window evidence，但不單獨寫完整 RTP / math / jackpot owner。
 - 未掃 `antplay-slot-game-job`，不能把 game-api claim 擴張成批次 / projection / backup owner。
 - 未逐檔逐行 Level 3。
 
@@ -213,6 +213,7 @@ Step 5 後更精準的單條 flow 口徑:
 - 參與 AntPlay slot game API 下注 / 結算主線維護，處理 `/game/bet`、bet record state、single / transfer wallet、provider settle / rollback、request log MQ 與補通知相關一致性議題。
 - 參與 transfer wallet 相關維護，處理 `transferReferenceId` 防重、transaction / order lookup、DB wallet / Redis balance、分表與 wallet update failure-window 的 code-backed 分析與改造。
 - 參與 provider API request log RabbitMQ 非同步化，將 request / response / error / elapsed time audit 從 game-api 主流程同步落庫改為 MQ producer + admin-api consumer 落庫；可講 audit side effect 解耦、at-least-once + consumer dedupe、routing contract 與 observability loss 邊界。
+- 參與 AntPlay slot game API runtime decision flow 維護，處理 `/game/bet` 中 RTP / dark pool / player control / jackpot 與 math result contract 的整合邊界；可講 respin loop、dark pool `maxWin`、timeout refund branch、result acceptance 與 side effect failure window。
 
 可面試講:
 
@@ -221,11 +222,13 @@ Step 5 後更精準的單條 flow 口徑:
 - Deadlock / DB 更新失敗時，哪些錢已扣、哪些 log 已寫、哪些 callback 已送，補償要怎麼保守處理。
 - Bet record / request log 分表如何影響查詢、job、schema routing 與 AOP self-call。
 - Request log MQ 化後，延遲落庫 / 重複訊息 / consumer failure 如何界定 owner boundary。
+- Runtime decision 如何在 game-api、math module、營運策略與 money correctness 間切責任：RTP cache / dark pool / player control / jackpot 只是 result acceptance guardrail，不等於完整遊戲數學 owner。
 
 不可誇大:
 
 - 不說主導完整 AntPlay slot platform。
 - 不說完整遊戲數學 / RTP 策略 owner。
+- 不說完整 dark pool / player control / jackpot platform owner。
 - 不說完整 wallet / ledger / reconciliation owner。
 - 不說 deadlock compensation 已完整落地；本地 `develop` 中實際 refund / fail 標記呼叫目前被註解。
 - 不說完整 RabbitMQ / Kafka architecture、exactly-once、outbox 或完整 event-driven platform。
@@ -243,8 +246,8 @@ Step 5 後更精準的單條 flow 口徑:
 
 2026-05-21 補充：`bet-record-sharding-schema-route Step 5` 已完成。Nick / `10gt12nc` 對 `@UseSchema` / schema route、#167 bet record 分表、db_partition v2、table creator service 有 direct evidence；可把 high-traffic table governance / partition key 查寫 / schema route 補進 project-level 面試與履歷素材。仍不得寫完整 sharding platform owner、production automatic table creation owner 或已確認 logical-to-physical live route。
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 4`。下一步若繼續本 repo，應做 `runtime-rtp-darkpool-player-control Step 5`。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 5`。本批代表 flows 已全部 Step 5，下一步應 refresh project-level contribution consolidation，再決定是否回填 `05 / 08`。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

@@ -302,8 +302,8 @@ Evidence:
 
 ## 16. 下一步
 
-本 flow 已完成 Step 5。後續 Rank 4 `bet-record-sharding-schema-route Step 5` 也已完成，Rank 5 `runtime-rtp-darkpool-player-control Step 4` 已完成；下一步做 Rank 5 Step 5。
+本 flow 已完成 Step 5。後續 Rank 4 `bet-record-sharding-schema-route Step 5` 與 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 也已完成；下一步做 project-level contribution claim consolidation。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

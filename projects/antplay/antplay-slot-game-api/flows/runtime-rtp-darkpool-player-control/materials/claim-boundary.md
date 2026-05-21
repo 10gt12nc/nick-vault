@@ -2,18 +2,18 @@
 
 ## 0. 狀態
 
-Step 4 完成。這份是面試素材後的 claim boundary，不是 Step 5 claim gate。
+Step 5 完成。這份是單條 flow claim gate，仍不直接代表整個 project 履歷結論。
 
 ## 1. 目前可以說
 
-- 這條 flow 已完成 Level 2 初版深掃與 Step 4 面試案例，確認 `GameFacade#bet` 會串 RTP cache、dark pool、player control、jackpot 與 math result。
-- Nick / `10gt12nc` 在 `GameFacade` runtime decision 周邊有 direct commits，包含 dark pool / respin loop / bet runtime failure window 附近。
-- 這條 flow 可作「game API runtime decision」正式面試素材。
+- 這條 flow 已完成 Level 2 深掃、Step 4 面試案例與 Step 5 claim gate。
+- Nick / `10gt12nc` 在 `GameFacade` runtime decision 周邊有 direct commits，包含 respin loop、2 分鐘 timeout / refund branch、dark pool `maxWin`、player control setData caller、deadlock / afterBet failure window。
+- 本 flow 可作「game API runtime decision」正式面試素材，也可回填 project-level consolidation。
 
 ## 2. 目前只能保守說
 
-- 參與或分析 AntPlay slot game-api runtime 維護。
-- 理解 RTP / dark pool / player control / jackpot / math contract 在 `/game/bet` 的整合方式。
+- 參與 AntPlay slot game-api runtime decision flow 維護。
+- 處理或參與分析 RTP / dark pool / player control / jackpot / math contract 在 `/game/bet` 的整合方式與 failure window。
 - 可面試講 failure window、owner boundary 與重構思路。
 
 ## 3. 目前不能說
@@ -26,28 +26,19 @@ Step 4 完成。這份是面試素材後的 claim boundary，不是 Step 5 claim
 - 不能說 RTP cache 完整 owner；現行 blame 主要是 Arnold / Eliot，Nick 有早期 target RTP 修正 context。
 - 不能說完整 compensation 已落地；部分 deadlock compensation 呼叫在 current develop 被註解。
 
-## 4. Step 5 前待補 evidence
+## 4. Step 5 已補 evidence
 
-- `git show` 細讀 Nick / `10gt12nc` commits：
-  - `a2b2af5`
-  - `54078fe`
-  - `2708045`
-  - `68ca116`
-  - `3922cc0`
-  - `def5073`
-  - `d2eff9f`
-  - `f382d73`
-  - `168f951`
-  - `e0921e7`
-- 追 `math-core` / `*-math` result contract 是否能補 code-backed 邊界。
-- 追 player control MQ consumer。
-- 追 jackpot / dark pool reconciliation。
+- `a2b2af5`: current `GameFacade#bet` respin loop、timeout refund branch、math result call、jackpot amount、dark pool `maxWin` / `singleWinDp` / `singleBetDp`、player control result 周邊有 Nick direct evidence。
+- `54078fe` / `31d7a46`: deadlock / afterBet failure window、transfer wallet compensation attempt 與 logging direct evidence；但 current develop 後續把實際 refund / fail-state 呼叫註解。
+- `2708045` / `718a207` 周邊：player control table / schema path direct evidence。
+- `e0921e7` / `168f951` / `f382d73` / `d2eff9f` / `def5073` / `3922cc0`: target RTP / dark pool setting 歷史修正 evidence；多數已是 context，不能升級成現行 RTP cache owner。
+- current blame 已確認 `RtpCache`、player control 初版、jackpot service 主體多為他人。
 
-## 5. Step 3 履歷草稿
+## 5. Step 5 履歷候選
 
-目前只可作 Step 4 草稿，不直接寫入 `05 / 08`：
+可回填 project-level consolidation，不直接寫入 `05 / 08`：
 
-> 參與 AntPlay slot game API runtime 維護，理解並整理 RTP cache、dark pool、player control、jackpot 與 math result contract 在 `/game/bet` 主流程中的一致性與 failure window。
+> 參與 AntPlay slot game API runtime decision flow 維護，處理 `/game/bet` 中 RTP / dark pool / player control / jackpot 與 math result contract 的整合邊界，協助釐清遊戲結果、池控與下注記錄間的一致性風險。
 
 ## 6. Step 4 後可面試講
 
@@ -59,5 +50,5 @@ Step 4 完成。這份是面試素材後的 claim boundary，不是 Step 5 claim
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

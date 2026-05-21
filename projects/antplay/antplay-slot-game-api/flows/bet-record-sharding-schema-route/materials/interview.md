@@ -102,5 +102,5 @@ Step 5 已追 commit / blame / diff。可以回填 project-level contribution co
 ## 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```

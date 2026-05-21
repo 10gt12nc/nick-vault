@@ -280,8 +280,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out`、第三條 `request-log-rabbitmq-async` 與第四條 `bet-record-sharding-schema-route` 都已完成 Step 5，Rank 5 `runtime-rtp-darkpool-player-control Step 4` 已完成；下一步做 Rank 5 Step 5。
+本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out`、第三條 `request-log-rabbitmq-async`、第四條 `bet-record-sharding-schema-route` 與 Rank 5 `runtime-rtp-darkpool-player-control` 都已完成 Step 5；下一步做 project-level contribution claim consolidation。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
+antplay antplay-slot-game-api contribution claim consolidation
 ```
