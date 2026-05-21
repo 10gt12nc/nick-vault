@@ -71,3 +71,26 @@
 - `game_job daily-game-data-summary` / `third-party-record-mongo-backup`：有局部 direct commits。
 
 本 flow 目前是補強「面試能講清楚 runtime wallet / idempotency」的素材，不是新增正式履歷 claim。
+
+## Step 4 更新
+
+日期：2026-05-21
+
+本 flow 已完成 Step 4，正式轉成面試 case；但 evidence 層級不升級。
+
+可用方式：
+
+- 面試中可講「code-backed 分析過 gameserver center_http 上分 / 下分」。
+- 可用來展示 Senior / Owner 思考：上游 order state、runtime wallet mutation、per-account queue、`billNos` idempotency、currency log、side effect compensation、reconciliation。
+
+仍不可用方式：
+
+- 不寫進正式履歷主 bullet。
+- 不寫 Nick 主導上分 / 下分。
+- 不寫 Nick 建立 processed bill / query-by-billNo / reconciliation，因為這些是 owner 建議，不是已確認落地成果。
+
+Step 5 claim gate 時要重新檢查：
+
+- 是否有 Nick 本人確認。
+- 是否有 `10gt12nc` direct commit 命中 `DEPOSIT/WITHDRAW`、`HttpNewBill`、`NewBillJob` 或上游 direct caller。
+- 是否有 MR / ticket / incident 可證明 Nick 參與過本 flow 的維護或修復。

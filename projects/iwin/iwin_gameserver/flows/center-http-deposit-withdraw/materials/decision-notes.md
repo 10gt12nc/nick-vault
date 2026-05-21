@@ -81,3 +81,41 @@ Owner 風險：
 - 本次證據可支援 code-backed 分析。
 - 不能支援 Nick 主導 gameserver wallet。
 - 若要升級，需要 Nick 本人確認、MR / ticket / production issue，或 path-specific commit diff 直接命中本 flow。
+
+## Decision 7：Step 4 面試時先講保護，再講缺口
+
+這條 flow 面試時不要只講「沒有防重」；比較成熟的說法是先承認既有設計有保護，再指出保護範圍。
+
+已確認的保護：
+
+- `HttpService` 只做參數驗證與 job 建立，不直接改錢。
+- `HttpNewBill` 會先查 player data，再丟 `CenterWorld.addGamePool(accountId, job)`。
+- 同一玩家在 gameserver 內的 wallet mutation 會被序列化。
+- `NewBillJob` 會檢查玩家存在、封禁、內部帳號與餘額不足。
+
+缺口：
+
+- per-account queue 不等於 idempotency。
+- `billNos` 目前在主要路徑只看到進 log / format balance，未看到 mutation 前 duplicate guard。
+- side effects 不是同 transaction，不能靠重送改錢 command 修復。
+
+面試表達：
+
+```text
+這套設計已經有同玩家序列化與基本 wallet guard，但跨服務 retry 的 business idempotency 還要另外處理。
+```
+
+## Decision 8：Step 5 前不更新 05 / 08
+
+Step 4 是 interview case，不是履歷 claim gate。
+
+本輪不更新：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+
+原因：
+
+- 目前沒有新 evidence 證明 Nick / `10gt12nc` 直接開發 center_http `DEPOSIT/WITHDRAW`。
+- project-level 可放履歷的 `iwin_gameserver` claim 已由第三方 provider 投派整合支撐。
+- 本 flow 要等 Step 5 再做正式 claim gate。

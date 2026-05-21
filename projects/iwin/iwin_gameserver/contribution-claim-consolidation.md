@@ -49,7 +49,7 @@
 - 未 checkout 每個遠端 branch 做逐 branch 完整差異收斂。
 - 未掃 production ticket、MR 討論、線上 incident、provider 官方 spec。
 - 未掃全部 game modules、dbproxy 落庫細節、DB unique index。
-- 未完成 `center-http-deposit-withdraw` Step 4 / Step 5，因此完整 project final consolidation 仍需之後校正。
+- 未完成 `center-http-deposit-withdraw` Step 5，因此完整 project final consolidation 仍需之後校正。
 
 ## 直接 evidence
 
@@ -93,18 +93,18 @@
 
 ## 後續回填規則
 
-這份是 rolling / scoped consolidation。後續若 `center-http-deposit-withdraw` 完成 Step 4 / Step 5，或新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
+這份是 rolling / scoped consolidation。後續若 `center-http-deposit-withdraw` 完成 Step 5，或新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver center-http-deposit-withdraw Step 5
 ```
 
 原因：
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
-- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 已有 Step 3，下一步應轉成 Step 4 面試 case。
+- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 已有 Step 4，下一步應做 Step 5 claim gate。
 - 這會繼續補 gameserver money flow 的上分 / 下分口徑，但不會把第三方投派 evidence 誤擴張成上分 / 下分 owner。

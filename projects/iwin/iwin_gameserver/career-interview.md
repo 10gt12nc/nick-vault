@@ -1,6 +1,6 @@
 # iwin_gameserver Career / Interview Boundary
 
-更新時間：2026-05-20
+更新時間：2026-05-21
 證據層級：部分真實開發過 + code-backed；center-http 上分 / 下分仍為分析素材 / learning-only
 
 ## Project-level 結論
@@ -18,7 +18,7 @@
 | Flow | Step 狀態 | 可用方式 | 正式履歷判斷 |
 | --- | --- | --- | --- |
 | `third-party-transfer-in-out` | Step 5 已完成；project consolidation 已升級 | 有直接開發 evidence 的面試案例：wallet correctness、idempotency、failure window、reconciliation、observability | 可併入 project-level 第三方 provider 投派整合保守 claim |
-| `center-http-deposit-withdraw` | Step 3 已完成 | 面試分析素材：center_http 上分 / 下分、payment / game_api order boundary、wallet mutation、timeout retry、`billNos` idempotency | 暫不放正式履歷 / 自傳；Step 4 後再整理正式 case |
+| `center-http-deposit-withdraw` | Step 4 已完成 | 正式面試 case：center_http 上分 / 下分、payment / game_api order boundary、wallet mutation、timeout retry、`billNos` idempotency | 暫不放正式履歷 / 自傳；Step 5 再做 claim gate |
 
 ## 可安全使用的 project 語氣
 
@@ -53,17 +53,17 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver center-http-deposit-withdraw Step 5
 ```
 
 原因：
 
-- `center-http-deposit-withdraw` Step 3 已完成，已有 code-backed 主學習包。
+- `center-http-deposit-withdraw` Step 4 已完成，已有 code-backed 正式面試 case。
 - Career Track 的 rolling / scoped consolidation 已完成。
-- 下一步回 Flow Track，把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
+- 下一步回 Flow Track，做 `center-http-deposit-withdraw` Step 5 claim gate。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 flow 與 log projection。
-- 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分仍用 code-backed / 分析過語氣。
+- 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分已完成 Step 4，仍用 code-backed / 分析過語氣。
 - 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner或解決 duplicate callback production incident。

@@ -188,3 +188,66 @@
 - 不宣稱 Nick 主導 gameserver wallet。
 - 不修改公司 repo。
 - 不 pull / merge / checkout 公司 repo。
+
+## Step 4 掃描範圍
+
+任務：`iwin iwin_gameserver center-http-deposit-withdraw Step 4`
+日期：2026-05-21
+掃描等級：Level 2 文件復核 + Step 4 面試 case 整理；未做 Level 3 逐 commit diff
+
+### KB / vault 已重讀
+
+- `AGENTS.md`
+- `senior-owner-playbook/00-operating-rules.md`
+- `senior-owner-playbook/09-ai-prompt-manual.md`
+- `senior-owner-playbook/03-flow-learning-package-template.md`
+- `projects/iwin/iwin_gameserver/README.md`
+- `projects/iwin/iwin_gameserver/step2-flow-comparison.md`
+- `projects/iwin/iwin_gameserver/career-interview.md`
+- `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`
+- `projects/iwin/iwin_gameserver/flows/center-http-deposit-withdraw/flow.md`
+- `projects/iwin/iwin_gameserver/flows/center-http-deposit-withdraw/career-interview.md`
+- `projects/iwin/iwin_gameserver/flows/center-http-deposit-withdraw/materials/interview.md`
+- `projects/iwin/iwin_gameserver/flows/center-http-deposit-withdraw/materials/claim-boundary.md`
+- `projects/iwin/iwin_gameserver/flows/center-http-deposit-withdraw/materials/decision-notes.md`
+
+### Source repo 狀態：`/Users/nick/Git/iwin/iwin_gameserver`
+
+- 已執行 `git fetch --all --prune`
+- local branch：`main`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- working tree：乾淨
+- 本次只讀，未改公司 repo
+
+### Step 4 復核 code path
+
+- `slots-center/src/main/java/com/slots/center/service/HttpService.java`
+  - `cmd=DEPOSIT` / `cmd=WITHDRAW` dispatch。
+  - `onDeposit()` 參數驗證與建立 `HttpNewBill`。
+  - `onWithdraw()` 處理 `withdrawType=1/2` 與 value 轉負。
+- `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
+  - 查 `SqlPlayerData` 後建立 `NewBillJob`。
+  - `CenterWorld.getInstance().addGamePool(accountId, job)`。
+- `slots-center/src/main/java/com/slots/center/job/http/NewBillJob.java`
+  - player / disabled / internal account checks。
+  - type 0 大廳、type 1 銀行錢包修改。
+  - 在遊戲中先 `tryExitGame()`。
+  - `modifyCoin()` 後跑 `recharge()` / `withdraw()` / `afterEvent()`。
+- `slots-center/src/main/java/com/slots/center/data/PlayerData.java`
+  - `modifyAndGetCoinFromBill()`。
+  - `modifyAndGetCoin()`。
+  - `modifyAndGetBankCoin()`。
+  - `buildCurrencyLog()`。
+
+### Step 4 path-specific history 復核
+
+`HttpService.java`、`HttpNewBill.java`、`NewBillJob.java`、`PlayerData.java` 的 `git log --all --` 仍顯示 Nick / `10gt12nc` 在 coupon、Antplay、GSC、PG、第三方投派整合相關 path 有 direct commits；本輪未看到新的 direct evidence 可把 `center-http-deposit-withdraw` 升級為 Nick 真實開發過。
+
+### Step 4 結論
+
+- 已把本 flow 轉成正式面試 case。
+- 仍不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- claim 維持 `專案存在 / code-backed`。
+- 下一步應做 Step 5 claim gate，確認是否維持 interview-only 或有新 evidence 可回填 project-level claim。

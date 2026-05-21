@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 3
+狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 4
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -10,7 +10,7 @@
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
 1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
-2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 3，下一步 Step 4。
+2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 4，下一步 Step 5。
 3. 打碼目標設定與查詢。
 4. 遊戲 spin / 結算 / log_reel 投注流水。
 5. dbproxy 的 MySQL / Redis 查寫代理。
@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 4` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 5` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -336,7 +336,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-`center-http-deposit-withdraw` Step 3 已完成。若進 Step 4，應優先重讀：
+`center-http-deposit-withdraw` Step 4 已完成。若進 Step 5，應優先重讀：
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
@@ -354,12 +354,12 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver center-http-deposit-withdraw Step 5
 ```
 
 原因：
 
-- `center-http-deposit-withdraw` Step 3 已完成主學習包。
+- `center-http-deposit-withdraw` Step 4 已完成正式面試 case。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步先把 `center-http-deposit-withdraw` 轉成 Step 4 面試 case。
+- 下一步做 `center-http-deposit-withdraw` Step 5 claim gate。
 - 後續若 `center-http-deposit-withdraw` 完成 Step 5，再回填校正 project-level claim。

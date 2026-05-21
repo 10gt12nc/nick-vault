@@ -1,5 +1,8 @@
 # Interview：center-http-deposit-withdraw
 
+狀態：Step 4 正式面試 Q&A
+證據層級：專案存在 / code-backed；不可直接寫成 Nick 真實開發過
+
 ## Q1：這條 flow 的核心問題是什麼？
 
 核心不是「HTTP API 怎麼寫」，而是 payment / game_api 已經決定要上分或下分後，gameserver 怎麼安全修改玩家 runtime wallet。
@@ -74,3 +77,43 @@
 - activity side effects 與 log consistency。
 
 但不能寫 Nick 主導 gameserver wallet 或完整金流 owner，除非後續補本人確認、MR / ticket / production issue 或 direct path commit evidence。
+
+## Q8：面試官問「這是不是你做的」要怎麼答？
+
+保守答法：
+
+我在這條 flow 上目前用 code-backed 分析語氣，不把它說成我主導。我的強 evidence 在 `iwin_gameserver` 第三方 provider 投派整合、`payment` provider / order 維護、`game_api` coupon 與部分 `game_job`。這條 center_http 上下分 flow 我會用來說明我能讀懂 runtime wallet path、transaction boundary、idempotency 與 reconciliation 風險。
+
+## Q9：如果要設計 `billNos` idempotency，key 怎麼選？
+
+我會先用：
+
+```text
+accountId + cmd + billNos
+```
+
+再校驗 `value`、`type`、`reason` 與 upstream source。相同 key 且 payload 相同時回第一次結果；相同 key 但 payload 不同時回 conflict，不改錢。
+
+如果只用 `billNos`，不同上游或不同 wallet type 的資料污染風險比較高；如果 key 太細又可能讓重送繞過防重。實務上還要看 payment / game_api 的 bill number contract。
+
+## Q10：Step 4 的三分鐘面試主線怎麼收斂？
+
+可以照這個順序：
+
+1. 先講這條 flow 的業務風險：跨上游訂單與 gameserver wallet。
+2. 再講 code path：`HttpService -> HttpNewBill -> NewBillJob -> PlayerData`。
+3. 接著講已確認的保護：per-account game pool。
+4. 然後講缺口：`billNos` 在主要路徑目前只看到進 log，未看到 duplicate guard。
+5. 最後講 owner decision：processed bill、query-by-billNo、mutation audit、log replay、reconciliation。
+
+## Q11：如果 log 和 wallet 不一致，排查順序是什麼？
+
+先查上游 order，再查 gameserver mutation trace / `LogUtil.BALANCE`，再查 currency log / game coin log，最後查 recharge / withdraw side effects。不能只看某一張 log 表就判斷錢包 truth，因為 Step 3 已看到 `buildCurrencyLog()` 例外不會 rollback 已改的 coins / bankCoin。
+
+## Q12：這條 flow 對 Senior Backend 有什麼價值？
+
+價值在於它能展現三個能力：
+
+- 看懂跨服務 source of truth，不把 payment order 和 runtime wallet 混成一個 transaction。
+- 看懂 concurrency 和 idempotency 的差異。
+- 能提出 owner 級補強，不只是說「加 try-catch」或「重試」。

@@ -661,6 +661,40 @@ Lead / Architect 追問：
 - Random transform 要如何支援 deterministic debug / replay？
 - SFM single-round transform 和 SLC cross-free-spin tracker 的 state owner 有什麼不同？
 
+## 案例 17：center_http 上分 / 下分 wallet mutation
+
+對應 flow：
+
+- `iwin_gameserver/center-http-deposit-withdraw`
+
+證據邊界：
+
+- 已完成 Step 4，可作 code-backed 正式面試 case。
+- 目前仍不放正式履歷 / 自傳，不說 Nick 主導 gameserver wallet 或完整上分 / 下分。
+- `iwin_gameserver` 正式履歷 claim 仍限定在第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接；本 flow 等 Step 5 再做 claim gate。
+
+面試主軸：
+
+center_http 上分 / 下分不是單純 HTTP API，而是上游訂單或 API 操作進入 gameserver 後，真正改玩家 runtime wallet 的路徑。Senior 要能拆清楚上游 order state、gameserver wallet mutation、per-account queue、`billNos` idempotency、currency log、充值 / 提現 side effects 與 timeout 後 ambiguous success。
+
+可講重點：
+
+- `HttpService` 解析 `DEPOSIT/WITHDRAW`，`onDeposit()` 驗 value / type，`onWithdraw()` 處理 `withdrawType` 並把 value 轉負。
+- `HttpNewBill` 查 `SqlPlayerData` 後，把 `NewBillJob` 丟進 `CenterWorld.addGamePool(accountId, job)`。
+- Per-account queue 能降低同玩家 wallet race，但不能替代 business idempotency。
+- `NewBillJob` 改大廳或銀行錢包，之後才跑 currency log、充值 / 提現 side effects 與玩家通知。
+- 本輪主要路徑未看到 mutation 前用 `billNos` 做 duplicate guard；timeout 後上游不應盲目重送改錢 command。
+- Owner 改善可從 processed bill、query-by-billNo、mutation audit、log replay 與 reconciliation 開始。
+
+Lead / Architect 追問：
+
+- payment / game_api order state 和 gameserver runtime wallet 各自的 source of truth 是什麼？
+- `CenterWorld.addGamePool(accountId, job)` 解決 concurrency 還是 idempotency？
+- `billNos` 應該只作 log 欄位，還是 processed mutation key？
+- wallet 已改但 currency log push 失敗時，對帳以哪個資料為準？
+- 上分成功但 recharge side effects 失敗時，應該重送 `DEPOSIT` 還是補償 side effects？
+- 下分時玩家在子遊戲中，exit game callback 延遲如何影響 HTTP timeout 與上游訂單狀態？
+
 ## 面試回答公式
 
 ```text

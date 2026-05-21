@@ -1,7 +1,7 @@
 # center-http-deposit-withdraw
 
 中文名稱：center_http 玩家上分 / 下分
-Step：3
+Step：4
 掃描等級：Level 2 單條 flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
@@ -210,6 +210,20 @@ Owner 要避免把兩者混成一個 transaction。上游訂單成功不等於 g
 2. 明確的 mutation audit：錢包變更、currency log、上游 response 之間要能查到同一 trace / bill。
 3. Ambiguous success 處理：上游 timeout 後應先 query bill status / player balance mutation，不直接重送改錢命令。
 
+## Step 4 面試 case 摘要
+
+本 flow 已於 2026-05-21 完成 Step 4，正式面試稿見 [career-interview.md](career-interview.md)，詳細 Q&A 見 [materials/interview.md](materials/interview.md)。
+
+面試主軸：
+
+- 這不是完整金流訂單系統，而是 gameserver runtime wallet mutation path。
+- `payment` / `game_api` 是上游 order / API orchestration，`iwin_gameserver` 是玩家 runtime 錢包變更點。
+- `CenterWorld.addGamePool(accountId, job)` 能降低同玩家 in-memory wallet race，但不能取代 `billNos` idempotency。
+- 最大 owner 風險是 HTTP timeout 後 ambiguous success：上游不知道 gameserver 是否已改錢，若盲目重送可能造成重複加扣。
+- coin mutation、currency log、充值 / 提現 side effects 與 HTTP response 不是同一 transaction，必須靠 audit、query-by-billNo、reconciliation 與補償流程收斂。
+
+Step 4 不更新正式履歷 / 自傳。本 flow 目前維持 `專案存在 / code-backed`，可作面試案例；是否能升級為正式履歷 claim，留到 Step 5 claim gate 判斷。
+
 ## 面試 / 履歷邊界摘要
 
 目前可說：
@@ -224,19 +238,18 @@ Owner 要避免把兩者混成一個 transaction。上游訂單成功不等於 g
 - Nick 主導完整金流 / gameserver owner。
 - 本 flow 已證明 Nick 真實開發過。
 
-Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`game_api coupon-redeem-credit-grant`、部分 `game_job` flow。本 flow 先作 code-backed 面試素材，Step 5 再決定是否更新履歷。
+Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`game_api coupon-redeem-credit-grant`、部分 `game_job` flow，以及 `iwin_gameserver` 第三方 provider 投派整合。本 flow 先作 code-backed 面試素材，Step 5 再決定是否更新履歷。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin iwin_gameserver center-http-deposit-withdraw Step 5
 ```
 
 原因：
 
-- Step 3 已建立主學習包。
-- 但本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim；下一步先轉 Step 4 面試 case。
-- Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步先把本 flow 轉 Step 4 面試 case；後續完成 Step 5 時再回填校正 project-level claim。
+- Step 4 已完成正式面試 case。
+- 本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim。
+- 下一步做 Step 5 claim gate，判斷是否只保留面試素材，或能在有足夠 evidence 時回填 project-level claim。
