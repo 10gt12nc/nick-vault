@@ -2,13 +2,13 @@
 
 ## 0. 狀態
 
-Step 3 完成。這份是初步 claim boundary，不是 Step 5 claim gate。
+Step 4 完成。這份是面試素材後的 claim boundary，不是 Step 5 claim gate。
 
 ## 1. 目前可以說
 
-- 這條 flow 已完成 Level 2 初版深掃，確認 `GameFacade#bet` 會串 RTP cache、dark pool、player control、jackpot 與 math result。
+- 這條 flow 已完成 Level 2 初版深掃與 Step 4 面試案例，確認 `GameFacade#bet` 會串 RTP cache、dark pool、player control、jackpot 與 math result。
 - Nick / `10gt12nc` 在 `GameFacade` runtime decision 周邊有 direct commits，包含 dark pool / respin loop / bet runtime failure window 附近。
-- 這條 flow 可作「game API runtime decision」面試素材初版。
+- 這條 flow 可作「game API runtime decision」正式面試素材。
 
 ## 2. 目前只能保守說
 
@@ -45,12 +45,19 @@ Step 3 完成。這份是初步 claim boundary，不是 Step 5 claim gate。
 
 ## 5. Step 3 履歷草稿
 
-目前只可作草稿，不直接寫入 `05 / 08`：
+目前只可作 Step 4 草稿，不直接寫入 `05 / 08`：
 
 > 參與 AntPlay slot game API runtime 維護，理解並整理 RTP cache、dark pool、player control、jackpot 與 math result contract 在 `/game/bet` 主流程中的一致性與 failure window。
 
-## 6. 下一步
+## 6. Step 4 後可面試講
+
+- 以 `/game/bet` 為入口，講 RTP cache、dark pool、player control、jackpot、math result contract 如何共同決定一局結果是否接受。
+- 強調 game-api / math module / 營運策略三者的 owner boundary。
+- 主動揭露風險：cache stale、Redis counter loss、respin timeout、PlayerControl MQ failure、Jackpot side effect failure、audit payload 截斷。
+- 保守說是 code-backed runtime decision case，不直接說完整 RTP / math owner。
+
+## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
 ```

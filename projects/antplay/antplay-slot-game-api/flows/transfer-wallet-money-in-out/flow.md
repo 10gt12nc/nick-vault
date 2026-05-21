@@ -300,5 +300,5 @@ Step 5 已完成 claim gate。本 flow 可回填 `antplay-slot-game-api` project
 建議下一步:
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
 ```

@@ -82,7 +82,9 @@ Game API 不應把每個遊戲的 reel strip / RTP simulation / jackpot hit rule
 
 這個邊界對履歷很重要，不能把兩邊混成「主導完整遊戲數學」。
 
-## 6. Step 4 可追問題
+## 6. Step 4 面試收斂
+
+Step 4 已把以下問題整理成正式 Senior / Lead 追問：
 
 - 如果 RTP cache miss，default RTP 是保護還是風險？
 - Dark pool total bet / total win 用 Redis，Redis 遺失或延遲怎麼補？
@@ -91,8 +93,14 @@ Game API 不應把每個遊戲的 reel strip / RTP simulation / jackpot hit rule
 - Jackpot `setData` catch error 後只 log，是否需要補償？
 - `additional_info` 截斷後，排查 runtime decision 是否足夠？
 
+面試時的核心結論：
+
+- 先補可觀測與可回放，再談重構或拆服務。
+- Runtime decision evaluator 是比較務實的第一步。
+- Game-api 不等於 math owner，履歷與面試要守住這條邊界。
+
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
 ```

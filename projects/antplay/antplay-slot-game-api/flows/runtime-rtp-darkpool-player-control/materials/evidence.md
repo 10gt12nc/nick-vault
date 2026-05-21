@@ -4,7 +4,7 @@
 
 | 項目 | 內容 |
 | --- | --- |
-| Step | Step 3 |
+| Step | Step 4 |
 | 掃描深度 | Level 2 Flow 深掃 |
 | source repo | `/Users/nick/Git/antplay/antplay-slot-game-api` |
 | branch | `develop` |
@@ -144,15 +144,25 @@ Nick / `10gt12nc` path-specific evidence:
 - Jackpot / dark pool reconciliation job。
 - 實際 production config 中哪些 agent 啟用 dark pool / player control。
 
-## 7. 本輪未做
+## 7. Step 4 補充
+
+本輪 Step 4 未新增 source code 實質深掃；沿用 Step 3 的 Level 2 code-backed evidence，將內容整理成正式面試素材：
+
+- 30 秒 / 90 秒 / 3 分鐘講法。
+- STAR 案例。
+- Senior 追問：RTP cache miss、Redis counter loss、respin timeout、PlayerControl MQ failure、Jackpot side effect failure。
+- Lead / Architect 追問：runtime evaluator、game-api / math module 邊界、policy service 拆分、可觀測與可回放。
+
+## 8. 本輪未做
 
 - 未改 source repo。
 - 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
 - 未把本 flow 升級成完整履歷 claim。
 - 未掃 production DB、live Redis 或內網服務。
+- 未做 Step 5 重要 diff / current blame claim gate。
 
-## 8. 下一步
+## 9. 下一步
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
 ```

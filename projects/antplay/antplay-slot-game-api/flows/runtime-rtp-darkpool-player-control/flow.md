@@ -6,8 +6,8 @@
 | --- | --- |
 | Flow 中文名稱 | RTP / dark pool / player control runtime decision |
 | Flow slug | `runtime-rtp-darkpool-player-control` |
-| 完成狀態 | Step 3 / Level 2 Flow 深掃初版 |
-| 證據層級 | 真實開發過 + code-backed，但本 flow 尚未 Step 5 claim gate |
+| 完成狀態 | Step 4 / 面試案例已完成 |
+| 證據層級 | 真實開發過 + code-backed；本 flow 尚未 Step 5 claim gate |
 | Flow 類型 | 遊戲 runtime decision / money-risk-adjacent flow |
 | 是否只確認到入口 | 否；已讀 `/game/bet` runtime path、RTP cache、dark pool service、player control、jackpot service、math facade |
 
@@ -244,7 +244,7 @@ MQ:
 - 我會把這條 flow 當成「game API runtime decision」題：每局 bet 不是直接吃 math result，而是先讀 RTP cache、dark pool counters、player control config、jackpot RTP / balance，再決定是否接受結果或 respin。
 - 我會特別講 owner boundary：game-api 負責 runtime orchestration 與資料落點；math-core / game math module 負責 result contract；營運策略與 RTP 設定不是後端單方面決定。
 
-履歷保守 bullet 只能先作 Step 3 草稿:
+履歷保守 bullet 只能先作 Step 4 草稿:
 
 > 參與 AntPlay slot game API runtime 維護，理解並整理 RTP cache、dark pool、player control、jackpot 與 math result contract 在 `/game/bet` 主流程中的一致性與 failure window。
 
@@ -311,14 +311,14 @@ Git / history:
 - 未掃 jackpot job / reconciliation job。
 - 未確認最新遠端 refs。
 - 未更新 `05 / 08`。
-- 未做 Step 4 面試稿與 Step 5 claim gate。
+- 已完成 Step 4 面試稿；尚未做 Step 5 claim gate。
 
-## 16. Step 3 結論
+## 16. Step 4 結論
 
-`runtime-rtp-darkpool-player-control` Step 3 已能作為 game-api runtime decision 學習包初版。它的價值是把前面四條 money / wallet / MQ / sharding flow 之外的「遊戲結果決策層」補起來，並和 `*-math` 的 math module 經驗形成邊界：game-api 決定何時用哪個 RTP、何時接受 / 重轉結果；math module 產生結果本身。
+`runtime-rtp-darkpool-player-control` Step 4 已完成，現在可作 game-api runtime decision 的正式面試案例。它的價值是把前面四條 money / wallet / MQ / sharding flow 之外的「遊戲結果決策層」補起來，並和 `*-math` 的 math module 經驗形成邊界：game-api 決定何時用哪個 RTP、何時接受 / 重轉結果；math module 產生結果本身。
 
-下一步建議做 Step 4，把這條 flow 整理成面試可講的 30 秒 / 90 秒 / 3 分鐘版本，並補 Senior / Lead 追問。
+下一步建議做 Step 5，追 Nick / `10gt12nc` 重要 diff、current blame、math / consumer / reconciliation 邊界，決定本 flow 可否回填 project-level claim。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 5
 ```
