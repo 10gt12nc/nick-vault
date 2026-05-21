@@ -302,8 +302,8 @@ Evidence:
 
 ## 16. 下一步
 
-本 flow 已完成 Step 5。後續 Rank 4 `bet-record-sharding-schema-route Step 4` 也已完成；下一步應做 `bet-record-sharding-schema-route Step 5`，追 path-specific blame / diff 與 claim gate。
+本 flow 已完成 Step 5。後續 Rank 4 `bet-record-sharding-schema-route Step 5` 也已完成；下一步回 Step 2 ranking，做 Rank 5 `runtime-rtp-darkpool-player-control Step 3`。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```

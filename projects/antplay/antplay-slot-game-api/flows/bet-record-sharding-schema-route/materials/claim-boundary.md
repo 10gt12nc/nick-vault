@@ -1,8 +1,8 @@
 # Claim Boundary
 
-## Step 4 結論
+## Step 5 結論
 
-本 flow 已完成 Step 4。可作 `antplay-slot-game-api` 高流量資料治理的正式面試 case，但還不是正式履歷 claim gate。Step 5 前不要直接把這條 flow 單獨寫進 `05 / 08`。
+本 flow 已完成 Step 5。結論是：可回填 `antplay-slot-game-api` project-level contribution consolidation，作「高流量交易明細表分表 / schema routing / partition key 查寫治理」的強化 evidence；但不單獨寫成完整 sharding architecture owner，也不直接更新 `05 / 08`。
 
 ## 可講
 
@@ -13,7 +13,7 @@
 
 ## 可放 project-level consolidation 的方向
 
-等 Step 5 後可以回填:
+可以回填:
 
 - bet record / request log / transfer transaction 分表與 schema route。
 - high-traffic table query boundary、table creator governance、schema route failure-window。
@@ -39,8 +39,25 @@
 | logical-to-physical live route | 待確認 | repo 內未找到完整 config，不能作已確認 claim |
 | full sharding owner | 不可誇大 | 沒有足夠 evidence |
 
+## Step 5 可用履歷口徑
+
+可併入 `antplay-slot-game-api` project-level bullet，建議不要單獨拉成一條:
+
+- 參與 AntPlay game-api 高流量交易明細表治理，包含 bet record / request log / transfer wallet transaction 的 schema route、`pt_day` / `agent_id` partition key 查寫、table creator 與建表風險整理。
+
+更短版:
+
+- 參與 AntPlay game-api bet record / request log / transfer transaction 分表與 schema routing 維護，整理高流量表查寫邊界與建表風險。
+
+不可寫:
+
+- 主導 AntPlay 完整 sharding platform。
+- 設計完整分庫分表架構。
+- 負責 production 自動建表平台。
+- 已確認所有 logical table 到 physical table routing 規則。
+
 ## 下一步
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```

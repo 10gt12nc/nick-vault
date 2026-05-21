@@ -3,9 +3,9 @@
 ## Step 4 狀態
 
 - 日期: 2026-05-21
-- 狀態: Step 4 已完成
+- 狀態: Step 5 已完成
 - 用途: 正式面試 case；不直接更新 `05 / 08`
-- 證據層級: 真實開發過 + code-backed；Step 5 前不升級成完整履歷 claim
+- 證據層級: 真實開發過 + code-backed；可回填 project-level consolidation，不升級成完整 sharding owner claim
 
 ## Q1. 這條 flow 在解什麼問題？
 
@@ -95,12 +95,12 @@ Slot runtime 的交易明細資料量大，bet record / request log / transfer w
 
 短期要能快速補建並避免重複建表；中期要加 missing-table alert、create-table idempotency、registry vs DB metadata 校驗；長期要把建表來源明確化，不能只靠 repo 裡已停用的 job 推測。
 
-### Step 5 會追什麼？
+### Step 5 結論是什麼？
 
-Step 5 會追更細的 commit / blame / diff，確認 Nick / `10gt12nc` 在這條 flow 的直接貢獻邊界，判斷能不能回填 project-level contribution consolidation。若沒有補到 live DB mapping，就仍保留「待確認」，不升級成完整 sharding claim。
+Step 5 已追 commit / blame / diff。可以回填 project-level contribution consolidation，因為 `10gt12nc` 對 schema route、bet record 分表、db partition v2、table creator 都有 direct evidence。但 live DB logical-to-physical mapping 仍待確認，所以不升級成完整 sharding owner claim。
 
 ## 下一步
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```

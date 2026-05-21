@@ -71,7 +71,7 @@
 
 未完成 / 待回填:
 
-- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5` 與 `request-log-rabbitmq-async Step 5` 已完成；`bet-record-sharding-schema-route Step 4` 已完成，可作高流量資料治理正式面試 case，但 Step 5 前不直接升級正式履歷 claim。
+- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5` 與 `bet-record-sharding-schema-route Step 5` 已完成；`bet-record-sharding-schema-route` 可回填 high-traffic table governance / schema route / partition key evidence，但不單獨寫完整 sharding owner。
 - 未掃 `antplay-slot-game-job`，不能把 game-api claim 擴張成批次 / projection / backup owner。
 - 未逐檔逐行 Level 3。
 
@@ -239,8 +239,10 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5` 與 `bet-record-sharding-schema-route Step 4`。下一步若繼續本 repo，應做 `bet-record-sharding-schema-route Step 5`，追 path-specific blame / diff 與單條 flow claim gate。
+2026-05-21 補充：`bet-record-sharding-schema-route Step 5` 已完成。Nick / `10gt12nc` 對 `@UseSchema` / schema route、#167 bet record 分表、db_partition v2、table creator service 有 direct evidence；可把 high-traffic table governance / partition key 查寫 / schema route 補進 project-level 面試與履歷素材。仍不得寫完整 sharding platform owner、production automatic table creation owner 或已確認 logical-to-physical live route。
+
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5` 與 `bet-record-sharding-schema-route Step 5`。下一步若繼續本 repo，應做 `runtime-rtp-darkpool-player-control Step 3`。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```

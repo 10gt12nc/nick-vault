@@ -3,8 +3,8 @@
 ## 狀態
 
 - 日期: 2026-05-21
-- Step: 4
-- 履歷狀態: 正式面試 case 已完成；不直接更新 `05 / 08`，Step 5 claim gate 後再回填 project-level consolidation
+- Step: 5
+- 履歷狀態: 單條 flow claim gate 已完成；可回填 project-level consolidation，不直接更新 `05 / 08`
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 #167、db partition、`@UseSchema`、table creator、bet record query fix direct commits
 
 ## 30 秒講法
@@ -38,11 +38,23 @@ Senior 角度我會追幾個風險：第一，`agentId` 找不到時，route 可
 | Action | 追 `@UseSchema`、`SchemaRouteAspect`、datasource switch、`pt_day` / `agent_id` SQL、table creator service、create-table jobs、path-specific commits 與 current disabled-job caveat。 |
 | Result | 形成一條可面試的 high-traffic data governance case：能講 route correctness、query boundary、UTC day、read replica lag、missing table、logical-to-physical mapping 待確認；不把它包裝成完整 sharding owner。 |
 
-## 面試可直接講的履歷方向
+## Step 5 Claim 結論
 
-Step 4 可以作正式面試 case。等 Step 5 claim gate 後，可考慮回填到 project-level:
+可回填到 `antplay-slot-game-api` project-level consolidation:
 
 - 參與 AntPlay game-api 高流量交易明細表治理，包含 bet record / request log / transfer wallet transaction 的 schema route、partition key 查寫與建表風險整理。
+
+可講原因:
+
+- `10gt12nc` 對 `@UseSchema` / `SchemaRouteAspect` 有 direct commits。
+- `10gt12nc` 對 #167 bet record 分表、bet 寫日表、查詢七天限制與 `pt_bet_record` 修正有 direct commits。
+- `10gt12nc` 對 db_partition v2、transfer wallet transaction / transfer request log `pt_day` / `agent_id` path 有 direct commits。
+- `10gt12nc` 對 table creator service 有 direct commits。
+
+仍要保守:
+
+- current create-table jobs 已被他人 commit 停用，不能講成目前自動建表 active。
+- repo 內未找到 logical `pt_*` 到 physical table 的完整 live routing config，不能講完整 sharding owner。
 
 ## Senior 追問速答
 
@@ -74,12 +86,10 @@ Method 看起來有 annotation，但呼叫沒有經過 Spring proxy，例如 sel
 - 不寫 ShardingSphere / middleware owner。
 - 不把 table creator job 當成 current active behavior，因為 current code 已停用實際 agent loop。
 
-## Step 5 要補
+## 後續回填
 
-- 追更多 path-specific blame / diff，判斷這條 flow 能否升級成 project-level 履歷強 evidence。
-- 更精準區分 Nick / `10gt12nc` direct commits、他人 commits、current behavior 與待確認 DB mapping。
-- 決定是否回填 `contribution-claim-consolidation.md`；不直接改 `05 / 08`。
+本 flow 已回填 project-level consolidation。下一步回 Step 2 ranking，做 Rank 5 `runtime-rtp-darkpool-player-control Step 3`，補 runtime / math boundary / RTP / dark pool / player control 題。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```

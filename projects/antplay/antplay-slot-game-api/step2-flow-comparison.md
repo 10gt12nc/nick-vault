@@ -136,8 +136,8 @@ Step 3 不做:
 | --- | --- | --- |
 | 2 | `transfer-wallet-money-in-out` | Step 5 已完成 / 2026-05-21；可回填 project-level consolidation，不單獨寫完整 wallet owner |
 | 3 | `request-log-rabbitmq-async` | Step 5 已完成 / 2026-05-21；可回填 project-level async audit claim，不單獨寫完整 RabbitMQ owner |
-| 4 | `bet-record-sharding-schema-route` | Step 4 已完成 / 2026-05-21；下一步做 Step 5 claim gate |
-| 5 | `runtime-rtp-darkpool-player-control` | game-api 與 `*-math` 邊界更清楚後，再做 runtime decision / math contract |
+| 4 | `bet-record-sharding-schema-route` | Step 5 已完成 / 2026-05-21；可回填 project-level high-traffic table governance evidence |
+| 5 | `runtime-rtp-darkpool-player-control` | 下一步；game-api 與 `*-math` 邊界更清楚後，補 runtime decision / math contract |
 | 6 | `auth-token-whiteip-game-code-guard` | 若需要 API access-control 面試題，再補 |
 
 ## 8. Claim Boundary
@@ -158,14 +158,14 @@ Step 3 不做:
 
 ## 9. Step 2 結論
 
-2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 5，Rank 3 `request-log-rabbitmq-async` 已完成 Step 5，Rank 4 `bet-record-sharding-schema-route` 已完成 Step 4。Flow Track 若繼續本 repo，下一步建議做 Rank 4 Step 5 claim gate:
+2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 5，Rank 3 `request-log-rabbitmq-async` 已完成 Step 5，Rank 4 `bet-record-sharding-schema-route` 已完成 Step 5。Flow Track 若繼續本 repo，下一步建議做 Rank 5:
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
 ```
 
 預期產出:
 
-- 補強 `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/materials/claim-boundary.md`
-- 視 evidence 回填 `projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md`
+- `projects/antplay/antplay-slot-game-api/flows/runtime-rtp-darkpool-player-control/flow.md`
+- `projects/antplay/antplay-slot-game-api/flows/runtime-rtp-darkpool-player-control/career-interview.md`
 - 視需要回補 `contribution-claim-consolidation.md` 與共用索引

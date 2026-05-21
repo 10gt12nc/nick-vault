@@ -48,4 +48,4 @@
 
 ## 5. 下一步邊界
 
-本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out` 與第三順位 `request-log-rabbitmq-async` 也已完成 Step 5，`bet-record-sharding-schema-route Step 4` 已完成；目前下一步是 `bet-record-sharding-schema-route Step 5`，不能把本 flow 當成整個 project 已完成。
+本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out`、第三順位 `request-log-rabbitmq-async` 與第四順位 `bet-record-sharding-schema-route` 也已完成 Step 5；下一步回 Step 2 ranking，做 Rank 5 `runtime-rtp-darkpool-player-control Step 3`，不能把本 flow 當成整個 project 已完成。
