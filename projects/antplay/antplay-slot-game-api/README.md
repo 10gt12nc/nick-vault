@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | Step 2 已完成 / 2026-05-21；第一條代表 flow 選定 `slot-bet-settle-rollback` |
+| Flow Track | `slot-bet-settle-rollback` Step 3 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log |
-| 下一步 | `antplay antplay-slot-game-api slot-bet-settle-rollback Step 3` |
+| 下一步 | `antplay antplay-slot-game-api slot-bet-settle-rollback Step 4` |
 
 ## Claim Boundary
 
@@ -29,6 +29,8 @@
 
 ## Files
 
+- [flows/slot-bet-settle-rollback/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/flow.md)
+- [flows/slot-bet-settle-rollback/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md)

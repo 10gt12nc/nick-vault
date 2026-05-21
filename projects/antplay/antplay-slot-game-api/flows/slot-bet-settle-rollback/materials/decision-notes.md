@@ -1,0 +1,54 @@
+# Decision Notes - slot-bet-settle-rollback
+
+日期: 2026-05-21
+
+## 1. Single Wallet vs Transfer Wallet
+
+| 類型 | 錢在哪裡 | 本 flow 責任 | 主要風險 |
+| --- | --- | --- | --- |
+| Single wallet | provider / agent side | Game API call provider bet / settle / rollback | provider timeout、重複 callback、notify repair |
+| Transfer wallet | Game API local DB + Redis | 下注前扣本地 wallet，開獎後加 total win | DB / Redis / bet record 不一致、deadlock 補償 |
+
+Owner 思考:
+
+- Single wallet 的一致性重點是 provider callback idempotency。
+- Transfer wallet 的一致性重點是本地 transaction boundary 與補償。
+
+## 2. Bet Record Step 設計
+
+`pt_bet_record` 用 step 表示一局 bet 的階段:
+
+- `CREATE`: 初始建立。
+- `DEAL`: 扣款成功 / 注單成立。
+- `RESULT`: 開獎結果已寫入。
+- `CANCEL`: 取消 / rollback。
+- `FAIL`: 失敗狀態，但本 flow catch 中看到 fail 標記目前被註解。
+
+設計價值:
+
+- Step 是補通知 job 的查詢依據。
+- `setStatusResult` 限制 `step = 2`，避免未成立注單直接寫開獎結果。
+
+設計風險:
+
+- Step 和 wallet mutation 不一定在同一 transaction boundary。
+- Step 只能說明 Game API 本地狀態，不等於 provider 或 wallet 一定一致。
+
+## 3. Retry / Compensation 分層
+
+| 層 | 已看到的機制 | 限制 |
+| --- | --- | --- |
+| Provider notify retry | Quartz job 補 call `betSettle` / `betRollback` | 只補通知，不是完整對帳 |
+| Request log audit | RabbitMQ async request log | 失敗只 log，不阻斷交易 |
+| Transfer wallet compensation | `CompensationService#refundTMOnDeadlock` 存在 | flow catch 中實際呼叫被註解 |
+| Bet record fail marking | `setStatusFail` 存在 | deadlock catch 中實際呼叫被註解 |
+
+## 4. Owner 改善方向
+
+如果要把這條 flow 做到更 owner-grade，可以補:
+
+- 明確 transaction boundary：bet record DEAL、wallet debit、RESULT、wallet credit 分別在哪個 transaction。
+- Outbox 或 repair table：把待補償 / 待通知變成可查、可重試、可告警的資料。
+- Idempotency：provider settle / rollback 用 bet id 當 idempotency key，並確認 provider 語意。
+- Reconciliation：定期比對 bet record、provider settle result、transfer wallet transaction。
+- Observability：deadlock、notify retry、negative balance、MQ request log failure 都要有 metric / alert。
