@@ -1,7 +1,7 @@
 # center-http-deposit-withdraw
 
 中文名稱：center_http 玩家上分 / 下分
-Step：4
+Step：5
 掃描等級：Level 2 單條 flow 深掃
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
@@ -224,6 +224,35 @@ Owner 要避免把兩者混成一個 transaction。上游訂單成功不等於 g
 
 Step 4 不更新正式履歷 / 自傳。本 flow 目前維持 `專案存在 / code-backed`，可作面試案例；是否能升級為正式履歷 claim，留到 Step 5 claim gate 判斷。
 
+## Step 5 claim gate
+
+完成日期：2026-05-21
+
+結論：
+
+```text
+本 flow 維持 code-backed 面試素材，不新增正式履歷 / 自傳 claim。
+```
+
+已確認：
+
+- `iwin_gameserver` source repo 已重新 fetch，`main` 與 `origin/main` 一致。
+- `DEPOSIT/WITHDRAW` dispatch、`onDeposit()` / `onWithdraw()`、`HttpNewBill`、`NewBillJob`、`modifyAndGetCoinFromBill()`、`modifyAndGetBankCoin()` 的主路徑多數 blame 仍是初始 commit author。
+- `10gt12nc` 有觸碰 `HttpService.onDeposit()` 方法簽名與 `PlayerData` wallet mutation hook 的 direct evidence，但 diff context 主要是 Antplay / provider 投派整合、coupon / bet target 或第三方遊戲錢包 hook，不能推論為 Nick 開發完整 center_http 上分 / 下分 flow。
+- 上游 `payment` 有 `10gt12nc` 在 withdraw / order insert 清理類 commit；`game_api` 有 coupon `DEPOSIT` caller direct commits。這些可以支援對上游呼叫與 money flow 的理解，但不能單獨升級成 gameserver `DEPOSIT/WITHDRAW` direct owner claim。
+
+可用方式：
+
+- 面試可說：code-backed 深掃過 `iwin_gameserver` center_http 上分 / 下分，能講清楚上游 order、gameserver wallet mutation、per-account queue、timeout retry、`billNos` idempotency 與 log / side effect failure window。
+- 履歷仍只使用 project-level `iwin_gameserver` 第三方 provider 投派整合保守 claim，不把本 flow 單獨寫成上分 / 下分成果。
+
+不可用方式：
+
+- 不說 Nick 主導 center_http 上分 / 下分。
+- 不說 Nick 負責完整 gameserver wallet。
+- 不說 Nick 建立 `billNos` idempotency、query-by-billNo、mutation audit 或 reconciliation。
+- 不說 Nick 解決過本 flow 的 duplicate deposit / withdraw production incident。
+
 ## 面試 / 履歷邊界摘要
 
 目前可說：
@@ -238,18 +267,18 @@ Step 4 不更新正式履歷 / 自傳。本 flow 目前維持 `專案存在 / co
 - Nick 主導完整金流 / gameserver owner。
 - 本 flow 已證明 Nick 真實開發過。
 
-Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`game_api coupon-redeem-credit-grant`、部分 `game_job` flow，以及 `iwin_gameserver` 第三方 provider 投派整合。本 flow 先作 code-backed 面試素材，Step 5 再決定是否更新履歷。
+Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`game_api coupon-redeem-credit-grant`、部分 `game_job` flow，以及 `iwin_gameserver` 第三方 provider 投派整合。本 flow 完成 Step 5 後仍作 code-backed 面試素材，不更新正式履歷 / 自傳。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 5
+iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 ```
 
 原因：
 
-- Step 4 已完成正式面試 case。
-- 本 flow 目前仍是 `專案存在 / code-backed`，不能直接當履歷 claim。
-- 下一步做 Step 5 claim gate，判斷是否只保留面試素材，或能在有足夠 evidence 時回填 project-level claim。
+- `center-http-deposit-withdraw` Step 5 已完成，結論是保留為 code-backed 面試素材，不更新正式履歷。
+- 同 project 下一條 Step 2 Rank 3 是 `game-spin-settlement-log-reel`，可以補一條更接近遊戲 runtime 結算 / log projection 的代表 flow。
+- 這會延續 `iwin_gameserver` 的 Flow Track，不會自行跳到其他 project。

@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 4
+狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -10,7 +10,7 @@
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
 1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
-2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 4，下一步 Step 5。
+2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 5，維持 interview-only。
 3. 打碼目標設定與查詢。
 4. 遊戲 spin / 結算 / log_reel 投注流水。
 5. dbproxy 的 MySQL / Redis 查寫代理。
@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `center-http-deposit-withdraw Step 5` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `game-spin-settlement-log-reel Step 3` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -192,7 +192,7 @@ source repo 狀態：
 
 中文名稱：center_http 玩家上分 / 下分
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
-狀態：Step 3 已完成，主報告見 `flows/center-http-deposit-withdraw/flow.md`
+狀態：Step 5 已完成，主報告見 `flows/center-http-deposit-withdraw/flow.md`
 
 為什麼重要：
 
@@ -336,7 +336,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-`center-http-deposit-withdraw` Step 4 已完成。若進 Step 5，應優先重讀：
+`center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。下一條依 Step 2 ranking 進 `game-spin-settlement-log-reel`。
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
@@ -354,12 +354,12 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 5
+iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 ```
 
 原因：
 
-- `center-http-deposit-withdraw` Step 4 已完成正式面試 case。
+- `center-http-deposit-withdraw` Step 5 已完成 claim gate，維持 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步做 `center-http-deposit-withdraw` Step 5 claim gate。
-- 後續若 `center-http-deposit-withdraw` 完成 Step 5，再回填校正 project-level claim。
+- 下一步做同 project Step 2 Rank 3 `game-spin-settlement-log-reel Step 3`。
+- 後續若新增 gameserver flow，再回填校正 project-level claim。

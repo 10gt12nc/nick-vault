@@ -119,3 +119,20 @@ Step 4 是 interview case，不是履歷 claim gate。
 - 目前沒有新 evidence 證明 Nick / `10gt12nc` 直接開發 center_http `DEPOSIT/WITHDRAW`。
 - project-level 可放履歷的 `iwin_gameserver` claim 已由第三方 provider 投派整合支撐。
 - 本 flow 要等 Step 5 再做正式 claim gate。
+
+## Decision 9：Step 5 後維持 interview-only，不回填 05 / 08
+
+Step 5 已追 source repo remote refs、path-specific history、重要 diff 與 blame。
+
+結論：
+
+- `HttpService` 的 `DEPOSIT/WITHDRAW` command dispatch、`onWithdraw` 主體、`HttpNewBill.runImpl`、`NewBillJob.runHttpTask` / `modifyCoin`、`PlayerData` coin mutation 主要仍是既有 code / initial commit evidence。
+- `10gt12nc` 在 `HttpService#onDeposit` 有 method signature / provider integration 相關 blame，但重要 diff 顯示脈絡主要是 Antplay provider integration，不足以升級為 center_http 上分 / 下分主流程開發 evidence。
+- `payment` 與 `game_api` 有上游 caller / coupon / provider direct evidence，可支撐跨 repo 理解與其他 project claim，但不能反向證明 Nick 主導 gameserver center_http wallet mutation。
+
+決策：
+
+- 本 flow 完成 Step 5，維持 `專案存在 / code-backed`。
+- 不更新 `05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+- 正式履歷仍只保守使用 iwin_gameserver 的第三方 provider 投派整合 / gameserver 錢包與投注流水串接 claim。
+- 下一步回同 project Step 2 ranking，補 `game-spin-settlement-log-reel Step 3`。

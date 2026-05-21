@@ -20,7 +20,7 @@
 - 不能宣稱 Nick 是完整遊戲錢包 owner、dbproxy owner、所有遊戲結算 owner。
 - 不能宣稱已完成 exactly-once、完整 idempotency、outbox、reconciliation 架構。
 - 不能宣稱改善錯帳率、效能 X%、修復 production duplicate callback incident。
-- `center-http-deposit-withdraw` 目前仍是 code-backed 面試素材，不能由第三方投派 commits 自動擴張成完整上分 / 下分 owner。
+- `center-http-deposit-withdraw` 已完成 Step 5，結論仍是 code-backed 面試素材；不能由第三方投派 commits 或局部 `onDeposit()` 周邊觸碰自動擴張成完整上分 / 下分 owner。
 
 ## Source repo 狀態
 
@@ -49,7 +49,7 @@
 - 未 checkout 每個遠端 branch 做逐 branch 完整差異收斂。
 - 未掃 production ticket、MR 討論、線上 incident、provider 官方 spec。
 - 未掃全部 game modules、dbproxy 落庫細節、DB unique index。
-- 未完成 `center-http-deposit-withdraw` Step 5，因此完整 project final consolidation 仍需之後校正。
+- `center-http-deposit-withdraw` Step 5 已完成但維持 interview-only；完整 project final consolidation 仍需等後續代表 flows 校正。
 
 ## 直接 evidence
 
@@ -60,7 +60,7 @@
 | PG 投派 / refund / bet_result | `b58eb58`、`a5fbcb3`、`a889980`、`571b6fa`、`73b2524` | `PGTransferInOutJob.java`、`HttpPGTransferInOut.java`、`LogReelPGBetJob.java`、`LogReelPGSettleJob.java`、`LogReelPGRefundJob.java`、`AddCenterCoinPG.java` | 真實開發過 + code-backed |
 | Log reel / bet log projection | `da7dc4b`、`053e2be` 與 `#144` 系列 log / query commits | `GamePlayer.java`、`ClientActionManager.java`、`LogReel*Job.java`、`GameEnum.java`、`LogJobCrons.java` | 真實開發過 + code-backed |
 | Coupon / bet target supporting evidence | `6c99dd3`、`30a9fcb` | `HttpService.java`、`SpinBetTargetConst.java` | 支援 game_api coupon flow；不單獨擴張成完整 gameserver claim |
-| center_http 上分 / 下分 | 目前未掃到 `DEPOSIT/WITHDRAW` path 的 Nick direct commits | `HttpService.onDeposit/onWithdraw`、`HttpNewBill`、`NewBillJob`、`PlayerData.modifyAndGetCoinFromBill()` | code-backed / 面試素材；仍非真實開發 claim |
+| center_http 上分 / 下分 | `10gt12nc` 有局部觸碰 `onDeposit()` 周邊與 provider wallet hook，但主路徑多數仍是初始 commit author | `HttpService.onDeposit/onWithdraw`、`HttpNewBill`、`NewBillJob`、`PlayerData.modifyAndGetCoinFromBill()` | code-backed / 面試素材；仍非完整真實開發 claim |
 
 ## 可放履歷
 
@@ -81,7 +81,7 @@
 - 可以把 `third-party-transfer-in-out` 從「只分析過」升級成「有直接開發 evidence 的面試案例」，但仍要避免講成完整 owner。
 - 可以談 provider callback / adapter command 進 gameserver 後，如何由 `HttpService` 分派、wrapper 查玩家、money job 丟入 game pool、`PlayerData` 修改餘額、`GamePlayer` 送 log。
 - 可以談 wallet mutation、HTTP response、log projection 不在同一 ACID transaction，因此要關注 idempotency、failure window、reconciliation 與 observability。
-- `center-http-deposit-withdraw` 可以用來補強 money flow 思考，但目前只能說 code-backed 分析過，不說 Nick 實作完整上分 / 下分。
+- `center-http-deposit-withdraw` 可以用來補強 money flow 思考；Step 5 後仍只能說 code-backed 分析過，不說 Nick 實作完整上分 / 下分。
 
 ## 不可誇大
 
@@ -93,18 +93,18 @@
 
 ## 後續回填規則
 
-這份是 rolling / scoped consolidation。後續若 `center-http-deposit-withdraw` 完成 Step 5，或新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
+這份是 rolling / scoped consolidation。`center-http-deposit-withdraw` Step 5 已回填為 interview-only；後續若新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 5
+iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 ```
 
 原因：
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
-- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 已有 Step 4，下一步應做 Step 5 claim gate。
-- 這會繼續補 gameserver money flow 的上分 / 下分口徑，但不會把第三方投派 evidence 誤擴張成上分 / 下分 owner。
+- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 已完成 Step 5 且維持 interview-only。
+- 下一步回同 project Step 2 ranking，補 `game-spin-settlement-log-reel`，避免完成單條 flow 後自行跳到其他 project。

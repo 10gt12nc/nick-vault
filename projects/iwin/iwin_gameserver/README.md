@@ -13,8 +13,8 @@
 5. [flows/third-party-transfer-in-out/flow.md](flows/third-party-transfer-in-out/flow.md)：第三方遊戲投派整合主研究報告。
 6. [flows/third-party-transfer-in-out/career-interview.md](flows/third-party-transfer-in-out/career-interview.md)：該 flow 的面試 / 履歷素材。
 7. [flows/third-party-transfer-in-out/materials/](flows/third-party-transfer-in-out/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
-8. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 4 主學習包與面試 case 摘要。
-9. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的正式面試素材。
+8. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 5 主學習包與 claim gate。
+9. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的正式面試素材與 interview-only 邊界。
 10. [flows/center-http-deposit-withdraw/materials/](flows/center-http-deposit-withdraw/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 11. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
 
@@ -28,8 +28,8 @@
 | `step2-flow-comparison.md` | 已建立 | 候選 flow 技術點、子模組範圍與風險比較 |
 | `flows/third-party-transfer-in-out/flow.md` | Step 3 已建立 | 第三方遊戲投派整合 / 投注派彩退款，Level 2 深掃 |
 | `flows/third-party-transfer-in-out/career-interview.md` | Step 5 已完成；2026-05-20 已升級 claim | 有 Nick / `10gt12nc` direct commits，可併入 project-level 第三方 provider 投派整合履歷 claim |
-| `flows/center-http-deposit-withdraw/flow.md` | Step 4 已完成 | center_http 玩家上分 / 下分，Level 2 深掃 + 面試 case 摘要 |
-| `flows/center-http-deposit-withdraw/career-interview.md` | Step 4 已完成 | 正式面試素材；履歷 claim 留到 Step 5 判斷 |
+| `flows/center-http-deposit-withdraw/flow.md` | Step 5 已完成 | center_http 玩家上分 / 下分，Level 2 深掃 + 面試 case + claim gate |
+| `flows/center-http-deposit-withdraw/career-interview.md` | Step 5 已完成 | 正式面試素材；claim gate 結論為 interview-only，不更新履歷 |
 | `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 | rolling / scoped project-level claim 收口；第三方 provider 投派整合可保守放履歷，center-http 上下分仍 interview-only |
 | `career-interview.md` | 已更新 | project-level career / interview boundary；正式履歷可保守補第三方 provider 投派整合 |
 
@@ -51,12 +51,12 @@
 
 - 已完成 [contribution-claim-consolidation.md](contribution-claim-consolidation.md)。
 - `third-party-transfer-in-out` 不再只是分析素材；Nick / `10gt12nc` 在 Antplay / GSC / PG gameserver 投派整合、money job、`GamePlayer` log dispatch 與 log reel path 有直接 commits。
-- `center-http-deposit-withdraw` 仍未看到 Nick / `10gt12nc` 對 `DEPOSIT/WITHDRAW` path 的 direct commits，維持 code-backed 面試素材。
+- `center-http-deposit-withdraw` Step 5 已完成；雖有 `10gt12nc` 局部觸碰 `onDeposit()` 周邊與 provider wallet hook，但不足以升級成完整上分 / 下分 direct development claim，維持 code-backed 面試素材。
 
 仍待確認：
 
 - 完整 project final consolidation 仍需等本批代表 flows 後續校正。
-- `center-http-deposit-withdraw` Step 4 已完成，Step 5 尚未完成。
+- `center-http-deposit-withdraw` Step 5 已完成，正式履歷不新增本 flow claim。
 - 若要寫成更強 owner claim，仍需 MR / ticket / production issue、設計紀錄或 Nick 本人補充具體責任。
 
 ## 專案定位
@@ -101,17 +101,17 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 5
+iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 ```
 
 原因：
 
-- `center-http-deposit-withdraw` Step 4 已完成正式面試 case。
+- `center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步先做 Step 5 claim gate；後續若新增 gameserver flow，再回填校正 project-level claim。
+- 下一步回同 project 的 Step 2 ranking，補 Rank 3 `game-spin-settlement-log-reel`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
-- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 4，仍用 code-backed / 分析過語氣。
+- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣。
 - 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner 或解決 duplicate callback production incident。

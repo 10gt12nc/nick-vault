@@ -94,3 +94,38 @@ Step 5 claim gate 時要重新檢查：
 - 是否有 Nick 本人確認。
 - 是否有 `10gt12nc` direct commit 命中 `DEPOSIT/WITHDRAW`、`HttpNewBill`、`NewBillJob` 或上游 direct caller。
 - 是否有 MR / ticket / incident 可證明 Nick 參與過本 flow 的維護或修復。
+
+## Step 5 claim gate
+
+日期：2026-05-21
+
+結論：
+
+```text
+本 flow 完成 Step 5，但不升級為正式履歷 claim。
+```
+
+判定：
+
+- 證據層級：`專案存在 / code-backed`
+- 可面試講：是
+- 可放正式履歷：否
+- 是否更新 `05` / `08`：否
+- 是否回填 project-level consolidation：只回填「本 flow Step 5 已完成但維持 interview-only」；不擴張 project 履歷 claim
+
+關鍵原因：
+
+- `DEPOSIT/WITHDRAW` dispatch、`onWithdraw()`、`HttpNewBill`、`NewBillJob`、一般 `modifyAndGetCoinFromBill()` / `modifyAndGetBankCoin()` 主路徑仍主要是初始 commit author。
+- `10gt12nc` 有在 Antplay / provider 投派整合時觸碰 `HttpService.onDeposit()` 周邊與 `PlayerData` provider wallet mutation hook，但 diff context 主要支援第三方 provider flow，不足以證明 Nick 負責完整 center_http 上分 / 下分。
+- `payment` 與 `game_api` 上游 direct evidence 可以支援 Nick 的其他 project-level claim，但不能反向包裝成 gameserver center_http 上下分 owner。
+
+可說：
+
+- 「我 code-backed 深掃過 iwin gameserver center_http 上分 / 下分，能說明上游 order、gameserver wallet mutation、per-account queue、timeout retry、`billNos` idempotency 與 log / side effect failure window。」
+
+不可說：
+
+- 「我主導 / 負責 center_http 上分 / 下分。」
+- 「我建立 gameserver `billNos` 防重或對帳架構。」
+- 「我解決過本 flow 重複加扣或錯帳 incident。」
+- 「我負責完整 gameserver wallet owner。」

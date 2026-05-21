@@ -669,9 +669,9 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 code-backed 正式面試 case。
+- 已完成 Step 5，可作 code-backed 正式面試 case；claim gate 結論為 interview-only。
 - 目前仍不放正式履歷 / 自傳，不說 Nick 主導 gameserver wallet 或完整上分 / 下分。
-- `iwin_gameserver` 正式履歷 claim 仍限定在第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接；本 flow 等 Step 5 再做 claim gate。
+- `iwin_gameserver` 正式履歷 claim 仍限定在第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接；本 flow 不單獨寫入正式履歷。
 
 面試主軸：
 

@@ -1,7 +1,7 @@
 # center-http-deposit-withdraw career-interview
 
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
-狀態：Step 4 已完成；正式面試 case
+狀態：Step 5 已完成；正式面試 case，履歷 claim gate 結論為 interview-only
 
 ## 面試定位
 
@@ -100,12 +100,13 @@ A：先建立 processed bill / mutation audit，讓同一 `accountId + cmd + bil
 
 ## 履歷口徑
 
-目前不建議把這條 flow 單獨寫進正式履歷。
+Step 5 結論：不把這條 flow 單獨寫進正式履歷。
 
 可放在面試素材：
 
 - code-backed 分析過 gameserver center_http 上分 / 下分與錢包一致性。
 - 可用來說明上游金流訂單與 runtime wallet mutation 的 transaction boundary。
+- 可說明 Nick 對 provider 投派整合、coupon caller、payment order / withdraw 維護的直接 evidence 如何和本 flow 形成系統理解，但不能反向包裝成完整上分 / 下分 owner。
 
 不可寫：
 
@@ -116,5 +117,5 @@ A：先建立 processed bill / mutation audit，讓同一 `accountId + cmd + bil
 ## 下一步
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 5
+iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 ```

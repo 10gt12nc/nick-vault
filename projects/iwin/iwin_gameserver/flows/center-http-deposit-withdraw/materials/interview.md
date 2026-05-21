@@ -1,6 +1,6 @@
 # Interview：center-http-deposit-withdraw
 
-狀態：Step 4 正式面試 Q&A
+狀態：Step 5 完成；正式面試 Q&A / claim gate 已收斂
 證據層級：專案存在 / code-backed；不可直接寫成 Nick 真實開發過
 
 ## Q1：這條 flow 的核心問題是什麼？
@@ -117,3 +117,11 @@ accountId + cmd + billNos
 - 看懂跨服務 source of truth，不把 payment order 和 runtime wallet 混成一個 transaction。
 - 看懂 concurrency 和 idempotency 的差異。
 - 能提出 owner 級補強，不只是說「加 try-catch」或「重試」。
+
+## Q13：Step 5 後結論有改嗎？
+
+沒有升級成正式履歷 claim。
+
+Step 5 追了 `iwin_gameserver`、`payment`、`game_api` 的 remote refs、path-specific history、重要 diff 與 blame。結論是：Nick / `10gt12nc` 在 `iwin_gameserver` 的強 evidence 仍是第三方 provider 投派整合、gameserver money job 與 log projection；`center_http DEPOSIT/WITHDRAW` 主流程目前只支援 code-backed 分析，不支援寫成 Nick 主導或完整 gameserver wallet owner。
+
+面試時可以講這條 flow 的設計風險與改善方案，但若被問「是不是你做的」，要回答成分析過 / 參與相關 gameserver wallet 串接經驗，不要說自己主導這條 center_http 上下分。
