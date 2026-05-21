@@ -3,10 +3,11 @@
 ## 0. 本次掃描紀錄
 
 - 日期: 2026-05-21
-- 掃描深度: Level 2 Flow 深掃
+- 掃描深度: Level 2 Flow 深掃 + Step 4 面試 case 整理
 - Vault branch: `main`
 - Source repo policy: 公司 / 來源 repo 只讀；未改 source repo。
 - Remote policy: 已依 KB 嘗試 fetch remote refs；內網遠端不可達，本輪停止重試，依本地 refs / 本地工作樹保守分析。本文件不記錄內網 URL、IP 或敏感 remote 細節。
+- Step 4 補充: 2026-05-21 重新嘗試 fetch 相關 source repos；fetch 仍失敗，依 KB 停止重試並沿用本地 refs。補讀 `GameFacade` beforeBet / odds / darkpool path、`GameFlowFacade#afterBet` result JSON、`SlotMathFacade#freeSpinBet`、`SPNMathFactory#boughtFreeSpinBet` / `processGameSpinResult`、`AbstractSlotMath#init` / `lastSymbols` path。
 
 ## 1. Source Repo 狀態
 
@@ -109,6 +110,10 @@
 - `GameSetting.FREE_SPIN_TYPE_LIST` 定義 `HAVE_3_SCATTER_WIN` 與 odds。
 - `antplay-slot-game-api GameFacade` 在 `boughtFreeSpin=true` 時會呼叫 `SlotMathFacade.freeSpinBet`。
 - `GameFlowFacade#afterBet` 會把 `isBoughtFreeSpin`、`boughtFreeSpinOdds`、`boughtFreeSpinType` 放進 result JSON，並調整 totalBet 語意。
+- `GameFacade` 在 beforeBet 前查 `BoughtFreeSpinTypeBO` odds，找不到會中止，找到後會把 bet amount 乘上 odds。
+- `GameFacade#getBetResult` 依 `boughtFreeSpin` 選 `SlotMathFacade.freeSpinBet`，而非 normal bet。
+- `GameFacade` 在 darkpool total bet / win 查詢時，buy free 與 normal bet 使用不同統計入口。
+- `GameFlowFacade#afterBet` 會再次用同一組 free spin type 查 odds，補 `betResult` 與 result JSON 的 buy free metadata。
 
 ## 6. 合理推論
 
@@ -116,6 +121,8 @@
 - `HAVE_3_SCATTER_WIN` odds 需要和 simulation / math validation 對齊，否則 buy free pricing 與長期 RTP 會偏。
 - `lastSymbols` reset 是 SPN 這條 flow 的重要風險收斂點，因為 scatter / wild state 會跨 spin 影響結果。
 - game-api 的 totalBet / odds result JSON 是 result contract 的一部分；完整 money correctness 仍需追 wallet / bet record DB。
+- buy free 的扣款語意與展示 / 紀錄語意分在 beforeBet 與 afterBet 兩段，Owner 需要靠同源 odds config、snapshot test 與 bet record 對照避免漂移。
+- darkpool 已有 buy free / normal bet 分流統計入口，但本 Step 未深掃 service implementation，因此只能說 caller path 已確認，不能說統計完整正確。
 
 ## 7. 未掃 / 待確認
 
@@ -128,7 +135,15 @@
 - 未逐檔逐行掃全部 71 個 `*-math` repo。
 - `sfm-math` 只作補充 pattern，不作本 flow 主 evidence。
 
-## 8. Claim Boundary Evidence
+## 8. Step 4 Output Evidence
+
+- `career-interview.md` 已轉為 Step 4 正式面試主稿，包含 30 秒、3 分鐘、5 分鐘講法、Senior 問答與可安全履歷 bullet。
+- `materials/interview.md` 已補正式 Q&A、Lead / Architect 追問與排查順序。
+- `flow.md` 已補 Step 4 面試 case 結論，主軸是 pricing contract、runtime routing contract、result contract 三層一致。
+- `materials/decision-notes.md` 已補 beforeBet / afterBet totalBet 語意、`lastSymbols` state reset、snapshot test / schema check 的 owner decision。
+- Step 4 沒有更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；正式履歷仍以 project-level contribution consolidation / rolling resume package 為準。
+
+## 9. Claim Boundary Evidence
 
 可支撐:
 

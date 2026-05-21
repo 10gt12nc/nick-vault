@@ -497,6 +497,39 @@ Lead / Architect 追問：
 - GDD target、code constants、production reel strip diff 要怎麼做 traceability？
 - 這和 payment consistency 的相同與不同是什麼？
 
+## 案例 14：Buy Free / Scatter / RTP_3 結果契約
+
+對應 flow：
+
+- `antplay/*-math/buy-free-scatter-rtp3-result-contract`
+
+證據邊界：
+
+- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作 slot math feature 的跨層 contract consistency 面試案例；正式履歷不單獨寫成完整 buy free owner。
+- Nick / `10gt12nc` 在 `spn-math` 有 RTP_3、buyFreeWinInfo、`HAVE_3_SCATTER_WIN`、`lastSymbols` reset 相關 direct commits。
+- 已深掃代表 path：`spn-math` 的 `SPNOperatorService`、`SPNMathFactory`、`AbstractSlotMath`、`P21008SlotMath`、`GameSetting`、`SlotReelStripTable`、`RoundResult` / `FreeBetResult`，並補讀 `antplay-slot-game-api` 的 `GameFacade` / `SlotMathFacade` / `GameFlowFacade` caller path。
+- 未掃完整 wallet mutation、bet record DB schema、前端展示、darkpool service implementation、正式 GDD / validation report、全部 71 個 `*-math` repo。
+
+面試主軸：
+
+Buy free 不是只改 `RTP_3` 輪帶，而是 pricing contract、runtime routing contract、result contract 三層一致性。Senior 要能說清楚 game-api 如何 validate `freeSpinType`、取得 odds 並影響 bet amount，math module 如何透過 `flagRTP=RTP_3` 走 buy free reel strip，最後 `RoundResult` / `FreeBetResult` 與 result JSON 如何讓前端、bet record、客服查詢與統計理解這筆是 buy free。
+
+可講重點：
+
+- `GameFacade` 在 beforeBet 前用 math config 的 buy free odds 調整 bet amount；`GameFlowFacade#afterBet` 補 result JSON 的 buy free metadata。
+- `SlotMathFacade.freeSpinBet` 是 normal bet 與 buy free runtime path 的分岔點。
+- `RTP_3` 在本 flow 是 buy free routing key，不只是 simulation label。
+- `lastSymbols` 會保存 / 回寫 scatter 與 wild state；helper loop 或 debug flow 沒 reset 會造成結果污染。
+- `RoundResult.freeTotalWin`、`freeScatterPay`、`freeBetResults` 要和前端 / bet record 語意一致。
+
+Lead / Architect 追問：
+
+- odds 應該放 math config、營運配置，還是兩者同步？如何避免 beforeBet / afterBet odds 漂移？
+- result JSON 的 `totalBet` 是一般 bet 還是 buy free 後成本？schema 要怎麼定義？
+- 如果玩家回報買免費局扣款或結果不對，排查順序是 request type、odds、`RTP_3` routing、free result，還是 bet record？
+- `lastSymbols` 這種跨 spin state 是否應包成明確 state object，避免 static / helper loop 污染？
+- normal bet / buy free 的 darkpool 統計要怎麼分流與對帳？
+
 ## 面試回答公式
 
 ```text
