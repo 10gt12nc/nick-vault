@@ -16,6 +16,18 @@
 - `projects/antplay/antplay-slot-game-api/step1-candidate-flows.md`
 - `projects/antplay/antplay-slot-game-api/step2-flow-comparison.md`
 - `projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md`
+- `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/flow.md`
+- `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/career-interview.md`
+- `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/materials/interview.md`
+- `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/materials/claim-boundary.md`
+- `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/materials/decision-notes.md`
+
+## Step 4 補充
+
+- 本輪重新嘗試更新 source remote refs，因內網不可達而 fetch 失敗；未反覆重試，仍依本地 refs / 本地工作樹保守分析。
+- local HEAD 與 `origin/develop` 仍同為 `079aa66`，ahead / behind = `0 / 0`。
+- 本輪未新增 code scan path；Step 4 以 Step 3 evidence 為基礎，補正式面試講法、STAR、Senior / Lead 追問與 claim boundary。
+- 既有 Step 3 文件狀態: 可沿用。原因是已包含白話導讀、分層對照、架構圖、正常流程、failure window、owner decision、掃描範圍與不可誇大邊界。
 
 ## Current code evidence
 

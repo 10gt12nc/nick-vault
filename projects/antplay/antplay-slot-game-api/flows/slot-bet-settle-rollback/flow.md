@@ -280,8 +280,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out` 與第三條 `request-log-rabbitmq-async` 都已完成 Step 5，`bet-record-sharding-schema-route Step 3` 也已完成；目前下一步應做 Step 4，把分表 / schema routing 題轉成面試 case。
+本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out` 與第三條 `request-log-rabbitmq-async` 都已完成 Step 5，`bet-record-sharding-schema-route Step 4` 也已完成；目前下一步應做 Step 5，把分表 / schema routing 題收成 claim gate。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
 ```

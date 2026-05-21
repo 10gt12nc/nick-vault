@@ -1,8 +1,8 @@
 # Claim Boundary
 
-## Step 3 結論
+## Step 4 結論
 
-本 flow 已完成 Step 3。可作 `antplay-slot-game-api` 高流量資料治理的 code-backed 面試素材，但還不是正式履歷 claim gate。Step 5 前不要直接把這條 flow 單獨寫進 `05 / 08`。
+本 flow 已完成 Step 4。可作 `antplay-slot-game-api` 高流量資料治理的正式面試 case，但還不是正式履歷 claim gate。Step 5 前不要直接把這條 flow 單獨寫進 `05 / 08`。
 
 ## 可講
 
@@ -42,5 +42,5 @@
 ## 下一步
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
 ```

@@ -83,8 +83,8 @@ Senior 角度我會把它定義成 observability flow，不是 money source of t
 
 ## 9. 下一步
 
-Step 5 已完成，這條 flow 可回填 project-level async audit / observability claim。後續 Rank 4 `bet-record-sharding-schema-route Step 3` 也已完成；下一步做 Step 4。
+Step 5 已完成，這條 flow 可回填 project-level async audit / observability claim。後續 Rank 4 `bet-record-sharding-schema-route Step 4` 也已完成；下一步做 Step 5。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
 ```

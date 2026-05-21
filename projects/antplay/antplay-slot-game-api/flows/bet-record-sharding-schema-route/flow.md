@@ -5,7 +5,7 @@
 - 日期: 2026-05-21
 - 專案: `antplay-slot-game-api`
 - source repo: `/Users/nick/Git/antplay/antplay-slot-game-api`
-- Flow Track: Step 3
+- Flow Track: Step 4 已完成；本檔保留 Step 3 主報告，正式面試稿見 `career-interview.md` 與 `materials/interview.md`
 - 掃描深度: Level 2 flow deep scan
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 在 #167 分表、db partition v2、`@UseSchema`、table creator、bet record 查詢修正有 direct commits
 - 履歷狀態: Step 3 先作高流量資料治理面試素材；不直接更新 `05 / 08`，Step 5 後再回填 project-level consolidation
@@ -208,8 +208,8 @@ Table creator service 可以依 agent + 日期建立類似以下的實體表：
 
 ## 13. 下一步
 
-Step 3 已完成。下一步應做 Step 4，把這條資料治理 flow 轉成正式面試 case：30 秒 / 90 秒 / 3 分鐘講法、STAR、failure scenarios、Senior / Lead 追問與保守 claim boundary。
+Step 4 已完成。下一步應做 Step 5，追更細的 path-specific blame / diff 與 claim gate，判斷這條 flow 是否能回填 project-level contribution consolidation；仍不直接更新 `05 / 08`。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 5
 ```
