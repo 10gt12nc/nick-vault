@@ -232,5 +232,5 @@ sequenceDiagram
 ## 15. 下一步
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 3
+antplay *-math buy-free-scatter-rtp3-result-contract Step 4
 ```

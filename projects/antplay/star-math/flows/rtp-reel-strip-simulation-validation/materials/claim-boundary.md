@@ -60,5 +60,5 @@ Step 5 gate 結論:
 下一步回 Step 2 ranking，做 Rank 3:
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 3
+antplay *-math buy-free-scatter-rtp3-result-contract Step 4
 ```
