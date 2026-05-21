@@ -335,4 +335,4 @@ Evidence 分層：
 本 flow 收斂狀態：
 
 - `fixed-multi-bet-currency-math-core-compatibility`、`rtp-reel-strip-simulation-validation`、`buy-free-scatter-rtp3-result-contract`、`jackpot-symbol-hit-and-prize-scaling` 四條代表 flow 已完成 Step 5。
-- 下一步回 Step 2 ranking，若繼續 `*-math`，做 Rank 5 `special-wild-feature-state-transform Step 3`。
+- 後續已回 Step 2 ranking 完成 Rank 5 `special-wild-feature-state-transform Step 3`；若繼續 `*-math`，下一步做該 flow Step 4。

@@ -39,4 +39,4 @@ Step 4 已補讀 `antplay-slot-game-api` 的 SDT callback registrar、`JackpotSe
 - 單條 flow claim gate 已完成：本 flow 只強化 `*-math` grouped bullet，不單獨變成 jackpot owner 履歷 bullet。
 - SDT runtime evidence 已回填為 code-backed context；仍不標成 Nick direct jackpot service 開發。
 - 不更新 05 / 08；若後續 project-level consolidation 或 rolling resume package 重包 `*-math`，再吸收本 Step 5 結論。
-- 下一步回 Step 2 ranking，若繼續 `*-math`，做 `special-wild-feature-state-transform Step 3`。
+- 後續已回 Step 2 ranking 完成 `special-wild-feature-state-transform Step 3`；若繼續 `*-math`，下一步做該 flow Step 4。
