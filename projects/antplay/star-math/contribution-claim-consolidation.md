@@ -123,8 +123,8 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 4。前三條都只強化 grouped 履歷 bullet，不代表完整 RTP / math owner；下一步先把第三條做 Step 5 單條 flow claim gate，不平均深挖 71 個 repo。
+`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5。前三條都只強化 grouped 履歷 bullet，不代表完整 RTP / math owner；下一步回 Step 2 ranking 做 Rank 4 `jackpot-symbol-hit-and-prize-scaling Step 3`，不平均深挖 71 個 repo。
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 5
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 ```

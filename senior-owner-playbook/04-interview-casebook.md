@@ -505,7 +505,7 @@ Lead / Architect 追問：
 
 證據邊界：
 
-- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作 slot math feature 的跨層 contract consistency 面試案例；正式履歷不單獨寫成完整 buy free owner。
+- 已完成 Step 5，可作 `*-math` grouped 履歷 bullet 的強化 evidence，也可作 slot math feature 的跨層 contract consistency 面試案例；正式履歷不單獨寫成完整 buy free owner。
 - Nick / `10gt12nc` 在 `spn-math` 有 RTP_3、buyFreeWinInfo、`HAVE_3_SCATTER_WIN`、`lastSymbols` reset 相關 direct commits。
 - 已深掃代表 path：`spn-math` 的 `SPNOperatorService`、`SPNMathFactory`、`AbstractSlotMath`、`P21008SlotMath`、`GameSetting`、`SlotReelStripTable`、`RoundResult` / `FreeBetResult`，並補讀 `antplay-slot-game-api` 的 `GameFacade` / `SlotMathFacade` / `GameFlowFacade` caller path。
 - 未掃完整 wallet mutation、bet record DB schema、前端展示、darkpool service implementation、正式 GDD / validation report、全部 71 個 `*-math` repo。

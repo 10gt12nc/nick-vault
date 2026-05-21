@@ -3,11 +3,12 @@
 ## 0. 本次掃描紀錄
 
 - 日期: 2026-05-21
-- 掃描深度: Level 2 Flow 深掃 + Step 4 面試 case 整理
+- 掃描深度: Level 2 Flow 深掃 + Step 4 面試 case + Step 5 claim gate
 - Vault branch: `main`
 - Source repo policy: 公司 / 來源 repo 只讀；未改 source repo。
 - Remote policy: 已依 KB 嘗試 fetch remote refs；內網遠端不可達，本輪停止重試，依本地 refs / 本地工作樹保守分析。本文件不記錄內網 URL、IP 或敏感 remote 細節。
 - Step 4 補充: 2026-05-21 重新嘗試 fetch 相關 source repos；fetch 仍失敗，依 KB 停止重試並沿用本地 refs。補讀 `GameFacade` beforeBet / odds / darkpool path、`GameFlowFacade#afterBet` result JSON、`SlotMathFacade#freeSpinBet`、`SPNMathFactory#boughtFreeSpinBet` / `processGameSpinResult`、`AbstractSlotMath#init` / `lastSymbols` path。
+- Step 5 補充: 2026-05-21 重讀 KB、project README、Step 1 / Step 2、contribution consolidation、flow 主檔、career-interview、materials、inventory、todo 與 casebook；重新嘗試 fetch 相關 source repos，fetch 仍失敗，依 KB 停止重試並沿用本地 refs。本輪只做單條 flow claim gate，不更新 05 / 08。
 
 ## 1. Source Repo 狀態
 
@@ -157,3 +158,11 @@
 - 不足以說 Nick 主導完整 RTP 策略或遊戲數學模型。
 - 不足以說 Nick 負責完整 wallet / settlement / darkpool。
 - 不足以說所有 `*-math` repo 的 buy free flow 都已完整深掃。
+
+## 10. Step 5 Claim Gate Evidence
+
+- Step 5 判定：可作為 `*-math` grouped 履歷 bullet 的強化 evidence。
+- Step 5 判定：可作 Senior Backend 面試案例，主軸是 pricing contract、runtime routing contract、result contract 的一致性。
+- Step 5 限制：不代表完整 `*-math` final consolidation；不代表全部 71 個 repo 已完成相同 buy free flow 深掃。
+- Step 5 限制：不直接更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`，後續由 project-level consolidation / rolling resume package 回填。
+- Step 5 限制：game-api caller path 是補讀 evidence，不宣稱 Nick 在 game-api 此 path 有 direct commits。

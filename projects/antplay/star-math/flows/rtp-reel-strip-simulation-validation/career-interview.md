@@ -83,5 +83,5 @@
 `fixed-multi-bet-currency-math-core-compatibility` 與本 flow 都已完成 Step 5。下一步回到 Step 2 ranking，做 Rank 3：
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 5
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 ```

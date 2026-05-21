@@ -46,17 +46,24 @@
 - 前端展示 contract。
 - production issue / bug fix / monitoring evidence。
 
-## 5. Step 4 判定
+## 5. 本 flow Step 5 判定
 
-本 flow 已完成 Step 4 正式面試 case。正式履歷 master 05 / 08 本輪不直接更新；本 flow 只作 `*-math` grouped claim 的新增強化 evidence。下一步 Step 5 才做單條 flow claim gate。
+本 flow 已完成 Step 5 單條 flow claim gate。正式履歷 master 不因單條 flow 直接新增 standalone bullet；要更新 05 / 08，仍以 `*-math` project-level contribution consolidation 或 rolling resume package 為準。
 
-Step 4 可說:
+Step 5 gate 結論:
 
-- 這是可面試的 code-backed flow，主軸是 buy free 的 pricing / routing / result contract consistency。
+- 可放履歷：可以，但只能併入 `*-math` grouped bullet，作 buy free / scatter / RTP_3 / result contract 的強化 evidence。
+- 可面試講：可以，這是正式 code-backed 面試 case，主軸是 buy free 的 pricing / routing / result contract consistency。
+- 不更新 05 / 08：本輪是單條 flow Step 5，不是 project-level resume package。
+- 不可誇大：不能寫成完整 buy free owner、完整 RTP / 遊戲數學 owner、完整 wallet / settlement / darkpool owner。
+
+可說:
+
 - 可以講 `GameFacade` beforeBet odds、`SlotMathFacade.freeSpinBet`、`RTP_3` routing、`lastSymbols` state、`GameFlowFacade#afterBet` result JSON。
 - 可以講 troubleshooting path 與 failure window。
+- 可以講 Nick / `10gt12nc` 在 `spn-math` 的 RTP_3、buyFreeWinInfo、`HAVE_3_SCATTER_WIN`、`lastSymbols` reset direct evidence。
 
-Step 4 不更新:
+不更新:
 
 - 不更新 05 / 08。
 - 不升級為完整 `*-math` final consolidation。
@@ -65,5 +72,5 @@ Step 4 不更新:
 下一步:
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 5
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 ```

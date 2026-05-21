@@ -3,10 +3,12 @@
 ## 0. Step 4 定位
 
 - Flow: `buy-free-scatter-rtp3-result-contract`
-- Status: Step 4 / 正式面試 case 已完成
+- Status: Step 5 / 正式面試 case + 單條 flow claim gate 已完成
 - 證據層級: `真實開發過 + code-backed` / `專案存在 / code-backed`
 
 本檔是 Step 4 面試稿細節。主讀文件仍是同層 `career-interview.md`；本檔放更完整的追問、排查順序與回答邊界。
+
+Step 5 已確認：本 case 可作 `*-math` grouped 履歷 bullet 的強化 evidence，但不獨立寫成完整 buy free owner / RTP owner / wallet owner。
 
 ## 1. 30 秒摘要
 
@@ -81,14 +83,21 @@ SPN 的 scatter / wild state 會跨 spin 保存與回寫。debug 或 loop helper
 - 不要只講 class 名稱，要講 contract 邊界。
 - 不要保證 RTP 或 odds 數字正確，除非補正式 validation evidence。
 
-## 6. Step 4 結論
+## 6. Step 5 Claim Gate 結論
 
-本 flow 已完成正式面試 case。最推薦的講法是：
+本 flow 已完成正式面試 case與單條 flow claim gate。最推薦的講法是：
 
 > 我把 buy free 拆成 pricing、routing、result contract 三層來看，重點不是單一 RTP_3 表，而是 odds、`RTP_3`、`lastSymbols`、`RoundResult` / `FreeBetResult` 和 result JSON 要一致。
 
-下一步做 Step 5 單條 flow claim gate；不直接更新 05 / 08。
+Step 5 判定：
+
+- 可作面試案例：可以。
+- 可放履歷：只併入 `*-math` grouped bullet。
+- 不更新 05 / 08：本輪不直接更新，後續由 project-level consolidation / rolling resume package 回填。
+- 不可誇大：不寫成完整 buy free / RTP / wallet / darkpool owner。
+
+下一步回 Step 2 ranking，做 Rank 4：
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 5
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 ```

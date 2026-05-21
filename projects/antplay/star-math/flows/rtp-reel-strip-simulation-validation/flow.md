@@ -232,5 +232,5 @@ sequenceDiagram
 ## 15. 下一步
 
 ```text
-antplay *-math buy-free-scatter-rtp3-result-contract Step 5
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3
 ```
