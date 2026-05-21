@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 5 已完成；`request-log-rabbitmq-async` Step 5 已完成；`bet-record-sharding-schema-route` Step 5 已完成 / 2026-05-21 |
+| Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 5 已完成；`request-log-rabbitmq-async` Step 5 已完成；`bet-record-sharding-schema-route` Step 5 已完成；`runtime-rtp-darkpool-player-control` Step 3 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log / high-traffic table governance |
-| 下一步 | `antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3` |
+| 下一步 | `antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4` |
 
 ## Claim Boundary
 
@@ -22,6 +22,7 @@
 - `transfer-wallet-money-in-out` Step 5 已完成；可回填 project-level transfer wallet / DB + Redis consistency / transaction lookup / 分表 evidence，但不單獨寫成完整 transfer wallet owner。
 - `request-log-rabbitmq-async` Step 5 已完成；已追到 game-api producer、admin-api consumer 與 Nick / `10gt12nc` #774 direct commits，可作 async audit / observability project-level claim，但不單獨寫成完整 RabbitMQ / event platform owner。
 - `bet-record-sharding-schema-route` Step 5 已完成；可回填 project-level high-traffic data governance / schema route / partition key evidence，但不單獨寫成完整 sharding owner。
+- `runtime-rtp-darkpool-player-control` Step 3 已完成；可作 game API runtime decision / RTP cache / dark pool / player control / jackpot / math contract 的面試素材初版，但尚未 Step 5 claim gate，不寫完整 RTP 策略或遊戲數學 owner。
 
 不可誇大:
 
@@ -42,6 +43,8 @@
 - [flows/request-log-rabbitmq-async/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/request-log-rabbitmq-async/career-interview.md)
 - [flows/bet-record-sharding-schema-route/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/flow.md)
 - [flows/bet-record-sharding-schema-route/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/career-interview.md)
+- [flows/runtime-rtp-darkpool-player-control/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/runtime-rtp-darkpool-player-control/flow.md)
+- [flows/runtime-rtp-darkpool-player-control/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/flows/runtime-rtp-darkpool-player-control/career-interview.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-api/contribution-claim-consolidation.md)

@@ -12,6 +12,8 @@
 
 2026-05-21 補充：`request-log-rabbitmq-async` 已完成 Step 5。已追到 game-api `AgentApiFacade#sendRequestLogMq` producer、RabbitMQ exchange / queue / routing key、admin-api `RequestLogListener` consumer 與落庫 SQL，並確認 Nick / `10gt12nc` 在 #774 producer / consumer 兩側都有 direct commits。這可以回填 project-level async audit / observability claim；但不單獨寫成完整 RabbitMQ architecture、exactly-once、outbox、DLQ / retry / alert 或 event platform owner，且 routing key / queue key 最終格式修正屬他人 context evidence。
 
+2026-05-21 補充：`runtime-rtp-darkpool-player-control` 已完成 Step 3。已確認 `/game/bet` runtime path 會串 RTP cache、dark pool total bet / win、player control、jackpot RTP / balance 與 `SlotMathFacade` math result contract。這可作 game API runtime decision 的面試素材初版；尚未 Step 5 claim gate，不直接升級履歷，不寫完整 RTP 策略、遊戲數學、dark pool / player control / jackpot platform owner。
+
 履歷可以保守寫:
 
 > 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正。
@@ -241,8 +243,8 @@ Step 5 後更精準的單條 flow 口徑:
 
 2026-05-21 補充：`bet-record-sharding-schema-route Step 5` 已完成。Nick / `10gt12nc` 對 `@UseSchema` / schema route、#167 bet record 分表、db_partition v2、table creator service 有 direct evidence；可把 high-traffic table governance / partition key 查寫 / schema route 補進 project-level 面試與履歷素材。仍不得寫完整 sharding platform owner、production automatic table creation owner 或已確認 logical-to-physical live route。
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5` 與 `bet-record-sharding-schema-route Step 5`。下一步若繼續本 repo，應做 `runtime-rtp-darkpool-player-control Step 3`。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 3`。下一步若繼續本 repo，應做 `runtime-rtp-darkpool-player-control Step 4`。
 
 ```text
-antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 3
+antplay antplay-slot-game-api runtime-rtp-darkpool-player-control Step 4
 ```
