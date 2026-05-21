@@ -104,5 +104,5 @@ Step 4 已把以下問題整理成正式 Senior / Lead 追問：
 Step 5 已確認本 flow 可回填 project-level runtime decision claim，但不可升級為完整 RTP / math / player-control / jackpot owner。下一步做 project-level consolidation refresh。
 
 ```text
-antplay antplay-slot-game-api contribution claim consolidation
+rolling resume package
 ```

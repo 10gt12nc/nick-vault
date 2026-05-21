@@ -47,5 +47,5 @@
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api contribution claim consolidation
+rolling resume package
 ```

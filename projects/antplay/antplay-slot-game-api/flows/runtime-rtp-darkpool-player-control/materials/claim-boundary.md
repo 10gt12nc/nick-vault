@@ -50,5 +50,5 @@ Step 5 完成。這份是單條 flow claim gate，仍不直接代表整個 proje
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api contribution claim consolidation
+rolling resume package
 ```

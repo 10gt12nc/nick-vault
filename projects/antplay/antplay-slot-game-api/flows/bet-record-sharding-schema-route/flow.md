@@ -208,8 +208,8 @@ Table creator service 可以依 agent + 日期建立類似以下的實體表：
 
 ## 13. 下一步
 
-Step 5 已完成。本 flow 可回填 `antplay-slot-game-api` project-level contribution consolidation，作 high-traffic data governance / schema route / partition key evidence；不單獨寫完整 sharding owner，也不直接更新 `05 / 08`。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 已完成；下一步做 project-level contribution claim consolidation。
+Step 5 已完成。本 flow 已回填 `antplay-slot-game-api` project-level contribution consolidation，作 high-traffic data governance / schema route / partition key evidence；不單獨寫完整 sharding owner，也不直接更新 `05 / 08`。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 與 project-level contribution claim consolidation refresh 已完成；下一步做 rolling resume package。
 
 ```text
-antplay antplay-slot-game-api contribution claim consolidation
+rolling resume package
 ```

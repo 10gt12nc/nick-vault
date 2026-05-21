@@ -158,10 +158,10 @@ Step 3 不做:
 
 ## 9. Step 2 結論
 
-2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 5，Rank 3 `request-log-rabbitmq-async` 已完成 Step 5，Rank 4 `bet-record-sharding-schema-route` 已完成 Step 5，Rank 5 `runtime-rtp-darkpool-player-control` 已完成 Step 5。本批代表 flows 已全部 Step 5；下一步建議做 project-level contribution claim consolidation refresh:
+2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 5，Rank 3 `request-log-rabbitmq-async` 已完成 Step 5，Rank 4 `bet-record-sharding-schema-route` 已完成 Step 5，Rank 5 `runtime-rtp-darkpool-player-control` 已完成 Step 5，project-level contribution claim consolidation refresh 也已完成。本批代表 flows 已全部收斂；下一步建議做 rolling resume package:
 
 ```text
-antplay antplay-slot-game-api contribution claim consolidation
+rolling resume package
 ```
 
 預期產出:
