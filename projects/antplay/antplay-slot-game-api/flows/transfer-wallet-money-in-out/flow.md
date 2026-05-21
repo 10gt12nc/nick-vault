@@ -6,8 +6,8 @@
 
 - Flow 中文名稱: Transfer wallet 轉入 / 轉出 / 全額轉出 / 單筆查詢
 - Flow slug: `transfer-wallet-money-in-out`
-- 完成狀態: Step 4 / 面試 case 已完成，待 Step 5 單條 flow claim gate
-- 證據層級: 專案存在 / code-backed；Nick / `10gt12nc` 有 transfer wallet 分表、`@UseSchema` 與 `updatePlayerWallet` deadlock 補償相關 direct commits，但 transfer API 初始建立主要不是 Nick，履歷 claim 要等 Step 5 判斷
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成
+- 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 transfer wallet 分表、`@UseSchema`、transaction / lookup table path 與 `updatePlayerWallet` rows check / boolean return 相關 direct evidence；但 transfer API 初版主要不是 Nick，不能寫成主導完整 transfer wallet owner
 - 本 flow 類型: production money flow / wallet API flow
 - 是否只確認到入口: 否，已追到 controller、facade、service、DB table、Redis balance、request log 與單筆交易查詢
 
@@ -295,10 +295,10 @@ Source:
 
 ## 14. 下一步
 
-Step 4 已完成面試 case。下一步應做 Step 5 單條 flow claim gate，追 `10gt12nc` path-specific commits、branch / important diff 與 final code behavior，判斷這條 transfer wallet flow 能否回填 project-level consolidation。
+Step 5 已完成 claim gate。本 flow 可回填 `antplay-slot-game-api` project-level contribution consolidation，作 transfer wallet / DB + Redis consistency / 分表查單 / wallet update failure-window 的強化 evidence；但不單獨寫成完整 transfer wallet、ledger、reconciliation owner。
 
 建議下一步:
 
 ```text
-antplay antplay-slot-game-api transfer-wallet-money-in-out Step 5
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 3
 ```

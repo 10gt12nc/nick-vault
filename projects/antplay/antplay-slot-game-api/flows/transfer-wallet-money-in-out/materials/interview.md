@@ -65,4 +65,4 @@ transfer-in 會確保玩家 wallet record 和 Redis balance field 存在；trans
 - 不說已經實作完整 reconciliation。
 - 不說 exactly-once。
 - 不說 Redis lock 就能完整防重。
-- 不說 `transfer-wallet-money-in-out Step 4` 已能直接寫正式履歷；Step 5 才做 claim gate。
+- 不說 `transfer-wallet-money-in-out` 可單獨代表完整 transfer wallet owner；Step 5 只允許回填 project-level consolidation。

@@ -88,10 +88,10 @@ Source:
 
 ## 7. Evidence Level
 
-- `transfer-wallet-money-in-out` flow: 專案存在 / code-backed。
+- `transfer-wallet-money-in-out` flow: 真實開發過 + code-backed，但不是 Nick 主導初版。
 - Nick direct evidence: `54078fe`、`718a207`、`99c63ff`、`aaddfdc`、`3531f42`、`eb2573a`。
 - 非 Nick direct 但重要 context: `67039e6`、`0733906`、`0781f68`、`41cd5ae`。
-- 履歷結論: 待 Step 5 claim gate，不在 Step 4 直接升級。
+- 履歷結論: Step 5 已完成，可回填 project-level consolidation；不單獨寫完整 transfer wallet owner。
 
 ## 8. Step 4 補充掃描
 
@@ -113,3 +113,59 @@ Step 4 產出:
 - failure scenarios。
 - Senior / Lead / Architect 追問。
 - owner 改善方向。
+
+## 9. Step 5 Claim Gate Evidence
+
+本輪 Step 5 掃描等級: Level 2 偏 Level 3 的 claim 掃描。不是全 repo 逐檔逐行，但已追本 flow 的 path-specific log、Nick / `10gt12nc` direct commits、重要 diff、current `develop` final behavior 與 blame。
+
+補充 source 狀態:
+
+| 項目 | 結果 |
+| --- | --- |
+| source branch | `develop` |
+| local HEAD | `079aa66` |
+| local `origin/develop` | `079aa66` |
+| ahead / behind | `0 / 0` |
+| source working tree | clean |
+| remote refs | 前輪 fetch 已失敗一次；依 KB 不反覆重試，本輪依本地 refs / working tree |
+
+### 9.1 Nick / `10gt12nc` direct evidence
+
+| Evidence | 判斷 |
+| --- | --- |
+| `54078fe` / `TransferBalanceService#updatePlayerWallet` | direct evidence。把 wallet update 改成 boolean，加入 DB affected rows check，rows != 1 時回 false，不做 Redis increment。這支撐「參與 transfer wallet wallet-update failure-window 維護」。 |
+| current blame `TransferBalanceService.java:210-255` | direct evidence 仍存在於 `develop`：method signature、rows variable、rows assignment、rows != 1 return false 由 `10gt12nc` 貢獻。 |
+| `718a207` / `TransferBalanceFacade`、`TransferBalanceService` | direct evidence。將 transaction / request log / lookup / wallet table path 轉向 shared sharding table + `pt_day` / `agent_id` / BufferId，影響 transfer wallet 查單與分表 final behavior。 |
+| current blame `TransferBalanceService.java:92, 105, 116, 135-171` | direct evidence。`pt_day`、`agent_id` 查詢條件、transaction insert 欄位與 order id path 有 `10gt12nc` 貢獻。 |
+| `99c63ff`、`aaddfdc`、`3531f42`、`eb2573a` | direct evidence。分別觸及 `ag_transfer_player_wallet`、`ag_transfer_order_lookup`、`pt_transfer_player_wallet_transaction`、`pt_transfer_request_log` table path / table creator 類改造。 |
+| `9d14f91`、`18d63b8`、`4a1cb57` | direct evidence。`@UseSchema` / schema route 相關 commits，支撐分表 / 多 schema route 的維護脈絡。 |
+
+### 9.2 Context evidence
+
+| Evidence | 判斷 |
+| --- | --- |
+| `67039e6` | transfer wallet API 初版，author Derek。只能作 code context，不能支撐 Nick 主導初版。 |
+| `0733906` | DB update 後同步 Redis，author Derek。支撐 final behavior context，但不是 Nick direct claim。 |
+| `0781f68` | lookup 由 traceId 改存 `transferReferenceId`，author Derek。支撐 reference id / 查單語意 context。 |
+| `41cd5ae` | transfer-out / transfer-out-all 防負數補強，author eliot。只能作 context；不能算 Nick direct。 |
+
+### 9.3 Step 5 Claim 結論
+
+可放 project-level 履歷:
+
+- 參與 AntPlay slot game API / runtime 開發維護，處理下注結算、transfer wallet、transaction / order lookup、DB / Redis balance、分表與 request log 相關一致性議題。
+
+可面試講:
+
+- `transferReferenceId` 作為 external idempotency / query key，但 Redis 3 秒 short lock 不是完整冪等。
+- `pt_transfer_player_wallet_transaction`、`ag_transfer_order_lookup`、`ag_transfer_player_wallet`、Redis balance hash 與 request log 的責任切分。
+- `updatePlayerWallet` 的 DB rows check、DB 成功後 Redis increment，以及 DB / Redis dual-write failure window。
+- 分表 / `@UseSchema` / `pt_day` / BufferId 對 transfer wallet transaction 查詢與寫入的影響。
+
+不可誇大:
+
+- 不說 Nick 主導 transfer wallet 初版。
+- 不說完整 wallet / ledger / reconciliation owner。
+- 不說完整 exactly-once / outbox / distributed transaction。
+- 不說 transfer-out negative balance 補強是 Nick direct commit，因為 `41cd5ae` author 不是 Nick。
+- 不說 live DB unique key / constraint 已確認；本輪 source 未看到 migration / DDL。

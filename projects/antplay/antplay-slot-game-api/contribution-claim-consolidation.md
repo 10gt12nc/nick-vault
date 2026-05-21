@@ -8,6 +8,8 @@
 
 2026-05-21 補充：`slot-bet-settle-rollback` 已完成 Step 5。單條 flow claim gate 確認 Nick / `10gt12nc` 在 `GameFacade` / `GameFlowFacade` / `AgentApiFacade` / `CompensationService` 有 path-specific direct commits，可作本 project-level 履歷 claim 的強化 evidence。限制是：目前本地 `develop` 中 deadlock compensation 的實際 refund / fail 標記呼叫被註解，所以不能把它寫成完整 production compensation / wallet ledger owner。
 
+2026-05-21 補充：`transfer-wallet-money-in-out` 已完成 Step 5。單條 flow claim gate 確認 Nick / `10gt12nc` 在 transfer wallet 分表 / schema route / transaction lookup / `updatePlayerWallet` rows check 有 direct evidence，可作 project-level transfer wallet 維護與 DB / Redis consistency 素材。限制是：transfer wallet API 初版主要不是 Nick，不能寫成主導完整 transfer wallet / ledger / reconciliation owner。
+
 履歷可以保守寫:
 
 > 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正。
@@ -26,7 +28,7 @@
 | --- | --- | --- |
 | 直接開發 | 真實開發過 | `git log --all --author='10gt12nc|Nick|nick'` 有大量 direct commits；`shortlog --all` 顯示 `10gt12nc` 約 151 筆、`nick` 約 3 筆 |
 | game runtime | 真實開發過 + code-backed | `GameController`、`GameFacade`、`GameFlowFacade` 有 game init、bet、voucher bet、bet result、settle / rollback、dark pool / RTP、player control |
-| transfer wallet | 真實開發過 | `TransferBalanceController`、`TransferBalanceFacade`、`TransferBalanceService`、`TransferPlayerWallet` / transaction / order lookup；`#374`、`transfer_wallet`、`deadlock` branches |
+| transfer wallet | 真實開發過 + code-backed | `TransferBalanceController`、`TransferBalanceFacade`、`TransferBalanceService`、`TransferPlayerWallet` / transaction / order lookup；`transfer-wallet-money-in-out` Step 5 已完成，確認 `54078fe` / `718a207` / transfer table path direct evidence；初版 API 不是 Nick，不寫主導完整 wallet owner |
 | compensation / deadlock | 真實開發過 | `54078fe`、`31d7a46`：轉帳錢包 deadlock 補償，涉及 `GameFacade`、`GameFlowFacade`、`CompensationService`、`WalletFlag`、`BetRecordManageService` |
 | bet record / sharding | 真實開發過 | `#167` 系列、`Nick-bet_record_daily`、`db_partition` / `db-switch`：bet record 日表 / agent table / request log / transfer table / `@UseSchema` |
 | RabbitMQ request log | 真實開發過 | `d3e0002` / `71fff7b`：RequestLog 改丟 RabbitMQ 非同步執行，涉及 `AgentApiFacade`、`RabbitMQConfig`、`RabbitMqService`、`RequestLogMessageDto` |
@@ -67,7 +69,7 @@
 
 未完成 / 待回填:
 
-- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 3` 已完成；其餘 candidate flows 尚未逐條建立 `flow.md` / `career-interview.md`。
+- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 5` 已完成；其餘 candidate flows 尚未逐條建立 `flow.md` / `career-interview.md`。
 - 未掃 `antplay-slot-game-job`，不能把 game-api claim 擴張成批次 / projection / backup owner。
 - 未逐檔逐行 Level 3。
 
@@ -205,6 +207,7 @@
 Step 5 後更精準的單條 flow 口徑:
 
 - 參與 AntPlay slot game API 下注 / 結算主線維護，處理 `/game/bet`、bet record state、single / transfer wallet、provider settle / rollback、request log MQ 與補通知相關一致性議題。
+- 參與 transfer wallet 相關維護，處理 `transferReferenceId` 防重、transaction / order lookup、DB wallet / Redis balance、分表與 wallet update failure-window 的 code-backed 分析與改造。
 
 可面試講:
 
@@ -233,8 +236,8 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 4`。下一步若繼續本 repo，應做 `transfer-wallet-money-in-out Step 5`，判斷這條 transfer wallet flow 能否回填 project-level consolidation。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 5`。下一步若繼續本 repo，應依 Step 2 ranking 做 `request-log-rabbitmq-async Step 3`，補 async audit / observability case。
 
 ```text
-antplay antplay-slot-game-api Step 1
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 3
 ```
