@@ -243,7 +243,7 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## 05 / 08 更新口徑
 
-本檔已足夠支撐下一輪 `rolling resume package` 回填 05 / 08。建議補入履歷 / 自傳的保守句:
+2026-05-21 `rolling resume package` 已回填 05 / 08。建議補入履歷 / 自傳的保守句:
 
 > 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record / request log / transfer transaction 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正。
 
@@ -255,8 +255,8 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` Career Track 已 refresh；Flow Track 本批代表 flows 已全部 Step 5。下一步應把目前所有 refreshed contribution consolidation 回填到 05 / 08 的 rolling 履歷 / 自傳投遞稿。
+`antplay-slot-game-api` Career Track 已 refresh；Flow Track 本批代表 flows 已全部 Step 5；05 / 08 rolling 履歷 / 自傳投遞稿已回填。下一步回全域 todo 的 iwin Flow Track。
 
 ```text
-rolling resume package
+iwin iwin_gameserver center-http-deposit-withdraw Step 4
 ```

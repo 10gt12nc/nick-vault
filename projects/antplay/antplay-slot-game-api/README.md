@@ -6,10 +6,10 @@
 
 | 項目 | 狀態 |
 | --- | --- |
-| contribution claim consolidation | 已完成 / refreshed / 2026-05-21 |
+| contribution claim consolidation | 已完成 / refreshed / 2026-05-21；05 / 08 已回填 |
 | Flow Track | `slot-bet-settle-rollback` Step 5 已完成；`transfer-wallet-money-in-out` Step 5 已完成；`request-log-rabbitmq-async` Step 5 已完成；`bet-record-sharding-schema-route` Step 5 已完成；`runtime-rtp-darkpool-player-control` Step 5 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log / high-traffic table governance / runtime decision |
-| 下一步 | `rolling resume package` |
+| 下一步 | 已收斂；回全域 todo |
 
 ## Claim Boundary
 
@@ -23,7 +23,7 @@
 - `request-log-rabbitmq-async` Step 5 已完成；已追到 game-api producer、admin-api consumer 與 Nick / `10gt12nc` #774 direct commits，可作 async audit / observability project-level claim，但不單獨寫成完整 RabbitMQ / event platform owner。
 - `bet-record-sharding-schema-route` Step 5 已完成；可回填 project-level high-traffic data governance / schema route / partition key evidence，但不單獨寫成完整 sharding owner。
 - `runtime-rtp-darkpool-player-control` Step 5 已完成；可回填 project-level game API runtime decision / result acceptance / dark pool failure window / RTP and math contract boundary，但不寫完整 RTP 策略、遊戲數學、player control、jackpot 或 dark pool platform owner。
-- `contribution-claim-consolidation` 已於 2026-05-21 refresh，五條代表 flows 的 Step 5 evidence 已回填；下一步才是把 refreshed project-level claims 匯入 `05 / 08` rolling 履歷包。
+- `contribution-claim-consolidation` 已於 2026-05-21 refresh，五條代表 flows 的 Step 5 evidence 已回填；`05 / 08` rolling 履歷包也已吸收本 project-level claim。
 
 不可誇大:
 
