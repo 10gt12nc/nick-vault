@@ -91,6 +91,32 @@ GSC transfer 保守邊界：
 - 證據層級是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
 - 沒有 Nick 本人 MR / ticket / production issue / 本人確認前，不寫成 Nick 主導 GSC 串接或修復 rollback。
 
+AntPlay slot game API 補充案例：
+
+- `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 4，可作正式面試 case；Step 5 claim gate 尚未完成。
+- Project-level contribution consolidation 已確認 Nick / `10gt12nc` 在 game runtime、bet / settle / rollback、transfer wallet、request log MQ、分表與 runtime 控制有大量 direct commits；本 flow 仍需 Step 5 判斷能否升級成單條正式履歷 claim。
+- 已深掃代表 path：`GameController#bet`、`GameFacade#bet`、`GameFlowFacade#getBeforeBetMoney / afterBet / settle / cancel`、`AgentApiFacade#betSettle / betRollback / sendRequestLogMq`、`BetRecordManageService`、transfer wallet mutation 與 notify jobs。
+
+面試主軸：
+
+Slot game API 的下注結算不是單純回傳開獎結果，而是 money correctness flow。Senior 要能拆清 bet record state、single / transfer wallet、provider settle / rollback、request log MQ、notify repair 與 deadlock compensation 的責任邊界。
+
+可講重點：
+
+- `pt_bet_record` 是 Game API 本地 bet state；single wallet 的錢主要在 provider，transfer wallet 的錢在本地 DB / Redis。
+- `setStatusResult` 限制 `step = DEAL` 才能寫 RESULT，這是 state transition guard，但不等於 wallet / provider 已完整一致。
+- RESULT 後 settle 失敗可由 notify job 補 call，但補通知不是完整 reconciliation。
+- request log MQ 是 audit / observability，不是交易 source of truth；MQ failure 不應 rollback 主交易，但要有告警與補寫策略。
+- Deadlock catch 看到 refund amount 計算與 compensation service，但實際 refund / fail 標記呼叫目前被註解；面試要講成風險發現與 owner 補強，不講成已完整補償。
+
+Lead / Architect 追問：
+
+- Transfer wallet 已扣款但 bet record save 失敗，該由 transaction、compensation job，還是人工修復處理？
+- RESULT 已寫但 provider settle timeout，怎麼判斷重送、查詢、rollback 或人工補償？
+- Notify job 的 retry exhaustion 要如何告警與重放？
+- Request log MQ audit 遺失時，客服 / 事故 RCA 還能從哪裡找 evidence？
+- 若只能先補一件事，transfer wallet deadlock 補償、provider idempotency、outbox / repair table 哪個優先？
+
 ## 案例 4：Kafka / MQ 可靠性
 
 對應 flow：

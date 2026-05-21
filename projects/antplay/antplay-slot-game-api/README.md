@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `slot-bet-settle-rollback` Step 3 已完成 / 2026-05-21 |
+| Flow Track | `slot-bet-settle-rollback` Step 4 已完成 / 2026-05-21 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放遊戲 API runtime / betting-settlement / transfer wallet / async log |
-| 下一步 | `antplay antplay-slot-game-api slot-bet-settle-rollback Step 4` |
+| 下一步 | `antplay antplay-slot-game-api slot-bet-settle-rollback Step 5` |
 
 ## Claim Boundary
 

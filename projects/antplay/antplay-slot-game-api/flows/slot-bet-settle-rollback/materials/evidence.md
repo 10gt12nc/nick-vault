@@ -86,3 +86,14 @@ Nick / `10gt12nc` path-specific log 線索:
 - 未確認 remote 最新狀態。
 - 未完整掃 `antplay-slot-game-job`。
 - 未確認 production incident / ticket。
+
+## 6. Step 4 Output Evidence
+
+2026-05-21 Step 4 補充:
+
+- 重讀本 flow 的 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`，並同步檢查 project README、inventory、todo 與 interview casebook。
+- 本輪未新增 source repo 掃描，也未重試 fetch；依 KB 沿用 Step 3 的本地 refs / 本地 working tree evidence，遠端最新性仍標示為未確認。
+- `career-interview.md` 已轉成 Step 4 正式面試主稿，包含 30 秒、90 秒、3 分鐘、STAR 版本、failure scenarios、owner 改善方向與 Step 5 待補。
+- `materials/interview.md` 已補完整 Senior / Lead 追問、六個 failure scenarios、補通知與 reconciliation 的回答邊界。
+- `flow.md` 已更新 Step 4 狀態與下一步 Step 5。
+- 本輪不更新 `senior-owner-playbook/05-resume-master-zh.md` / `08-application-autobiography-zh.md`；正式履歷仍以 Step 5 claim gate 與 project-level contribution consolidation 為準。

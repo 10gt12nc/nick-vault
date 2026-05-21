@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: Slot 下注 / 開獎 / 結算 / rollback
 - Flow slug: `slot-bet-settle-rollback`
-- 完成狀態: Step 3 / Level 2 flow 深掃
+- 完成狀態: Step 4 / 面試 case 已完成；Step 3 Level 2 flow 深掃已完成
 - 證據層級: 專案為真實開發過 + code-backed；本 flow 為 code-backed + Nick / `10gt12nc` path-specific commits 線索，待 Step 5 做單條 claim gate
 - 本 flow 類型: production money flow / game runtime flow
 - 是否只確認到入口: 否，已追到 `GameController`、`GameFacade`、`GameFlowFacade`、`AgentApiFacade`、`BetRecordManageService`、transfer wallet service 與補通知 job
@@ -256,10 +256,11 @@ CREATE / DEAL
 - 我深挖過 AntPlay slot game API 的下注結算主線，能說清 `/game/bet` 如何從 validation、扣款、bet record、math result、settle / rollback 走完。
 - 我可以用 code-backed 方式說明 single wallet 和 transfer wallet 在同一條 bet flow 裡的差異。
 - 我能指出 `RESULT` 後 provider settle 失敗、transfer wallet 扣款後 deadlock、request log MQ 失敗這幾個 failure windows。
+- Step 4 已整理成正式面試 case：30 秒 / 90 秒 / 3 分鐘講法、STAR 版本、failure scenarios、Senior / Lead 追問與 owner 改善方向。
 
 目前不可直接寫履歷:
 
-- 不把這條 flow Step 3 直接寫進 `05` / `08`。
+- 不把這條 flow Step 4 直接寫進 `05` / `08`。
 - 不說主導完整 bet / settle / rollback。
 - 不說完整 wallet / ledger / reconciliation owner。
 - 不說已完成 exactly-once / outbox / full compensation。
@@ -274,8 +275,8 @@ CREATE / DEAL
 
 ## 15. 下一步
 
-下一步應做 Step 4，把這條 flow 轉成可面試案例，整理 3 分鐘講法、Senior 追問、failure scenario 與 owner decision。
+下一步應做 Step 5，針對這條 flow 做單條 claim gate：追重要 diff、確認 Nick / `10gt12nc` path-specific evidence 強度、判斷可放履歷 / 可面試講 / 不可誇大的邊界，必要時回填 project-level contribution consolidation。
 
 ```text
-antplay antplay-slot-game-api slot-bet-settle-rollback Step 4
+antplay antplay-slot-game-api slot-bet-settle-rollback Step 5
 ```

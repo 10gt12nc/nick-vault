@@ -52,3 +52,21 @@ Owner 思考:
 - Idempotency：provider settle / rollback 用 bet id 當 idempotency key，並確認 provider 語意。
 - Reconciliation：定期比對 bet record、provider settle result、transfer wallet transaction。
 - Observability：deadlock、notify retry、negative balance、MQ request log failure 都要有 metric / alert。
+
+## 5. Step 4 面試決策主線
+
+這條 case 面試時最值得呈現的 owner decision 不是「要不要用 MQ」，而是要把四種資料責任分層:
+
+| 層 | 代表資料 / 機制 | 面試講法 |
+| --- | --- | --- |
+| State | `pt_bet_record` DEAL / RESULT / CANCEL / FAIL | 本地下注狀態主紀錄，但不等於 provider / wallet 一定一致 |
+| Money side effect | transfer wallet DB + Redis、provider settle / rollback | 真正會影響玩家餘額，優先級高於 audit log |
+| Repair | notify job、compensation service | 補通知與補償要可查、可重試、可告警 |
+| Audit | request log MQ | 幫助 RCA 與客服查詢，不應阻斷主交易 |
+
+面試回答優先順序:
+
+1. 先說 source of truth 與 wallet type 差異。
+2. 再說 state transition guard，例如 `setStatusResult` 只允許 DEAL -> RESULT。
+3. 接著指出 failure window，尤其 transfer wallet 已變動後的 deadlock / partial failure。
+4. 最後講 owner-grade 補強：idempotency、repair table / outbox-like pending state、reconciliation 與 alerts。
