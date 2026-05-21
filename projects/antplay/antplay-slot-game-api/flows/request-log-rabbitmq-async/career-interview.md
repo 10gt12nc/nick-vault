@@ -5,9 +5,9 @@
 ## 0. 定位
 
 - Flow: `request-log-rabbitmq-async`
-- 狀態: Step 4 已完成
+- 狀態: Step 5 已完成
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 game-api producer 與 admin-api consumer 相關 direct commits
-- 履歷狀態: 可作 `antplay-slot-game-api` project-level async audit / observability evidence；不直接單獨寫進 05 / 08，正式 claim gate 等 Step 5
+- 履歷狀態: 可作 `antplay-slot-game-api` project-level async audit / observability evidence；本輪已回填 project-level consolidation，但不直接單獨寫進 05 / 08
 
 ## 1. 30 秒說法
 
@@ -78,12 +78,13 @@ Senior 角度我會把它定義成 observability flow，不是 money source of t
 - 不寫 exactly-once / outbox 已完成。
 - 不寫完整 event-driven platform owner。
 - 不寫 request log 能保證交易一致性；它只是 audit / observability。
-- 不寫有完整 DLQ / retry / alert，除非 Step 5 補到更強 evidence。
+- 不寫有完整 DLQ / retry / alert；Step 5 未補到已落地 evidence。
+- 不把 2026-01-21 routing key / queue key 最終格式修正寫成 Nick 完成，該修正屬他人 context evidence。
 
 ## 9. 下一步
 
-Step 4 已完成正式面試 case。下一步做 Step 5，追重要 diff / claim gate，判斷這條 flow 能否正式回填 project-level claim，並把不可誇大的邊界收斂乾淨。
+Step 5 已完成，這條 flow 可回填 project-level async audit / observability claim。下一步回同 project Step 2 ranking，做 Rank 4 `bet-record-sharding-schema-route Step 3`。
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 3
 ```

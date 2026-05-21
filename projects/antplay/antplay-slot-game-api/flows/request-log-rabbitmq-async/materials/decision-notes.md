@@ -57,3 +57,26 @@ Step 4 已把本 flow 收斂成三個 owner decision:
 3. **Async governance decision**: MQ 解耦後要補 dedupe、DLQ / retry、queue lag、consumer error 與 schema compatibility；否則只是把同步風險換成無聲 audit loss。
 
 Step 5 需要追重要 diff 與 final behavior，確認這些 decision 哪些是實際落地、哪些只是 owner 改善方向。
+
+## 7. Step 5 Final Decision Boundary
+
+Step 5 追 #774 diff / blame 後，claim gate 收斂如下:
+
+已落地 / 可說:
+
+- 實際把 request log 從 game-api 同步 service path 改成 producer publish。
+- admin-api consumer 解析 message、查重後 insert `pt_request_log`。
+- Producer failure 被 catch，只記錄錯誤，不反向拖垮 provider API 主流程。
+- Current code 仍是 `request-log.direct` exchange、`request-log` queue / routing key、consumer 落庫。
+
+只作 owner 改善方向:
+
+- Publisher confirm / mandatory return。
+- Consumer retry / DLQ / requeue policy。
+- Queue lag / consumer error alert。
+- DB unique key / idempotent upsert。
+- Outbox / durable relay。
+
+Context evidence:
+
+- request-log key 格式最終由後續他人 commit 修正；面試可拿來講 producer / consumer contract 風險，但不能寫成 Nick 完成。

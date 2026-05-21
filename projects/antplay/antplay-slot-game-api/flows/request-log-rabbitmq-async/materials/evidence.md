@@ -112,4 +112,32 @@ Step 4 claim 判斷:
 
 - 可作正式面試 case。
 - 仍不直接更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
-- Step 5 才做單條 flow claim gate，判斷是否回填 project-level consolidation。
+- Step 5 已完成單條 flow claim gate，結論是可回填 project-level consolidation，但不直接更新 `05 / 08`。
+
+## 9. Step 5 Claim Gate 掃描
+
+本輪 Step 5 補讀:
+
+- 本 flow Step 3 / Step 4 主報告、career-interview、claim-boundary、decision-notes、interview notes。
+- `antplay-slot-game-api` README、Step 2 ranking、project contribution consolidation。
+- game-api current code: `AgentApiFacade#execute`、`sendRequestLogMq`、`RabbitMQConfig`、`RabbitMq`、`RabbitMqService`、`RequestLogMessageDto`。
+- admin-api current code: `RequestLogListener`、`RequestLogListenerProcessor`、`RequestLogMapper`、`RequestLogMapper.xml`、`RabbitMq`。
+- game-api / admin-api path-specific log、selected #774 diffs、current blame。
+
+重要 diff / blame 結論:
+
+| Evidence | 判斷 |
+| --- | --- |
+| game-api `d3e0002` / `71fff7b` | `10gt12nc` direct，新增 producer publish path、DTO、RabbitMQ config、JSON message service，並移除同步 request log service path |
+| `AgentApiFacade#sendRequestLogMq` current blame | producer payload 組裝、message serialize、`convertAndSend` 主要行為仍落在 `10gt12nc` #774 direct evidence |
+| admin-api `814b024` / `a66007d` | `10gt12nc` direct，建立 consumer parse、`ptDay`、`RequestLog` 組裝與落庫初始 path |
+| admin-api `f3a9d72` / `5f838f8` / `fa86544` | `10gt12nc` direct，補 UAT / G2 修正脈絡，包含 processor 拆分與 error handling |
+| game-api `7c9d0f6` / admin-api `0f72b92` | 他人 context，修正 request-log exchange / queue / routing key 格式；不能寫成 Nick 完成 |
+
+Step 5 claim 結論:
+
+- 可回填 project-level: `參與 AntPlay slot game API request log RabbitMQ 非同步化，將 provider API audit log 從主交易流程同步寫庫改為 MQ 投遞與下游 consumer 落庫，降低主流程與 audit DB 耦合。`
+- 可面試講: producer / consumer 分層、at-least-once + consumer dedupe、request log 非 source of truth、audit loss observability。
+- 不可寫: 完整 RabbitMQ owner、event platform owner、exactly-once、outbox、完整 DLQ / retry / alert、routing key 最終修正由 Nick 完成。
+
+Step 5 沒有更新 `05 / 08`；只回填 project-level consolidation 與共用索引。

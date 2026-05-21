@@ -95,7 +95,7 @@ AntPlay slot game API 補充案例：
 
 - `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 5，可作正式面試 case，也可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。
 - `antplay-slot-game-api/transfer-wallet-money-in-out` 已完成 Step 5，可作 transfer wallet money correctness 面試 case，也可回填 project-level transfer wallet / DB + Redis consistency / transaction lookup evidence；不單獨寫成完整 transfer wallet owner。
-- `antplay-slot-game-api/request-log-rabbitmq-async` 已完成 Step 4，可作 async audit / observability 正式面試 case；已追到 game-api producer、admin-api consumer 與 Nick / `10gt12nc` #774 direct commits，Step 5 前不單獨寫成完整 RabbitMQ owner。
+- `antplay-slot-game-api/request-log-rabbitmq-async` 已完成 Step 5，可作 async audit / observability 正式面試 case，也可回填 project-level claim；已追到 game-api producer、admin-api consumer 與 Nick / `10gt12nc` #774 direct commits，但不單獨寫成完整 RabbitMQ owner，且 routing key 最終格式修正屬他人 context evidence。
 - Project-level contribution consolidation 已確認 Nick / `10gt12nc` 在 game runtime、bet / settle / rollback、transfer wallet、request log MQ、分表與 runtime 控制有大量 direct commits；slot bet 與 transfer wallet 兩條 flow 的 Step 5 都已補強 project-level evidence，但不單獨寫成完整 owner claim。
 - 已深掃代表 path：`GameController#bet`、`GameFacade#bet`、`GameFlowFacade#getBeforeBetMoney / afterBet / settle / cancel`、`AgentApiFacade#betSettle / betRollback / sendRequestLogMq`、`BetRecordManageService`、transfer wallet mutation 與 notify jobs。
 - Transfer wallet 已深掃代表 path：`TransferBalanceController#transferIn / transferOut / transferOutAll / transaction`、`TransferBalanceFacade`、`TransferBalanceService`、`TransferRedis`、`TransferPlayerWalletTransaction`、`TransferOrderLookup`。

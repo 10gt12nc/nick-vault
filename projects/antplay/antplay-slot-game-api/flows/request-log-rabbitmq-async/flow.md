@@ -6,8 +6,8 @@
 
 - Flow 中文名稱: Request log RabbitMQ 非同步化
 - Flow slug: `request-log-rabbitmq-async`
-- 完成狀態: Step 4 / Level 2 Flow 深掃 + 正式面試 case
-- 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 #774 request log RabbitMQ producer direct commits，admin-api consumer 也有 `10gt12nc` direct commits；但本輪不寫完整 RabbitMQ / event platform owner
+- 完成狀態: Step 5 / Level 2 Flow 深掃 + claim gate 已完成
+- 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 #774 request log RabbitMQ producer 與 admin-api consumer direct commits；但不寫完整 RabbitMQ / event platform owner，後續 routing key 格式修正屬他人 context evidence
 - 本 flow 類型: async audit / observability flow
 - 是否只確認到入口: 否，已確認 game-api producer、RabbitMQ exchange / queue / routing key、message DTO、admin-api consumer、dedupe check 與 insert path
 
@@ -264,7 +264,7 @@ Source:
 - 未確認 DB unique constraint；只看到 consumer 查重 SQL。
 - 未掃 production metrics / dashboard / alert。
 - 未掃完整 admin-api request log 查詢 UI，只確認後台查詢 service / mapper 存在。
-- 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；Step 3 只作 Flow Track。
+- 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；本輪只把單條 flow claim gate 回填 project-level consolidation。
 
 ## 14. Step 4 補充
 
@@ -275,12 +275,35 @@ Step 4 的面試主軸:
 - request log MQ 化是 audit side effect 解耦，不是 money correctness 主線。
 - request log 不是交易 source of truth；MQ failure 不應 rollback bet / settle。
 - async 後必須治理 eventual consistency、duplicate message、consumer failure、queue lag 與 schema compatibility。
-- 不誇大 exactly-once、outbox、完整 DLQ / retry / alert；這些仍是 owner 改善方向或 Step 5 待確認。
+- 不誇大 exactly-once、outbox、完整 DLQ / retry / alert；Step 5 已確認這些仍只能作 owner 改善方向。
 
-## 15. 下一步
+## 15. Step 5 Claim Gate
 
-Step 4 已完成。下一步做 Step 5，追重要 diff / claim gate，判斷這條 flow 能否正式回填 project-level claim，並把履歷可說 / 不可說邊界收斂乾淨。
+Step 5 已完成。本輪重讀 Step 3 / Step 4 文件、project contribution consolidation、source current code、path-specific log、#774 重要 diff 與 current blame。
+
+可升級為 flow-level claim:
+
+- 參與 AntPlay slot game API request log RabbitMQ 非同步化，把 provider API request / response / error / elapsed time audit 從 game-api 主流程同步落庫，改為 producer 投遞 MQ、admin-api consumer 查重後寫入 `pt_request_log`。
+- 可講 producer / DTO / direct exchange / durable queue / routing key / consumer / dedupe insert 的責任分層。
+- 可講 request log 是 audit / observability，不是 money source of truth；MQ 失敗不應 rollback bet / settle，但 audit loss 要被觀測與修補。
+
+Evidence:
+
+- game-api `d3e0002` / `71fff7b`: `10gt12nc` direct，#774 新增 producer、DTO、RabbitMQ config、message serialization，並移除同步 request log service path。
+- admin-api `814b024` / `a66007d` / `f3a9d72` / `5f838f8` / `fa86544`: `10gt12nc` direct，建立 / 修正 request log consumer、processor、查重與落庫 path。
+- current code 仍保留 `AgentApiFacade#sendRequestLogMq` publish、admin-api `RequestLogListener` consume 與 `(pt_day, agent_id, time, id)` 查重後 insert 的設計。
+
+不可誇大:
+
+- 不寫 Nick 主導完整 RabbitMQ architecture 或 event-driven platform。
+- 不寫 exactly-once、outbox、publisher confirm、DLQ / retry / queue lag alert 已完整落地。
+- 不把 routing key / queue key 最終修正寫成 Nick 完成；game-api `7c9d0f6` 與 admin-api `0f72b92` 是 Arnold context evidence。
+- 不把 request log 說成交易一致性保證。
+
+## 16. 下一步
+
+本 flow 已完成 Step 5。依 Step 2 ranking，`antplay-slot-game-api` 下一條最值得做的是 Rank 4 `bet-record-sharding-schema-route Step 3`，把 bet record / request log / transfer transaction 分表與 schema routing 收成高流量資料治理面試題。
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 3
 ```

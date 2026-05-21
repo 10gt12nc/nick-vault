@@ -291,7 +291,7 @@ Source:
 - 未掃 live DB schema / unique index / transaction isolation。
 - 未確認 `@Transactional` 或 DB constraint 是否在其他 config / migration 層補強。
 - 未掃 external caller / platform side retry policy。
-- 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；Step 3 只作 Flow Track。
+- 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；本 flow Step 5 已回填 project-level consolidation，不直接改 05 / 08。
 
 ## 14. 下一步
 
@@ -300,5 +300,5 @@ Step 5 已完成 claim gate。本 flow 可回填 `antplay-slot-game-api` project
 建議下一步:
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 3
 ```
