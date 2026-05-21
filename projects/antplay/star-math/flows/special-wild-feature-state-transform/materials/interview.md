@@ -40,6 +40,38 @@
 
 SFM Special Wild 是單局內的 parent / child transform，最後收斂成普通 wild。SLC LuckyClover 是跨 free spin 的 sticky board tracker，狀態會延續到下一轉。兩者都需要 result contract，但 state lifetime 不同。
 
-## 4. 一句話版
+## 4. Lead / Architect 追問
+
+### Q6: 這條 flow 的 source of truth 是哪個？
+
+對算分來說，最後寫回的 `symbols` 是 scoring source of truth；對前端動畫來說，`extraData` 是 display contract；對 free game routing 來說，`extraData[0].gameType` 又是 state transition input。所以這條 flow 不是單一欄位 source of truth，而是三個 contract 要彼此一致。
+
+### Q7: 如果前端說動畫卡住，但金額看起來正確，你會怎麼查？
+
+我會先看該 round 的 `originalSymbols`、final `symbols` 和 `extraData`，確認 parent / transform indexes 是否能在盤面上找到，再比對 math module 的 index mapping 和前端 animation mapping。若是 missing parent，就檢查是否有 fallback 到有效 reel 或 transform index 超出合法位置。
+
+### Q8: 為什麼這類 bug 不能只靠 try-catch？
+
+try-catch 只能避免 process 掛掉，不能保證 contract 正確。錯誤 fallback 可能讓系統回傳看似完整但語意錯誤的 result，這比明確 skip / fail 更難排查。
+
+### Q9: 你會怎麼設計回歸測試？
+
+我會固定 RNG 或指定盤面，覆蓋 W1 / W2 / W3、沒有 parent、parent 在不同 reel、多 parent、excluded symbol、free game type routing。測試不只看 win amount，也要 assert `symbols`、`originalSymbols`、`extraData.launchIndex`、`transformIndex` 和 `gameType`。
+
+### Q10: 面試時怎麼保守講 Nick 的貢獻？
+
+可以說 Nick / `10gt12nc` 在 `sfm-math` 相關 path 有 direct commits，且有 `找不到父 wild 前端卡` 這類 feature contract bugfix evidence；但不說主導完整 Special Wild 設計，也不說主導 LuckyClover。
+
+## 5. 面試回答公式
+
+```text
+先說業務現象：特殊 wild 會改變玩家看到的盤面。
+再說 code 狀態：internal marker、final symbols、extraData 三層。
+接著說風險：display contract、scoring result、free game state 不一致。
+然後說 owner decision：unknown 不用有效值 fallback，marker 不外漏到算分。
+最後補 claim boundary：這是 `sfm` direct evidence，不誇大成完整 math owner。
+```
+
+## 6. 一句話版
 
 > 我會把 slot feature transform 當成 contract consistency 問題：math 內部可以有 parent / child marker，但最後 scoring symbol、前端 extraData、free game state 必須一致，否則就會出現顯示卡住或 replay 困難。

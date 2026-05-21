@@ -292,7 +292,7 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 目前最值得 Step 2 比較的是 `fixedMultiBet / currency / math-core compatibility` 與 `RTP / reel strip / simulation validation`。前者更貼 Senior Backend / money correctness；後者更有 slot math 差異化。
 
-2026-05-21 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；`rtp-reel-strip-simulation-validation` 已完成 Step 5；`buy-free-scatter-rtp3-result-contract` 已完成 Step 5；`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5。Rank 5 `special-wild-feature-state-transform` 已完成 Step 3，下一步做 Step 4。
+2026-05-21 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5；`rtp-reel-strip-simulation-validation` 已完成 Step 5；`buy-free-scatter-rtp3-result-contract` 已完成 Step 5；`jackpot-symbol-hit-and-prize-scaling` 已完成 Step 5。Rank 5 `special-wild-feature-state-transform` 已完成 Step 4，下一步做 Step 5。
 
 ## 7. Claim Boundary
 
@@ -326,5 +326,5 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 建議下一步:
 
 ```text
-antplay *-math special-wild-feature-state-transform Step 4
+antplay *-math special-wild-feature-state-transform Step 5
 ```

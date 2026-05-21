@@ -206,3 +206,24 @@ SLC Nick / `10gt12nc` direct commits on related paths:
 - 未掃 game-api runtime caller。
 - 未讀 GDD / certification 文件。
 - 未更新 `05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
+
+## 9. Step 4 補充掃描
+
+- 日期: 2026-05-21
+- 任務: `antplay *-math special-wild-feature-state-transform Step 4`
+- 掃描深度: Level 2 既有 evidence 重讀 + 面試 case 收斂
+- 本輪未新增 source code path；重用 Step 3 已深掃的 `sfm-math` / `slc-math` / `math-core` evidence。
+- 依 KB 規則再次嘗試 fetch 三個 source repo，皆因內網 remote 不可達失敗一次；未反覆重試，仍依本地 refs 判斷。
+
+| Repo | Branch | Local HEAD | Local upstream ref | ahead / behind | Dirty | 遠端最新性 |
+| --- | --- | --- | --- | --- | ---: | --- |
+| `sfm-math` | `master` | `ea458d5` | `origin/master = ea458d5` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+| `slc-math` | `master` | `1d8a137` | `origin/master = 1d8a137` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+| `math-core` | `master` | `7f1533b` | `origin/master = 7f1533b` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+
+Step 4 產出:
+
+- 補強 `career-interview.md` 的 Senior / Lead 版回答。
+- 補強 `materials/interview.md` 的 Lead / Architect 追問。
+- 將本 flow 加入 `senior-owner-playbook/04-interview-casebook.md`。
+- 同步 README、Step 文件、inventory、todo 的狀態為 Step 4 完成，下一步 Step 5。

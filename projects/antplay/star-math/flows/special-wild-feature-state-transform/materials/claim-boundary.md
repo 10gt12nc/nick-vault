@@ -53,7 +53,16 @@
 - GDD / QA / certification 文件。
 - production issue / ticket 或 Nick 本人確認 incident context。
 
-## 6. Step 5 預判
+## 6. Step 4 判斷
+
+Step 4 已完成面試 case 收斂。本 flow 的面試價值成立，正式履歷仍不單獨新增 Special Wild bullet。
+
+可進 `04-interview-casebook.md`:
+
+- 是，可作 slot math feature state transform / result contract consistency 補充案例。
+- 必須標明 `sfm-math` 是主要 direct evidence，`slc-math` 是 code-backed 對照。
+
+## 7. Step 5 預判
 
 若後續進 Step 5，初步預判是:
 

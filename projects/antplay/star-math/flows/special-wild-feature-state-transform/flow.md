@@ -5,7 +5,7 @@
 - Domain / Project: `antplay *-math`
 - Flow: `special-wild-feature-state-transform`
 - 中文名稱: Special Wild / symbol state transform
-- 狀態: Step 3 / Level 2 Flow 深掃初版 / 2026-05-21
+- 狀態: Step 4 / Level 2 Flow 深掃 + 面試 case / 2026-05-21
 - 主樣本: `sfm-math`
 - 對照樣本: `slc-math`
 - Shared contract: `math-core`
@@ -188,7 +188,7 @@ Owner 解讀:
 - `sfm` 可作 Nick direct evidence 的主要例子。
 - `slc` 目前只作 code-backed 對照，不寫 Nick 主導 LuckyClover。
 
-## 9. Step 3 結論
+## 9. Step 4 面試 case 結論
 
 這條 flow 已能作為 `*-math` 的補充面試案例：它不是最高價值的 money correctness 題，但很適合展示 Nick 能讀懂 slot math feature state、result contract、front-end display data 與 bugfix boundary。
 
@@ -198,12 +198,14 @@ Owner 解讀:
 - `extraData` 是前端動畫與 free game routing 的 result contract，不只是附加欄位。
 - `acac921` 類 bug 顯示 feature state 的 fallback 值不能亂給，否則會造成前端卡住或顯示與實際盤面不一致。
 
-本 Step 3 不直接更新 `05` / `08`。它只強化 `*-math` grouped bullet 與後續 Step 4 面試 case。
+本 flow 不直接更新 `05` / `08`。它只強化 `*-math` grouped bullet 與面試 case。
+
+Step 4 已將本 flow 收成面試 case，定位為「slot math feature state transform / result contract consistency」。正式履歷仍不單獨新增 Special Wild bullet，後續要到 Step 5 再做單條 flow claim gate。
 
 ## 10. 下一步
 
 ```text
-antplay *-math special-wild-feature-state-transform Step 4
+antplay *-math special-wild-feature-state-transform Step 5
 ```
 
-下一步要把這條 flow 轉成 3 分鐘面試案例，重點是「slot math feature state transform 如何避免 result contract 與前端動畫不一致」。
+下一步要做單條 flow claim gate，判斷本 flow 是否只保留為 `*-math` grouped bullet 的面試 evidence，或是否需要回填 claim boundary。

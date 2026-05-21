@@ -563,6 +563,42 @@ Lead / Architect 追問：
 - Force respin 例外被吞掉時，如何告警與避免超池結果通過？
 - SPH / SLC runtime registration 尚未確認時，面試如何保守描述 evidence boundary？
 
+## 案例 16：Special Wild / feature state transform / result contract
+
+對應 flow：
+
+- `antplay/*-math/special-wild-feature-state-transform`
+
+證據邊界：
+
+- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的補充 evidence，也可作 slot math feature state transform 面試案例；正式履歷不單獨寫成完整 Special Wild owner。
+- Nick / `10gt12nc` 在 `sfm-math` 有 related path direct commits；強 evidence 包含 `acac921 找不到父 wild 前端卡`、`412ad07 特殊符號 間隔`、`15ba947 初始盤 originalSymbols`。
+- 已深掃代表 path：`sfm-math` 的 `AbstractSlotMath#initTable`、`changeWildState`、`handleSpecialWildType`、`addExtraDataForWilds`、`P21008SlotMath#checkFreeGame`、`SFMMathFactory#processGameSpinResult`、`ExtraData` / `RoundResult`。
+- `slc-math` LuckyClover 只作 code-backed 對照，不能說 Nick 主導 LuckyClover。
+- 未掃前端 animation code、game-api runtime caller、正式 GDD / QA / certification 文件、全部 71 個 `*-math` repo。
+
+面試主軸：
+
+Special Wild 不是單純把 symbol 改成 wild，而是 feature state transform 與 result contract consistency。Senior 要能說清楚 internal marker、final scoring symbol、front-end `extraData`、free game state routing 和 debug replay 之間如何對齊。
+
+可講重點：
+
+- `sfm-math` 會先依 game state 選 W1 / W2 / W3，再把 3x5 盤面轉成 15 格 `wildState`。
+- parent / child 會先用 family marker 表示；算分前必須透過 `revertSpecialWildsToNormal` 收斂成一般 `W=50`。
+- `extraData.launchIndex` / `transformIndex` 是前端動畫契約，`extraData[0].gameType` 也是 free game routing input。
+- `acac921` 類 bug 說明 unknown 不應 fallback 到有效 reel；missing parent 要顯式 skip 或 fail，避免產生看似合法但語意錯誤的 display contract。
+- `originalSymbols`、final `symbols`、`extraData` 是排查前端卡住、顯示錯位與 debug replay 的核心材料。
+- `slc` LuckyClover 可對照 state lifetime：SFM 是單局 transform 後收斂，SLC 是跨 free spin sticky tracker。
+
+Lead / Architect 追問：
+
+- `symbols`、`originalSymbols`、`extraData` 三者不一致時，哪一個是 source of truth？
+- 如果玩家看到動畫卡住但 win amount 正確，排查順序是 math marker、front-end index mapping 還是 result payload？
+- 為什麼 missing parent 不能 default 到 reel 0？unknown state 在後端 contract 裡應怎麼表示？
+- W1 / W2 / W3 marker 是否應出現在對外 result？如果不應該，如何測試沒有外漏？
+- Random transform 要如何支援 deterministic debug / replay？
+- SFM single-round transform 和 SLC cross-free-spin tracker 的 state owner 有什麼不同？
+
 ## 面試回答公式
 
 ```text
