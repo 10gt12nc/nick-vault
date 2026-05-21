@@ -530,6 +530,39 @@ Lead / Architect 追問：
 - `lastSymbols` 這種跨 spin state 是否應包成明確 state object，避免 static / helper loop 污染？
 - normal bet / buy free 的 darkpool 統計要怎麼分流與對帳？
 
+## 案例 15：Jackpot symbol hit / prize scaling / result contract
+
+對應 flow：
+
+- `antplay/*-math/jackpot-symbol-hit-and-prize-scaling`
+
+證據邊界：
+
+- 已完成 Step 4，可作 `*-math` grouped 履歷 bullet 的補強 evidence，也可作 slot math jackpot result contract 面試案例；正式履歷不單獨寫成完整 jackpot platform owner。
+- Nick / `10gt12nc` 在 `sph-math` 有 JP symbol / jackpot list / RTP 相關 direct commits；`sdt-math`、`slc-math`、`math-core` 與 `antplay-slot-game-api` 作 code-backed runtime / contract 對照。
+- 已深掃代表 path：`sph-math` 三顆 JP symbol hit、`sdt-math` / `slc-math` wild + JackpotFlip + fixedMultiBet scaling、`math-core` JackpotReward contract，並補讀 `antplay-slot-game-api` 的 SDT callback registration、`JackpotService` 與 `GameFacade` jackpot amount / force respin / record path。
+- 未確認 SPH / SLC runtime callback registration、完整 wallet / settlement、正式 GDD / validation report、全部 71 個 `*-math` repo。
+
+面試主軸：
+
+Jackpot flow 不是單純「盤面中獎給錢」，而是 high-risk result contract consistency。Senior 要能把 symbol / wild hit、balance callback、`fixedMultiBet` prize scaling、rounding、`jackpotRewardList`、`betTotalWin`、force respin、dark-pool win 與 jackpot record 串成同一條可查、可驗證、可說清楚邊界的 flow。
+
+可講重點：
+
+- SPH 代表樣本是三顆 JP symbol 命中；SDT / SLC 代表樣本是 FW 命中後用 JackpotFlip 決定 Min / Minor / Major / Grand。
+- Jackpot 金額來自 runtime balance callback，再依 `nowBet / maxBet` 縮放；SDT / SLC 要把 `fixedMultiBet` 納入下注比例。
+- `antplay-slot-game-api` 的 SDT registrar 會註冊 balance callback，`JackpotService` 會從 result 累加 jackpot amount，並在 dark-pool 控制下檢查 force respin。
+- `jackpotRewardList`、`betTotalWin`、dark-pool win 與 jackpot record 必須同一套 type / unit / currency，否則會造成前端、下注紀錄與獎池扣減 drift。
+- `isForceRespin` 例外時回 false 是可靠性 / observability 追問點，不能只把它當一般防呆。
+
+Lead / Architect 追問：
+
+- 如果 `registerJackpotBalance` 沒註冊，production 應該回 0、fail fast，還是阻擋下注？
+- `jackpotRewardList` 有金額但 `betTotalWin` 漏加或重複加時，排查順序是 math、game-api aggregate、dark-pool 還是 record？
+- `fixedMultiBet`、currency、lineBet、maxBet 與 jackpot balance 單位要由誰保證一致？
+- Force respin 例外被吞掉時，如何告警與避免超池結果通過？
+- SPH / SLC runtime registration 尚未確認時，面試如何保守描述 evidence boundary？
+
 ## 面試回答公式
 
 ```text

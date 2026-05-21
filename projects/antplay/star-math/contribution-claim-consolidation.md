@@ -123,8 +123,8 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 3。這些 flow 都只強化 grouped 履歷 bullet，不代表完整 RTP / math / jackpot owner；下一步做 `jackpot-symbol-hit-and-prize-scaling Step 4`，不平均深挖 71 個 repo。
+`*-math` 已有很強 career evidence，第一條代表 flow `fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，第二條代表 flow `rtp-reel-strip-simulation-validation` 已完成 Step 5，第三條代表 flow `buy-free-scatter-rtp3-result-contract` 已完成 Step 5，第四條代表 flow `jackpot-symbol-hit-and-prize-scaling` 已完成 Step 4。這些 flow 都只強化 grouped 履歷 bullet，不代表完整 RTP / math / jackpot owner；下一步做 `jackpot-symbol-hit-and-prize-scaling Step 5`，不平均深挖 71 個 repo。
 
 ```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
+antplay *-math jackpot-symbol-hit-and-prize-scaling Step 5
 ```

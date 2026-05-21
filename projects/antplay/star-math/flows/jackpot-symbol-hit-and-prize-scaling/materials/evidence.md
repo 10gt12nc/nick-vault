@@ -3,7 +3,7 @@
 ## 0. 掃描紀錄
 
 - 日期: 2026-05-21
-- 任務: `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 3`
+- 任務: `antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4`
 - 掃描深度: Level 2 Flow 深掃
 - Vault branch: `main`
 - Source repos: 只讀
@@ -32,6 +32,7 @@ Source:
 - `/Users/nick/Git/antplay/sdt-math`
 - `/Users/nick/Git/antplay/slc-math`
 - `/Users/nick/Git/antplay/math-core`
+- `/Users/nick/Git/antplay/antplay-slot-game-api`
 
 ## 2. Source Repo 最新性
 
@@ -43,6 +44,7 @@ Source:
 | `sdt-math` | `master` | `146e256` | `origin/master` = `146e256` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
 | `slc-math` | `master` | `1d8a137` | `origin/master` = `1d8a137` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
 | `math-core` | `master` | `7f1533b` | `origin/master` = `7f1533b` | `0 / 0` | 0 | fetch 失敗，依本地 refs |
+| `antplay-slot-game-api` | `develop` | `079aa66` | `origin/develop` = `079aa66` | `0 / 0` | 多處 dirty，但本 Step 讀取的 jackpot 相關檔案 clean | fetch 失敗，依本地 refs |
 
 ## 3. 主要 Code Path
 
@@ -108,6 +110,25 @@ Source:
 - `src/main/java/com/ps/math/core/SlotMath.java`
   - `getTotalBet` overloads，與 fixedMultiBet / currency contract 相關。
 
+### `antplay-slot-game-api`
+
+- `src/main/java/com/ps/domain/game/register/SdtJackpotCallbackRegistrar.java`
+  - `@PostConstruct` 後取得 `sdt` math service。
+  - 透過 classloader 找 `com.ps.math.sdt.service.SDTOperatorService`。
+  - 反射呼叫 `registerJackpotBalance(Function.class)`。
+  - callback 解析 payload 為 `agentId`、`jackpotType`、`currency`，再呼叫 `jackpotService.getBalance(agentId, jackpotType, "sdt", currency, "cent")`。
+- `src/main/java/com/ps/domain/game/slot/service/jackpot/JackpotService.java`
+  - `getBalance` 從 cache / repository 取 jackpot balance，依 unit 回傳 hao 或 cent。
+  - `getResultJackpotAmountCentUnit` 從 `AbstractBetResult#getJackpotRewardList` 累加 jackpot amount。
+  - `isForceRespin` 比對 jackpot amount、dark-pool maxWin 與各 jackpot type balance。
+  - `groupJackpotRewardByType` 依 `jackpotType` 彙總 result reward list。
+  - `setData` 依 jackpot type 扣減 balance、序列化 reward list、寫入 jackpot record，並更新暗池 win cache。
+- `src/main/java/com/ps/domain/game/slot/facade/GameFacade.java`
+  - 取得 math result 後計算 `jackpotAmountCent`。
+  - dark-pool 控制下以 `getSingleWinDarkPool(singleWin, jackpotAmountCent, ...)` 把 jackpot 排除於一般 dark-pool win。
+  - 呼叫 `jackpotService.isForceRespin` 決定是否重轉。
+  - bet 完成後呼叫 `jackpotSchemaProcess.setData(...)` 落 jackpot 資料。
+
 ## 4. Commit Evidence
 
 ### `sph-math`
@@ -159,6 +180,12 @@ Nick / `10gt12nc` path-specific commits:
 
 判斷: `math-core` 提供 shared contract / symbol evidence，可支撐 jackpot result contract 但不代表完整 jackpot platform owner。
 
+### `antplay-slot-game-api`
+
+Nick / `10gt12nc` 在本 Step 讀取的 jackpot 相關 path 未掃到明確 path-specific direct commits；本 repo 有大量 Nick commits，但 jackpot registrar / service path 本輪先標 `專案存在 / code-backed`。
+
+判斷: runtime caller / jackpot service 可作面試 case 的 code-backed context；不能拿來升級為 Nick 主導完整 jackpot platform。
+
 ## 5. 已確認 / 推測 / 待確認
 
 已確認:
@@ -168,19 +195,21 @@ Nick / `10gt12nc` path-specific commits:
 - SDT / SLC jackpot scaling 有納入 `fixedMultiBet`。
 - math-core 有 `JackpotReward` result contract。
 - factory 會將 `jackpotRewardList` 中的 amount 彙總進 `betTotalWin`。
+- `antplay-slot-game-api` 有 SDT balance callback registrar。
+- runtime 會從 result `jackpotRewardList` 累加 jackpot amount，並在 dark-pool / jackpot control 下做 force respin、扣減 balance 與寫入 record。
 
 推測:
 
-- runtime 會在 production 註冊 `jackpotBalanceFn`，讓 math module 可查真正 jackpot balance。
-- jackpot provider / caller 使用相同 `agentId|jackpotType|currency` payload contract。
+- SPH / SLC 可能也需要類似 registrar，但本 Step 只確認 SDT。
 
 待確認:
 
-- game-api / runtime caller 實際在哪裡註冊 `registerJackpotBalance`。
-- jackpot balance callback 失敗時，production 是告警、拒絕、還是以 0 處理。
+- SPH / SLC runtime caller 是否也有 `registerJackpotBalance`。
+- jackpot balance callback 失敗時，production 是告警、拒絕、重轉、還是以 0 處理。
 - free game 中 jackpot reward list 是否存在漏加或重複加風險。
 - settlement / front-end 是否同意 `RoundingMode.DOWN`。
 - 701~704 在 provider / front-end 的 Min / Minor / Major / Grand 對應是否完全一致。
+- `isForceRespin` catch exception 後回 false 的 owner 風險是否符合 production policy。
 
 ## 6. 本 Step 不做
 

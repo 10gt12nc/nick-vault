@@ -6,20 +6,36 @@
 - `sph-math` 與 `sdt-math` 都有 Nick / `10gt12nc` direct commits。
 - 能把 slot math domain 翻成 contract consistency、balance source、scaling、rounding、observability。
 
-## 2. 為什麼 Step 3 先不深掃 game-api
+## 2. Step 4 補讀 game-api 後的邊界
 
-本 Step 的目標是建立 math side flow 初版。runtime caller / `registerJackpotBalance` 屬於 Step 4 failure / consistency 補強項；若現在展開 game-api，會把單條 flow 範圍拉太大，且容易混入 jackpot platform owner 的誇大口徑。
+Step 4 已補讀 `antplay-slot-game-api` 的 SDT callback registrar、`JackpotService` 與 `GameFacade` jackpot path。這讓面試 case 可以從 math side 延伸到 runtime consistency：balance callback、result jackpot amount、force respin、balance reduce 與 jackpot record。
+
+邊界仍要保守：
+
+- 只確認 SDT registrar，不能說所有 jackpot game registration 都完整確認。
+- game-api jackpot service path 本 Step 是 `專案存在 / code-backed` context，未掃到 Nick direct path commits，不升級成 Nick 主導 jackpot platform。
+- wallet / settlement / jackpot pool owner 仍不可 claim。
 
 ## 3. 核心 owner decision
 
 - Math module 是否應該直接依賴 jackpot pool？本 Step 判斷：不應宣稱 math 是 pool owner；math 只負責 hit / scaling / result contract。
-- Balance callback unavailable 要不要回 0？本地 test 可以回 0；production 需要告警 / fail policy，Step 4 待補。
+- Balance callback unavailable 要不要回 0？本地 test 可以 0；production 若 callback 解析失敗或 balance 取不到，要有告警 / fail policy / force respin policy。
 - SDT / SLC scaling 應用 `lineBet * fixedMultiBet`，這比只看 `lineBet` 更符合多倍數下注模型。
 - Result contract 必須同時有 `jackpotRewardList` 與 total win aggregation，避免 display / settlement drift。
+- `JackpotService#isForceRespin` 例外時回 false 是可靠性 trade-off：避免下注流程被 jackpot check 例外打斷，但可能放行高風險結果，面試可拿來談 observability 與 policy。
+- `setData` 用 `betId` 去重 jackpot record，避免同一局重複扣池 / 記錄；這是 result side idempotency 的核心。
 
-## 4. Step 4 建議補強方向
+## 4. Step 4 面試收斂
 
-- 追 `registerJackpotBalance` 在 runtime / game-api 的呼叫位置。
-- 檢查 jackpot amount 是否可能在 BG / FG 被漏加或重複加。
-- 把 balance callback 失敗、rounding、type mapping 寫成面試問答。
-- 補 `jackpotRewardList` / `betTotalWin` contract consistency 的 failure case。
+這條 case 面試時不要講成「我做 jackpot 平台」，而是講：
+
+- Math module result contract 怎麼和 runtime jackpot service 對齊。
+- `fixedMultiBet` / `lineBet` / max bet scaling 為什麼是 money correctness。
+- `jackpotRewardList` 是 runtime 後續 force respin、扣池與 record 的 source。
+- 失敗時要看 callback parsing、balance source、unit conversion、rounding、duplicate betId 與 observability。
+
+## 5. Step 5 建議補強方向
+
+- 單條 flow claim gate：這條是否只能強化 `*-math` grouped bullet。
+- 是否把 SDT runtime evidence 回填到 `contribution-claim-consolidation.md`，但仍標 code-backed context。
+- 不更新 05 / 08，除非後續 project-level consolidation 要重包整個 `*-math`。
