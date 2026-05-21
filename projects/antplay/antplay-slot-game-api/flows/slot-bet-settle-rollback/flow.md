@@ -6,8 +6,8 @@
 
 - Flow 中文名稱: Slot 下注 / 開獎 / 結算 / rollback
 - Flow slug: `slot-bet-settle-rollback`
-- 完成狀態: Step 4 / 面試 case 已完成；Step 3 Level 2 flow 深掃已完成
-- 證據層級: 專案為真實開發過 + code-backed；本 flow 為 code-backed + Nick / `10gt12nc` path-specific commits 線索，待 Step 5 做單條 claim gate
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成
+- 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有本 flow path-specific commits，可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence
 - 本 flow 類型: production money flow / game runtime flow
 - 是否只確認到入口: 否，已追到 `GameController`、`GameFacade`、`GameFlowFacade`、`AgentApiFacade`、`BetRecordManageService`、transfer wallet service 與補通知 job
 
@@ -257,13 +257,18 @@ CREATE / DEAL
 - 我可以用 code-backed 方式說明 single wallet 和 transfer wallet 在同一條 bet flow 裡的差異。
 - 我能指出 `RESULT` 後 provider settle 失敗、transfer wallet 扣款後 deadlock、request log MQ 失敗這幾個 failure windows。
 - Step 4 已整理成正式面試 case：30 秒 / 90 秒 / 3 分鐘講法、STAR 版本、failure scenarios、Senior / Lead 追問與 owner 改善方向。
+- Step 5 已完成 claim gate：本 flow 可作 `antplay-slot-game-api` project-level 履歷素材的強 evidence，也可作 Senior Backend 面試主案例。
 
-目前不可直接寫履歷:
+可保守併入 project-level 履歷:
 
-- 不把這條 flow Step 4 直接寫進 `05` / `08`。
+- 參與 AntPlay slot game API / runtime 開發維護，處理 `/game/bet` 下注、bet record state、single / transfer wallet 結算、provider settle / rollback、request log MQ 與補通知相關 failure window。
+
+不可誇大:
+
 - 不說主導完整 bet / settle / rollback。
 - 不說完整 wallet / ledger / reconciliation owner。
 - 不說已完成 exactly-once / outbox / full compensation。
+- 不說 deadlock compensation 已完整落地；目前本地 `develop` 看到實際 refund / fail 標記呼叫被註解。
 
 ## 14. 本次未掃 / 待補
 
@@ -271,12 +276,12 @@ CREATE / DEAL
 - 未掃 provider 端 API 實作，只看到 Game API call provider。
 - 未掃 live DB schema / migration 實際狀態。
 - 未完整掃 `antplay-slot-game-job`，只確認本 repo 內 Quartz notify service 有補 settle / rollback。
-- 未把 flow claim 升級到履歷；Step 5 才做。
+- 未更新 `05` / `08`：單條 flow Step 5 只作 flow-level claim gate，正式履歷仍吃 project-level consolidation / rolling resume package。
 
 ## 15. 下一步
 
-下一步應做 Step 5，針對這條 flow 做單條 claim gate：追重要 diff、確認 Nick / `10gt12nc` path-specific evidence 強度、判斷可放履歷 / 可面試講 / 不可誇大的邊界，必要時回填 project-level contribution consolidation。
+本 flow 已完成 Step 5。依 Step 2 ranking，下一步應回到同 project 的下一條候選 flow，做 `transfer-wallet-money-in-out Step 3`，補足 transfer-in / transfer-out / transfer-out-all 與 wallet consistency 的 project-local 深掃。
 
 ```text
-antplay antplay-slot-game-api slot-bet-settle-rollback Step 5
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 3
 ```

@@ -97,3 +97,38 @@ Nick / `10gt12nc` path-specific log 線索:
 - `materials/interview.md` 已補完整 Senior / Lead 追問、六個 failure scenarios、補通知與 reconciliation 的回答邊界。
 - `flow.md` 已更新 Step 4 狀態與下一步 Step 5。
 - 本輪不更新 `senior-owner-playbook/05-resume-master-zh.md` / `08-application-autobiography-zh.md`；正式履歷仍以 Step 5 claim gate 與 project-level contribution consolidation 為準。
+
+## 7. Step 5 Claim Gate Evidence
+
+2026-05-21 Step 5 補充:
+
+- 重讀 KB、project README、contribution consolidation、Step 2、flow 主檔、career-interview、materials 與共用 inventory。
+- Source repo 仍沿用本地 refs / 本地 working tree；前一輪 fetch 已失敗，依 KB 不重試。local `develop` = `079aa66`，本機既有 `origin/develop` = `079aa66`，ahead / behind = `0 / 0`。
+- 重新追本 flow path-specific history、重要 diff、branch contains 與 current blame；本輪只讀 source repo，未改公司專案。
+
+### Direct / Context Commit 判斷
+
+| Commit | Author | 判斷 | Step 5 解讀 |
+| --- | --- | --- | --- |
+| `a2b2af5` | `10gt12nc` | direct evidence | 新增 `CompensationService`，在 `GameFacade#bet` 包 deadlock / lock exception handling，計算 transfer wallet refund 並呼叫補償 / cancel path 的早期版本 |
+| `54078fe` | `10gt12nc` | direct evidence | 導入 `WalletFlag`，讓 `afterBet -> settle -> betSettle` 回傳 transfer wallet 是否已加 `totalWin`，用來計算 deadlock refund amount |
+| `31d7a46` | `10gt12nc` | direct evidence | 清理 deadlock 補償相關註解 / log / exception propagation，強化 current flow 的 failure-window trace |
+| `d3e0002` / `71fff7b` | `10gt12nc` | direct evidence | `AgentApiFacade` request log 從同步 DB log 改成 RabbitMQ async message，與本 flow provider call audit / observability 直接相關 |
+| `257e136` / `7fa9b7a` | `eliot` | context evidence | transfer wallet 扣款提前與 `totalWin` 加回修正，屬本 flow 行為背景，不作 Nick direct claim |
+| `09047fd` | `arnold` | context evidence | request-log time / duplicate bet id 修正，說明 bet id / request time 對 request log audit 的重要性，不作 Nick direct claim |
+
+### Current Code Blame 摘要
+
+- `GameFacade#bet` 的 deadlock try/catch、`WalletFlag holder`、`afterBet(... holder)` 與 refund 計算大量由 `10gt12nc` commits 留下。
+- `AgentApiFacade#betSettle` 的 transfer wallet `walletChangeFlag.setTransferWalletChanged(...)`、notify count / success 相關行為有 `10gt12nc` direct lines。
+- `AgentApiFacade#sendRequestLogMq` 主要由 `10gt12nc` 的 `d3e0002` 留下，是 request log async audit 的直接 evidence。
+- `GameFlowFacade#getBeforeBetMoney` 的「下注前先扣 transfer wallet」目前 blame 為 `eliot`；因此只能作 flow context，不作 Nick direct claim。
+- 目前 `GameFacade#bet` 中 `compensationService.refundTMOnDeadlock(...)` 與 `betRecordManageService.setStatusFail(...)` 實際呼叫在本地 `develop` 被註解；所以不能宣稱 deadlock compensation 已完整落地。
+
+### Step 5 判定
+
+- 可升級: 本 flow 可作為 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。
+- 可寫口徑: 「參與 AntPlay slot game API / runtime 開發維護，處理下注、bet record、single / transfer wallet、provider settle / rollback、request log MQ 與補通知相關一致性議題」。
+- 可面試主案例: money correctness、state transition、failure window、retry / compensation、observability、owner boundary。
+- 不可誇大: 不寫主導完整 slot betting / settlement engine；不寫完整 wallet / ledger / reconciliation；不寫 deadlock 補償已完整上線；不寫 exactly-once / outbox。
+- 不更新 `05` / `08`: 單條 flow Step 5 只作 flow-level evidence；正式履歷輸出仍由 project-level consolidation / rolling resume package 統一吸收。

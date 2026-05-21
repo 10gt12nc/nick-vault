@@ -93,8 +93,8 @@ GSC transfer 保守邊界：
 
 AntPlay slot game API 補充案例：
 
-- `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 4，可作正式面試 case；Step 5 claim gate 尚未完成。
-- Project-level contribution consolidation 已確認 Nick / `10gt12nc` 在 game runtime、bet / settle / rollback、transfer wallet、request log MQ、分表與 runtime 控制有大量 direct commits；本 flow 仍需 Step 5 判斷能否升級成單條正式履歷 claim。
+- `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 5，可作正式面試 case，也可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。
+- Project-level contribution consolidation 已確認 Nick / `10gt12nc` 在 game runtime、bet / settle / rollback、transfer wallet、request log MQ、分表與 runtime 控制有大量 direct commits；本 flow Step 5 補強了下注結算主線 evidence，但不單獨寫成完整 owner claim。
 - 已深掃代表 path：`GameController#bet`、`GameFacade#bet`、`GameFlowFacade#getBeforeBetMoney / afterBet / settle / cancel`、`AgentApiFacade#betSettle / betRollback / sendRequestLogMq`、`BetRecordManageService`、transfer wallet mutation 與 notify jobs。
 
 面試主軸：
@@ -108,6 +108,7 @@ Slot game API 的下注結算不是單純回傳開獎結果，而是 money corre
 - RESULT 後 settle 失敗可由 notify job 補 call，但補通知不是完整 reconciliation。
 - request log MQ 是 audit / observability，不是交易 source of truth；MQ failure 不應 rollback 主交易，但要有告警與補寫策略。
 - Deadlock catch 看到 refund amount 計算與 compensation service，但實際 refund / fail 標記呼叫目前被註解；面試要講成風險發現與 owner 補強，不講成已完整補償。
+- `a2b2af5` / `54078fe` / `31d7a46` 是 Nick / `10gt12nc` direct evidence；`257e136` / `7fa9b7a` / `09047fd` 只作 context evidence。
 
 Lead / Architect 追問：
 

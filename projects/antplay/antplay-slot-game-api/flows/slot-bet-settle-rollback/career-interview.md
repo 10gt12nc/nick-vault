@@ -4,13 +4,13 @@
 
 ## 0. 定位
 
-本檔是 `slot-bet-settle-rollback` Step 4 的正式面試主稿。它把 Step 3 的 code-backed 深掃整理成可演練的 Senior Backend / Platform Backend case；它不是正式履歷更新，也不是 Step 5 claim gate。
+本檔是 `slot-bet-settle-rollback` Step 5 後的面試 / 履歷邊界稿。它把 Step 3 的 code-backed 深掃與 Step 4 面試稿，收斂成可演練的 Senior Backend / Platform Backend case；正式履歷仍以 project-level consolidation / rolling resume package 為準。
 
 證據層級:
 
 - Project-level: 真實開發過 + code-backed。
-- Flow-level: code-backed / path-specific commits 線索。
-- Step 4 結論: 可作面試 case；是否能升級成正式 flow claim，待 Step 5 判斷。
+- Flow-level: 真實開發過 + code-backed；Nick / `10gt12nc` 有本 flow path-specific commits。
+- Step 5 結論: 可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence，也可作 Senior Backend 面試主案例。
 
 ## 1. 30 秒講法
 
@@ -91,11 +91,11 @@ Result:
 
 ## 8. 可放履歷候選句
 
-Step 4 暫不直接放履歷。若 Step 5 補足 claim gate，可考慮併入 project-level bullet:
+Step 5 後可併入 project-level bullet:
 
 > 參與 AntPlay slot game API 下注 / 結算主線維護，理解 `/game/bet` 到 bet record、single / transfer wallet、provider settle / rollback 與補通知的 failure window。
 
-目前這句只能作面試素材候選，不直接寫進 05 / 08。
+更適合放在 `antplay-slot-game-api` project-level 經驗下，不建議單獨拉成一條「完整下注結算 owner」履歷 bullet。`05` / `08` 若要更新，仍應由 project-level consolidation / rolling resume package 統一吸收。
 
 ## 9. 不可誇大
 
@@ -106,9 +106,9 @@ Step 4 暫不直接放履歷。若 Step 5 補足 claim gate，可考慮併入 pr
 - 不說完整 provider settle / rollback owner。
 - 不說已解決 deadlock 補償，因為目前看到的 refund / fail 標記呼叫被註解。
 
-## 10. Step 5 應補
+## 10. Step 5 Claim Gate
 
-- 追重要 diff：deadlock / transfer wallet compensation、deduct balance earlier、request log duplicate id。
-- 判斷本 flow 能否升級成正式履歷 claim。
-- 更新 `materials/claim-boundary.md`，明確列出可放履歷 / 可面試講 / 不可誇大。
-- 視 Step 5 結論回填 project contribution consolidation；不直接跳過 project-level 履歷規則。
+- 可放履歷: 參與 AntPlay slot game API / runtime 開發維護，處理下注、bet record、single / transfer wallet、provider settle / rollback、request log MQ 與補通知相關一致性議題。
+- 可面試講: 用 `/game/bet` 展示 money correctness、state transition、failure window、retry / compensation、observability 與 owner boundary。
+- 不可誇大: 不說主導完整 slot betting engine、不說完整 wallet / ledger / reconciliation owner、不說 deadlock compensation 已完整落地。
+- 不直接更新 05 / 08: 單條 flow Step 5 是 evidence；正式輸出版仍應吃 project-level consolidation。

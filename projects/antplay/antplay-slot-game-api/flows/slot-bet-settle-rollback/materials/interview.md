@@ -2,14 +2,14 @@
 
 日期: 2026-05-21
 
-## 0. Step 4 定位
+## 0. Step 5 定位
 
-本檔是 Step 4 面試細稿。主讀文件是同層 `career-interview.md`；本檔放更完整的追問、failure scenario、排查順序與回答邊界。
+本檔是 Step 5 後的面試細稿。主讀文件是同層 `career-interview.md`；本檔放更完整的追問、failure scenario、排查順序與回答邊界。
 
 狀態:
 
-- Step 4 已完成: 可作正式面試 case。
-- 履歷狀態: 不直接更新 `05` / `08`；待 Step 5 做單條 flow claim gate。
+- Step 5 已完成: 可作正式面試 case，也可作 project-level 履歷 claim 的強化 evidence。
+- 履歷狀態: 不直接更新 `05` / `08`；由 project-level consolidation / rolling resume package 統一吸收。
 - 證據限制: source repo fetch 先前失敗，依本地 refs / 本地 working tree 保守分析；未確認最新遠端。
 
 ## 1. 面試主軸
@@ -167,15 +167,16 @@ single wallet 主要靠 provider API 做 balance / settle / rollback；transfer 
 - 「我看到補通知 job 能補 settle / rollback，但它不是完整對帳。」
 - 「這條 flow 最值得補強的是 transfer wallet 扣款後的 failure window。」
 
-## 6. Step 5 前要補的 claim gate 問題
+## 6. Step 5 Claim Gate 結論
 
-- Nick / `10gt12nc` 的 path-specific commits 能支撐到哪一層：整條 flow、局部 transfer wallet、request log，還是 project-level 經驗？
-- Deadlock compensation 相關 diff 是否能證明 Nick 實際開發 / 修復，或只能說 code-backed 分析？
-- `slot-bet-settle-rollback` 是否要放進正式履歷，還是只回填到 `antplay-slot-game-api` project-level contribution consolidation？
-- 若放履歷，措辭應是「參與 / 維護 / 熟悉 failure window」，不得寫「主導完整下注結算平台」。
+- `a2b2af5` / `54078fe` / `31d7a46` 支撐 Nick / `10gt12nc` 參與本 flow 的 transfer wallet / deadlock failure-window 維護。
+- `d3e0002` / `71fff7b` 支撐 Nick / `10gt12nc` 參與 request log MQ async audit 維護。
+- 本 flow 可回填 `antplay-slot-game-api` project-level contribution consolidation，作履歷強化 evidence。
+- 面試可講「我參與 / 維護 / 深挖過這條下注結算主線與 failure window」；不要講「主導完整下注結算平台」。
+- Deadlock compensation 不能說已完整落地，因為目前本地 `develop` 看到實際 refund / fail 標記呼叫被註解。
 
 下一步:
 
 ```text
-antplay antplay-slot-game-api slot-bet-settle-rollback Step 5
+antplay antplay-slot-game-api transfer-wallet-money-in-out Step 3
 ```

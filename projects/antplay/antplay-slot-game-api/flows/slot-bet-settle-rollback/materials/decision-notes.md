@@ -70,3 +70,12 @@ Owner 思考:
 2. 再說 state transition guard，例如 `setStatusResult` 只允許 DEAL -> RESULT。
 3. 接著指出 failure window，尤其 transfer wallet 已變動後的 deadlock / partial failure。
 4. 最後講 owner-grade 補強：idempotency、repair table / outbox-like pending state、reconciliation 與 alerts。
+
+## 6. Step 5 Claim Decision
+
+本 flow 的 claim gate 結論:
+
+- 可以支撐 Nick / `10gt12nc` 參與 `antplay-slot-game-api` 下注結算主線與 transfer wallet failure-window 維護。
+- 可以支撐 request log MQ async audit 的 direct evidence。
+- 不應支撐「完整 production compensation 已落地」，因為本地 `develop` 看到 deadlock catch 裡的實際 refund / fail 標記呼叫被註解。
+- 履歷包裝應放在 project-level `antplay-slot-game-api` 經驗，不應拆成 standalone owner claim。

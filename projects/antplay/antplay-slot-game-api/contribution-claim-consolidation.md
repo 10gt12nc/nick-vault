@@ -6,6 +6,8 @@
 
 `antplay-slot-game-api` 可以列為 Nick / `10gt12nc` 真實開發過的遊戲 API / slot runtime repo。這份 evidence 比 admin-api 更接近交易主線，因為 direct commits 觸及 `/game/init`、`/game/bet`、transfer wallet、bet record、settle / rollback、request log、RTP / dark pool、player control、分表與 Quartz retry / notify 類流程。
 
+2026-05-21 補充：`slot-bet-settle-rollback` 已完成 Step 5。單條 flow claim gate 確認 Nick / `10gt12nc` 在 `GameFacade` / `GameFlowFacade` / `AgentApiFacade` / `CompensationService` 有 path-specific direct commits，可作本 project-level 履歷 claim 的強化 evidence。限制是：目前本地 `develop` 中 deadlock compensation 的實際 refund / fail 標記呼叫被註解，所以不能把它寫成完整 production compensation / wallet ledger owner。
+
 履歷可以保守寫:
 
 > 參與 AntPlay slot 遊戲 API / runtime 開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record 分表、RabbitMQ request log、Quartz 補通知與 RTP / dark pool / player control 關聯修正。
@@ -28,9 +30,10 @@
 | compensation / deadlock | 真實開發過 | `54078fe`、`31d7a46`：轉帳錢包 deadlock 補償，涉及 `GameFacade`、`GameFlowFacade`、`CompensationService`、`WalletFlag`、`BetRecordManageService` |
 | bet record / sharding | 真實開發過 | `#167` 系列、`Nick-bet_record_daily`、`db_partition` / `db-switch`：bet record 日表 / agent table / request log / transfer table / `@UseSchema` |
 | RabbitMQ request log | 真實開發過 | `d3e0002` / `71fff7b`：RequestLog 改丟 RabbitMQ 非同步執行，涉及 `AgentApiFacade`、`RabbitMQConfig`、`RabbitMqService`、`RequestLogMessageDto` |
+| slot bet / settle / rollback flow | 真實開發過 + code-backed | `slot-bet-settle-rollback` Step 5 已完成；`a2b2af5`、`54078fe`、`31d7a46`、`d3e0002` 等 direct commits 支撐下注、settle、transfer wallet failure window 與 request log async audit |
 | whitelist / auth token | 真實開發過 | `#684` 白名單功能、`auth_token 擋 game_code` 系列，涉及 `WhiteIpFilter`、`PublicAuthFacade`、`AuthTokenService`、`GameFacade` |
 | Kafka | 只作歷史嘗試，不作現行 claim | `feat(#kafka): kafka JOB` 後有 `Revert "feat(#kafka): kafka JOB"`，不得寫成現行 Kafka production owner |
-| final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
+| final 全量 flow | 部分完成 / 待補 | Step 1 / Step 2 已完成，第一條代表 flow `slot-bet-settle-rollback` 已完成 Step 5；其餘 candidate flows 尚未深掃，本檔仍是 rolling consolidation |
 
 ## Source Scan Record
 
@@ -200,6 +203,10 @@
 - 參與 bet record / request log / transfer wallet 分表與 schema routing 維護，處理 `@UseSchema`、日表 / agent table、job processor 與查詢窗口。
 - 參與 request log RabbitMQ 非同步化與白名單 / auth token / game code guard 相關維護。
 
+Step 5 後更精準的單條 flow 口徑:
+
+- 參與 AntPlay slot game API 下注 / 結算主線維護，處理 `/game/bet`、bet record state、single / transfer wallet、provider settle / rollback、request log MQ 與補通知相關一致性議題。
+
 可面試講:
 
 - Slot runtime 的一局下注如何從 `/game/bet` 走到 bet record、math result、settle / rollback。
@@ -213,6 +220,7 @@
 - 不說主導完整 AntPlay slot platform。
 - 不說完整遊戲數學 / RTP 策略 owner。
 - 不說完整 wallet / ledger / reconciliation owner。
+- 不說 deadlock compensation 已完整落地；本地 `develop` 中實際 refund / fail 標記呼叫目前被註解。
 - 不說完整 RabbitMQ / Kafka architecture、exactly-once、outbox 或完整 event-driven platform。
 - 不說量化改善或事故修復，除非後續補 production issue / metric。
 
