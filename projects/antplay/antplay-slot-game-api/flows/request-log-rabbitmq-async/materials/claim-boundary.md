@@ -47,5 +47,5 @@
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 3
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
 ```

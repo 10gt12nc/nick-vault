@@ -302,8 +302,8 @@ Evidence:
 
 ## 16. 下一步
 
-本 flow 已完成 Step 5。依 Step 2 ranking，`antplay-slot-game-api` 下一條最值得做的是 Rank 4 `bet-record-sharding-schema-route Step 3`，把 bet record / request log / transfer transaction 分表與 schema routing 收成高流量資料治理面試題。
+本 flow 已完成 Step 5。後續 Rank 4 `bet-record-sharding-schema-route Step 3` 也已完成；下一步應做 `bet-record-sharding-schema-route Step 4`，把 bet record / request log / transfer transaction 分表與 schema routing 轉成正式面試 case。
 
 ```text
-antplay antplay-slot-game-api bet-record-sharding-schema-route Step 3
+antplay antplay-slot-game-api bet-record-sharding-schema-route Step 4
 ```
