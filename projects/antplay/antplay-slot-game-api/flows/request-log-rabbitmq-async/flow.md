@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: Request log RabbitMQ 非同步化
 - Flow slug: `request-log-rabbitmq-async`
-- 完成狀態: Step 3 / Level 2 Flow 深掃
+- 完成狀態: Step 4 / Level 2 Flow 深掃 + 正式面試 case
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 #774 request log RabbitMQ producer direct commits，admin-api consumer 也有 `10gt12nc` direct commits；但本輪不寫完整 RabbitMQ / event platform owner
 - 本 flow 類型: async audit / observability flow
 - 是否只確認到入口: 否，已確認 game-api producer、RabbitMQ exchange / queue / routing key、message DTO、admin-api consumer、dedupe check 與 insert path
@@ -266,10 +266,21 @@ Source:
 - 未掃完整 admin-api request log 查詢 UI，只確認後台查詢 service / mapper 存在。
 - 未更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`；Step 3 只作 Flow Track。
 
-## 14. 下一步
+## 14. Step 4 補充
 
-Step 3 已完成主資料流與 failure window。下一步應做 Step 4，把這條 async audit flow 轉成正式面試 case，重點是「audit log 非同步化如何不干擾主交易、又如何處理 observability loss」。
+Step 4 已完成正式面試 case，主入口是 `career-interview.md`，詳細追問在 `materials/interview.md`。
+
+Step 4 的面試主軸:
+
+- request log MQ 化是 audit side effect 解耦，不是 money correctness 主線。
+- request log 不是交易 source of truth；MQ failure 不應 rollback bet / settle。
+- async 後必須治理 eventual consistency、duplicate message、consumer failure、queue lag 與 schema compatibility。
+- 不誇大 exactly-once、outbox、完整 DLQ / retry / alert；這些仍是 owner 改善方向或 Step 5 待確認。
+
+## 15. 下一步
+
+Step 4 已完成。下一步做 Step 5，追重要 diff / claim gate，判斷這條 flow 能否正式回填 project-level claim，並把履歷可說 / 不可說邊界收斂乾淨。
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 4
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
 ```

@@ -10,7 +10,7 @@
 
 2026-05-21 補充：`transfer-wallet-money-in-out` 已完成 Step 5。單條 flow claim gate 確認 Nick / `10gt12nc` 在 transfer wallet 分表 / schema route / transaction lookup / `updatePlayerWallet` rows check 有 direct evidence，可作 project-level transfer wallet 維護與 DB / Redis consistency 素材。限制是：transfer wallet API 初版主要不是 Nick，不能寫成主導完整 transfer wallet / ledger / reconciliation owner。
 
-2026-05-21 補充：`request-log-rabbitmq-async` 已完成 Step 3。已追到 game-api `AgentApiFacade#sendRequestLogMq` producer、RabbitMQ exchange / queue / routing key、admin-api `RequestLogListener` consumer 與落庫 SQL，並確認 Nick / `10gt12nc` 在 #774 producer / consumer 兩側都有 direct commits。這可以作 async audit / observability 面試素材；Step 5 前不把它單獨寫成完整 RabbitMQ architecture、exactly-once、outbox 或 event platform owner。
+2026-05-21 補充：`request-log-rabbitmq-async` 已完成 Step 4。已追到 game-api `AgentApiFacade#sendRequestLogMq` producer、RabbitMQ exchange / queue / routing key、admin-api `RequestLogListener` consumer 與落庫 SQL，並確認 Nick / `10gt12nc` 在 #774 producer / consumer 兩側都有 direct commits。這可以作 async audit / observability 正式面試 case；Step 5 前不把它單獨寫成完整 RabbitMQ architecture、exactly-once、outbox 或 event platform owner。
 
 履歷可以保守寫:
 
@@ -33,7 +33,7 @@
 | transfer wallet | 真實開發過 + code-backed | `TransferBalanceController`、`TransferBalanceFacade`、`TransferBalanceService`、`TransferPlayerWallet` / transaction / order lookup；`transfer-wallet-money-in-out` Step 5 已完成，確認 `54078fe` / `718a207` / transfer table path direct evidence；初版 API 不是 Nick，不寫主導完整 wallet owner |
 | compensation / deadlock | 真實開發過 | `54078fe`、`31d7a46`：轉帳錢包 deadlock 補償，涉及 `GameFacade`、`GameFlowFacade`、`CompensationService`、`WalletFlag`、`BetRecordManageService` |
 | bet record / sharding | 真實開發過 | `#167` 系列、`Nick-bet_record_daily`、`db_partition` / `db-switch`：bet record 日表 / agent table / request log / transfer table / `@UseSchema` |
-| RabbitMQ request log | 真實開發過 + code-backed | `request-log-rabbitmq-async` Step 3 已完成；`d3e0002` / `71fff7b`：RequestLog 改丟 RabbitMQ 非同步執行，涉及 `AgentApiFacade`、`RabbitMQConfig`、`RabbitMqService`、`RequestLogMessageDto`；admin-api consumer 也有 #774 direct evidence |
+| RabbitMQ request log | 真實開發過 + code-backed | `request-log-rabbitmq-async` Step 4 已完成；`d3e0002` / `71fff7b`：RequestLog 改丟 RabbitMQ 非同步執行，涉及 `AgentApiFacade`、`RabbitMQConfig`、`RabbitMqService`、`RequestLogMessageDto`；admin-api consumer 也有 #774 direct evidence |
 | slot bet / settle / rollback flow | 真實開發過 + code-backed | `slot-bet-settle-rollback` Step 5 已完成；`a2b2af5`、`54078fe`、`31d7a46`、`d3e0002` 等 direct commits 支撐下注、settle、transfer wallet failure window 與 request log async audit |
 | whitelist / auth token | 真實開發過 | `#684` 白名單功能、`auth_token 擋 game_code` 系列，涉及 `WhiteIpFilter`、`PublicAuthFacade`、`AuthTokenService`、`GameFacade` |
 | Kafka | 只作歷史嘗試，不作現行 claim | `feat(#kafka): kafka JOB` 後有 `Revert "feat(#kafka): kafka JOB"`，不得寫成現行 Kafka production owner |
@@ -71,7 +71,7 @@
 
 未完成 / 待回填:
 
-- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 5` 已完成；`request-log-rabbitmq-async Step 3` 已完成，待 Step 4 / Step 5 收斂；其餘 candidate flows 尚未逐條建立 `flow.md` / `career-interview.md`。
+- Step 1 / Step 2 已完成，`slot-bet-settle-rollback Step 5` 與 `transfer-wallet-money-in-out Step 5` 已完成；`request-log-rabbitmq-async Step 4` 已完成，待 Step 5 收斂；其餘 candidate flows 尚未逐條建立 `flow.md` / `career-interview.md`。
 - 未掃 `antplay-slot-game-job`，不能把 game-api claim 擴張成批次 / projection / backup owner。
 - 未逐檔逐行 Level 3。
 
@@ -238,8 +238,8 @@ Step 5 後更精準的單條 flow 口徑:
 
 ## Suggested Next
 
-`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5` 與 `request-log-rabbitmq-async Step 3`。下一步若繼續本 repo，應依 Step 2 ranking 做 `request-log-rabbitmq-async Step 4`，把 async audit / observability 轉成可面試 case。
+`antplay-slot-game-api` 的 Career Track 已能保守補履歷；Flow Track 已完成 Step 1 / Step 2、`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5` 與 `request-log-rabbitmq-async Step 4`。下一步若繼續本 repo，應依 Step 2 ranking 做 `request-log-rabbitmq-async Step 5`，把 async audit / observability 的 claim gate 收斂乾淨。
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 4
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
 ```

@@ -23,6 +23,7 @@ Vault:
 - `step1-candidate-flows.md`
 - `step2-flow-comparison.md`
 - `contribution-claim-consolidation.md`
+- Step 4 補讀本 flow `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`
 
 Source:
 
@@ -87,3 +88,28 @@ Source:
 - Nick direct evidence: game-api `d3e0002` / `71fff7b`，admin-api `a66007d` / `814b024` / `f3a9d72` / `5f838f8` / `fa86544`。
 - Context evidence: game-api `7c9d0f6`，admin-api `0f72b92`。
 - 履歷結論: 可回填 project-level async log / audit / observability claim；不單獨寫完整 MQ architecture owner。
+
+## 8. Step 4 補充掃描
+
+本輪 Step 4 主要把 Step 3 Level 2 evidence 轉成正式面試 case，沒有啟用 Level 3 逐檔逐行。
+
+補充確認:
+
+- game-api source repo local branch: `develop`
+- game-api local HEAD / local `origin/develop`: `079aa66` / `079aa66`
+- admin-api source repo local branch: `main`
+- admin-api local HEAD / local `origin/main`: `2e15503` / `2e15503`
+- 本輪兩個 source repo 都嘗試 fetch；因內網不可達失敗，依 KB 不反覆重試。
+- source working tree 仍乾淨；本輪未修改公司 / source repo。
+
+Step 4 產出:
+
+- `career-interview.md`: 30 秒 / 90 秒 / 3 分鐘說法、STAR、failure scenarios、Senior / Lead 追問、履歷保守 bullet。
+- `materials/interview.md`: 正式面試稿、可用金句與不可踩線。
+- `flow.md`、`materials/claim-boundary.md`、README、inventory、todo 同步下一步到 Step 5。
+
+Step 4 claim 判斷:
+
+- 可作正式面試 case。
+- 仍不直接更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- Step 5 才做單條 flow claim gate，判斷是否回填 project-level consolidation。

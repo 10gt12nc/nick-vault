@@ -47,3 +47,13 @@ request log 不是交易 source of truth。
 - 我把非核心 audit side effect 從主交易流程拆出去。
 - 我知道拆出去後會帶來 eventual consistency。
 - 我能定義哪些 failure 不該影響主流程，哪些 failure 要告警與 repair。
+
+## 6. Step 4 面試決策主線
+
+Step 4 已把本 flow 收斂成三個 owner decision:
+
+1. **Source of truth decision**: request log 不是交易事實；bet record、wallet state、provider response 才是 money correctness 的依據。
+2. **Failure isolation decision**: MQ / audit DB 失敗不應 rollback bet / settle，但必須被觀測與補償。
+3. **Async governance decision**: MQ 解耦後要補 dedupe、DLQ / retry、queue lag、consumer error 與 schema compatibility；否則只是把同步風險換成無聲 audit loss。
+
+Step 5 需要追重要 diff 與 final behavior，確認這些 decision 哪些是實際落地、哪些只是 owner 改善方向。

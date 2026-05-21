@@ -58,5 +58,5 @@
 ## 7. 下一步
 
 ```text
-antplay antplay-slot-game-api request-log-rabbitmq-async Step 4
+antplay antplay-slot-game-api request-log-rabbitmq-async Step 5
 ```

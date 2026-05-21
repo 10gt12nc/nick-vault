@@ -48,4 +48,4 @@
 
 ## 5. 下一步邊界
 
-本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out` 也已完成 Step 5，第三順位 `request-log-rabbitmq-async` 已完成 Step 3；目前下一步是 `request-log-rabbitmq-async Step 4`，不能把本 flow 當成整個 project 已完成。
+本 flow 已完成 Step 5。後續同 project 第二順位 `transfer-wallet-money-in-out` 也已完成 Step 5，第三順位 `request-log-rabbitmq-async` 已完成 Step 4；目前下一步是 `request-log-rabbitmq-async Step 5`，不能把本 flow 當成整個 project 已完成。
