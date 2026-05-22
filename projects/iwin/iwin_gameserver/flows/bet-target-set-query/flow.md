@@ -4,11 +4,11 @@
 
 - Flow 中文名稱：打碼目標設定 / 查詢 / 投注扣減
 - Flow slug：`bet-target-set-query`
-- 完成狀態：Step 3 completed
+- 完成狀態：Step 4 completed
 - 掃描等級：Level 2 Flow 深掃
 - 證據層級：部分真實開發過 + code-backed；coupon 打碼目標入口有 Nick / `10gt12nc` direct commits，一般 BI / 全部打碼系統 owner 待 Step 5 判斷
 - 本 flow 是：money rule / withdrawal gating rule / log projection
-- 是否更新正式履歷 / 自傳：否。Step 3 只建立主學習包，不直接更新 `05` / `08`
+- 是否更新正式履歷 / 自傳：否。Step 4 只轉正式面試 case，不直接更新 `05` / `08`
 
 ## 白話導讀
 
@@ -151,6 +151,11 @@ flowchart TD
   - `addBetTotal()`
   - `queryPlayerBetTarget()`
   - `sendBetLog()`
+- `slots-center/src/main/java/com/slots/center/config/SpinBetTargetConst.java`
+  - `BI_HANDLE`
+  - `COUPON`
+  - `REST_BET_TARGET`
+  - activity / recharge / vip reason
 - `slots-game-log/src/main/java/com/slots/game/job/player/LogBetRecordJob.java`
 - `slots-game-log/src/main/java/com/slots/game/LogJobCrons.java`
 - `slots-game-log/src/main/java/com/slots/game/sql/mapper/Mapper.java`
@@ -241,20 +246,32 @@ flowchart TD
 - 一般 BI handle / 全部打碼系統 owner 未確認。
 - payment / app_bi / game_api 上游完整 contract 未掃完。
 
-## Step 3 結論
+## Step 4 面試 case 摘要
 
-本 flow 已完成 Step 3 主學習包。它是中高價值 money rule 面試素材，因為能把「優惠 / 活動 / 後台設定」和「玩家投注 / 提款限制 / audit log」串起來。
+本 flow 已完成 Step 4，已轉成正式面試 case。面試時可以用三段講：
 
-本輪不更新正式履歷 / 自傳。下一步應補 Step 4，把這條整理成正式面試 case，並保守處理 Nick direct evidence。
+1. target setup：`SET_BET_TARGET` / `SET_BET_TARGET_COUPON` 進 `HttpService`，更新 `SpinNeedData.betTarget`。
+2. bet accumulation：一般 spin / provider bet 成功後累加 `SpinNeedData.betTotal`。
+3. query / audit：`QUERY_BET_TARGET` 回剩餘打碼量，`PLAYER_BET_RECORD` 寫 `log_spin_bet` 作 audit。
+
+正式面試重點：
+
+- `SpinNeedData` 是 rule state，`log_spin_bet` 是 audit source。
+- coupon / BI command 若 timeout 重送，未防重時可能重複累加 target。
+- `HttpService` 直接 `findPlayer(accountId)`，offline player 行為待 Step 5 補 evidence。
+- 投注成功但 `betTotal` 未累加時，需要用 game / provider bet log 與 `PLAYER_BET_RECORD` reconciliation。
+- coupon 打碼入口有 Nick / `10gt12nc` direct commits，但不擴張成完整 wagering rule engine owner。
+
+本輪不更新正式履歷 / 自傳。下一步應補 Step 5 claim gate，判斷這條 flow 是否只保留面試素材，或能把 coupon 打碼入口保守回填 project-level claim。
 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```
 
 原因：
 
-- Step 3 已建立 code-backed 主學習包。
-- 下一步要把打碼目標設定、投注扣減、重複設定風險、offline / log failure 轉成正式面試 case。
-- 不直接更新 05 / 08；是否回填履歷等 Step 5 claim gate。
+- Step 4 已完成正式面試 case。
+- 下一步要做單條 flow claim gate，確認 coupon direct commits 能說到什麼程度。
+- 不直接更新 05 / 08；是否回填履歷等 Step 5 claim gate 與 project-level consolidation 對齊。

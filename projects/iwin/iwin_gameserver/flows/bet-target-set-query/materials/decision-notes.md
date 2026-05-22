@@ -31,8 +31,35 @@ Nick / `10gt12nc` 明確新增 / 修正 `SET_BET_TARGET_COUPON` 與 `COUPON` rea
 
 Step 3 只建立 flow understanding。是否能回填履歷要到 Step 5 claim gate，再和 project-level consolidation 對齊。
 
+## Decision 5：Step 4 用面試 case 講 owner thinking，不升級履歷 claim
+
+Step 4 已把這條轉成正式面試 case，但它的定位仍是 Flow Track。
+
+面試可以講：
+
+- `SpinNeedData` 是 rule state。
+- `log_spin_bet` 是 audit source。
+- 重複 command、offline player、commExt persistence、log failure、betTotal 漏累加是 owner failure window。
+- coupon direct commits 可以說成 supporting evidence。
+
+仍不更新正式履歷：
+
+- Step 4 不是 claim gate。
+- 未掃上游 `app_bi` / `payment` / `game_api` caller。
+- 未確認 ticket / production incident。
+- 未追完整 persistence / offline fallback。
+
+## Decision 6：Step 5 要回答的是 claim gate，不是重寫面試稿
+
+下一步 Step 5 應聚焦：
+
+- coupon direct commits 能否回填 project-level claim。
+- 本 flow 是否只保留 interview-only。
+- 哪些說法可以寫、只能面試講、不可誇大。
+- 是否需要同步 `iwin_gameserver` project-level consolidation。
+
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```

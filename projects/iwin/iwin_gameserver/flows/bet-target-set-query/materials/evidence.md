@@ -68,6 +68,14 @@ source repo：
   - `queryPlayerBetTarget()`
   - provider variants：`addBetTotalAntplay()`、`addBetTotalGSC()`、`addBetTotalPG()`、`addBetTotalAP()`
 
+### Reason const
+
+- `slots-center/src/main/java/com/slots/center/config/SpinBetTargetConst.java`
+  - `BI_HANDLE`
+  - `COUPON`
+  - `REST_BET_TARGET`
+  - recharge / activity / vip / mail reasons
+
 ### Log projection
 
 - `slots-game-log/src/main/java/com/slots/game/job/player/LogBetRecordJob.java`
@@ -118,5 +126,47 @@ Nick / `10gt12nc` direct commits:
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```
+
+## Step 4 掃描補充
+
+任務：`iwin iwin_gameserver bet-target-set-query Step 4`
+日期：2026-05-22
+掃描等級：Level 2 Flow 深掃補讀 / Step 4 面試 case
+
+source repo：
+
+- repo：`/Users/nick/Git/iwin/iwin_gameserver`
+- 已執行：`git fetch --all --prune`
+- local branch：`main`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main = 30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- source working tree：乾淨
+
+本輪補讀：
+
+- `HttpService.doCommand()` 對 `SET_BET_TARGET` / `SET_BET_TARGET_COUPON` / `QUERY_BET_TARGET` 的 command dispatch。
+- `HttpService.setPlayerBetTarget()` / `setPlayerBetTargetCoupon()` / `queryPlayerBetTarget()`。
+- `PlayerData.addWithDrawSpinNeeds()` / `addWithDrawSpinCount()` / `queryWithDrawBetTarget()`。
+- `SpinNeedData.addBetTarget()` / `addBetTotal()` / provider-specific `addBetTotal*()` / `sendBetLog()`。
+- `SpinBetTargetConst` 實際路徑：`slots-center/src/main/java/com/slots/center/config/SpinBetTargetConst.java`。
+- `GameToCenterSpinResultJob` 一般 spin 成功後呼叫 `addWithDrawSpinCount()` 的路徑。
+- `LogJobCrons` 對 `PLAYER_BET_RECORD` 的 log writer registration。
+- path-specific Nick / `10gt12nc` history：`6c99dd3`、`30a9fcb`。
+
+Step 4 新增判斷：
+
+- Step 3 文件可沿用，不需重整；本輪把它轉為正式面試 case。
+- `SpinBetTargetConst` 先前只用 reason enum 口語描述，本輪補正實際 code path。
+- 面試稿明確區分 `SpinNeedData` rule state 與 `log_spin_bet` audit source。
+- 面試稿明確標出 offline player、source idempotency、commExt persistence、log failure 與 reconciliation 是 Step 5 前待補 evidence。
+
+未掃 / 待確認：
+
+- 未掃 app_bi / payment / game_api 完整 caller。
+- 未 checkout 每個遠端 branch。
+- 未確認 MR / ticket / production incident。
+- 未追 `commExt` DB persistence / flush 全路徑。
+- 未確認 `SET_BET_TARGET` offline fallback 是否存在於其他 helper。

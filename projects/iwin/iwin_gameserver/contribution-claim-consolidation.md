@@ -93,18 +93,18 @@
 
 ## 後續回填規則
 
-這份是 rolling / scoped consolidation。`center-http-deposit-withdraw` Step 5 已回填為 interview-only；`game-spin-settlement-log-reel` Step 5 已回填：一般 Game40 spin / settle 不新增履歷 claim，provider log reel / 投派整合 direct commits 只補強既有 project-level claim。`bet-target-set-query` 已完成 Step 3，coupon 打碼入口有 `10gt12nc` direct commits，但正式履歷仍待 Step 5 claim gate。後續若新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
+這份是 rolling / scoped consolidation。`center-http-deposit-withdraw` Step 5 已回填為 interview-only；`game-spin-settlement-log-reel` Step 5 已回填：一般 Game40 spin / settle 不新增履歷 claim，provider log reel / 投派整合 direct commits 只補強既有 project-level claim。`bet-target-set-query` 已完成 Step 4，coupon 打碼入口有 `10gt12nc` direct commits，但正式履歷仍待 Step 5 claim gate。後續若新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```
 
 原因：
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
-- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 均已完成 Step 5，`bet-target-set-query` 已完成 Step 3。
-- 下一步回同一條 flow，補 Rank 4 `bet-target-set-query Step 4`，避免自行跳到其他 project。
+- Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 均已完成 Step 5，`bet-target-set-query` 已完成 Step 4。
+- 下一步回同一條 flow，補 Rank 4 `bet-target-set-query Step 5`，避免自行跳到其他 project。

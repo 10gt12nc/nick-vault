@@ -4,12 +4,14 @@
 
 目前結論：`部分真實開發過 + code-backed`
 
+Step 4 結論：已轉成正式面試 case；不直接更新正式履歷 / 自傳。
+
 已確認 Nick / `10gt12nc` direct evidence：
 
 - `6c99dd3`：新增 coupon 打碼目標 command / reason。
 - `30a9fcb`：修正 coupon 設定的 `betCnt`。
 
-Step 3 不直接更新正式履歷 / 自傳。
+Step 4 不直接更新正式履歷 / 自傳。是否回填 project-level claim 留到 Step 5。
 
 ## 可說
 
@@ -17,6 +19,7 @@ Step 3 不直接更新正式履歷 / 自傳。
 - 我能說明 `SET_BET_TARGET`、`SET_BET_TARGET_COUPON`、`QUERY_BET_TARGET`。
 - 我能說明 `betTarget` / `betTotal`、投注累加、提款限制與 audit log 的關係。
 - coupon 打碼目標入口有 direct commit evidence。
+- 可用正式面試 case 講 money rule correctness、state transition、source of truth / audit source 分離、idempotency 風險與 reconciliation 思路。
 
 ## 可作面試素材，但要保守
 
@@ -39,9 +42,10 @@ Step 3 不直接更新正式履歷 / 自傳。
 - `commExt.spinNeeds` 的 persistence / flush path。
 - offline player 行為。
 - 重複 request 防重設計是否存在。
+- coupon direct commits 是否足以保守回填既有 project-level claim，或只保留為 flow-level supporting evidence。
 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```

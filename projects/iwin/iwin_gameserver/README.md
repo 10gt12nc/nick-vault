@@ -38,8 +38,8 @@
 | `flows/center-http-deposit-withdraw/career-interview.md` | Step 5 已完成 | 正式面試素材；claim gate 結論為 interview-only，不更新履歷 |
 | `flows/game-spin-settlement-log-reel/flow.md` | Step 5 已完成 | 一般 Game40 spin 維持 interview-only；provider log reel / 投派整合回填 project claim evidence |
 | `flows/game-spin-settlement-log-reel/career-interview.md` | Step 5 已完成 | 正式面試素材；不新增一般 slot spin 履歷 claim |
-| `flows/bet-target-set-query/flow.md` | Step 3 已完成 | 打碼目標設定 / 查詢 / 投注扣減主學習包；coupon 打碼入口有 `10gt12nc` direct commits |
-| `flows/bet-target-set-query/career-interview.md` | Step 3 已完成 | 保守面試素材；目前不更新正式履歷 / 自傳 |
+| `flows/bet-target-set-query/flow.md` | Step 4 已完成 | 打碼目標設定 / 查詢 / 投注扣減正式面試 case；coupon 打碼入口有 `10gt12nc` direct commits |
+| `flows/bet-target-set-query/career-interview.md` | Step 4 已完成 | 正式面試素材；目前不更新正式履歷 / 自傳 |
 | `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 | rolling / scoped project-level claim 收口；第三方 provider 投派整合可保守放履歷，center-http 上下分仍 interview-only |
 | `career-interview.md` | 已更新 | project-level career / interview boundary；正式履歷可保守補第三方 provider 投派整合 |
 
@@ -111,19 +111,19 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 4
+iwin iwin_gameserver bet-target-set-query Step 5
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。
 - `game-spin-settlement-log-reel` Step 5 已完成；一般 Game40 spin 維持 code-backed 面試素材，provider log reel / 投派整合回填既有 project claim。
-- `bet-target-set-query` Step 3 已完成；已建立打碼目標設定、投注扣減與 audit log 主學習包。
+- `bet-target-set-query` Step 4 已完成；已轉成 money rule 正式面試 case。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步繼續同一條 flow，轉成正式面試 case。
+- 下一步繼續同一條 flow，做 Step 5 claim gate。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
-- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已完成 Step 5，一般 Game40 spin 只作面試，provider log reel 支撐既有 project claim；bet-target-set-query 目前是 Step 3 money rule 面試素材。
+- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已完成 Step 5，一般 Game40 spin 只作面試，provider log reel 支撐既有 project claim；bet-target-set-query 已是 Step 4 money rule 面試素材。
 - 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner 或解決 duplicate callback production incident。
