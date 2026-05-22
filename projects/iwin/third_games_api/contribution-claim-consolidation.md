@@ -116,7 +116,7 @@
 | `third_games_api` 測試 / 排查線索 | `ec9d812` / `63e88f2`：`10gt12nc` 在 `origin/Test001-Nick` 修改 `AntplayController.java`，commit message 為測試用，內容偏硬編測試帳號 / GameServer URL / 暫時關閉部分 validation / sign / Redis routing | 局部測試線索；不能放正式履歷主成果，不能寫 production provider 開發 |
 | `third_games_api` branch merge | `b16e606`：`nick` merge `beta2` into `main`，merge message 指向 Antplay content-type 相關 MR | branch / merge 線索；可作參與環境或分支流轉背景，不足以宣稱功能 owner |
 | GSC transfer flow | `gsc-transfer-bet-settle-rollback` Step 5 已確認 GSC transfer callback、gameserver `PGTRANSFERINOUT`、Mongo audit / transaction evidence | code-backed 面試素材；仍不升級正式履歷 |
-| OneAPI / Antplay provider flow | Step 1 / Step 2 已盤點 OneAPI、Antplay、GSC split endpoint 與 Redis config flow | code-backed 候選素材；未完成 Step 5，不可寫成 Nick 成果 |
+| OneAPI / Antplay provider flow | OneAPI `oneapi-wallet-bet-result` 已完成 Step 3；Antplay、GSC split endpoint 與 Redis config flow 仍是 Step 2 candidate | code-backed 面試素材；未完成 Step 5，不可寫成 Nick 成果 |
 | 下游 `iwin_gameserver` direct evidence | `10gt12nc` 在 `iwin_gameserver` 有大量 Antplay / GSC / PG commits，例如 `feat(#144): iwin gameserver 對接antplay遊戲` 系列、`feat(#PG): GSC+ PG`、`feat(#PG): bet_result 投派整合`、GSC / Antplay log reel 優化與投派整合 commits | 較強的真實開發 evidence，但 project attribution 屬於 `iwin_gameserver`；只能作 `third_games_api` 下游關聯，不直接包成 `third_games_api` owner |
 
 ## 可放履歷：正式主成果
@@ -171,7 +171,7 @@
 | Flow | 目前狀態 | consolidation 後判斷 |
 | --- | --- | --- |
 | `gsc-transfer-bet-settle-rollback` | Step 5 已完成 | 不更新正式履歷；保留為 code-backed 面試素材 |
-| `oneapi-wallet-bet-result` | Step 2 candidate | code-backed 候選；未深掃，不更新正式履歷 |
+| `oneapi-wallet-bet-result` | Step 3 已完成 | code-backed 面試素材；不更新正式履歷，Nick direct evidence 歸屬仍需保守 |
 | `antplay-bet-settle-rollback` | Step 2 candidate | `third_games_api` 本 repo 有 10gt12nc 測試線索，但正式開發主體不足；可做面試對照，不寫正式成果 |
 | `gsc-seamless-withdraw-deposit-cancel` | Step 2 candidate | 待確認 production 使用狀態；不更新正式履歷 |
 | `third-platform-redis-config-refresh` | Step 2 candidate | 支援性 flow；目前不作履歷主成果 |
@@ -198,11 +198,11 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 3
+iwin third_games_api oneapi-wallet-bet-result Step 4
 ```
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論仍是 interview-only / no standalone resume bullet。
 - 真正較強的第三方遊戲 direct evidence 在 `iwin_gameserver`，已由該 project consolidation 正確歸位。
-- `third_games_api` 若繼續 Flow Track，下一步回 Step 2 Rank 2：`oneapi-wallet-bet-result Step 3`。
+- `oneapi-wallet-bet-result Step 3` 已完成；下一步應轉 Step 4 面試 case。

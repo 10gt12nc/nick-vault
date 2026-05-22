@@ -330,14 +330,14 @@ Step 5 已完成。結論是：可作第三方 seamless wallet transaction bound
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 3
+iwin third_games_api oneapi-wallet-bet-result Step 4
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5 claim gate。
-- `third_games_api` Step 2 排名第二的 `oneapi-wallet-bet-result` 尚未建立 flow package。
-- 繼續同 project 下一條候選 flow，能補 HMAC、transactionId idempotency、PGTRANSFERINOUT 對照素材；不會更新履歷，除非後續另有 project-level evidence。
+- `oneapi-wallet-bet-result Step 3` 已建立 flow package。
+- 下一步把同 flow 轉成 Step 4 面試 case，聚焦 HMAC、transactionId idempotency、PGTRANSFERINOUT 與 gameserver 成功但 Mongo 失敗；不更新履歷。
 
 目前履歷層級仍只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。正式履歷 / 自傳暫不更新；若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
 
