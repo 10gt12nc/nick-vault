@@ -123,6 +123,13 @@ Antplay 三段式保守邊界：
 - 不說已確認 production 仍走舊三段式 endpoint；新版 `/bet_settle-new` 只作演進線索。
 - 不說已建立 exactly-once、完整 reconciliation 或修復 Antplay production 錯帳。
 
+GSC split endpoint 初版素材：
+
+- `third_games_api/gsc-seamless-withdraw-deposit-cancel` 已完成 Step 3，尚未完成 Step 4；目前只放初版提醒，不當正式面試 case。
+- split flow 分成 `/api/seamless/withdraw`、`/deposit`、`/rollback`、`/cancel`。withdraw 寫 Mongo step 1，deposit 寫 step 2，rollback / cancel 寫 step 3。
+- 下游 gameserver command 分別是 `GSC_BET`、`GSC_SETTLE`、`GSC_REFUND`、`GSC_OTHER`，真正 wallet mutation 在 `iwin_gameserver`。
+- Step 4 要保守講清楚：integrated `/api/seamless/transfer` 可能是後來主線；split endpoint production status 待確認。不可把 split endpoint 寫成 Nick 成果或 production owner experience。
+
 AntPlay slot game API 補充案例：
 
 - `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 5，可作正式面試 case，也可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。
