@@ -3,19 +3,21 @@
 ## 定位
 
 - Flow：`gameserver-phased-rollout`
-- 證據層級：`專案存在 / code-backed`
+- 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`
 - Nick 貢獻：`待確認`
 - 用途：面試素材、系統設計討論、平台 / Lead Backend 能力展示的準備稿
 - 不用途：正式履歷最終 bullet、主導成果聲明、production SRE claim
 
-## Step 4 結論
+## Step 5 結論
 
-這條 flow 可收斂成一個 Lead / Platform Backend 面試案例，但目前只能用 `專案存在 / code-backed` 與 `分析素材 / learning-only` 的角度講。它最適合回答：
+這條 flow 已完成單條 flow claim gate，可收斂成一個 Lead / Platform Backend 面試案例，但目前只能用 `專案存在 / code-backed` 與 `分析素材 / learning-only` 的角度講。它最適合回答：
 
 - legacy runtime 上 Kubernetes 時，為什麼 pod ready 不等於 app ready。
 - service discovery 不在 Kubernetes Service，而在 ZK znode 時，rollout strategy 怎麼變。
 - ConfigMap / Secret 外掛後，rollback 為什麼更需要 version discipline。
 - `Recreate` 不是偷懶，而是針對 server id / znode 雙註冊風險的保守取捨。
+
+Step 5 不更新正式履歷 / 自傳。`k3s-deploy` 全分支未掃到 Nick / `10gt12nc` direct commit；本機 `main` 落後 `origin/main` 37 commits，本輪以最新 remote objects 判斷，不 pull 公司 repo 工作樹。
 
 ## 3 分鐘保守講法
 

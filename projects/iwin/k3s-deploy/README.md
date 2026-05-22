@@ -22,7 +22,7 @@
 | `step1-candidate-flows.md` | 已建立 | Level 1 掃描，找出 Top 5 deploy / observability 候選 flow |
 | `architecture-map.md` | 已建立 | 最小拓撲，用來定位 shared / iwin namespace 與主要服務 |
 | `step2-flow-comparison.md` | 已建立 | 已比較 phase rollout、服務 rollout、observability、config / storage 取捨 |
-| `flows/gameserver-phased-rollout/` | Step 4 已建立 | 已整理 iwin-gameserver phase rollout、ZK registration、ConfigMap / Secret、Recreate、rollback 風險與面試追問邊界 |
+| `flows/gameserver-phased-rollout/` | Step 5 已完成 | 已整理 iwin-gameserver phase rollout、ZK registration、ConfigMap / Secret、Recreate、rollback 風險、面試追問邊界與 claim gate；結論維持 interview-only |
 
 ## 專案定位
 
@@ -55,28 +55,28 @@
 目前只能說：
 
 - 可用來理解 / 分析 K3s rollout、Kustomize service topology、observability pipeline 與 legacy app containerization trade-off。
-- 可作為 Lead / Platform Backend 面試素材的 evidence base，但需完成單條 flow Level 2 深掃。
+- 可作為 Lead / Platform Backend 面試素材的 evidence base；`gameserver-phased-rollout` 已完成 Step 5 claim gate，結論是 interview-only。
 
 目前不能說：
 
 - Nick 主導 iwin K3s 遷移。
 - Nick 負責完整 production Kubernetes 平台。
 - Nick 建立完整 DevOps / SRE system。
-- 單靠 Step 1 寫入正式履歷 / 自傳。
+- 單靠 `gameserver-phased-rollout` Step 5 寫入正式履歷 / 自傳。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 原因：
 
-- `gameserver-phased-rollout` 已可作 rollout / rollback 面試素材，但目前仍缺 Nick 本人 evidence，先不搶寫正式履歷。
-- 本 project-local 下一步應完成 `gameserver-phased-rollout` Step 5 claim gate；全域 Career Track 另依 inventory queue 執行。
-- Step 5 只判斷本 flow claim boundary；沒有 Nick direct evidence 前，預期仍不更新正式履歷 / 自傳。
+- `gameserver-phased-rollout` Step 5 已完成，claim gate 結論維持 interview-only，不更新正式履歷 / 自傳。
+- 先前必做收口已完成；下一步應跑一次 rolling resume package，把最新 flow / case 狀態回填到 05 / 08 / 04 / 17。
+- 這會更新履歷相關文件，需要 commit；除非 Nick 明確要求，才 push。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

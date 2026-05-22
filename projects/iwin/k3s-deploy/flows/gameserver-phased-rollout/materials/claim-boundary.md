@@ -46,6 +46,16 @@
 
 如果 Nick 後續確認本人參與，仍應先升級到「參與 / 協助分析 / 整理風險」等保守說法，不直接跳到「主導平台遷移」。
 
+## Step 5 claim gate
+
+Step 5 結論維持 Step 4 邊界：
+
+- 可放履歷：目前不放正式履歷 / 自傳。
+- 可面試講：code-backed rollout / platform analysis。
+- 不可誇大：不說 Nick 主導、上線、production rollback、完整 SRE / observability owner 或改善百分比。
+
+本輪重新 fetch 後，`k3s-deploy` 全分支仍未掃到 Nick / `10gt12nc` direct commit。`origin/main` 最新遠端 commits 沒有改變本 flow claim；本機工作樹未 pull，避免改公司 repo。
+
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不放正式履歷；尚未補到 Nick 本人 K3s / rollout / rollback 的 MR / ticket / production issue / 本人確認。

@@ -4,13 +4,24 @@
 
 - Flow 中文名稱：iwin-gameserver 分階段部署與服務註冊
 - Flow slug：`gameserver-phased-rollout`
-- 完成狀態：Step 4 已建立
+- 完成狀態：Step 5 已完成，已完成單條 flow claim gate
 - 掃描等級：Level 2 Flow 深掃；未做 Level 3 逐檔逐行 / 逐 commit diff
-- 證據層級：`專案存在 / code-backed`；Nick 貢獻 `待確認`
+- 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`；Nick 貢獻 `待確認`
 - 本 flow 類型：deploy flow / platform runtime flow
 - 是否只確認到入口：不是只確認到 YAML；本輪同時讀到 deploy manifests、generator、gameserver runtime boot、ZK registration 與 shutdown code
 
-本文件是 Step 3 主報告，Step 4 已補齊面試追問與 claim boundary。預設先讀這份，再讀 `career-interview.md`；詳細證據、決策筆記與履歷邊界放在 `materials/`。
+本文件是 Step 3 主報告，Step 4 已補齊面試追問與 claim boundary，Step 5 已完成單條 flow claim gate。預設先讀這份，再讀 `career-interview.md`；詳細證據、決策筆記與履歷邊界放在 `materials/`。
+
+## 0.1 Step 5 Claim Gate
+
+2026-05-22 重新 fetch 後確認：
+
+- `/Users/nick/Git/iwin/k3s-deploy` local `main` 落後 `origin/main` 37 commits；本輪未 pull / merge / checkout，只讀 `origin/main` objects 作最新 evidence。
+- `/Users/nick/Git/iwin/iwin_gameserver` local `main` 與 `origin/main` 為 `0 / 0`。
+- `k3s-deploy` 全分支未掃到 Nick / `10gt12nc` direct commit。
+- `origin/main` 最新新增的 commits 主要補 Loki retention / strategy 與 app-bi stderr log，未改變 `gameserver-phased-rollout` claim 判斷。
+
+Step 5 結論：本 flow 可作 Platform / System Owner 面試素材，用來講 legacy gameserver 上 K3s、ZK registration、phase rollout、Recreate、ConfigMap / Secret rollback discipline 與 observability gate；但不更新正式履歷 / 自傳，不寫 Nick 主導 K3s 遷移、production rollout / rollback 或完整 SRE owner。
 
 ## 1. 白話導讀
 
@@ -143,8 +154,8 @@ sequenceDiagram
 
 - `/Users/nick/Git/iwin/k3s-deploy`
 - 已 fetch remote refs；local `main`：`61cb42a8a21445f51ad7e032ade0d13de73ed7cc`
-- `origin/main`：`48e1d50f017b8c67364072a0cb4614c843bfb474`
-- ahead / behind：local ahead 0、behind 34
+- Step 5 重新 fetch 後 `origin/main`：`0e6811de1bc6730e2fcd8d1b34cf2de74f7fab2e`
+- ahead / behind：local ahead 0、behind 37
 - 公司 repo 工作樹未 pull / merge / checkout；Step 3 以 `origin/main` objects 判斷最新 manifests
 
 已看 deploy code path：
@@ -258,6 +269,28 @@ manifest apply
 - 是否有 deployment checklist 或 incident RCA。
 - 是否有 alert / metrics，而不是只有 logs。
 
+## 10. 履歷 / 面試邊界
+
+可面試講：
+
+- legacy gameserver 上 K3s 時，Kubernetes Pod Ready 不等於 application runtime ready。
+- ZK registration / server id / peer watch 會影響 rollout strategy，`Recreate` 有 runtime-aware 的合理背景。
+- ConfigMap / Secret externalization 讓 config 更透明，但 rollback 必須同時對齊 image、per-service config、shared config 與 secret/env。
+- 若要 productionize，應補 phase gate、ZK registration check、rollback runbook、log / dashboard / query。
+
+不可放正式履歷：
+
+- Nick 主導 iwin gameserver K3s 遷移。
+- Nick 設計 production rollout / rollback。
+- Nick 建立完整 DevOps / SRE system。
+- 改善 downtime、部署成功率或 rollback time 的百分比。
+
+後續升級條件：
+
+- Nick 本人確認參與範圍。
+- MR / ticket / commit / review comment 指向 Nick 參與 phase rollout、config externalization、deploy runbook、rollback 或 observability。
+- deploy log / incident / postmortem 證明 Nick 實際處理過 rollout / rollback / observability 問題。
+
 ### 9.7 Owner Decision
 
 | Decision | 選擇 | 好處 | 代價 / 風險 |
@@ -311,10 +344,10 @@ Step 4 的收斂重點：
 
 ## 13. 下一步建議
 
-Step 4 已建立，下一步建議做 Step 5：做最後 claim gate，決定這條 flow 只保留為面試案例，或是否有足夠 Nick evidence 能整理成非常保守的 project-level career note。
+Step 5 已完成，claim gate 結論維持 interview-only：這條 flow 只保留為 rollout / rollback / observability 面試案例，不整理成正式履歷或 project-level career claim。
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

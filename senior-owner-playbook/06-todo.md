@@ -79,7 +79,7 @@
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 3`，選 `slots-game40-sgj` 作代表 game，追一般 slot spin 到 center wallet sync 與 `log_reel` 寫入；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 4`，轉成正式面試 case；不更新正式履歷 / 自傳。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 5`，一般 Game40 spin 維持 interview-only；provider log reel / 投派整合 direct evidence 回填既有 project-level claim，不新增一般 slot spin 履歷 bullet。
-- 已完成 `k3s-deploy gameserver-phased-rollout Step 4`，轉成 rollout / rollback / observability 的保守面試 case；目前仍不更新正式履歷 / 自傳。
+- 已完成 `k3s-deploy gameserver-phased-rollout Step 5`，claim gate 結論維持 interview-only；可作 rollout / rollback / observability 的保守面試 case，不更新正式履歷 / 自傳。
 - 已完成 `game_api partner-deposit-withdraw-bill Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為 Partner API 上分 / 下分 / 查單的 code-backed 面試案例。
 - 已補上待辦事項優先規則：當 Nick 要的是「待辦、缺口、KB 維護、優先順序」時，AI 先維護 todo / KB / inventory，只列候選下一步並等待 Nick 下 Step；不得把缺口自動開工成 flow Step。
 - 已完成 `game_api agent-bonus-receive-transfer Step 3`，建立代理佣金領取 / 轉帳主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。後續 `game_api contribution claim consolidation` 已完成，仍維持本 flow 不進正式履歷。
@@ -129,7 +129,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 `contribution claim consolidation` 可以先做 rolling / scoped 版，用來支援近期履歷與面試材料；不必等 Step 2 定義的本批代表 flows 全部完成 Step 5。執行時除了掃 code，也要重讀該 project 已完成 flow KB 與目前可讀的 project 文件。未完成 flow 必須標為待深掃 / 待回填，不能宣稱 final 或全 project 已完整深掃；final consolidation 才等本批代表 flows 全部 Step 5 後再校正。
 
-2026-05-22 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 也已完成。`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 已完成，下一步若回 Flow Track，建議補 `k3s-deploy gameserver-phased-rollout Step 5`。
+2026-05-22 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 也已完成。`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成，下一步若回 Career Track，建議跑 `rolling resume package`。
 
 來源 repo 若是內網 GitLab 或 remote 不可達，fetch 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹保守分析，並標示未確認最新遠端。不要把內網 URL、IP 或敏感 remote 細節寫進 vault。
 
@@ -141,8 +141,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 必做收口：
 
-1. `iwin k3s-deploy gameserver-phased-rollout Step 5`
-2. 必做收口完成後，跑一次 `rolling resume package`，把最新 claim / case 對齊 `05 / 08 / 04 / 17`
+1. 已完成 `iwin k3s-deploy gameserver-phased-rollout Step 5`
+2. 下一步跑一次 `rolling resume package`，把最新 claim / case 對齊 `05 / 08 / 04 / 17`
 
 資深補強，可選：
 
@@ -159,7 +159,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
-1. `k3s-deploy gameserver-phased-rollout Step 5`：這是 flow 待辦，等 Nick 下 Step 再做；下次開工前要重新 fetch source repo refs，並記錄 `k3s-deploy` 本機 `main` 落後 `origin/main` 的狀態。
+1. `rolling resume package`：必做收口 flow 已完成；下一步應把 `third_games_api` 與 `k3s-deploy` 最新 Step 5 / case 狀態回填 `05 / 08 / 04 / 17`，並標明 `k3s-deploy` 維持 interview-only。
 3. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
 4. `game_job contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；保留為 project-level claim evidence，不因新規則重做。
 5. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
@@ -174,12 +174,12 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 14. `math-core / *-math contribution claim consolidation`：已完成 refreshed / grouped 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 contribution claim consolidation refresh 已完成。後續除非 Nick 指定 Level 3 final，不再平均掃 71 repo。
 15. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
 
-### 1. iwin k3s-deploy gameserver-phased-rollout Step 5
+### 1. rolling resume package
 
 建議下一步：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 原因：
@@ -188,11 +188,12 @@ iwin k3s-deploy gameserver-phased-rollout Step 5
 - `oneapi-wallet-bet-result Step 5` 已完成，結論維持 code-backed interview-only，不更新正式履歷 / 自傳。
 - `antplay-bet-settle-rollback Step 5` 已完成，claim gate 結論維持 interview-only。
 - `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成，claim gate 結論維持 interview-only。
-- `third_games_api` 本批代表 flow claim gate 已收斂；下一個必做收口是 `k3s-deploy gameserver-phased-rollout Step 5`。
+- `k3s-deploy gameserver-phased-rollout Step 5` 已完成，claim gate 結論維持 interview-only。
+- 必做收口 flow 已完成；下一步要回填 05 / 08 / 04 / 17，保持履歷與面試稿一致。
 
 ### 2. iwin 各 project 局部下一步
 
-目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成；`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 已完成。若回 iwin 線，則回 `iwin k3s-deploy gameserver-phased-rollout Step 5`。
+目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成；`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 已完成。`k3s-deploy gameserver-phased-rollout Step 5` 也已完成；下一步回 Career Track 做 `rolling resume package`。
 
 以下是近期各 project 的局部下一步：
 
@@ -203,7 +204,7 @@ iwin k3s-deploy gameserver-phased-rollout Step 5
 5. `bi_share`：rolling / scoped negative contribution claim consolidation 已完成；不放正式履歷主成果。
 6. `third_games_api`：rolling / scoped contribution consolidation 已完成；`gsc-transfer-bet-settle-rollback Step 5`、`oneapi-wallet-bet-result Step 5`、`antplay-bet-settle-rollback Step 5`、`gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；本 project 本批代表 flow claim gate 已收斂。
 7. `iwin_gameserver`：Career Track consolidation 已完成；`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5` 與 `bet-target-set-query Step 5` 已完成，Flow Track 已回到 `third_games_api`。
-8. `k3s-deploy`：project-local 下一步是 `gameserver-phased-rollout Step 5`。
+8. `k3s-deploy`：`gameserver-phased-rollout Step 5` 已完成；維持 interview-only，不更新正式履歷。
 9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
 10. `ugsoft-admin-api`：contribution consolidation 已完成；可作後台 API / async data processing 履歷素材。
 11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。下一步建議 Step 1 / Step 2。
@@ -235,12 +236,12 @@ iwin k3s-deploy gameserver-phased-rollout Step 5
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材且 contribution claim refresh 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 也已完成。`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；下一步若回 iwin Flow Track，則補 `k3s-deploy gameserver-phased-rollout Step 5`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材且 contribution claim refresh 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh 與 `rolling resume package` 也已完成。`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；下一步若回 Career Track，則跑 `rolling resume package`。
 
 ## 下一個 prompt
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

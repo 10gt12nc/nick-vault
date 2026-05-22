@@ -72,8 +72,8 @@ gameserver-phased-rollout
 | --- | --- | --- |
 | `README.md` | 已同步 | 已把 Step 2 狀態改為已建立，並修正外部依賴定位 |
 | `architecture-map.md` | 已同步 | Step 1 的 Service / Endpoints abstraction 在遠端最新 refs 已過時，已改成外部依賴存取的中性描述 |
-| `step1-candidate-flows.md` | 可沿用 / 已回補現況 | candidate flow 大方向可用；已回補 remote refs 造成的定位修正與目前 Step 5 下一步 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | project-level 比較；目前第一條 flow 已完成 Step 4，下一步是 Step 5 |
+| `step1-candidate-flows.md` | 可沿用 / 已回補現況 | candidate flow 大方向可用；已回補 remote refs 造成的定位修正與目前 Step 5 結論 |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | project-level 比較；目前第一條 flow 已完成 Step 5，維持 interview-only |
 
 ## Module / Service 邊界
 
@@ -336,7 +336,7 @@ Step 3 已依此範圍補讀 / 標示待確認：
 
 - `README.md`：目前下一步建議。
 - `architecture-map.md`：修正 external dependency abstraction 的最新定位。
-- `step2-flow-comparison.md`：回補目前 Step 5 下一步。
+- `step2-flow-comparison.md`：回補目前 Step 5 已完成與下一步轉 rolling resume package。
 
 本輪不更新：
 
@@ -349,11 +349,11 @@ Step 3 已依此範圍補讀 / 標示待確認：
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 原因：
 
-- Step 3 已建立 `gameserver-phased-rollout` flow 學習包，Step 4 已補面試案例收斂。
-- `gameserver-phased-rollout` 仍是目前最有 release risk、service dependency、config boundary 與 owner decision 價值的 flow。
-- 下一步應進 Step 5，做最後 claim gate 與 project-level career note 判斷；不預設更新正式履歷，需要 commit，不需要 push，除非 Nick 明確要求。
+- `gameserver-phased-rollout` Step 5 已完成，單條 flow claim gate 結論維持 interview-only。
+- 這條 flow 可支撐 release risk、service dependency、config boundary 與 owner decision 面試，不直接更新正式履歷。
+- 先前必做收口已完成；下一步應跑 rolling resume package 回填最新 case / claim 狀態，需要 commit，不需要 push，除非 Nick 明確要求。

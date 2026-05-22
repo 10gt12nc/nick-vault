@@ -2,12 +2,13 @@
 
 ## Step 4 面試案例定位
 
-這份 Step 4 的用途是把 Step 3 的技術分析轉成可面試、可被追問、可守住 claim 邊界的回答。核心立場：
+這份 Step 4 / Step 5 的用途是把 Step 3 的技術分析轉成可面試、可被追問、可守住 claim 邊界的回答。核心立場：
 
 - 可以講設計分析與風險判斷。
 - 可以講 code-backed evidence。
 - 不講 Nick 已主導、已上 production、已改善 downtime。
 - 被追問實戰時，回到「待補 MR / ticket / deploy log / incident evidence」。
+- Step 5 已完成 claim gate，結論仍是 interview-only / no formal resume update。
 
 ## 0. 面試主線
 

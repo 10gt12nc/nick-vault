@@ -39,7 +39,7 @@
 - `senior-owner-playbook/04-interview-casebook.md`
 - `senior-owner-playbook/12-role-target-readiness-matrix.md`
 - `senior-owner-playbook/13-code-capability-map.md`
-- `projects/iwin/k3s-deploy/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
+- `projects/iwin/k3s-deploy/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5、結論 interview-only。
 
 已重讀 code repo：
 
@@ -88,7 +88,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/k3s-deploy/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/k3s-deploy/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 已完成 Step 5 |
 | `projects/iwin/k3s-deploy/architecture-map.md` | 已建立 / 可沿用 | 最小拓撲，避免 Step 1 變成散亂 YAML 清單 |
 | `projects/iwin/k3s-deploy/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | `senior-owner-playbook/04-interview-casebook.md` | 可沿用 | 已有 K3s / rollout / observability 面試主軸，可和本 project 後續 flow 對齊 |
@@ -101,7 +101,7 @@
 
 原因：
 
-- 本檔是 `k3s-deploy` Step 1 的歷史盤點；目前 project 已建立，且第一條 `gameserver-phased-rollout` flow 已完成 Step 4。
+- 本檔是 `k3s-deploy` Step 1 的歷史盤點；目前 project 已建立，且第一條 `gameserver-phased-rollout` flow 已完成 Step 5。
 - Step 1 目標是找 Top 3-5 candidate flows，不是深挖單一 deploy flow。
 - `k3s-deploy` 有多條 platform / rollout 候選，直接 Level 2 容易選錯主軸。
 - Level 3 目前不值得，因為尚未選定 flow，也尚未確認 Nick 本人 evidence。
@@ -423,7 +423,7 @@ gameserver-phased-rollout
 
 ## 後續核對 code path
 
-Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flow 時的核對清單：
+Step 2 / Step 3 / Step 4 / Step 5 已完成；以下保留為後續回看其他候選 flow 時的核對清單：
 
 - `dev/iwin/iwin-gameserver/**`
 - `dev/iwin/game-api/**`
@@ -435,7 +435,7 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 - `dev/iwin/bi-share/**`
 - 相關 commit stat / path-specific log
 
-若 Nick 之後選 `gameserver-phased-rollout` 做 Step 3：
+若 Nick 之後要重開 `gameserver-phased-rollout` 做 Level 3 final：
 
 - `/Users/nick/Git/iwin/k3s-deploy/dev/iwin/iwin-gameserver/**`
 - `/Users/nick/Git/iwin/iwin_gameserver` 的 Dockerfile / entrypoint / config loading / ZK registration 相關路徑
@@ -467,11 +467,11 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
+rolling resume package
 ```
 
 原因：
 
-- Step 2 / Step 3 / Step 4 已完成，下一步只能做 Step 5 claim gate。
-- Step 5 會確認是否有 Nick 本人 evidence；目前預期只保留為面試素材 / learning-only。
+- Step 2 / Step 3 / Step 4 / Step 5 已完成，claim gate 結論維持 interview-only。
+- 先前必做收口已完成；下一步應把最新 flow / case 狀態回填 rolling resume package。
 - 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

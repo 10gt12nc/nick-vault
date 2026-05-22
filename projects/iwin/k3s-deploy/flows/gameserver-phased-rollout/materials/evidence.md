@@ -3,8 +3,8 @@
 ## 本次掃描結論
 
 - 掃描日期：2026-05-15
-- 掃描等級：Level 2 Flow 深掃；Step 4 面試案例收斂
-- 證據層級：`專案存在 / code-backed`
+- 掃描等級：Level 2 Flow 深掃；Step 5 單條 flow claim gate
+- 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`
 - Nick 貢獻：`待確認`
 - 敏感資料處理：未複製 secret value、token、內網 IP、production URL；source 中若出現敏感值，本文件只描述類型，不貼內容。
 
@@ -23,14 +23,19 @@
 
 既有文件判斷：
 
-- `README.md`：已同步；Step 4 已建立後，下一步建議不可停在 Step 3 / Step 4，已改為 Step 5 claim gate。
+- `README.md`：已同步；Step 5 claim gate 已完成，下一步轉 `rolling resume package`。
 - `architecture-map.md`：可沿用，已正確標記 dev-k3s / code-backed 邊界。
 - `step1-candidate-flows.md`：需補 evidence；`external-service-bridge` 與 config bake-in 是早期 local snapshot，已由 Step 2 / Step 3 的 remote refs 修正，這輪補上舊 evidence 邊界。
 - `step2-flow-comparison.md`：可沿用；它已補上 project-level Step 2、module / service 邊界與 flow ranking。
-- `flow.md`：可沿用；Step 3 已補上業務問題、系統位置、Code 路徑與掃描範圍。Step 4 只補面試收斂摘要與下一步。
-- `career-interview.md`：需補 Step 4；這輪補 90 秒 / 30 秒版本與防守句。
-- `materials/interview.md`：需補 Step 4；這輪補 failure scenario drill、Senior / Lead 追問與回答邊界。
-- `materials/claim-boundary.md`：需補 Step 4 claim gate；這輪補可用 / 禁止說法表。
+- `flow.md`：可沿用；Step 3 已補上業務問題、系統位置、Code 路徑與掃描範圍，Step 4 補面試收斂，Step 5 補 claim gate。
+- `career-interview.md`：已補 Step 5 結論，維持 interview-only。
+- `materials/interview.md`：已補 Step 4 / Step 5 面試與回答邊界。
+- `materials/claim-boundary.md`：已補 Step 5 claim gate，維持可用 / 禁止說法表。
+
+Step 5 重新確認：
+
+- `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md` 可沿用，但需要把狀態從 Step 4 收斂到 Step 5。
+- 上層 README、Step 1 / Step 2、inventory、todo、casebook 需要同步「interview-only / 不更新履歷」與下一步轉 `rolling resume package`。
 
 ## Source repo 狀態
 
@@ -39,10 +44,17 @@
 - 已執行 `git fetch --all --prune`。
 - local branch：`main`
 - local HEAD：`61cb42a8a21445f51ad7e032ade0d13de73ed7cc`
-- remote HEAD：`48e1d50f017b8c67364072a0cb4614c843bfb474`
-- ahead / behind：local ahead 0、behind 34。
+- remote HEAD：`0e6811de1bc6730e2fcd8d1b34cf2de74f7fab2e`
+- ahead / behind：local ahead 0、behind 37。
 - 本輪未 pull / merge / checkout；只讀 local 工作樹與 `origin/main` objects。
 - repo 狀態有未追蹤 IDE 目錄；本輪未動公司 repo。
+
+Step 5 最新 remote 補充：
+
+- `HEAD..origin/main` 目前共有 37 commits。
+- 新增的遠端 commits包含 Loki retention / strategy 與 app-bi stderr log 對齊；未改變 gameserver phase rollout 的 claim gate 判斷。
+- `k3s-deploy` 全分支 Nick / `10gt12nc` author log 未命中。
+- `origin/main -- dev/iwin/iwin-gameserver` path 最新仍以 phase apply、Recreate、per-service ConfigMap、shared zookeeper / lua / log4j2 ConfigMap、Secret / envFrom 為主。
 
 已讀 `origin/main` paths：
 
@@ -140,8 +152,8 @@ path-specific commits 已看摘要：
 - `/Users/nick/Git/iwin/k3s-deploy`
   - 已執行 `git fetch --all --prune`。
   - local `main`：`61cb42a8a21445f51ad7e032ade0d13de73ed7cc`
-  - `origin/main`：`48e1d50f017b8c67364072a0cb4614c843bfb474`
-  - ahead / behind：0 / 34
+  - `origin/main`：`0e6811de1bc6730e2fcd8d1b34cf2de74f7fab2e`
+  - ahead / behind：0 / 37
   - 公司 repo 工作樹未 pull / merge / checkout；仍以 `origin/main` objects 作最新 evidence。
 - `/Users/nick/Git/iwin/iwin_gameserver`
   - 已執行 `git fetch --all --prune`。
@@ -149,6 +161,13 @@ path-specific commits 已看摘要：
   - ahead / behind：0 / 0
 
 Step 4 新增的是面試表達與 claim gate，不新增 production claim，不更新正式履歷。
+
+## Step 5 Claim Gate 結論
+
+- 可放履歷：目前不新增正式履歷 / 自傳。
+- 可面試講：可作 code-backed Platform / System Owner 面試案例，主軸是 phase rollout、ZK registration、Recreate trade-off、ConfigMap / Secret rollback discipline、observability gate。
+- 不可誇大：不說 Nick 主導 K3s 遷移、不說設計 production rollout / rollback、不說建立完整 SRE / observability system、不寫改善 downtime / deploy success rate。
+- 後續回填：若未來補到 Nick 本人確認、MR / ticket / commit / incident evidence，再回 project-level consolidation 與 05 / 08 rolling package。
 
 ## 未掃範圍
 

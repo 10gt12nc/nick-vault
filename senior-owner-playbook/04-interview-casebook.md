@@ -220,7 +220,7 @@ Transfer wallet 保守邊界：
 
 - `k3s-migration-track`
 - `iwin-service-rollout`
-- `gameserver-phased-rollout`
+- `k3s-deploy/gameserver-phased-rollout`（已完成 Step 5，interview-only）
 - `observability-pipeline`
 
 面試主軸：
@@ -234,6 +234,11 @@ Transfer wallet 保守邊界：
 - config / secret 要和 image 分離。
 - log pipeline 要能支援 incident RCA。
 - 服務上線前要知道依賴與 failure blast radius。
+
+證據邊界：
+
+- `k3s-deploy/gameserver-phased-rollout` 已完成 Step 5 claim gate；可用來講 legacy gameserver 上 K3s、ZK registration、phase rollout、Recreate、ConfigMap / Secret rollback discipline 與 observability gate。
+- 目前未見 Nick / `10gt12nc` direct commit evidence；不寫正式履歷，不說主導 K3s 遷移、production rollout / rollback 或完整 SRE owner。
 
 ## 案例 6：報表 projection / 批次彙總可信度
 
