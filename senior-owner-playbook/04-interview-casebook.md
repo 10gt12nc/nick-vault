@@ -107,6 +107,22 @@ OneAPI / PG 保守邊界：
 - 下游 PGTransferInOut 的 Nick / `10gt12nc` direct evidence 歸屬 `iwin_gameserver`，不可反包成 Nick 開發 OneAPI adapter。
 - 不說已建立 exactly-once、完整 reconciliation 或修復 OneAPI production 錯帳。
 
+Antplay 三段式補充案例：
+
+- `third_games_api/antplay-bet-settle-rollback` 已完成 Step 4，可作 Antplay 舊版三段式 bet / settle / rollback 的正式面試 case；flow-level claim gate 尚未做，正式履歷不更新。
+- 舊 flow 分成 `/antplay/bet`、`/antplay/settle`、`/antplay/rollback`，adapter 會做 MD5 驗簽、Redis game / center routing，並分別送 gameserver `ANTPLAY_BET`、`ANTPLAY_SETTLE`、`ANTPLAY_REFUND`。
+- `settle` / `rollback` 依賴 Mongo `third_transaction_antplay` step 1 與 `third_log_antplay` type 3 的原始 bet evidence；這讓 state transition 很清楚，也讓 failure window 很清楚。
+- 最大 failure window 是 `gameserver wallet success -> adapter Mongo insert fail / timeout -> provider retry`。因為 adapter 是 gameserver 成功後才寫 step evidence，retry 可能造成 double deduct、double settle 或 double refund。
+- 面試改善方向：確認 provider retry key contract，把 idempotency key 定成 provider + betId + action / step，並把 guard 移近 wallet mutation boundary；或先落 durable request state，再用 provider statement / adapter Mongo / gameserver currency log / reel log 做 reconciliation。
+
+Antplay 三段式保守邊界：
+
+- 證據層級是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 不新增 `third_games_api` standalone 正式履歷成果。
+- 下游 Antplay gameserver direct evidence 歸屬 `iwin_gameserver`，不可反包成 Nick 開發 `third_games_api` Antplay adapter。
+- 不說已確認 production 仍走舊三段式 endpoint；新版 `/bet_settle-new` 只作演進線索。
+- 不說已建立 exactly-once、完整 reconciliation 或修復 Antplay production 錯帳。
+
 AntPlay slot game API 補充案例：
 
 - `antplay-slot-game-api/slot-bet-settle-rollback` 已完成 Step 5，可作正式面試 case，也可作 `antplay-slot-game-api` project-level 履歷 claim 的強化 evidence。

@@ -16,8 +16,8 @@
 6. [flows/gsc-transfer-bet-settle-rollback/materials/](flows/gsc-transfer-bet-settle-rollback/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 7. [flows/oneapi-wallet-bet-result/flow.md](flows/oneapi-wallet-bet-result/flow.md)：OneAPI / PG bet_result 投派 callback Step 5 主報告。
 8. [flows/oneapi-wallet-bet-result/career-interview.md](flows/oneapi-wallet-bet-result/career-interview.md)：該 flow 的保守面試素材。
-9. [flows/antplay-bet-settle-rollback/flow.md](flows/antplay-bet-settle-rollback/flow.md)：Antplay 舊版 bet / settle / rollback 三段式流程 Step 3 主報告。
-10. [flows/antplay-bet-settle-rollback/career-interview.md](flows/antplay-bet-settle-rollback/career-interview.md)：該 flow 的保守面試素材初版。
+9. [flows/antplay-bet-settle-rollback/flow.md](flows/antplay-bet-settle-rollback/flow.md)：Antplay 舊版 bet / settle / rollback 三段式流程 Step 4 主報告。
+10. [flows/antplay-bet-settle-rollback/career-interview.md](flows/antplay-bet-settle-rollback/career-interview.md)：該 flow 的正式面試 case。
 
 ## 目前狀態
 
@@ -27,7 +27,7 @@
 | `step2-flow-comparison.md` | 已建立 | 比較候選 flow，建議第一條深挖 `gsc-transfer-bet-settle-rollback` |
 | `flows/gsc-transfer-bet-settle-rollback/` | Step 5 已完成 | 保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only`；不新增正式履歷 |
 | `flows/oneapi-wallet-bet-result/` | Step 5 已完成 | OneAPI / PG bet_result flow 已完成 claim gate；保守標註為 code-backed 面試素材，不新增正式履歷 |
-| `flows/antplay-bet-settle-rollback/` | Step 3 已完成 | Antplay 舊版 bet / settle / rollback 三段式 flow learning package 已建立；保守標註為 code-backed 面試素材初版，不新增正式履歷 |
+| `flows/antplay-bet-settle-rollback/` | Step 4 已完成 | Antplay 舊版 bet / settle / rollback 三段式正式面試 case 已建立；保守標註為 code-backed 面試素材，不新增正式履歷 |
 | `contribution-claim-consolidation.md` | 已完成 rolling / scoped | `third_games_api` 本 repo 只有局部測試 / merge 線索，不新增正式履歷主成果；下游 `iwin_gameserver` direct evidence 已由該 project consolidation 收口 |
 
 ## 專案定位
@@ -60,7 +60,7 @@
 - 可用來理解 / 分析第三方遊戲 provider callback、seamless wallet、下注派彩與 rollback 的後端整合風險。
 - 可作為 Senior Backend 面試素材的 evidence base；`gsc-transfer-bet-settle-rollback` 已完成 Step 5，可講 code-backed 分析，不更新正式履歷。
 - `oneapi-wallet-bet-result` 已完成 Step 5，可用來面試說明 HMAC-SHA256、`transactionId` duplicate guard、gameserver `PGTRANSFERINOUT`、Mongo audit failure window 與 wallet idempotency boundary；不更新正式履歷。
-- `antplay-bet-settle-rollback` 已完成 Step 3，可用來初步面試說明三段式 bet / settle / rollback state transition、Mongo step evidence、gameserver `ANTPLAY_BET / SETTLE / REFUND` 與 retry failure window；Step 4 後再形成正式面試 case。
+- `antplay-bet-settle-rollback` 已完成 Step 4，可用來正式面試說明三段式 bet / settle / rollback state transition、Mongo step evidence、gameserver `ANTPLAY_BET / SETTLE / REFUND` 與 retry failure window；不更新正式履歷。
 - 下游 `iwin_gameserver` 的 Antplay / GSC / PG direct commits 已於 `iwin_gameserver contribution claim consolidation` 正確歸位，不反向包裝成 `third_games_api` direct contribution。
 
 目前不能說：
@@ -75,17 +75,17 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 4
+iwin third_games_api antplay-bet-settle-rollback Step 5
 ```
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
 - `oneapi-wallet-bet-result` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
-- `antplay-bet-settle-rollback` Step 3 已完成，下一步轉成可面試講的 Step 4 case；目前不更新履歷。
+- `antplay-bet-settle-rollback` Step 4 已完成，下一步做單條 flow claim gate；目前不更新履歷。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不新增 `third_games_api` standalone 正式履歷主成果；尚未補到 Nick 本人對 GSC transfer callback 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback 與 OneAPI / PG bet_result flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback / bet_result 語意。
+- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback、OneAPI / PG bet_result 與 Antplay bet / settle / rollback flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback / bet_result 語意。
 - 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。

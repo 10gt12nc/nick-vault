@@ -2,11 +2,11 @@
 
 ## 本次掃描狀態
 
-任務：`iwin third_games_api antplay-bet-settle-rollback Step 3`
+任務：`iwin third_games_api antplay-bet-settle-rollback Step 4`
 
 掃描等級：Level 2 Flow 深掃。
 
-完成狀態：Step 3 已完成。
+完成狀態：Step 4 已完成。
 
 證據層級：
 
@@ -35,6 +35,11 @@ Nick / `10gt12nc` 貢獻判斷：
 - `projects/iwin/third_games_api/contribution-claim-consolidation.md`
 - `projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/`
 - `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/`
+- `projects/iwin/third_games_api/flows/antplay-bet-settle-rollback/flow.md`
+- `projects/iwin/third_games_api/flows/antplay-bet-settle-rollback/career-interview.md`
+- `projects/iwin/third_games_api/flows/antplay-bet-settle-rollback/materials/interview.md`
+- `projects/iwin/third_games_api/flows/antplay-bet-settle-rollback/materials/claim-boundary.md`
+- `senior-owner-playbook/04-interview-casebook.md`
 
 ## Source repo 狀態
 
@@ -147,3 +152,24 @@ Nick / `10gt12nc` 在 `third_games_api` Antplay path 掃到：
 - 沒有更新 `05-resume-master-zh.md`。
 - 沒有更新 `08-application-autobiography-zh.md`。
 - 沒有把本 flow 標成 Nick 真實開發過。
+
+## Step 4 補充紀錄
+
+本輪 Step 4 主要把 Step 3 的系統理解轉成正式面試 case：
+
+- 補完整 30 秒 / 90 秒 / 3 分鐘說法。
+- 補 STAR 講法。
+- 補 Senior 常見問答與可反問面試官的問題。
+- 補面試使用邊界：只能說 code-backed 分析，不說 Nick 主導 `third_games_api` Antplay adapter。
+- 同步 `career-interview.md`、`materials/interview.md`、`senior-owner-playbook/04-interview-casebook.md`、project README、Step 1 / Step 2、inventory 與 todo。
+
+Step 4 沒有新增新的 code path claim，也沒有新增正式履歷 bullet。source repo refs 本輪已重新 fetch，狀態仍是：
+
+- `third_games_api beta` local HEAD = `origin/beta` = `4915ea5a5000d61eb36717203ea4c6afc45322fa`，ahead / behind `0 / 0`。
+- `iwin_gameserver main` local HEAD = `origin/main` = `30a9fcb95bfda33b582deeb4e149eb06bed4afe3`，ahead / behind `0 / 0`。
+
+下一步：
+
+```text
+iwin third_games_api antplay-bet-settle-rollback Step 5
+```

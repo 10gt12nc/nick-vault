@@ -91,12 +91,12 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `antplay-bet-settle-rollback Step 4` |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `antplay-bet-settle-rollback Step 5` |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
 | `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
 | `flows/oneapi-wallet-bet-result/` | 已建立 | Step 5 已完成；不新增正式履歷 |
-| `flows/antplay-bet-settle-rollback/` | 已建立 | Step 3 已完成；下一步 Step 4 |
+| `flows/antplay-bet-settle-rollback/` | 已建立 | Step 4 已完成；下一步 Step 5 |
 
 ## 專案 / module 邊界
 
@@ -137,7 +137,7 @@ gsc-transfer-bet-settle-rollback
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
-| 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 不放正式履歷 | Step 3 已完成；下一步 Step 4 面試 case |
+| 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 不放正式履歷 | Step 4 已完成；下一步 Step 5 claim gate |
 | 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 待確認 | 需先確認 production 使用哪組 endpoint |
 | 5 | `third-platform-redis-config-refresh` | 中 | 中 | 中 | 中 | 中 | 待確認 | 支援性 flow，不優先於交易主線 |
 
@@ -205,7 +205,7 @@ Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMA
 ## Flow 3：`antplay-bet-settle-rollback`
 
 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程
-建議狀態：Step 3 已完成，下一步 Step 4
+建議狀態：Step 4 已完成，下一步 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
@@ -328,12 +328,12 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 只推薦一件事：
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 4
+iwin third_games_api antplay-bet-settle-rollback Step 5
 ```
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `antplay-bet-settle-rollback Step 3` 已完成；下一步做 Step 4 面試 case，不直接更新履歷。
+- `antplay-bet-settle-rollback Step 4` 已完成；下一步做 Step 5 單條 flow claim gate，不直接更新履歷。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

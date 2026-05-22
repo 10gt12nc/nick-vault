@@ -6,7 +6,7 @@ Flow 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程。
 
 Flow slug：`antplay-bet-settle-rollback`。
 
-完成狀態：Step 3 已完成，已建立 flow learning package；下一步做 Step 4 面試 case。
+完成狀態：Step 4 已完成，已轉成正式面試 case；下一步做 Step 5 單條 flow claim gate。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 Antplay path 目前只掃到 Nick / `10gt12nc` 局部測試 commit，不足以標成 Nick 在 `third_games_api` 真實開發過。下游 `iwin_gameserver` 有 Nick / `10gt12nc` Antplay direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 
@@ -265,18 +265,17 @@ Owner 判斷：
 - 不把下游 `iwin_gameserver` Antplay direct commits 反向包成 `third_games_api` direct contribution。
 - 不宣稱已確認 production 目前仍使用舊三段式 endpoint。
 
-本 Step 3 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續若 Step 5 或 project-level consolidation 有新 evidence，再回填履歷線。
+本 Step 4 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續若 Step 5 或 project-level consolidation 有新 evidence，再回填履歷線。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 4
+iwin third_games_api antplay-bet-settle-rollback Step 5
 ```
 
 原因：
 
-- Step 3 已把正常流程、系統位置、state transition、consistency 與 failure window 串起來。
-- 下一步應轉成可面試講的 case：30 秒 / 90 秒 / 3 分鐘說法、STAR、Senior 追問與保守 claim boundary。
-- Step 4 仍不直接更新正式履歷，除非 Step 5 / contribution consolidation 後 evidence 足夠。
+- Step 4 已把本 flow 轉成正式面試 case。
+- 下一步應做單條 flow claim gate，確認是否更新正式履歷 / 自傳；目前預期仍會維持 `third_games_api` interview-only，除非 Step 5 找到更強 Nick direct evidence。
