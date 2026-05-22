@@ -6,6 +6,7 @@
 
 - 證據層級: 真實開發過 + code-backed。
 - Nick / `10gt12nc` direct evidence: `#386` 代理用戶數據、`#590` currency 拆分、`#702` key 重複、`fix ag_report_player`。
+- 完成狀態: Step 4 面試 case 已完成。
 - 本文件是 flow-level 面試素材，不是 project-level final consolidation。正式履歷仍以 `contribution-claim-consolidation.md` 與後續 Step 5 claim gate 為準。
 
 ## 履歷保守 Bullet
@@ -18,9 +19,29 @@
 
 - 參與 Kafka / Quartz job 報表 projection 維護，處理代理玩家報表聚合、幣別維度與歷史資料彙總清理。
 
+## 面試定位
+
+這條 flow 面試時不要講成「我做了一個報表功能」而已，應該講成:
+
+```text
+結算事件 -> Kafka projection -> 報表 identity -> DB upsert-like write -> Quartz summary / backup / delete -> derived data reconciliation
+```
+
+主軸是報表 projection 的 correctness，不是 Kafka 名詞堆疊。最能打的點有三個:
+
+1. report identity: `agentId + playerId + dataDay + currency`。
+2. derived table: report table 不是交易 source of truth，要能重建 / 對帳。
+3. lifecycle job: summary / backup / delete 有 partial failure window。
+
 ## 30 秒說法
 
 我有參與 AntPlay slot job 裡代理玩家報表的 event projection。這條 flow 會消費 `settled_bets` Kafka event，把 bet record 依代理、玩家、日期、幣別聚合到 `ag_report_player`，再由每天 02:00 的 Quartz job 把三天前以前的日資料彙總、備份、刪除。這裡我會特別注意 report key、currency、batch insert / update、以及 summary 重跑時可能重複加總的 failure window。
+
+## 90 秒壓縮版
+
+我可以講一個 AntPlay slot job 的 Kafka 報表 projection。上游遊戲結算後會發 `settled_bets` event，job service 消費後把 bet records 依 `agentId + playerId + dataDay + currency` 聚合成代理玩家日報表，寫到 `ag_report_player`。後續每天 02:00 的 Quartz job 會把三天前以前的日資料彙總成 `dataDay = 0` 的 summary row，然後 backup / delete 舊資料。
+
+這個 case 的重點不是單純消費 Kafka，而是 report correctness。像 currency 拆分如果沒有一起改 query、update、summary，報表就會把不同幣別混算；`#702` key 重複修正則是把 agentId 納入 oldMap / key 判斷，避免不同代理資料 collision。另外，這張表是 derived report，不是下注或 wallet 的 source of truth，所以 owner 要思考 replay / rebuild / reconciliation。尤其 summary -> backup -> delete 若中途失敗，下次重跑可能重複加總或漏備份，這就是我會在設計上補 job execution log、處理筆數、唯一鍵 / upsert 與重跑 runbook 的地方。
 
 ## 90 秒說法
 
@@ -49,6 +70,58 @@
 | Action | 追 `settled_bets` consumer、report key、`ag_report_player` insert / update、Quartz summary / backup / delete，修正或理解 currency / agent key 邊界。 |
 | Result | 報表 projection 維度更貼近業務 identity，可作 Kafka / Quartz / derived report consistency 的面試 case。 |
 
+## Failure Scenarios
+
+| 情境 | 面試回答重點 |
+| --- | --- |
+| Kafka event 重送 | current code 用累計值覆寫，不是直接加 diff；但不能宣稱 exactly-once，仍要看 ack / retry / unique key / replay。 |
+| consumer process restart | `reportMap` 會歸零，derived report 需要能從 source event / bet record 重建或對帳。 |
+| `reportMap` 長期累積 | 有 memory growth 與 concurrency sharing 風險，應評估清理策略、window aggregation 或 DB-level idempotency。 |
+| currency 缺漏 | null currency 被轉空字串；要確認舊資料 migration 與查詢語意。 |
+| summary 成功但 backup/delete 失敗 | 下次重跑可能重複加總，應加 job execution marker、processed range 或 idempotent summary。 |
+| backup 成功但 delete 失敗 | 舊日資料留在主表，下一次 summary 可能重複處理；需要 backup 去重與重跑檢查。 |
+| 某玩家失敗但 job 繼續 | job 結束不代表全成功，log / metrics 要能定位 agent / player / day / currency。 |
+
+## Senior 追問短答
+
+### Q1: 這條 flow 的 source of truth 是什麼？
+
+報表 table 不是 source of truth，它是 derived projection。真正要校正時應回到上游 settlement event 或 bet record。這樣講可以避免把報表 table 誇大成交易正確性的核心。
+
+### Q2: 為什麼 key 要有 agentId？
+
+如果只用 player / day / currency，不同代理下同玩家 id 或資料維度可能 collision。`#702` 就是 key 重複修正 evidence，把 agentId 放回 oldMap / report key 判斷，讓 code key 與業務 identity 對齊。
+
+### Q3: 為什麼 key 要有 currency？
+
+多幣別場景下，同一玩家同一天可能有不同 currency。`#590` 把 ReportAgentPlayer 拆 currency，代表 query、update、summary、backup 都要跟著帶 currency，不然會混算 bet amount / win / profit。
+
+### Q4: 這種 projection 怎麼避免重複計算？
+
+current code 是查舊 row 後用累計值覆寫，且只有新 betCount 大於 DB old betCount 才 update。這可以降低部分重送 double add，但不是完整 exactly-once。更完整的做法會是 DB unique key / upsert、event id 去重、可重建的 source data 與 reconciliation。
+
+### Q5: Summary job 怎麼設計才安全？
+
+我會把 summary / backup / delete 視為一個 lifecycle，不只是一個 SQL job。至少要記 job execution id、處理範圍、summary count、backup count、delete count；backup table 要能去重；重跑前要能知道哪些 range 已處理，避免 summary row 被重複加總。
+
+### Q6: 如果 production 報表數字不準，你怎麼查？
+
+先定位維度: agentId、playerId、dataDay、currency。再比對 source bet record / Kafka event、`ag_report_player` daily row、`dataDay=0` summary row、backup row。若只有 summary 錯，要看 backup/delete 是否 partial；若 daily row 就錯，要回 consumer key、old row lookup、insert/update 條件與 event 是否重送。
+
+## Lead / Architect 追問
+
+| 追問 | 回答方向 |
+| --- | --- |
+| 如果讓你重做，你會改哪裡？ | 先補 DB unique key / upsert 與 job execution log，再補 rebuild / reconciliation runbook；不一定一開始就上 heavy architecture。 |
+| 為什麼不用同步寫報表？ | 報表不是交易主流程，非同步 projection 可以降低下注 latency；代價是 eventual consistency 與重建機制。 |
+| 如果 Kafka lag 很大怎麼辦？ | 先看 consumer lag、partition / concurrency、DB write batch、reportMap size，再決定擴 consumer、調 batch 或改寫入策略。 |
+| 這和 outbox / CDC 有什麼差？ | 這裡目前是上游 event projection；outbox / CDC 更偏事件可靠發送或資料變更捕捉。不能硬說已有 outbox。 |
+| 怎麼向非技術主管解釋？ | 這是結算後的報表加工線，核心是避免不同代理 / 玩家 / 日期 / 幣別混算，並確保舊資料彙總清理可以重跑與查帳。 |
+
+## 面試收尾句
+
+這個 case 我會把它定位成「event-driven derived report 的 correctness」。我做法不是只看 Kafka consumer 有沒有收到訊息，而是把 report key、DB identity、summary lifecycle、partial failure 與 reconciliation 放在一起看，避免報表長期累積後變成難查的資料債。
+
 ## 可說
 
 - 我參與過這條 flow 的開發維護，有 direct commit evidence。
@@ -63,8 +136,8 @@
 - 不說我主導完整 BI / report platform。
 - 不說我主導完整下注結算 source of truth。
 
-## 待 Step 4 補強
+## 待 Step 5 補強
 
-- 把 failure windows 轉成正式追問回答。
-- 補一版更像面試現場的 90 秒壓縮說法。
-- 補「如果重做會怎麼設計」的 owner answer。
+- 追 current behavior 中哪些是 Nick direct contribution，哪些是後續他人 context。
+- 確認 DB unique key / index、Kafka ack / retry、rebuild tooling 是否有 evidence。
+- 判斷這條 flow 的 claim 是否可以回填 project-level consolidation。

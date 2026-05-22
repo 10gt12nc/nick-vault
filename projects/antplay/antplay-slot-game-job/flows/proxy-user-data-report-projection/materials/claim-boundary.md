@@ -8,8 +8,8 @@
 | --- | --- |
 | 真實開發過 | 可成立。`10gt12nc` 有 `#386`、`#590`、`#702`、`fix ag_report_player` direct commits。 |
 | code-backed | 可成立。current code path 可完整追到 consumer、repository、Quartz job。 |
-| 可面試講 | 可成立。適合講 Kafka projection、報表 key、currency、summary partial failure。 |
-| 可直接履歷 | 可保守放 project-level bullet，但單條 flow Step 3 不直接更新 05 / 08。 |
+| 可面試講 | 可成立。Step 4 已整理成正式 Kafka projection / Quartz lifecycle / derived report correctness 面試 case。 |
+| 可直接履歷 | 可保守放 project-level bullet，但單條 flow Step 4 不直接更新 05 / 08。 |
 | 不可誇大 | 不能說完整 Kafka platform / BI platform / exactly-once / replay architecture owner。 |
 
 ## 可放履歷
@@ -49,3 +49,4 @@
 - 確認是否有 DB unique key / index evidence。
 - 確認 Kafka retry / DLQ / ack mode。
 - 確認是否有 rebuild / replay command 或人工補數流程。
+- 決定這條 flow 可回填 project-level consolidation 的最終 wording。
