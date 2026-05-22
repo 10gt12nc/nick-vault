@@ -11,8 +11,8 @@
 1. [step1-candidate-flows.md](step1-candidate-flows.md)：Step 1 候選 flow 盤點。
 2. [step2-flow-comparison.md](step2-flow-comparison.md)：Step 2 候選 flow 風險與價值比較。
 3. [contribution-claim-consolidation.md](contribution-claim-consolidation.md)：rolling / scoped project-level 貢獻收斂，確認不新增 `third_games_api` standalone 履歷主成果。
-4. [flows/gsc-seamless-withdraw-deposit-cancel/flow.md](flows/gsc-seamless-withdraw-deposit-cancel/flow.md)：GSC 分離式 withdraw / deposit / rollback / cancel callback Step 3 主報告。
-5. [flows/gsc-seamless-withdraw-deposit-cancel/career-interview.md](flows/gsc-seamless-withdraw-deposit-cancel/career-interview.md)：該 flow 的保守面試素材初版。
+4. [flows/gsc-seamless-withdraw-deposit-cancel/flow.md](flows/gsc-seamless-withdraw-deposit-cancel/flow.md)：GSC 分離式 withdraw / deposit / rollback / cancel callback Step 4 主報告。
+5. [flows/gsc-seamless-withdraw-deposit-cancel/career-interview.md](flows/gsc-seamless-withdraw-deposit-cancel/career-interview.md)：該 flow 的正式面試 case。
 6. [flows/gsc-transfer-bet-settle-rollback/flow.md](flows/gsc-transfer-bet-settle-rollback/flow.md)：GSC transfer 投注 / 派彩 / rollback 主研究報告。
 7. [flows/gsc-transfer-bet-settle-rollback/career-interview.md](flows/gsc-transfer-bet-settle-rollback/career-interview.md)：該 flow 的保守面試 / 履歷素材。
 8. [flows/gsc-transfer-bet-settle-rollback/materials/](flows/gsc-transfer-bet-settle-rollback/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
@@ -30,7 +30,7 @@
 | `flows/gsc-transfer-bet-settle-rollback/` | Step 5 已完成 | 保守標註為 `專案存在 / code-backed` 與 `分析素材 / learning-only`；不新增正式履歷 |
 | `flows/oneapi-wallet-bet-result/` | Step 5 已完成 | OneAPI / PG bet_result flow 已完成 claim gate；保守標註為 code-backed 面試素材，不新增正式履歷 |
 | `flows/antplay-bet-settle-rollback/` | Step 5 已完成 | Antplay 舊版 bet / settle / rollback 三段式 claim gate 已收斂；保守標註為 code-backed 面試素材，不新增正式履歷 |
-| `flows/gsc-seamless-withdraw-deposit-cancel/` | Step 3 已完成 | GSC 分離式 withdraw / deposit / rollback / cancel 已建立主學習包；production 是否仍走 split endpoint 待 Step 4 / spec 確認，不新增正式履歷 |
+| `flows/gsc-seamless-withdraw-deposit-cancel/` | Step 4 已完成 | GSC 分離式 withdraw / deposit / rollback / cancel 已轉成正式面試 case；production 是否仍走 split endpoint 待 spec / route evidence 確認，不新增正式履歷 |
 | `contribution-claim-consolidation.md` | 已完成 rolling / scoped | `third_games_api` 本 repo 只有局部測試 / merge 線索，不新增正式履歷主成果；下游 `iwin_gameserver` direct evidence 已由該 project consolidation 收口 |
 
 ## 專案定位
@@ -64,7 +64,7 @@
 - 可作為 Senior Backend 面試素材的 evidence base；`gsc-transfer-bet-settle-rollback` 已完成 Step 5，可講 code-backed 分析，不更新正式履歷。
 - `oneapi-wallet-bet-result` 已完成 Step 5，可用來面試說明 HMAC-SHA256、`transactionId` duplicate guard、gameserver `PGTRANSFERINOUT`、Mongo audit failure window 與 wallet idempotency boundary；不更新正式履歷。
 - `antplay-bet-settle-rollback` 已完成 Step 5，可用來正式面試說明三段式 bet / settle / rollback state transition、Mongo step evidence、gameserver `ANTPLAY_BET / SETTLE / REFUND` 與 retry failure window；不更新正式履歷。
-- `gsc-seamless-withdraw-deposit-cancel` 已完成 Step 3，可用來初步理解 GSC split endpoint 狀態機：withdraw step 1、deposit step 2、rollback / cancel step 3，以及 gameserver `GSC_BET / GSC_SETTLE / GSC_REFUND / GSC_OTHER` 下游邊界；Step 4 前只作待轉面試素材，不更新正式履歷。
+- `gsc-seamless-withdraw-deposit-cancel` 已完成 Step 4，可用來正式面試說明 GSC split endpoint 狀態機、adapter Mongo evidence、gameserver wallet boundary、retry / out-of-order failure window 與 `/transfer` 主線待確認邊界；不更新正式履歷。
 - 下游 `iwin_gameserver` 的 Antplay / GSC / PG direct commits 已於 `iwin_gameserver contribution claim consolidation` 正確歸位，不反向包裝成 `third_games_api` direct contribution。
 
 目前不能說：
@@ -79,7 +79,7 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```
 
 原因：
@@ -87,10 +87,10 @@ iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
 - `gsc-transfer-bet-settle-rollback` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
 - `oneapi-wallet-bet-result` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
 - `antplay-bet-settle-rollback` Step 5 已完成，結論維持 interview-only / no standalone resume bullet。
-- `gsc-seamless-withdraw-deposit-cancel` Step 3 已完成；下一步應把 split endpoint 狀態機與 failure window 轉成正式面試 case。
+- `gsc-seamless-withdraw-deposit-cancel` Step 4 已完成；下一步應做單條 flow claim gate，確認是否維持 interview-only / no standalone resume bullet。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不新增 `third_games_api` standalone 正式履歷主成果；尚未補到 Nick 本人對 GSC transfer callback 的 MR / ticket / commit / production issue / 本人確認。
-- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback、OneAPI / PG bet_result、Antplay bet / settle / rollback，以及 GSC split withdraw / deposit / rollback / cancel flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback / cancel 語意。
+- 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback、OneAPI / PG bet_result、Antplay bet / settle / rollback，以及 GSC split withdraw / deposit / rollback / cancel flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency、rollback / cancel 語意與 split vs transfer provider contract 演進。
 - 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。

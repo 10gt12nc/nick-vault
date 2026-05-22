@@ -71,8 +71,23 @@ Mongo 不應單獨作：
 - Redis game mapping miss / center route miss。
 - GSC_OTHER / cancel 的交易數量與後續對帳結果。
 
+## 6. Step 4 面試轉譯重點
+
+正式面試不只背 route，而是要講出三層邊界：
+
+- Adapter boundary：驗簽、Redis route、Mongo step evidence。
+- Wallet boundary：gameserver `GSCTransferInOutJob` 與 `PlayerData.modifyAndGetCoinGSC`。
+- Reconciliation boundary：Mongo transaction、currency / reel log、provider statement 與後續 repair / audit。
+
+面試時的 owner stance：
+
+- 承認 current code 的 Mongo guard 有價值，但不是 final idempotency。
+- 先追 production route，確認 split endpoint 是否仍是主線。
+- 如果要改善，先把 idempotency guard 放到 wallet mutation boundary，再補 outbox / audit / reconciliation。
+- 不把未確認的 production usage 或 Nick contribution 講成已確認。
+
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```

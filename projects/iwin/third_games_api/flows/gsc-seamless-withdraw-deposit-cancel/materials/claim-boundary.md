@@ -45,5 +45,5 @@ Step 3 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 /
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```

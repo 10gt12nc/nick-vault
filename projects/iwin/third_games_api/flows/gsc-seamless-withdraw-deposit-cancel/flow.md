@@ -6,7 +6,7 @@ Flow 中文名稱：GSC seamless 分離式 withdraw / deposit / rollback / cance
 
 Flow slug：`gsc-seamless-withdraw-deposit-cancel`。
 
-完成狀態：Step 3 已完成，已建立主學習包；下一步做 Step 4 轉正式面試 case。
+完成狀態：Step 4 已完成，已轉成正式面試 case；下一步做 Step 5 單條 flow claim gate。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。目前沒有 Nick 本人在 `third_games_api` GSC split endpoints 的 direct production evidence；下游 `iwin_gameserver` GSC direct commits 歸屬 `iwin_gameserver` project claim，不反包成本 repo claim。
 
@@ -14,7 +14,7 @@ Flow slug：`gsc-seamless-withdraw-deposit-cancel`。
 
 是否只確認到入口：不是。已確認 `third_games_api` provider-facing API、MD5 sign、currency / player validation、Redis game mapping / center routing、Mongo step evidence、gameserver `GSC_BET / GSC_SETTLE / GSC_REFUND / GSC_OTHER` dispatch、`GSCTransferInOutJob` wallet mutation 與 GSC reel log side effect。未確認 provider 官方 spec、production 目前是否仍使用 split endpoint、Mongo unique index、gameserver wallet mutation 前的 transaction-level duplicate guard。
 
-掃描深度：Level 2 Flow 深掃。已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC transfer / OneAPI / Antplay flow；已 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs，兩者 local branch 與 tracked remote 均為 `0 / 0`。本輪只讀 source repo，沒有 pull、checkout、merge、rebase 或改公司 repo。
+掃描深度：Level 2 Flow 深掃。Step 4 已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC transfer / OneAPI / Antplay flow；已 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs，兩者 local branch 與 tracked remote 均為 `0 / 0`。本輪只讀 source repo，沒有 pull、checkout、merge、rebase 或改公司 repo。
 
 ## 白話導讀
 
@@ -301,18 +301,18 @@ Owner 判斷：
 - 不把下游 `iwin_gameserver` GSC direct commits 反向包成 `third_games_api` direct contribution。
 - 不宣稱已確認 production 目前仍使用 split endpoint。
 
-本 Step 3 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續 Step 4 先轉正式面試 case；Step 5 再做單條 flow claim gate。
+Step 4 已完成正式面試 case，但本輪不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續 Step 5 再做單條 flow claim gate，確認是否維持 interview-only。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```
 
 原因：
 
-- Step 3 已建立 split endpoint 的系統理解、狀態機、failure window 與 production status 邊界。
-- 下一步應轉成正式面試 case，特別要對照 `/transfer` 整合式 flow，避免把 legacy / compatibility endpoint 講成目前主線。
-- 這會更新 flow-level interview 文件與索引；目前不更新正式履歷。
+- Step 4 已把 split endpoint 的狀態機、failure window、互斥語意、observability 與保守邊界轉成正式面試 case。
+- 下一步應做 Step 5 單條 flow claim gate，確認本 flow 是否維持 `專案存在 / code-backed` 面試素材，以及是否仍不更新正式履歷。
+- 這會更新 flow-level claim boundary 與索引；目前仍不更新正式履歷。

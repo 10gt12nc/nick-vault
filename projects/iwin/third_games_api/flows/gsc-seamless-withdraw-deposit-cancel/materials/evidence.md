@@ -6,7 +6,7 @@
 
 掃描等級：Level 2 Flow 深掃。
 
-完成狀態：Step 3 已完成。
+完成狀態：Step 4 已完成。
 
 證據層級：
 
@@ -36,6 +36,26 @@ Nick / `10gt12nc` 貢獻判斷：
 - `projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/`
 - `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/`
 - `projects/iwin/third_games_api/flows/antplay-bet-settle-rollback/`
+- `projects/iwin/third_games_api/flows/gsc-seamless-withdraw-deposit-cancel/flow.md`
+- `projects/iwin/third_games_api/flows/gsc-seamless-withdraw-deposit-cancel/career-interview.md`
+- `projects/iwin/third_games_api/flows/gsc-seamless-withdraw-deposit-cancel/materials/interview.md`
+- `projects/iwin/third_games_api/flows/gsc-seamless-withdraw-deposit-cancel/materials/decision-notes.md`
+
+## Step 4 更新紀錄
+
+本 Step 4 做：
+
+- 將 `career-interview.md` 從草稿升級為正式面試 case。
+- 將 `materials/interview.md` 補成 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問與回答。
+- 補 `decision-notes.md` 的面試轉譯重點。
+- 同步 README、Step 文件、inventory、todo 與 casebook。
+
+本 Step 4 不做：
+
+- 不更新 `05-resume-master-zh.md`。
+- 不更新 `08-application-autobiography-zh.md`。
+- 不把本 flow 標成 Nick 真實開發過。
+- 不宣稱 split endpoint 是目前 production 主線。
 
 ## Source repo 狀態
 
@@ -141,5 +161,5 @@ Step 3 判斷：
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```

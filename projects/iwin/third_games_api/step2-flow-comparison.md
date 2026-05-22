@@ -91,7 +91,7 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `gsc-seamless-withdraw-deposit-cancel Step 4` |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `gsc-seamless-withdraw-deposit-cancel Step 5` |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
 | `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
@@ -138,7 +138,7 @@ gsc-transfer-bet-settle-rollback
 | 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
-| 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 不放正式履歷 | Step 3 已完成；下一步 Step 4 轉面試 case |
+| 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 不放正式履歷 | Step 4 已完成；下一步 Step 5 claim gate |
 | 5 | `third-platform-redis-config-refresh` | 中 | 中 | 中 | 中 | 中 | 待確認 | 支援性 flow，不優先於交易主線 |
 
 ## Flow 1：`gsc-transfer-bet-settle-rollback`
@@ -236,7 +236,7 @@ Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMA
 ## Flow 4：`gsc-seamless-withdraw-deposit-cancel`
 
 中文名稱：GSC seamless withdraw / deposit / rollback / cancel
-建議狀態：Step 3 已完成；下一步 Step 4
+建議狀態：Step 4 已完成；下一步 Step 5
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
@@ -267,6 +267,13 @@ Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMA
 - Mongo `third_transaction_gsc` 是否有 unique index；目前只確認 code query guard，未確認 schema guard。
 - cancel 與 rollback 都用 step 3 時，provider 重送與 out-of-order 會不會造成語意混淆。
 - cancel 的 `action` validation 被註解是否是 provider contract 特例、測試遺留，或 production risk。
+
+### Step 4 結論
+
+- 已轉成正式面試 case。
+- 可講 split endpoint state transition、Mongo step evidence、gameserver wallet mutation boundary、retry / duplicate / out-of-order failure window。
+- 面試時必須保守標示 `/transfer` 可能是後來 production 主線，split endpoint production usage 待確認。
+- 不更新正式履歷；下一步做 Step 5 單條 flow claim gate。
 
 ## Flow 5：`third-platform-redis-config-refresh`
 
@@ -346,7 +353,7 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```
 
 原因：

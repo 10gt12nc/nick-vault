@@ -116,7 +116,7 @@
 | `third_games_api` 測試 / 排查線索 | `ec9d812` / `63e88f2`：`10gt12nc` 在 `origin/Test001-Nick` 修改 `AntplayController.java`，commit message 為測試用，內容偏硬編測試帳號 / GameServer URL / 暫時關閉部分 validation / sign / Redis routing | 局部測試線索；不能放正式履歷主成果，不能寫 production provider 開發 |
 | `third_games_api` branch merge | `b16e606`：`nick` merge `beta2` into `main`，merge message 指向 Antplay content-type 相關 MR | branch / merge 線索；可作參與環境或分支流轉背景，不足以宣稱功能 owner |
 | GSC transfer flow | `gsc-transfer-bet-settle-rollback` Step 5 已確認 GSC transfer callback、gameserver `PGTRANSFERINOUT`、Mongo audit / transaction evidence | code-backed 面試素材；仍不升級正式履歷 |
-| OneAPI / Antplay / GSC split provider flow | OneAPI `oneapi-wallet-bet-result` 已完成 Step 5；Antplay `antplay-bet-settle-rollback` 已完成 Step 5；GSC split endpoint `gsc-seamless-withdraw-deposit-cancel` 已完成 Step 3；Redis config flow 仍是 Step 2 candidate | code-backed 面試素材；OneAPI 與 Antplay 可面試講；GSC split Step 4 前只作初版素材；不可寫成 Nick 成果 |
+| OneAPI / Antplay / GSC split provider flow | OneAPI `oneapi-wallet-bet-result` 已完成 Step 5；Antplay `antplay-bet-settle-rollback` 已完成 Step 5；GSC split endpoint `gsc-seamless-withdraw-deposit-cancel` 已完成 Step 4；Redis config flow 仍是 Step 2 candidate | code-backed 面試素材；OneAPI、Antplay 與 GSC split 可面試講；不可寫成 Nick 成果 |
 | 下游 `iwin_gameserver` direct evidence | `10gt12nc` 在 `iwin_gameserver` 有大量 Antplay / GSC / PG commits，例如 `feat(#144): iwin gameserver 對接antplay遊戲` 系列、`feat(#PG): GSC+ PG`、`feat(#PG): bet_result 投派整合`、GSC / Antplay log reel 優化與投派整合 commits | 較強的真實開發 evidence，但 project attribution 屬於 `iwin_gameserver`；只能作 `third_games_api` 下游關聯，不直接包成 `third_games_api` owner |
 
 ## 可放履歷：正式主成果
@@ -174,7 +174,7 @@
 | `gsc-transfer-bet-settle-rollback` | Step 5 已完成 | 不更新正式履歷；保留為 code-backed 面試素材 |
 | `oneapi-wallet-bet-result` | Step 5 已完成 | code-backed 面試素材；不更新正式履歷；下游 PGTransferInOut direct evidence 歸屬 `iwin_gameserver` |
 | `antplay-bet-settle-rollback` | Step 5 已完成 | `third_games_api` 本 repo 有 10gt12nc 測試線索，但正式開發主體不足；可做三段式 money flow / retry failure window 面試對照，不寫正式成果 |
-| `gsc-seamless-withdraw-deposit-cancel` | Step 3 已完成 | 待確認 production 使用狀態；Step 4 前只作 split endpoint 狀態機初版素材，不更新正式履歷 |
+| `gsc-seamless-withdraw-deposit-cancel` | Step 4 已完成 | 待確認 production 使用狀態；可作 split endpoint 狀態機正式面試 case，不更新正式履歷 |
 | `third-platform-redis-config-refresh` | Step 2 candidate | 支援性 flow；目前不作履歷主成果 |
 
 ## 履歷 / 自傳更新結論
@@ -199,7 +199,7 @@
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```
 
 原因：
@@ -207,4 +207,4 @@ iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論仍是 interview-only / no standalone resume bullet。
 - 真正較強的第三方遊戲 direct evidence 在 `iwin_gameserver`，已由該 project consolidation 正確歸位。
 - `oneapi-wallet-bet-result Step 5` 與 `antplay-bet-settle-rollback Step 5` 都已完成。
-- `gsc-seamless-withdraw-deposit-cancel Step 3` 已完成；下一步把 GSC split endpoint 的狀態機、duplicate guard 與 production 待確認邊界轉成正式面試 case。
+- `gsc-seamless-withdraw-deposit-cancel Step 4` 已完成；下一步做單條 flow claim gate，確認是否維持 code-backed interview-only。

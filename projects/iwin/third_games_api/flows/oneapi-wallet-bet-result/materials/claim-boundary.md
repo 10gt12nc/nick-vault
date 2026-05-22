@@ -50,5 +50,5 @@ Step 5 結論：已完成 flow-level claim gate，evidence 層級不升級。這
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 4
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 ```
