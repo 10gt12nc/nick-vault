@@ -68,5 +68,5 @@ Step 5 更新：不新增一般 slot spin / settle 履歷 claim；只把 Nick / 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```

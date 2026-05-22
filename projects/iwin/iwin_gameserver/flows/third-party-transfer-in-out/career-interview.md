@@ -136,7 +136,7 @@ Result：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：

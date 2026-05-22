@@ -4,11 +4,11 @@
 
 - Flow 中文名稱：打碼目標設定 / 查詢 / 投注扣減
 - Flow slug：`bet-target-set-query`
-- 完成狀態：Step 4 completed
+- 完成狀態：Step 5 completed
 - 掃描等級：Level 2 Flow 深掃
-- 證據層級：部分真實開發過 + code-backed；coupon 打碼目標入口有 Nick / `10gt12nc` direct commits，一般 BI / 全部打碼系統 owner 待 Step 5 判斷
+- 證據層級：分層 claim。coupon 打碼目標入口是真實開發過 + code-backed；一般 BI / payment / app_bi 查詢與完整打碼系統 owner 為 code-backed / interview-only
 - 本 flow 是：money rule / withdrawal gating rule / log projection
-- 是否更新正式履歷 / 自傳：否。Step 4 只轉正式面試 case，不直接更新 `05` / `08`
+- 是否更新正式履歷 / 自傳：否。Step 5 不新增獨立 gameserver 打碼履歷 bullet；coupon 打碼入口只作既有 coupon / gameserver supporting evidence
 
 ## 白話導讀
 
@@ -231,7 +231,7 @@ flowchart TD
 2. `betTarget` 是 rule state，`betTotal` 是投注累積 state，兩者都要可 audit。
 3. coupon 類 target 必須避免重複設定，否則玩家會被多要求打碼。
 4. `log_spin_bet` 是 audit source，不是 rule source；缺 log 不代表 rule 沒生效。
-5. offline player / cache persistence 是 Step 4 / Step 5 前要追的重點。
+5. offline player / cache persistence 是後續若要升級 claim 時要追的重點。
 
 ## 面試 / 履歷邊界摘要
 
@@ -242,9 +242,9 @@ flowchart TD
 
 目前不直接寫正式履歷：
 
-- Step 3 還未完成 Step 5 claim gate。
-- 一般 BI handle / 全部打碼系統 owner 未確認。
-- payment / app_bi / game_api 上游完整 contract 未掃完。
+- 不新增獨立 `iwin_gameserver 打碼系統` 履歷 bullet。
+- coupon 打碼入口可支撐既有 `game_api coupon` / gameserver supporting evidence。
+- payment / app_bi / 一般 BI handle / 完整 wagering rule engine 不升級成 Nick 個人成果。
 
 ## Step 4 面試 case 摘要
 
@@ -258,20 +258,38 @@ flowchart TD
 
 - `SpinNeedData` 是 rule state，`log_spin_bet` 是 audit source。
 - coupon / BI command 若 timeout 重送，未防重時可能重複累加 target。
-- `HttpService` 直接 `findPlayer(accountId)`，offline player 行為待 Step 5 補 evidence。
+- `HttpService` 直接 `findPlayer(accountId)`，offline player 行為仍待未來補 evidence。
 - 投注成功但 `betTotal` 未累加時，需要用 game / provider bet log 與 `PLAYER_BET_RECORD` reconciliation。
 - coupon 打碼入口有 Nick / `10gt12nc` direct commits，但不擴張成完整 wagering rule engine owner。
 
-本輪不更新正式履歷 / 自傳。下一步應補 Step 5 claim gate，判斷這條 flow 是否只保留面試素材，或能把 coupon 打碼入口保守回填 project-level claim。
+本輪不更新正式履歷 / 自傳。Step 5 claim gate 已完成：這條 flow 保留為 money rule 面試素材，coupon 打碼入口只作 project-level supporting evidence。
+
+## Step 5 Claim Gate
+
+本 flow 已完成 Step 5。結論必須拆開看：
+
+| 範圍 | 證據層級 | 判斷 |
+| --- | --- | --- |
+| `SET_BET_TARGET_COUPON` / `COUPON` reason / coupon `betCnt` 修正 | 真實開發過 + code-backed | Nick / `10gt12nc` 有 direct commits，可作 coupon 打碼入口 supporting evidence |
+| `SpinNeedData` 的 `betTarget` / `betTotal` core rule | 專案存在 / code-backed | 可面試講 state transition 與 owner risk；不寫成 Nick 設計完整 rule engine |
+| `SET_BET_TARGET` BI 人工設定 | 專案存在 / code-backed | app_bi 有 caller，但未見 Nick direct evidence；interview-only |
+| `QUERY_BET_TARGET` payment / app_bi 查詢 | 專案存在 / code-backed | payment / app_bi 有 caller；可講提款檢查關聯，不寫成 Nick 主導 payment / BI |
+| offline player / idempotency / persistence / production incident | 待確認 | 只能作 owner improvement，不得宣稱已完成 |
+
+正式履歷 / 自傳：
+
+- 不新增獨立「負責 iwin_gameserver 打碼系統」或「設計 wagering rule engine」。
+- 可以在面試或 project evidence 中保守說：coupon 兌換 path 有打碼目標設定入口 direct commits，能說明 coupon reward、wagering target、投注累加與 audit log 的一致性風險。
+- 若未來要寫入 `05` / `08`，應透過 `game_api` / `iwin_gameserver` project-level consolidation 回填，而不是直接由本單條 flow 寫入。
 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：
 
-- Step 4 已完成正式面試 case。
-- 下一步要做單條 flow claim gate，確認 coupon direct commits 能說到什麼程度。
-- 不直接更新 05 / 08；是否回填履歷等 Step 5 claim gate 與 project-level consolidation 對齊。
+- `bet-target-set-query` 已完成 Step 5 claim gate。
+- `iwin_gameserver` 本批前四條代表 flow 均已收斂；Career Track rolling consolidation 已存在，本輪只回填本 flow 邊界。
+- 依目前 queue，下一個最直接可做的是 `third_games_api gsc-transfer-bet-settle-rollback Step 5`，完成 project-local flow claim gate。

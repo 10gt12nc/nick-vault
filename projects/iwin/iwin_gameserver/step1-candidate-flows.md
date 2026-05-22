@@ -2,17 +2,17 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：已完成第一條候選 flow Step 5；第二條候選 `center-http-deposit-withdraw` 已完成 Step 5
+狀態：本批四條代表 flow 已完成 Step 5；下一步回跨 project queue
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
 
 `iwin_gameserver` 是 iwin 裡目前比 `app_bi` 更值得深挖的核心 runtime repo。它的高價值 flow 集中在：
 
-1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，暫不進正式履歷。
+1. 第三方遊戲投派整合 / 投注派彩退款。已完成 Step 5，已由 project consolidation 保守回填履歷 claim。
 2. payment / game_api 透過 center_http 對玩家上分 / 下分。已完成 Step 5，維持 interview-only。
-3. 打碼目標設定與查詢。
-4. 遊戲 spin / 結算 / log_reel 投注流水。
+3. 遊戲 spin / 結算 / log_reel 投注流水。已完成 Step 5，一般 spin 維持 interview-only，provider log reel 回填既有 project claim。
+4. 打碼目標設定與查詢。已完成 Step 5，coupon 打碼入口可作 supporting evidence，完整打碼系統維持 code-backed 面試素材。
 5. dbproxy 的 MySQL / Redis 查寫代理。
 
 本輪不更新履歷。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認前，本文件所有候選 flow 都只作 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `bet-target-set-query Step 5` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `third_games_api gsc-transfer-bet-settle-rollback Step 5` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -336,7 +336,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-`center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。`game-spin-settlement-log-reel` Step 5 已完成，一般 Game40 spin 維持 interview-only，provider log reel / 投派整合回填既有 project claim。`bet-target-set-query` Step 4 已完成，後續進 Step 5。
+`center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。`game-spin-settlement-log-reel` Step 5 已完成，一般 Game40 spin 維持 interview-only，provider log reel / 投派整合回填既有 project claim。`bet-target-set-query` Step 5 已完成，coupon 打碼入口可作 supporting evidence，完整打碼系統維持 code-backed 面試素材。
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
@@ -354,12 +354,12 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成 claim gate，維持 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- `bet-target-set-query` Step 4 已完成，下一步補 Step 5。
+- `bet-target-set-query` Step 5 已完成，下一步回跨 project queue。
 - 後續若新增 gameserver flow，再回填校正 project-level claim。

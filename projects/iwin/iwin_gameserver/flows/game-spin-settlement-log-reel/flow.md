@@ -348,7 +348,7 @@ Game40SpinJob -> Game40SpinUtil -> GamePlayer.addMoney -> GameToCenterSpinResult
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：

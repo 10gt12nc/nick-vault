@@ -250,7 +250,7 @@
 - 已把本 flow 轉成正式面試 case。
 - 仍不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
 - claim 維持 `專案存在 / code-backed`。
-- 下一步應做 Step 5 claim gate，確認是否維持 interview-only 或有新 evidence 可回填 project-level claim。
+- 後續 Step 5 已完成 claim gate，結論維持 interview-only，不新增正式履歷 claim。
 
 ## Step 5 掃描範圍
 

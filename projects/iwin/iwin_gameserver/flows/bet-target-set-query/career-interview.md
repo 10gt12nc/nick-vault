@@ -1,8 +1,8 @@
 # Career Interview：bet-target-set-query
 
-狀態：Step 4 completed
-證據層級：部分真實開發過 + code-backed；coupon 打碼目標入口有 Nick / `10gt12nc` direct commits，一般完整打碼系統 owner 待 Step 5 判斷
-履歷結論：本 Step 不更新正式履歷 / 自傳；先作 money rule 正式面試 case
+狀態：Step 5 completed
+證據層級：分層 claim。coupon 打碼目標入口是真實開發過 + code-backed；一般完整打碼系統 owner / BI / payment / app_bi caller 為 code-backed / interview-only
+履歷結論：不新增獨立 gameserver 打碼履歷 bullet；coupon 打碼入口只作既有 coupon / gameserver supporting evidence
 
 ## 這條 flow 可以怎麼講
 
@@ -35,7 +35,7 @@
 
 Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令如果 timeout 重送，現在看到的核心方法是累加 target，所以要確認上游有沒有 couponId / requestId 防重。第二是 availability：HttpService 直接 findPlayer，如果玩家不在線，離線行為要確認，不能假設一定成功。第三是 consistency：rule state 在 SpinNeedData，log_spin_bet 是 audit，不是 source of truth；log fail 不能直接改 rule，但會影響客服稽核。第四是 reconciliation：如果玩家投注成功但 betTotal 沒累加，會造成玩家不能提款，應該能用 game bet log / provider bet log / PLAYER_BET_RECORD 對帳。
 
-我的 evidence 會保守講：coupon 打碼入口有 10gt12nc 的 direct commits，包含新增 SET_BET_TARGET_COUPON / COUPON reason，以及後續修正 coupon betCnt；但完整打碼系統 owner、上游 payment/app_bi/game_api contract 和 production incident，我不會誇大。
+我的 evidence 會保守講：coupon 打碼入口有 10gt12nc 的 direct commits，包含新增 SET_BET_TARGET_COUPON / COUPON reason，以及後續修正 coupon betCnt；但完整打碼系統 owner、上游 payment/app_bi contract 和 production incident，我不會誇大。
 ```
 
 ## STAR 版本
@@ -103,7 +103,7 @@ Step 4 目前只能說待確認。HttpService.setPlayerBetTarget / setPlayerBetT
 保守回答：
 
 ```text
-我會區分。iwin_gameserver project-level 可放履歷的強 evidence 是第三方 provider 投派整合與 gameserver wallet / log projection 串接。bet-target-set-query 這條目前可作 money rule 面試案例；coupon 打碼入口有 direct commits，但完整打碼系統、payment/app_bi/game_api 上游 contract 和完整提款 owner 要等 Step 5 再判斷。
+我會區分。iwin_gameserver project-level 可放履歷的強 evidence 是第三方 provider 投派整合與 gameserver wallet / log projection 串接。bet-target-set-query 這條可作 money rule 面試案例；coupon 打碼入口有 direct commits，可當 coupon / gameserver supporting evidence，但完整打碼系統、payment/app_bi 上游 contract 和完整提款 owner 不會寫成我主導。
 ```
 
 ## 可講的 Senior 點
@@ -113,7 +113,7 @@ Step 4 目前只能說待確認。HttpService.setPlayerBetTarget / setPlayerBetT
 - coupon 類設定要有 source request id / coupon id 防重。
 - `SET_BET_TARGET` 直接找 online `PlayerData`，offline 行為要確認。
 - 打碼扣減要和一般 spin / third-party provider bet flow 對齊，否則玩家投注與提款限制會不一致。
-- `commExt.spinNeeds` 的 persistence / flush timing 是 Step 5 前的重點，不應假設已完整落庫。
+- `commExt.spinNeeds` 的 persistence / flush timing 是後續若要升級 claim 時要補的 evidence，不應假設已完整落庫。
 
 ## 不能誇大的地方
 
@@ -131,14 +131,18 @@ Step 4 目前只能說待確認。HttpService.setPlayerBetTarget / setPlayerBetT
 - 本 flow 是 code-backed money rule 正式面試素材。
 - 我能說明 target setup、bet accumulation、query、audit log 與 failure window。
 
-## Step 4 結論
+## Step 5 結論
 
-這條已轉成正式面試 case。面試時可以拿來講 money rule correctness、wagering target 的 state transition、重複設定風險、offline player 風險、audit log 和 source of truth 的差異。
+這條已完成單條 flow claim gate。面試時可以拿來講 money rule correctness、wagering target 的 state transition、重複設定風險、offline player 風險、audit log 和 source of truth 的差異。
 
-本 Step 不更新正式履歷 / 自傳。下一步應做 Step 5 claim gate，確認本 flow 是否只保留面試素材，或能把 coupon 打碼入口保守回填 project-level claim。
+履歷上不新增獨立 gameserver 打碼 bullet。可保守使用的只有：
+
+- coupon 打碼入口：真實開發過 + code-backed supporting evidence。
+- 完整打碼 / 提款限制 flow：code-backed 面試素材。
+- payment / app_bi 查詢與 BI 人工設定：只作上游 / 操作面關聯，不作 Nick direct development claim。
 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```

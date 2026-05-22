@@ -1,7 +1,7 @@
 # Interview：bet-target-set-query
 
-狀態：Step 4 completed
-證據層級：部分真實開發過 + code-backed；正式履歷 claim 待 Step 5
+狀態：Step 5 completed
+證據層級：分層 claim；coupon 打碼入口是真實開發過 + code-backed，完整打碼系統為 code-backed / interview-only
 
 ## 一句話定位
 
@@ -42,7 +42,7 @@ Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令
 | Situation | 平台有 coupon、活動、充值返利、後台調整等來源會建立打碼限制，錯誤會造成提款爭議。 |
 | Task | 釐清 iwin_gameserver 裡 target setup、投注累加、查詢與 audit log 的完整 flow，轉成可面試說明的 money rule case。 |
 | Action | 從 `HttpService` 三個 command 往下追 `PlayerData`、`SpinNeedData`、一般 spin / provider bet 累加與 `PLAYER_BET_RECORD` log projection，並查 Nick / `10gt12nc` coupon direct commits。 |
-| Result | 形成正式面試案例：rule state / audit source 分離、重複設定、offline player、persistence、log failure 與 reconciliation 風險清楚，履歷 claim 保守留到 Step 5。 |
+| Result | 形成正式面試案例：rule state / audit source 分離、重複設定、offline player、persistence、log failure 與 reconciliation 風險清楚；Step 5 後只把 coupon 打碼入口作 supporting evidence。 |
 
 ## Senior 追問與回答
 
@@ -64,7 +64,7 @@ Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令
 
 ### Q5：玩家離線時行為如何？
 
-目前保守標待確認。`HttpService` 看到的是 `CenterWorld.findPlayer(accountId)` 後直接用 `PlayerData`，Step 4 未確認 offline fallback。這是 Step 5 要補的 evidence：上游是否只對在線玩家呼叫、或 gameserver 是否有 load cache path。
+目前保守標待確認。`HttpService` 看到的是 `CenterWorld.findPlayer(accountId)` 後直接用 `PlayerData`，本輪未確認 offline fallback。這是後續若要升級 claim 時要補的 evidence：上游是否只對在線玩家呼叫、或 gameserver 是否有 load cache path。
 
 ### Q6：`betTarget <= MONEY_RATIO` 歸零代表什麼？
 
@@ -72,7 +72,11 @@ Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令
 
 ### Q7：coupon direct evidence 可以怎麼講？
 
-可以說 Nick / `10gt12nc` 有 coupon 打碼入口的 direct commits：新增 `SET_BET_TARGET_COUPON` / `COUPON` reason，以及把 coupon 的 `betCnt` 從 0 修成 `betTarget`。但不能說成完整打碼系統 owner。
+可以說 Nick / `10gt12nc` 有 coupon 打碼入口的 direct commits：新增 `SET_BET_TARGET_COUPON` / `COUPON` reason，以及把 coupon 的 `betCnt` 從 0 修成 `betTarget`。但不能說成完整打碼系統 owner，也不新增獨立 gameserver 打碼履歷 bullet。
+
+### Q8：Step 5 後這條能不能放履歷？
+
+不能獨立寫成「負責打碼系統」。可以作 supporting evidence：coupon 兌換 flow 有 gameserver 打碼目標設定入口 direct commits，面試可講完整 target setup / bet accumulation / query / audit 風險。正式履歷仍走 project-level consolidation，不由這條單獨改 05 / 08。
 
 ## Lead / Architect 追問
 
@@ -111,6 +115,7 @@ Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令
 - 我能說明 `betTarget` / `betTotal` 的 state transition。
 - 我能指出重複設定、offline player、log failure、漏扣減與 reconciliation 風險。
 - coupon 打碼入口有 direct commit evidence。
+- Step 5 後可說 coupon 打碼入口是 `真實開發過 + code-backed`，完整打碼 flow 是 `code-backed 面試素材`。
 
 不可說：
 
@@ -118,9 +123,11 @@ Senior 角度我會看四個點。第一是 idempotency：coupon 或後台指令
 - 我建立完整 wagering rule engine。
 - 我負責 payment / app_bi / game_api 全上游 contract。
 - 我解決過 production 打碼錯誤 incident。
+- 我負責完整提款打碼 / wagering rule engine。
+- 我已建立完整防重 / reconciliation。
 
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```

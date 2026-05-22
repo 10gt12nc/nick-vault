@@ -58,8 +58,30 @@ Step 4 已把這條轉成正式面試 case，但它的定位仍是 Flow Track。
 - 哪些說法可以寫、只能面試講、不可誇大。
 - 是否需要同步 `iwin_gameserver` project-level consolidation。
 
+## Decision 7：Step 5 拆分 coupon 入口與完整打碼系統 claim
+
+Step 5 不把整條 flow 一刀切成「Nick 做過」或「Nick 沒做過」。
+
+本輪拆成四層：
+
+1. coupon 打碼入口：Nick / `10gt12nc` 有 `6c99dd3`、`30a9fcb` direct commits，可標 `真實開發過 + code-backed`。
+2. core rule state：`SpinNeedData.betTarget / betTotal` 是 code-backed，可面試講 state transition，不標成 Nick 設計完整 rule engine。
+3. payment / app_bi caller：有 code-backed upstream evidence，但不屬於本 flow 的 Nick direct development claim。
+4. owner improvement：idempotency、offline fallback、persistence、reconciliation、production incident 都是待確認 / 改善方向。
+
+## Decision 8：不新增 05 / 08 獨立 bullet
+
+本 flow 的履歷價值是 supporting evidence，不是新的正式主成果。
+
+原因：
+
+- `iwin_gameserver` 正式 project bullet 已由第三方 provider 投派整合支撐。
+- `game_api` coupon redeem / credit grant 已有自己的 Step 5 與 project-level claim。
+- 本 flow 的 direct evidence 集中在 coupon 打碼入口，不足以新增「負責打碼系統」。
+- 單條 flow Step 5 不能直接改 05 / 08，仍需 project-level consolidation 對齊。
+
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```

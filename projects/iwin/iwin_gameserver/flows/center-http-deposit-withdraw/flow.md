@@ -222,7 +222,7 @@ Owner 要避免把兩者混成一個 transaction。上游訂單成功不等於 g
 - 最大 owner 風險是 HTTP timeout 後 ambiguous success：上游不知道 gameserver 是否已改錢，若盲目重送可能造成重複加扣。
 - coin mutation、currency log、充值 / 提現 side effects 與 HTTP response 不是同一 transaction，必須靠 audit、query-by-billNo、reconciliation 與補償流程收斂。
 
-Step 4 不更新正式履歷 / 自傳。本 flow 目前維持 `專案存在 / code-backed`，可作面試案例；是否能升級為正式履歷 claim，留到 Step 5 claim gate 判斷。
+Step 4 不更新正式履歷 / 自傳。本 flow 已完成 Step 5 claim gate，結論維持 `專案存在 / code-backed` 面試案例，不升級正式履歷 claim。
 
 ## Step 5 claim gate
 
@@ -274,7 +274,7 @@ Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`ga
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 原因：

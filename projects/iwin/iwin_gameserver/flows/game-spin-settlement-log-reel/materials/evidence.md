@@ -171,7 +171,7 @@ Step 3 結論：
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 5
+iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 ```
 
 ## Step 4 更新紀錄
@@ -194,7 +194,7 @@ iwin iwin_gameserver bet-target-set-query Step 5
 原因：
 
 - Step 4 是面試 case，不是 claim gate。
-- Nick direct contribution 仍待 Step 5 判斷。
+- 後續 Step 5 已完成 claim gate；一般 Game40 spin 維持 interview-only，provider log reel / 投派整合支線只補強既有 project claim。
 
 ## Step 5 掃描範圍
 
