@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | Step 2 已完成 / 2026-05-22 |
+| Flow Track | `proxy-user-data-report-projection` Step 3 已完成 / 2026-05-22 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
-| 下一步 | `antplay antplay-slot-game-job proxy-user-data-report-projection Step 3` |
+| 下一步 | `antplay antplay-slot-game-job proxy-user-data-report-projection Step 4` |
 
 ## Claim Boundary
 
@@ -32,3 +32,5 @@
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/contribution-claim-consolidation.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/step1-candidate-flows.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/step2-flow-comparison.md)
+- [flows/proxy-user-data-report-projection/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/proxy-user-data-report-projection/flow.md)
+- [flows/proxy-user-data-report-projection/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/proxy-user-data-report-projection/career-interview.md)
