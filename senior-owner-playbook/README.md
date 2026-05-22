@@ -93,6 +93,8 @@ AI 必須自動：
 - 自動判斷是否要維護 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB。
 - 自動給下一步建議。
 
+若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪視為 KB-only 維護：AI 只修正規則 / 索引 / todo / readiness 的一致性，完成後不附 project flow 下一步 prompt，也不自動執行 todo 中的任何 flow。
+
 Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護規則」。
 
 AI 不會背景定期自動掃 repo。改檔後的 git 流程依 `00-operating-rules.md`：日常模式預設只在 `main` 開發，且同一時間只允許一個 session 具備寫入 / commit 權限；其他 session 只能只讀。例外使用 project / submodule branch 時，要定期同步 `main` 才能讀到最新 KB。自查通過後自動 commit，但 commit 前必須確認 staged 內容沒有混入其他 session / 其他 project；若本輪需要 push，AI 要直接執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No。只有 Nick 明確說「不要 push / 只 commit / 先停在本地」時，才停在本地 commit。

@@ -1,5 +1,13 @@
 # Todo
 
+## 使用規則
+
+本檔是候選待辦與收斂清單，不是自動開工授權。
+
+- Nick 明確下 `flow Step N`、`project contribution claim consolidation`、`rolling resume package` 時，AI 才開始對應深掃與改 project 文件。
+- Nick 只要求「KB、待辦、缺口、優先順序、專案先不下一步」時，AI 只能更新本檔與相關 KB，一律不自動執行下面任何 flow。
+- `必做收口` 是收斂排序，不代表每次回答都要推專案下一步；若當下是 KB-only 模式，回報 KB 維護結果即可。
+
 ## 已完成
 
 - 已將外層舊整理資料歸入 `archive/` 參考區，之後可由 Nick 人工審查是否刪除。

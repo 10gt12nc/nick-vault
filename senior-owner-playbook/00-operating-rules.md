@@ -29,6 +29,8 @@ AI 都必須套用同一套規則。
 
 若 Nick 當下要求的是「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」，這屬於 `Planning / KB Governance Track`，優先於 Flow Track 的 Step 慣性。AI 必須先把 todo / KB / inventory / project README 的缺口整理清楚，只列出下一步候選與理由，等待 Nick 指定要做哪個 Step 或哪個 consolidation；不得把自己列出的缺口自動升級成已授權執行的 flow Step。
 
+若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪是 `KB-only` 模式。AI 只能做規則、索引、todo、readiness 文件之間的一致性修正；完成後不附 project flow 下一步 prompt、不自動開工 todo 項目、不把「必做收口」視為本輪授權。此時的下一步只允許是「已完成 KB 維護 / 是否需要 push」這種收尾資訊。
+
 ### Senior 對標結束點與停止規則
 
 `nick-vault` 不是要無限整理所有 repo。它的結束點是形成一組能支撐 Senior Java Backend / Platform Backend 面試與投遞的證據包，而不是把 backlog 清空。
@@ -47,6 +49,8 @@ AI 都必須套用同一套規則。
 - `暫不建議做`：官網、前端、workspace、mock、全部 legacy repo、全部 math repo 平均深掃等低 ROI 項目，除非 Nick 明確指定。
 
 達到完成標準後，AI 應建議停止大規模整理，轉成投遞、面試練習、針對職缺補洞；不得用 backlog 製造「永遠沒做完」的感覺。
+
+實務口徑：`3-5 條`是投遞 / 面試最小主力 case，必須能反覆口說並抗追問；`8-10 條`是完整證據包，用來覆蓋不同面試官追問與不同職缺方向。AI 不得把兩者混成互相矛盾的完成標準。
 
 AI 需要自動維護：
 

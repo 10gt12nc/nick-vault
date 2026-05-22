@@ -22,6 +22,7 @@
 - 若 Nick 問薪資、期望待遇、談薪或 offer，AI 要先讀 `17-salary-negotiation.md`，並重新查當下市場行情；薪資資料具時效性，不可只拿舊數字回答。談薪說法要對齊 05 / 08 的保守 claim，不得用未證實的 owner / architect / 主導完整系統來抬價。
 - 若 Nick 問 `*-workspace`、AI 開發閉環、Codex / Claude / Cursor 經驗是否能放履歷，AI 要把它歸類為 Career Track 的 supporting evidence：可支撐 AI-assisted engineering workflow / knowledge-base driven development，但不得反向包裝成 production service 功能開發或 AI 自動主導工程成果。可放在 05 / 08 / 17 的工程方法、自我推薦與談薪支撐，不作 standalone 主成果。
 - 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
+- Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」時，本輪是 `KB-only` 模式。完成後不要給 project flow 下一步 prompt，也不要自動開工 todo 裡的收口項目；只回報 KB 修正、檢查結果、commit / push 狀態。
 - 每次完成後，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
@@ -644,6 +645,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 如果 Step 4 完成，下一步才檢查 Step 5 單條 flow claim gate；若要更新 05 / 08，先走 project contribution claim consolidation。
 - evidence / 下游 / decision-notes / 架構圖只能作為補充或待確認，不能取代 Step 主線。
 - 如果 Nick 問「還剩多少 / 會不會一直做 / 是否有結束點」，先給收斂版回答：最小必做剩多少、可選加強剩多少、暫不建議做哪些、達標後轉投遞或面試練習。不要把所有 backlog 加總成壓力數字。
+- 如果 Nick 明確要求 `KB-only` 或「專案先不下一步」，本段格式停用；不要輸出 project flow 建議 prompt。
 
 原因：
 - {為什麼現在最適合做這件事}

@@ -80,6 +80,7 @@
 - 若 Nick 問的是「還有多少 step / 會不會一直建議 / 何時結束 / 對標資深是否夠了」，AI 要先回答收斂狀態與終點，不要直接丟下一個 flow。回答必須說明：最小必做剩多少、可選加強有哪些、哪些暫不建議做，以及做完後是否轉為投遞 / 面試練習。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 下一步判斷必須先看 Nick 當下是不是在要求「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」。若是，AI 只能先維護 todo / KB / index，把缺口列清楚並等待 Nick 指定下一個 flow Step；不得把自己列出的缺口自動當成已授權執行 Step 4 / Step 5。
+- 若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪屬於 `KB-only` 模式。AI 完成後只能回報 KB 檢查結果、改了哪些規則、是否 commit / push；不得附上 project flow 下一步 prompt，也不得把 todo 裡的收口項目當成本輪授權。
 - 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或要求先整理履歷相關，AI 可以先做 `{project} contribution claim consolidation`，即使該 project 的代表 flows 尚未全部 Step 5。這個 consolidation 是 Career Track 的履歷 claim gate，不是新 flow Step；必須標成 rolling / scoped / limited（依實際範圍），並清楚列出哪些 claim 來自本人確認、commit / branch / diff、已完成 flow KB、未完成但 code-backed 的分析素材。不能把未深掃 flow 寫成已完整掌握。
 - 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」狀態。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定要先做別的 project / flow。若代表 flows 尚未全部完成但 Nick 要先補履歷，則做 rolling consolidation，並在 project README、todo 或 inventory 標清楚「rolling consolidation 已做 / flow 深掃未完 / 後續需回填」。
 - 如果 Step 3 已完成且文件乾淨，且不涉及履歷 / 自傳 / contribution claim gate，下一步預設是 Step 4，不是下游定位或其他自創任務。

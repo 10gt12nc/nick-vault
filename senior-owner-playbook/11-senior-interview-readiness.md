@@ -6,7 +6,7 @@
 
 > 整理完 `nick-vault` 不等於已經穩上 10 萬以上職缺。
 
-`nick-vault` 的價值是把準備路線、提示詞、履歷、自傳、case study 方法論整理乾淨。真正能不能打 Senior 面試，取決於你是否能把 3-5 條 production flow 講清楚，而且每條都有 code evidence、風險判斷、owner decision 與不誇大的履歷邊界。
+`nick-vault` 的價值是把準備路線、提示詞、履歷、自傳、case study 方法論整理乾淨。真正能不能打 Senior 面試，最低取決於你是否能把 3-5 條主力 production flow 講清楚，而且每條都有 code evidence、風險判斷、owner decision 與不誇大的履歷邊界；完整證據包則要擴到 8-10 條可切換使用的 production flow。
 
 ## 對標資深的整理結束點
 
@@ -16,6 +16,11 @@
 2. 面試案例夠用：8-10 條 production flow 能講 3 分鐘，且能被追問 state、failure、idempotency、retry、observability、owner decision。
 3. 邊界夠乾淨：每個 claim 都知道哪些是真實開發過、哪些是 code-backed 分析、哪些不可誇大。
 4. 投遞包完成：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md` 與最新 claim 對齊。
+
+口徑拆分：
+
+- `3-5 條主力 flow`：最低投遞 / 面試門檻，必須練到能穩定口說與抗追問。
+- `8-10 條 production flow`：完整 Senior / Platform Backend 證據包，用來覆蓋不同職缺與不同追問方向。
 
 達到這個標準後，就不應再平均掃所有 repo。下一階段應改成：
 
