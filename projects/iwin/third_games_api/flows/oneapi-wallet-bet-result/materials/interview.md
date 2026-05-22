@@ -1,5 +1,17 @@
 # Interview：OneAPI / PG bet_result
 
+完成狀態：Step 4 已完成，已轉成正式面試 case；下一步 Step 5 claim gate。
+
+## 30 秒講法
+
+OneAPI / PG `bet_result` 是第三方 provider 的投注結果 callback。它會先用 HMAC-SHA256 驗 body，再用 `transactionId` 查 Mongo duplicate evidence；新交易才會送 gameserver `PGTRANSFERINOUT` 改錢。這條 flow 的 Senior 重點是：HMAC 不防 replay，adapter Mongo duplicate guard 也不是 wallet boundary，所以要看 gameserver 成功但 Mongo 未寫時 provider retry 怎麼收斂。
+
+## 90 秒講法
+
+`third_games_api` 在這條 flow 裡是 adapter，不是帳本。Provider 進來後，adapter 驗簽、檢查 currency / username / END betId、查 `transactionId + step = 1` 是否已處理。duplicate 就回 Mongo 裡記錄的 balance；新交易才把金額轉成內部倍率，算 `addMoney`，用 Redis 找 `gameId` 和 `center_http`，送 gameserver `PGTRANSFERINOUT`。
+
+真正的玩家餘額加扣在 gameserver `PGTransferInOutJob` 和 wallet method。adapter Mongo 的 `third_log_oneapi` / `third_transaction_oneapi` 是 callback 與 transaction evidence，不是 wallet source of truth。面試時要抓住這個分界，才不會把「有 log」誤講成「交易安全」。
+
 ## 3 分鐘講法
 
 OneAPI `bet_result` 是第三方遊戲 provider 回傳投注結果的 callback。Provider 會帶 `traceId`、`transactionId`、`betId`、`roundId`、投注額、派彩、jackpot、有效投注和 `resultType` 到 `/wallet/bet_result`。
@@ -40,6 +52,16 @@ Adapter 會先用固定欄位順序重建 JSON，再用 HMAC-SHA256 驗 `X-Signa
 
 我會先確認 provider unique key contract，然後把 idempotency guard 往 wallet mutation boundary 移，至少在 `PGTRANSFERINOUT` 修改玩家餘額前判斷已處理狀態。再補 reconciliation，把 provider statement、adapter Mongo、gameserver currency log、reel log 對起來。
 
+### 如果面試官問這是不是你的開發成果？
+
+保守回答：這條 OneAPI adapter 目前我只把它當 code-backed 分析與面試 case；我不會說是我主導開發。下游 PGTransferInOut 在 iwin_gameserver 有 Nick / `10gt12nc` direct evidence，但 project attribution 要歸在 `iwin_gameserver`，不是 `third_games_api`。
+
+## 可反問面試官
+
+- 你們 provider callback 的 idempotency key 是由 provider 保證，還是 wallet service 自己落唯一鍵？
+- retry / timeout 時，會回同一筆交易的結果，還是每次查即時 balance？
+- wallet mutation、audit log、報表 projection 的 reconciliation 是同步、非同步還是人工 repair？
+
 ## 可講 / 不可講
 
 可講：
@@ -58,5 +80,5 @@ Adapter 會先用固定欄位順序重建 JSON，再用 HMAC-SHA256 驗 `X-Signa
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 5
 ```

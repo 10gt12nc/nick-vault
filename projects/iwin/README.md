@@ -8,7 +8,7 @@
 2. [payment](payment/README.md)：金流 / 充值 / 提現 orchestration，Top 5 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核並補入 GoldenPay direct evidence；不因新規則重做。
 3. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
 4. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；不因新規則重做。
-5. [third_games_api](third_games_api/README.md)：第三方遊戲 provider adapter，`gsc-transfer-bet-settle-rollback` 已到 Step 5，`oneapi-wallet-bet-result` 已到 Step 3，rolling / scoped contribution consolidation 已完成；不新增 standalone 正式履歷主成果。
+5. [third_games_api](third_games_api/README.md)：第三方遊戲 provider adapter，`gsc-transfer-bet-settle-rollback` 已到 Step 5，`oneapi-wallet-bet-result` 已到 Step 4，rolling / scoped contribution consolidation 已完成；不新增 standalone 正式履歷主成果。
 6. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`contribution-claim-consolidation` 已完成 rolling / scoped 收口；第三方 provider 投派整合可保守放履歷，本批代表 flows 已完成 Step 5。
 7. [k3s-deploy](k3s-deploy/README.md)：K3s / Kustomize deploy manifests，`gameserver-phased-rollout` 已到 Step 4；project-local 下一步是 Step 5 claim gate。
 8. [bi_share](bi_share/README.md)：PHP / Laravel 分享、佣金與 BI 報表 legacy repo；rolling / scoped negative contribution consolidation 已完成，不放正式履歷主成果。
@@ -22,7 +22,7 @@
 | `payment` | Top 5 flow 與 project-level contribution consolidation 已完成並於 2026-05-20 重新覆核；`payment-order-provider-request` 已有 Nick / `10gt12nc` path-specific evidence，GoldenPay direct commits 已補入 claim | 不因新規則重做；後續只在 Nick 指定新 payment flow 時追加 |
 | `app_bi` | Step 1 / Step 2 / architecture / career；4 條主要 flow 已完成 Step 5 | 已收斂；不搶履歷 claim |
 | `game_job` | Step 1 / Step 2；Top 5 代表 flows 與 project-level contribution consolidation 已完成並於 2026-05-20 重新覆核，其中 daily summary / GSC backup 有 direct evidence | 已收斂，不因新規則重做 |
-| `third_games_api` | Step 1 / Step 2；`gsc-transfer-bet-settle-rollback` 已完成 Step 5；`oneapi-wallet-bet-result` 已完成 Step 3；rolling / scoped contribution consolidation 已完成，不新增 standalone 正式履歷主成果 | `iwin third_games_api oneapi-wallet-bet-result Step 4` |
+| `third_games_api` | Step 1 / Step 2；`gsc-transfer-bet-settle-rollback` 已完成 Step 5；`oneapi-wallet-bet-result` 已完成 Step 4；rolling / scoped contribution consolidation 已完成，不新增 standalone 正式履歷主成果 | `iwin third_games_api oneapi-wallet-bet-result Step 5` |
 | `iwin_gameserver` | architecture / Step 1 / Step 2；本批代表 flows 已完成 Step 5；project consolidation 升級為部分真實開發過 | 已收斂；第三方 provider 投派整合可保守放履歷 |
 | `k3s-deploy` | architecture / Step 1 / Step 2；`gameserver-phased-rollout` 已完成 Step 4 面試案例 | project-local 下一步：`iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | `bi_share` | rolling / scoped negative contribution consolidation 已完成；未見 Nick / `10gt12nc` direct production commits | 不放正式履歷主成果；若要深挖，先做 `iwin bi_share Step 1` |

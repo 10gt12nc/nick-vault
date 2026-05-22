@@ -6,7 +6,7 @@ Flow 中文名稱：OneAPI / PG bet_result 投派 callback。
 
 Flow slug：`oneapi-wallet-bet-result`。
 
-完成狀態：Step 3 已建立 flow learning package；下一步是 Step 4 面試 case。
+完成狀態：Step 4 已完成，已轉成正式面試 case；下一步是 Step 5 claim gate。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 OneAPI adapter 目前未見 Nick / `10gt12nc` direct commit；下游 `iwin_gameserver` 的 PG bet_result / PGTransferInOut 有 Nick / `10gt12nc` direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 
@@ -283,6 +283,43 @@ Q：你會怎麼補觀測？
 
 A：至少把 `traceId`、`transactionId`、`betId`、`roundId`、gameserver response、Mongo insert result 串成 correlation log，並建 provider statement vs adapter transaction vs gameserver currency log 的 reconciliation。
 
+## Step 4 面試 Case 收斂
+
+Case 標題：第三方遊戲 OneAPI / PG bet_result callback 的 idempotency 與 wallet boundary。
+
+30 秒說法：
+
+```text
+我分析過 OneAPI / PG bet_result 這條 provider callback。它先用 HMAC-SHA256 驗 request body，再用 transactionId 查 Mongo duplicate evidence；新交易才會轉成 gameserver PGTRANSFERINOUT command。真正錢包異動在 gameserver，third_games_api 只負責 provider contract、路由與 Mongo audit，所以核心風險不是簽章，而是 gameserver 成功但 adapter Mongo 未寫時 provider retry 可能 double apply。
+```
+
+3 分鐘說法：
+
+```text
+OneAPI provider 會把 transactionId、betId、roundId、投注額、派彩、jackpot、有效投注與 resultType 打到 /wallet/bet_result。Adapter 先用固定欄位順序重建 JSON，透過 HMAC-SHA256 驗 X-Signature，再檢查 currency、username、END 是否已有 betId，以及 transactionId 是否已在 third_transaction_oneapi 處理過。
+
+如果 transactionId 已存在，adapter 回 Mongo 記錄的 balance，不再送 gameserver。新交易會把金額轉成內部倍率，算 addMoney，透過 Redis 找 gameId 與 center_http，送 gameserver PGTRANSFERINOUT。gameserver 才是 wallet mutation boundary，會查玩家、檢查餘額與封禁、修改錢包並帶出 currency / reel / bet log side effect。最後 adapter 才寫 third_log_oneapi 和 third_transaction_oneapi。
+
+我會把這條 flow 的 Senior 重點放在 idempotency boundary。HMAC 只能證明 request 沒被改，不能防合法 request replay；adapter Mongo duplicate guard 也只能擋住已成功寫 Mongo 後的 retry。最危險的是 gameserver 改錢成功，但 adapter crash 或 Mongo insert 失敗，provider retry 時查不到 transactionId，就可能再次送 PGTRANSFERINOUT。更穩的 owner 設計會把 idempotency guard 放到 wallet mutation 前，或先落 durable request state，再用 reconciliation 對 provider statement、adapter Mongo 與 gameserver log。
+```
+
+面試官追問時的核心回答：
+
+| 追問 | 回答重點 |
+| --- | --- |
+| HMAC 解決什麼？ | 解決 request integrity / shared secret 驗證，不解決 replay；同一份合法 body 重送仍會通過。 |
+| duplicate guard 在哪？ | Adapter 層查 Mongo `third_transaction_oneapi` 的 `transactionId + step = 1`；這不是 wallet source of truth。 |
+| 最大 failure window？ | `gameserver wallet success -> adapter Mongo insert fail / crash / timeout -> provider retry`。 |
+| `transactionId` / `betId` 怎麼選？ | 不能猜 provider contract；若 transactionId 是 event unique 就用它，否則要把 provider、event type、transaction id 或官方唯一鍵組成 idempotency key。 |
+| 你會怎麼改善？ | 先確認 provider unique key contract，把 guard 移近 wallet mutation boundary，補 durable state / outbox / reconciliation，讓 provider statement、adapter Mongo、gameserver currency / reel / bet log 能對帳。 |
+
+正式履歷邊界：
+
+- 這條 flow 可作 `code-backed / 分析過` 的面試 case。
+- 不新增 `third_games_api` standalone 履歷 bullet。
+- 下游 `iwin_gameserver` PGTransferInOut direct commits 可支撐 `iwin_gameserver` claim，不反包成 `third_games_api` direct contribution。
+- 不說 Nick 開發 OneAPI adapter、不說主導 provider integration、不說已落地 exactly-once。
+
 ## 面試 / 履歷邊界摘要
 
 可面試講：
@@ -304,11 +341,11 @@ A：至少把 `traceId`、`transactionId`、`betId`、`roundId`、gameserver res
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 5
 ```
 
 原因：
 
-- Step 3 已建立完整 code-backed flow learning package。
-- 下一步應把這條 flow 轉成保守面試 case，聚焦 HMAC、transactionId idempotency、gameserver 成功但 Mongo 失敗、adapter / wallet boundary。
-- 不會更新正式履歷；仍需 commit，不需要 push，除非 Nick 明確要求。
+- Step 4 已把 OneAPI / PG bet_result 轉成保守面試 case。
+- 下一步應做 Step 5 claim gate，確認這條 flow 是否只留面試素材、是否需要回填 `third_games_api` project consolidation，以及是否維持不更新正式履歷。
+- 不會直接更新 05 / 08；仍需 commit，不需要 push，除非 Nick 明確要求。

@@ -6,6 +6,8 @@
 
 不新增 `third_games_api` standalone 正式履歷成果。
 
+Step 4 補充：已轉成正式面試 case，但 evidence 層級不升級。Step 4 代表「可以清楚講這條 flow 的風險與設計取捨」，不代表 Nick 開發 OneAPI adapter，也不代表可以放正式履歷主成果。下一步 Step 5 才做 flow-level claim gate。
+
 ## 可說
 
 | 說法 | 證據層級 | 用途 |
@@ -47,5 +49,5 @@
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 5
 ```

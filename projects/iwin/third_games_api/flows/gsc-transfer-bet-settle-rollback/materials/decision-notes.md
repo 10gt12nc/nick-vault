@@ -101,5 +101,5 @@ Owner 必須決定：
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 5
 ```

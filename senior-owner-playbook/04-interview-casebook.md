@@ -66,6 +66,7 @@ Transfer wallet 的核心是半完成狀態。轉出成功、轉入失敗、prov
 - `game-round-settlement`
 - `antplay-bet-settle-rollback`
 - `third_games_api/gsc-transfer-bet-settle-rollback`
+- `third_games_api/oneapi-wallet-bet-result`
 
 面試主軸：
 
@@ -90,6 +91,21 @@ GSC transfer 保守邊界：
 
 - 證據層級是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
 - 沒有 Nick 本人 MR / ticket / production issue / 本人確認前，不寫成 Nick 主導 GSC 串接或修復 rollback。
+
+OneAPI / PG bet_result 補充案例：
+
+- `third_games_api/oneapi-wallet-bet-result` 已完成 Step 4，可作 HMAC / idempotency / wallet boundary 的正式面試 case。
+- OneAPI `POST /wallet/bet_result` 會用 HMAC-SHA256 驗 `X-Signature`，再以 Mongo `third_transaction_oneapi` 的 `transactionId + step = 1` 做 adapter duplicate guard。
+- 新交易會轉成 gameserver `PGTRANSFERINOUT`；真正 money commit boundary 在 `iwin_gameserver`，不是 `third_games_api` Mongo。
+- 最大 failure window 是 `gameserver wallet success -> adapter Mongo insert fail / crash / timeout -> provider retry`，因為 retry 可能查不到 transaction evidence 而再次送 gameserver。
+- 面試改善方向：確認 provider unique key contract，把 idempotency guard 移近 wallet mutation boundary，或先落 durable request state，再用 provider statement / adapter Mongo / gameserver currency log / reel log 做 reconciliation。
+
+OneAPI / PG 保守邊界：
+
+- 證據層級是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 不新增 `third_games_api` standalone 正式履歷成果。
+- 下游 PGTransferInOut 的 Nick / `10gt12nc` direct evidence 歸屬 `iwin_gameserver`，不可反包成 Nick 開發 OneAPI adapter。
+- 不說已建立 exactly-once、完整 reconciliation 或修復 OneAPI production 錯帳。
 
 AntPlay slot game API 補充案例：
 

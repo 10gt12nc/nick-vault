@@ -1,8 +1,10 @@
 # Evidence：OneAPI / PG bet_result
 
-任務：`iwin third_games_api oneapi-wallet-bet-result Step 3`
+任務：`iwin third_games_api oneapi-wallet-bet-result Step 4`
 日期：2026-05-22
 掃描等級：Level 2 Flow 深掃
+
+Step 4 補充：本輪未新增 source repo code 掃描路徑，使用 Step 3 已確認的 code-backed evidence 轉成正式面試 case，並重新確認 source repo remote refs 與工作樹狀態。公司 repo 只讀；未 pull、未 checkout、未 merge、未 rebase、未修改。
 
 ## Source Repo 狀態
 
@@ -37,6 +39,11 @@
 - `projects/iwin/third_games_api/step2-flow-comparison.md`
 - `projects/iwin/third_games_api/contribution-claim-consolidation.md`
 - `projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/*`
+- `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/flow.md`
+- `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/career-interview.md`
+- `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/materials/interview.md`
+- `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/materials/claim-boundary.md`
+- `projects/iwin/third_games_api/flows/oneapi-wallet-bet-result/materials/decision-notes.md`
 
 ## 已看 Code Path
 
@@ -165,5 +172,5 @@
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 5
 ```
