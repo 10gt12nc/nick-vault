@@ -109,7 +109,7 @@ OneAPI / PG 保守邊界：
 
 Antplay 三段式補充案例：
 
-- `third_games_api/antplay-bet-settle-rollback` 已完成 Step 4，可作 Antplay 舊版三段式 bet / settle / rollback 的正式面試 case；flow-level claim gate 尚未做，正式履歷不更新。
+- `third_games_api/antplay-bet-settle-rollback` 已完成 Step 5，可作 Antplay 舊版三段式 bet / settle / rollback 的正式面試 case；flow-level claim gate 結論維持 interview-only，正式履歷不更新。
 - 舊 flow 分成 `/antplay/bet`、`/antplay/settle`、`/antplay/rollback`，adapter 會做 MD5 驗簽、Redis game / center routing，並分別送 gameserver `ANTPLAY_BET`、`ANTPLAY_SETTLE`、`ANTPLAY_REFUND`。
 - `settle` / `rollback` 依賴 Mongo `third_transaction_antplay` step 1 與 `third_log_antplay` type 3 的原始 bet evidence；這讓 state transition 很清楚，也讓 failure window 很清楚。
 - 最大 failure window 是 `gameserver wallet success -> adapter Mongo insert fail / timeout -> provider retry`。因為 adapter 是 gameserver 成功後才寫 step evidence，retry 可能造成 double deduct、double settle 或 double refund。

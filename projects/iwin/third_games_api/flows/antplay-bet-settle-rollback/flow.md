@@ -6,15 +6,15 @@ Flow 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程。
 
 Flow slug：`antplay-bet-settle-rollback`。
 
-完成狀態：Step 4 已完成，已轉成正式面試 case；下一步做 Step 5 單條 flow claim gate。
+完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；下一步回同 project candidate ranking，做 `gsc-seamless-withdraw-deposit-cancel Step 3`。
 
-證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 Antplay path 目前只掃到 Nick / `10gt12nc` 局部測試 commit，不足以標成 Nick 在 `third_games_api` 真實開發過。下游 `iwin_gameserver` 有 Nick / `10gt12nc` Antplay direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
+證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 Antplay path 只掃到 Nick / `10gt12nc` 局部測試 commit，不足以標成 Nick 在 `third_games_api` 真實開發過。下游 `iwin_gameserver` 有 Nick / `10gt12nc` Antplay direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 
 本 flow 是業務功能 / 共用能力 / 後台入口 / 報表查詢 / deploy flow：業務功能，屬於第三方遊戲 provider 三段式 seamless wallet money flow。
 
 是否只確認到入口：不是。已確認 provider-facing adapter 入口、MD5 簽章、Redis game mapping / center routing、Mongo step evidence、gameserver `ANTPLAY_BET / ANTPLAY_SETTLE / ANTPLAY_REFUND` dispatch、wallet mutation job、currency log 與 reel log side effect。未確認 provider 官方 contract、Mongo unique index、production 目前是否仍使用舊三段式 endpoint。
 
-掃描深度：Level 2 Flow 深掃。已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC / OneAPI flow；已 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs，兩者 local branch 與 tracked remote 均為 `0 / 0`，本輪只讀 source repo，沒有 pull、checkout、merge、rebase 或改公司 repo。
+掃描深度：Level 2 Flow 深掃。已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC / OneAPI flow；Step 5 已重新 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs，兩者 local branch 與 tracked remote 均為 `0 / 0`，本輪只讀 source repo，沒有 pull、checkout、merge、rebase 或改公司 repo。
 
 ## 白話導讀
 
@@ -265,17 +265,24 @@ Owner 判斷：
 - 不把下游 `iwin_gameserver` Antplay direct commits 反向包成 `third_games_api` direct contribution。
 - 不宣稱已確認 production 目前仍使用舊三段式 endpoint。
 
-本 Step 4 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續若 Step 5 或 project-level consolidation 有新 evidence，再回填履歷線。
+Step 5 claim gate 結論：
+
+- 可面試講：可以，作為 code-backed 第三方遊戲三段式 bet / settle / rollback、wallet boundary、Mongo audit failure window 案例。
+- 可放正式履歷：不建議新增 `third_games_api` standalone bullet。
+- 可回填 project consolidation：只回填為 interview-only flow 已完成；不升級正式成果。
+- 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪沒有找到新的 Nick / `10gt12nc` production adapter direct evidence。
+- 不可反向歸因：下游 `iwin_gameserver` Antplay direct commits 仍屬於 `iwin_gameserver` project-level third-party provider 投派整合 claim。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 5
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 3
 ```
 
 原因：
 
-- Step 4 已把本 flow 轉成正式面試 case。
-- 下一步應做單條 flow claim gate，確認是否更新正式履歷 / 自傳；目前預期仍會維持 `third_games_api` interview-only，除非 Step 5 找到更強 Nick direct evidence。
+- GSC transfer、OneAPI / PG bet_result、Antplay 三條 high-value transaction flow 都已完成 Step 5。
+- Step 2 ranking 的下一條未完成 candidate 是 GSC 分離式 withdraw / deposit / rollback / cancel，可用來確認 split endpoint 是否仍有 production / interview 價值。
+- 這會更新 flow 文件與索引；目前不預期更新正式履歷，除非補到新的 Nick direct evidence。

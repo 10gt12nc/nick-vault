@@ -1,6 +1,6 @@
 # Interview：Antplay bet / settle / rollback
 
-完成狀態：Step 4 已完成，正式面試 case 已建立；下一步做 Step 5 單條 flow claim gate。
+完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂；下一步回同 project candidate ranking，做 `gsc-seamless-withdraw-deposit-cancel Step 3`。
 
 ## 30 秒草稿
 
@@ -67,6 +67,7 @@ Result：整理出核心 failure window 是 `gameserver wallet success -> adapte
 
 - 這是 code-backed 分析素材，不是 Nick 在 `third_games_api` 的正式履歷成果。
 - 若要談 Nick 實際開發 evidence，應回到 `iwin_gameserver` project claim。
+- Step 5 已確認本 flow 不新增正式履歷 / 自傳；只作 interview-only case。
 
 ## 可反問面試官
 
@@ -78,5 +79,5 @@ Result：整理出核心 failure window 是 `gameserver wallet success -> adapte
 ## 下一步
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 5
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 3
 ```

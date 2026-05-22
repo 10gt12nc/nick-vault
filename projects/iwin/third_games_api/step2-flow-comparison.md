@@ -91,12 +91,12 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `antplay-bet-settle-rollback Step 5` |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `gsc-seamless-withdraw-deposit-cancel Step 3` |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
 | `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
 | `flows/oneapi-wallet-bet-result/` | 已建立 | Step 5 已完成；不新增正式履歷 |
-| `flows/antplay-bet-settle-rollback/` | 已建立 | Step 4 已完成；下一步 Step 5 |
+| `flows/antplay-bet-settle-rollback/` | 已建立 | Step 5 已完成；維持 interview-only / no standalone resume bullet |
 
 ## 專案 / module 邊界
 
@@ -137,7 +137,7 @@ gsc-transfer-bet-settle-rollback
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
-| 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 不放正式履歷 | Step 4 已完成；下一步 Step 5 claim gate |
+| 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 待確認 | 需先確認 production 使用哪組 endpoint |
 | 5 | `third-platform-redis-config-refresh` | 中 | 中 | 中 | 中 | 中 | 待確認 | 支援性 flow，不優先於交易主線 |
 
@@ -205,7 +205,7 @@ Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMA
 ## Flow 3：`antplay-bet-settle-rollback`
 
 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程
-建議狀態：Step 4 已完成，下一步 Step 5
+建議狀態：Step 5 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼值得
@@ -225,6 +225,13 @@ Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMA
 - 已確認新版 `/antplay/bet_settle-new` 存在，但本 Step 3 只作演進對照，不併入舊三段式 flow。
 - 待確認 Mongo `third_transaction_antplay` step 1 / 2 / 3 是否有 unique index。
 - 待確認 gameserver `antplaySettled` 對 bet / settle / refund 的同一 betId 重入保護。
+
+### Step 5 結論
+
+- 維持 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+- 不新增 `third_games_api` standalone 正式履歷成果。
+- `third_games_api` Antplay path 的 Nick / `10gt12nc` direct evidence 仍只有測試 / diagnostic commit。
+- 下游 `iwin_gameserver` Antplay direct evidence 歸屬 `iwin_gameserver`，不反包成本 repo claim。
 
 ## Flow 4：`gsc-seamless-withdraw-deposit-cancel`
 
@@ -328,12 +335,12 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 只推薦一件事：
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 5
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 3
 ```
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `antplay-bet-settle-rollback Step 4` 已完成；下一步做 Step 5 單條 flow claim gate，不直接更新履歷。
+- `antplay-bet-settle-rollback Step 5` 已完成；下一步回 Step 2 ranking 第四候選，不直接更新履歷。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

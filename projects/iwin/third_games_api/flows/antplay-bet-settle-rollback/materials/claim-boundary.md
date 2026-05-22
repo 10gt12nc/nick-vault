@@ -2,13 +2,19 @@
 
 ## 結論
 
-本 flow 目前只作 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+Step 5 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
 
 不更新正式履歷 / 自傳。
 
 ## 可放履歷
 
 目前不新增 `third_games_api` standalone 履歷 bullet。
+
+原因：
+
+- Step 5 已重新確認 `third_games_api` Antplay path 的 Nick / `10gt12nc` direct evidence 仍只有 `63e88f2`、`ec9d812` 兩筆測試 / diagnostic commit。
+- 這兩筆不足以支撐 production Antplay adapter 開發、主導 provider 串接或 incident owner。
+- 下游 `iwin_gameserver` Antplay direct commits 是另一個 project 的 evidence，不能反向歸到 `third_games_api`。
 
 ## 可面試講
 
@@ -48,4 +54,10 @@
 - Nick 本人確認其在 `third_games_api` Antplay adapter 的實際 production 開發範圍。
 - 對應 MR / ticket / branch / commit 顯示 Nick 修改 Antplay bet / settle / rollback production path。
 - production issue / incident evidence 顯示 Nick 處理過 Antplay adapter retry、金額、rollback、Mongo evidence 或 routing 問題。
-- Step 5 追完 path-specific history 後找到更強 direct evidence。
+- 之後重新追 path-specific history 時找到更強 direct evidence。
+
+## 下一步
+
+```text
+iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 3
+```
