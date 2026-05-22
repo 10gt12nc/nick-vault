@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | 未開始 |
+| Flow Track | Step 1 已完成 / 2026-05-22 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
-| 下一步 | `antplay antplay-slot-game-job Step 1` |
+| 下一步 | `antplay antplay-slot-game-job Step 2` |
 
 ## Claim Boundary
 
@@ -30,3 +30,4 @@
 ## Files
 
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/contribution-claim-consolidation.md)
+- [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/step1-candidate-flows.md)
