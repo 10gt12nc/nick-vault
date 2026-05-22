@@ -19,9 +19,13 @@
 
 > 2026-05-20 third_games_api consolidation：已完成 `projects/iwin/third_games_api/contribution-claim-consolidation.md`。結論是 rolling / scoped consolidation：`third_games_api` 本 repo 只掃到局部測試 / merge 線索，不新增投遞自傳主成果；GSC transfer / OneAPI / Antplay provider adapter 只作 code-backed 面試素材。下游 `iwin_gameserver` 的 Antplay / GSC / PG direct evidence 已由 `iwin_gameserver` consolidation 收口，不反向包裝成 `third_games_api` owner。
 
+> 2026-05-22 rolling resume package 補充：`third_games_api` 本批代表 flows 已全部完成 Step 5，但結論不變：GSC transfer、OneAPI / PG bet_result、Antplay 三段式 bet / settle / rollback、GSC split withdraw / deposit / rollback / cancel 都只作 code-backed 面試素材，不新增投遞自傳主成果。
+
 > 2026-05-20 iwin_gameserver consolidation：已完成 `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，範圍限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection；仍不寫主導完整 gameserver、完整遊戲錢包、完整 provider integration、完整上分 / 下分或完整 idempotency / reconciliation。
 
 > 2026-05-20 iwin-workspace consolidation：已完成 `projects/iwin/iwin-workspace/contribution-claim-consolidation.md`。投遞自傳不新增 workspace 主成果；只可作 supporting context，說明 Nick 有跨 repo code reading、schema / Redis / MQ / 運維文件與 git history 梳理能力。不得寫成完整 DevOps owner、workspace owner 或子 repo 業務開發。
+
+> 2026-05-22 k3s-deploy Step 5 補充：`k3s-deploy gameserver-phased-rollout` 已完成 Step 5，可作 Platform / Lead Backend 面試素材，說明 legacy gameserver 上 K3s、ZK registration、phase rollout、Recreate 與 ConfigMap / Secret rollback discipline；但沒有 Nick direct evidence，不新增投遞自傳主成果，不寫 K3s migration / SRE owner。
 
 > 2026-05-20 ugsoft-admin-api consolidation：已完成 `projects/ugsoft/ugsoft-admin-api/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 UGSoft 後台 API / control plane 開發與維護，處理 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record 與 Quartz / report job；仍不寫主導完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow 或完整 RabbitMQ architecture owner。
 
@@ -52,7 +56,7 @@
 
 ## Rolling 合併投遞版（目前可用）
 
-> 狀態：2026-05-21 rolling refresh，已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh。這版先給投遞 / 履歷使用；後續 flow 深掃與新 evidence 會再回填修正。
+> 狀態：2026-05-22 rolling refresh，已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh，並同步 `third_games_api` 本批 Step 5 收斂與 `k3s-deploy gameserver-phased-rollout Step 5` 的 interview-only 邊界。這版先給投遞 / 履歷使用；後續 flow 深掃與新 evidence 會再回填修正。
 
 ### 104 欄位版
 
@@ -83,7 +87,7 @@
 - 資料庫與快取：MySQL、MongoDB、Redis、分表、索引與查詢效能、cursor / stream、批次資料處理、資料狀態排查。
 - 非同步與排程：Kafka、RabbitMQ、ActiveMQ、Quartz、batch job、report projection、retry / compensation、idempotency、consistency、reconciliation。
 - 遊戲與平台領域：博弈 / 遊戲平台、第三方遊戲 provider、slot game API / runtime、slot math module、RTP / reel strip、buy free / free spin、jackpot / symbol。
-- 工程與維運理解：Docker、K3s、OpenObserve、log tracing、git history / diff 追蹤、legacy system takeover、跨 repo system reconstruction、AI-assisted engineering workflow、knowledge-base driven development。
+- 工程與維運理解：Docker、K3s、rollout / rollback analysis、OpenObserve、log tracing、git history / diff 追蹤、legacy system takeover、跨 repo system reconstruction、AI-assisted engineering workflow、knowledge-base driven development。
 
 #### 自傳
 

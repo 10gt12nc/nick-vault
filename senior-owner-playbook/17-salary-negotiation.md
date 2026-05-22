@@ -1,6 +1,8 @@
 # 薪資談判定位
 
-> 狀態：2026-05-20 rolling 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
+> 狀態：2026-05-22 rolling 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
+
+> 2026-05-22 履歷包同步：`third_games_api` 本批代表 flows 與 `k3s-deploy gameserver-phased-rollout` 已完成 Step 5，但都維持 interview-only，不新增談薪主 claim。談薪主軸仍放在 payment、iwin_gameserver / game_api / game_job、UGSoft、AntPlay game-api / game-job / math 的保守可用履歷 evidence；K3s / rollout / observability 只能作 Platform Backend 加分案例，不可當作完整 DevOps / SRE owner 來抬價。
 
 ## 定位
 
@@ -186,6 +188,7 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 - 能透過 code reading、log、git history、DB / Redis / MQ 流向重建 production flow。
 - 能在交接文件不足時，協助梳理服務、部署環境、資料流與維運脈絡，讓既有平台恢復可維護 / 可交接狀態。
 - 能建立 AI-assisted 開發閉環：code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。
+- 能用 code-backed analysis 討論 K3s rollout / rollback / observability 風險，但目前只作面試加分，不作正式履歷主成果。
 
 不可誇大：
 
@@ -194,6 +197,7 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 - 不說完整遊戲平台 / gameserver owner。
 - 不說完整 slot math framework / RTP 策略 owner。
 - 不說完整 Kafka / RabbitMQ architecture owner。
+- 不說完整 DevOps / K3s migration / SRE owner。
 - 不把「會用 AI 工具」包裝成 AI 自動完成 production 開發；要強調自己負責判斷、驗證、review 與收斂。
 
 ## 下一步

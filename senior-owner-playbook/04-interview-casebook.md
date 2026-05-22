@@ -2,6 +2,8 @@
 
 這份不是背稿，而是用來把 flow 轉成面試可講的 case。
 
+> 2026-05-22 rolling resume package：已同步 `third_games_api` 本批 Step 5 與 `k3s-deploy gameserver-phased-rollout Step 5`。兩者都維持 interview-only，不新增正式履歷主成果；可作 provider wallet boundary、retry / duplicate failure window、K3s rollout / rollback / observability 的面試補充案例。
+
 ## 案例 1：金流 callback 一致性
 
 對應 flow：
