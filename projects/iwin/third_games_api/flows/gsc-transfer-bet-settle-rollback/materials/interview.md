@@ -117,5 +117,5 @@ money success 應以 gameserver wallet mutation 為準。Mongo 失敗要進 repa
 ## 下一步
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 3
+iwin third_games_api antplay-bet-settle-rollback Step 4
 ```

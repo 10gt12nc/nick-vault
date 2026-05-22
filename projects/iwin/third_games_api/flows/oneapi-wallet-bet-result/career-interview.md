@@ -1,6 +1,6 @@
 # OneAPI / PG bet_result Career Interview
 
-完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；下一步回同 project 做 `antplay-bet-settle-rollback Step 3`。
+完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；下一步回同 project 做 `antplay-bet-settle-rollback Step 4`。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 OneAPI adapter 目前沒有 Nick / `10gt12nc` direct evidence；下游 `iwin_gameserver` 的 PG bet_result / PGTransferInOut 有 Nick / `10gt12nc` direct commits，但歸屬 `iwin_gameserver`。
 
@@ -100,5 +100,5 @@ Step 5 最終判斷：
 ## 下一步
 
 ```text
-iwin third_games_api antplay-bet-settle-rollback Step 3
+iwin third_games_api antplay-bet-settle-rollback Step 4
 ```
