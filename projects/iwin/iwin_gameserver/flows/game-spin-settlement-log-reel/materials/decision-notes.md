@@ -96,5 +96,5 @@ Step 5 不把整條 flow 一刀切成「有做過」或「沒做過」。
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 3
+iwin iwin_gameserver bet-target-set-query Step 4
 ```

@@ -136,7 +136,7 @@ Result：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 3
+iwin iwin_gameserver bet-target-set-query Step 4
 ```
 
 原因：

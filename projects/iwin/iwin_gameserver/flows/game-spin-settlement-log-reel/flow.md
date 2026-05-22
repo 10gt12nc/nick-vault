@@ -348,7 +348,7 @@ Game40SpinJob -> Game40SpinUtil -> GamePlayer.addMoney -> GameToCenterSpinResult
 ## 下一步
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 3
+iwin iwin_gameserver bet-target-set-query Step 4
 ```
 
 原因：

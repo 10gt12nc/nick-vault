@@ -20,6 +20,7 @@
 | `third-party-transfer-in-out` | Step 5 已完成；project consolidation 已升級 | 有直接開發 evidence 的面試案例：wallet correctness、idempotency、failure window、reconciliation、observability | 可併入 project-level 第三方 provider 投派整合保守 claim |
 | `center-http-deposit-withdraw` | Step 5 已完成 | 正式面試 case：center_http 上分 / 下分、payment / game_api order boundary、wallet mutation、timeout retry、`billNos` idempotency | 不放正式履歷 / 自傳；維持 interview-only |
 | `game-spin-settlement-log-reel` | Step 5 已完成 | 正式面試 case：一般 slot spin、center wallet sync、`log_reel`、version guard、async log failure window | 一般 slot spin 不放履歷；provider log reel / 投派整合回填既有 project claim |
+| `bet-target-set-query` | Step 3 已完成 | code-backed 面試素材：打碼目標設定 / 查詢、投注扣減、`log_spin_bet` audit、coupon direct evidence | 暫不放正式履歷 / 自傳；待 Step 5 claim gate |
 
 ## 可安全使用的 project 語氣
 
@@ -54,18 +55,19 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver bet-target-set-query Step 3
+iwin iwin_gameserver bet-target-set-query Step 4
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成，claim gate 結論為 code-backed interview-only。
 - `game-spin-settlement-log-reel` Step 5 已完成；一般 Game40 spin 維持 interview-only，provider log reel 支撐既有 project claim。
+- `bet-target-set-query` Step 3 已完成，已建立 money rule 主學習包。
 - Career Track 的 rolling / scoped consolidation 已完成。
-- 下一步回同 project Step 2 ranking，做 `bet-target-set-query Step 3`。
+- 下一步繼續同一條 flow，做 `bet-target-set-query Step 4`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 flow 與 log projection。
-- 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已是 Step 5 正式面試素材，但一般 Game40 spin 不作 direct development claim。
+- 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已是 Step 5 正式面試素材，但一般 Game40 spin 不作 direct development claim；bet-target-set-query 目前是 Step 3 money rule 素材，coupon 入口有 direct evidence。
 - 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner或解決 duplicate callback production incident。
