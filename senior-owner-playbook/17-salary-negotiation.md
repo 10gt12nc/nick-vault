@@ -14,9 +14,9 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 
 這個定位的價值不是技術名詞多，而是能接手高交易、跨服務、第三方 provider、狀態一致性、retry / compensation、報表 projection、缺乏交接文件的既有平台、legacy system takeover，以及 AI-assisted engineering workflow 的可追蹤開發閉環。
 
-## 目標職缺版
+## 通用目標職缺版
 
-目前預設目標職缺：
+目前沒有特定 JD 時，預設使用這個通用目標職缺：
 
 ```text
 Senior Java Backend / Platform Backend
@@ -31,7 +31,7 @@ Senior Java Backend / Platform Backend
 - 主軸 4：legacy takeover / system reconstruction，能講如何用 code reading、git history、DB / Redis / MQ / log flow 重建可維護脈絡。
 - 加分但不當主 claim：K3s rollout / observability analysis、AI-assisted engineering workflow、slot math module 維護與驗證。
 
-投遞時若 JD 寫「payment / wallet / provider / reconciliation / settlement / Kafka / high traffic / legacy system」，優先用 `08` 的目標職缺版；若 JD 只寫一般 CRUD、後台管理或內部系統，應降調金流 / slot math 比重，避免對方覺得履歷太窄或過度博弈領域。
+投遞時若沒有特定 JD，直接使用 `08` 與本檔的通用版；不要為了客製而要求 Nick 先貼 JD。若 JD 寫「payment / wallet / provider / reconciliation / settlement / Kafka / high traffic / legacy system」，再把這些關鍵字往前放；若 JD 只寫一般 CRUD、後台管理或內部系統，應降調金流 / slot math 比重，避免對方覺得履歷太窄或過度博弈領域。
 
 ## 市場錨點
 
@@ -176,7 +176,7 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 我目前會以年薪 160-180 萬作為主要期待，實際會看職務範圍與整體 package。如果職務內容包含核心金流、provider 串接、高交易 flow、MQ / Kafka、legacy 系統接手、AI-assisted engineering workflow 或平台穩定性維護，我會希望落在區間中上段；若團隊成長性與技術深度足夠，也可以依整體條件討論。
 ```
 
-### 目標職缺版
+### 通用目標職缺版
 
 ```text
 我會以年薪 160-180 萬作為主要期待，實際會依職務範圍、獎金結構與整體 package 討論。這個區間主要是因為我過去經驗不只是一般 API 維護，而是長期接觸金流 / 遊戲 provider 串接、wallet / bet-settle、MQ / batch、交易狀態一致性與 legacy production flow 接手。如果這個職缺確實需要處理 provider gateway、payment / wallet、retry / compensation、report projection 或既有系統重建，我會希望落在區間中上段。
@@ -239,8 +239,8 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 
 ## 下一步
 
-投遞前若有明確 JD，要把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
+若暫時沒有特定 JD，下一步先用通用版練面試與投遞；若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
 
 ```text
-貼上目標職缺 JD，幫我客製 08 和 17
+幫我用通用版 08 / 17 練一版 Senior Java Backend 面試 3 分鐘自我介紹
 ```

@@ -23,6 +23,8 @@ AI 都必須套用同一套規則。
 
 當 Nick 要求「先把目前所有 contribution consolidation 匯總成 05 / 08，讓我能寫履歷」時，走 `rolling resume package`：AI 要彙總已完成的 project-level contribution consolidation，更新 `05-resume-master-zh.md` 的可直接使用履歷版與 `08-application-autobiography-zh.md` 的投遞版，並標示為目前可用草稿 / 非 final。`05` 是履歷 / 自傳 / claim 母稿與證據池，可以保留較完整的判斷與素材；`08` 是投遞輸出版，必須維持 104 可貼欄位：工作經驗、專長、自傳、自我推薦。後續每次 flow 深掃、Step 5 或新的 consolidation，都要回填修正 05 / 08，而不是等所有 flow 做完才讓 Nick 開始寫履歷。
 
+若 Nick 暫時沒有特定職缺 JD，`08 / 17` 預設維持「通用 Senior Java Backend / Platform Backend 投遞版」，主軸是金流 / provider gateway / wallet / bet-settle / MQ / batch / legacy takeover。AI 不得每次都要求 Nick 貼 JD 才能繼續；只有 Nick 明確要投某個職缺、提供 JD、或要求客製時，才做 JD-specific 客製。沒有 JD 時，下一步應優先轉為通用版面試自我介紹、104 投遞欄位檢查、面試 case 練習或投遞準備。
+
 重要優先級：若只是學系統或準備單條面試 case，走 Flow Track。若要判斷 Nick 經驗、履歷、自傳、project claim，走 Career Track。完整 `project contribution claim consolidation` 預設要等該 project 的 Step 2 所定義「本批代表 flows / Top candidate flows」全部完成到 Step 5；若 Nick 明確縮小本批 consolidation scope，只能標成 limited consolidation。若只有單條 flow Step 5，只能保留為單條 flow claim evidence；不得推薦或命名為完整 project consolidation，下一步應回 Step 2 ranking 繼續做同 project 下一條 flow。
 
 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」狀態。Nick 問「下一步、缺啥、履歷、自傳、能不能放、contribution claim consolidation」時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。AI 必須在 project README、todo 或 inventory 明確標示「已達 consolidation 條件 / 待收口」，避免把已可收口的 project 和一般 flow queue 混在一起。
