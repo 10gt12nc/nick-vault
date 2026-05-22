@@ -163,7 +163,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 本輪若繼續 Career Track，只推薦一件事:
 
 ```text
-依目標職缺調整 08 和 17
+貼上目標職缺 JD，幫我客製 08 和 17
 ```
 
 原因:
