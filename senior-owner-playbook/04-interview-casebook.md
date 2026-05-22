@@ -125,12 +125,12 @@ Antplay 三段式保守邊界：
 
 GSC split endpoint 正式面試 case：
 
-- `third_games_api/gsc-seamless-withdraw-deposit-cancel` 已完成 Step 4，可作 GSC split endpoint 正式面試 case；flow-level claim gate 尚待 Step 5。
+- `third_games_api/gsc-seamless-withdraw-deposit-cancel` 已完成 Step 5，可作 GSC split endpoint 正式面試 case；flow-level claim gate 結論維持 interview-only，正式履歷不更新。
 - split flow 分成 `/api/seamless/withdraw`、`/deposit`、`/rollback`、`/cancel`。withdraw 寫 Mongo step 1，deposit 寫 step 2，rollback / cancel 寫 step 3。
 - 下游 gameserver command 分別是 `GSC_BET`、`GSC_SETTLE`、`GSC_REFUND`、`GSC_OTHER`，真正 wallet mutation 在 `iwin_gameserver`。
 - 面試主軸：adapter Mongo step evidence 不能當錢包 source of truth；真正 money boundary 在 gameserver。最大 failure window 是 gameserver success but Mongo insert fail / provider retry。
 - Owner 改善方向：wallet mutation boundary 前的 durable idempotency、Mongo / currency log / provider statement reconciliation、step missing / duplicate / route miss / `GSC_OTHER` observability。
-- 保守邊界：integrated `/api/seamless/transfer` 可能是後來主線；split endpoint production status 待確認。不可把 split endpoint 寫成 Nick 成果或 production owner experience。
+- 保守邊界：integrated `/api/seamless/transfer` 可能是後來主線；split endpoint production status 待確認。不可把 split endpoint 寫成 Nick 成果或 production owner experience。Step 5 已確認 `third_games_api` GSC split endpoint path 未見 Nick / `10gt12nc` direct production commit；下游 GSC direct evidence 歸屬 `iwin_gameserver`。
 
 AntPlay slot game API 補充案例：
 

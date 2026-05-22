@@ -330,14 +330,14 @@ Step 5 已完成。結論是：可作第三方 seamless wallet transaction bound
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5 claim gate。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論同樣維持 interview-only / no standalone resume bullet。
-- 後續 Step 2 ranking 第三候選 `antplay-bet-settle-rollback` 也已完成 Step 5；目前下一步回第四候選 `gsc-seamless-withdraw-deposit-cancel Step 5`；不更新履歷。
+- 後續 Step 2 ranking 第三候選 `antplay-bet-settle-rollback` 也已完成 Step 5；第四候選 `gsc-seamless-withdraw-deposit-cancel` 已完成 Step 5；不更新履歷。
 
 目前履歷層級仍只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。正式履歷 / 自傳暫不更新；若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
 

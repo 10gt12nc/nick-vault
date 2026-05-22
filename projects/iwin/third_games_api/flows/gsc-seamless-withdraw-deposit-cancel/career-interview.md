@@ -2,9 +2,9 @@
 
 ## 定位
 
-完成狀態：Step 4 已完成，正式面試 case 已建立；下一步做 Step 5 單條 flow claim gate。
+完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂。
 
-證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。目前不更新正式履歷 / 自傳。
+證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。Step 5 結論是不更新正式履歷 / 自傳；只作 code-backed 正式面試素材。
 
 ## 面試主軸
 
@@ -97,8 +97,9 @@ A：current code 兩者都存在，但 commit history 顯示後續有 `/transfer
 
 這句只能作面試素材，不應直接放正式履歷主成果。
 
-## 下一步
+## Step 5 Claim Gate
 
-```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
-```
+- 可放履歷：不新增 `third_games_api` standalone 履歷 bullet。
+- 可面試講：可以作為 GSC split endpoint 狀態機、adapter audit evidence vs gameserver wallet boundary、retry / duplicate failure window 的正式面試 case。
+- 不可誇大：不說 Nick 主導 GSC split endpoint、不說 split endpoint 是目前 production 主線、不把下游 `iwin_gameserver` GSC direct commits 反包成 `third_games_api` direct contribution。
+- 後續若要升級成真實開發 claim，需要 Nick 本人確認、MR / ticket / commit / incident evidence，或 path-specific history 找到 Nick / `10gt12nc` 修改 GSC split production path。

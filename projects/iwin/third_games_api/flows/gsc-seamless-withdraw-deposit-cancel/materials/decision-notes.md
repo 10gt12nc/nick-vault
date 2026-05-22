@@ -86,8 +86,8 @@ Mongo 不應單獨作：
 - 如果要改善，先把 idempotency guard 放到 wallet mutation boundary，再補 outbox / audit / reconciliation。
 - 不把未確認的 production usage 或 Nick contribution 講成已確認。
 
-## 下一步
+## Step 5 Claim Gate
 
-```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
-```
+- Step 5 已完成。
+- 本 flow 的 owner decision 只作面試與 learning evidence。
+- 履歷不新增 `third_games_api` standalone 成果；正式履歷仍以 project-level contribution consolidation 為準。

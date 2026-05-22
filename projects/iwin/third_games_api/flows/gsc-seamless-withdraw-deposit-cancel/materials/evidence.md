@@ -2,11 +2,11 @@
 
 ## 本次掃描狀態
 
-任務：`iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 3`
+任務：`iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5`
 
 掃描等級：Level 2 Flow 深掃。
 
-完成狀態：Step 4 已完成。
+完成狀態：Step 5 已完成。
 
 證據層級：
 
@@ -57,6 +57,23 @@ Nick / `10gt12nc` 貢獻判斷：
 - 不把本 flow 標成 Nick 真實開發過。
 - 不宣稱 split endpoint 是目前 production 主線。
 
+## Step 5 更新紀錄
+
+本 Step 5 做：
+
+- 重新讀 KB、project README、Step 2、既有 flow / career / evidence / claim 文件。
+- 重新 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs。
+- 重查 `GscController.java` GSC split endpoint path-specific history、GSC keyword history、Nick / `10gt12nc` author history。
+- 重查下游 `iwin_gameserver` GSC command / wallet mutation path history，確認 direct evidence attribution。
+- 將 claim gate 結論回填 `flow.md`、`career-interview.md`、`materials/claim-boundary.md`、README、Step 2、casebook、inventory 與 todo。
+
+本 Step 5 不做：
+
+- 不更新 `05-resume-master-zh.md`。
+- 不更新 `08-application-autobiography-zh.md`。
+- 不把本 flow 標成 Nick 真實開發過。
+- 不把 `iwin_gameserver` direct commits 反向包裝成 `third_games_api` direct contribution。
+
 ## Source repo 狀態
 
 `/Users/nick/Git/iwin/third_games_api`
@@ -69,6 +86,15 @@ Nick / `10gt12nc` 貢獻判斷：
 - worktree：clean
 - 本輪只讀，沒有 pull / checkout / merge / rebase / 改檔。
 
+Step 5 重新確認：
+
+- 已再次執行 `git fetch --all --prune`。
+- local branch：`beta`
+- local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
+- `origin/beta`：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
+- ahead / behind：`0 / 0`
+- 本輪只讀，沒有 pull / checkout / merge / rebase / 改檔。
+
 `/Users/nick/Git/iwin/iwin_gameserver`
 
 - 已執行 `git fetch --all --prune`。
@@ -77,6 +103,15 @@ Nick / `10gt12nc` 貢獻判斷：
 - `origin/main`：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
 - ahead / behind：`0 / 0`
 - worktree：clean
+- 本輪只讀，沒有 pull / checkout / merge / rebase / 改檔。
+
+Step 5 重新確認：
+
+- 已再次執行 `git fetch --all --prune`。
+- local branch：`main`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- `origin/main`：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
 - 本輪只讀，沒有 pull / checkout / merge / rebase / 改檔。
 
 ## 已讀 code path
@@ -122,9 +157,10 @@ Nick / `10gt12nc` 貢獻判斷：
 - `08340d0 feat:create the GSC MongoDB column of createdTime for backup`
 - `4915ea5 fix: add log`
 
-Step 3 判斷：
+Step 5 判斷：
 
 - GSC split endpoint 主體 commit author 不是 Nick / `10gt12nc`。
+- `git log --all --author='Nick|10gt12nc' -- GscController.java` 未命中。
 - `575db56` commit message 指出回調路徑改成 `/api/seamless/*`，也指出實測結果是投派整合，需串接 `/transfer` API；因此 split endpoint production status 需保守標示待確認。
 
 `iwin_gameserver` GSC / PG / Antplay path 有多筆 Nick / `10gt12nc` direct evidence，例如 GSC + PG、PG bet_result、GSC / Antplay log reel、投派整合等；本輪只用來理解下游 boundary，claim 歸屬 `iwin_gameserver`。
@@ -158,8 +194,9 @@ Step 3 判斷：
 - 沒有更新 `08-application-autobiography-zh.md`。
 - 沒有把本 flow 標成 Nick 真實開發過。
 
-## 下一步
+## Step 5 Claim Gate 結論
 
-```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
-```
+- 可放履歷：不新增 `third_games_api` standalone 正式履歷成果。
+- 可面試講：保留為 code-backed 正式面試 case，可講 split endpoint 狀態機、adapter Mongo evidence、gameserver wallet boundary、failure window、observability 與 `/transfer` 演進對照。
+- 不可誇大：不說 Nick 主導 GSC split endpoint、不說 split endpoint 是現行 production 主線、不說已修復 production 錯帳或建立完整 idempotency / reconciliation。
+- 後續回填：若未來補到 Nick 本人確認、MR / ticket / commit / incident evidence，再回到 project-level contribution consolidation 與 05 / 08 rolling package。

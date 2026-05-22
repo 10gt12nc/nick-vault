@@ -79,7 +79,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 2026-05-20 補充：`antplay-slot-game-job` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 Kafka consumer / Quartz job、代理玩家報表 projection、activity accumulated bet、big-win notification、report currency / key 修正與 db partition / job config 有 direct commits；可保守寫「參與 AntPlay slot job / event processing 開發維護」，不得寫成完整 Kafka event platform、完整 settle pool / risk / jackpot owner 或完整 BI / report platform owner。
 - 2026-05-21 補充：`math-core` 與 `*-math` 已完成 contribution consolidation；`*-math` 五條代表 flows 已全部 Step 5 並完成 refreshed grouped claim。Nick / `10gt12nc` 在 `math-core` 有 slot math contract / debugBet / RTP / symbol direct commits；71 個 `*-math` repo 中有 49 個有 direct commits，強 evidence 是 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。可保守寫「參與 AntPlay slot math core / math module 維護與驗證」，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free、jackpot / symbol、特殊 feature result contract 與 simulation validation；不得寫成完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner、完整 jackpot pool 或單一遊戲 feature owner。
 - 2026-05-20 補充：`math-workspace` 已完成 rolling consolidation，只作 cross-math KB / validation workflow supporting evidence；`platform-mock` 只有局部 failure injection commits，只作 provider failure testing supporting evidence；`buffer-id` 未見 Nick direct commits，只作 learning-only。
-- 若目標是差異化面試題，`*-math fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成，`rtp-reel-strip-simulation-validation` Step 5 已完成，`buy-free-scatter-rtp3-result-contract` Step 5 已完成，`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成，`special-wild-feature-state-transform` Step 5 已完成；`*-math contribution claim consolidation` refresh 也已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、project-level contribution claim consolidation refresh 與 `rolling resume package` 已完成；`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 4` 也已完成。下一步回 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5`。
+- 若目標是差異化面試題，`*-math fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成，`rtp-reel-strip-simulation-validation` Step 5 已完成，`buy-free-scatter-rtp3-result-contract` Step 5 已完成，`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成，`special-wild-feature-state-transform` Step 5 已完成；`*-math contribution claim consolidation` refresh 也已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、project-level contribution claim consolidation refresh 與 `rolling resume package` 已完成；`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 也已完成。下一步回 `k3s-deploy gameserver-phased-rollout Step 5`。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
 ## 狀態定義
@@ -116,7 +116,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | third_games_api | `gsc-transfer-bet-settle-rollback` | GSC transfer 投注 / 派彩 / rollback | 高 | Step 5 | 專案存在 / code-backed；rolling consolidation 後仍不作 Nick 正式成果 | 否，作面試素材 | 已收斂；下一條是 OneAPI |
 | iwin | third_games_api | `oneapi-wallet-bet-result` | OneAPI / PG bet_result 投派 callback | 高 | Step 5 | 專案存在 / code-backed；下游 PGTransferInOut direct evidence 歸屬 iwin_gameserver | 否，作面試素材 | 已收斂；下一條是 Antplay |
 | iwin | third_games_api | `antplay-bet-settle-rollback` | Antplay 投注 / 結算 / rollback 三段式流程 | 高 | Step 5 | 專案存在 / code-backed；下游 Antplay gameserver direct evidence 歸屬 iwin_gameserver | 否，作正式面試素材 | 已收斂；下一條是 GSC split |
-| iwin | third_games_api | `gsc-seamless-withdraw-deposit-cancel` | GSC split withdraw / deposit / rollback / cancel | 中高 | Step 4 | 專案存在 / code-backed；split endpoint production status 待確認 | 否，作正式面試素材 | `iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` |
+| iwin | third_games_api | `gsc-seamless-withdraw-deposit-cancel` | GSC split withdraw / deposit / rollback / cancel | 中高 | Step 5 | 專案存在 / code-backed；split endpoint production status 待確認；未見 Nick direct path evidence | 否，作正式面試素材 | 已收斂 |
 | iwin | third_games_api | `contribution-claim-consolidation` | third_games_api rolling / scoped 收口 | 中高 | 已完成 / 2026-05-20 | 專案存在 / code-backed；本 repo 只有局部測試 / merge 線索；下游 gameserver direct evidence 已歸入 iwin_gameserver | 否，不放 standalone 正式履歷主成果 | 已收斂 |
 | iwin | game_job | `daily-game-data-summary` | 每日遊戲資料彙總 | 中高 | Step 5 | 真實開發過 + code-backed；`10gt12nc` 有 daily summary / 時區 / 留存 / 備份相關 commits | 是，併入 game_job project bullet | 已收斂 |
 | iwin | game_job | `third-party-record-mongo-backup` | 第三方遊戲紀錄 Mongo 備份與清理 | 中高 | Step 5 | 局部真實開發過 + code-backed；`10gt12nc` 有 GSC 分批查詢 / batch size 調整 commits | 是，併入 game_job project bullet | 已收斂 |
@@ -163,7 +163,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 本輪若繼續 Flow Track，只推薦一件事:
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因:
@@ -171,7 +171,7 @@ iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 - `math-core` / `*-math` 已經補出強 career evidence，且 `*-math` 五條代表 flows 已全部 Step 5，project-level contribution claim consolidation refresh 已完成。
 - `*-math` 後續不該再平均掃 71 repo；除非 Nick 要 Level 3 final，否則先把已收斂的交易主線與 math 素材回填履歷更有近期價值。
 - `antplay-slot-game-api` 已完成 refreshed contribution consolidation，Step 1 / Step 2、五條代表 flows Step 5 與 05 / 08 rolling resume package 都已回填。
-- `third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 4` 已完成；若 Nick 要回原 iwin queue，下一步是 `iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5`。
+- `third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5` 與 `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；若 Nick 要回必做收口，下一步是 `iwin k3s-deploy gameserver-phased-rollout Step 5`。
 
 ## 近期候選 Queue
 
@@ -181,11 +181,11 @@ iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | third_games_api | `gsc-seamless-withdraw-deposit-cancel` | GSC seamless withdraw / deposit / rollback / cancel | Step 4 已完成；下一步做單條 flow claim gate，確認是否維持 interview-only | `iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` |
+| 1 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
 | 2 | iwin | game_api | `contribution claim consolidation` | game_api project-level 履歷 claim 收口 | 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已完成 |
 | 3 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 4 | iwin | third_games_api | `contribution-claim-consolidation` | third_games_api rolling / scoped 履歷 claim 收口 | 已完成；不新增 standalone 正式履歷主成果，下游 direct evidence 已由 iwin_gameserver 收口 | 已完成 |
-| 5 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 已完成 Step 4，project-local 下一步可做 Step 5 claim gate | `iwin k3s-deploy gameserver-phased-rollout Step 5` |
+| done | iwin | third_games_api | `gsc-seamless-withdraw-deposit-cancel` | GSC seamless withdraw / deposit / rollback / cancel | Step 5 已完成；維持 interview-only，不更新正式履歷 | 已收斂 |
 | 6 | iwin | payment | `contribution-claim-consolidation` | payment 實際開發貢獻收斂 | 已完成並於 2026-05-20 重新覆核；GoldenPay direct evidence 已補入；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 7 | antplay | antplay-slot-game-api | `contribution claim consolidation` | 五條代表 flow Step 5 後的 project-level claim refresh | 已完成 refreshed consolidation，且已回填 05 / 08；game runtime、betting-settlement、transfer wallet、async log、schema routing、runtime decision 可保守使用 | 已完成 |
 | 8 | antplay | antplay-slot-game-job | `proxy-user-data-report-projection` | 代理玩家報表 projection | Kafka / Quartz / report projection，可補 event processing case | `antplay antplay-slot-game-job Step 1` |

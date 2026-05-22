@@ -191,5 +191,5 @@ Step 5 判斷：
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```

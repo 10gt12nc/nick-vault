@@ -1,6 +1,6 @@
 # Interview：Antplay bet / settle / rollback
 
-完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂；下一步回同 project candidate ranking，做 `gsc-seamless-withdraw-deposit-cancel Step 5`。
+完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
 
 ## 30 秒草稿
 
@@ -79,5 +79,5 @@ Result：整理出核心 failure window 是 `gameserver wallet success -> adapte
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```

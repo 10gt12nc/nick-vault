@@ -2,9 +2,9 @@
 
 ## 結論
 
-Step 3 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
+Step 5 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 / learning-only`。
 
-不更新正式履歷 / 自傳。
+不更新正式履歷 / 自傳；保留為 code-backed 正式面試素材。
 
 ## 可放履歷
 
@@ -42,8 +42,9 @@ Step 3 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 /
 - production issue / incident evidence 顯示 Nick 處理過 GSC split endpoint retry、金額、rollback / cancel、Mongo evidence 或 routing 問題。
 - path-specific history 找到更強 direct evidence。
 
-## 下一步
+## Step 5 收斂
 
-```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
-```
+- Step 5 已完成。
+- `third_games_api` GSC split endpoint path 未掃到 Nick / `10gt12nc` direct production commit。
+- `iwin_gameserver` GSC direct commits 只作下游 boundary 與 gameserver project claim，不反包成本 repo claim。
+- 本 flow 不觸發 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 更新。

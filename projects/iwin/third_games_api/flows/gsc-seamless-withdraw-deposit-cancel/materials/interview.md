@@ -1,6 +1,6 @@
 # Interview - GSC seamless withdraw / deposit / rollback / cancel
 
-完成狀態：Step 4 已完成，正式面試 case 已建立；下一步做 Step 5 單條 flow claim gate。
+完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂。
 
 ## 30 秒說法
 
@@ -69,8 +69,9 @@ Result：形成一個可面試的 third-party wallet callback case，可講 mone
 - 若要談 Nick 實際開發 evidence，應回到 `iwin_gameserver` project claim。
 - 本 Step 4 不更新正式履歷 / 自傳。
 
-## 下一步
+## Step 5 保守邊界
 
-```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
-```
+- 不更新正式履歷 / 自傳。
+- 不把本 flow 標成 Nick 真實開發過。
+- 不把 `iwin_gameserver` GSC direct commits 反向歸入 `third_games_api`。
+- 可作 code-backed 正式面試素材。

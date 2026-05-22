@@ -6,7 +6,7 @@ Flow 中文名稱：GSC seamless 分離式 withdraw / deposit / rollback / cance
 
 Flow slug：`gsc-seamless-withdraw-deposit-cancel`。
 
-完成狀態：Step 4 已完成，已轉成正式面試 case；下一步做 Step 5 單條 flow claim gate。
+完成狀態：Step 5 已完成，已完成單條 flow claim gate；結論維持 code-backed 正式面試素材，不更新正式履歷 / 自傳。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。目前沒有 Nick 本人在 `third_games_api` GSC split endpoints 的 direct production evidence；下游 `iwin_gameserver` GSC direct commits 歸屬 `iwin_gameserver` project claim，不反包成本 repo claim。
 
@@ -15,6 +15,8 @@ Flow slug：`gsc-seamless-withdraw-deposit-cancel`。
 是否只確認到入口：不是。已確認 `third_games_api` provider-facing API、MD5 sign、currency / player validation、Redis game mapping / center routing、Mongo step evidence、gameserver `GSC_BET / GSC_SETTLE / GSC_REFUND / GSC_OTHER` dispatch、`GSCTransferInOutJob` wallet mutation 與 GSC reel log side effect。未確認 provider 官方 spec、production 目前是否仍使用 split endpoint、Mongo unique index、gameserver wallet mutation 前的 transaction-level duplicate guard。
 
 掃描深度：Level 2 Flow 深掃。Step 4 已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC transfer / OneAPI / Antplay flow；已 fetch `/Users/nick/Git/iwin/third_games_api` 與 `/Users/nick/Git/iwin/iwin_gameserver` remote refs，兩者 local branch 與 tracked remote 均為 `0 / 0`。本輪只讀 source repo，沒有 pull、checkout、merge、rebase 或改公司 repo。
+
+Step 5 claim gate：2026-05-22 已重新 fetch 並確認 `/Users/nick/Git/iwin/third_games_api` `beta` 與 `origin/beta` 為 `0 / 0`、`/Users/nick/Git/iwin/iwin_gameserver` `main` 與 `origin/main` 為 `0 / 0`。`GscController.java` GSC split endpoint path 未掃到 Nick / `10gt12nc` direct production commit；下游 `iwin_gameserver` GSC direct commits 仍歸屬 `iwin_gameserver` project claim。本 flow 不新增 `third_games_api` standalone 履歷成果。
 
 ## 白話導讀
 
@@ -301,18 +303,18 @@ Owner 判斷：
 - 不把下游 `iwin_gameserver` GSC direct commits 反向包成 `third_games_api` direct contribution。
 - 不宣稱已確認 production 目前仍使用 split endpoint。
 
-Step 4 已完成正式面試 case，但本輪不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。後續 Step 5 再做單條 flow claim gate，確認是否維持 interview-only。
+Step 5 已完成單條 flow claim gate，本輪不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。結論維持 interview-only，不新增 `third_games_api` standalone 正式履歷成果。
 
 ## 下一步建議
 
 只推薦一件事：
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
 
-- Step 4 已把 split endpoint 的狀態機、failure window、互斥語意、observability 與保守邊界轉成正式面試 case。
-- 下一步應做 Step 5 單條 flow claim gate，確認本 flow 是否維持 `專案存在 / code-backed` 面試素材，以及是否仍不更新正式履歷。
-- 這會更新 flow-level claim boundary 與索引；目前仍不更新正式履歷。
+- Step 5 已確認本 flow 維持 `專案存在 / code-backed` 面試素材，且仍不更新正式履歷。
+- `third_games_api` 本批代表 flow claim gate 已收斂，下一個必做收口回到 `k3s-deploy gameserver-phased-rollout Step 5`。
+- 這會補完 rollout / rollback 類 Platform / System Owner 素材；是否更新履歷仍以該 flow claim gate 判斷。

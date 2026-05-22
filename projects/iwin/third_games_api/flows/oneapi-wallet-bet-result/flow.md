@@ -6,7 +6,7 @@ Flow 中文名稱：OneAPI / PG bet_result 投派 callback。
 
 Flow slug：`oneapi-wallet-bet-result`。
 
-完成狀態：Step 5 已完成，已完成單條 flow claim gate；後續 `antplay-bet-settle-rollback` 也已完成 Step 5，目前下一步回同 project candidate ranking，做 `gsc-seamless-withdraw-deposit-cancel Step 5`。
+完成狀態：Step 5 已完成，已完成單條 flow claim gate；後續 `antplay-bet-settle-rollback` 也已完成 Step 5，third_games_api 本批代表 flow 已收斂，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 OneAPI adapter 目前未見 Nick / `10gt12nc` direct commit；下游 `iwin_gameserver` 的 PG bet_result / PGTransferInOut 有 Nick / `10gt12nc` direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 
@@ -381,7 +381,7 @@ OneAPI provider 會把 transactionId、betId、roundId、投注額、派彩、ja
 ## 下一步
 
 ```text
-iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
+iwin k3s-deploy gameserver-phased-rollout Step 5
 ```
 
 原因：
