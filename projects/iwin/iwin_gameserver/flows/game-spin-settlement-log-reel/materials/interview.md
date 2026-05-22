@@ -1,7 +1,7 @@
 # Interview：game-spin-settlement-log-reel
 
-狀態：Step 4 正式面試 Q&A
-證據層級：專案存在 / code-backed；不可直接寫成 Nick 真實開發過
+狀態：Step 5 完成；正式面試 Q&A / claim gate 已收斂
+證據層級：一般 `Game40` spin 主流程為專案存在 / code-backed；provider log reel / 投派整合為部分真實開發過 + code-backed
 
 ## 30 秒講法
 
@@ -136,4 +136,19 @@ Result：產出一條 code-backed 面試 case，可以講 addMoneyQueue、saveDa
 
 ## Q13：Step 4 結論是什麼？
 
-這條已可作正式面試 case，但仍不更新正式履歷 / 自傳。下一步 Step 5 才做單條 flow claim gate，檢查是否維持 interview-only，或能否回填 project-level claim。
+這條已可作正式面試 case，但 Step 4 不更新正式履歷 / 自傳。Step 5 再做單條 flow claim gate，檢查是否維持 interview-only，或能否回填 project-level claim。
+
+## Q14：Step 5 後，這條能不能放履歷？
+
+不能直接寫成「一般 slot spin / settle 我開發過」。
+
+正確分層：
+
+- 一般 `Game40` spin 主流程：面試可講，履歷不單獨放。
+- provider log reel / 投派整合：Nick / `10gt12nc` 有 direct commits，可回填 iwin_gameserver project-level claim。
+
+可用說法：
+
+```text
+我在 iwin_gameserver 的直接開發 evidence 主要在第三方 provider 投派整合與投注流水 / log reel 串接。一般 Game40 spin 主流程我用 code-backed 分析語氣講一致性邊界，不把它誇大成我主導。
+```

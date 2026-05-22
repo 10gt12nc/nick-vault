@@ -65,12 +65,6 @@ Owner 建議：
 - Nick / `10gt12nc` 的直接 evidence 較強在 third-party provider integration 與 log reel 優化，不足以說主導一般 game spin / settle。
 - 履歷仍以 project-level contribution consolidation 的第三方 provider 投派整合保守 claim 為準。
 
-## 下一步
-
-```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
-```
-
 ## Decision 6：Step 4 只轉面試，不升級 claim
 
 Step 4 的責任是把 Step 3 code-backed flow 轉成可面試 case。
@@ -87,4 +81,20 @@ Step 4 的責任是把 Step 3 code-backed flow 轉成可面試 case。
 - 不把一般 slot spin 寫成 Nick 真實開發過。
 - 不替代 Step 5 claim gate。
 
-下一步 Step 5 才判斷此 flow 是否維持 interview-only。
+Step 5 才判斷此 flow 是否維持 interview-only。
+
+## Decision 7：Step 5 拆開一般 slot spin 與 provider log reel claim
+
+Step 5 不把整條 flow 一刀切成「有做過」或「沒做過」。
+
+判斷：
+
+- `Game40SpinJob` / `Game40SpinUtil` 的一般 slot spin 主流程維持 code-backed 面試素材。
+- Nick / `10gt12nc` 的 direct commits 命中 third-party provider log reel / 投派整合支線，包含 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out。
+- 因此只能回填既有 project-level provider integration claim，不能寫成一般 slot spin / all game runtime owner。
+
+## 下一步
+
+```text
+iwin iwin_gameserver bet-target-set-query Step 3
+```

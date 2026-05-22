@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `game-spin-settlement-log-reel Step 5` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `bet-target-set-query Step 3` |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -336,7 +336,7 @@ third-party-transfer-in-out
 
 ## 下一步要讀的 code path
 
-`center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。`game-spin-settlement-log-reel` Step 4 已完成，以 `slots-game40-sgj` 作代表樣本並已轉正式面試 case，後續進 Step 5 claim gate。
+`center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。`game-spin-settlement-log-reel` Step 5 已完成，一般 Game40 spin 維持 interview-only，provider log reel / 投派整合回填既有 project claim，後續回 Step 2 Rank 4 `bet-target-set-query`。
 
 - `slots-center/src/main/java/com/slots/center/service/HttpService.java`
 - `slots-center/src/main/java/com/slots/sql/job/HttpNewBill.java`
@@ -354,12 +354,12 @@ third-party-transfer-in-out
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
+iwin iwin_gameserver bet-target-set-query Step 3
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成 claim gate，維持 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步繼續同一條 flow，做 `game-spin-settlement-log-reel Step 5`。
+- `game-spin-settlement-log-reel` Step 5 已完成，下一步補 Step 2 Rank 4 `bet-target-set-query`。
 - 後續若新增 gameserver flow，再回填校正 project-level claim。

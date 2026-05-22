@@ -4,11 +4,11 @@
 
 - Flow 中文名稱：遊戲 spin / 結算 / 投注流水寫入
 - Flow slug：`game-spin-settlement-log-reel`
-- 完成狀態：Step 4 completed
+- 完成狀態：Step 5 completed
 - 掃描等級：Level 2 Flow 深掃
-- 證據層級：專案存在 / code-backed；Nick direct contribution 待 Step 5 再判斷
+- 證據層級：一般 `Game40` spin 主流程為專案存在 / code-backed；第三方 provider log reel / 投派整合為部分真實開發過 + code-backed
 - 代表樣本：`slots-game40-sgj`，因為它是典型 slot spin path，能完整串到 `GamePlayer.addMoney`、center wallet mutation 與 `log_reel`
-- 是否更新正式履歷 / 自傳：否。本 Step 只建立 flow 學習包，不更新 `05` / `08`
+- 是否更新正式履歷 / 自傳：否。本 Step 只做單條 flow claim gate，不直接更新 `05` / `08`
 
 ## 白話導讀
 
@@ -330,14 +330,29 @@ Game40SpinJob -> Game40SpinUtil -> GamePlayer.addMoney -> GameToCenterSpinResult
 - 本 flow 仍是 code-backed 面試素材。
 - 是否能升級到履歷 claim 要等 Step 5 claim gate。
 
+## Step 5 claim gate 結論
+
+本 flow 已完成 Step 5。結論要拆成兩層：
+
+1. 一般 `Game40` slot spin / settle 主流程：維持 `專案存在 / code-backed`，可作正式面試 case，但不單獨放正式履歷。
+2. 第三方 provider log reel / 投派整合支線：Nick / `10gt12nc` 有直接 commits，可回填既有 project-level「第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接」claim，但不擴張成一般 slot spin owner。
+
+本輪重新 fetch source repo，`main` 與 `origin/main` 一致。追過 path-specific history 後，`Game40SpinJob` / `Game40SpinUtil` 主要仍是 initial commit，2026 Java 21 WIP 由其他 author 觸碰但不是本 flow 功能開發 evidence。Nick / `10gt12nc` 的 direct commits 主要命中 Antplay / GSC / PG 類 provider 的 `GamePlayer` log dispatch、`LogReel*Job`、`Mapper.batchUpdateLogReel`、`LogJobCrons` 與 transfer-in-out money job。
+
+履歷處理：
+
+- 不新增「一般 slot spin / settle 開發」履歷 bullet。
+- 不直接改 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
+- 回填 project-level consolidation：本 flow Step 5 強化「Nick 確實做過第三方 provider 投注流水 / log reel projection」的 evidence，但只限 provider 投派整合範圍。
+
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
+iwin iwin_gameserver bet-target-set-query Step 3
 ```
 
 原因：
 
-- Step 4 已完成正式面試 case。
-- 下一步應做單條 flow claim gate，判斷是否維持 interview-only。
-- 不直接更新 05 / 08，除非 Step 5 後另有 project-level consolidation 需要回填。
+- 本 flow Step 5 已完成，單條 flow claim gate 收斂。
+- `iwin_gameserver` rolling / scoped contribution consolidation 已完成並已吸收本 flow 的保守結論。
+- 依同 project Step 2 ranking，下一條未完成代表 flow 是 `bet-target-set-query`。

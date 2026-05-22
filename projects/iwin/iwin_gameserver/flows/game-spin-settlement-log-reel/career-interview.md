@@ -1,8 +1,8 @@
 # Career Interview：game-spin-settlement-log-reel
 
-狀態：Step 4 completed
-證據層級：專案存在 / code-backed；Nick direct contribution 待 Step 5 判斷
-履歷結論：本 Step 不更新正式履歷 / 自傳；只作正式面試案例
+狀態：Step 5 completed
+證據層級：一般 `Game40` spin 主流程為專案存在 / code-backed；第三方 provider log reel / 投派整合為部分真實開發過 + code-backed
+履歷結論：不新增一般 slot spin / settle 履歷 claim；只回填既有 iwin_gameserver project-level 第三方 provider 投派整合 claim
 
 ## 這條 flow 可以怎麼講
 
@@ -93,8 +93,22 @@
 這條一般 slot spin 主流程我會用 code-backed 分析語氣，不把它說成我主導。我的 gameserver 強 evidence 在第三方 provider 投派整合和 log reel / wallet 串接；這條是我用來說明我能讀懂 game runtime、center wallet sync、log_reel 和一致性風險。
 ```
 
-## Step 4 後下一步
+## Step 5 claim gate
+
+這條 flow 可作正式面試 case，但正式履歷要保守：
+
+- 可面試講：一般 slot spin 如何串 game runtime、center wallet、`log_reel`，以及 failure window / reconciliation。
+- 可回填 project claim：Nick / `10gt12nc` 在 Antplay / GSC / PG 類 provider log reel、bet / settle / refund projection 與 transfer-in-out 串接有 direct commits。
+- 不可寫：Nick 主導一般 `Game40` spin / settle、全部 game runtime、完整 wallet / log architecture。
+
+面試被問「這是不是你做的」時，建議說：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
+一般 Game40 spin 主流程我用 code-backed 分析語氣，不說成我主導；但我在 iwin_gameserver 的直接 evidence 是第三方 provider 投派整合與投注流水 / log reel 串接，這條 flow 是我用來說明我能把一般 game runtime、center wallet 和 log projection 的一致性邊界講清楚。
+```
+
+## Step 5 後下一步
+
+```text
+iwin iwin_gameserver bet-target-set-query Step 3
 ```

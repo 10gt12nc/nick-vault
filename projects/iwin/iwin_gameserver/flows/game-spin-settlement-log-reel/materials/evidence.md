@@ -171,7 +171,7 @@ Step 3 結論：
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
+iwin iwin_gameserver bet-target-set-query Step 3
 ```
 
 ## Step 4 更新紀錄
@@ -195,3 +195,83 @@ iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 
 - Step 4 是面試 case，不是 claim gate。
 - Nick direct contribution 仍待 Step 5 判斷。
+
+## Step 5 掃描範圍
+
+日期：2026-05-22
+任務：`iwin iwin_gameserver game-spin-settlement-log-reel Step 5`
+掃描等級：Level 2 + path-specific history / 重要 diff；未做全 repo Level 3 逐檔逐行。
+
+source repo：
+
+- repo：`/Users/nick/Git/iwin/iwin_gameserver`
+- 已執行：`git fetch --all --prune`
+- local branch：`main`
+- local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- remote HEAD：`origin/main = 30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+- ahead / behind：`0 / 0`
+- source working tree：乾淨
+
+本次已掃：
+
+- `git log --all --author='10gt12nc|Nick|nick'` over:
+  - `slots-games/slots-game40-sgj`
+  - `slots-games/slots-game-common/src/main/java/com/slots/game/common/data/GamePlayer.java`
+  - `slots-center/src/main/java/com/slots/center/job/s2s/game/GameToCenterSpinResultJob.java`
+  - `slots-game-log/src/main/java/com/slots/game/job/player/LogReelJob.java`
+  - `slots-game-log/src/main/java/com/slots/game/LogJobCrons.java`
+  - `slots-game-log/src/main/java/com/slots/game/sql/mapper/Mapper.java`
+  - `slots-common/src/main/java/com/slots/common/controller/LogController.java`
+- path-specific history for `Game40SpinJob.java`、`Game40SpinUtil.java`、`GamePlayer.java`、`GameToCenterSpinResultJob.java`、`LogReelJob.java`、`LogJobCrons.java`、`Mapper.java`。
+- representative diffs:
+  - `49de246`：Antplay push log reel，包含 `GamePlayer`、`LogJobCrons`、`Mapper` update path。
+  - `5f690ab`：Antplay 戰績 log。
+  - `da7dc4b`：Antplay log reel 優化，包含 bet / settle type、refund routing、mapper update。
+  - `053e2be`：GSC settle log reel / mapper 優化。
+  - `2fcbde5`：PG log wording / transfer-in-out log dispatch。
+  - `4843791`：Antplay transfer-in-out / `sendReelToLogAP` / money job。
+  - `9180fc9`：Java 21 / dependency WIP by `arnold`，有 touching Game40 / GamePlayer / LogReelJob，但不是 Nick direct evidence。
+
+未掃：
+
+- 未 checkout 每個遠端 branch。
+- 未掃 MR / ticket / production incident。
+- 未逐一深掃其他 26 個 game modules。
+- 未驗證 DB unique index / production data。
+
+## Step 5 path-specific evidence
+
+### 一般 Game40 spin 主流程
+
+`git log --all --oneline -- Game40SpinJob.java Game40SpinUtil.java` 只看到：
+
+- `860f7b1 first commit`
+- `9180fc9 feat(k3s): WIP ...`，author 為 `arnold`，屬 Java 21 / dependency migration touching，不是 Nick direct contribution。
+
+判斷：
+
+- `Game40SpinJob` / `Game40SpinUtil` 可作 code-backed 面試素材。
+- 目前不能寫成 Nick 真實開發過一般 Game40 spin / settle 主流程。
+
+### GamePlayer / log reel / provider projection
+
+Nick / `10gt12nc` 的 direct commits 明確命中 provider log reel / 投派整合支線：
+
+- `4843791` 新增 / 串 Antplay transfer-in-out、`sendReelToLogAP`、provider money job 與 log dispatch。
+- `49de246` 啟用 / 調整 log reel update path，包含 `LogJobCrons` 的 `REEL_NORMAL_UPDATE` 與 `Mapper.batchUpdateLogReel()`。
+- `5f690ab` 建立 Antplay 戰績 log path。
+- `da7dc4b` 調整 Antplay bet / settle / refund 的 reel type、rebate / score / update routing。
+- `053e2be` 調整 GSC settle log reel / mapper。
+- `2fcbde5` 調整 PG transfer-in-out log dispatch / wording。
+
+判斷：
+
+- 這些 commits 能支撐「第三方 provider 投派整合與投注流水 / log reel projection」。
+- 它們不能自動擴張成「一般 slot spin 主流程」或「全部 game runtime owner」。
+
+## Step 5 claim gate 結論
+
+- 本 flow 完成 Step 5。
+- 一般 `Game40` spin / settle：維持 `專案存在 / code-backed`，不更新正式履歷 / 自傳。
+- provider log reel / 投派整合：`部分真實開發過 + code-backed`，回填既有 project-level `iwin_gameserver` claim。
+- `05` / `08` 本輪不直接更新；因為 rolling resume package 先前已吃 project-level consolidation，本輪只是補強既有 claim evidence，不新增履歷句。

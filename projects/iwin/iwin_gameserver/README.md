@@ -16,7 +16,7 @@
 8. [flows/center-http-deposit-withdraw/flow.md](flows/center-http-deposit-withdraw/flow.md)：center_http 上分 / 下分 Step 5 主學習包與 claim gate。
 9. [flows/center-http-deposit-withdraw/career-interview.md](flows/center-http-deposit-withdraw/career-interview.md)：center_http 上分 / 下分的正式面試素材與 interview-only 邊界。
 10. [flows/center-http-deposit-withdraw/materials/](flows/center-http-deposit-withdraw/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
-11. [flows/game-spin-settlement-log-reel/flow.md](flows/game-spin-settlement-log-reel/flow.md)：遊戲 spin / 結算 / 投注流水 Step 4 主學習包與面試 case。
+11. [flows/game-spin-settlement-log-reel/flow.md](flows/game-spin-settlement-log-reel/flow.md)：遊戲 spin / 結算 / 投注流水 Step 5 主學習包、面試 case 與 claim gate。
 12. [flows/game-spin-settlement-log-reel/career-interview.md](flows/game-spin-settlement-log-reel/career-interview.md)：該 flow 的正式面試素材與履歷邊界。
 13. [flows/game-spin-settlement-log-reel/materials/](flows/game-spin-settlement-log-reel/materials/)：證據、技術決策、詳細面試稿與 claim 邊界附錄。
 14. [career-interview.md](career-interview.md)：project-level 履歷 / 面試邊界索引。
@@ -33,8 +33,8 @@
 | `flows/third-party-transfer-in-out/career-interview.md` | Step 5 已完成；2026-05-20 已升級 claim | 有 Nick / `10gt12nc` direct commits，可併入 project-level 第三方 provider 投派整合履歷 claim |
 | `flows/center-http-deposit-withdraw/flow.md` | Step 5 已完成 | center_http 玩家上分 / 下分，Level 2 深掃 + 面試 case + claim gate |
 | `flows/center-http-deposit-withdraw/career-interview.md` | Step 5 已完成 | 正式面試素材；claim gate 結論為 interview-only，不更新履歷 |
-| `flows/game-spin-settlement-log-reel/flow.md` | Step 4 已完成 | 以 `slots-game40-sgj` 作代表樣本，追遊戲 spin / center wallet sync / log_reel，已轉正式面試 case |
-| `flows/game-spin-settlement-log-reel/career-interview.md` | Step 4 已完成 | 正式面試素材；目前不更新正式履歷 / 自傳，待 Step 5 claim gate |
+| `flows/game-spin-settlement-log-reel/flow.md` | Step 5 已完成 | 一般 Game40 spin 維持 interview-only；provider log reel / 投派整合回填 project claim evidence |
+| `flows/game-spin-settlement-log-reel/career-interview.md` | Step 5 已完成 | 正式面試素材；不新增一般 slot spin 履歷 claim |
 | `contribution-claim-consolidation.md` | 已完成 / 2026-05-20 | rolling / scoped project-level claim 收口；第三方 provider 投派整合可保守放履歷，center-http 上下分仍 interview-only |
 | `career-interview.md` | 已更新 | project-level career / interview boundary；正式履歷可保守補第三方 provider 投派整合 |
 
@@ -106,18 +106,18 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 5
+iwin iwin_gameserver bet-target-set-query Step 3
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。
-- `game-spin-settlement-log-reel` Step 4 已完成，已轉成正式面試 case。
+- `game-spin-settlement-log-reel` Step 5 已完成；一般 Game40 spin 維持 code-backed 面試素材，provider log reel / 投派整合回填既有 project claim。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- 下一步繼續同一條 flow，做單條 flow claim gate，確認是否維持 interview-only 或可回填 project-level claim。
+- 下一步回同 project Step 2 ranking，補 Rank 4 `bet-target-set-query`。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 bet / settle / refund / transfer-in-out、money job 與 log projection。
-- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已可作正式面試 case，但仍待 Step 5 判斷 direct contribution。
+- 可面試講：third-party transfer in/out 可用「部分真實開發過 + code-backed」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已完成 Step 5，一般 Game40 spin 只作面試，provider log reel 支撐既有 project claim。
 - 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner 或解決 duplicate callback production incident。
