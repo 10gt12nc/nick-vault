@@ -239,14 +239,14 @@ Step 5 結論：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 3
+iwin iwin_gameserver game-spin-settlement-log-reel Step 4
 ```
 
 原因：
 
 - 本 flow 已完成 Step 5，且已由 project-level consolidation 升級為保守履歷 evidence。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 5，結論為 interview-only。
-- 下一步回同 project Step 2 ranking，做 Rank 3 `game-spin-settlement-log-reel Step 3`。
+- `game-spin-settlement-log-reel Step 3` 已完成，下一步做 Step 4。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

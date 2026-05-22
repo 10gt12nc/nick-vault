@@ -79,7 +79,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 2026-05-20 補充：`antplay-slot-game-job` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 Kafka consumer / Quartz job、代理玩家報表 projection、activity accumulated bet、big-win notification、report currency / key 修正與 db partition / job config 有 direct commits；可保守寫「參與 AntPlay slot job / event processing 開發維護」，不得寫成完整 Kafka event platform、完整 settle pool / risk / jackpot owner 或完整 BI / report platform owner。
 - 2026-05-21 補充：`math-core` 與 `*-math` 已完成 contribution consolidation；`*-math` 五條代表 flows 已全部 Step 5 並完成 refreshed grouped claim。Nick / `10gt12nc` 在 `math-core` 有 slot math contract / debugBet / RTP / symbol direct commits；71 個 `*-math` repo 中有 49 個有 direct commits，強 evidence 是 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。可保守寫「參與 AntPlay slot math core / math module 維護與驗證」，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free、jackpot / symbol、特殊 feature result contract 與 simulation validation；不得寫成完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner、完整 jackpot pool 或單一遊戲 feature owner。
 - 2026-05-20 補充：`math-workspace` 已完成 rolling consolidation，只作 cross-math KB / validation workflow supporting evidence；`platform-mock` 只有局部 failure injection commits，只作 provider failure testing supporting evidence；`buffer-id` 未見 Nick direct commits，只作 learning-only。
-- 若目標是差異化面試題，`*-math fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成，`rtp-reel-strip-simulation-validation` Step 5 已完成，`buy-free-scatter-rtp3-result-contract` Step 5 已完成，`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成，`special-wild-feature-state-transform` Step 5 已完成；`*-math contribution claim consolidation` refresh 也已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、project-level contribution claim consolidation refresh 與 `rolling resume package` 已完成；`iwin iwin_gameserver center-http-deposit-withdraw Step 5` 也已完成，結論維持 code-backed interview-only。下一步回同 project Flow Track 補 `iwin iwin_gameserver game-spin-settlement-log-reel Step 3`。
+- 若目標是差異化面試題，`*-math fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成，`rtp-reel-strip-simulation-validation` Step 5 已完成，`buy-free-scatter-rtp3-result-contract` Step 5 已完成，`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成，`special-wild-feature-state-transform` Step 5 已完成；`*-math contribution claim consolidation` refresh 也已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、project-level contribution claim consolidation refresh 與 `rolling resume package` 已完成；`iwin iwin_gameserver center-http-deposit-withdraw Step 5` 也已完成，結論維持 code-backed interview-only。`iwin iwin_gameserver game-spin-settlement-log-reel Step 3` 已完成，下一步補 Step 4。
 - 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
 
 ## 狀態定義
@@ -123,7 +123,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 高 | 已完成 / 2026-05-20 已覆核 | 部分真實開發過 + code-backed；daily summary + GSC backup direct evidence | 是，保守更新 | 履歷 claim 已收斂，不因本輪重做 |
 | iwin | iwin_gameserver | `third-party-transfer-in-out` | 第三方遊戲投派整合 / 投注派彩退款 | 高 | Step 5 | 部分真實開發過 + code-backed；Antplay / GSC / PG gameserver money job / log projection direct commits | 是，併入 iwin_gameserver project bullet | 已收斂 |
 | iwin | iwin_gameserver | `center-http-deposit-withdraw` | center_http 上分 / 下分 | 高 | Step 5 | 專案存在 / code-backed；已完成正式面試 case 與 claim gate；Nick direct path evidence 不足 | 否，保留 interview-only | 已收斂 |
-| iwin | iwin_gameserver | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | 高 | 待 Step 3 | 專案存在 / code-backed；需先選代表 game，不平均掃 27 個 game | 否 | 下一步做 Step 3 |
+| iwin | iwin_gameserver | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | 高 | Step 3 | 專案存在 / code-backed；已選 `slots-game40-sgj` 作代表 game；Nick direct evidence 待 Step 5 判斷 | 否 | 下一步做 Step 4 |
 | iwin | iwin_gameserver | `contribution-claim-consolidation` | iwin_gameserver 實際開發貢獻收斂 | 高 | 已完成 / 2026-05-20 | 部分真實開發過 + code-backed；第三方 provider 投派整合 direct evidence；center-http 上下分仍 interview-only | 是，保守使用 third-party provider 投派整合 | 已收斂；Flow Track 回 game-spin Step 3 |
 | iwin | iwin-workspace | `contribution-claim-consolidation` | workspace / KB / docs / environment index 收口 | 低 | 已完成 / 2026-05-20 | 真實做過 KB / docs / workspace 維護；不是業務 service 開發 | 否，不放 standalone 正式履歷主成果 | 已收斂；只作 supporting evidence |
 | iwin | k3s-deploy | `gameserver-phased-rollout` | gameserver phase rollout / rollback | 中高 | Step 4 | 專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷 | 否 | queue 第 5 |
@@ -159,7 +159,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 本輪若繼續 Flow Track，只推薦一件事:
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 3
+iwin iwin_gameserver game-spin-settlement-log-reel Step 4
 ```
 
 原因:
@@ -167,7 +167,7 @@ iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 - `math-core` / `*-math` 已經補出強 career evidence，且 `*-math` 五條代表 flows 已全部 Step 5，project-level contribution claim consolidation refresh 已完成。
 - `*-math` 後續不該再平均掃 71 repo；除非 Nick 要 Level 3 final，否則先把已收斂的交易主線與 math 素材回填履歷更有近期價值。
 - `antplay-slot-game-api` 已完成 refreshed contribution consolidation，Step 1 / Step 2、五條代表 flows Step 5 與 05 / 08 rolling resume package 都已回填。
-- 若 Nick 要回原 iwin queue，仍回 `iwin iwin_gameserver game-spin-settlement-log-reel Step 3`。
+- 若 Nick 要回原 iwin queue，仍回 `iwin iwin_gameserver game-spin-settlement-log-reel Step 4`。
 
 ## 近期候選 Queue
 
@@ -175,7 +175,7 @@ iwin iwin_gameserver game-spin-settlement-log-reel Step 3
 
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | iwin | iwin_gameserver | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | gameserver 的 Step 2 本批代表 flows 尚未完成；center-http 已 Step 5 收斂，下一步回同 project Rank 3 | `iwin iwin_gameserver game-spin-settlement-log-reel Step 3` |
+| 1 | iwin | iwin_gameserver | `game-spin-settlement-log-reel` | 遊戲 spin / 結算 / 投注流水 | Step 3 已完成，已選 Game40 代表樣本並追到 center wallet / log_reel；下一步轉正式面試 case | `iwin iwin_gameserver game-spin-settlement-log-reel Step 4` |
 | 2 | iwin | game_api | `contribution claim consolidation` | game_api project-level 履歷 claim 收口 | 已完成；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已完成 |
 | 3 | iwin | game_job | `contribution-claim-consolidation` | game_job 實際開發貢獻收斂 | 已完成；保留為 claim evidence，不因新規則重做 | 已完成 |
 | 4 | iwin | third_games_api | `contribution-claim-consolidation` | third_games_api rolling / scoped 履歷 claim 收口 | 已完成；不新增 standalone 正式履歷主成果，下游 direct evidence 已由 iwin_gameserver 收口 | 已完成 |
