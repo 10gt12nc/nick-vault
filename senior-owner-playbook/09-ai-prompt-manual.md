@@ -35,6 +35,8 @@
 - Nick 本人明確確認做過的內容也是 evidence。AI 不得只因單條 flow 沒有直接 path-specific commit 就否定整個 project 經驗；需標成「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，再補 contribution consolidation。
 - contribution consolidation 是履歷 claim gate，可以先做 rolling / scoped project-level consolidation，不必等 Step 2 定義的本批代表 flows 全部完成到 Step 5。若 project 只有單條 flow Step 5，也可以做 rolling consolidation，但文件必須標明不是 final / 全量深掃，並列出未完成 flow、未深掃路徑與待回填 evidence。
 - 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。若本批代表 flows 尚未全部完成但 Nick 要先補履歷，則做 rolling consolidation，並同步 todo / inventory / project README，標示「rolling consolidation 已做 / flow 深掃未完 / 待回填」。
+- `nick-vault` 必須有對標資深的收斂終點。當 Nick 問「還有多少 step / 會不會一直建議 / 什麼時候結束 / 對標資深夠不夠」時，AI 要先回答結束點，而不是繼續推下一個 flow。固定分成 `必做收口`、`可選加強`、`暫不建議做`，並說明做完後是否改成投遞 / 面試練習 / 針對職缺補洞。
+- Senior 對標完成標準：3-5 個 project-level 履歷 claim、8-10 條可講 3 分鐘且抗追問的 production flow、每條 claim 的真實開發 / code-backed / 不可誇大邊界乾淨、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應停止大規模整理，不再把 backlog 當必做。
 - 但如果 Nick 只要求「待辦 / 缺口 / 優先順序」，AI 先把 contribution consolidation 或 flow Step 列成待辦，不自動執行；等 Nick 明確下 `project contribution claim consolidation` 或 `flow Step N` 才開始深掃與改 flow 文件。
 - 大專案 / 子專案地圖與職涯能力矩陣都只是輔助層；主軸仍是 production flow，不要因為補資料而發散。
 - 不可以自行創造新 Step 或新下一步名稱。下游定位、補 evidence、補 decision-notes、補架構圖都只是補充任務；除非 Nick 明確指定，否則 Step 3 完成後下一步就是 Step 4。若正在處理履歷 / 自傳 / contribution claim gate，可以先做 `{project} contribution claim consolidation` 的 rolling / scoped 版；未完成 flows 要標為待回填，不能宣稱 final。
@@ -641,6 +643,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 如果 Step 3 完成且文件乾淨，且沒有履歷 / 自傳 / contribution claim gate 風險，下一步是 Step 4。
 - 如果 Step 4 完成，下一步才檢查 Step 5 單條 flow claim gate；若要更新 05 / 08，先走 project contribution claim consolidation。
 - evidence / 下游 / decision-notes / 架構圖只能作為補充或待確認，不能取代 Step 主線。
+- 如果 Nick 問「還剩多少 / 會不會一直做 / 是否有結束點」，先給收斂版回答：最小必做剩多少、可選加強剩多少、暫不建議做哪些、達標後轉投遞或面試練習。不要把所有 backlog 加總成壓力數字。
 
 原因：
 - {為什麼現在最適合做這件事}

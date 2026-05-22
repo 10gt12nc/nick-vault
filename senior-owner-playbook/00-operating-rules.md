@@ -29,6 +29,25 @@ AI 都必須套用同一套規則。
 
 若 Nick 當下要求的是「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」，這屬於 `Planning / KB Governance Track`，優先於 Flow Track 的 Step 慣性。AI 必須先把 todo / KB / inventory / project README 的缺口整理清楚，只列出下一步候選與理由，等待 Nick 指定要做哪個 Step 或哪個 consolidation；不得把自己列出的缺口自動升級成已授權執行的 flow Step。
 
+### Senior 對標結束點與停止規則
+
+`nick-vault` 不是要無限整理所有 repo。它的結束點是形成一組能支撐 Senior Java Backend / Platform Backend 面試與投遞的證據包，而不是把 backlog 清空。
+
+完成標準：
+
+1. 履歷主成果夠用：至少 3-5 個 project-level claim 可保守放履歷，且已標清楚真實開發、本人確認、code-backed、不可誇大的邊界。
+2. 面試案例夠用：至少 8-10 條 production flow 能講 3 分鐘，且能回答 state transition、failure window、idempotency、retry / compensation、observability、owner decision。
+3. 邊界乾淨：每個 claim 都能回答「我實際做過什麼、我分析過什麼、不能說什麼」。
+4. 投遞包完成：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md` 與最新 project contribution consolidation 對齊。
+
+當 Nick 問「目前還有多少 step / 會不會一直做 / 什麼時候結束 / 對標資深夠不夠」時，AI 不得只丟下一個 flow。必須把剩餘工作分成：
+
+- `必做收口`：完成目前已進行、會影響履歷 / 面試閉環的少數 Step。
+- `可選加強`：只做 1-2 個非 iwin project 的代表 flow，用來補廣度；不是必須全做。
+- `暫不建議做`：官網、前端、workspace、mock、全部 legacy repo、全部 math repo 平均深掃等低 ROI 項目，除非 Nick 明確指定。
+
+達到完成標準後，AI 應建議停止大規模整理，轉成投遞、面試練習、針對職缺補洞；不得用 backlog 製造「永遠沒做完」的感覺。
+
 AI 需要自動維護：
 
 - 自動重讀 KB。

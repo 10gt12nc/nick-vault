@@ -124,6 +124,31 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 來源 repo 若是內網 GitLab 或 remote 不可達，fetch 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹保守分析，並標示未確認最新遠端。不要把內網 URL、IP 或敏感 remote 細節寫進 vault。
 
+### 0.1 Senior 對標收斂終點
+
+這份 todo 不是無限 backlog。對標 Senior Java Backend / Platform Backend 的收斂終點是：3-5 個可放履歷的 project-level claim、8-10 條可講 3 分鐘且能抗追問的 production flow、乾淨的 claim boundary，以及 `05 / 08 / 04 / 17` 對齊。
+
+目前回答「還剩多少」時，優先用這個分類：
+
+必做收口：
+
+1. `iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5`
+2. `iwin k3s-deploy gameserver-phased-rollout Step 5`
+3. 必做收口完成後，跑一次 `rolling resume package`，把最新 claim / case 對齊 `05 / 08 / 04 / 17`
+
+資深補強，可選：
+
+1. `antplay-slot-game-job Step 1 / Step 2 + 1-2 條代表 flow`
+2. `ugsoft-connector-api Step 1 / Step 2 + 1-2 條代表 flow`
+
+暫不建議做：
+
+- 官網、前端、workspace、mock、低價值 legacy repo 平均整理。
+- 71 個 `*-math` repo 全量逐一深掃；目前只保留代表 flow 與 grouped claim。
+- 已完成 contribution consolidation 且沒有新 evidence 的 project 反覆重做。
+
+完成必做收口，且視需要補 2 個非 iwin project 代表 flow 後，就可以停止大規模整理，改成投遞、面試練習與依職缺補洞。
+
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
 1. `third_games_api gsc-seamless-withdraw-deposit-cancel Step 5`：Flow Track 的 project-local 下一步；GSC split endpoint Step 4 已完成，應做單條 flow claim gate，確認是否維持 code-backed interview-only。目前 contribution consolidation 已先完成，結論是不新增 standalone 正式履歷主成果。

@@ -8,6 +8,24 @@
 
 `nick-vault` 的價值是把準備路線、提示詞、履歷、自傳、case study 方法論整理乾淨。真正能不能打 Senior 面試，取決於你是否能把 3-5 條 production flow 講清楚，而且每條都有 code evidence、風險判斷、owner decision 與不誇大的履歷邊界。
 
+## 對標資深的整理結束點
+
+整理不是無限做下去。對標 Senior Java Backend / Platform Backend 的完成標準是：
+
+1. 履歷主成果夠用：3-5 個 project-level claim 可保守放履歷。
+2. 面試案例夠用：8-10 條 production flow 能講 3 分鐘，且能被追問 state、failure、idempotency、retry、observability、owner decision。
+3. 邊界夠乾淨：每個 claim 都知道哪些是真實開發過、哪些是 code-backed 分析、哪些不可誇大。
+4. 投遞包完成：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md` 與最新 claim 對齊。
+
+達到這個標準後，就不應再平均掃所有 repo。下一階段應改成：
+
+- 投履歷。
+- 練 3 分鐘 case 和追問。
+- 依職缺補洞。
+- 面試後回填被追問打穿的缺口。
+
+Backlog 永遠會存在，但 backlog 不等於必做。
+
 ## 目前狀態判斷
 
 ### 已完成

@@ -38,6 +38,9 @@
 - 新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2：比較 candidate flows、技術點、風險、module / repo / service 邊界。不得在沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / multi repo / monorepo 類專案，Step 1 / Step 2 必須先整理 module / submodule / service instance / upstream-downstream 邊界。不能只挑一條看起來高價值的 flow 就跳過子模組地圖；也不能平均做 class summary。架構圖只作定位，Step 2 才決定哪條 flow 進 Step 3。
 - 一條 flow 完成 Step 5 後，不代表整個 project 完成。若同 project 的 Step 1 / Step 2 還有未完成 candidate flows，下一步要回到同 project 選下一條 flow；不要自行跳到其他 project，除非 Nick 明確說要換專案。
+- `nick-vault` 的目標不是無限掃完所有 repo，而是對標 Senior Java Backend / Platform Backend 形成可投遞、可面試、可防追問的證據包。AI 回答「下一步 / 還剩多少 / 要不要繼續」時，必須分成 `必做收口`、`可選加強`、`暫不建議做`，不得把 backlog 包裝成永遠必做。
+- Senior 對標結束點：3-5 個 project-level claim 可保守放履歷、8-10 條 production flow 能講 3 分鐘並抗追問、每條 claim 都分清真實開發 / code-backed / 不可誇大、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應建議停止大規模整理，轉為投履歷、練面試、針對職缺補洞。
+- 目前收斂策略：先完成必做收口，再視需要只補 2 個非 iwin project 的代表 flow；不要平均掃所有 repo。已完成或低價值 repo（官網、前端、workspace、mock、全部 legacy / 全部 math repo 平均深掃）預設列入暫不建議，除非 Nick 明確指定。
 - `senior-owner-playbook/01~17` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~17。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
 - 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
@@ -74,6 +77,7 @@
 - 每次完成 Step 或 flow 更新後，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
+- 若 Nick 問的是「還有多少 step / 會不會一直建議 / 何時結束 / 對標資深是否夠了」，AI 要先回答收斂狀態與終點，不要直接丟下一個 flow。回答必須說明：最小必做剩多少、可選加強有哪些、哪些暫不建議做，以及做完後是否轉為投遞 / 面試練習。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 下一步判斷必須先看 Nick 當下是不是在要求「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」。若是，AI 只能先維護 todo / KB / index，把缺口列清楚並等待 Nick 指定下一個 flow Step；不得把自己列出的缺口自動當成已授權執行 Step 4 / Step 5。
 - 下一步判斷有優先級：履歷 / 自傳 / claim 風險優先於 Step 慣性。若 Nick 問「能不能放履歷 / 怎麼沒有經驗 / 不用履歷嗎 / contribution claim consolidation」或要求先整理履歷相關，AI 可以先做 `{project} contribution claim consolidation`，即使該 project 的代表 flows 尚未全部 Step 5。這個 consolidation 是 Career Track 的履歷 claim gate，不是新 flow Step；必須標成 rolling / scoped / limited（依實際範圍），並清楚列出哪些 claim 來自本人確認、commit / branch / diff、已完成 flow KB、未完成但 code-backed 的分析素材。不能把未深掃 flow 寫成已完整掌握。

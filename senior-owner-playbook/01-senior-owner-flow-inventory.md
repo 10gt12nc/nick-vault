@@ -177,6 +177,8 @@ iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5
 
 這裡只放近期最值得排隊的 flow，不把所有舊清單塞滿。
 
+注意：queue 不是無限必做清單。對標 Senior / Platform Backend 時，優先完成 `必做收口`，再視需要補 2 個非 iwin project 代表 flow；完成後應停止大規模整理，轉為投遞、面試練習與依職缺補洞。低價值 repo、官網、前端、workspace、mock、全部 legacy / 全部 math repo 平均深掃，預設不列為必做。
+
 | 優先 | Domain | Project | Flow | 中文名稱 | 為什麼值得做 | 起手式 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | iwin | third_games_api | `gsc-seamless-withdraw-deposit-cancel` | GSC seamless withdraw / deposit / rollback / cancel | Step 4 已完成；下一步做單條 flow claim gate，確認是否維持 interview-only | `iwin third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` |

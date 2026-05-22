@@ -22,6 +22,8 @@ Senior Java Backend
 
 不是直接跳成正式 Architect。
 
+整理終點不是「所有 repo 都做完」，而是達到 Senior / Platform Backend 可投遞、可面試、可防追問的證據包。判斷標準是：3-5 個可保守放履歷的 project-level claim、8-10 條能講 3 分鐘的 production flow、每條 claim 的真實開發 / code-backed / 不可誇大邊界清楚，以及 `05 / 08 / 04 / 17` 已對齊。達到後應停止大規模整理，改成投遞、面試練習與依職缺補洞。
+
 可以投：
 
 - Senior Java Backend Engineer
