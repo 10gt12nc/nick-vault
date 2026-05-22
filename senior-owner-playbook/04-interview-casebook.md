@@ -94,7 +94,7 @@ GSC transfer 保守邊界：
 
 OneAPI / PG bet_result 補充案例：
 
-- `third_games_api/oneapi-wallet-bet-result` 已完成 Step 4，可作 HMAC / idempotency / wallet boundary 的正式面試 case。
+- `third_games_api/oneapi-wallet-bet-result` 已完成 Step 5，可作 HMAC / idempotency / wallet boundary 的正式面試 case；flow-level claim gate 結論是不新增正式履歷。
 - OneAPI `POST /wallet/bet_result` 會用 HMAC-SHA256 驗 `X-Signature`，再以 Mongo `third_transaction_oneapi` 的 `transactionId + step = 1` 做 adapter duplicate guard。
 - 新交易會轉成 gameserver `PGTRANSFERINOUT`；真正 money commit boundary 在 `iwin_gameserver`，不是 `third_games_api` Mongo。
 - 最大 failure window 是 `gameserver wallet success -> adapter Mongo insert fail / crash / timeout -> provider retry`，因為 retry 可能查不到 transaction evidence 而再次送 gameserver。

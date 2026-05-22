@@ -91,11 +91,11 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `oneapi-wallet-bet-result Step 5` |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `antplay-bet-settle-rollback Step 3` |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
 | `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
-| `flows/oneapi-wallet-bet-result/` | 已建立 | Step 4 已完成，下一步 Step 5 |
+| `flows/oneapi-wallet-bet-result/` | 已建立 | Step 5 已完成；不新增正式履歷 |
 
 ## 專案 / module 邊界
 
@@ -135,7 +135,7 @@ gsc-transfer-bet-settle-rollback
 | Ranking | Flow | Money correctness | Idempotency / retry | Downstream evidence | Commit history | 面試價值 | 履歷可用性 | 結論 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
-| 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 不放正式履歷 | Step 4 已完成；下一步 Step 5 |
+| 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 待確認 | 適合後續做對照 |
 | 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 待確認 | 需先確認 production 使用哪組 endpoint |
 | 5 | `third-platform-redis-config-refresh` | 中 | 中 | 中 | 中 | 中 | 待確認 | 支援性 flow，不優先於交易主線 |
@@ -178,7 +178,7 @@ gsc-transfer-bet-settle-rollback
 ## Flow 2：`oneapi-wallet-bet-result`
 
 中文名稱：OneAPI / PG bet_result 投派 callback
-建議狀態：Step 4 已完成，下一步 Step 5
+建議狀態：Step 5 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼排第二
@@ -199,7 +199,7 @@ gsc-transfer-bet-settle-rollback
 - `transactionId` 重送回 Mongo balance 是否可能回舊值。
 - `queryBalance(betId, third_transaction_oneapi)` 是否足以區分多 transaction。
 
-Step 4 結論：OneAPI adapter flow 已轉成 code-backed 面試 case，可講 HMAC、`transactionId` duplicate guard、gameserver `PGTRANSFERINOUT`、Mongo audit 與 wallet idempotency failure window；但 `third_games_api` 本 repo 未見 Nick direct evidence。下游 `iwin_gameserver` 的 PG bet_result direct commits 歸屬 `iwin_gameserver`。下一步 Step 5 做 flow-level claim gate。
+Step 5 結論：OneAPI adapter flow 已完成 flow-level claim gate，可講 HMAC、`transactionId` duplicate guard、gameserver `PGTRANSFERINOUT`、Mongo audit 與 wallet idempotency failure window；但 `third_games_api` 本 repo 未見 Nick direct evidence。下游 `iwin_gameserver` 的 PG bet_result direct commits 歸屬 `iwin_gameserver`。不新增正式履歷。
 
 ## Flow 3：`antplay-bet-settle-rollback`
 
@@ -327,12 +327,12 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 只推薦一件事：
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `oneapi-wallet-bet-result Step 4` 已完成，已建立 HMAC、transactionId idempotency、`PGTRANSFERINOUT` 與 gameserver 成功但 Mongo 失敗的面試 case。
-- 下一步做 Step 5 claim gate；不直接更新履歷。
+- `oneapi-wallet-bet-result Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
+- 下一步做 Step 2 ranking 第三候選 `antplay-bet-settle-rollback Step 3`；不直接更新履歷。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。

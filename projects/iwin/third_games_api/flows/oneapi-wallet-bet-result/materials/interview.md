@@ -1,6 +1,6 @@
 # Interview：OneAPI / PG bet_result
 
-完成狀態：Step 4 已完成，已轉成正式面試 case；下一步 Step 5 claim gate。
+完成狀態：Step 5 已完成，面試 case 與 claim gate 已收斂；下一步回同 project 做 `antplay-bet-settle-rollback Step 3`。
 
 ## 30 秒講法
 
@@ -77,8 +77,24 @@ Adapter 會先用固定欄位順序重建 JSON，再用 HMAC-SHA256 驗 `X-Signa
 - 已建立完整 exactly-once。
 - 已修復 OneAPI production 錯帳。
 
+## Step 5 面試使用邊界
+
+這條 case 適合在面試中用來展示「看得懂第三方遊戲 adapter 到 wallet boundary 的風險」，不是用來宣稱本人開發 OneAPI adapter。
+
+最穩的開場：
+
+```text
+這條是我做過 code-backed 深度分析的 flow，不會把它包裝成我主導開發。它的價值在於可以講清楚 provider callback、HMAC、adapter duplicate guard、gameserver wallet mutation 與 audit / reconciliation 的邊界。
+```
+
+若面試官問「這是你做的嗎？」：
+
+```text
+OneAPI adapter 本身我目前不會宣稱是我開發；我會把它當成分析過的第三方遊戲 callback case。比較強的本人 direct evidence 在下游 iwin_gameserver 的 PG / GSC / Antplay 投派整合與 money job，這部分我會另外用 iwin_gameserver 的 project claim 來講。
+```
+
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```

@@ -6,7 +6,7 @@
 
 不新增 `third_games_api` standalone 正式履歷成果。
 
-Step 4 補充：已轉成正式面試 case，但 evidence 層級不升級。Step 4 代表「可以清楚講這條 flow 的風險與設計取捨」，不代表 Nick 開發 OneAPI adapter，也不代表可以放正式履歷主成果。下一步 Step 5 才做 flow-level claim gate。
+Step 5 結論：已完成 flow-level claim gate，evidence 層級不升級。這條 flow 可作正式面試 case，但不代表 Nick 開發 OneAPI adapter，也不代表可以放正式履歷主成果。
 
 ## 可說
 
@@ -33,6 +33,7 @@ Step 4 補充：已轉成正式面試 case，但 evidence 層級不升級。Step
 
 - 目前不新增 `third_games_api` standalone bullet。
 - 若要講第三方遊戲經驗，仍沿用 project-level consolidation 的保守說法，且將 direct development evidence 歸到 `iwin_gameserver`。
+- 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。
 
 面試素材：
 
@@ -49,5 +50,5 @@ Step 4 補充：已轉成正式面試 case，但 evidence 層級不升級。Step
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```

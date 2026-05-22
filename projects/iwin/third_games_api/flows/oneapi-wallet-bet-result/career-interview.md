@@ -1,6 +1,6 @@
 # OneAPI / PG bet_result Career Interview
 
-完成狀態：Step 4 已完成，已轉成正式面試 case；下一步 Step 5 claim gate。
+完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；下一步回同 project 做 `antplay-bet-settle-rollback Step 3`。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 OneAPI adapter 目前沒有 Nick / `10gt12nc` direct evidence；下游 `iwin_gameserver` 的 PG bet_result / PGTransferInOut 有 Nick / `10gt12nc` direct commits，但歸屬 `iwin_gameserver`。
 
@@ -83,6 +83,13 @@ Result：這條 flow 可以被面試講成「adapter duplicate guard 不等於 m
 
 這句只能作面試素材，不應直接放正式履歷主成果。
 
+Step 5 最終判斷：
+
+- 可面試講：是，code-backed / 分析過。
+- 可放正式履歷：否，不新增 `third_games_api` standalone bullet。
+- 可回填 project consolidation：是，回填為 OneAPI flow Step 5 已完成、仍維持 interview-only。
+- 可回填 `iwin_gameserver`：下游 PGTransferInOut direct evidence 已由 `iwin_gameserver` consolidation 承接，不在本 flow 重複升級。
+
 ## Claim Boundary
 
 - 可面試講：code-backed / 分析過。
@@ -93,5 +100,5 @@ Result：這條 flow 可以被面試講成「adapter duplicate guard 不等於 m
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```

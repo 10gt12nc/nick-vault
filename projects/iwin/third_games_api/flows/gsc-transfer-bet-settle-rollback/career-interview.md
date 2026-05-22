@@ -129,5 +129,5 @@
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```

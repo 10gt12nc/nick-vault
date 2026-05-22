@@ -74,8 +74,22 @@ HMAC 解的是 request integrity；transactionId duplicate 解的是已寫 audit
 - 知道 replay、retry、audit projection 與帳本不同。
 - 知道改善不是單純加 log，而是 durable state、wallet-level idempotency、outbox / reconciliation。
 
+## Step 5 Claim Decision：面試素材和履歷成果分開
+
+這條 flow 的技術含金量足夠高，但 claim gate 仍要保守：
+
+- 技術上：可講 HMAC、replay、adapter duplicate guard、wallet mutation boundary、audit projection、reconciliation。
+- 履歷上：不能寫成 Nick 開發 OneAPI adapter，因為 `third_games_api` OneAPI path 未見 Nick / `10gt12nc` direct commit。
+- project attribution：下游 PGTransferInOut direct evidence 屬於 `iwin_gameserver`，不屬於 `third_games_api`。
+
+Owner 角度的正確包裝是：
+
+```text
+我能分析第三方遊戲 provider callback 到 gameserver wallet mutation 的一致性與 idempotency 風險；其中 OneAPI flow 作為 code-backed 面試 case，實際 direct development claim 仍回到 iwin_gameserver 的 PG / GSC / Antplay 投派整合 evidence。
+```
+
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```

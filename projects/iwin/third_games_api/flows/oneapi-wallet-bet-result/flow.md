@@ -6,7 +6,7 @@ Flow 中文名稱：OneAPI / PG bet_result 投派 callback。
 
 Flow slug：`oneapi-wallet-bet-result`。
 
-完成狀態：Step 4 已完成，已轉成正式面試 case；下一步是 Step 5 claim gate。
+完成狀態：Step 5 已完成，已完成單條 flow claim gate；下一步回同 project candidate ranking，做 `antplay-bet-settle-rollback Step 3`。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 OneAPI adapter 目前未見 Nick / `10gt12nc` direct commit；下游 `iwin_gameserver` 的 PG bet_result / PGTransferInOut 有 Nick / `10gt12nc` direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 
@@ -14,7 +14,7 @@ Flow slug：`oneapi-wallet-bet-result`。
 
 是否只確認到入口：不是。已確認 provider callback 入口、HMAC 驗簽、Mongo transaction duplicate check、Redis game mapping / platform routing、gameserver `PGTRANSFERINOUT` dispatch、wallet mutation job 與 Mongo audit 寫入。未確認 Mongo unique index、provider 官方狀態機與 production retry contract。
 
-掃描深度：Level 2 Flow 深掃。已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC flow，並讀 `/Users/nick/Git/iwin/third_games_api` 最新 `beta` 與 `/Users/nick/Git/iwin/iwin_gameserver` 最新 `main`。兩個 source repo 均已 fetch remote refs，未 pull、未 checkout、未 merge、未 rebase，未修改公司 repo。
+掃描深度：Level 2 Flow 深掃。Step 5 已重讀 vault KB、`third_games_api` README / Step 1 / Step 2 / contribution consolidation、既有 GSC flow 與本 flow Step 3 / Step 4 文件，並重新確認 `/Users/nick/Git/iwin/third_games_api` 最新 `beta` 與 `/Users/nick/Git/iwin/iwin_gameserver` 最新 `main`。兩個 source repo 均已 fetch remote refs，未 pull、未 checkout、未 merge、未 rebase，未修改公司 repo。
 
 ## 白話導讀
 
@@ -338,14 +338,55 @@ OneAPI provider 會把 transactionId、betId、roundId、投注額、派彩、ja
 
 本輪不更新正式履歷 / 自傳。若要放履歷，必須透過 project-level contribution consolidation；目前 `third_games_api` consolidation 結論仍是不新增 standalone 正式履歷主成果。
 
+## Step 5 Claim Gate
+
+結論：本 flow 完成 Step 5 後，維持 `專案存在 / code-backed` 與 `分析素材 / learning-only`。不升級為 `真實開發過`，不新增 `third_games_api` standalone 正式履歷成果。
+
+### 可面試講
+
+```text
+我分析過 OneAPI / PG bet_result provider callback。這條 flow 先用 HMAC-SHA256 驗 request body，再以 transactionId 查 Mongo duplicate evidence；新交易才轉成 gameserver PGTRANSFERINOUT command。真正錢包異動在 gameserver，所以我會把重點放在 wallet boundary idempotency：gameserver 成功但 adapter Mongo 未寫時，provider retry 可能再次改錢。改善方向是把 idempotency guard 移近 wallet mutation boundary，或先落 durable request state，再做 reconciliation。
+```
+
+### 可放履歷
+
+不建議新增獨立 bullet。原因：
+
+- `third_games_api` OneAPI adapter path 未看到 Nick / `10gt12nc` direct commit。
+- OneAPI adapter 主體 commit 目前只能作專案存在與 code-backed 分析素材。
+- 下游 `iwin_gameserver` PGTransferInOut 有 Nick / `10gt12nc` direct evidence，但 project attribution 屬於 `iwin_gameserver`，不能反向包裝成 `third_games_api` direct contribution。
+
+若履歷大段落需要保留第三方遊戲經驗，仍沿用 project-level consolidation 的保守口徑：
+
+```text
+參與或分析第三方遊戲 provider integration 與遊戲結算相關流程，涵蓋登入、轉入轉出、下注 / 派彩、rollback、交易同步、紀錄保存與報表鏈路，聚焦玩家餘額、provider transaction 與 round log 的一致性。
+```
+
+這句不能被解讀成 Nick 主導 `third_games_api` 或開發 OneAPI adapter。
+
+### 不可誇大
+
+- 不說 Nick 開發 OneAPI adapter。
+- 不說 Nick 主導 OneAPI / PG provider integration。
+- 不說 Nick 建立完整 provider idempotency / reconciliation。
+- 不說已修復 OneAPI production 錯帳。
+- 不把 `iwin_gameserver` PG direct commits 寫成 `third_games_api` direct contribution。
+
+### 回填判斷
+
+- 已回填 `third_games_api` README / Step 1 / Step 2 / contribution consolidation。
+- 已回填 `projects/iwin/README.md`、`01-senior-owner-flow-inventory.md`、`04-interview-casebook.md`、`06-todo.md`。
+- 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`，因為本 flow Step 5 只支撐面試素材，不支撐正式履歷新增。
+
 ## 下一步
 
 ```text
-iwin third_games_api oneapi-wallet-bet-result Step 5
+iwin third_games_api antplay-bet-settle-rollback Step 3
 ```
 
 原因：
 
-- Step 4 已把 OneAPI / PG bet_result 轉成保守面試 case。
-- 下一步應做 Step 5 claim gate，確認這條 flow 是否只留面試素材、是否需要回填 `third_games_api` project consolidation，以及是否維持不更新正式履歷。
+- `gsc-transfer-bet-settle-rollback` 已完成 Step 5。
+- `oneapi-wallet-bet-result` 已完成 Step 5，結論是 code-backed interview-only，不新增正式履歷。
+- 依 Step 2 ranking，下一條同 project 候選 flow 是 `antplay-bet-settle-rollback`；先做 Step 3 flow learning package。
 - 不會直接更新 05 / 08；仍需 commit，不需要 push，除非 Nick 明確要求。
