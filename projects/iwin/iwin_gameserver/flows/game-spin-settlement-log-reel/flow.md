@@ -4,7 +4,7 @@
 
 - Flow 中文名稱：遊戲 spin / 結算 / 投注流水寫入
 - Flow slug：`game-spin-settlement-log-reel`
-- 完成狀態：Step 3 completed
+- 完成狀態：Step 4 completed
 - 掃描等級：Level 2 Flow 深掃
 - 證據層級：專案存在 / code-backed；Nick direct contribution 待 Step 5 再判斷
 - 代表樣本：`slots-game40-sgj`，因為它是典型 slot spin path，能完整串到 `GamePlayer.addMoney`、center wallet mutation 與 `log_reel`
@@ -273,7 +273,7 @@ flowchart TD
 2. center wallet 是 money source of truth；game 端 `totalCoins` 是 runtime cache，需要 center response 校正。
 3. `log_reel` 是戰績 / 報表 source，不是錢包 transaction source。缺 log 不能代表錢沒改。
 4. version guard 能防一部分舊資料覆蓋，但不等於完整 business idempotency。
-5. 若要把這條做成強 owner case，下一步 Step 4 要把「center sync 成功但 log 失敗」和「center timeout / 重送」講清楚。
+5. Step 4 已把「center sync 成功但 log 失敗」和「center timeout / 重送」轉成正式面試追問；Step 5 再判斷 direct contribution 與 claim gate。
 
 ## 面試 / 履歷邊界摘要
 
@@ -304,14 +304,40 @@ flowchart TD
 
 但目前不更新正式履歷 / 自傳。履歷仍以 project-level `third-party provider 投派整合` 保守 claim 為準。
 
+## Step 4 面試 case 結論
+
+本 flow 已轉成正式面試 case，詳見：
+
+- `career-interview.md`
+- `materials/interview.md`
+
+可講主線：
+
+```text
+Game40SpinJob -> Game40SpinUtil -> GamePlayer.addMoney -> GameToCenterSpinResultJob -> sendReelToLog -> LogReelJob
+```
+
+面試重點：
+
+- game runtime `totalCoins`、center wallet `PlayerData`、`log_reel` 是三個不同 source。
+- `addMoneyQueue` 和 `saveDataVersion` 是既有保護，但不是完整 business idempotency。
+- center timeout、version mismatch、log server failure 是主要 failure window。
+- `log_reel` 是 report source，不是 wallet transaction source。
+
+履歷邊界：
+
+- Step 4 不更新正式履歷 / 自傳。
+- 本 flow 仍是 code-backed 面試素材。
+- 是否能升級到履歷 claim 要等 Step 5 claim gate。
+
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
 
 原因：
 
-- Step 3 已建立完整主路徑與 failure window。
-- 下一步應轉成正式面試 case，而不是換 flow 或更新履歷。
-- Step 4 會整理 30 秒 / 90 秒 / 3 分鐘講法、STAR、Senior / Lead 追問與不能誇大的回答。
+- Step 4 已完成正式面試 case。
+- 下一步應做單條 flow claim gate，判斷是否維持 interview-only。
+- 不直接更新 05 / 08，除非 Step 5 後另有 project-level consolidation 需要回填。

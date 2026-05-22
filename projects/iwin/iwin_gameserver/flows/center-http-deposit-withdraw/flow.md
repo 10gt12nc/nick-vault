@@ -274,11 +274,11 @@ Nick 的已確認強 evidence 仍在 `payment` project-level consolidation、`ga
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
 
 原因：
 
 - `center-http-deposit-withdraw` Step 5 已完成，結論是保留為 code-backed 面試素材，不更新正式履歷。
-- `game-spin-settlement-log-reel` Step 3 已完成，下一步可以轉成正式面試 case。
+- `game-spin-settlement-log-reel` Step 4 已完成，下一步做 claim gate。
 - 這會延續 `iwin_gameserver` 的 Flow Track，不會自行跳到其他 project。

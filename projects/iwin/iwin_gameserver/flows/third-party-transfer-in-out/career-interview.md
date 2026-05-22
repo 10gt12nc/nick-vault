@@ -136,7 +136,7 @@ Result：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
 
 原因：
@@ -144,7 +144,7 @@ iwin iwin_gameserver game-spin-settlement-log-reel Step 4
 - 本 flow 已完成 Step 5。
 - 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 5，結論為 interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- `game-spin-settlement-log-reel Step 3` 已完成，下一步做 Step 4；後續新增 gameserver flow 時再回填校正 project-level claim。
+- `game-spin-settlement-log-reel Step 4` 已完成，下一步做 Step 5；後續新增 gameserver flow 時再回填校正 project-level claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

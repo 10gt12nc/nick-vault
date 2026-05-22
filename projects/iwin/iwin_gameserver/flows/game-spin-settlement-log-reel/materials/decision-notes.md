@@ -68,5 +68,23 @@ Owner 建議：
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
+
+## Decision 6：Step 4 只轉面試，不升級 claim
+
+Step 4 的責任是把 Step 3 code-backed flow 轉成可面試 case。
+
+本輪新增：
+
+- 30 秒 / 90 秒 / 3 分鐘講法。
+- STAR。
+- center timeout、log server failure、saveDataVersion、log_reel source of truth 的追問答法。
+
+本輪不做：
+
+- 不更新 05 / 08。
+- 不把一般 slot spin 寫成 Nick 真實開發過。
+- 不替代 Step 5 claim gate。
+
+下一步 Step 5 才判斷此 flow 是否維持 interview-only。

@@ -100,11 +100,11 @@
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
 
 原因：
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
 - Flow Track 仍未完成本批代表 flows；`center-http-deposit-withdraw` 已完成 Step 5 且維持 interview-only。
-- `game-spin-settlement-log-reel` Step 3 已完成，下一步回同 flow Step 4，避免完成 Step 3 後自行跳到其他 project。
+- `game-spin-settlement-log-reel` Step 4 已完成，下一步回同 flow Step 5，避免完成 Step 4 後自行跳到其他 project。

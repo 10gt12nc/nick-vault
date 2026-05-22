@@ -171,5 +171,27 @@ Step 3 結論：
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
+
+## Step 4 更新紀錄
+
+日期：2026-05-22
+
+本次未重新掃 source code；沿用 Step 3 已 fetch / 已確認的 source repo 狀態與 code path，將 Step 3 結論轉成正式面試 case。
+
+已更新：
+
+- `career-interview.md`
+- `materials/interview.md`
+- `flow.md` Step 4 結論
+
+本次不更新：
+
+- `senior-owner-playbook/05-resume-master-zh.md`
+- `senior-owner-playbook/08-application-autobiography-zh.md`
+
+原因：
+
+- Step 4 是面試 case，不是 claim gate。
+- Nick direct contribution 仍待 Step 5 判斷。

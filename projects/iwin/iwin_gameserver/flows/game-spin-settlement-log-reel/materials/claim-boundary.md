@@ -4,6 +4,8 @@
 
 目前結論：`專案存在 / code-backed`
 
+Step 4 更新：已可作正式面試 case，但仍不是正式履歷 claim。
+
 本 flow 已完成 Step 3 code reading，可以作面試分析素材。尚不能作 Nick 真實開發過的正式履歷 claim。
 
 ## 可說
@@ -50,5 +52,5 @@
 ## 下一步
 
 ```text
-iwin iwin_gameserver game-spin-settlement-log-reel Step 4
+iwin iwin_gameserver game-spin-settlement-log-reel Step 5
 ```
