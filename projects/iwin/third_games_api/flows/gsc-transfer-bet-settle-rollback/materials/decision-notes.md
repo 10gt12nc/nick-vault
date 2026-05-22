@@ -81,3 +81,25 @@ Owner 必須決定：
 面試可講的 owner 視角：
 
 > 第三方錢包整合最怕的是「provider 以為失敗、內部其實成功」或「內部錢包成功、報表 evidence 失敗」。所以我會先把 source of truth、idempotency key、audit repair、reconciliation join key 定義清楚，再談 API response。
+
+## 7. Step 5 claim decision
+
+本 flow 完成 Step 5 後，不新增 `third_games_api` standalone 履歷 claim。
+
+原因：
+
+- `third_games_api` GSC transfer adapter 的主體 path history 目前不是 Nick / `10gt12nc` direct development evidence。
+- Nick / `10gt12nc` 在本 repo 的 direct evidence 仍偏局部測試 / branch merge，不足以寫 production provider owner。
+- 下游 `iwin_gameserver` 有較強 GSC / PG / Antplay direct evidence，但 attribution 必須留在 `iwin_gameserver` project。
+- 單條 flow Step 5 不能直接改 `05` / `08`，更不能把 code-backed 分析寫成真實開發成果。
+
+可保留的 decision：
+
+- 本 flow 作為 Senior Backend 面試 case 很有價值。
+- 履歷只在 project-level consolidation 有新 evidence 時才回填。
+
+## 下一步
+
+```text
+iwin third_games_api oneapi-wallet-bet-result Step 3
+```

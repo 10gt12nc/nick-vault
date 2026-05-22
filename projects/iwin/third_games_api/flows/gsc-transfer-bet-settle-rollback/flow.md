@@ -2,21 +2,21 @@
 
 ## 閱讀定位
 
-本文件是 `iwin third_games_api gsc-transfer-bet-settle-rollback Step 3` 的主報告。
+本文件是 `iwin third_games_api gsc-transfer-bet-settle-rollback` 的主報告。
 
 Flow 中文名稱：GSC transfer 投注 / 派彩 / rollback 整合回調。
 
 Flow slug：`gsc-transfer-bet-settle-rollback`。
 
-完成狀態：Step 4 已完成；主報告已依更新後 KB 做過深度檢查與局部補強，下一步是 Step 5 claim gate。
+完成狀態：Step 5 已完成；單條 flow claim gate 已收斂。
 
-證據層級：`專案存在 / code-backed`。目前沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，因此不能寫成 Nick 真實開發成果。
+證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。目前沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認；`third_games_api` 本 repo 內 Nick / `10gt12nc` 只掃到局部測試 / branch merge 線索，因此不能寫成 Nick 真實開發成果。
 
 本 flow 是業務功能 / 共用能力 / 後台入口 / 報表查詢 / deploy flow：業務功能，屬於第三方遊戲 provider callback 到內部錢包異動的 production flow。
 
 是否只確認到入口：不是。已確認 provider API 入口、Redis routing、下游 gameserver command dispatch、wallet mutation job 與 log projection 呼叫點；但 gameserver wallet method 的底層持久化與冪等仍是待確認。
 
-掃描深度：Level 2 Flow 深掃。這輪已重讀 vault KB、`third_games_api` Step 1 / Step 2、既有 flow package、`third_games_api` 最新 `beta` 分支與 `iwin_gameserver` 最新 `main` 分支，並補看 `iwin_gameserver` 的 `origin/Nick-GSC_PG` path history 作為分支線索。沒有切分支、沒有 pull、沒有修改公司專案。
+掃描深度：Level 2 Flow 深掃。Step 5 已重讀 vault KB、`third_games_api` Step 1 / Step 2、既有 flow package、project-level contribution consolidation、`third_games_api` 最新 `beta` 分支、`iwin_gameserver` 最新 `main` 分支與 `game_api` 最新 `main` 分支。沒有切分支、沒有 pull、沒有修改公司專案。
 
 本 flow 研究的是 GSC provider 打進 `POST /api/seamless/transfer` 後，`third_games_api` 如何驗簽、解析交易、查玩家、找 gameserver，再透過 gameserver 做投注 / 派彩錢包異動；以及 `ROLLBACK` action 在目前 code 裡的特殊處理方式。
 
@@ -292,7 +292,16 @@ GSC 類 provider 通常會在玩家遊戲過程中回傳下注、派彩、取消
 - 「解決 rollback 一致性問題」。
 - 「保證 exactly-once」。
 
-正式履歷若要更新，必須等 Nick 補本人參與 evidence，並完成更深的 branch / commit / issue / production case 確認。
+Step 5 claim gate 結論：
+
+| 範圍 | 證據層級 | 判斷 |
+| --- | --- | --- |
+| GSC `/api/seamless/transfer` adapter、Redis routing、Mongo audit | 專案存在 / code-backed | 可面試講，不作 Nick direct development claim |
+| provider retry、Mongo after wallet、ROLLBACK 不改 wallet、多筆 transactions 風險 | 分析素材 / learning-only + code-backed 行為 | 可講 owner thinking，不宣稱已修或已設計 |
+| `third_games_api` 本 repo Nick / `10gt12nc` contribution | 局部測試 / branch merge 線索 | 不足以新增正式履歷 bullet |
+| 下游 `iwin_gameserver` GSC / PG / Antplay direct commits | 真實開發過 + code-backed，但歸屬 `iwin_gameserver` | 可補強 gameserver project claim，不反包成 third_games_api owner |
+
+正式履歷 / 自傳不更新。本 flow 只作 code-backed 面試素材；若未來要升級，必須補本人 MR / ticket / production issue / 本人確認，並透過 project-level consolidation 回填。
 
 ## Lead / Architect 追問
 
@@ -316,7 +325,19 @@ GSC 類 provider 通常會在玩家遊戲過程中回傳下注、派彩、取消
 
 `gsc-transfer-bet-settle-rollback` 是一條高價值 Senior Backend flow，因為它把 provider API、Redis routing、gameserver wallet mutation、Mongo audit、rollback semantics、retry / idempotency 全部串在一起。
 
-Step 4 已把「ROLLBACK 不改 wallet」與「gameserver 成功但 Mongo 失敗」收斂成保守面試案例；下一步是 Step 5 claim gate。
+Step 5 已完成。結論是：可作第三方 seamless wallet transaction boundary 的正式面試素材，但不新增 `third_games_api` standalone 履歷成果，不寫 Nick 主導 GSC provider 串接。
+
+## 下一步
+
+```text
+iwin third_games_api oneapi-wallet-bet-result Step 3
+```
+
+原因：
+
+- 本 flow 已完成 Step 5 claim gate。
+- `third_games_api` Step 2 排名第二的 `oneapi-wallet-bet-result` 尚未建立 flow package。
+- 繼續同 project 下一條候選 flow，能補 HMAC、transactionId idempotency、PGTRANSFERINOUT 對照素材；不會更新履歷，除非後續另有 project-level evidence。
 
 目前履歷層級仍只能是 `專案存在 / code-backed` 與 `分析素材 / learning-only`。正式履歷 / 自傳暫不更新；若 Nick 後續補本人 evidence，再重新評估是否升級 claim。
 

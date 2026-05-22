@@ -1,10 +1,10 @@
 # GSC transfer bet / settle / rollback Career Interview
 
-完成狀態：Step 4 已轉成面試 case。
+完成狀態：Step 5 已完成。
 
 證據層級：`分析素材 / learning-only`、`專案存在 / code-backed`。
 
-目前沒有 Nick 本人參與 evidence，因此本文件只提供保守面試素材，不直接更新正式履歷 master 或自傳。
+目前沒有 Nick 本人參與 GSC transfer adapter 的 evidence；`third_games_api` 本 repo 內 Nick / `10gt12nc` 只掃到局部測試 / branch merge 線索。因此本文件只提供保守面試素材，不直接更新正式履歷 master 或自傳。
 
 ## 面試主軸
 
@@ -94,6 +94,23 @@
 
 證據層級：`分析素材 / learning-only`。
 
+## Step 5 Claim Gate
+
+結論：不新增 `third_games_api` standalone 履歷 bullet。
+
+可面試講：
+
+- GSC transfer flow 是 code-backed 的 third-party seamless wallet transaction boundary case。
+- 可以說清楚 provider adapter、Redis routing、gameserver wallet mutation、Mongo audit 的責任切分。
+- 可以指出 provider retry、wallet 成功但 Mongo 失敗、`ROLLBACK` 不改 wallet、多筆 transactions 只取最後一筆等風險。
+
+不可升級：
+
+- 不說 Nick 主導 GSC provider 串接。
+- 不說 Nick 修過 rollback 或設計 idempotency。
+- 不把下游 `iwin_gameserver` direct commits 包裝成 `third_games_api` direct contribution。
+- 不直接改 `05` / `08`。
+
 ## 對應履歷 bullet
 
 目前不建議放入正式履歷。若只是面試準備或內部學習索引，可以保守寫：
@@ -108,3 +125,9 @@
 - 可放履歷：目前不放正式履歷；尚未補到 Nick 本人對 GSC transfer callback 的 MR / ticket / commit / production issue / 本人確認。
 - 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback 語意。
 - 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。
+
+## 下一步
+
+```text
+iwin third_games_api oneapi-wallet-bet-result Step 3
+```

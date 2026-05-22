@@ -36,7 +36,7 @@
 - `projects/iwin/game_api/README.md`
 - `projects/iwin/game_api/step1-candidate-flows.md`
 - `projects/**/flows/` 與 `senior-owner-playbook/01-senior-owner-flow-inventory.md` 的 third-game / GSC / OneAPI / Antplay 線索。
-- `projects/iwin/third_games_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 4、下一步 Step 5。
+- `projects/iwin/third_games_api/` 目前已存在；本檔保留 Step 1 候選 flow 盤點，狀態已回補到目前第一條 flow 完成 Step 5、下一步回 Step 2 Rank 2。
 
 已重讀參考文件：
 
@@ -83,7 +83,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/third_games_api/README.md` | 已建立 / 已同步 | 專案入口，已同步目前第一條 flow 下一步為 Step 5 |
+| `projects/iwin/third_games_api/README.md` | 已建立 / 已同步 | 專案入口，已同步目前下一步為 `oneapi-wallet-bet-result Step 3` |
 | `projects/iwin/third_games_api/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Level 1 candidate flow 盤點；本輪校正過期的「新建」與下一步描述 |
 | workspace 舊分析 `docs/專案分析/third_games_api.md` | 可參考 / 不搬運 | 有專案概覽、endpoint、DB / Redis / Mongo 線索，但含敏感配置，不能直接複製進 vault |
 | workspace catalog `third-game-integration.md` | 可參考 / 不搬運 | 有與 gameserver / payment 的關聯定位，可作 Step 1 導航 |
@@ -397,7 +397,7 @@ production 風險：
 
 ## 後續核對維度
 
-Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flow 時的比較維度：
+Step 2 / Step 3 / Step 4 / Step 5 已完成；以下保留為後續回看其他候選 flow 時的比較維度：
 
 - money correctness：是否直接改玩家餘額 / 有效投注。
 - provider idempotency：重送、timeout、duplicate transaction 的處理是否清楚。
@@ -411,12 +411,13 @@ Step 2 / Step 3 / Step 4 已完成；以下保留為後續回看其他候選 flo
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 3
 ```
 
 原因：
 
 - 後續 `third_games_api contribution claim consolidation` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但目前總 queue 先回 `iwin_gameserver` Flow Track。
+- `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 `third_games_api` standalone 履歷成果。
+- 下一步回同 project Step 2 Rank 2，補 `oneapi-wallet-bet-result` flow package。
 - `iwin_gameserver contribution claim consolidation` 已確認 Antplay / GSC / PG direct commits 哪些可放履歷、哪些只作面試素材。
 - 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

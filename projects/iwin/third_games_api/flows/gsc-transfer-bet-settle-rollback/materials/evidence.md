@@ -34,6 +34,57 @@ Source repo：
   - ahead / behind：`0 / 0`
   - Step 3 建立時、KB 更新後深度檢查與 Step 4 前，皆已執行 `git fetch --all --prune`，沒有 checkout / pull / merge / rebase。
 
+## Step 5 掃描補充
+
+任務：`iwin third_games_api gsc-transfer-bet-settle-rollback Step 5`
+日期：2026-05-22
+掃描等級：Level 2 Flow 深掃補讀 / 單條 flow claim gate
+
+source repo 狀態：
+
+- `/Users/nick/Git/iwin/third_games_api`
+  - 已執行：`git fetch --all --prune`
+  - local branch：`beta`
+  - local HEAD：`4915ea5a5000d61eb36717203ea4c6afc45322fa`
+  - remote HEAD：`origin/beta = 4915ea5a5000d61eb36717203ea4c6afc45322fa`
+  - ahead / behind：`0 / 0`
+  - source working tree：乾淨
+- `/Users/nick/Git/iwin/iwin_gameserver`
+  - 已執行：`git fetch --all --prune`
+  - local branch：`main`
+  - local HEAD：`30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+  - remote HEAD：`origin/main = 30a9fcb95bfda33b582deeb4e149eb06bed4afe3`
+  - ahead / behind：`0 / 0`
+  - source working tree：乾淨
+- `/Users/nick/Git/iwin/game_api`
+  - 已執行：`git fetch --all --prune`
+  - local branch：`main`
+  - local HEAD：`39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
+  - remote HEAD：`origin/main = 39bb6e38210bb79c6e68a6a6d818cb87986d39f0`
+  - ahead / behind：`0 / 0`
+
+Step 5 補讀 code / history：
+
+- `third_games_api` `GscController#transfer`：
+  - 驗簽、currency、memberAccount、transactions loop、`ROLLBACK` branch、`PGTRANSFERINOUT` request、Mongo `third_log_gsc` / `third_transaction_gsc` 寫入。
+  - `transactionId` 實際使用 `betId / wager_code`，目前 transfer 主線未看到跨 request `hasBetId` duplicate guard。
+  - `ROLLBACK` branch 仍是回算 balance + 寫 Mongo，不呼叫 gameserver mutation。
+- `third_games_api` path-specific history：
+  - GSC transfer 主體 commit author 以 Derek / arnold 為主。
+  - Nick / `10gt12nc` author log 在本 repo 仍只掃到 `AntplayController.java` 局部測試用 commit：`ec9d812`、`63e88f2`。
+- `iwin_gameserver` 下游：
+  - `HttpService#PGTransferInOut` dispatch。
+  - `HttpPGTransferInOut` 以 `accountId` 查玩家並丟入 game pool。
+  - `PGTransferInOutJob` 檢查玩家 / 餘額，呼叫 `modifyAndGetCoinPG`，再推 game coin / reel / bet log。
+  - 下游 GSC / PG / Antplay direct commits 屬 `iwin_gameserver` evidence，不歸到 `third_games_api`。
+
+Step 5 claim gate 結論：
+
+- `gsc-transfer-bet-settle-rollback`：`專案存在 / code-backed` 面試素材。
+- `third_games_api` GSC adapter production 開發：Nick direct evidence 不足，不放履歷。
+- 下游 `iwin_gameserver` GSC / PG / Antplay direct evidence：可支撐 gameserver project claim，不反包成 `third_games_api`。
+- 正式履歷 / 自傳：本輪不直接更新 `05` / `08`。
+
 ## 已讀 code path
 
 `third_games_api`：

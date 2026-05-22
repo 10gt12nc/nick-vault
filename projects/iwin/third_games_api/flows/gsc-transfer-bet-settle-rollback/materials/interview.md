@@ -1,6 +1,6 @@
 # Interview Notes：GSC transfer bet / settle / rollback
 
-完成狀態：Step 4 已轉成可講案例。
+完成狀態：Step 5 已完成。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不寫成真實開發成果。
 
@@ -61,7 +61,7 @@
 
 不能說主導。保守回答是：
 
-> 這條目前我不會說是我主導的。我的 evidence 是 code-level flow analysis：我能說清楚 provider callback 到 gameserver wallet mutation 的路徑，也能指出 retry、Mongo audit、rollback 語意的風險。若要寫成正式履歷成果，我會先補本人 MR / ticket / production issue 或本人確認。
+> 這條目前我不會說是我主導的。我的 evidence 是 code-level flow analysis：我能說清楚 provider callback 到 gameserver wallet mutation 的路徑，也能指出 retry、Mongo audit、rollback 語意的風險。Step 5 後我仍不把它寫成正式履歷成果，除非後續補到本人 MR / ticket / production issue 或本人確認。
 
 ## Q10：這條 case 跟一般 payment callback 有什麼不同？
 
@@ -93,8 +93,29 @@ money success 應以 gameserver wallet mutation 為準。Mongo 失敗要進 repa
 | Reconciliation | 能提出 wallet ledger、callback audit、game log 的 join key / repair 思路 | `分析素材 / learning-only` |
 | Claim discipline | 能清楚說這是分析素材，不是 Nick 主導成果 | `分析素材 / learning-only` |
 
+## Step 5 面試邊界
+
+可說：
+
+- 我分析過這條 GSC transfer flow，能說明 third-party seamless wallet 的 transaction boundary。
+- 我能指出 `third_games_api` adapter、gameserver wallet mutation、Mongo audit 不是同一個 transaction。
+- 我能提出 provider retry、wallet 成功但 Mongo 失敗、rollback 語意與 multi-transaction handling 的風險。
+
+不可說：
+
+- 我主導 GSC provider 串接。
+- 我負責 `third_games_api` GSC production adapter。
+- 我修復 rollback / idempotency / reconciliation。
+- 我把 GSC / PG / Antplay 下游 gameserver direct commits算成 `third_games_api` direct contribution。
+
 ## 追問時的保守句
 
 - 「這部分我目前只追到 code-backed evidence，還不能說 production 已經怎麼處理。」
 - 「如果要寫正式履歷，我會先確認本人參與 evidence 與底層 wallet 冪等實作。」
 - 「目前看到 rollback 分支沒有 wallet mutation，所以我會把它標成待確認，而不是包裝成已完成補償。」
+
+## 下一步
+
+```text
+iwin third_games_api oneapi-wallet-bet-result Step 3
+```

@@ -91,10 +91,10 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `gsc-transfer-bet-settle-rollback` Step 5 |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `oneapi-wallet-bet-result Step 3` |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
-| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出 Step 3 主線；目前第一條 flow 已完成 Step 4 |
-| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 已完成，下一步是 Step 5 claim gate |
+| `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
+| `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
 
 ## 專案 / module 邊界
 
@@ -133,7 +133,7 @@ gsc-transfer-bet-settle-rollback
 
 | Ranking | Flow | Money correctness | Idempotency / retry | Downstream evidence | Commit history | 面試價值 | 履歷可用性 | 結論 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 待確認 | 已完成 Step 4，下一步 Step 5 |
+| 1 | `gsc-transfer-bet-settle-rollback` | 高 | 高 | 高 | 高 | 高 | 不放正式履歷 | Step 5 已完成；保留 code-backed 面試素材 |
 | 2 | `oneapi-wallet-bet-result` | 高 | 高 | 中高 | 中 | 高 | 待確認 | 第二候選 |
 | 3 | `antplay-bet-settle-rollback` | 高 | 中高 | 高 | 高 | 中高 | 待確認 | 適合後續做對照 |
 | 4 | `gsc-seamless-withdraw-deposit-cancel` | 高 | 中 | 高 | 中高 | 中高 | 待確認 | 需先確認 production 使用哪組 endpoint |
@@ -142,7 +142,7 @@ gsc-transfer-bet-settle-rollback
 ## Flow 1：`gsc-transfer-bet-settle-rollback`
 
 中文名稱：GSC transfer 投派整合 / rollback
-建議狀態：已完成 Step 4，下一步 Step 5
+建議狀態：Step 5 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ### 為什麼排第一
@@ -172,7 +172,7 @@ gsc-transfer-bet-settle-rollback
 ### 履歷邊界
 
 - 目前不可寫成 Nick 成果。
-- Step 3 可先產出 Senior 面試素材：provider callback idempotency、seamless wallet transaction boundary、rollback semantics。
+- Step 5 結論：保留 Senior 面試素材，主軸是 provider callback idempotency、seamless wallet transaction boundary、rollback semantics；不新增 `third_games_api` standalone 履歷 claim。
 
 ## Flow 2：`oneapi-wallet-bet-result`
 
@@ -280,15 +280,15 @@ gsc-transfer-bet-settle-rollback
 | `gameList` / `login launch` | provider integration 有價值，但 money / rollback 風險低於 callback |
 | `gsc-pushbet` | 目前看起來偏注單推送 / 驗證，money mutation 與 failure window 不如 transfer |
 
-## Step 3 主線回顧
+## Step 3 / Step 5 主線回顧
 
-已建立：
+已完成 Step 5：
 
 ```text
 projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 ```
 
-預計輸出：
+已具備：
 
 - `flow.md`
 - `career-interview.md`
@@ -297,7 +297,7 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 - `materials/interview.md`
 - `materials/claim-boundary.md`
 
-Step 3 必須至少補：
+已完成：
 
 - `GscController#transfer` 的初階 / 中階可讀正常流程。
 - provider request 欄位、action、money conversion 與 response。
@@ -305,14 +305,14 @@ Step 3 必須至少補：
 - gameserver `PGTRANSFERINOUT` handler 與 wallet mutation boundary。
 - Mongo `third_log_gsc` / `third_transaction_gsc` 的角色與冪等限制。
 - rollback 分支與 failure window。
-- 不可誇大的履歷 / 面試邊界。
+- Step 5 claim gate：不新增 `third_games_api` standalone 履歷 claim。
 
 ## 自動維護判斷
 
 已更新：
 
 - `projects/iwin/third_games_api/README.md`：同步目前下一步。
-- `projects/iwin/third_games_api/step2-flow-comparison.md`：已回補目前 Career Track 下一步。
+- `projects/iwin/third_games_api/step2-flow-comparison.md`：已回補目前 Step 5 狀態與下一條候選 flow。
 
 未更新：
 
@@ -324,12 +324,12 @@ Step 3 必須至少補：
 只推薦一件事：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+iwin third_games_api oneapi-wallet-bet-result Step 3
 ```
 
 原因：
 
-- 後續 `third_games_api contribution claim consolidation` 已完成，結論是不新增 standalone 正式履歷主成果。
-- `gsc-transfer-bet-settle-rollback Step 5` 仍是 project-local flow 待辦，但不優先於目前總 queue。
-- 較強的第三方遊戲 direct evidence 已由 `iwin_gameserver contribution claim consolidation` 正確歸位；下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+- `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
+- 同 project Step 2 排名第二的 `oneapi-wallet-bet-result` 還沒建立 flow package。
+- 下一步補 OneAPI / PG 的 HMAC、transactionId idempotency、`PGTRANSFERINOUT` 對照素材；不直接更新履歷。
 - 需要 commit；不需要 push，除非 Nick 本輪明確要求。
