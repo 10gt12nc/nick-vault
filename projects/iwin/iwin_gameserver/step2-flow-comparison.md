@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描 / 候選 flow 比較
-狀態：本批四條候選 flow 已完成 Step 5；下一步回跨 project queue
+狀態：本批四條候選 flow 已完成 Step 5；後續跨 project queue 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論

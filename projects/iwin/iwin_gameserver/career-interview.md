@@ -64,7 +64,7 @@ iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 - `game-spin-settlement-log-reel` Step 5 已完成；一般 Game40 spin 維持 interview-only，provider log reel 支撐既有 project claim。
 - `bet-target-set-query` Step 5 已完成；coupon 打碼入口是真實開發過 + code-backed，完整打碼 flow 維持 code-backed 面試素材。
 - Career Track 的 rolling / scoped consolidation 已完成。
-- 下一步回跨 project queue，做 `third_games_api gsc-transfer-bet-settle-rollback Step 5`。
+- 後續 third_games_api 本批代表 flows 已完成到 Step 5；目前沒有預設下一步。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

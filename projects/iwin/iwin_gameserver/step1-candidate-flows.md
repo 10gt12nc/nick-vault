@@ -2,7 +2,7 @@
 
 更新時間：2026-05-15
 掃描等級：Level 1 Flow 掃描
-狀態：本批四條代表 flow 已完成 Step 5；下一步回跨 project queue
+狀態：本批四條代表 flow 已完成 Step 5；後續跨 project queue 已完成
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
 
 ## 本次結論
@@ -361,5 +361,5 @@ iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 
 - `center-http-deposit-withdraw` Step 5 已完成 claim gate，維持 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。
-- `bet-target-set-query` Step 5 已完成，下一步回跨 project queue。
+- `bet-target-set-query` Step 5 已完成，後續跨 project queue 已完成；目前沒有預設下一步。
 - 後續若新增 gameserver flow，再回填校正 project-level claim。

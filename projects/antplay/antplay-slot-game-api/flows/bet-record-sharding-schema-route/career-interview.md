@@ -88,7 +88,7 @@ Method 看起來有 annotation，但呼叫沒有經過 Spring proxy，例如 sel
 
 ## 後續回填
 
-本 flow 已回填 project-level consolidation。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 與 project-level contribution claim consolidation refresh 已完成；下一步做 rolling resume package。
+本 flow 已回填 project-level consolidation。後續 Rank 5 `runtime-rtp-darkpool-player-control Step 5` 與 project-level contribution claim consolidation refresh 已完成；後續 rolling resume package 已完成。
 
 ```text
 rolling resume package

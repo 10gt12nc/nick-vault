@@ -83,7 +83,7 @@ Senior 角度我會把它定義成 observability flow，不是 money source of t
 
 ## 9. 下一步
 
-Step 5 已完成，這條 flow 可回填 project-level async audit / observability claim。後續 Rank 4 `bet-record-sharding-schema-route Step 5`、Rank 5 `runtime-rtp-darkpool-player-control Step 5` 與 project-level contribution claim consolidation refresh 也已完成；下一步做 rolling resume package。
+Step 5 已完成，這條 flow 可回填 project-level async audit / observability claim。後續 Rank 4 `bet-record-sharding-schema-route Step 5`、Rank 5 `runtime-rtp-darkpool-player-control Step 5` 與 project-level contribution claim consolidation refresh 也已完成；後續 rolling resume package 已完成。
 
 ```text
 rolling resume package

@@ -6,7 +6,7 @@ Flow 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程。
 
 Flow slug：`antplay-bet-settle-rollback`。
 
-完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
+完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，後續 `k3s-deploy gameserver-phased-rollout Step 5` 已完成。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。`third_games_api` 本 repo 的 Antplay path 只掃到 Nick / `10gt12nc` 局部測試 commit，不足以標成 Nick 在 `third_games_api` 真實開發過。下游 `iwin_gameserver` 有 Nick / `10gt12nc` Antplay direct commits，但歸屬 `iwin_gameserver` project claim，不反包成 `third_games_api` direct contribution。
 

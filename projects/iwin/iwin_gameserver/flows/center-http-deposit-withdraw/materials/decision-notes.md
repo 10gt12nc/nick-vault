@@ -135,4 +135,4 @@ Step 5 已追 source repo remote refs、path-specific history、重要 diff 與 
 - 本 flow 完成 Step 5，維持 `專案存在 / code-backed`。
 - 不更新 `05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
 - 正式履歷仍只保守使用 iwin_gameserver 的第三方 provider 投派整合 / gameserver 錢包與投注流水串接 claim。
-- `game-spin-settlement-log-reel Step 5` 與 `bet-target-set-query Step 5` 已完成，下一步回跨 project queue 補 `third_games_api gsc-transfer-bet-settle-rollback Step 5`。
+- `game-spin-settlement-log-reel Step 5` 與 `bet-target-set-query Step 5` 已完成，後續跨 project queue 已完成 補 `third_games_api gsc-transfer-bet-settle-rollback Step 5`。

@@ -206,4 +206,4 @@ Owner 要追問：
 - 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
-原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。`game_job`、`app_bi`、`game_api` contribution claim consolidation 都已完成，下一步回 `iwin_gameserver` 已完成 Step 3 的代表 flow。
+原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。`game_job`、`app_bi`、`game_api` contribution claim consolidation 都已完成，後續 iwin_gameserver 代表 flows 已完成到 Step 5；目前沒有預設下一步。

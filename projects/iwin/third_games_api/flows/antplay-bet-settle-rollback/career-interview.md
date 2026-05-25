@@ -2,7 +2,7 @@
 
 ## 定位
 
-完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
+完成狀態：Step 5 已完成，單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，後續 `k3s-deploy gameserver-phased-rollout Step 5` 已完成。
 
 證據層級：`專案存在 / code-backed`、`分析素材 / learning-only`。目前不更新正式履歷 / 自傳。
 

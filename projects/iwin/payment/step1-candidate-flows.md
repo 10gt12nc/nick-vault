@@ -314,7 +314,7 @@ production 風險：
 
 中文名稱：人工審核、補單與訂單修復
 證據層級：專案存在 / code-backed；Nick 貢獻依三層 claim gate 判斷
-建議：已完成 Step 5；下一步轉 `payment-channel-config-selection`
+建議：已完成 Step 5；後續 `payment-channel-config-selection` 已完成到 Step 5
 
 為什麼重要：
 

@@ -62,7 +62,7 @@ Refresh 日期: 2026-05-25
 - 未做 Level 3 全 repo 逐檔逐行。
 - 未確認最新 remote refs。
 - 未掃 live DB schema、Kafka runtime topic / group、Quartz DB schedule、production runbook。
-- 未把本檔直接回寫 `05 / 08`；若要更新履歷 / 自傳，下一步應做 rolling resume package 或指定 `05 / 08` refresh。
+- 未把本檔直接回寫 `05 / 08`；若要更新履歷 / 自傳，後續 rolling resume package 已完成；若有新 evidence 才再指定 `05 / 08` refresh。
 
 ## 直接 Commit Evidence
 

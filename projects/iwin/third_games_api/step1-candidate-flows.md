@@ -439,6 +439,6 @@ iwin k3s-deploy gameserver-phased-rollout Step 5
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 `third_games_api` standalone 履歷成果。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論是不新增 `third_games_api` standalone 履歷成果。
 - `antplay-bet-settle-rollback Step 5` 已完成。
-- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；下一步回 `k3s-deploy gameserver-phased-rollout Step 5`。
+- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；後續 `k3s-deploy gameserver-phased-rollout Step 5` 已完成。
 - `iwin_gameserver contribution claim consolidation` 已確認 Antplay / GSC / PG direct commits 哪些可放履歷、哪些只作面試素材。
 - 完成後依規則自動 commit；不需要 push，除非 Nick 明確要求。

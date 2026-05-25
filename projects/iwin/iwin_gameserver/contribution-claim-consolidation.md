@@ -107,4 +107,4 @@ iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
 - Flow Track 本批代表 flows 已完成 Step 5；`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 維持 interview-only / supporting evidence，`bet-target-set-query` 只把 coupon 打碼入口作 supporting evidence。
-- 下一步回跨 project queue，補 `third_games_api gsc-transfer-bet-settle-rollback Step 5`。
+- 後續 third_games_api 本批代表 flows 已完成到 Step 5；目前沒有預設下一步。

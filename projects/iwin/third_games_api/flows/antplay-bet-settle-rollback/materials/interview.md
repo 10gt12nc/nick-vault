@@ -1,6 +1,6 @@
 # Interview：Antplay bet / settle / rollback
 
-完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
+完成狀態：Step 5 已完成，正式面試 case 與單條 flow claim gate 已收斂；`gsc-seamless-withdraw-deposit-cancel` 也已完成 Step 5，後續 `k3s-deploy gameserver-phased-rollout Step 5` 已完成。
 
 ## 30 秒草稿
 

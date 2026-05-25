@@ -1,6 +1,6 @@
 # Interview：OneAPI / PG bet_result
 
-完成狀態：Step 5 已完成，面試 case 與 claim gate 已收斂；後續 `antplay-bet-settle-rollback` 也已完成 Step 5，third_games_api 本批代表 flow 已收斂，下一步回必做收口 `k3s-deploy gameserver-phased-rollout Step 5`。
+完成狀態：Step 5 已完成，面試 case 與 claim gate 已收斂；後續 `antplay-bet-settle-rollback` 也已完成 Step 5，third_games_api 本批代表 flow 已收斂，後續 `k3s-deploy gameserver-phased-rollout Step 5` 已完成。
 
 ## 30 秒講法
 

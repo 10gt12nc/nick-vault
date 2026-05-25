@@ -23,7 +23,7 @@
 
 既有文件判斷：
 
-- `README.md`：已同步；Step 5 claim gate 已完成，下一步轉 `rolling resume package`。
+- `README.md`：已同步；Step 5 claim gate 已完成，後續 rolling resume package 已完成。
 - `architecture-map.md`：可沿用，已正確標記 dev-k3s / code-backed 邊界。
 - `step1-candidate-flows.md`：需補 evidence；`external-service-bridge` 與 config bake-in 是早期 local snapshot，已由 Step 2 / Step 3 的 remote refs 修正，這輪補上舊 evidence 邊界。
 - `step2-flow-comparison.md`：可沿用；它已補上 project-level Step 2、module / service 邊界與 flow ranking。
@@ -35,7 +35,7 @@
 Step 5 重新確認：
 
 - `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md` 可沿用，但需要把狀態從 Step 4 收斂到 Step 5。
-- 上層 README、Step 1 / Step 2、inventory、todo、casebook 需要同步「interview-only / 不更新履歷」與下一步轉 `rolling resume package`。
+- 上層 README、Step 1 / Step 2、inventory、todo、casebook 需要同步「interview-only / 不更新履歷」與後續 rolling resume package 已完成。
 
 ## Source repo 狀態
 

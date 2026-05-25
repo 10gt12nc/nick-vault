@@ -190,7 +190,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 5. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 6. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
-8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，下一步先掃 `ugsoft-connector-api`。
+8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，可選加強再掃 `ugsoft-connector-api`。
 9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補非 iwin 廣度，可選 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
 10. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
 11. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補 AntPlay 後台廣度，可選 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。

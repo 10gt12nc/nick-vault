@@ -356,4 +356,4 @@ rolling resume package
 
 - `gameserver-phased-rollout` Step 5 已完成，單條 flow claim gate 結論維持 interview-only。
 - 這條 flow 可支撐 release risk、service dependency、config boundary 與 owner decision 面試，不直接更新正式履歷。
-- 先前必做收口已完成；下一步應跑 rolling resume package 回填最新 case / claim 狀態，需要 commit，不需要 push，除非 Nick 明確要求。
+- 先前必做收口已完成；後續 rolling resume package、104 投遞欄位檢查與 `04` 面試 case 對齊已完成；目前沒有預設下一步。

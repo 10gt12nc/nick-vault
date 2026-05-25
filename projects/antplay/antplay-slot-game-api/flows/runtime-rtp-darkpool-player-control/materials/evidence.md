@@ -189,7 +189,7 @@ Step 5 結論:
 
 - 本 flow 可以回填 `antplay-slot-game-api` project-level claim，口徑是「game API runtime decision / result acceptance / dark pool failure window / RTP and math contract boundary」。
 - 本 flow 不能單獨升級成「完整 RTP 策略、完整遊戲數學、完整 player control / jackpot / dark pool platform owner」。
-- 不直接更新 `05 / 08`；本批代表 flows 與 project-level contribution consolidation refresh 已完成，下一步應做 rolling resume package。
+- 不直接更新 `05 / 08`；本批代表 flows 與 project-level contribution consolidation refresh 已完成，後續 rolling resume package 已完成。
 
 ## 9. 本輪未做
 
