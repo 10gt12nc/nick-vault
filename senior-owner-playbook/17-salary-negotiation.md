@@ -242,8 +242,8 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 
 ## 下一步
 
-若暫時沒有特定 JD，`04 / 面試 case 對齊檢查` 已完成，下一步先把三條主力 case 打磨成 90 秒 / 3 分鐘可講版本；若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
+若暫時沒有特定 JD，`04 / 面試 case 對齊檢查` 與三條主力 case 90 秒 / 3 分鐘口說稿已完成，下一步先從 Payment provider case 做口說實戰練習；若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
 
 ```text
-三條主力 case 90 秒 / 3 分鐘口說打磨
+Payment provider case 口說實戰練習
 ```

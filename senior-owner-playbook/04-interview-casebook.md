@@ -81,6 +81,159 @@
 3. 請用 3 分鐘說明 Kafka / RabbitMQ / Quartz / batch projection 失敗時，你會怎麼判斷 source of truth 與補償。
 ```
 
+## 三條主力 Case 口說打磨
+
+> 2026-05-25 口說版：這不是背稿，而是練習骨架。面試時先用 90 秒版本回答，再依追問展開 3 分鐘版本。若面試官追「是不是你主導」，一定要回到 claim boundary。
+
+### Case 1：Payment provider request / callback
+
+對應履歷主張：
+
+- 參與多個第三方金流 provider request / callback / query / withdraw 對接與維護。
+- 處理 provider sign、response parsing、merchant order id、金額單位、callback 重送、timeout 與 order consistency 類問題。
+
+90 秒版本：
+
+```text
+我比較有代表性的一條經驗是第三方金流 provider request / callback。
+
+這類 flow 表面上是接 provider API，但真正麻煩的是 money state。玩家建立充值訂單後，系統要產生 merchant order id、組 provider request、做簽章與金額單位轉換；provider 後續可能 callback 成功、失敗、重送，或 request timeout 但實際已收款。所以我在看這類 flow 時，不會只看 API 回傳，而會先確認訂單狀態機、callback log、查單入口與補償邊界。
+
+我會把 source of truth 放在本地 payment order 和可審計的 provider callback / query evidence，而不是單次 HTTP response。重複 callback 要能用 merchant order id 或 provider transaction id 做冪等；已終態訂單不能被舊 callback 覆蓋；如果 DB 成功但後續 MQ 或上分失敗，要能留下 pending / failed 狀態，讓 reconciliation 或人工補償可以接手。
+
+我的參與範圍是多個 provider request / callback / query / withdraw 對接與維護，包含 sign、response parsing、查單與 order consistency 類問題；我不會把它說成主導完整金流或完整 reconciliation owner。
+```
+
+3 分鐘版本：
+
+```text
+我用第三方金流 provider request / callback 當例子。
+
+這條 flow 的業務目的是讓玩家可以透過第三方金流充值，系統要先建立本地 payment order，再依不同 provider 組 request、簽章、轉金額單位、產生 merchant order id，然後送到 provider。後續 provider 可能同步回 response，也可能非同步 callback，還可能 timeout、重送 callback，或欄位格式不一致。
+
+正常路徑大概是：玩家建立充值單，payment service 寫入本地訂單，provider service 組 request 並送出；provider callback 回來後先驗簽、正規化欄位、找到本地訂單，再依目前訂單狀態判斷是否可轉成功或失敗。必要時也會透過 provider query 查單，確認 timeout 或未知狀態。
+
+這條 flow 我最在意的是三個邊界。第一是狀態機，訂單不能因為 provider 重送 callback 就重複上分，也不能讓已終態訂單被較舊訊息覆蓋。第二是 idempotency，merchant order id、provider transaction id、callback log 都要能支撐重送判斷。第三是補償與對帳，因為 HTTP request 成功不等於錢包側或下游副作用一定成功；如果 DB 狀態、MQ、上分或通知有一段失敗，就需要 pending / failed 狀態、查單、reconciliation 或人工補償。
+
+如果要我 owner 這條 flow，我會先補三件事：第一，明確定義 payment order lifecycle 和 allowed transition；第二，把 callback / query evidence 保存成可追蹤 audit，不讓單次 response 變成唯一判斷；第三，針對 DB 成功但下游失敗、provider 成功但本地 timeout、重複 callback 這幾個 failure window 設計 alert 與補償 runbook。
+
+我的實際說法會保守一點：我參與過多個第三方金流 provider request / callback / query / withdraw 對接與維護，也處理過 provider sign、response parsing、查單與 payment / withdraw order consistency 類問題。這可以支撐我講 provider integration 和 money correctness，但我不會說自己主導完整金流、完整帳務或完整 reconciliation。
+```
+
+常見追問：
+
+1. Provider 說成功，但本地 DB transaction rollback 怎麼辦？
+2. 本地 order 成功，但 MQ / 上分失敗怎麼辦？
+3. Callback log 是 source of truth 嗎？
+4. Timeout 要當失敗、成功，還是未知？
+5. 如果只能先補一件事，會補冪等、對帳還是 alert？
+
+### Case 2：Wallet / bet-settle / rollback
+
+對應履歷主張：
+
+- 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接。
+- 參與 AntPlay slot game API / runtime、bet / settle / rollback、transfer wallet、bet record / request log / schema routing 相關維護。
+
+90 秒版本：
+
+```text
+另一條我會主打的是遊戲下注 / 派彩 / rollback 或 transfer wallet flow。
+
+這類 flow 不能只看遊戲 API 回傳，因為真正的風險是玩家餘額、bet record、provider transaction、round log 和 report projection 不一致。以 slot bet / settle / rollback 來說，API 會接玩家下注，建立或更新 bet record，接著依 single wallet 或 transfer wallet 路徑處理扣款、開獎、派彩、rollback 或 provider settle。這裡 source of truth 要拆清楚：wallet mutation 和 bet record 狀態才接近交易真相，request log / report 只是 audit 或 projection。
+
+我會特別看三種 failure window：扣款成功但 bet record 寫失敗、遊戲結果已產生但 settle timeout、rollback 被重送或和 settle 交錯。這些不能只靠「加 transaction」解，因為 provider、wallet、MQ、report 常常跨服務。比較合理的做法是有穩定 transaction id / round id、狀態機 guard、冪等處理、補通知或補償 job，並用 wallet log / bet record / provider transaction 做 reconciliation。
+
+我的邊界是參與遊戲 provider 投派整合、gameserver 錢包 / 投注流水串接，以及 AntPlay slot game API / transfer wallet / runtime 維護；不會說成完整 wallet owner 或完整 slot platform owner。
+```
+
+3 分鐘版本：
+
+```text
+我用遊戲下注 / 派彩 / rollback flow 來說。
+
+這條 flow 的業務目的是玩家下注後，系統要正確扣款、產生遊戲結果、派彩或 rollback，最後讓玩家餘額、bet record、provider transaction 和報表可以對得起來。它比一般 API 複雜，因為 money mutation、遊戲結果、provider 狀態和 projection 不一定在同一個 transaction 裡。
+
+正常路徑會先接 bet request，建立或更新本地 bet record，判斷 single wallet 或 transfer wallet，接著進行扣款、呼叫 math / game runtime 產生結果，再做 settle / payout，必要時還要通知 provider 或寫 request log / bet log / report projection。rollback 則不能只是反向打一筆金額，還要看原始 bet / settle 狀態、provider transaction id、round id，以及這筆 rollback 是否已經處理過。
+
+我會先拆 source of truth。wallet mutation 和 bet record state 是核心；provider transaction 是外部對帳 evidence；request log、MQ、BI report 是 audit 或 projection，不能反過來當成交易真相。這個邊界很重要，因為面試常問「報表有資料是不是代表交易成功」，我的答案會是：不一定，要回到 wallet / bet record / provider transaction 對照。
+
+常見 failure window 有幾個。第一，扣款成功但 bet record 或 result 寫失敗，玩家餘額可能已變但遊戲局不完整。第二，result 已寫但 provider settle timeout，會形成未知狀態，不能直接再派一次。第三，rollback 和 settle 交錯或 rollback 被重送，可能重複退款。第四，request log MQ 失敗，會影響 audit，但不應直接 rollback 主交易。
+
+如果我 owner 這條 flow，我會優先做狀態機和冪等設計：用 round id / transaction id / provider action key 控制 bet、settle、rollback 的 allowed transition；把 wallet mutation 和 bet record 的 commit boundary 標清楚；針對 timeout 保留 unknown / pending 狀態；再用補償 job 或 reconciliation 對 wallet log、bet record、provider statement、report projection 做校正。
+
+我的 claim boundary 是：我參與過第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，也參與 AntPlay slot game API / runtime、bet / settle / rollback、transfer wallet、request log、分表與 runtime decision 相關維護。這能支撐我講 money correctness 和 failure window，但我不會說自己是完整錢包、完整 slot platform 或完整 reconciliation owner。
+```
+
+常見追問：
+
+1. 扣款成功但 bet record save 失敗，怎麼恢復？
+2. Settle timeout 後 provider 重送，如何避免重複派彩？
+3. Rollback 和 settle 同時到，狀態機怎麼設計？
+4. Request log / report projection 遺失時，客服還能查什麼？
+5. 如果你只能先補一個 owner 改善，會補 idempotency、reconciliation 還是 compensation job？
+
+### Case 3：Kafka / Quartz / report projection
+
+對應履歷主張：
+
+- 參與 RabbitMQ / Kafka / Quartz 等非同步與排程流程維護。
+- 參與代理玩家報表 projection / summary、big-win notification、activity supporting flow、daily summary / BI projection。
+
+90 秒版本：
+
+```text
+第三條我會講 Kafka / Quartz / report projection。
+
+這類 flow 的重點是不要把報表 table 當交易真相。以 settled bet event 到代理玩家報表為例，consumer 會從 Kafka 收 settled_bets，把資料依 agent、player、date、currency 聚合到報表表；Quartz job 再做 summary、backup、delete 或 daily total。這些資料對營運很重要，但它是 derived projection，不是 wallet 或 bet settlement source of truth。
+
+我會先看 event identity 和 projection key，例如 agentId、playerId、dataDay、currency，確認重送時是 upsert 還是累加，避免 duplicate event 導致報表膨脹。再看 job failure window：consumer 寫一半失敗、summary 成功但 backup / delete 失敗、delete + insert 中間被查詢、重跑跨日期或跨時區。這些都需要 batch id、generated_at、source range、retry / DLQ、replay runbook 和 reconciliation。
+
+我的參與範圍是 AntPlay slot job / event processing、Kafka / Quartz、代理玩家報表 projection / summary、big-win notification、activity supporting flow，以及 iwin game_job daily summary / Mongo backup 類維護；不會說成完整 Kafka platform 或完整 BI owner。
+```
+
+3 分鐘版本：
+
+```text
+我用 Kafka / Quartz / report projection flow 來說。
+
+這條 flow 的業務目的，是把交易或遊戲結算事件轉成營運可以看的報表、通知或活動累積狀態。例如 AntPlay slot job 會消費 settled_bets，把 bet record 依 agent、player、dataDay、currency 聚合到代理玩家報表；另外也有 big-win notification、activity accumulated bet voucher，或 iwin game_job 的 daily summary / Mongo backup。
+
+正常路徑大概是：上游完成下注結算後丟出 event，consumer 讀 event，依 projection key 做 DB insert / update 或 Redis 累加，Quartz job 再定時做 summary、backup、delete 或報表彙總。這裡最重要的觀念是：報表 table、通知、Redis accumulated key 都是 derived state，不是交易 source of truth。真正出問題時，要回到原始 bet / wallet / settlement log，再用 projection table 做輔助排查。
+
+這條 flow 的 failure window 很多。第一，Kafka event 重送時，如果 projection 是累加而不是 deterministic upsert，可能重複統計。第二，consumer 寫 DB 一半失敗，會有 partial projection。第三，Quartz summary / backup / delete 不是一個 atomic transaction，summary 成功但 delete 失敗會 duplicate，delete 成功但 backup 失敗會丟 audit evidence。第四，報表常受 dataDay、timezone、currency 維度影響，重跑時如果 source range 不清楚，數字會對不起來。
+
+如果我 owner 這類 flow，我會先定義 event identity 和 projection key，確認能否 idempotent replay；再補 consumer retry / DLQ / alert，讓失敗不是 silent failure；對 Quartz batch 我會加 expected count、processed count、failed count、source range、generated_at 或 batch id，必要時改成 staging table / versioned snapshot，避免 delete + insert 空窗直接被營運看到。
+
+我的 claim boundary 是：我參與過 AntPlay slot job / event processing，包括 Kafka consumer / Quartz job、代理玩家報表 projection / summary、big-win notification、activity supporting flow、分表 / report path；也參與過 iwin game_job daily summary / BI projection 與 Mongo backup 類維護。這能支撐我講 MQ / batch / projection correctness，但我不會說自己主導完整 Kafka event platform、完整 BI platform 或 exactly-once 架構。
+```
+
+常見追問：
+
+1. Kafka 重送時，projection 如何避免重複累加？
+2. Summary 成功、backup / delete 失敗會怎樣？
+3. 報表數字和 wallet / bet record 不一致時，誰是 source of truth？
+4. DLQ 裡的資料怎麼重放，重放會不會污染報表？
+5. Delete + insert 報表重算有空窗，怎麼改善？
+
+## 真的不需要補到全會嗎？
+
+不需要全會，甚至不應該假裝全會。Senior 面試真正看的是：
+
+- 能不能把自己主力領域講深。
+- 能不能分清 source of truth、projection、cache、audit。
+- 能不能面對 failure window 做取捨。
+- 能不能承認 claim boundary，但仍講出 code-backed 的判斷。
+- 能不能知道下一步要補哪個缺，而不是背一堆名詞。
+
+目前這三條主力 case 已足以支撐「中等可面」的素材條件；要扛到「穩過可抗追問」，還要把 partition / schema routing 與 rollout / observability 或 request log MQ 補成第 4、5 條熟練 case。要到「完全對標 Senior / Platform」，才需要 8-10 條 case 可依 JD 切換。
+
+所以策略是：
+
+```text
+先把 3 條主力講熟 -> 開始投遞 / 面試 -> 用追問回填缺口 -> 再補第 4、5 條。
+```
+
 ## 案例 1：金流 callback 一致性
 
 對應 flow：
