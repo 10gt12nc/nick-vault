@@ -28,6 +28,7 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
 - flow evidence
 - claim boundary
 - project-level career/interview 素材
+- domain-level README / architecture-map / integration-map / career-interview
 - 共用 KB
 
 不需要更新時，也要簡短說明原因。
@@ -79,6 +80,12 @@ Step 5：整理履歷 / 自傳邊界
 以下是新建或重整後的固定結構。既有 `projects/iwin/...` 若仍是舊平鋪格式，先標註「舊格式 / 待遷移」，不要在 Nick 未要求時批量搬檔。
 
 ```text
+projects/{domain}/
+  README.md
+  architecture-map.md
+  integration-map.md
+  career-interview.md
+
 projects/{domain}/{project}/
   README.md
   architecture-map.md
@@ -101,6 +108,25 @@ projects/{domain}/{project}/
 3. 要查 code evidence、技術比較、面試稿細節、不可誇大邊界時，才進 `materials/`。
 
 `flow.md` 必須自己能讀懂，不可以讓 Nick 需要在 `materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md` 裡拼答案。每份 `flow.md` 要先有初階 / 中階可讀區，再進 Senior / Owner 分析。
+
+## Domain-level 大地圖
+
+當同一 domain 已累積多個 project-level consolidation 或代表 flows 後，必須檢查 domain-level 大地圖是否存在：
+
+```text
+projects/{domain}/README.md
+projects/{domain}/architecture-map.md
+projects/{domain}/integration-map.md
+projects/{domain}/career-interview.md
+```
+
+用途：
+
+- `architecture-map.md`：整個 domain 的 repo / 子專案分工與系統位置。
+- `integration-map.md`：跨 repo 的 API / MQ / DB / job / provider / deploy 資料流。
+- `career-interview.md`：整個 domain 對履歷與面試的總結，不取代 `05 / 08`。
+
+如果 Nick 問大地圖、大結構、整個系統怎麼協作，AI 必須先確認這些檔案是否存在與是否過期；缺漏時要明確回報並補 todo / KB，不能只說「應該有」。
 
 ## 檔案責任
 

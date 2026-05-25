@@ -177,6 +177,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 13. `antplay-slot-game-job contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 4` 已完成；下一步若延續本 repo，應做 `proxy-user-data-report-projection Step 5`。
 14. `math-core / *-math contribution claim consolidation`：已完成 refreshed / grouped 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 contribution claim consolidation refresh 已完成。後續除非 Nick 指定 Level 3 final，不再平均掃 71 repo。
 15. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
+16. `domain-level system map`：2026-05-25 確認 KB 已補規則。`projects/iwin/` 目前尚缺 domain-level `architecture-map.md` / `integration-map.md`；之後若 Nick 問 iwin 整體大地圖或代表 project 收斂後要總結，應先做 `iwin system map v1`，整理 game_api、game_job、payment、third_games_api、iwin_gameserver、app_bi、bi_share、k3s-deploy 的協作與 claim boundary。`antplay` / `ugsoft` 也要依同規則檢查，不得只口頭說應該有。
 
 ### 1. 收斂後狀態
 

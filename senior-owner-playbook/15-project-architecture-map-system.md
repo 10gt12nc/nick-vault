@@ -23,6 +23,43 @@
 
 地圖只做到能回答「這條 flow 應該去哪個 repo 讀」即可。不要為了完整而畫過度抽象、沒有 evidence 的架構圖。當地圖已足夠定位 flow，就要回到單條 flow 深挖。
 
+## 收斂後必須回補大地圖
+
+Domain / system map 不是可有可無的口頭建議。當某個 domain 已經累積足夠代表 project、representative flows 或 contribution consolidation 後，AI 必須主動檢查並回補最外層總結圖。
+
+觸發條件：
+
+- 某 domain 已完成多個 project-level contribution consolidation。
+- 某 domain 的代表 flows 已足以支撐履歷或面試主敘事。
+- Nick 問「整個系統怎麼協作」、「大地圖」、「大結構」、「各子模組怎麼配合」、「做完後怎麼總結」。
+- rolling resume package 已吃進多個 project-level claims，但 domain-level architecture / integration map 還不存在或過舊。
+
+必須檢查的位置：
+
+```text
+projects/{domain}/README.md
+projects/{domain}/architecture-map.md
+projects/{domain}/integration-map.md
+projects/{domain}/career-interview.md
+```
+
+如果不存在，要列為待辦或直接建立；如果存在但沒有吸收最新 completed flows / contribution consolidation，要標為需 refresh。
+
+大地圖的責任：
+
+- 說明整個 domain 的 repo / 子專案分工。
+- 說明 API、job、admin、client、deploy、library、workspace 的協作關係。
+- 把 money flow、bet / settle flow、provider callback、report / BI、MQ / job、deploy / rollout 分開。
+- 標清楚哪些是 Nick 真實開發過，哪些是 code-backed / interview-only / supporting。
+- 把已完成代表 flows 放在正確位置，避免單條 flow 看懂但不知道它屬於整個系統哪一段。
+
+大地圖不是履歷 claim 自動升級器。沒有 project-level consolidation 或本人 / commit evidence，不得因為畫在 system map 上就寫成 Nick 主導整個系統。
+
+目前已知缺口例子：
+
+- `projects/iwin/` 已有 README，但尚未建立 domain-level `architecture-map.md` / `integration-map.md`；之後 iwin 代表 project 收斂後，應補 `iwin system map v1`。
+- `projects/antplay/` 與 `projects/ugsoft/` 也應在代表 project / flows 足夠後檢查是否需要 domain-level map，不要只停在各 repo 的 flow 文件。
+
 ## 建議結構
 
 ```text
@@ -171,6 +208,14 @@ projects/{domain}/{project}/architecture-map.md
 6. flow 讀清楚後補 decision-notes。
 
 但如果 Nick 已經指定單一 flow，可以先做 flow；之後再回補地圖。
+
+回補規則：
+
+- Step 1 / Step 2 時的 map 是粗版定位圖。
+- 單條 flow Step 3-5 會修正 map 的細節。
+- Project contribution consolidation 會補 Nick claim / interview boundary。
+- 當同一 domain 有多個 project 已完成代表 flow 或 contribution consolidation，下一輪「下一步 / 總結 / 大地圖」不得只繼續推新 flow；必須先檢查 domain map 是否缺漏或過期。
+- 若 domain map 缺漏，下一步要建議 `{domain} system map v1`，除非 Nick 明確指定先做其他 flow。
 
 ## 地圖不等於履歷
 
