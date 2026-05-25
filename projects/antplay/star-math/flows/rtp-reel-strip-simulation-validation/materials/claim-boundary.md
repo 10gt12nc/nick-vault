@@ -57,7 +57,7 @@ Step 5 gate 結論:
 - 不可誇大：不寫成完整 RTP 策略 owner、完整遊戲數學模型 owner、certification owner 或 full simulator platform owner。
 - 本輪 05 / 08：不直接更新；後續 rolling resume update 可引用本 flow evidence。
 
-下一步回 Step 2 ranking，做 Rank 3:
+後續 Rank 3 到 Rank 5 已完成，`*-math` contribution claim consolidation refresh 也已完成；目前沒有預設下一步。
 
 ```text
 antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4

@@ -117,7 +117,7 @@ Step 2 重新排序後，結論分兩層：
    - 原因：`app_bi` 的金流人工入口已完成定位，後端主線已轉到 `payment-provider-callback`，且該 flow 已完成 Step 4。
    - 產出：iwin_gameserver center_http 上分 / 下分的面試 case，不把 app_bi 人工入口或單條 flow 硬當完整 project owner。
    - 是否更新履歷：否，至少等 payment flow Step 4 / Step 5。
-`app_bi coupon-trade-admin-operation` 只保留為低優先候選，不作當前下一步；目前 app_bi 已收斂，下一步回 game_api。
+`app_bi coupon-trade-admin-operation` 只保留為低優先候選，不作當前下一步；目前 app_bi 與 game_api 相關收斂已完成；沒有預設下一步。
 
 ## Flow 比較詳述
 
