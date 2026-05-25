@@ -845,9 +845,16 @@ AI 必須主動判斷掃描深度，不要全部丟給 Nick 決定。
 - 沒有 evidence 的內容只能留在待確認或面試分析素材，不寫進正式投遞句子。
 - 若本人確認足夠但 commit / ticket 尚未補齊，履歷可用「參與 / 維護 / 開發」保守口徑，並在 claim boundary 標註「本人確認，待 commit / ticket 補強」。
 
-## 每次完成後的自動下一步建議
+## 每次完成後的下一步 / 自由提問規則
 
-AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」。必須自動補一段「下一步建議」。
+AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」，但也不可以在已收斂時硬塞任務。
+
+判斷方式：
+
+- 如果目前仍在單條 flow、project Step、contribution consolidation 或 rolling resume package 的未收口狀態，要補「下一步建議」。
+- 如果目前已達通用投遞包可用、面試稿已完成、沒有特定 JD、沒有 active flow、Nick 也沒有指定下一個任務，則進入「自由提問 / 彈性指定」狀態。
+- 自由提問狀態下，AI 只回報目前狀態、已完成什麼、可問哪些方向，不輸出 fenced prompt，不把 `iwin system map v1`、面試練習、JD 客製或新 flow 包裝成預設下一步。
+- Nick 可以自由問薪資、履歷、面試、某條 flow、架構圖、缺口、學習方向、或直接指定下一個 Step；AI 再依當下問題套用對應規則。
 
 下一步建議規則：
 
@@ -864,6 +871,7 @@ AI 每次完成 Step、flow 文件或 KB 更新後，不可以只說「完成」
 - 如果 project 尚未做 contribution consolidation，且下一步會影響履歷 claim 或 Nick 正在追問履歷價值，可以先建議 `{project} contribution claim consolidation` rolling / scoped 版；未完成代表 flows 要列為待回填，後續再回 Flow Track 補深度。
 - 如果 flow 的資料流已清楚，但 Nick 對底層技術不穩，可以在 Step 3 內補 `materials/decision-notes.md`；但若 Nick 問「下一步」且 Step 3 已完成、沒有履歷 / 自傳 / contribution claim gate 風險，預設仍建議 Step 4，不要把 decision notes 變成新 Step。
 - 如果 Nick 問「接下來」、「下一步」、「建議」，AI 要能根據目前 vault 狀態直接回答，不要求 Nick 重貼規則。
+- 如果目前已是收斂狀態，回答「沒有預設下一步；可以自由提問或彈性指定」，並簡短列出可選方向，但不要把清單當成必做 backlog。
 
 建議順序：
 

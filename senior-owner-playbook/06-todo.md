@@ -205,7 +205,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 目前狀態：
 
 ```text
-通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
 原因：
@@ -217,7 +217,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 - `k3s-deploy gameserver-phased-rollout Step 5` 已完成，claim gate 結論維持 interview-only。
 - 2026-05-25 rolling resume package、104 投遞欄位檢查與 `04 / 面試 case 對齊檢查` 已完成，`08 / 17` 已先調整為通用 Senior Java Backend / Platform Backend 投遞版。
 - 目前已不是「履歷能不能寫」或「case 能不能對上」，三條主力 case 的 90 秒 / 3 分鐘草稿也已完成；下一個缺口是 Nick 能不能實際講出來並抗追問。
-- 但練習線先暫停。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態；只有 Nick 要補架構視角時，才推薦 `iwin system map v1`。
+- 但練習線先暫停。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態：目前沒有預設下一步，可以自由提問或彈性指定；只有 Nick 要補架構視角時，才推薦 `iwin system map v1`。
 
 ### 2. iwin 各 project 局部下一步
 
@@ -269,7 +269,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 ## 當前收斂狀態
 
 ```text
-通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。
