@@ -157,9 +157,9 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 21. 每條履歷 / 面試說法的證據層級：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
 ```
 
-## 完成後必須給下一步建議
+## 完成後的下一步 / 自由提問
 
-每次完成 flow 學習包或其中一個 Step 後，AI 必須自動告訴 Nick 下一步建議。
+每次完成 flow 學習包或其中一個 Step 後，若該 flow / project 尚未收口，AI 必須自動告訴 Nick 下一步建議。若目前已達收斂狀態、沒有 active flow、沒有特定 JD、Nick 也沒有指定下一件事，則不要硬塞下一步，改回報「沒有預設下一步，可以自由提問或彈性指定」。
 
 規則：
 
@@ -169,7 +169,7 @@ Step 1 只盤點候選 flow 時，不建立 flow folder。等 Nick 選定單一 
 - Step 3 後通常建議補 failure scenarios / consistency / idempotency / retry / compensation / reconciliation。
 - 面試 case 完成前，不急著更新履歷。
 - 如果目前只看到後台 / 前端 / BI 操作入口，優先建議補讀真正後端 / 下游 repo。
-- 下一步 prompt 必須放成 Nick 可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `；code block 內只放一行短 prompt。
+- 下一步 prompt 必須放成 Nick 可直接複製的 fenced code block，格式固定為 ` ```text ... ``` `；code block 內只放一行短 prompt。收斂 / 自由提問狀態不要輸出 prompt。
 - 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；commit 前仍須遵守多 session / staging area 防污染規則，確認沒有非本輪 staged 檔案。若需要 push，直接觸發 `git push` approval 視窗，不要只停在本地文字回報。
 
 ## Flow Track 與 Career Track
