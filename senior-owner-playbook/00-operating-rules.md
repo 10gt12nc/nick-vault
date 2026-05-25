@@ -37,6 +37,8 @@ AI 都必須套用同一套規則。
 - 沒有：補 KB 規則或把缺口列入 todo；若 Nick 授權建立，就建立 `projects/{domain}/architecture-map.md` / `integration-map.md`。
 - 不得只回答「應該有」。
 
+但 domain / system map 不能插隊打斷已經進行中的單條 flow。若 Nick 已明確指定某 flow Step 3 / Step 4 / Step 5，或同一條 flow 已做到 Step 3 / Step 4 尚未收口，下一步要先把該 flow 做到 Step 5；大地圖只能在 active flow 收口後、Nick 明確要求總結、或 domain 已累積足夠代表 flows 時回補。
+
 若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪是 `KB-only` 模式。AI 只能做規則、索引、todo、readiness 文件之間的一致性修正；完成後不附 project flow 下一步 prompt、不自動開工 todo 項目、不把「必做收口」視為本輪授權。此時的下一步只允許是「已完成 KB 維護 / 是否需要 push」這種收尾資訊。
 
 ### Senior 對標結束點與停止規則
@@ -74,6 +76,7 @@ AI 需要自動維護：
 - 自動判斷是否需要補 `materials/decision-notes.md`，用來整理技術硬底子、技術選型比較、trade-off 與 owner decision。
 - 自動確認 `flow.md` 是否有初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明。沒有這一層時，不能只補 Senior / Owner 風險分析就算完成。
 - 自動檢查 domain-level 大地圖是否存在且有吸收最新代表 flows / project contribution consolidation。當同一 domain 已累積多個 project-level claims 或代表 flows，且 Nick 問「大地圖 / 大結構 / 子模組協作 / 做完後總結」時，必須先檢查 `projects/{domain}/architecture-map.md`、`integration-map.md`、`career-interview.md`；缺漏或過舊要列為待辦或建立，不得只口頭說應該有。
+- 自動檢查大地圖時必須尊重 active flow 優先級：已進行中的 flow 尚未 Step 5 前，不得把 domain map 當成下一步插隊；只能列為 active flow 收口後的待辦。
 - 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；若本輪需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不得只停在本地文字回報。
 - 多個 Codex / AI session 同時開著時，日常模式仍預設只在 `main` 開發，且同一時間只允許一個 session 具備改檔 / stage / commit 權限；其他 session 只能只讀。只有 Nick 明確需要並行整理不同 project / submodule，且每個 session 有獨立 worktree 時，才使用 project / submodule branch。
 

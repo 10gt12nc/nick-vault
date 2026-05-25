@@ -2,12 +2,14 @@
 
 日期: 2026-05-22
 
+Step 5 補充日期: 2026-05-25
+
 ## Evidence Level
 
 - 證據層級: 真實開發過 + code-backed。
 - Nick / `10gt12nc` direct evidence: `#386` 代理用戶數據、`#590` currency 拆分、`#702` key 重複、`fix ag_report_player`。
-- 完成狀態: Step 4 面試 case 已完成。
-- 本文件是 flow-level 面試素材，不是 project-level final consolidation。正式履歷仍以 `contribution-claim-consolidation.md` 與後續 Step 5 claim gate 為準。
+- 完成狀態: Step 5 claim gate 已完成。
+- 本文件是 flow-level 面試素材，不是 project-level final consolidation。正式履歷仍以 `contribution-claim-consolidation.md` 與 rolling resume package 為準；本 flow 已可回填 project-level claim，但不直接改 `05 / 08`。
 
 ## 履歷保守 Bullet
 
@@ -74,7 +76,7 @@
 
 | 情境 | 面試回答重點 |
 | --- | --- |
-| Kafka event 重送 | current code 用累計值覆寫，不是直接加 diff；但不能宣稱 exactly-once，仍要看 ack / retry / unique key / replay。 |
+| Kafka event 重送 | current code 用累計值覆寫，不是直接加 diff；source code 有基本 retry / dead-letter-topic 設定，但不能宣稱 exactly-once 或完整 replay / 補數治理，仍要看 ack / unique key / runbook。 |
 | consumer process restart | `reportMap` 會歸零，derived report 需要能從 source event / bet record 重建或對帳。 |
 | `reportMap` 長期累積 | 有 memory growth 與 concurrency sharing 風險，應評估清理策略、window aggregation 或 DB-level idempotency。 |
 | currency 缺漏 | null currency 被轉空字串；要確認舊資料 migration 與查詢語意。 |
@@ -128,6 +130,7 @@ current code 是查舊 row 後用累計值覆寫，且只有新 betCount 大於 
 - 我能解釋 Kafka event 如何投影到 DB report table。
 - 我能講 currency 維度與 key collision 的一致性問題。
 - 我能分析 Quartz summary / backup / delete 的 partial failure window。
+- 我能保守說 source code 有基本 retry / dead-letter-topic evidence，但完整 replay / DLQ 消費治理未確認。
 
 ## 不可誇大
 
@@ -135,9 +138,11 @@ current code 是查舊 row 後用累計值覆寫，且只有新 betCount 大於 
 - 不說這條 flow 有 exactly-once。
 - 不說我主導完整 BI / report platform。
 - 不說我主導完整下注結算 source of truth。
+- 不把 2026 年 Arnold / Eliot 的 current batch padding / safety 修正說成 Nick 完成。
 
-## 待 Step 5 補強
+## Step 5 Claim Gate 結論
 
-- 追 current behavior 中哪些是 Nick direct contribution，哪些是後續他人 context。
-- 確認 DB unique key / index、Kafka ack / retry、rebuild tooling 是否有 evidence。
-- 判斷這條 flow 的 claim 是否可以回填 project-level consolidation。
+- 可回填 `antplay-slot-game-job` project-level consolidation，作 Kafka report projection / Quartz summary / report identity correctness 的直接 evidence。
+- Direct evidence: `#386`、`#590`、`#702`、`fix ag_report_player`。
+- Current behavior 邊界: `ReportAgentPlayerRepositoryInternal` 的 2026 batch lookup padding / safety context 主要是後續他人 context；只作 code-backed current behavior，不當作 Nick direct contribution。
+- Source scan 未找到 DB unique key / migration evidence；面試只能說 code-level identity 是 `agentId + playerId + dataDay + currency`。

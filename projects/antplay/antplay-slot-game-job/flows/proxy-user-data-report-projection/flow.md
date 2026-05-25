@@ -2,12 +2,14 @@
 
 日期: 2026-05-22
 
+Step 5 補充日期: 2026-05-25
+
 ## 0. 閱讀定位
 
 - Flow 中文名稱: 代理玩家報表 projection / summary。
 - Flow slug: `proxy-user-data-report-projection`。
-- 完成狀態: Step 3 / Level 2 Flow 深掃完成。
-- 證據層級: 真實開發過 + code-backed；`10gt12nc` 在 `#386`、`#590`、`#702`、`fix ag_report_player` 有 direct commits，最終履歷 claim 仍等 Step 5 gate。
+- 完成狀態: Step 5 claim gate 完成。
+- 證據層級: 真實開發過 + code-backed；`10gt12nc` 在 `#386`、`#590`、`#702`、`fix ag_report_player` 有 direct commits，可回填 project-level contribution consolidation；單條 flow Step 5 不直接更新 05 / 08。
 - 本 flow 類型: Kafka event projection + Quartz report summary / cleanup。
 - 是否只確認到入口: 否，已確認 consumer、service、repository、Quartz job、主要 SQL 與 path-specific history；上游 producer 與 live DB constraint 未完整掃，標為待確認。
 
@@ -196,9 +198,9 @@ BetRecord event
 
 ### 10.1 consumer 反序列化或處理失敗
 
-consumer 外層 catch 只記 log，沒有在本輪看到 DLQ、手動 offset、replay command 或 explicit retry policy。Kafka listener 的 offset commit 行為要看 Spring Kafka container 設定，這輪未完整掃。
+consumer 外層 catch 只記 log。Step 5 補掃 `KafkaConfig` 後，確認 default listener factory 有 `DefaultErrorHandler`、`FixedBackOff(1000L, 3)` 與 dead-letter-topic 設定 evidence。
 
-保守結論: 不能宣稱這條 flow 有 exactly-once、DLQ 或完整 replay architecture。
+保守結論: 可以說 source code 有基本 retry / dead-letter-topic 設計；但不能宣稱這條 flow 有 exactly-once、完整 replay architecture、DLQ 消費治理或補數 runbook。
 
 ### 10.2 `reportMap` 長生命週期
 
@@ -228,7 +230,7 @@ insert / update 是以 DB old row 是否存在與 `report.betCount > old.betCoun
 風險:
 
 - 如果 map 與 DB old row 不一致，`betCount` 比較可能跳過某些修復。
-- DB unique key / index 未確認，不能保證 concurrent insert 不會重複 row。
+- DB unique key / index 未在 source scan 中找到，不能保證 concurrent insert 不會重複 row。
 - `findOldPlayers` padding 800 筆能穩定 SQL placeholder，但可能增加重複查詢，需要看 DB plan / index。
 
 ### 10.5 summary / backup / delete partial failure
@@ -255,7 +257,7 @@ Quartz job 對每個 player 的流程是 summary -> insert / update summary row 
 
 本輪未確認:
 
-- Kafka DLQ / retry / manual replay。
+- Kafka manual replay、DLQ 消費治理與補數 runbook。
 - 報表重建 command。
 - DB unique constraint / index。
 - backup table 去重策略。
@@ -308,12 +310,19 @@ Quartz job 對每個 player 的流程是 summary -> insert / update summary row 
 不能誇大:
 
 - 不寫完整 Kafka platform owner。
-- 不寫 exactly-once / DLQ / replay architecture owner。
+- 不寫 exactly-once / replay architecture owner；也不把基本 retry / dead-letter-topic 設定包裝成完整 DLQ 治理。
 - 不寫完整 BI / report platform owner。
 - 不寫完整金流或下注結算 source-of-truth owner。
 
-## 15. Step 3 結論
+## 15. Step 5 Claim Gate 結論
 
 這條 flow 是 `antplay-slot-game-job` 目前最適合先講的 Senior Backend case，原因是 evidence 集中、production path 完整，而且有清楚的 consistency / failure window 題材。
 
-Step 3 已建立「讀懂 flow」與「Senior 深挖」的基礎。下一步應做 Step 4，把這些 failure windows 轉成正式面試 30 秒 / 90 秒 / 3 分鐘說法、STAR、追問與回答邊界；還不直接更新 `05 / 08`。
+Step 5 已完成 claim gate:
+
+- 可回填 project-level `antplay-slot-game-job` contribution consolidation，作為 Kafka report projection / Quartz summary / report key correctness 的直接 evidence。
+- 可面試講「結算 event -> derived report projection -> daily summary / backup / delete」的 correctness、failure window 與 owner 改善方向。
+- 可保守寫入 project-level 素材池，但不由單條 flow 直接更新 `05 / 08`。
+- 不可誇大為完整 Kafka platform、完整 BI/report platform、完整 exactly-once / replay architecture owner。
+
+下一步應回到同 project Step 2 ranking，做第二順位 `activity-accumulated-bet-voucher Step 3`，而不是插隊做 domain-level 大地圖。大地圖要在 active flow 收口後、且 Nick 要求總結或 domain 已累積足夠代表 flows 時再處理。

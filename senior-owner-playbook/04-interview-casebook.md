@@ -216,6 +216,14 @@ Transfer wallet 保守邊界：
 - DLT 不是垃圾桶，要有重放與告警流程。
 - 監控要能從 request id / trace id 找回整條 flow。
 
+AntPlay slot game job 補充案例：
+
+- `antplay-slot-game-job/proxy-user-data-report-projection` 已完成 Step 5，可作 Kafka event -> DB report projection -> Quartz summary / backup / delete 的正式面試 case，也可回填 project-level job / event processing claim。
+- 這條 flow 消費 `settled_bets`，把 bet records 依 `agentId + playerId + dataDay + currency` 聚合到 `ag_report_player`，再由 `ReportAgentPlayerJob` 每天 02:00 把三天前以前資料 summary 到 `dataDay = 0`、backup 到 `ag_report_player_bak` 並刪除舊日資料。
+- Direct evidence 是 `#386` 代理用戶數據、`#590` currency 維度、`#702` key collision 與 `fix ag_report_player`；current code 有基本 retry / dead-letter-topic 設定，但 replay / DLQ 消費治理與補數 runbook 未確認。
+- 面試主軸：報表 table 是 derived projection，不是下注或 wallet source of truth；owner 要能說清 report identity、DB upsert / unique key、summary partial failure、backup / delete 重跑與 reconciliation。
+- 保守邊界：不寫完整 Kafka event platform、完整 BI / report platform、exactly-once / replay architecture owner，也不把 Arnold / Eliot 2026 current batch padding / safety 修正說成 Nick 完成。
+
 ## 案例 5：K3s / rollout / observability
 
 對應 flow：

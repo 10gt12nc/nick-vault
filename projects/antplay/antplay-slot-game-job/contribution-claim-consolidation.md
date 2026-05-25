@@ -2,6 +2,8 @@
 
 日期: 2026-05-20
 
+2026-05-25 補充: `proxy-user-data-report-projection Step 5` 已完成。該 flow 可作 project-level Kafka report projection / Quartz summary / report key correctness 的直接 evidence；但 `ReportAgentPlayerRepositoryInternal` 的 2026 batch padding / safety 修正屬後續他人 context，Kafka replay / DLQ 消費治理與 DB unique key 仍未確認，不能升級成完整 Kafka / BI platform owner。
+
 ## 結論
 
 `antplay-slot-game-job` 可以列為 Nick / `10gt12nc` 真實開發過的 job / event processing repo。Direct commits 觸及 Kafka consumer、Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、db partition / job config 與後續 report 修正。

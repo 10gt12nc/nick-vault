@@ -214,6 +214,7 @@ projects/{domain}/{project}/architecture-map.md
 - Step 1 / Step 2 時的 map 是粗版定位圖。
 - 單條 flow Step 3-5 會修正 map 的細節。
 - Project contribution consolidation 會補 Nick claim / interview boundary。
+- 如果已有 active flow 做到 Step 3 / Step 4 但尚未 Step 5，下一步必須先讓該 flow 收口，domain / system map 只能列為收口後待辦；除非 Nick 明確說暫停 flow、先做大地圖。
 - 當同一 domain 有多個 project 已完成代表 flow 或 contribution consolidation，下一輪「下一步 / 總結 / 大地圖」不得只繼續推新 flow；必須先檢查 domain map 是否缺漏或過期。
 - 若 domain map 缺漏，下一步要建議 `{domain} system map v1`，除非 Nick 明確指定先做其他 flow。
 

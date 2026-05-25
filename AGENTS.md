@@ -39,6 +39,7 @@
 - 新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2：比較 candidate flows、技術點、風險、module / repo / service 邊界。不得在沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / multi repo / monorepo 類專案，Step 1 / Step 2 必須先整理 module / submodule / service instance / upstream-downstream 邊界。不能只挑一條看起來高價值的 flow 就跳過子模組地圖；也不能平均做 class summary。架構圖只作定位，Step 2 才決定哪條 flow 進 Step 3。
 - 一條 flow 完成 Step 5 後，不代表整個 project 完成。若同 project 的 Step 1 / Step 2 還有未完成 candidate flows，下一步要回到同 project 選下一條 flow；不要自行跳到其他 project，除非 Nick 明確說要換專案。
+- Domain / system map 不能插隊打斷已經進行中的單條 flow。若 Nick 已指定某 flow Step 3 / Step 4 / Step 5，或同一條 flow 已做到 Step 3 / Step 4 尚未收口，下一步要先把該 flow 做到 Step 5；大地圖只能在 active flow 收口後、Nick 明確要求總結、或 domain 已累積足夠代表 flows 時回補。
 - `nick-vault` 的目標不是無限掃完所有 repo，而是對標 Senior Java Backend / Platform Backend 形成可投遞、可面試、可防追問的證據包。AI 回答「下一步 / 還剩多少 / 要不要繼續」時，必須分成 `必做收口`、`可選加強`、`暫不建議做`，不得把 backlog 包裝成永遠必做。
 - Senior 對標結束點：3-5 個 project-level claim 可保守放履歷、8-10 條 production flow 能講 3 分鐘並抗追問、每條 claim 都分清真實開發 / code-backed / 不可誇大、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應建議停止大規模整理，轉為投履歷、練面試、針對職缺補洞。
 - 目前收斂策略：先完成必做收口，再視需要只補 2 個非 iwin project 的代表 flow；不要平均掃所有 repo。已完成或低價值 repo（官網、前端、workspace、mock、全部 legacy / 全部 math repo 平均深掃）預設列入暫不建議，除非 Nick 明確指定。
