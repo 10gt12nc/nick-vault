@@ -4,6 +4,8 @@
 
 > 2026-05-22 rolling resume package：已同步 `third_games_api` 本批 Step 5 與 `k3s-deploy gameserver-phased-rollout Step 5`。兩者都維持 interview-only，不新增正式履歷主成果；可作 provider wallet boundary、retry / duplicate failure window、K3s rollout / rollback / observability 的面試補充案例。
 
+> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成；`08` 可作通用 Senior Java Backend / Platform Backend 104 投遞稿。`antplay-slot-game-job` 五條代表 flows 已完成 Step 5 並回填履歷 / 談薪邊界。下一步不是再補履歷，而是做 `04 / 面試 case 對齊檢查`：把 104 主打 bullet 對應到本檔可講 3 分鐘的 cases，確認每個主 claim 都能抗追問。
+
 ## 案例 1：金流 callback 一致性
 
 對應 flow：

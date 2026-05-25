@@ -24,6 +24,8 @@ Senior Java Backend
 
 整理終點不是「所有 repo 都做完」，而是達到 Senior / Platform Backend 可投遞、可面試、可防追問的證據包。判斷標準是：3-5 個可保守放履歷的 project-level claim、8-10 條能講 3 分鐘的 production flow、每條 claim 的真實開發 / code-backed / 不可誇大邊界清楚，以及 `05 / 08 / 04 / 17` 已對齊。達到後應停止大規模整理，改成投遞、面試練習與依職缺補洞。
 
+> 2026-05-25 KB refresh：`05 / 08 / 17` 已完成 rolling refresh，`08` 已完成 104 投遞欄位檢查。沒有特定 JD 時，下一步不是重新客製履歷，而是做 `04 / 面試 case 對齊檢查`，確認 104 主 claim 對應到可講 3 分鐘的 cases。
+
 可以投：
 
 - Senior Java Backend Engineer
@@ -54,8 +56,8 @@ Senior Java Backend
 第一優先：
 
 - `payment-provider-callback`
-- `transfer-wallet-transfer-in-out`
-- `settled-bets-kafka`
+- `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+- `antplay-slot-game-job/proxy-user-data-report-projection` 或 `request-log-rabbitmq-async`
 
 第二優先：
 
@@ -98,10 +100,10 @@ Senior Java Backend
 
 第一優先：
 
-- `transfer-wallet-transfer-in-out`
+- `antplay-slot-game-api/transfer-wallet-money-in-out`
 - `ug-adapter-provider-gateway`
 - `request-log-traceability`
-- `observability-pipeline`
+- `k3s-deploy/gameserver-phased-rollout`（interview-only 加分，不作正式 DevOps / SRE owner）
 
 第二優先：
 
@@ -145,9 +147,9 @@ Senior Java Backend
 第一優先：
 
 - `payment-provider-callback`
-- `transfer-wallet-ledger`
-- `bet-settlement`
-- `settled-bets-kafka`
+- `antplay-slot-game-api/slot-bet-settle-rollback`
+- `iwin_gameserver/third-party-transfer-in-out`
+- `antplay-slot-game-job/proxy-user-data-report-projection`
 
 第二優先：
 
@@ -192,9 +194,9 @@ Senior Java Backend
 第一優先：
 
 - `payment-provider-callback`
-- `observability-pipeline`
-- `k3s-migration-track`
-- `admin-rbac-operations`
+- `antplay-slot-game-job/proxy-user-data-report-projection`
+- `k3s-deploy/gameserver-phased-rollout`（interview-only）
+- `antplay-slot-game-api/bet-record-sharding-schema-route`
 
 第二優先：
 
@@ -234,10 +236,10 @@ Senior Java Backend
 如果只能準備 5 條，順序如下：
 
 1. `payment-provider-callback`
-2. `transfer-wallet-transfer-in-out`
-3. `settled-bets-kafka`
-4. `bet-settlement`
-5. `observability-pipeline`
+2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+3. `antplay-slot-game-job/proxy-user-data-report-projection`
+4. `request-log-rabbitmq-async` 或 `bet-record-sharding-schema-route`
+5. `k3s-deploy/gameserver-phased-rollout`（interview-only 加分）
 
 這 5 條分別覆蓋：
 
@@ -276,41 +278,47 @@ Senior Java Backend
 - 可以開始面偏 Senior 職缺。
 - 但抗追問能力還不穩。
 
-### Level 2：完成 3 條 case
+### Level 2：中等可面，完成 3 條 case
 
 狀態：
 
-- money / wallet / MQ 各有一條。
-- 能回答 failure、state、trade-off。
+- payment、wallet / bet-settle、MQ / projection 至少各有一條。
+- 每條能講 3 分鐘，有 evidence、claim boundary 與 5 個常見追問。
+- 能回答入口、source of truth、failure window、state transition、retry / compensation。
 
 結果：
 
 - 可以較有底氣投 10 萬以上 Senior / Platform Backend。
+- 遇到強追問仍可能需要回來補洞。
 
-### Level 3：完成 5 條 case
+### Level 3：穩過可抗追問，完成 5 條 case
 
 狀態：
 
-- money、wallet、MQ、settlement、observability 都有。
-- 每條都有 5 個追問。
+- payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability 都有。
+- 每條都有 90 秒、3 分鐘、STAR、failure scenarios、owner decision 與不可誇大邊界。
 - 履歷 bullet 已依 evidence 調整。
+- 能依 JD 重排案例順序，不靠背稿硬講。
 
 結果：
 
 - Senior / Platform Backend 面試準備度明顯完整。
 - 可以挑更重視核心系統與 production ownership 的職缺。
 
-### Level 4：Lead / Architect 候選
+### Level 4：完全對標 Senior / Platform，Lead / Architect 候選能力
 
 狀態：
 
+- 8-10 條 production flow 可依 JD 切換使用。
 - 每條 case 都能講 decision trade-off。
 - 能提出 phased migration。
 - 能講 rollback / monitoring / team maintenance。
 - 能區分短期修補與長期架構演進。
+- `05 / 08 / 04 / 17` 與最新 claim boundary 全部對齊。
 
 結果：
 
+- 完全對標 Senior / Platform Backend。
 - 可以面 Lead / Architect 候選能力職缺。
 - 但履歷仍應保守，不要自稱正式 Architect。
 

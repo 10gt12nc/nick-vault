@@ -52,6 +52,14 @@ AI 都必須套用同一套規則。
 3. 邊界乾淨：每個 claim 都能回答「我實際做過什麼、我分析過什麼、不能說什麼」。
 4. 投遞包完成：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md` 與最新 project contribution consolidation 對齊。
 
+Senior 面試準備度要用三段門檻，不再只用「最低能投」判斷：
+
+- `中等可面`：3 條主力 case 能講 3 分鐘，有 evidence、claim boundary 與常見追問。
+- `穩過可抗追問`：5 條 case 覆蓋 payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability，並能講 owner decision。
+- `完全對標 Senior / Platform`：8-10 條 production flow 可依 JD 切換，`05 / 08 / 04 / 17` 與 claim boundary 全部對齊。
+
+AI 回答「下一步 / 還差多少 / 是否夠 Senior」時，必須說明目前落在哪一段，下一步是補到中等、穩過，還是完全對標；不得把低標準包裝成完成。
+
 當 Nick 問「目前還有多少 step / 會不會一直做 / 什麼時候結束 / 對標資深夠不夠」時，AI 不得只丟下一個 flow。必須把剩餘工作分成：
 
 - `必做收口`：完成目前已進行、會影響履歷 / 面試閉環的少數 Step。

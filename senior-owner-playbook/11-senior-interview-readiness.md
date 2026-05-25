@@ -6,7 +6,7 @@
 
 > 整理完 `nick-vault` 不等於已經穩上 10 萬以上職缺。
 
-`nick-vault` 的價值是把準備路線、提示詞、履歷、自傳、case study 方法論整理乾淨。真正能不能打 Senior 面試，最低取決於你是否能把 3-5 條主力 production flow 講清楚，而且每條都有 code evidence、風險判斷、owner decision 與不誇大的履歷邊界；完整證據包則要擴到 8-10 條可切換使用的 production flow。
+`nick-vault` 的價值是把準備路線、提示詞、履歷、自傳、case study 方法論整理乾淨。真正能不能打 Senior 面試，不再用「最低能投」當標準，而是分成三段：`中等可面`、`穩過可抗追問`、`完全對標 Senior / Platform`。完整證據包要能把 8-10 條 production flow 依不同 JD 切換使用。
 
 ## 對標資深的整理結束點
 
@@ -19,8 +19,9 @@
 
 口徑拆分：
 
-- `3-5 條主力 flow`：最低投遞 / 面試門檻，必須練到能穩定口說與抗追問。
-- `8-10 條 production flow`：完整 Senior / Platform Backend 證據包，用來覆蓋不同職缺與不同追問方向。
+- `中等可面`：3 條主力 flow 能講 3 分鐘，有 evidence、claim boundary 與常見追問。
+- `穩過可抗追問`：5 條 case 覆蓋 payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability，能講 owner decision。
+- `完全對標 Senior / Platform`：8-10 條 production flow 可切換使用，`05 / 08 / 04 / 17` 與所有 claim boundary 對齊。
 
 達到這個標準後，就不應再平均掃所有 repo。下一階段應改成：
 
@@ -33,6 +34,8 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 ## 目前狀態判斷
 
+> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。現在缺口已從「能不能寫履歷」轉成「履歷主 claim 是否都能對應到 3 分鐘面試 case」。下一步應做 `04 / 面試 case 對齊檢查`，而不是再平均掃 repo 或重跑 contribution consolidation。
+
 ### 已完成
 
 - Senior / Owner 核心定位已整理。
@@ -44,32 +47,34 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 - 投遞用自傳已整理。
 - 未來專案資料夾 `projects/` 已建立。
 - 已有 `app_bi` 四條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`、`daily-game-record-summary`、`game-round-record-query`。但它們目前仍屬於後台 / BI / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
-- 已有多條 iwin flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback`、`payment/withdrawal-auto-review-refund`、`payment/payment-order-provider-request`、`payment/manual-order-review-repair`、`payment/payment-channel-config-selection`、`game_api/coupon-redeem-credit-grant`、`game_job/daily-game-data-summary`、`game_job/third-party-record-mongo-backup`、`game_job/coin-flow-batch-projection`、`game_job/online-payment-data-cleaning`、`game_job/partition-table-creation`、`third_games_api/gsc-transfer-bet-settle-rollback`、`iwin_gameserver/third-party-transfer-in-out`、`k3s-deploy/gameserver-phased-rollout`。`payment`、`game_api`、`game_job`、`iwin_gameserver` 已完成 project contribution claim consolidation，可採各自保守 claim；`third_games_api` 與 `k3s-deploy` 目前維持 interview-only，不能只靠單條 flow Step 5 直接升級成履歷主張。
+- 已有多條 iwin / antplay / ugsoft flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback`、`payment/payment-order-provider-request`、`game_api/coupon-redeem-credit-grant`、`game_job/daily-game-data-summary`、`game_job/third-party-record-mongo-backup`、`third_games_api/gsc-transfer-bet-settle-rollback`、`iwin_gameserver/third-party-transfer-in-out`、`k3s-deploy/gameserver-phased-rollout`、`antplay-slot-game-api` 五條代表 flow、`antplay-slot-game-job` 五條代表 flow 與 `*-math` 五條代表 flow。`payment`、`game_api`、`game_job`、`iwin_gameserver`、`ugsoft-admin-api`、`ugsoft-connector-api`、`antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core / *-math` 已完成 project contribution claim consolidation，可採各自保守 claim；`third_games_api` 與 `k3s-deploy` 目前維持 interview-only，不能只靠單條 flow Step 5 直接升級成履歷主張。
+- `05 / 08 / 17` 已完成 2026-05-25 rolling refresh，`08` 已完成 104 投遞欄位檢查，可作通用 Senior Java Backend / Platform Backend 投遞稿。
 
 ### 尚未完成
 
-- 尚未完成 3-5 條同時具備 high-value backend depth、完整 evidence、claim boundary 與 Nick 本人 evidence 的主力 production case，例如 payment callback、wallet transfer、Kafka settlement、game settlement。
-- 尚未完成 3-5 條可作為 Senior 面試主力的後端案例；目前已有素材，但多數仍停在 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
-- 尚未把 3 條主力後端 case 打磨成可穩定口說、可抗追問的 3 分鐘版本。
-- 已有部分 evidence-backed 履歷 bullet，但仍需要繼續收斂 3-5 條可抗追問的主力 production case，並對各 project 分開做 contribution consolidation。
+- 尚未完成 `04 / 面試 case 對齊檢查`：需要把 104 主打 bullet 對應到 8-10 條可講 3 分鐘的 cases，標清楚每條 claim 是真實開發、code-backed、interview-only 或不可誇大。
+- 尚未把 3-5 條最常用主力 case 打磨成可穩定口說、可抗追問的 90 秒 / 3 分鐘版本。
+- 尚未依實際 JD 調整 `08 / 17`；沒有 JD 時維持通用版，不需要為客製而等待。
 
 所以目前狀態是：
 
 ```text
-準備系統已完成。
-已有 app_bi 入門 case、多條 iwin 保守面試素材與 payment project-level 履歷 claim。
-Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case。
+履歷 / 自傳 / 談薪包已可先投遞。
+已有多個 project-level claim 與多條 production flow 素材。
+下一個缺口是面試 case 對齊與口說打磨，不是繼續平均掃 repo。
 ```
 
-## 能投 10 萬以上職缺前的最低門檻
+## Senior 面試分級門檻
 
-至少完成以下 5 條中的 3 條：
+### 中等可面
 
-1. `payment-provider-callback`
-2. `transfer-wallet-transfer-in-out`
-3. `bet-settlement` 或 `game-round-settlement`
-4. `settled-bets-kafka` 或 `bet-record-request-log-mq`
-5. `observability-pipeline` 或 `k3s-migration-track`
+至少能從以下類型選出 3 條講到 3 分鐘並抗追問：
+
+1. 金流 / payment：`payment-provider-callback` 或 `payment-order-provider-request`
+2. 遊戲錢包 / bet-settle：`iwin_gameserver/third-party-transfer-in-out`、`antplay-slot-game-api/slot-bet-settle-rollback` 或 `transfer-wallet-money-in-out`
+3. MQ / report projection：`antplay-slot-game-job/proxy-user-data-report-projection`、`request-log-rabbitmq-async` 或 `daily-game-data-summary`
+4. high-traffic data / partition：`bet-record-sharding-schema-route` 或 `db-partition-job-report-routing`
+5. platform / observability：`k3s-deploy/gameserver-phased-rollout` 只能作 interview-only 加分，不作正式履歷主 claim
 
 每條都必須有：
 
@@ -80,6 +85,26 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 - 5 個可能追問
 - 履歷保守 bullet
 - claim boundary
+
+### 穩過可抗追問
+
+要能從上面類型選出 5 條，且每條補齊：
+
+- 90 秒 / 3 分鐘 / STAR 三種說法。
+- failure scenarios 與 owner decision。
+- 如果重做，會怎麼分階段改善。
+- 監控、rollback、reconciliation 或補償策略。
+- 哪些是真實開發過，哪些只是 code-backed / interview-only。
+
+### 完全對標 Senior / Platform
+
+要能做到：
+
+- 8-10 條 production flow 可依 JD 切換。
+- `04-interview-casebook.md` 每個主 claim 都對應到 104 履歷 bullet。
+- `05 / 08 / 17` 與最新 claim boundary 一致。
+- 能被問到「你主導嗎」、「如果上線壞掉怎麼辦」、「你怎麼取捨」時保守但不失分地回答。
+- 達到後停止大規模整理，轉投遞、面試練習、面試後補洞。
 
 ## 10 萬 Senior 面試必備能力
 
@@ -224,13 +249,13 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 6. 一份離職 / 轉職理由，不能抱怨公司。
 7. 一份薪資說法，聚焦職責與市場，不要只講缺錢；目前統一維護在 `17-salary-negotiation.md`。
 
-## 第一輪要做的 3 條 Case
+## 第一輪要練熟的 3 條 Case
 
-建議先做：
+目前建議先從已完成素材中選：
 
 1. `payment-provider-callback`
-2. `third-party-transfer-in-out` / `transfer-wallet-transfer-in-out`
-3. `daily-game-data-summary` / `third-party-record-mongo-backup`
+2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+3. `antplay-slot-game-job/proxy-user-data-report-projection` 或 `game_job/daily-game-data-summary`
 
 理由：
 
@@ -240,8 +265,8 @@ Senior 面試主力內容仍需收斂到 3-5 條 evidence-backed production case
 
 這三條完成後，再補：
 
-4. `settled-bets-kafka` 或其他 Kafka / MQ flow
-5. `observability-pipeline` / rollout / K3s 類 case
+4. `request-log-rabbitmq-async`、`bet-record-sharding-schema-route` 或其他 Kafka / MQ / table governance flow
+5. `k3s-deploy/gameserver-phased-rollout` / rollout / observability 類 case（interview-only 加分）
 
 每條 case 必須能講：
 

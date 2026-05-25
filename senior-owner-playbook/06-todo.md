@@ -264,15 +264,36 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。
 
-## Senior 面試最低門檻
+## Senior 面試對標門檻
 
-要開始比較有把握投 10 萬以上 Senior / Platform Backend 職缺，至少先完成：
+不要再用「最低能投」當標準。2026-05-25 後，履歷 / 自傳 / 談薪包已可先投遞；接下來要把 Senior 面試準備度提高到 `中等可面 -> 穩過可抗追問 -> 完全對標 Senior / Platform`。下一步是 `04 / 面試 case 對齊檢查`，從下列已完成素材挑主力 case：
 
-1. `payment-provider-callback`
-2. `transfer-wallet-transfer-in-out`
-3. `settled-bets-kafka`
+1. `payment-provider-callback` 或 `payment-order-provider-request`
+2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+3. `antplay-slot-game-job/proxy-user-data-report-projection` 或 `game_job/daily-game-data-summary`
 
-每條都要有：
+### 中等可面
+
+- 3 條主力 case 能講 3 分鐘。
+- 每條都有 evidence、claim boundary 與 5 個常見追問。
+- 能說清入口、DB / Redis / MQ / provider、source of truth、failure window。
+- 可以投 Senior / Platform Backend，但遇到強追問仍可能需要回來補洞。
+
+### 穩過可抗追問
+
+- 5 條 case 覆蓋 payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability。
+- 每條都有 90 秒、3 分鐘、STAR、failure scenarios、owner decision 與不可誇大邊界。
+- 能回答「如果你重做會怎麼設計」、「先修哪裡」、「如何監控 / rollback / reconciliation」。
+- 面試不靠背稿，能依 JD 重排案例順序。
+
+### 完全對標 Senior / Platform
+
+- 8-10 條 production flow 可切換使用，且 `05 / 08 / 04 / 17` 全部對齊。
+- 每條 claim 都能分清：真實開發過、本人確認、code-backed、interview-only、不可誇大。
+- 能把 project-level claim、單條 flow、薪資談判與自我介紹互相對上。
+- 達到後停止大規模整理，改成投遞、面試練習、面試後補洞，不再平均掃 repo。
+
+每條主力 case 都要有：
 
 - `flow.md`
 - `career-interview.md`

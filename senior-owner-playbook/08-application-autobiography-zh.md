@@ -184,10 +184,10 @@
 真正要證明能力，要靠 case study：
 
 - `payment-provider-callback`
-- `transfer-wallet-transfer-in-out`
-- `bet-settlement`
-- `settled-bets-kafka`
-- `observability-pipeline`
+- `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+- `antplay-slot-game-job/proxy-user-data-report-projection`
+- `request-log-rabbitmq-async` 或 `bet-record-sharding-schema-route`
+- `k3s-deploy/gameserver-phased-rollout`（interview-only 加分）
 
 面試時不要背自傳，要把自傳壓成 30 秒定位，然後用 3-5 個 production case 證明深度。
 
