@@ -56,9 +56,11 @@
 
 ## Rolling 合併投遞版（目前可用）
 
-> 狀態：2026-05-25 rolling refresh，已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh、`third_games_api` 本批 Step 5 收斂、`k3s-deploy gameserver-phased-rollout Step 5` interview-only 邊界，以及 `antplay-slot-game-job` 五條代表 flow Step 5 / contribution consolidation refresh。這版先給投遞 / 履歷使用；後續 flow 深掃與新 evidence 會再回填修正。
+> 狀態：2026-05-25 rolling refresh + 104 投遞欄位檢查完成。已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh、`third_games_api` 本批 Step 5 收斂、`k3s-deploy gameserver-phased-rollout Step 5` interview-only 邊界，以及 `antplay-slot-game-job` 五條代表 flow Step 5 / contribution consolidation refresh。這版可作通用 Senior Java Backend / Platform Backend 104 投遞稿；後續 flow 深掃、Step 5 或新 evidence 仍要回填修正。
 
 > 通用目標職缺假設：Senior Java Backend / Platform Backend，職務內容偏第三方金流 / 遊戲 provider gateway、wallet / bet-settle、MQ / batch、交易一致性、既有系統接手與 production troubleshooting。Nick 暫時沒有特定 JD 時，使用本通用版投遞；只有實際 JD 偏純後台、純 DevOps、純遊戲數學、純管理職，或 Nick 明確要求客製時，才另行改版。
+
+> 104 欄位檢查結果：工作經驗可貼目前 7 + 4 bullets；專長可貼目前 6 bullets；自傳建議使用「一般投遞版：700-1200 字」；自我推薦可貼本節 `自我推薦`。目前沒有加入主導、完整 owner、量化改善或未證實事故修復；若投純後台 / 純 DevOps / 純管理職，再另做 JD-specific 降調。
 
 ### 104 欄位版
 
