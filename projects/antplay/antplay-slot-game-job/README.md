@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `settle-pool-monitor-darkpool-sync` Step 5 已完成 / 2026-05-25 |
+| Flow Track | `db-partition-job-report-routing` Step 3 已完成 / 2026-05-25 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
-| 下一步 | `antplay antplay-slot-game-job db-partition-job-report-routing Step 3` |
+| 下一步 | `antplay antplay-slot-game-job db-partition-job-report-routing Step 4` |
 
 ## Claim Boundary
 
@@ -22,6 +22,7 @@
 - `activity-accumulated-bet-voucher Step 5` 已確認只作 reward correctness 面試素材與 project-level supporting evidence；不單獨放正式履歷。
 - `big-win-notification Step 5` 已完成 claim gate；可回填 project-level supporting evidence，但不單獨更新 `05 / 08`。
 - `settle-pool-monitor-darkpool-sync Step 5` 已完成 claim gate；只作 code-backed / analysis-first 面試素材，不回填正式履歷。
+- `db-partition-job-report-routing Step 3` 已建立分表 / schema route / report path repair 學習包；Nick / `10gt12nc` 有 `db_partition v2` 與 `fix ag_report_player` direct evidence，但 current `@UseSchema` framework 是多人後續脈絡，暫不單獨更新 `05 / 08`。
 
 不可誇大:
 
@@ -30,6 +31,7 @@
 - 不寫 big-win notification guaranteed delivery；`_id` / `BetIdPersistence` / downstream push bridge 未證明去重，`fullPlayerName` 也未證明已被下游過濾。
 - 不寫完整 settle pool / risk / jackpot owner；後續 commit 顯示其他人有大量接續開發。
 - 不把 `settle-pool-monitor-darkpool-sync` 寫成 Nick 真實開發；目前未找到 Nick / `10gt12nc` direct path-specific evidence。
+- 不寫完整 DB sharding / schema routing owner；`db-partition-job-report-routing` 目前只支撐分表與 report path 維護，不代表完整架構主導。
 - 不寫完整 BI / report platform owner。
 - 不寫完整遊戲數學 / RTP 策略 owner。
 
@@ -46,3 +48,5 @@
 - [flows/big-win-notification/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/big-win-notification/career-interview.md)
 - [flows/settle-pool-monitor-darkpool-sync/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/settle-pool-monitor-darkpool-sync/flow.md)
 - [flows/settle-pool-monitor-darkpool-sync/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/settle-pool-monitor-darkpool-sync/career-interview.md)
+- [flows/db-partition-job-report-routing/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/flow.md)
+- [flows/db-partition-job-report-routing/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/career-interview.md)

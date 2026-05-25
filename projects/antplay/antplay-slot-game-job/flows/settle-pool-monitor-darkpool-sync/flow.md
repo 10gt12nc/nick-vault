@@ -394,8 +394,8 @@ Step 5 重新確認後，claim boundary 維持保守：
 
 不可履歷主寫：不回填 `05 / 08`，不單獨寫成正式履歷 bullet，不說 Nick 主導 settle pool / dark pool / risk / jackpot / player control platform。
 
-下一步回到同 project Step 2 ranking，若 Nick 要繼續 `antplay-slot-game-job`，應做下一條未完成候選 flow `db-partition-job-report-routing Step 3`。這是支線加強，不是履歷必需；目前已完成的 job project-level consolidation 仍可沿用。
+Rank 5 `db-partition-job-report-routing Step 3` 已完成。若 Nick 要繼續 `antplay-slot-game-job`，應做同一條 flow `db-partition-job-report-routing Step 4`。這是支線加強，不是履歷必需；目前已完成的 job project-level consolidation 仍可沿用。
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 3
+antplay antplay-slot-game-job db-partition-job-report-routing Step 4
 ```
