@@ -1,8 +1,10 @@
 # 薪資談判定位
 
-> 狀態：2026-05-22 rolling 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
+> 狀態：2026-05-25 rolling 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
 
 > 2026-05-22 履歷包同步：`third_games_api` 本批代表 flows 與 `k3s-deploy gameserver-phased-rollout` 已完成 Step 5，但都維持 interview-only，不新增談薪主 claim。談薪主軸仍放在 payment、iwin_gameserver / game_api / game_job、UGSoft、AntPlay game-api / game-job / math 的保守可用履歷 evidence；K3s / rollout / observability 只能作 Platform Backend 加分案例，不可當作完整 DevOps / SRE owner 來抬價。
+
+> 2026-05-25 履歷包同步：`antplay-slot-game-job` contribution refresh 已回填。談薪主軸可新增 / 強化 AntPlay job / event processing、Kafka / Quartz、proxy report projection / summary、big-win notification、activity supporting flow、partition / report path；settle pool / darkpool 只作 analysis-first 面試素材，不可當作完整 Kafka event platform、reward platform、DB sharding / schema routing、BI / report platform 或 risk / jackpot owner 來抬價。
 
 ## 定位
 
@@ -27,7 +29,7 @@ Senior Java Backend / Platform Backend
 
 - 主軸 1：第三方金流 provider request / callback / query / withdraw，能講簽章、callback 重送、timeout、訂單狀態與補償邊界。
 - 主軸 2：第三方遊戲 provider / gameserver 錢包與下注結算，能講 bet / settle / refund / transfer-in-out、wallet boundary、round log 與 projection。
-- 主軸 3：MQ / Kafka / Quartz / batch，能講 request log、bet record、report projection、retry、DLT、重跑與營運查詢。
+- 主軸 3：MQ / Kafka / Quartz / batch，能講 request log、bet record、report projection / summary、big-win notification、partition / report path、retry、DLT、重跑與營運查詢。
 - 主軸 4：legacy takeover / system reconstruction，能講如何用 code reading、git history、DB / Redis / MQ / log flow 重建可維護脈絡。
 - 加分但不當主 claim：K3s rollout / observability analysis、AI-assisted engineering workflow、slot math module 維護與驗證。
 
@@ -221,7 +223,7 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 - 參與第三方金流 provider request / callback / query / withdraw 對接與維護。
 - 參與 payment / withdraw order consistency 類問題修正。
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接。
-- 參與 AntPlay slot game API / job / math module、UGSoft provider connector / gateway、RabbitMQ / Kafka / Quartz 非同步處理。
+- 參與 AntPlay slot game API / job / math module、UGSoft provider connector / gateway、RabbitMQ / Kafka / Quartz 非同步處理；game-job 可講 proxy report projection / summary、big-win notification、activity supporting flow 與 partition / report path。
 - 能透過 code reading、log、git history、DB / Redis / MQ 流向重建 production flow。
 - 能在交接文件不足時，協助梳理服務、部署環境、資料流與維運脈絡，讓既有平台恢復可維護 / 可交接狀態。
 - 能建立 AI-assisted 開發閉環：code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。
@@ -234,13 +236,14 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 - 不說完整遊戲平台 / gameserver owner。
 - 不說完整 slot math framework / RTP 策略 owner。
 - 不說完整 Kafka / RabbitMQ architecture owner。
+- 不說完整 reward platform、完整 DB sharding / schema routing owner 或完整 BI / report platform owner。
 - 不說完整 DevOps / K3s migration / SRE owner。
 - 不把「會用 AI 工具」包裝成 AI 自動完成 production 開發；要強調自己負責判斷、驗證、review 與收斂。
 
 ## 下一步
 
-若暫時沒有特定 JD，下一步先用通用版練面試與投遞；若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
+若暫時沒有特定 JD，下一步先檢查通用版 104 欄位是否能直接投遞；若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
 
 ```text
-幫我用通用版 08 / 17 練一版 Senior Java Backend 面試 3 分鐘自我介紹
+104 投遞欄位檢查
 ```
