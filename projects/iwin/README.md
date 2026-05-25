@@ -56,7 +56,7 @@
 履歷邊界：
 
 - `payment` 不再用單條 flow 的「未確認」去否定整個 repo 經驗；已確認的 provider request / callback / query evidence 可以保守支撐「參與第三方金流 provider 對接與維護」，且 project-level consolidation 已完成並於 2026-05-20 重新覆核。
-- `game_api` 目前只有 coupon 這條正向 direct evidence 可放正式履歷；partner / agent bonus 只作 code-backed 面試素材，不直接升級完整 project owner。`game_job` 已完成完整 contribution consolidation。
+- `game_api` 目前只有 coupon 這條可支撐履歷的 direct evidence 可放正式履歷；partner / agent bonus 只作 code-backed 面試素材，不直接升級完整 project owner。`game_job` 已完成完整 contribution consolidation。
 - 其他 iwin flow 目前預設標為 `專案存在 / code-backed` 或 `分析素材 / learning-only`。
 - `bi_share` 不新增正式履歷主成果；若面試提到，只能說分析過 legacy BI / 分享 / 佣金報表系統與 projection / repair 風險。
 - `third_games_api` 不新增 standalone 正式履歷主成果；若面試提到，只能說分析過第三方遊戲 provider adapter / seamless wallet callback / Mongo audit / gameserver transaction boundary。GSC split endpoint 已到 Step 5，可作正式面試 case，但不寫正式履歷。
