@@ -81,6 +81,28 @@
 3. 請用 3 分鐘說明 Kafka / RabbitMQ / Quartz / batch projection 失敗時，你會怎麼判斷 source of truth 與補償。
 ```
 
+## 面試題 / 複習包生成規則
+
+面試題要從 70% production case 長出來，不建立泛用 Java / SQL / LeetCode 大題庫。原因是 Nick 要對標 Senior Java Backend / Platform Backend，主力不是刷題，而是把真實 / code-backed flow 講到能抗追問。
+
+每條主力 case 的複習包固定包含：
+
+- `90 秒版`：先回答清楚，不急著展開細節。
+- `3 分鐘版`：業務目的、正常路徑、source of truth、failure window、owner decision、claim boundary。
+- `追問題庫`：至少 5 題，優先問 state、idempotency、retry、compensation、observability、reconciliation。
+- `回答要點`：不是背稿，而是提醒要講哪些邊界。
+- `常見誇大陷阱`：例如不能說完整 owner、完整平台、exactly-once、主導完整重構。
+- `Java / SQL / MQ 延伸基本功`：只列本 case 真的會用到的基本功，遇到再補。
+- `面試後回饋補洞`：面試被問倒的點回填到本 case，不重新開巨大學習計畫。
+
+第一輪不產 300 題八股文。只圍繞三條主力 case 出題：
+
+1. Payment provider：callback 重送、timeout、merchant order id、order lifecycle、query / reconciliation、DB 成功但下游失敗。
+2. Wallet / bet-settle：wallet source of truth、bet record state、settle / rollback 交錯、provider transaction、report projection 邊界。
+3. Kafka / report projection：event identity、consumer retry / DLQ、projection duplicate、summary / backup / delete partial failure、report 與交易真相不一致。
+
+等三條主力能穩定口說後，再補第 4、5 條：partition / schema routing、request log MQ 或 rollout / observability。`Java / SQL / 實務 coding / LeetCode` 只從這些 case 延伸，不反過來主導準備方向。
+
 ## 三條主力 Case 口說打磨
 
 > 2026-05-25 口說版：這不是背稿，而是練習骨架。面試時先用 90 秒版本回答，再依追問展開 3 分鐘版本。若面試官追「是不是你主導」，一定要回到 claim boundary。

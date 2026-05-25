@@ -326,6 +326,38 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 完整 8 週軟硬實力養成計劃維護在 `16-career-skill-matrix.md`。原則是每週只補一個 production 主題，每週都要產出 3 分鐘 case、5 個追問與 claim boundary，不做純讀書焦慮。
 
+## 70 / 20 / 10 準備邊界
+
+Nick 的主線不是刷題或補到全會，而是用 production ownership 對標 Senior Java Backend / Platform Backend。準備比例固定如下：
+
+- `70% production case / system design / claim boundary`：payment provider、wallet / bet-settle、MQ / batch projection、high-traffic table / partition、legacy takeover。這是主線。
+- `20% 面試基本功`：Java / SQL / transaction / exception / BigDecimal / index / Redis / MQ 的基本判斷。這是遇到 case 或面試回饋卡住時補，不開新宇宙。
+- `10% LeetCode / coding test 保險`：easy-medium 核心題型維持手感。投遞前或收到面試邀約後，再用 2-3 週每天 30 分鐘補即可。
+
+`20% / 10%` 的原則是「先有最小檢查表，遇到再查」。例如講金流卡到 BigDecimal 才補金額精度；講 callback 防重卡到 transaction 才補 transaction boundary；講報表慢查卡到 index 才補複合索引 / explain；面試真的遇到 coding test，再補 easy-medium 核心題型。不要把它變成新的長期學習主線。
+
+## AI 時代 Coding 判斷
+
+AI 可以快速產出很多 Java / SQL / service code，所以面試準備不應追求「不用 AI 手刻一切」。Senior Backend 更重要的是：
+
+```text
+AI 寫出來後，Nick 能不能判斷它能不能進 production。
+```
+
+面試官可能看的不是純語法，而是 Nick 是否能指出 AI 產物常見風險：
+
+- callback 防重漏掉終態 guard，導致重複入帳。
+- transaction 邊界包錯，DB 成功但 MQ / wallet 副作用失敗。
+- 金額用 `double` 而不是 `BigDecimal`。
+- Redis lock 被誤當成永久冪等。
+- 查單與 callback 競態。
+- retry 沒有最大次數或補償邊界。
+- SQL 沒索引、offset 分頁過深或 projection 重複累加。
+- null / empty collection / race condition 漏判。
+- MQ consumer 重送造成重複副作用。
+
+所以 coding 準備的目標不是刷成競賽型選手，而是能 review、修正、補測試、補交易邊界。這與目前 flow 深掃同一條路：從讀 legacy code 延伸到 review AI 產出的 production code。
+
 ## 2026 趨勢觀察
 
 2026 的後端職缺仍看重 Java / Backend / cloud / Kubernetes / CI/CD / system stability，但更偏向「可驗證經驗」與「能把 AI 工具放進工程流程」。目前應關注：

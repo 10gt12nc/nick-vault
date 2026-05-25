@@ -139,6 +139,9 @@
 - 已完成 `rolling resume package`；2026-05-25 已依目前所有 Contribution Claim Consolidation 與最新 Step 5 收口 refresh `05-resume-master-zh.md`、`08-application-autobiography-zh.md` 與 `17-salary-negotiation.md`。已吸收 `antplay-slot-game-api` 五條代表 flows Step 5 與 project-level consolidation refresh、`third_games_api` 本批 Step 5、`k3s-deploy gameserver-phased-rollout Step 5` 的 interview-only 邊界，以及 `antplay-slot-game-job` 五條代表 flows Step 5 / contribution consolidation refresh。這是可先投遞的草稿，不是 final；後續 flow 深掃、Step 5 或新 consolidation 必須回填修正。
 - 已完成 `04 / 面試 case 對齊檢查`；2026-05-25 已把 `08` 的 104 主打 bullet 對應到 `04` 的 8-10 條可切換 case，並標出證據層級、3 分鐘主軸與不可誇大邊界。下一步不再是補履歷或平均掃 repo，而是把三條主力 case 練成 90 秒 / 3 分鐘口說版本。
 - 已完成 `三條主力 case 90 秒 / 3 分鐘口說打磨` 草稿；2026-05-25 已在 `04-interview-casebook.md` 補 payment provider、wallet / bet-settle、Kafka / report projection 三條主力 case 的 90 秒版本、3 分鐘版本、常見追問與「不需要全會」判斷。這只是稿件完成；面試口說練習目前先暫停，等 Nick 明確要求才開始互動練習。
+- 已補 2026 / 2027 台灣轉職月份策略；主旺季是 2-4 月，2026 因春節較晚與轉職季拉長可延到 4-5 月；9-10 月是第二波，11-1 月適合準備 / 卡位。對 Nick 的節奏是 2026 下半年整理履歷與低壓 market check，2027/2-4 正式主攻，2027/9-10 作備案。
+- 已補面試準備 70 / 20 / 10 邊界：70% 放 production case / system design / claim boundary，20% Java / SQL / transaction / Redis / MQ 基本判斷遇到再補，10% LeetCode / coding test 只作投遞前保險。不得把 AI 時代 coding 焦慮變成刷題主線。
+- 已補面試題 / 複習包規則：面試題必須從三條主力 production case 長出來，不建立泛用 Java / SQL / LeetCode 300 題題庫。第一輪只圍繞 payment provider、wallet / bet-settle、Kafka / report projection 產 90 秒版、3 分鐘版、追問題庫、回答要點、誇大陷阱與 case-specific 基本功。
 
 ## 下一步
 
@@ -218,6 +221,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 - `k3s-deploy gameserver-phased-rollout Step 5` 已完成，claim gate 結論維持 interview-only。
 - 2026-05-25 rolling resume package、104 投遞欄位檢查與 `04 / 面試 case 對齊檢查` 已完成，`08 / 17` 已先調整為通用 Senior Java Backend / Platform Backend 投遞版。
 - 目前已不是「履歷能不能寫」或「case 能不能對上」，三條主力 case 的 90 秒 / 3 分鐘草稿也已完成；下一個缺口是 Nick 能不能實際講出來並抗追問。
+- 轉職月份與面試題準備規則已收進 KB。後續若 Nick 問「要不要補 Java / SQL / LeetCode」，預設回答是：只保留最小檢查表與遇到再補，不取代 70% production case 主線。
 - 但練習線先暫停。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態：目前沒有預設下一步，可以自由提問或彈性指定；只有 Nick 要補架構視角時，才推薦 `iwin system map v1`。
 
 ### 2. iwin 各 project 局部下一步
