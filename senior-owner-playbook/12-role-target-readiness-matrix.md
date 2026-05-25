@@ -24,7 +24,7 @@ Senior Java Backend
 
 整理終點不是「所有 repo 都做完」，而是達到 Senior / Platform Backend 可投遞、可面試、可防追問的證據包。判斷標準是：3-5 個可保守放履歷的 project-level claim、8-10 條能講 3 分鐘的 production flow、每條 claim 的真實開發 / code-backed / 不可誇大邊界清楚，以及 `05 / 08 / 04 / 17` 已對齊。達到後應停止大規模整理，改成投遞、面試練習與依職缺補洞。
 
-> 2026-05-25 KB refresh：`05 / 08 / 17` 已完成 rolling refresh，`08` 已完成 104 投遞欄位檢查，`04 / 面試 case 對齊檢查` 與三條主力 case 90 秒 / 3 分鐘口說稿也已完成。沒有特定 JD 時，下一步不是重新客製履歷，而是從 Payment provider case 開始做口說實戰練習。
+> 2026-05-25 KB refresh：`05 / 08 / 17` 已完成 rolling refresh，`08` 已完成 104 投遞欄位檢查，`04 / 面試 case 對齊檢查` 與三條主力 case 90 秒 / 3 分鐘口說稿也已完成。沒有特定 JD 時，不需要重新客製履歷；面試口說練習先暫停，等 Nick 明確要求才開始。
 
 可以投：
 

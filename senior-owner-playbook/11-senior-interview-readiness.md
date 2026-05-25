@@ -34,7 +34,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 ## 目前狀態判斷
 
-> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。`04 / 面試 case 對齊檢查` 也已完成：104 主打 bullet 已對應到可講 3 分鐘的 cases、證據層級與不可誇大邊界。2026-05-25 已補三條主力 case 的 90 秒 / 3 分鐘口說稿：payment provider、wallet / bet-settle、Kafka / report projection。現在缺口已從「有沒有稿」轉成「Nick 能不能實際講出來並抗追問」。下一步不是再平均掃 repo，而是從第一條 payment case 開始實戰口說練習。
+> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。`04 / 面試 case 對齊檢查` 也已完成：104 主打 bullet 已對應到可講 3 分鐘的 cases、證據層級與不可誇大邊界。2026-05-25 已補三條主力 case 的 90 秒 / 3 分鐘口說稿：payment provider、wallet / bet-settle、Kafka / report projection。現在缺口已從「有沒有稿」轉成「Nick 能不能實際講出來並抗追問」。但口說練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動式練習。
 
 ### 已完成
 
@@ -81,7 +81,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 下一步建議：
 
 ```text
-Payment provider case 口說實戰練習
+面試口說練習暫停，等 Nick 明確要求
 ```
 
 ## Senior 面試分級門檻

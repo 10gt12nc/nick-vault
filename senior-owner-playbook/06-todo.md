@@ -137,7 +137,7 @@
 - 已完成 `antplay buffer-id contribution claim consolidation`；2026-05-20 rolling 收口。未掃到 Nick / `10gt12nc` direct commits，只作 ID generator learning-only。
 - 已完成 `rolling resume package`；2026-05-25 已依目前所有 Contribution Claim Consolidation 與最新 Step 5 收口 refresh `05-resume-master-zh.md`、`08-application-autobiography-zh.md` 與 `17-salary-negotiation.md`。已吸收 `antplay-slot-game-api` 五條代表 flows Step 5 與 project-level consolidation refresh、`third_games_api` 本批 Step 5、`k3s-deploy gameserver-phased-rollout Step 5` 的 interview-only 邊界，以及 `antplay-slot-game-job` 五條代表 flows Step 5 / contribution consolidation refresh。這是可先投遞的草稿，不是 final；後續 flow 深掃、Step 5 或新 consolidation 必須回填修正。
 - 已完成 `04 / 面試 case 對齊檢查`；2026-05-25 已把 `08` 的 104 主打 bullet 對應到 `04` 的 8-10 條可切換 case，並標出證據層級、3 分鐘主軸與不可誇大邊界。下一步不再是補履歷或平均掃 repo，而是把三條主力 case 練成 90 秒 / 3 分鐘口說版本。
-- 已完成 `三條主力 case 90 秒 / 3 分鐘口說打磨` 草稿；2026-05-25 已在 `04-interview-casebook.md` 補 payment provider、wallet / bet-settle、Kafka / report projection 三條主力 case 的 90 秒版本、3 分鐘版本、常見追問與「不需要全會」判斷。這仍只是稿件完成，下一步要做真人口說練習。
+- 已完成 `三條主力 case 90 秒 / 3 分鐘口說打磨` 草稿；2026-05-25 已在 `04-interview-casebook.md` 補 payment provider、wallet / bet-settle、Kafka / report projection 三條主力 case 的 90 秒版本、3 分鐘版本、常見追問與「不需要全會」判斷。這只是稿件完成；面試口說練習目前先暫停，等 Nick 明確要求才開始互動練習。
 
 ## 下一步
 
@@ -147,7 +147,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 `contribution claim consolidation` 可以先做 rolling / scoped 版，用來支援近期履歷與面試材料；不必等 Step 2 定義的本批代表 flows 全部完成 Step 5。執行時除了掃 code，也要重讀該 project 已完成 flow KB 與目前可讀的 project 文件。未完成 flow 必須標為待深掃 / 待回填，不能宣稱 final 或全 project 已完整深掃；final consolidation 才等本批代表 flows 全部 Step 5 後再校正。
 
-2026-05-25 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job` 五條代表 flows Step 5 / contribution consolidation refresh 與 `rolling resume package` 也已完成。`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；2026-05-25 rolling resume package、104 投遞欄位檢查、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿已回填，`08 / 17` 已可作通用 Senior Java Backend / Platform Backend 投遞版。Nick 暫時沒有特定 JD 時，不要一直要求貼 JD，下一步改做 Payment provider case 口說實戰練習；有 JD 時才客製。
+2026-05-25 更新：`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job` 五條代表 flows Step 5 / contribution consolidation refresh 與 `rolling resume package` 也已完成。`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；2026-05-25 rolling resume package、104 投遞欄位檢查、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿已回填，`08 / 17` 已可作通用 Senior Java Backend / Platform Backend 投遞版。Nick 暫時沒有特定 JD 時，不要一直要求貼 JD；面試口說練習先暫停，等 Nick 明確要求才開始；有 JD 時才客製。
 
 來源 repo 若是內網 GitLab 或 remote 不可達，fetch 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹保守分析，並標示未確認最新遠端。不要把內網 URL、IP 或敏感 remote 細節寫進 vault。
 
@@ -200,7 +200,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 建議下一步：
 
 ```text
-Payment provider case 口說實戰練習
+面試口說練習暫停，等 Nick 明確要求
 ```
 
 原因：
@@ -212,11 +212,11 @@ Payment provider case 口說實戰練習
 - `k3s-deploy gameserver-phased-rollout Step 5` 已完成，claim gate 結論維持 interview-only。
 - 2026-05-25 rolling resume package、104 投遞欄位檢查與 `04 / 面試 case 對齊檢查` 已完成，`08 / 17` 已先調整為通用 Senior Java Backend / Platform Backend 投遞版。
 - 目前已不是「履歷能不能寫」或「case 能不能對上」，三條主力 case 的 90 秒 / 3 分鐘草稿也已完成；下一個缺口是 Nick 能不能實際講出來並抗追問。
-- Nick 暫時沒有特定 JD 時，下一步不再大規模補資料，也不要求貼 JD，先從 payment provider case 做口說實戰練習。
+- 但練習線先暫停。Nick 暫時沒有特定 JD 時，下一步不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。
 
 ### 2. iwin 各 project 局部下一步
 
-目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成；`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job contribution claim consolidation refresh`、2026-05-25 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿已完成。通用投遞包已可用；沒有實際 JD 時，下一步先做 Payment provider case 口說實戰練習。
+目前 antplay 線已完成 `antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math`、`math-workspace`、`platform-mock`、`buffer-id` contribution consolidation。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 `*-math contribution claim consolidation` refresh 已完成；`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job contribution claim consolidation refresh`、2026-05-25 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿已完成。通用投遞包已可用；沒有實際 JD 時，面試口說練習先暫停，等 Nick 明確要求。
 
 以下是近期各 project 的局部下一步：
 
@@ -259,19 +259,19 @@ Payment provider case 口說實戰練習
 
 ### 4. 跨 repo 選題參考
 
-若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材且 contribution claim refresh 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job contribution claim consolidation` refresh、2026-05-25 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿也已完成。`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；下一步先轉 Payment provider case 口說實戰練習，有實際 JD 時才客製 `08 / 17`。
+若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材且 contribution claim refresh 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job contribution claim consolidation` refresh、2026-05-25 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿也已完成。`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；面試口說練習先暫停，有實際 JD 時才客製 `08 / 17`。
 
 ## 下一個 prompt
 
 ```text
-Payment provider case 口說實戰練習
+面試口說練習暫停，等 Nick 明確要求
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。
 
 ## Senior 面試對標門檻
 
-不要再用「最低能投」當標準。2026-05-25 後，履歷 / 自傳 / 談薪包已可先投遞，`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿也已完成；接下來要把 Senior 面試準備度提高到 `中等可面 -> 穩過可抗追問 -> 完全對標 Senior / Platform`。下一步是 Payment provider case 口說實戰練習，先從下列已完成素材挑第一條主力 case：
+不要再用「最低能投」當標準。2026-05-25 後，履歷 / 自傳 / 談薪包已可先投遞，`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿也已完成；接下來要把 Senior 面試準備度提高到 `中等可面 -> 穩過可抗追問 -> 完全對標 Senior / Platform`。但口說練習先暫停，等 Nick 明確要求再開始。已完成素材包含：
 
 1. `payment-provider-callback` 或 `payment-order-provider-request`
 2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
