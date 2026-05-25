@@ -240,10 +240,10 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 - 不說完整 DevOps / K3s migration / SRE owner。
 - 不把「會用 AI 工具」包裝成 AI 自動完成 production 開發；要強調自己負責判斷、驗證、review 與收斂。
 
-## 下一步
+## 當前狀態
 
 若暫時沒有特定 JD，`04 / 面試 case 對齊檢查` 與三條主力 case 90 秒 / 3 分鐘口說稿已完成，不需要重新客製履歷；面試口說練習先暫停，等 Nick 明確要求才開始。若之後有明確 JD，才把 JD 關鍵字回填到 `08-application-autobiography-zh.md` 和本檔：
 
 ```text
-面試口說練習暫停，等 Nick 明確要求
+通用談薪定位可用；有明確 JD / offer 前不重新客製
 ```

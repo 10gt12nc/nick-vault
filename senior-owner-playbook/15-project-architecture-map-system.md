@@ -23,9 +23,11 @@
 
 地圖只做到能回答「這條 flow 應該去哪個 repo 讀」即可。不要為了完整而畫過度抽象、沒有 evidence 的架構圖。當地圖已足夠定位 flow，就要回到單條 flow 深挖。
 
-## 收斂後必須回補大地圖
+## 收斂後檢查大地圖
 
-Domain / system map 不是可有可無的口頭建議。當某個 domain 已經累積足夠代表 project、representative flows 或 contribution consolidation 後，AI 必須主動檢查並回補最外層總結圖。
+Domain / system map 是架構視角補強，不是投遞前必做，也不是要 Nick 一個人扛完整大系統。
+
+當某個 domain 已經累積足夠代表 project、representative flows 或 contribution consolidation 後，AI 必須主動檢查最外層總結圖是否存在、是否過舊，並把缺口列入待辦；只有在 Nick 明確要求大地圖 / 系統圖 / 架構總結，或目前沒有 active flow 需要收口且 Nick 接受補架構視角時，才建立或 refresh domain-level map。
 
 觸發條件：
 
@@ -43,7 +45,7 @@ projects/{domain}/integration-map.md
 projects/{domain}/career-interview.md
 ```
 
-如果不存在，要列為待辦或直接建立；如果存在但沒有吸收最新 completed flows / contribution consolidation，要標為需 refresh。
+如果不存在，預設先列為待辦；如果存在但沒有吸收最新 completed flows / contribution consolidation，要標為需 refresh。只有 Nick 明確授權、或本輪任務就是 `{domain} system map v1`，才直接建立 / refresh。
 
 大地圖的責任：
 
@@ -57,7 +59,7 @@ projects/{domain}/career-interview.md
 
 目前已知缺口例子：
 
-- `projects/iwin/` 已有 README，但尚未建立 domain-level `architecture-map.md` / `integration-map.md`；之後 iwin 代表 project 收斂後，應補 `iwin system map v1`。
+- `projects/iwin/` 已有 README，但尚未建立 domain-level `architecture-map.md` / `integration-map.md`；之後若 Nick 要 iwin 整體架構視角，或代表 project 收斂後要總結，建議補 `iwin system map v1`。
 - `projects/antplay/` 與 `projects/ugsoft/` 也應在代表 project / flows 足夠後檢查是否需要 domain-level map，不要只停在各 repo 的 flow 文件。
 
 ## 建議結構
@@ -200,14 +202,14 @@ projects/{domain}/{project}/architecture-map.md
 
 建議順序：
 
-1. 先做 domain architecture-map。
+1. 如果完全不知道 repo / service 邊界，先做 domain architecture-map。
 2. 再做 project architecture-map。
 3. 再做 Step 1 candidate flows。
 4. 再做 Step 2 ranking。
 5. 再選一條 flow 做 Step 3。
 6. flow 讀清楚後補 decision-notes。
 
-但如果 Nick 已經指定單一 flow，可以先做 flow；之後再回補地圖。
+但如果 Nick 已經指定單一 flow，或目前 active flow 尚未 Step 5，先做 / 收口該 flow；之後再視需要回補地圖。
 
 回補規則：
 
@@ -215,8 +217,8 @@ projects/{domain}/{project}/architecture-map.md
 - 單條 flow Step 3-5 會修正 map 的細節。
 - Project contribution consolidation 會補 Nick claim / interview boundary。
 - 如果已有 active flow 做到 Step 3 / Step 4 但尚未 Step 5，下一步必須先讓該 flow 收口，domain / system map 只能列為收口後待辦；除非 Nick 明確說暫停 flow、先做大地圖。
-- 當同一 domain 有多個 project 已完成代表 flow 或 contribution consolidation，下一輪「下一步 / 總結 / 大地圖」不得只繼續推新 flow；必須先檢查 domain map 是否缺漏或過期。
-- 若 domain map 缺漏，下一步要建議 `{domain} system map v1`，除非 Nick 明確指定先做其他 flow。
+- 當同一 domain 有多個 project 已完成代表 flow 或 contribution consolidation，下一輪 Nick 問「總結 / 大地圖 / 架構是否完整」時，不得只繼續推新 flow；必須先檢查 domain map 是否缺漏或過期。
+- 若 domain map 缺漏，可以建議 `{domain} system map v1`，但必須標成可選架構補強，不得說成投遞前必做；除非 Nick 明確指定先做其他 flow。
 
 ## 地圖不等於履歷
 

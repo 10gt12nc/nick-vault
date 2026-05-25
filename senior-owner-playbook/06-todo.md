@@ -202,10 +202,10 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 ### 1. 收斂後狀態
 
-建議下一步：
+目前狀態：
 
 ```text
-面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
 ```
 
 原因：
@@ -217,7 +217,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 - `k3s-deploy gameserver-phased-rollout Step 5` 已完成，claim gate 結論維持 interview-only。
 - 2026-05-25 rolling resume package、104 投遞欄位檢查與 `04 / 面試 case 對齊檢查` 已完成，`08 / 17` 已先調整為通用 Senior Java Backend / Platform Backend 投遞版。
 - 目前已不是「履歷能不能寫」或「case 能不能對上」，三條主力 case 的 90 秒 / 3 分鐘草稿也已完成；下一個缺口是 Nick 能不能實際講出來並抗追問。
-- 但練習線先暫停。Nick 暫時沒有特定 JD 時，下一步不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。
+- 但練習線先暫停。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態；只有 Nick 要補架構視角時，才推薦 `iwin system map v1`。
 
 ### 2. iwin 各 project 局部下一步
 
@@ -266,10 +266,10 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 若 Nick 問「所有 repo 排序 / 下一個 repo」，以 `01-senior-owner-flow-inventory.md` 的「跨 repo 優先排序」為準。這份排序只用來選題，不是 code evidence；真正開工前仍要做該 repo 的 Step 1 / Step 2。目前若目標是最快補 Senior Backend 主力素材，`payment`、`game_job`、`game_api`、`iwin_gameserver`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core`、`*-math` 的履歷 claim 已先保守收斂，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，`iwin_gameserver` 已把 third-party provider 投派整合 direct evidence 正確歸位；`math-core` / `*-math` 是目前差異化最高的 slot math 素材且 contribution claim refresh 已完成，`slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、`antplay-slot-game-api contribution claim consolidation` refresh、`antplay-slot-game-job contribution claim consolidation` refresh、2026-05-25 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿也已完成。`center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；面試口說練習先暫停，有實際 JD 時才客製 `08 / 17`。
 
-## 下一個 prompt
+## 當前收斂狀態
 
 ```text
-面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
 ```
 
 AI 會依共用規則自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不需要 Nick 每次重貼完整規則。

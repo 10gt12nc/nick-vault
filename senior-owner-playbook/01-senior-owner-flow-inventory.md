@@ -167,10 +167,10 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 ## 下一步推薦
 
-本輪若繼續 Career Track，只推薦一件事:
+目前不自動推薦新的 Flow Track 或互動練習。狀態是:
 
 ```text
-面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
 ```
 
 原因:
@@ -179,7 +179,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - `*-math` 後續不該再平均掃 71 repo；除非 Nick 要 Level 3 final，否則先把已收斂的交易主線與 math 素材回填履歷更有近期價值。
 - `antplay-slot-game-api` 與 `antplay-slot-game-job` 已完成 refreshed contribution consolidation；代表 flows Step 5、05 / 08 / 17 rolling resume package、104 投遞欄位檢查、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿都已回填。
 - `third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；2026-05-25 `rolling resume package` 已回填最新 interview-only 邊界與 AntPlay job refresh。
-- 下一步不再慣性推 flow；沒有特定 JD 時，面試口說稿可保留，但練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動問答。有實際 JD 時，才客製 `08` 與談薪說法 `17`。
+- 下一步不再慣性推 flow；沒有特定 JD 時，面試口說稿可保留，但練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動問答。有實際 JD 時，才客製 `08` 與談薪說法 `17`。若 Nick 要補架構視角，可選 `iwin system map v1`；這不是投遞前必做。
 
 ## 近期候選 Queue
 

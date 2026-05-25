@@ -78,10 +78,10 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 4. High-traffic data / partition：`bet-record-sharding-schema-route` 或 `db-partition-job-report-routing`
 5. Platform / observability 或 MQ audit：`k3s-deploy/gameserver-phased-rollout` 或 `request-log-rabbitmq-async`
 
-下一步建議：
+目前狀態：
 
 ```text
-面試口說練習暫停，等 Nick 明確要求
+通用投遞包可用；面試口說練習暫停，等 Nick 明確要求
 ```
 
 ## Senior 面試分級門檻
