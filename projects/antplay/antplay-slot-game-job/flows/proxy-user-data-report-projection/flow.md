@@ -325,4 +325,4 @@ Step 5 已完成 claim gate:
 - 可保守寫入 project-level 素材池，但不由單條 flow 直接更新 `05 / 08`。
 - 不可誇大為完整 Kafka platform、完整 BI/report platform、完整 exactly-once / replay architecture owner。
 
-下一步應回到同 project Step 2 ranking，做第二順位 `activity-accumulated-bet-voucher Step 3`，而不是插隊做 domain-level 大地圖。大地圖要在 active flow 收口後、且 Nick 要求總結或 domain 已累積足夠代表 flows 時再處理。
+2026-05-25 後續進度: 同 project 第二順位 `activity-accumulated-bet-voucher Step 3` 已完成。下一步若延續 `antplay-slot-game-job`，應做 `activity-accumulated-bet-voucher Step 4`，而不是插隊做 domain-level 大地圖。大地圖要在 active flow 收口後、且 Nick 要求總結或 domain 已累積足夠代表 flows 時再處理。

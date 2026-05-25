@@ -217,8 +217,8 @@
 
 ## Suggested Next
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；下一步應做 Flow Track Step 1，挑出最值得面試深挖的代表 flow。第一批最值得比較的是「proxy-user-data-report-projection」、「big-win-notification」、「activity-accumulated-bet-voucher」、「settle-pool-monitor」。
+`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 3` 也已完成。下一步若延續本 repo，應做活動累計投注 flow 的 Step 4，把 Redis / DB 防重、Kafka 重送、Daily / Period 邊界整理成正式面試說法。
 
 ```text
-antplay antplay-slot-game-job Step 1
+antplay antplay-slot-game-job activity-accumulated-bet-voucher Step 4
 ```
