@@ -34,7 +34,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 ## 目前狀態判斷
 
-> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。現在缺口已從「能不能寫履歷」轉成「履歷主 claim 是否都能對應到 3 分鐘面試 case」。下一步應做 `04 / 面試 case 對齊檢查`，而不是再平均掃 repo 或重跑 contribution consolidation。
+> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。`04 / 面試 case 對齊檢查` 也已完成：104 主打 bullet 已對應到可講 3 分鐘的 cases、證據層級與不可誇大邊界。現在缺口已從「履歷主 claim 能不能對上 case」轉成「三條主力 case 能不能穩定口說並抗追問」。下一步不是再平均掃 repo，也不是重跑 contribution consolidation，而是做 `三條主力 case 90 秒 / 3 分鐘口說打磨`。
 
 ### 已完成
 
@@ -52,7 +52,6 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 ### 尚未完成
 
-- 尚未完成 `04 / 面試 case 對齊檢查`：需要把 104 主打 bullet 對應到 8-10 條可講 3 分鐘的 cases，標清楚每條 claim 是真實開發、code-backed、interview-only 或不可誇大。
 - 尚未把 3-5 條最常用主力 case 打磨成可穩定口說、可抗追問的 90 秒 / 3 分鐘版本。
 - 尚未依實際 JD 調整 `08 / 17`；沒有 JD 時維持通用版，不需要為客製而等待。
 
@@ -61,7 +60,28 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 ```text
 履歷 / 自傳 / 談薪包已可先投遞。
 已有多個 project-level claim 與多條 production flow 素材。
-下一個缺口是面試 case 對齊與口說打磨，不是繼續平均掃 repo。
+面試 case 已完成履歷對齊；下一個缺口是口說打磨，不是繼續平均掃 repo。
+```
+
+## 2026-05-25 Case 對齊後結論
+
+目前至少已達到「中等可面」的素材條件，但還沒完成「中等可面」的口說條件。換句話說，文件裡已經有可用 case，下一步要把三條主力 case 練成面試時能自然講出的版本。
+
+第一輪主力 case：
+
+1. Payment：`payment-order-provider-request` / `payment-provider-callback`
+2. Wallet / bet-settle：`antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+3. MQ / projection：`antplay-slot-game-job/proxy-user-data-report-projection` 或 `game_job/daily-game-data-summary`
+
+做完第一輪後，才補到「穩過可抗追問」的 5 條：
+
+4. High-traffic data / partition：`bet-record-sharding-schema-route` 或 `db-partition-job-report-routing`
+5. Platform / observability 或 MQ audit：`k3s-deploy/gameserver-phased-rollout` 或 `request-log-rabbitmq-async`
+
+下一步建議：
+
+```text
+三條主力 case 90 秒 / 3 分鐘口說打磨
 ```
 
 ## Senior 面試分級門檻

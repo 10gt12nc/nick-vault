@@ -4,7 +4,82 @@
 
 > 2026-05-22 rolling resume package：已同步 `third_games_api` 本批 Step 5 與 `k3s-deploy gameserver-phased-rollout Step 5`。兩者都維持 interview-only，不新增正式履歷主成果；可作 provider wallet boundary、retry / duplicate failure window、K3s rollout / rollback / observability 的面試補充案例。
 
-> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成；`08` 可作通用 Senior Java Backend / Platform Backend 104 投遞稿。`antplay-slot-game-job` 五條代表 flows 已完成 Step 5 並回填履歷 / 談薪邊界。下一步不是再補履歷，而是做 `04 / 面試 case 對齊檢查`：把 104 主打 bullet 對應到本檔可講 3 分鐘的 cases，確認每個主 claim 都能抗追問。
+> 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成；`08` 可作通用 Senior Java Backend / Platform Backend 104 投遞稿。`antplay-slot-game-job` 五條代表 flows 已完成 Step 5 並回填履歷 / 談薪邊界。當時待補的是 `04 / 面試 case 對齊檢查`：把 104 主打 bullet 對應到本檔可講 3 分鐘的 cases，確認每個主 claim 都能抗追問。
+
+> 2026-05-25 面試 case 對齊檢查：已完成。`08` 的 104 主打 bullet 已對應到本檔 8-10 條可切換 case；目前不是缺履歷素材，而是要先把三條主力 case 練到能穩定講 90 秒 / 3 分鐘並抗追問。沒有特定 JD 時，先用「payment provider」、「wallet / bet-settle」、「Kafka / report projection」三條組成中等可面版本。
+
+## 104 主打 bullet 對齊表
+
+用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。
+
+| 104 / 08 主打 claim | 優先面試 case | 證據層級 | 3 分鐘主軸 | 不可誇大 |
+| --- | --- | --- | --- | --- |
+| 多個第三方金流 provider request / callback / query / withdraw 對接與維護 | 案例 1：金流 callback 一致性；`payment-order-provider-request` | 本人確認 + 真實開發過 + code-backed | provider sign、merchant order id、callback 重送、timeout、order state 與補償邊界 | 不說主導完整金流、全部 provider owner、完整 reconciliation owner |
+| 第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接 | 案例 3：下注 / 派彩 / rollback；`iwin_gameserver/third-party-transfer-in-out`；`third_games_api` GSC / OneAPI / Antplay 補充 | 部分真實開發過 + code-backed；部分 adapter interview-only | provider transaction、wallet mutation boundary、round log、adapter Mongo evidence、retry duplicate failure window | 不把 `third_games_api` adapter 包成 Nick 主導；不說完整 gameserver / wallet owner |
+| AntPlay slot game API / runtime、bet / settle / rollback、transfer wallet | 案例 3：AntPlay slot game API 補充；Transfer wallet API 面試主軸 | 真實開發過 + code-backed | bet record state、single / transfer wallet、provider settle / rollback、request log MQ、deadlock / compensation 邊界 | 不說完整 slot platform、完整 wallet / ledger / reconciliation、完整 RTP / math owner |
+| RabbitMQ / Kafka / Quartz / batch、request log、報表 projection、big-win notification | 案例 4：Kafka / MQ 可靠性；AntPlay slot game job 補充；案例 6：報表 projection | 真實開發過 + code-backed；部分 analysis-first | event -> DB projection、consumer retry / DLT、summary / backup / delete、notification duplicate、report source of truth | 不說完整 Kafka event platform、exactly-once、完整 BI / report platform |
+| 高流量資料治理、分表、schema routing、report path | `bet-record-sharding-schema-route`、`db-partition-job-report-routing` | 真實開發過 + code-backed；current framework 有多人脈絡 | partition key、schema route、ThreadLocal restore、report query filter、migration / backfill / route miss | 不說完整 sharding platform 或完整 DB migration owner |
+| AntPlay slot math core / 多個 math module 維護與驗證 | 案例 12-16：fixedMultiBet / RTP / buy free / jackpot / special wild | 真實開發過 + code-backed | math-core contract、module compatibility、RTP / reel strip、result contract、simulation validation | 不說主導完整遊戲數學模型、全部 math module、完整 RTP 策略 |
+| 缺乏交接文件時重建兩套平台可維護脈絡 | 可穿插在案例 1 / 3 / 4 / 6 的開頭或結尾 | 本人確認 + workspace / KB supporting evidence | 用 code reading、git history、DB / Redis / MQ / log flow 重建 production flow 與 claim boundary | 不寫成完整 DevOps / workspace owner；不抱怨公司流程 |
+| K3s rollout / observability / rollback analysis | 案例 5：K3s / rollout / observability | interview-only / code-backed | phase rollout、ZK registration、Recreate、ConfigMap / Secret rollback、observability gate | 不說主導 K3s migration、production rollout owner 或 SRE owner |
+
+## 面試 case 分級
+
+### 中等可面：先練 3 條
+
+1. `payment-order-provider-request` / `payment-provider-callback`
+   - 對應履歷：第三方金流 provider 對接與維護。
+   - 要講到：簽章、建單、callback / query、timeout、重送、訂單終態、補償 / 對帳。
+   - 保守說法：我參與多個 provider request / callback / query / withdraw flow 的對接與維護，並處理過 provider sign、response parsing 與 order consistency 類問題。
+
+2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
+   - 對應履歷：遊戲 provider / gameserver 錢包 / 下注結算。
+   - 要講到：wallet source of truth、bet record state、provider transaction、settle / rollback、重送與 partial success。
+   - 保守說法：我參與遊戲 provider 投派整合與下注結算相關 flow 維護，能說清楚 adapter、gameserver wallet 與 report projection 的邊界。
+
+3. `antplay-slot-game-job/proxy-user-data-report-projection` 或 `game_job/daily-game-data-summary`
+   - 對應履歷：Kafka / Quartz / batch / report projection。
+   - 要講到：event projection、DB upsert、summary / backup / delete、重跑、consumer retry、report 不是交易 truth。
+   - 保守說法：我參與 job / event processing 與報表 projection 維護，能拆清楚 source event、derived table、重跑與營運查詢邊界。
+
+### 穩過可抗追問：補到 5 條
+
+4. `bet-record-sharding-schema-route` 或 `db-partition-job-report-routing`
+   - 補高流量資料治理：分表、schema routing、query filter、ThreadLocal、route miss、migration / backfill。
+
+5. `k3s-deploy/gameserver-phased-rollout` 或 `request-log-rabbitmq-async`
+   - 若職缺偏 Platform / System Owner，選 K3s rollout / observability。
+   - 若職缺偏 Backend / MQ，選 request log RabbitMQ async。
+
+### 完全對標 Senior / Platform：可依 JD 切 8-10 條
+
+- Payment：`payment-order-provider-request`、`payment-provider-callback`、`withdrawal-auto-review-refund`
+- Wallet / bet-settle：`iwin_gameserver/third-party-transfer-in-out`、`antplay-slot-game-api/slot-bet-settle-rollback`、`transfer-wallet-money-in-out`
+- MQ / projection：`request-log-rabbitmq-async`、`proxy-user-data-report-projection`、`daily-game-data-summary`
+- Data / partition：`bet-record-sharding-schema-route`、`db-partition-job-report-routing`
+- Platform / observability：`k3s-deploy/gameserver-phased-rollout`
+- Domain differentiation：`fixed-multi-bet-currency-math-core-compatibility`、`rtp-reel-strip-simulation-validation`
+
+## 通用 3 分鐘順序
+
+每條 case 都用同一個骨架，避免面試時散掉：
+
+1. 業務目的：這條 flow 解決什麼 production 問題。
+2. 正常路徑：入口、主要 service、DB / Redis / MQ / provider 怎麼走。
+3. State / source of truth：哪裡是交易真相，哪裡只是 cache、adapter evidence、report projection。
+4. Failure window：timeout、重送、DB 成功但 MQ 失敗、gameserver 成功但 adapter log 失敗、batch 跑一半。
+5. Owner decision：短期怎麼止血，長期怎麼補 idempotency、reconciliation、alert、runbook。
+6. Claim boundary：我實際參與 / 維護 / 分析到哪裡，哪些不能誇大。
+
+## 第一輪口說題庫
+
+先不要貪多。第一輪只要把下面三題練到自然：
+
+```text
+1. 請用 3 分鐘說明你做過的第三方金流 provider 對接或 callback 一致性問題。
+2. 請用 3 分鐘說明一條遊戲下注 / 派彩 / rollback 或 transfer wallet 的 money correctness flow。
+3. 請用 3 分鐘說明 Kafka / RabbitMQ / Quartz / batch projection 失敗時，你會怎麼判斷 source of truth 與補償。
+```
 
 ## 案例 1：金流 callback 一致性
 
