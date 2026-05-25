@@ -53,12 +53,54 @@
 
 ### 完全對標 Senior / Platform：可依 JD 切 8-10 條
 
-- Payment：`payment-order-provider-request`、`payment-provider-callback`、`withdrawal-auto-review-refund`
-- Wallet / bet-settle：`iwin_gameserver/third-party-transfer-in-out`、`antplay-slot-game-api/slot-bet-settle-rollback`、`transfer-wallet-money-in-out`
-- MQ / projection：`request-log-rabbitmq-async`、`proxy-user-data-report-projection`、`daily-game-data-summary`
-- Data / partition：`bet-record-sharding-schema-route`、`db-partition-job-report-routing`
-- Platform / observability：`k3s-deploy/gameserver-phased-rollout`
-- Domain differentiation：`fixed-multi-bet-currency-math-core-compatibility`、`rtp-reel-strip-simulation-validation`
+通用 Senior Java Backend / Platform Backend 預設先用下面 10 條排序；有特定 JD 時再依職缺重排，不要重新平均掃 repo。
+
+1. `payment-order-provider-request` / `payment-provider-callback`
+   - 主軸：金流 provider、簽章、callback 重送、查單、訂單狀態、補償。
+   - 定位：第一主力，正式履歷可用 project-level payment 保守 claim 支撐。
+
+2. `withdrawal-auto-review-refund`
+   - 主軸：提款審核、自動出款、失敗退款、money correctness。
+   - 定位：補強 payment 不只充值，也懂提款側；不單獨寫完整出款 owner。
+
+3. `antplay-slot-game-api/slot-bet-settle-rollback`
+   - 主軸：下注、結算、rollback、bet record state、wallet 邊界。
+   - 定位：第二主力，撐 wallet / bet-settle production case。
+
+4. `antplay-slot-game-api/transfer-wallet-money-in-out`
+   - 主軸：轉帳錢包、DB + Redis consistency、查單、交易狀態。
+   - 定位：和 slot bet / settle / rollback 組成錢包與交易一致性組合。
+
+5. `antplay-slot-game-api/request-log-rabbitmq-async`
+   - 主軸：非同步 request log、producer / consumer、失敗重試、audit 不影響主交易。
+   - 定位：Backend / MQ 題優先；不寫完整 RabbitMQ platform owner。
+
+6. `antplay-slot-game-job/proxy-user-data-report-projection`
+   - 主軸：Kafka / Quartz / 報表 projection、source of truth、重跑與資料一致性。
+   - 定位：第三主力，撐 MQ / batch / projection。
+
+7. `antplay-slot-game-api/bet-record-sharding-schema-route`
+   - 主軸：分表、schema route、partition key、ThreadLocal、查詢路由。
+   - 定位：高流量資料治理 case。
+
+8. `antplay-slot-game-job/db-partition-job-report-routing`
+   - 主軸：分表 job、報表路由、migration / backfill / route miss。
+   - 定位：和 bet record sharding 組成 data / partition 組合。
+
+9. `iwin_gameserver/third-party-transfer-in-out`
+   - 主軸：第三方遊戲 provider、gameserver 錢包、投注流水、adapter 邊界。
+   - 定位：連接 iwin 與 AntPlay 經驗；保守寫第三方遊戲 provider 投派整合，不擴張成完整 gameserver owner。
+
+10. `k3s-deploy/gameserver-phased-rollout`
+    - 主軸：rollout、rollback、config、observability gate。
+    - 定位：Platform / System Owner 加分，維持 interview-only，不當正式 DevOps / SRE 主 claim。
+
+備用差異化 case：
+
+- `fixed-multi-bet-currency-math-core-compatibility`
+- `rtp-reel-strip-simulation-validation`
+
+這兩條 `*-math` 只有在職缺靠近遊戲 / slot / RTP / 高風險 domain validation 時提前；一般 Senior Backend 通用投遞先放第 11 條以後。
 
 ## 通用 3 分鐘順序
 
