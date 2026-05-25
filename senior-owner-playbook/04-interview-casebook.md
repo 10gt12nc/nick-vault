@@ -223,6 +223,9 @@ AntPlay slot game job 補充案例：
 - Direct evidence 是 `#386` 代理用戶數據、`#590` currency 維度、`#702` key collision 與 `fix ag_report_player`；current code 有基本 retry / dead-letter-topic 設定，但 replay / DLQ 消費治理與補數 runbook 未確認。
 - 面試主軸：報表 table 是 derived projection，不是下注或 wallet source of truth；owner 要能說清 report identity、DB upsert / unique key、summary partial failure、backup / delete 重跑與 reconciliation。
 - 保守邊界：不寫完整 Kafka event platform、完整 BI / report platform、exactly-once / replay architecture owner，也不把 Arnold / Eliot 2026 current batch padding / safety 修正說成 Nick 完成。
+- `antplay-slot-game-job/activity-accumulated-bet-voucher` 已完成 Step 5，可作 reward correctness supporting case。它消費 `settled_bets`，依活動設定、agent、bet time、currency 累加 Redis daily / period key，達門檻後呼叫 `BetVoucherService` 發 voucher / free spin。
+- 面試主軸：Redis 是 projection / guard state，BetVoucher DB 才接近 reward evidence；Daily 只靠 Redis awarded key，Period 多查 DB voucher count。要能說清 Kafka 重送、`addVoucher` 成功但 Redis awarded 更新失敗、DB count 查詢失敗回 0、跨日 replay 與 deterministic idempotency key。
+- 保守邊界：Nick 只有 `62fa93f` merge evidence，current implementation 主要 Gill / Arnold / Eliot；`BetVoucherService` 下游 implementation / DB unique key 未在本 repo，不能說主導活動功能或已確認完整 idempotency。
 
 ## 案例 5：K3s / rollout / observability
 

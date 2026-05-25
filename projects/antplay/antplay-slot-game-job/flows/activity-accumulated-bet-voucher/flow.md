@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: 活動累計投注送 voucher / free spin。
 - Flow slug: `activity-accumulated-bet-voucher`。
-- 完成狀態: Step 4 面試 case 完成。
+- 完成狀態: Step 5 claim gate 完成。
 - 證據層級: 專案存在 / code-backed + Nick merge evidence；`nick` 有 `feature/accumate_bet` merge evidence，但 current code 主要由 Gill 開發、Arnold / Eliot 後續調整，不能標成 Nick 主開發。
 - 本 flow 類型: Kafka event consumer + Redis accumulate + DB voucher issuing。
 - 是否只確認到入口: 否，已確認 consumer、activity config、Redis key、voucher utility、Kafka toggle 與主要 git history；下游 `BetVoucherService` / `ActivityConfService` 來自外部 lib，本 repo 只確認呼叫邊界。
@@ -274,8 +274,19 @@ Owner 建議:
 - 不說已建立完整 idempotency / exactly-once / reconciliation。
 - 不把 Gill / Arnold / Eliot 的 current code 說成 Nick 完成。
 
-## 15. Step 4 結論
+## 15. Step 5 Claim Gate 結論
 
 這條 flow 有不錯的 Senior Backend 題材，但 Nick direct evidence 弱於上一條 `proxy-user-data-report-projection`。目前最保守的定位是 code-backed 面試素材，用來補 reward / voucher / Redis consistency 題，而不是主履歷 claim。
 
-Step 4 已把 Redis / DB 防重、Kafka 重送、Daily / Period 邊界整理成正式 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios 與 Senior / Lead 追問。下一步應做 Step 5 claim gate，追 `BetVoucherService#addVoucher` 下游 idempotency / unique key、Nick merge evidence 是否能補強，以及是否能回填 project-level consolidation；還不直接更新 `05 / 08`。
+Step 5 已補查本 repo 內的 `BetVoucherService` 下游 evidence。結果是: `ActivityAccumateBetConsumerService` 只透過 `BetVoucherUtils` / `BetVoucherUtilsExt` 呼叫外部 `BetVoucherService#addVoucher` 與 `countByPlayerIdAndActivityIdAndCurrencyAndGiftType`；本 repo 沒有 `BetVoucherService` 實作、BetVoucher table schema、DB unique key 或 transaction boundary 可以證明發券具完整 idempotency。current code 每次發券使用新的 UUID `refId`，因此在本 repo evidence 下只能把它視為 trace id / request id 線索，不能當 deterministic idempotency key。
+
+Nick evidence 仍維持保守: `62fa93f` 是 `nick` merge `feature/accumate_bet` into `master` 的 evidence，但 current implementation blame 主要是 Gill，後續 Arnold / Eliot 調整 schema route / current context。這足以支撐「接觸 / merge / code-backed 分析過」，不足以說 Nick 主導或主要開發活動累計投注 reward flow。
+
+最終 claim gate:
+
+- `真實開發過`: 本 flow 單獨不成立；只能在 project-level `antplay-slot-game-job` 真實開發經驗下作 supporting evidence。
+- `code-backed / 可面試講`: 成立，可講 Kafka settlement event -> Redis accumulate -> DB voucher guard 的 reward correctness case。
+- `可直接履歷`: 不單獨新增正式 bullet；只能回填 project-level consolidation，作活動累積投注 / voucher flow supporting evidence。
+- `不可誇大`: 不說完整 reward platform owner、不說完整 idempotency / exactly-once、不說已確認 reconciliation，也不把 Gill / Arnold / Eliot 的 implementation 說成 Nick direct contribution。
+
+本 Step 不直接更新 `05 / 08`。下一步若延續 `antplay-slot-game-job` Flow Track，應回到 Step 2 排序的第三順位 `big-win-notification Step 3`。

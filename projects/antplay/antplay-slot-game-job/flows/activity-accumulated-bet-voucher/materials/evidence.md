@@ -43,6 +43,7 @@ Git history:
 
 - path-specific log for `ActivityAccumateBetConsumerService` / voucher utils。
 - selected important commits for initial feature, Redis key / DB count fixes, Nick merge, config enable, schema routing and current toggle context。
+- Step 5 補查本 repo 內 `BetVoucherService` / `addVoucher` / `countByPlayerIdAndActivityIdAndCurrencyAndGiftType` / `@UseSchema`，以及 current wrapper 與 merge evidence 邊界。
 
 未掃 / 待確認:
 
@@ -66,6 +67,8 @@ Git history:
 | Voucher issue | `BetVoucherUtils` / `BetVoucherUtilsExt` | 呼叫 `BetVoucherService#addVoucher` |
 | DB awarded count | `BetVoucherUtilsExt` | 呼叫 `countByPlayerIdAndActivityIdAndCurrencyAndGiftType` |
 | Schema route | `BetVoucherUtilsExt` | `@UseSchema` on add / count methods |
+| Downstream idempotency | 本 repo 未找到 | 沒有 `BetVoucherService` implementation、table schema、DB unique key evidence |
+| Ref id | `ActivityAccumateBetConsumerService` | 發券前產生新的 UUID；本 repo evidence 不足以證明 deterministic idempotency |
 
 ## 4. Commit Evidence
 
@@ -101,6 +104,8 @@ Git history:
 - Redis key 已包含 agentId、activityId、playerId、currency，Daily 另含 date。
 - Period reward 有 Redis awarded count 與 DB voucher count 兩層防重檢查。
 - Nick 有 merge evidence，但主要 implementation commits 不是 Nick。
+- Step 5 已確認本 repo 沒有 `BetVoucherService#addVoucher` 下游 implementation / DB unique key evidence。
+- `62fa93f` 是 Nick merge evidence，不等於 line-level direct implementation evidence。
 
 ## 7. 合理推論
 
@@ -112,7 +117,7 @@ Git history:
 ## 8. 待確認
 
 - `BetVoucherService#addVoucher` 是否有 unique key / idempotency key。
-- `refId` 是否只是追蹤 id，或會參與防重。
+- `refId` 在下游是否參與防重；本 repo 只能看到每次 UUID，無法證明防重。
 - activity params 的 `total_bet` 單位、currency schema 與 validation。
 - Daily key 用 consumer current date 是否符合 bet time / timezone spec。
 - group key 沒有 activityId 是否在 mixed activity set 情境下安全。

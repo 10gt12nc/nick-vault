@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `activity-accumulated-bet-voucher` Step 4 已完成 / 2026-05-25 |
+| Flow Track | `activity-accumulated-bet-voucher` Step 5 已完成 / 2026-05-25 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
-| 下一步 | `antplay antplay-slot-game-job activity-accumulated-bet-voucher Step 5` |
+| 下一步 | `antplay antplay-slot-game-job big-win-notification Step 3` |
 
 ## Claim Boundary
 
@@ -19,6 +19,7 @@
 - 處理 Kafka `settled_bets` consumer、Quartz report job、代理玩家報表聚合、活動累積投注、big-win notification 與 db partition / job config 類維護。
 - 參與報表 key / currency / daily summary 類資料一致性修正與 job schedule 防呆。
 - `proxy-user-data-report-projection Step 5` 已確認可回填 project-level claim，但單條 flow 不直接改 `05 / 08`。
+- `activity-accumulated-bet-voucher Step 5` 已確認只作 reward correctness 面試素材與 project-level supporting evidence；不單獨放正式履歷。
 
 不可誇大:
 

@@ -4,6 +4,8 @@
 
 2026-05-25 補充: `proxy-user-data-report-projection Step 5` 已完成。該 flow 可作 project-level Kafka report projection / Quartz summary / report key correctness 的直接 evidence；但 `ReportAgentPlayerRepositoryInternal` 的 2026 batch padding / safety 修正屬後續他人 context，Kafka replay / DLQ 消費治理與 DB unique key 仍未確認，不能升級成完整 Kafka / BI platform owner。
 
+2026-05-25 補充: `activity-accumulated-bet-voucher Step 5` 已完成。該 flow 可作 activity accumulated bet / voucher reward supporting evidence 與 reward correctness 面試素材；但 `BetVoucherService` implementation、DB unique key、transaction boundary 不在本 repo，且 current implementation 主要是 Gill / Arnold / Eliot。Nick 的 `62fa93f` 屬 merge evidence，不足以把此 flow 單獨升級成正式履歷主 claim。
+
 ## 結論
 
 `antplay-slot-game-job` 可以列為 Nick / `10gt12nc` 真實開發過的 job / event processing repo。Direct commits 觸及 Kafka consumer、Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、db partition / job config 與後續 report 修正。
@@ -29,7 +31,7 @@
 | 代理玩家資料 | 真實開發過 + code-backed | `#386` 系列新增 `ProxyUserDataConsumerService`、`ReportAgentPlayerService`、repository / entity、`ReportAgentPlayerJob` |
 | 報表 currency / key 修正 | 真實開發過 + code-backed | `#590` ReportAgentPlayer 拆 currency、每天一次；`#702` key 重複；`fix ag_report_player` |
 | big-win notification | 真實開發過 + code-backed | `#303` 新增 `BigWinConsumerService`、game / message cache、push user topic，後續小數格式修正 |
-| activity accumulate bet | code-backed / 待 flow 深挖 | `origin/feature/accumate_bet` merge by `nick`，source 有 `ActivityAccumateBetConsumerService`，可作候選 flow |
+| activity accumulate bet | code-backed / Step 5 已收口 supporting evidence | `62fa93f` merge by `nick`，source 有 `ActivityAccumateBetConsumerService`；可面試講 reward correctness，但不單獨放正式履歷 |
 | settle pool / risk | 專案存在 / code-backed，Nick claim 保守 | source 有 settle pool consumer / processor，但近期大量 Arnold / Eliot commits，不作 Nick 完整 owner claim |
 | final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
 
@@ -150,9 +152,12 @@
 
 - 作為下一步 Flow Track 候選，能面試活動累積投注、Redis key design、每日 / 期間限制、voucher 發放冪等邊界。
 
-保守原因:
+Step 5 收口:
 
-- 本輪只做 contribution consolidation，尚未針對該 flow 追完整 commit diff 與下游 voucher 實作；暫不單獨寫入正式履歷。
+- 已追 consumer、Redis key、voucher wrapper、path-specific history、merge evidence 與 current blame。
+- 本 repo 沒有 `BetVoucherService` 下游 implementation / DB unique key evidence；每次發券使用新的 UUID `refId`，不能證明 deterministic idempotency。
+- current implementation 主要是 Gill，後續 Arnold / Eliot context；Nick 是 merge evidence。
+- 可作 project-level supporting evidence 與面試素材；暫不單獨寫入正式履歷主 bullet。
 
 ### DB partition / report path repair
 
@@ -217,8 +222,8 @@
 
 ## Suggested Next
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 4` 也已完成。下一步若延續本 repo，應做活動累計投注 flow 的 Step 5 claim gate。
+`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 5` 也已完成。下一步若延續本 repo，應做 Step 2 第三順位 `big-win-notification Step 3`。
 
 ```text
-antplay antplay-slot-game-job activity-accumulated-bet-voucher Step 5
+antplay antplay-slot-game-job big-win-notification Step 3
 ```
