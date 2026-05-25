@@ -8,7 +8,7 @@
 | --- | --- |
 | 真實開發過 | 可成立。`10gt12nc` 有 `#303` direct commits 新增初版 BigWin consumer 與格式修正。 |
 | code-backed | 可成立。current code path 可追到 consumer、cache、translation、producer wrapper 與 config toggle。 |
-| 可面試講 | 可成立。Step 3 已整理成 derived notification / Kafka push message flow；Step 4 前仍是初版素材。 |
+| 可面試講 | 可成立。Step 4 已整理成正式 derived notification / Kafka push message 面試 case。 |
 | 可直接履歷 | 不建議單獨新增正式 bullet；可作 `antplay-slot-game-job` project-level supporting evidence。 |
 | 不可誇大 | 不能說完整 push platform owner、完整 jackpot / bonus owner、guaranteed delivery 或 exactly-once notification。 |
 
@@ -27,7 +27,13 @@
 - 不說下游 push user consumer 已完整確認。
 - 不把 Gill / Arnold / Eliot 後續 commits 說成 Nick direct contribution。
 
-## 待 Step 4 / Step 5 補強
+## Step 4 補強完成
 
-- Step 4: 整理 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios、Senior / Lead 追問。
-- Step 5: 補查 `_id` / bet id 是否可作下游去重、`BetIdPersistence` 用途、下游 push consumer / frontend 隱私邊界；判斷是否回填 project-level consolidation。
+- 已整理 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios、Senior / Lead 追問、可用反問與常見陷阱。
+
+## 待 Step 5 補強
+
+- 補查 `_id` / bet id 是否可作下游去重。
+- 補查 `BetIdPersistence#collectBetIdsByAgent` 用途。
+- 補查下游 push consumer / frontend 隱私邊界。
+- 判斷是否回填 project-level consolidation；目前仍只作 flow-level 面試素材。

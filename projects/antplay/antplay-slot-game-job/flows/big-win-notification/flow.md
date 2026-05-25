@@ -2,11 +2,13 @@
 
 日期: 2026-05-25
 
+Step 4 補充日期: 2026-05-25
+
 ## 0. 閱讀定位
 
 - Flow 中文名稱: 中大獎通知 / push user message。
 - Flow slug: `big-win-notification`。
-- 完成狀態: Step 3 flow learning package 完成。
+- 完成狀態: Step 4 面試 case 完成。
 - 證據層級: 真實開發過 + code-backed；`10gt12nc` 在 `#303` 有 direct commits 建立 big-win consumer 與小數格式修正，current code 後續有 Gill / Arnold / Eliot 修改，Step 5 前不升級成完整 push platform claim。
 - 本 flow 類型: Kafka settlement event -> derived notification -> push user topic。
 - 是否只確認到入口: 否，已確認 consumer、payload model、game translation cache、producer wrapper、feature toggle 與 path-specific history；上游 producer / 下游 push user consumer 未確認最新，不作完整上下游 claim。
@@ -242,8 +244,8 @@ Owner 建議:
 - 不說完整 jackpot / bonus owner。
 - 不把 Arnold / Gill / Eliot 後續 current behavior 全部說成 Nick 完成。
 
-## 15. Step 3 結論
+## 15. Step 4 結論
 
-這條 flow 已完成 Level 2 Step 3 學習包。它比 `activity-accumulated-bet-voucher` 風險低、scope 小，但 Nick direct evidence 更乾淨：`#303` 直接新增 `BigWinConsumerService` 與小數格式修正。current code 後續由 Gill / Arnold / Eliot 補玩家遮罩、currency / translation、`totalWin` 判斷與 id collection，因此 Step 4 面試時要主動講「初版參與 + current behavior code-backed 分析」，不要說完整通知平台 owner。
+這條 flow 已完成 Level 2 Step 3 學習包與 Step 4 面試 case。它比 `activity-accumulated-bet-voucher` 風險低、scope 小，但 Nick direct evidence 更乾淨：`#303` 直接新增 `BigWinConsumerService` 與小數格式修正。current code 後續由 Gill / Arnold / Eliot 補玩家遮罩、currency / translation、`totalWin` 判斷與 id collection，因此正式說法要主動講「初版參與 + current behavior code-backed 分析」，不要說完整通知平台 owner。
 
-下一步是同 flow Step 4，把它整理成正式 30 秒 / 90 秒 / 3 分鐘面試 case、STAR、failure scenarios、Senior / Lead 追問與不可誇大說法。
+Step 4 已整理正式 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios、Senior / Lead 追問與不可誇大說法。下一步應做 Step 5 claim gate，補 `_id` / bet id 是否可作下游去重、`BetIdPersistence` 用途、下游 push consumer / frontend privacy 邊界，並判斷是否回填 project-level consolidation；不直接更新 `05 / 08`。

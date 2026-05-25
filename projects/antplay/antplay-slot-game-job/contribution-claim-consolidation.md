@@ -6,7 +6,7 @@
 
 2026-05-25 補充: `activity-accumulated-bet-voucher Step 5` 已完成。該 flow 可作 activity accumulated bet / voucher reward supporting evidence 與 reward correctness 面試素材；但 `BetVoucherService` implementation、DB unique key、transaction boundary 不在本 repo，且 current implementation 主要是 Gill / Arnold / Eliot。Nick 的 `62fa93f` 屬 merge evidence，不足以把此 flow 單獨升級成正式履歷主 claim。
 
-2026-05-25 補充: `big-win-notification Step 3` 已完成。該 flow 有 `#303` direct evidence，可支撐 Nick 參與中大獎通知初版與金額格式修正；current behavior 後續由 Gill / Arnold / Eliot 修正玩家遮罩、currency / translation、`totalWin` 判斷與 id collection。Step 3 只回填 code-backed 面試素材，不單獨更新 `05 / 08`。
+2026-05-25 補充: `big-win-notification Step 4` 已完成。該 flow 有 `#303` direct evidence，可支撐 Nick 參與中大獎通知初版與金額格式修正；current behavior 後續由 Gill / Arnold / Eliot 修正玩家遮罩、currency / translation、`totalWin` 判斷與 id collection。Step 4 已形成正式 derived notification 面試 case，但仍不單獨更新 `05 / 08`。
 
 ## 結論
 
@@ -138,7 +138,7 @@
 
 - 參與 big-win notification 的 Kafka consumer 與 push message 組裝。
 - 面試可講事件通知不是交易 source of truth，需保守處理缺翻譯、玩家遮罩、金額格式與下游 push topic。
-- 2026-05-25 Step 3 已補 current code-backed flow: `(bet + voucherBet) * 10` 門檻、currency-based translation、`push_user` message、producer async failure、privacy boundary。
+- 2026-05-25 Step 4 已補 current code-backed flow 與正式面試 case: `(bet + voucherBet) * 10` 門檻、currency-based translation、`push_user` message、producer async failure、privacy boundary、重送去重與 outbox 取捨。
 
 不可誇大:
 
@@ -226,8 +226,8 @@ Step 5 收口:
 
 ## Suggested Next
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 5` 已完成，`big-win-notification Step 3` 也已完成。下一步若延續本 repo，應做同 flow Step 4。
+`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 5` 已完成，`big-win-notification Step 4` 也已完成。下一步若延續本 repo，應做同 flow Step 5。
 
 ```text
-antplay antplay-slot-game-job big-win-notification Step 4
+antplay antplay-slot-game-job big-win-notification Step 5
 ```
