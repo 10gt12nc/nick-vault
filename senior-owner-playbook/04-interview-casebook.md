@@ -226,9 +226,9 @@ AntPlay slot game job 補充案例：
 - `antplay-slot-game-job/activity-accumulated-bet-voucher` 已完成 Step 5，可作 reward correctness supporting case。它消費 `settled_bets`，依活動設定、agent、bet time、currency 累加 Redis daily / period key，達門檻後呼叫 `BetVoucherService` 發 voucher / free spin。
 - 面試主軸：Redis 是 projection / guard state，BetVoucher DB 才接近 reward evidence；Daily 只靠 Redis awarded key，Period 多查 DB voucher count。要能說清 Kafka 重送、`addVoucher` 成功但 Redis awarded 更新失敗、DB count 查詢失敗回 0、跨日 replay 與 deterministic idempotency key。
 - 保守邊界：Nick 只有 `62fa93f` merge evidence，current implementation 主要 Gill / Arnold / Eliot；`BetVoucherService` 下游 implementation / DB unique key 未在本 repo，不能說主導活動功能或已確認完整 idempotency。
-- `antplay-slot-game-job/big-win-notification` 已完成 Step 4，可作 Kafka derived notification 面試 case。Nick / `10gt12nc` 有 `#303` direct evidence，參與初版中大獎通知 consumer 與金額格式修正；current behavior 後續有 Gill / Arnold / Eliot 修改。
+- `antplay-slot-game-job/big-win-notification` 已完成 Step 5，可作 Kafka derived notification 面試 case 與 project-level supporting evidence。Nick / `10gt12nc` 有 `#303` direct evidence，參與初版中大獎通知 consumer 與金額格式修正；current behavior 後續有 Gill / Arnold / Eliot 修改。Step 5 補查確認 `_id` 不是 deterministic key、`BetIdPersistence` 不是通知去重、下游 `antplay-push` 未見 `_id` dedupe 或 `fullPlayerName` 過濾，不能誇大成完整 push platform / exactly-once notification。
 - 面試主軸：它不是交易 source of truth，而是 settlement event 後的 best-effort notification。要能說清 `totalWin >= (bet + voucherBet) * 10`、translation fallback、producer async failure、重送重複通知、deterministic notification key、outbox / alert 與 privacy payload 最小化。
-- 保守邊界：不寫完整 push platform owner、完整 jackpot / bonus owner、guaranteed delivery 或 exactly-once notification；下游 `push_user` consumer / frontend privacy 尚待 Step 5 claim gate。
+- 保守邊界：不寫完整 push platform owner、完整 jackpot / bonus owner、guaranteed delivery 或 exactly-once notification；下游 `antplay-push` 已確認只是 websocket bridge，未見 dedupe / privacy filtering，實際前端 rendering 仍未確認。
 
 ## 案例 5：K3s / rollout / observability
 

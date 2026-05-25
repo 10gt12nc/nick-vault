@@ -41,6 +41,7 @@ Source code:
 - `SettleBetsVo`
 - `BetRecord`
 - `application.yml` toggle / topic key only
+- Step 5 補查: `BetIdPersistence`、`AgIdStore`、`PersistRedisIdJob`、`antplay-push` 的 `WspushKafkaListener`
 
 Git history:
 
@@ -50,13 +51,13 @@ Git history:
 
 Related repo check:
 
-- `/Users/nick/Git/antplay/antplay-slot-game-api` status: local `develop` is far behind `origin/develop` in local refs; no fetch performed in this Step because company repos are read-only and previous internal fetch failures exist. Search did not produce reliable `settled_bets` producer evidence; upstream producer remains待確認，不作本 Step 主證據。
+- `/Users/nick/Git/antplay/antplay-slot-game-api` status: local `develop` is far behind `origin/develop` in local refs; no fetch performed in this Step because company repos are read-only and previous internal fetch failures exist. Search did not produce reliable `settled_bets` producer evidence; upstream producer remains 待確認，不作本 Step 主證據。
+- `/Users/nick/Git/antplay/antplay-push` status: local `master` / local `origin/master` 都在 `d38db10`，working tree clean；未重新 fetch，依本地 refs / 本地 working tree 保守分析。已確認 `WspushKafkaListener#listenPush` 消費 `push_user`，依 `channel` 轉送 websocket topic，取 `_id` 只作 log / trace，未見去重或 privacy filtering。
 
 未掃 / 待確認:
 
 - 上游 `settled_bets` producer 最新 contract。
-- 下游 `push_user` topic consumer / frontend rendering。
-- `BetIdPersistence#collectBetIdsByAgent` 下游用途。
+- 實際遊戲前端 rendering / permission / masking。
 - Kafka listener ack / error handler runtime behavior。
 - production activity / notification metrics、DLQ、alert、補推工具。
 
@@ -72,7 +73,8 @@ Related repo check:
 | Privacy | `BigWinConsumerService#maskPlayerName` | 3字以下 `***`，4字首字 + `***`，5字以上前2 + `***` + 後2 |
 | Payload | `BigWinConsumerService` | `_id`、`type=3`、`channel=agent_{agentId}_all`、`data` |
 | Producer | `KafkaProducerService#sendMessage` | `KafkaTemplate#send` async future，success/failure callback log |
-| Follow-up id collection | `BetIdPersistence#collectBetIdsByAgent` | BigWin main try/catch 後呼叫；下游未深掃 |
+| Follow-up id collection | `BetIdPersistence#collectBetIdsByAgent` | 依 agent 保存最大 bet id 到 `ag_id_store` 類 id store；不是通知去重 evidence |
+| Downstream push bridge | `antplay-push` `WspushKafkaListener#listenPush` | 消費 `push_user`，取 `channel` / `_id`，將 JSON 原樣送到 `/topic/{channel}` |
 
 ## 4. Commit Evidence
 
@@ -105,6 +107,9 @@ Related repo check:
 - current code 用 currency 決定 game translation language。
 - current code 有玩家遮罩，但 payload 同時包含 `fullPlayerName`。
 - producer send 是 async future callback log，呼叫端不等待。
+- `_id` 每次 UUID，未見 deterministic notification key。
+- `BetIdPersistence#collectBetIdsByAgent` 會從 `BetRecord#id` 解析每個 agent 最大 bet id，並保存到 `ag_id_store`；`collectOthers` 也會掃 request / transfer / transaction table 最新 id。這屬 id 進度追蹤，不是 big-win notification 去重 / 補償。
+- 下游 `antplay-push` 的 websocket bridge 會把 `push_user` payload 原樣送到 channel，未見 `_id` dedupe 或 `fullPlayerName` 過濾。
 
 ## 7. 合理推論
 
@@ -112,12 +117,21 @@ Related repo check:
 - 若 Kafka event 重送，current repo evidence 下可能重複推通知，因 `_id` 每次 UUID，不是 deterministic idempotency key。
 - 缺翻譯直接跳過會降低錯誤顯示，但可能漏通知。
 - Producer failure 只 log，偏 best-effort notification。
+- `fullPlayerName` 若不是下游必要欄位，會擴大 privacy exposure；本地 downstream bridge 未見最小化處理。
 
 ## 8. 待確認
 
 - 下游 `push_user` consumer 是否有 retry / DLQ / idempotency。
-- `_id` 是否在下游作去重。
+- 實際遊戲前端是否另有 masking / permission control；本輪只掃到 websocket bridge。
 - `fullPlayerName` 是否必要，是否有 privacy policy / frontend masking guarantee。
-- `BetIdPersistence#collectBetIdsByAgent` 是否支援補償、去重或其他查詢。
 - 上游 `settled_bets` producer 最新欄位 contract。
 - 產品規格是否明確定義 `(bet + voucherBet) * 10`。
+
+## 9. Step 5 Claim Gate Evidence
+
+| 問題 | 補查結果 | Claim 影響 |
+| --- | --- | --- |
+| `_id` 可否防重 | 每次用 UUID 生成；下游 `antplay-push` 只取出 log / route，未見 dedupe | 不能說 exactly-once / replay safe；面試要主動講 deterministic key 改善 |
+| `BetIdPersistence` 是否通知去重 | 保存 per-agent 最大 bet id / request id 類進度 | 只能說 id progress tracking；不能當通知補償 / 去重 evidence |
+| 下游是否過濾隱私 | `antplay-push` 本地 code 原樣轉送 JSON 到 websocket topic | 不能說 `fullPlayerName` 已安全治理；只能提出 privacy 最小化建議 |
+| 是否可回填 project claim | `#303` direct evidence + current code-backed + Step 5 邊界清楚 | 可回填 `antplay-slot-game-job` project-level supporting evidence；不單獨更新 `05 / 08` |

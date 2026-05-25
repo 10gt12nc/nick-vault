@@ -4,14 +4,16 @@
 
 Step 4 補充日期: 2026-05-25
 
+Step 5 補充日期: 2026-05-25
+
 ## 0. 閱讀定位
 
 - Flow 中文名稱: 中大獎通知 / push user message。
 - Flow slug: `big-win-notification`。
-- 完成狀態: Step 4 面試 case 完成。
-- 證據層級: 真實開發過 + code-backed；`10gt12nc` 在 `#303` 有 direct commits 建立 big-win consumer 與小數格式修正，current code 後續有 Gill / Arnold / Eliot 修改，Step 5 前不升級成完整 push platform claim。
+- 完成狀態: Step 5 claim gate 完成。
+- 證據層級: 真實開發過 + code-backed；`10gt12nc` 在 `#303` 有 direct commits 建立 big-win consumer 與小數格式修正，current code 後續有 Gill / Arnold / Eliot 修改。Step 5 已確認可作 project-level supporting evidence，但不能升級成完整 push platform claim。
 - 本 flow 類型: Kafka settlement event -> derived notification -> push user topic。
-- 是否只確認到入口: 否，已確認 consumer、payload model、game translation cache、producer wrapper、feature toggle 與 path-specific history；上游 producer / 下游 push user consumer 未確認最新，不作完整上下游 claim。
+- 是否只確認到入口: 否，已確認 consumer、payload model、game translation cache、producer wrapper、feature toggle、path-specific history 與 `antplay-push` websocket bridge；上游 producer 與實際遊戲前端未確認最新，不作完整上下游 claim。
 
 Source repo 遠端狀態: 先前同 repo `git fetch --all --prune` 已因內網不可達失敗；依 KB 不反覆重試。local `master` / local `origin/master` 都在 `d847357`，ahead / behind `0 / 0`，但未確認最新遠端，本文件依本地 refs / 本地 working tree 保守分析。
 
@@ -50,7 +52,8 @@ antplay-slot-game-api / upstream settle (待確認最新)
   -> GameDataCache / TransGames
   -> KafkaProducerService
   -> Kafka topic: push_user
-  -> push user consumer / frontend notification (未掃)
+  -> antplay-push websocket bridge (已掃本地 refs)
+  -> frontend notification rendering (未掃)
 ```
 
 ## 4. 正常流程圖
@@ -84,7 +87,7 @@ settled_bets event
 10. 組 `pushUserData`: `_id`、`type=3`、`channel=agent_{agentId}_all`、`data`。
 11. `data` 包含 `playerName`、`gameCode`、`fullPlayerName`、`enName`、`prize`、`currency`。
 12. 呼叫 `KafkaProducerService#sendMessage(pushUserTopic, 0, pushUserData)` 非同步送出。
-13. 主要 try/catch 結束後，另呼叫 `BetIdPersistence#collectBetIdsByAgent(betRecordList)`；本 Step 只確認呼叫，未深掃 id persistence 下游。
+13. 主要 try/catch 結束後，另呼叫 `BetIdPersistence#collectBetIdsByAgent(betRecordList)`；Step 5 已確認它是 per-agent 最大 bet id / request id 進度紀錄，不是通知去重 evidence。
 
 ## 6. 業務問題
 
@@ -117,8 +120,8 @@ settled_bets event
 未掃 / 待確認:
 
 - 上游 `settled_bets` producer 最新 contract。
-- 下游 `push_user` topic consumer / frontend rendering。
-- `BetIdPersistence#collectBetIdsByAgent` 下游用途。
+- 下游 `antplay-push` websocket bridge 已掃本地 refs；實際 frontend rendering 未掃。
+- `BetIdPersistence#collectBetIdsByAgent` 已確認不是通知去重；完整 id 進度用途不展開。
 
 ## 8. DB / Redis / MQ / 外部 API
 
@@ -146,9 +149,9 @@ BetRecord settled
 狀態語意:
 
 - `BetRecord`: 上游結算結果，是判斷通知的輸入，不是通知本身的 source of truth。
-- `pushUserData`: derived notification payload，包含 UUID `_id`，但本 Step 未確認下游是否用它做去重。
+- `pushUserData`: derived notification payload，包含 UUID `_id`；Step 5 補查下游 `antplay-push` 後，未看到用 `_id` 做去重的 evidence。
 - `GameDataCache`: translation / agent cache，current code 每 60 秒更新。
-- `push_user`: 下游通知通道；下游未掃，不能宣稱通知一定抵達玩家。
+- `push_user`: 下游通知通道；已掃到 `antplay-push` bridge 會轉送 websocket topic，但實際前端 rendering / delivery 未確認，不能宣稱通知一定抵達玩家。
 
 ## 10. Failure Window / Consistency
 
@@ -166,7 +169,7 @@ BetRecord settled
 
 ### 10.4 玩家隱私
 
-current code 會放遮罩後的 `playerName`，但也放 `fullPlayerName`。如果下游或前端不該拿完整帳號，這是隱私與資料最小化風險。Step 3 只能標待確認，不能假設前端一定安全處理。
+current code 會放遮罩後的 `playerName`，但也放 `fullPlayerName`。Step 5 補查到 `antplay-push` 會把 JSON 原樣轉送 websocket topic，未見過濾 `fullPlayerName`。如果前端不該拿完整帳號，這是隱私與資料最小化風險。
 
 ### 10.5 金額單位與門檻
 
@@ -181,16 +184,17 @@ current code 用 `totalWin / 100.0` 格式化成兩位小數，並以 `(bet + vo
 本輪已確認:
 
 - Kafka producer send 是 async callback log。
-- push message 有 UUID `_id`。
+- push message 有 UUID `_id`，每次通知重新產生，不是 deterministic notification key。
 - big-win consumer 外層 catch exception，不重新 throw。
 - 缺翻譯時跳過通知。
+- `BetIdPersistence#collectBetIdsByAgent` 會依 agent 保存目前最大 bet id 到 `ag_id_store` 類 id store，並另有 `collectOthers` 掃 request / transfer / transaction table 最新 id；沒有證據顯示它支援 big-win notification 去重。
+- `antplay-push` 的 `WspushKafkaListener#listenPush` 會消費 `push_user`，取 `channel` 和 `_id` log 後把 JSON 原樣送到 `/topic/{channel}`；本地 code 未看到 `_id` 去重或 `fullPlayerName` 過濾。
 
 本輪未確認:
 
 - 下游 `push_user` consumer 是否有 retry / DLQ / idempotency。
-- `_id` 是否用於下游去重。
+- 更完整前端 rendering / permission 邊界；本輪只掃到 `antplay-push` websocket bridge，未掃實際遊戲前端畫面。
 - 是否有補推通知工具或營運查詢。
-- `BetIdPersistence#collectBetIdsByAgent` 是否可支援補償 / 去重 / 追蹤。
 - Kafka listener ack / error handler 對本 consumer 的實際 offset commit 行為。
 
 Owner 建議:
@@ -209,7 +213,8 @@ Owner 建議:
 | 缺翻譯跳過 | 找不到 `TransGames` 就 continue | 避免送空名稱 | 漏通知，需要 alert / fallback |
 | 玩家名稱遮罩 | `maskPlayerName` | 降低公開顯示風險 | 同 payload 仍帶 `fullPlayerName` |
 | 幣別決定語系 | CNY -> cn，其他 -> en | 簡單規則 | agent language 被註解，不一定符合多語系需求 |
-| UUID `_id` | 每次通知生成新 UUID | 可追單筆 message | 不適合做重送去重 key |
+| UUID `_id` | 每次通知生成新 UUID；下游 `antplay-push` 只取出 log / route | 可追單筆 message | 不適合做重送去重 key，未見下游 dedupe |
+| Bet id collection | 保存 per-agent 最大 bet / request id | 可支援 id 進度追蹤 | 不等於通知補償 / 去重 |
 
 ## 13. Lead / Architect 追問
 
@@ -235,7 +240,7 @@ Owner 建議:
 
 - 可作 `antplay-slot-game-job` project-level 「big-win notification / Kafka derived event」supporting evidence。
 - 可以說參與中大獎通知的 event consumer / push message 組裝與格式調整。
-- Step 3 不直接更新 `05 / 08`，也不單獨新增正式履歷 bullet。
+- Step 5 不直接更新 `05 / 08`，也不單獨新增正式履歷 bullet。
 
 不能誇大:
 
@@ -244,8 +249,16 @@ Owner 建議:
 - 不說完整 jackpot / bonus owner。
 - 不把 Arnold / Gill / Eliot 後續 current behavior 全部說成 Nick 完成。
 
-## 15. Step 4 結論
+## 15. Step 5 Claim Gate 結論
 
-這條 flow 已完成 Level 2 Step 3 學習包與 Step 4 面試 case。它比 `activity-accumulated-bet-voucher` 風險低、scope 小，但 Nick direct evidence 更乾淨：`#303` 直接新增 `BigWinConsumerService` 與小數格式修正。current code 後續由 Gill / Arnold / Eliot 補玩家遮罩、currency / translation、`totalWin` 判斷與 id collection，因此正式說法要主動講「初版參與 + current behavior code-backed 分析」，不要說完整通知平台 owner。
+這條 flow 已完成 Level 2 Step 3 學習包、Step 4 面試 case 與 Step 5 claim gate。它比 `activity-accumulated-bet-voucher` 風險低、scope 小，而且 Nick direct evidence 更乾淨：`#303` 直接新增 `BigWinConsumerService` 與小數格式修正。current code 後續由 Gill / Arnold / Eliot 補玩家遮罩、currency / translation、`totalWin` 判斷與 id collection，因此正式說法要主動講「初版參與 + current behavior code-backed 分析」，不要說完整通知平台 owner。
 
-Step 4 已整理正式 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios、Senior / Lead 追問與不可誇大說法。下一步應做 Step 5 claim gate，補 `_id` / bet id 是否可作下游去重、`BetIdPersistence` 用途、下游 push consumer / frontend privacy 邊界，並判斷是否回填 project-level consolidation；不直接更新 `05 / 08`。
+Step 5 補查後結論:
+
+- 可回填 project-level `antplay-slot-game-job` consolidation，作為 big-win notification / Kafka derived event supporting evidence。
+- 不單獨更新 `05 / 08`，因為正式履歷仍以 project-level consolidation 與 rolling resume package 為準。
+- 可以保守說參與中大獎通知初版、金額格式修正，並能用 current code 講 privacy / translation / producer failure / replay duplicate。
+- `_id` 每次 UUID，`BetIdPersistence` 是 id 進度紀錄，`antplay-push` 下游未見去重；不能宣稱通知 exactly-once、guaranteed delivery 或完整 push platform owner。
+- 下游 websocket bridge 會把 JSON 原樣送到 channel，未見 `fullPlayerName` 過濾；因此面試要主動指出 privacy 最小化風險。
+
+下一步若延續 `antplay-slot-game-job` Flow Track，應回 Step 2 排序做 Rank 4 `settle-pool-monitor-darkpool-sync Step 3`。這是 code-backed analysis-first flow，不應直接包裝成 Nick 主導的 settle pool / risk owner。

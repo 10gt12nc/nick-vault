@@ -6,7 +6,7 @@
 
 2026-05-25 補充: `activity-accumulated-bet-voucher Step 5` 已完成。該 flow 可作 activity accumulated bet / voucher reward supporting evidence 與 reward correctness 面試素材；但 `BetVoucherService` implementation、DB unique key、transaction boundary 不在本 repo，且 current implementation 主要是 Gill / Arnold / Eliot。Nick 的 `62fa93f` 屬 merge evidence，不足以把此 flow 單獨升級成正式履歷主 claim。
 
-2026-05-25 補充: `big-win-notification Step 4` 已完成。該 flow 有 `#303` direct evidence，可支撐 Nick 參與中大獎通知初版與金額格式修正；current behavior 後續由 Gill / Arnold / Eliot 修正玩家遮罩、currency / translation、`totalWin` 判斷與 id collection。Step 4 已形成正式 derived notification 面試 case，但仍不單獨更新 `05 / 08`。
+2026-05-25 補充: `big-win-notification Step 5` 已完成。該 flow 有 `#303` direct evidence，可支撐 Nick 參與中大獎通知初版與金額格式修正；current behavior 後續由 Gill / Arnold / Eliot 修正玩家遮罩、currency / translation、`totalWin` 判斷與 id collection。Step 5 已補查 `_id`、`BetIdPersistence` 與 `antplay-push` 下游 bridge：目前不能證明通知去重或 `fullPlayerName` 已被過濾，因此只回填 project-level supporting evidence，不單獨更新 `05 / 08`。
 
 ## 結論
 
@@ -32,7 +32,7 @@
 | Kafka job foundation | 真實開發過 + code-backed | `kafka JOB` branch commits 涉及 `KafkaConsumerService`、`KafkaProducerService`、application config、rollback / platform-mock notification 嘗試 |
 | 代理玩家資料 | 真實開發過 + code-backed | `#386` 系列新增 `ProxyUserDataConsumerService`、`ReportAgentPlayerService`、repository / entity、`ReportAgentPlayerJob` |
 | 報表 currency / key 修正 | 真實開發過 + code-backed | `#590` ReportAgentPlayer 拆 currency、每天一次；`#702` key 重複；`fix ag_report_player` |
-| big-win notification | 真實開發過 + code-backed / Step 3 已完成 | `#303` 新增 `BigWinConsumerService`、game / message cache、push user topic，後續小數格式修正；current behavior 有多人後續修改 |
+| big-win notification | 真實開發過 + code-backed / Step 5 已完成 | `#303` 新增 `BigWinConsumerService`、game / message cache、push user topic，後續小數格式修正；current behavior 有多人後續修改；下游未見 notification dedupe / privacy filtering |
 | activity accumulate bet | code-backed / Step 5 已收口 supporting evidence | `62fa93f` merge by `nick`，source 有 `ActivityAccumateBetConsumerService`；可面試講 reward correctness，但不單獨放正式履歷 |
 | settle pool / risk | 專案存在 / code-backed，Nick claim 保守 | source 有 settle pool consumer / processor，但近期大量 Arnold / Eliot commits，不作 Nick 完整 owner claim |
 | final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
@@ -138,7 +138,7 @@
 
 - 參與 big-win notification 的 Kafka consumer 與 push message 組裝。
 - 面試可講事件通知不是交易 source of truth，需保守處理缺翻譯、玩家遮罩、金額格式與下游 push topic。
-- 2026-05-25 Step 4 已補 current code-backed flow 與正式面試 case: `(bet + voucherBet) * 10` 門檻、currency-based translation、`push_user` message、producer async failure、privacy boundary、重送去重與 outbox 取捨。
+- 2026-05-25 Step 5 已補 current code-backed flow、正式面試 case 與 claim gate: `(bet + voucherBet) * 10` 門檻、currency-based translation、`push_user` message、producer async failure、privacy boundary、重送去重與 outbox 取捨；`BetIdPersistence` 不是通知去重，下游 `antplay-push` 未見 `_id` dedupe 或 `fullPlayerName` 過濾。
 
 不可誇大:
 
@@ -226,8 +226,8 @@ Step 5 收口:
 
 ## Suggested Next
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 與 `activity-accumulated-bet-voucher Step 5` 已完成，`big-win-notification Step 4` 也已完成。下一步若延續本 repo，應做同 flow Step 5。
+`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5`、`activity-accumulated-bet-voucher Step 5` 與 `big-win-notification Step 5` 已完成。下一步若延續本 repo，應回 Step 2 排序做 Rank 4 `settle-pool-monitor-darkpool-sync Step 3`，並維持 code-backed analysis-first，不作 Nick 主導 settle pool / risk owner。
 
 ```text
-antplay antplay-slot-game-job big-win-notification Step 5
+antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 3
 ```

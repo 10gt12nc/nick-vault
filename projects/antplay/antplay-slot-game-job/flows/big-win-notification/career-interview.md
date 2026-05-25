@@ -7,7 +7,7 @@
 - 證據層級: 真實開發過 + code-backed。
 - Nick evidence: `1135490` / `c2cd523` 等 `#303` commits 由 `10gt12nc` 新增中大獎通知與小數格式修正。
 - Current behavior evidence: current `BigWinConsumerService` 仍保留大量 `10gt12nc` lines，但後續 Gill / Arnold / Eliot 修改玩家遮罩、currency / translation、totalWin 判斷與 bet id collection。
-- 完成狀態: Step 4 面試 case 已完成。
+- 完成狀態: Step 5 claim gate 已完成。
 - 本文件是 flow-level 素材，不是 project-level final consolidation。正式履歷仍以 `contribution-claim-consolidation.md` 與 rolling resume package 為準。
 
 ## 履歷保守 Bullet
@@ -50,9 +50,9 @@ settlement event -> big-win rule -> privacy / translation / payload formatting -
 
 如果達標，consumer 會依 `agentId` 找對應 agent，再根據幣別決定遊戲名稱翻譯語系。current code 是 CNY 走 `cn`，其他走 `en`，再用 game code 到 `TransGames` 找顯示名稱。找不到翻譯時不會硬送空名稱，而是 log error 後跳過這筆通知。這個設計避免錯誤顯示，但代價是可能漏通知，所以 owner 視角要補 alert 或 fallback，例如至少用 game code 顯示。
 
-通知 payload 會包含 `_id`、`type=3`、`channel=agent_{agentId}_all`，以及玩家遮罩名稱、game code、翻譯名稱、prize、currency。這裡有一個隱私邊界：current code 有 `maskPlayerName`，但 payload 也帶 `fullPlayerName`。如果下游不需要完整帳號，應該移除或拆成內部 audit channel，避免把個資擴散到 notification topic。
+通知 payload 會包含 `_id`、`type=3`、`channel=agent_{agentId}_all`，以及玩家遮罩名稱、game code、翻譯名稱、prize、currency。這裡有一個隱私邊界：current code 有 `maskPlayerName`，但 payload 也帶 `fullPlayerName`。Step 5 補查到 `antplay-push` 會把 `push_user` JSON 原樣送到 `/topic/{channel}`，未見過濾 `fullPlayerName`，所以如果下游不需要完整帳號，應該移除或拆成內部 audit channel，避免把個資擴散到 notification topic。
 
-可靠性上，這條 flow 目前比較像 best-effort notification。`KafkaProducerService` 用 async send，callback 只記成功或失敗 log，呼叫端不等待，也沒有 durable outbox。若 push 失敗，交易本身不會壞，但營運或玩家會漏看通知。若 event 重送，因為每次都產新的 UUID `_id`，也可能重複通知。比較完整的做法是用 `betRecord.id + notificationType` 當 deterministic key，讓下游或 producer-side outbox 可以去重，並對 producer failure 加 metric / alert / replay。
+可靠性上，這條 flow 目前比較像 best-effort notification。`KafkaProducerService` 用 async send，callback 只記成功或失敗 log，呼叫端不等待，也沒有 durable outbox。若 push 失敗，交易本身不會壞，但營運或玩家會漏看通知。若 event 重送，因為每次都產新的 UUID `_id`，也可能重複通知。Step 5 補查 `BetIdPersistence` 後，確認它偏向保存 per-agent 最大 bet id / request id 進度，不是通知去重；下游 `antplay-push` 也未見 `_id` dedupe。比較完整的做法是用 `betRecord.id + notificationType` 當 deterministic key，讓下游或 producer-side outbox 可以去重，並對 producer failure 加 metric / alert / replay。
 
 我會保守說，這條 flow 我有 `#303` 的 direct evidence，參與初版 consumer 和金額格式；但 current code 後續有 Gill / Arnold / Eliot 的修改，所以我不會說自己主導完整 push platform。我會把它當成 Kafka derived notification 的面試 case，講非同步通知的可靠性、隱私、翻譯 fallback 和重複通知邊界。
 
@@ -69,10 +69,10 @@ settlement event -> big-win rule -> privacy / translation / payload formatting -
 
 | 情境 | 面試回答重點 |
 | --- | --- |
-| Kafka event 重送 | current `_id` 每次 UUID，可能重複通知；應補 deterministic key 或下游去重。 |
+| Kafka event 重送 | current `_id` 每次 UUID，`BetIdPersistence` 不是通知去重，下游 `antplay-push` 未見 dedupe；應補 deterministic key 或下游去重。 |
 | producer send failure | `KafkaProducerService` async callback 只 log，屬 best-effort；重要通知要補 outbox / retry / alert。 |
 | 缺遊戲翻譯 | current code skip，避免錯名但會漏通知；可補 game code fallback + alert。 |
-| fullPlayerName 出現在 payload | 有隱私最小化風險；public channel 應只放 masked name，full name 留內部 audit。 |
+| fullPlayerName 出現在 payload | 有隱私最小化風險；`antplay-push` 會原樣送出 JSON，public channel 應只放 masked name，full name 留內部 audit。 |
 | 金額單位錯 | `totalWin / 100.0` 和 `(bet + voucherBet) * 10` 要確認單位一致；避免錯判大獎或顯示錯。 |
 | cache stale | `GameDataCache` 60 秒更新，翻譯或 agent 修改可能短暫不一致；需可觀測與手動 refresh 策略。 |
 
@@ -128,6 +128,6 @@ settlement event -> big-win rule -> privacy / translation / payload formatting -
 - 不說下游 push user delivery 已完整確認。
 - 不把 Gill / Arnold / Eliot 後續改動說成 Nick direct contribution。
 
-## Step 4 結論
+## Step 5 結論
 
-Step 4 已完成正式面試 case。下一步 Step 5 應補 claim gate: `_id` / bet id 是否可作下游去重、`BetIdPersistence` 用途、下游 push consumer / frontend 隱私邊界，以及是否回填 project-level consolidation；仍不直接更新 `05 / 08`。
+Step 5 已完成 claim gate。這條 flow 可回填 project-level `antplay-slot-game-job` consolidation，作為 big-win notification / Kafka derived event supporting evidence；不單獨更新 `05 / 08`。可說 Nick 參與中大獎通知初版與金額格式修正，並能用 current code 講 privacy / translation / producer failure / replay duplicate。不可說完整 push platform owner、exactly-once notification 或下游 delivery / frontend privacy 已完整治理。

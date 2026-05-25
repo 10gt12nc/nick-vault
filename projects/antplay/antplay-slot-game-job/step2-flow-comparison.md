@@ -221,9 +221,9 @@ antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
 - `proxy-user-data-report-projection` 已完成 Step 5，已回填 project-level report projection / Quartz summary evidence。
 - Rank 2 `activity-accumulated-bet-voucher` 已完成 Step 5，定位為 code-backed reward correctness 面試素材與 project-level supporting evidence；Nick 只有 merge evidence，current implementation 主要是 Gill / Arnold / Eliot context，不升級正式履歷 claim。
 - Step 5 已補查 `BetVoucherService#addVoucher` 下游 idempotency / unique key；本 repo 沒有下游 implementation / DB unique key evidence，`refId` 每次 UUID 只能保守視為 trace id。
-- Rank 3 `big-win-notification` 已完成 Step 4，確認 `#303` direct commits、current consumer / producer / translation path、後續多人修改與 derived notification failure windows，並整理正式面試 case。
-- 下一步延續同 flow Step 5 claim gate，補 `_id` / bet id 去重、`BetIdPersistence`、下游 push consumer / frontend privacy 邊界；不插隊做 domain map。
+- Rank 3 `big-win-notification` 已完成 Step 5，確認 `#303` direct commits、current consumer / producer / translation path、後續多人修改與 derived notification failure windows，並補 `_id` / bet id 去重、`BetIdPersistence`、下游 `antplay-push` bridge / privacy 邊界。結論是可作 project-level supporting evidence，不單獨更新 `05 / 08`。
+- 下一步回 Step 2 排序做 Rank 4 `settle-pool-monitor-darkpool-sync Step 3`；此 flow 以 code-backed analysis-first 定位，不作 Nick 主導 settle pool / risk owner。
 
 ```text
-antplay antplay-slot-game-job big-win-notification Step 5
+antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 3
 ```
