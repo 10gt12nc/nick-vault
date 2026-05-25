@@ -219,9 +219,9 @@ antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
 ## 11. 2026-05-25 Progress Update
 
 - `proxy-user-data-report-projection` 已完成 Step 5，已回填 project-level report projection / Quartz summary evidence。
-- Rank 2 `activity-accumulated-bet-voucher` 已完成 Step 3，定位為 code-backed reward correctness 面試素材；Nick 只有 merge evidence，current implementation 主要是 Gill / Arnold / Eliot context，不升級正式履歷 claim。
-- 下一步應延續同 flow Step 4，先整理正式面試說法與追問，不插隊做 domain map。
+- Rank 2 `activity-accumulated-bet-voucher` 已完成 Step 4，定位為 code-backed reward correctness 面試素材；Nick 只有 merge evidence，current implementation 主要是 Gill / Arnold / Eliot context，不升級正式履歷 claim。
+- 下一步應延續同 flow Step 5 claim gate，追 `BetVoucherService#addVoucher` 下游 idempotency / unique key、Nick merge evidence 是否能補強、是否回填 project-level consolidation；不插隊做 domain map。
 
 ```text
-antplay antplay-slot-game-job activity-accumulated-bet-voucher Step 4
+antplay antplay-slot-game-job activity-accumulated-bet-voucher Step 5
 ```

@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: 活動累計投注送 voucher / free spin。
 - Flow slug: `activity-accumulated-bet-voucher`。
-- 完成狀態: Step 3 / Level 2 Flow 深掃完成。
+- 完成狀態: Step 4 面試 case 完成。
 - 證據層級: 專案存在 / code-backed + Nick merge evidence；`nick` 有 `feature/accumate_bet` merge evidence，但 current code 主要由 Gill 開發、Arnold / Eliot 後續調整，不能標成 Nick 主開發。
 - 本 flow 類型: Kafka event consumer + Redis accumulate + DB voucher issuing。
 - 是否只確認到入口: 否，已確認 consumer、activity config、Redis key、voucher utility、Kafka toggle 與主要 git history；下游 `BetVoucherService` / `ActivityConfService` 來自外部 lib，本 repo 只確認呼叫邊界。
@@ -274,8 +274,8 @@ Owner 建議:
 - 不說已建立完整 idempotency / exactly-once / reconciliation。
 - 不把 Gill / Arnold / Eliot 的 current code 說成 Nick 完成。
 
-## 15. Step 3 結論
+## 15. Step 4 結論
 
 這條 flow 有不錯的 Senior Backend 題材，但 Nick direct evidence 弱於上一條 `proxy-user-data-report-projection`。目前最保守的定位是 code-backed 面試素材，用來補 reward / voucher / Redis consistency 題，而不是主履歷 claim。
 
-Step 3 已建立「讀懂 flow」與「Senior 深挖」基礎。下一步應做 Step 4，把 Redis / DB 防重、Kafka 重送、Daily / Period 邊界整理成 30 秒 / 90 秒 / 3 分鐘面試說法與追問答案；還不直接更新 `05 / 08`。
+Step 4 已把 Redis / DB 防重、Kafka 重送、Daily / Period 邊界整理成正式 30 秒 / 90 秒 / 3 分鐘面試說法、STAR、failure scenarios 與 Senior / Lead 追問。下一步應做 Step 5 claim gate，追 `BetVoucherService#addVoucher` 下游 idempotency / unique key、Nick merge evidence 是否能補強，以及是否能回填 project-level consolidation；還不直接更新 `05 / 08`。

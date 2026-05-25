@@ -8,7 +8,7 @@
 | --- | --- |
 | 真實開發過 | 不足。Nick 有 merge evidence，但 current implementation 主要由 Gill 開發，後續 Arnold / Eliot 調整。 |
 | code-backed | 可成立。current code path 可完整追到 consumer、Redis key、voucher utils 與 config toggle。 |
-| 可面試講 | 可成立，但要說成 code-backed reward correctness 分析素材。 |
+| 可面試講 | 可成立。Step 4 已整理成正式 reward correctness / Redis + DB 防重面試 case，但要說成 code-backed 分析素材。 |
 | 可直接履歷 | 不建議單獨新增正式 bullet；可作 `antplay-slot-game-job` project-level supporting evidence。 |
 | 不可誇大 | 不能說 Nick 主導活動累計投注、完整 reward platform、完整 idempotency / reconciliation。 |
 
