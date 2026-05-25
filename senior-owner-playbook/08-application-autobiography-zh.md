@@ -3,7 +3,7 @@
 這份是正式投遞履歷時使用的自傳版本，不取代 `05-resume-master-zh.md`。
 `05-resume-master-zh.md` 是母稿，這份是從母稿濃縮後的投遞版。
 
-> 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔其他 project 前，仍必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。
+> 目前證據狀態：保守投遞稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔其他 project 前，仍必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、KB 內所有履歷自傳素材；不能把專案存在或 AI 分析素材寫成 Nick 真實開發成果。`archive/` 已清空，不再列為必要來源。
 
 > 2026-05-19 payment consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/payment/contribution-claim-consolidation.md`。投遞自傳可保守寫 Nick 參與 iwin payment 多個第三方金流 provider request / callback / query / withdraw 對接與維護，以及 payment / withdraw order consistency bugfix；2026-05-20 補入 GoldenPay direct commits 作為多 provider integration evidence。仍不寫主導完整金流、全部 provider owner、完整 wallet / reconciliation owner 或量化改善。
 

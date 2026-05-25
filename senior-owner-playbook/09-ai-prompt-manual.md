@@ -70,7 +70,7 @@
 - 只能動 nick-vault。
 - 公司專案只能讀，不能改。
 - 掃公司 code 前先 fetch remote refs 確認最新性；只允許更新 remote refs，不自動 pull / merge / checkout / rebase 或改公司 repo 工作樹。
-- archive/ 只能當參考來源。
+- `archive/` 目前已清空，只保留 `.gitkeep`；不再當必要參考來源。
 - 每次 Step / flow 任務開始前，請自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不要等 Nick 說「重讀」。
 - 新內容要重新整理、去重、結合、優化，不要複製舊檔。
 - 不要產生 code。
@@ -85,7 +85,7 @@
 - 如果 Nick 沒說深度，請依任務主動建議 Level 1 / 2 / 3；若不建議 Level 3，要說明原因。
 
 目標：
-把專案 code / 舊資料 / 待刪區參考內容，整理成 Senior Java Backend / Platform Backend / System Owner 可讀、可面試、可轉履歷的學習資料。
+把專案 code、`projects/` 既有整理與 KB 素材，整理成 Senior Java Backend / Platform Backend / System Owner 可讀、可面試、可轉履歷的學習資料。
 ```
 
 ## 0.1 每次任務的自動重讀 Checklist
@@ -457,7 +457,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 請深掃：
 - /Users/nick/Git/{domain 或 project}
 - nick-vault 既有 projects/{domain}
-- archive 相關舊資料
+- senior-owner-playbook 相關 KB
 
 只能動 nick-vault。
 公司專案只能讀，不能改。
@@ -580,7 +580,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 不寫主導、獨立完成、改善 X%，除非有明確證據。
 - 可以寫參與、維護、分析、梳理、協助、優化、提出改善方向。
 - 履歷只補高價值且能面試講清楚的內容。
-- 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / `archive/` / KB 所有履歷自傳素材。
+- 若是最終更新 05 / 08，必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/` / KB 所有履歷自傳素材。`archive/` 目前已清空，不再列為必要來源。
 - 若 Nick 指出某 repo 是主力開發經驗，且要求履歷收斂，可以先做 rolling project-level contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow KB、已完成 flow evidence、本人確認內容與目前可讀的 project 文件，再分成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大」。若本批代表 flows 未完成，標成待回填，不阻塞履歷線。
 - 若 Nick 沒明確說「我做很多」，但 AI 已整理出高價值 code-backed flow，且下一步要碰履歷 / 自傳 / claim boundary，也可以先做 rolling consolidation。這是避免兩種錯誤：把分析成果誇大成 Nick 成果，或因單條 flow 缺 direct evidence 就低估整個 repo 經驗。
 - final contribution consolidation 才要求 Step 2 定義的本批代表 flows 全部完成到 Step 5；rolling consolidation 不能只靠單條 flow 宣稱全 project 已完整深掃。它是掃 Nick / `10gt12nc` 的 commits、branches、重要 diff、本人確認、既有 flow evidence 與已完成 flow KB，先界定履歷 claim；未完成 flows 必須標成待回填。

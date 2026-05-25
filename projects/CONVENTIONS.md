@@ -285,7 +285,7 @@ Log / Audit：
 只有在同一批專案資料整理到足夠完整，且 Nick 明確要求更新正式版時，AI 才能開始最終整合。更新前必須：
 
 - 深度掃描相關 code repo 的主分支、近期分支、path-specific history 與重要 diff。
-- 深度掃描 `projects/` 既有 flow、project-level `career-interview.md`、`archive/` 舊履歷自傳與所有 KB 履歷素材。
+- 深度掃描 `projects/` 既有 flow、project-level `career-interview.md` 與所有 KB 履歷素材。`archive/` 目前已清空，不再列為必要來源。
 - 去重、合併、降誇大。
 - 每條 claim 標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`。
 - 沒有 evidence 的內容只可保留在素材或待確認，不寫進正式投遞語句。

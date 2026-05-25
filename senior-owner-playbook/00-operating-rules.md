@@ -19,7 +19,7 @@ AI 都必須套用同一套規則。
 本 vault 同時有兩條線，AI 必須分清楚：
 
 1. `Flow Track`：負責系統理解與面試案例。固定主線是 `Step 1 project candidate flows -> Step 2 flow ranking -> 單條 flow Step 3 深掃 -> Step 4 面試 case -> Step 5 單條 flow claim gate`。每條 flow 一樣要依深掃規範讀 code、history、evidence、failure window、consistency、claim boundary。Flow Step 5 只回答「這條 flow 本身能不能作履歷素材」，不能回答「整個 project 履歷怎麼寫」。
-2. `Career Track`：負責履歷 / 自傳 / project-level 經驗整理。固定主線是 `project contribution claim consolidation -> 05 resume / 08 autobiography`。consolidation 要以 project 為包裝單位，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence 與 archive 履歷素材。履歷 / 自傳可以引用 flow，但主要結論來自 project-level consolidation，不直接吃單條 flow Step 5。
+2. `Career Track`：負責履歷 / 自傳 / project-level 經驗整理。固定主線是 `project contribution claim consolidation -> 05 resume / 08 autobiography`。consolidation 要以 project 為包裝單位，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence、`projects/` 與 KB 內履歷素材。履歷 / 自傳可以引用 flow，但主要結論來自 project-level consolidation，不直接吃單條 flow Step 5。`archive/` 目前已清空，不再列為必要來源。
 
 當 Nick 要求「先把目前所有 contribution consolidation 匯總成 05 / 08，讓我能寫履歷」時，走 `rolling resume package`：AI 要彙總已完成的 project-level contribution consolidation，更新 `05-resume-master-zh.md` 的可直接使用履歷版與 `08-application-autobiography-zh.md` 的投遞版，並標示為目前可用草稿 / 非 final。`05` 是履歷 / 自傳 / claim 母稿與證據池，可以保留較完整的判斷與素材；`08` 是投遞輸出版，必須維持 104 可貼欄位：工作經驗、專長、自傳、自我推薦。後續每次 flow 深掃、Step 5 或新的 consolidation，都要回填修正 05 / 08，而不是等所有 flow 做完才讓 Nick 開始寫履歷。
 
@@ -550,7 +550,7 @@ Step 5 只判斷該 flow 是否能作履歷 / 面試素材，並輸出 claim bou
 
 - `senior-owner-playbook/`：通用方法論、提示詞、學習路線、面試與履歷。
 - `projects/`：之後各專案整理後的新分析。
-- `archive/`：舊資料、舊中間稿、原始匯入、待分析、待刪與重複筆記，日後由 Nick 人工審查是否刪除。
+- `archive/`：已依 Nick 指示清空，只保留 `.gitkeep` 佔位；之後不要再把舊資料放回 archive，除非 Nick 明確要求。
 
 ## 主軸與輔助層
 
@@ -601,7 +601,7 @@ AI 可以在 Step 3 內補 `materials/evidence.md`、`materials/claim-boundary.m
 
 ## 不複製舊檔
 
-新增內容必須重寫，不能直接把舊檔搬回來。可以讀舊資料，但輸出要整理成：
+新增內容必須重寫，不能直接把舊檔搬回來。若未來 Nick 另外提供舊資料，可以讀作參考，但輸出要整理成：
 
 - 更少檔案
 - 更清楚分類
@@ -839,7 +839,7 @@ AI 必須主動判斷掃描深度，不要全部丟給 Nick 決定。
 - 若是 Nick 明確說實際做很多的主力 repo，可以先做 rolling / scoped project-level contribution consolidation，不得只根據單條 flow 的 Step 5 直接排除該 repo 經驗；未完成 flow 標成待深掃 / 待回填，之後再補 Flow Track。
 - 全面掃 Nick / `10gt12nc` commits、branches、重要 diff 與可能的 author aliases，並和 Nick 本人確認內容交叉整理。
 - 掃描 `projects/` 已完成 flows、project-level career-interview、flow-level career-interview。
-- 掃描 `archive/` 舊履歷、自傳、career、ai-notes、KB 中所有履歷素材。
+- 掃描 `projects/`、`senior-owner-playbook/`、KB 中所有履歷素材；`archive/` 目前已清空，不再列為必要來源。
 - 去重、降誇大、刪除沒有 evidence 的強 claim。
 - 每條履歷 bullet 標註來源層級：`真實開發過` / `專案存在` / `分析素材` / `待確認`。
 - 沒有 evidence 的內容只能留在待確認或面試分析素材，不寫進正式投遞句子。

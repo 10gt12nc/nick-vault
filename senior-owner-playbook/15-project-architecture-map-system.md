@@ -248,7 +248,7 @@ projects/{domain}/{project}/architecture-map.md
 請深掃：
 - /Users/nick/Git/{domain 或對應目錄}
 - nick-vault 既有 projects/{domain}
-- archive 相關舊資料
+- senior-owner-playbook 相關 KB
 
 只能動 nick-vault。
 公司專案只能讀，不能改。

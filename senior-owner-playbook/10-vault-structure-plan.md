@@ -103,11 +103,11 @@ projects/{domain}/{project}/
 
 ### archive/
 
-只當參考、待分析與待刪區。
+目前已依 Nick 指示清空，只保留 `.gitkeep` 佔位。
 
-可以讀，但不要把它當長期資料庫。
+之後不要把它當長期資料庫，也不要把舊資料放回來，除非 Nick 明確要求。
 
-如果之後真的清空 archive，已經整理進 `senior-owner-playbook/` 和 `projects/` 的內容才會留下。
+已經整理進 `senior-owner-playbook/` 和 `projects/` 的內容才是正式保留資料。
 
 ## AI 會不會自動維護？
 

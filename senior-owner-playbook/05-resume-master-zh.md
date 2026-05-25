@@ -1,8 +1,8 @@
 # Nick 履歷與自傳 Master
 
-> 這是唯一履歷 / 自傳 master。來源是待刪區舊履歷、專案 flow、career material 與 code-backed analysis 重新整理後的保守版。正式投遞前，所有「主導、獨立完成、改善百分比」都必須再由 Nick 本人確認或補 MR / commit / ticket / metric。
+> 這是唯一履歷 / 自傳 master。來源是既有履歷素材、專案 flow、career material 與 code-backed analysis 重新整理後的保守版。正式投遞前，所有「主導、獨立完成、改善百分比」都必須再由 Nick 本人確認或補 MR / commit / ticket / metric。
 
-> 目前證據狀態：保守母稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔其他 project 前，仍必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、`archive/`、KB 內所有履歷自傳素材；每條 claim 需標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`，不得腦補。
+> 目前證據狀態：保守母稿，尚未完成所有 project / flow 的最終整合。之後正式更新本檔其他 project 前，仍必須先深掃 code 主分支、近期分支、path-specific history、重要 diff，以及 `projects/`、KB 內所有履歷自傳素材；每條 claim 需標註 `真實開發過` / `專案存在` / `分析素材` / `待確認`，不得腦補。`archive/` 已清空，不再列為必要來源。
 
 > 2026-05-19 payment consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/payment/contribution-claim-consolidation.md`。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 `iwin/payment` 升級為「部分真實開發過」：多個 provider request / callback / query / withdraw 對接或維護、provider sign / response parsing bugfix、payment / withdraw order consistency 修正；2026-05-20 另補入 GoldenPay skeleton / protocol / spec handling / k3s enable direct commits。仍不得寫成主導完整金流、全部 provider owner、完整 wallet / reconciliation owner 或量化改善。
 

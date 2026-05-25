@@ -2,7 +2,7 @@
 
 這是 `nick-vault` 重新開始後的新入口。
 
-舊資料全部視為參考來源，位置在 `archive/`。本資料夾不是複製舊檔，也不是搬移舊檔，而是從 archive 與專案 code 線索整理、去重、合併後重寫的新版本。
+舊資料已整理進 `senior-owner-playbook/` 與 `projects/`，`archive/` 已依 Nick 指示清空，只保留 `.gitkeep` 佔位。後續不再依賴 archive 作為必要參考來源。
 
 ## 目標
 
@@ -20,7 +20,7 @@
 本 playbook 同時維護兩條線，不要混在一起：
 
 - `Flow Track`：整理系統 flow 與面試 case。固定主線是 Step 1 找 candidate flows、Step 2 排序、Step 3 單條 flow 深掃、Step 4 轉面試 case、Step 5 單條 flow claim gate。
-- `Career Track`：整理履歷、自傳與 project-level 經驗。正式更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 前，要先做 project contribution claim consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence 與 archive 履歷素材。
+- `Career Track`：整理履歷、自傳與 project-level 經驗。正式更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md` 前，要先做 project contribution claim consolidation，掃 Nick / `10gt12nc` commits、branches、重要 diff、本人確認、既有 flow evidence、`projects/` 與 KB 內履歷素材。`archive/` 目前已清空，不再列為必要來源。
 
 Flow Step 5 可以提供「這條 flow 能不能作履歷 / 面試素材」的證據，但不能直接代表整個 project 的履歷結論。當 Nick 追問「我是不是做過很多」、「履歷怎麼寫」、「這個 project 經驗怎麼放」時，下一步優先走 Career Track。
 

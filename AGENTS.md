@@ -6,7 +6,7 @@
 
 - 目前主入口是 `senior-owner-playbook/`。
 - 目標是整理 Nick 的 Senior Java Backend / Platform Backend / System Owner 學習資料、專案 flow、面試案例與履歷素材。
-- 把已經用過、等待 Nick 人工審查是否刪除的原始資料放在 `archive/`。
+- `archive/` 已依 Nick 指示清空；之後不再把它當作必要參考來源。
 - 新內容必須重新整理、去重、結合、優化，不要直接複製舊檔。
 - 使用繁體中文作為主要說明語言。
 - 保留清楚索引，讓下一個 AI 能快速知道資料在哪裡。
@@ -15,7 +15,7 @@
 
 - `senior-owner-playbook/`：放跨專案通用的方法論、提示詞、學習路線、面試案例、唯一履歷 master 與投遞用自傳。
 - `projects/`：未來放各專案整理後的新分析，例如 `projects/iwin/payment/flows/{flow}/`。
-- `archive/`：只放舊資料、舊中間稿、原始匯入、待分析與等待人工審查刪除的資料。
+- `archive/`：目前只保留空資料夾用 `.gitkeep` 佔位；不要再新增舊資料或把它當長期資料位置，除非 Nick 明確要求。
 - 不要新增 `ai-notes/`、`docs/`、`.claude/`、`.codex/`、`resources/` 作為長期資料位置。
 - 密鑰與 token 只能放本機 `.env`，不得寫入 Markdown 或 commit。
 
@@ -101,7 +101,7 @@
 - 沒有實際 evidence 的技術點可以寫「略」、「不展開」、「建議補讀外部文章 / 官方文件」，不要為了湊滿格式而腦補。
 - `flow.md` 的閱讀層次固定是「先讀懂，再資深化」：先用初階 / 中階可讀方式說清楚功能、使用者、觸發情境、Controller / Service / Model / SQL / Redis / MQ / Log 對照與正常流程，再進入 Senior / Owner 的 state、consistency、idempotency、retry / compensation、observability、trade-off。
 - 架構圖與流程圖是 `flow.md` 的教學入口，不是新 Step、不是額外任務、也不是要畫沒有 evidence 的大圖。圖只畫本 flow 已確認或明確標示待確認的上下游。
-- `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 分成 rolling 版與最終版：rolling 更新可以先吃 project contribution consolidation 的保守結論，用來支援近期投遞；最終版仍必須在足夠 flow 深掃後再全量校正。更新前必須掃 code 分支、path-specific history、重要 diff、KB / archive 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材。
+- `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 分成 rolling 版與最終版：rolling 更新可以先吃 project contribution consolidation 的保守結論，用來支援近期投遞；最終版仍必須在足夠 flow 深掃後再全量校正。更新前必須掃 code 分支、path-specific history、重要 diff、KB 與 `projects/` 內履歷自傳素材，並逐條標註哪些是 Nick 真實做過、哪些只是專案存在或分析素材；`archive/` 目前已清空，不再列為必要來源。
 - 履歷 / 自傳更新不得只根據單條 flow Step 5 直接寫入。若要更新 05 / 08，必須先有對應 project 的 contribution claim consolidation，或在本輪先完成 rolling / scoped consolidation。
 - 對 Nick 明確指出「實際做很多」的主力 repo，例如 `iwin/payment`，不得只用單條 flow Step 5 的直接 path evidence 來否定整個 repo 經驗。可以先做 project-level rolling contribution consolidation：掃全部 Nick / `10gt12nc` commits、branches、重要 diff、已完成 flow KB、既有 flow evidence 與 Nick 本人確認，整理成「可放履歷：真實開發過」、「可面試講：code-backed / 分析過」、「不可誇大：不是主導完整系統 owner」三層，再更新履歷或 claim boundary。未完成的代表 flows 要標為「待深掃 / 待回填」，之後 Flow Track 照舊補 Step 3~5。
 - 即使 Nick 沒先說「我做很多」，只要某 project 已經開始形成可面試 code-backed 素材，而 AI 的下一步會影響履歷 claim 或 Nick 明確追問履歷價值，也可以先做 rolling contribution consolidation；不能因 flow 尚未全部 Step 5 就完全卡住履歷線。
