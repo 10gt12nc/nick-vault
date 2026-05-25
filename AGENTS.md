@@ -43,6 +43,10 @@
 - `nick-vault` 的目標不是無限掃完所有 repo，而是對標 Senior Java Backend / Platform Backend 形成可投遞、可面試、可防追問的證據包。AI 回答「下一步 / 還剩多少 / 要不要繼續」時，必須分成 `必做收口`、`可選加強`、`暫不建議做`，不得把 backlog 包裝成永遠必做。
 - Senior 對標結束點：3-5 個 project-level claim 可保守放履歷、8-10 條 production flow 能講 3 分鐘並抗追問、每條 claim 都分清真實開發 / code-backed / 不可誇大、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應建議停止大規模整理，轉為投履歷、練面試、針對職缺補洞。
 - Senior 面試準備度不要只用「最低能投」判斷，改用三段門檻：`中等可面`（3 條主力 case 能講 3 分鐘、有 evidence / claim boundary / 常見追問）、`穩過可抗追問`（5 條 case 覆蓋 payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability，且能講 owner decision）、`完全對標 Senior / Platform`（8-10 條 production flow 可依 JD 切換，`05 / 08 / 04 / 17` 與 claim boundary 全部對齊）。回答下一步時要說目前屬於哪一段，不得再把低標當完成。
+- 面試準備比例固定以 `70 / 20 / 10` 收斂：70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 基本判斷只做最小檢查表、遇到 case 或面試回饋再補；10% LeetCode / coding test 只作投遞前保險，不得變成新主線。
+- AI 時代 coding 準備重點不是手刻所有題，而是能 review AI 產物是否能進 production：BigDecimal、transaction boundary、callback idempotency、Redis lock、SQL index、MQ retry、null / race condition、重複副作用等風險要能判斷。
+- 面試題 / 複習包只能從主力 production case 長出來，不建立泛用 Java / SQL / LeetCode 300 題題庫。第一輪只圍繞 payment provider、wallet / bet-settle、Kafka / report projection 產 90 秒版、3 分鐘版、追問題庫、回答要點、誇大陷阱與 case-specific 基本功。
+- 台灣轉職月份策略維護在 `17-salary-negotiation.md`：一般主旺季是 2-4 月，2026 因春節較晚與轉職季拉長可延到 4-5 月；9-10 月是第二波，11-1 月適合準備 / 卡位。月份只影響投遞節奏，不取代 case 準備與市場回饋。
 - 當 Nick 問「flow 都完整嗎 / map 夠完整嗎 / 真的夠扛資深嗎 / 能不能 0 到 1 架完整系統 / 我是不是方向歪了」時，AI 要先處理收斂與焦慮，不得直接加新 backlog。回答必須區分：`履歷 / 面試證據包已足夠`、`全公司大系統不可能也不需要一人完整掌握`、`domain-level 大地圖若缺是可選架構補強，不是投遞前必做`。
 - `System Owner` 在本 vault 的意思是能對「一條核心 production flow」理解結果、風險、failure window、補償、觀測與交接邊界；不是一個人負責整個公司、完整金流、完整遊戲平台、完整 DevOps 或完整架構決策。履歷、面試與 KB 都不得把「能 owner flow」擴張成「全系統 owner」。
 - 完整度分三層：`flow-level 完整`（單條 flow 可讀、可講、claim boundary 清楚）、`project-level 完整`（代表 flows + contribution consolidation 可支撐履歷 / 面試）、`domain-level 完整`（跨 project architecture / integration map）。目前 Senior 求職必做的是前兩層；第三層只在要練架構視角、面 Platform / Lead 候選、或 Nick 明確要求大地圖時補。

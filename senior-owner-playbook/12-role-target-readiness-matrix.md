@@ -28,6 +28,8 @@ Senior Java Backend
 
 > 2026-05-25 方向校正：這份矩陣不是要求 Nick 一個人扛完整大系統。Senior / Platform Backend 的可面試證據是「代表性 production flows + project-level claims + 可防追問邊界」。完整公司級系統地圖是團隊知識管理工作；個人準備只需要能講清楚核心 flows 與跨系統協作，不需要把所有 repo 全量掃完。
 
+> 2026-05-25 面試準備比例：通用對標用 `70 / 20 / 10` 收斂。70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 遇到 case 卡點或面試回饋再補；10% LeetCode / coding test 作投遞前保險。不同角色只調整 case 權重，不改主線。
+
 可以投：
 
 - Senior Java Backend Engineer

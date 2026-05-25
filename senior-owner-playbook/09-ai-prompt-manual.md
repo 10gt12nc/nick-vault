@@ -39,6 +39,9 @@
 - 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」。Nick 問下一步、履歷、缺口或 consolidation 時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。若本批代表 flows 尚未全部完成但 Nick 要先補履歷，則做 rolling consolidation，並同步 todo / inventory / project README，標示「rolling consolidation 已做 / flow 深掃未完 / 待回填」。
 - `nick-vault` 必須有對標資深的收斂終點。當 Nick 問「還有多少 step / 會不會一直建議 / 什麼時候結束 / 對標資深夠不夠」時，AI 要先回答結束點，而不是繼續推下一個 flow。固定分成 `必做收口`、`可選加強`、`暫不建議做`，並說明做完後是否改成投遞 / 面試練習 / 針對職缺補洞。
 - Senior 對標完成標準：3-5 個 project-level 履歷 claim、8-10 條可講 3 分鐘且抗追問的 production flow、每條 claim 的真實開發 / code-backed / 不可誇大邊界乾淨、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應停止大規模整理，不再把 backlog 當必做。
+- 面試準備比例固定以 `70 / 20 / 10` 收斂：70% production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 基本判斷只做最小檢查表、遇到 case 或面試回饋再補；10% LeetCode / coding test 只作投遞前保險。不得把刷題、八股或 AI coding 焦慮變成新主線。
+- 面試題 / 複習包必須從主力 production case 長出來，不建立泛用 Java / SQL / LeetCode 題庫。第一輪只圍繞 payment provider、wallet / bet-settle、Kafka / report projection 出 90 秒版、3 分鐘版、追問題、回答要點、誇大陷阱與 case-specific 基本功。
+- 若 Nick 問轉職月份、投遞節奏或市場測試，先讀 `17-salary-negotiation.md` 的台灣轉職月份策略，並視當下日期 / 市場重新查資料。月份是投遞節奏，不是是否夠 Senior 的判斷依據。
 - 當 Nick 問「flow / map 是否都完整、能不能 0 到 1 架完整系統、是不是方向歪了、是否要一個人扛大系統」時，AI 要先校正目標：本 vault 追求的是可投遞、可面試、可防追問的 Senior / Platform evidence package，不是全公司知識全量掃完。先分清 `已足夠投遞 / 面試`、`可選架構補強`、`暫不建議做`，不要直接新增一串 flow。
 - `System Owner` 只能解釋為核心 flow owner thinking，不得擴張成完整公司平台 owner。AI 必須提醒：完整大系統本來就是團隊工作；Nick 要補的是代表 flows、跨系統邊界、風險判斷與口說能力，不是把所有 repo 都背起來。
 - 但如果 Nick 只要求「待辦 / 缺口 / 優先順序」，AI 先把 contribution consolidation 或 flow Step 列成待辦，不自動執行；等 Nick 明確下 `project contribution claim consolidation` 或 `flow Step N` 才開始深掃與改 flow 文件。

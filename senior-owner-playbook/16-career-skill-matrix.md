@@ -20,6 +20,8 @@ production flow
 - 不要一次補全部缺口。
 - 缺口要回到具體 flow 裡補，不要變成抽象讀書清單。
 - 沒有 evidence 的能力，不直接寫進履歷。
+- 依 `70 / 20 / 10` 控制比例：70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 基本判斷遇到再補；10% LeetCode / coding test 只作投遞前保險。
+- AI 時代 coding 的訓練重點是 review AI 產物是否能進 production，不是把自己訓練成刷題型選手。
 
 ## Level 1：初階 Backend
 
@@ -202,12 +204,12 @@ production flow
 
 優先順序不是把全部補滿，而是對標 10 萬以上 Senior / Platform Backend 職缺，先補最有面試價值的缺口：
 
-1. 完成 3 條 evidence-backed production flow。
-2. 每條 flow 補 failure / consistency。
-3. 每條高價值 flow 補 decision-notes。
-4. 把 3 條 flow 轉成 3 分鐘面試說法。
-5. 每條補 claim boundary，避免履歷誇大。
-6. 再補大專案地圖，讓跨 repo flow 不會迷路。
+1. 先把 3 條主力 evidence-backed production case 練到能講 3 分鐘：payment provider、wallet / bet-settle、Kafka / report projection。
+2. 每條主力 case 補 failure / consistency / claim boundary 與至少 5 個追問。
+3. 再補到 5 條「穩過可抗追問」case：加入 high-traffic table / partition，以及 request log MQ 或 rollout / observability。
+4. 若要完全對標 Senior / Platform，再整理到 8-10 條可依 JD 切換的 production flow。
+5. Java / SQL / Redis / MQ / LeetCode 只從這些 case 的卡點延伸補，不另外開巨大讀書清單。
+6. 大專案地圖只作架構視角補強，不是投遞前必做。
 
 ## 8 週軟硬實力養成計劃
 

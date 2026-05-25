@@ -70,4 +70,4 @@ iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
 
 - 可放履歷：第三方 provider 投派整合與 gameserver 錢包 / 投注流水串接，限 Antplay / GSC / PG 類 flow 與 log projection。
 - 可面試講：third-party transfer in/out 可用「有直接開發 evidence」語氣；center_http 上分 / 下分已完成 Step 5，仍用 code-backed / 分析過語氣；game-spin-settlement-log-reel 已是 Step 5 正式面試素材，但一般 Game40 spin 不作 direct development claim；bet-target-set-query 已是 Step 5 money rule 素材，coupon 打碼入口有 direct evidence。
-- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner或解決 duplicate callback production incident。
+- 不可誇大：不得寫成 Nick 主導 gameserver、完整 wallet owner、完整第三方遊戲整合 owner、完整上分 / 下分 owner，或解決 duplicate callback production incident。
