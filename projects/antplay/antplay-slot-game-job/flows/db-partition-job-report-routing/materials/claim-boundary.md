@@ -2,14 +2,15 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 結論
 
-本 flow 可作 `antplay-slot-game-job` project-level supporting evidence，但 Step 4 不直接更新 `05 / 08`。
+本 flow Step 5 claim gate 已完成。它可作 `antplay-slot-game-job` project-level supporting evidence，但不直接更新 `05 / 08`，也不單獨拉成正式 DB sharding bullet。
 
 可保守定位:
 
-- 真實開發過: Nick / `10gt12nc` 有 `db_partition v2` 與 `fix ag_report_player` direct commits。
+- 真實開發過: Nick / `10gt12nc` 有 `db_partition v2`、`fix`、`fix ag_report_player` direct commits，支撐 bet record / request log / report 分表與 report path repair。
 - Code-backed: current `@UseSchema` / schema routing / report repository 分組查寫已讀懂。
 - 不可誇大: current schema route framework 是多人後續建立與修正，不是 Nick 完整主導。
 
@@ -33,14 +34,22 @@ Step 4 補充日期: 2026-05-25
 - 不說主導完整 `@UseSchema` framework。
 - 不說完整 migration / backfill / DDL / index owner。
 - 不說完整 report / BI platform owner。
-- 不說 G3 routing 已完整確認；current code 仍需 Step 5 補查。
-- 不把 Step 4 面試稿當成 Step 5 claim gate；正式單條 flow claim 仍需 Step 5 追 current call sites / blame / G3 route。
+- 不說 G3 routing 已完整確認；current code 有 G3 enum / aspect branch，但未看到 G3 data source mapping。
+- 不把 `@UseSchema` framework 說成 Nick 完整主導；current route framework 主要是 Eliot / Arnold 後續脈絡。
 
 ## 後續回填條件
 
-若 Step 5 補到以下 evidence，可再回填 project-level consolidation:
+若後續要升級成更強履歷 claim，需補以下 evidence:
 
 - DDL / index / unique key。
-- G3 data source routing current behavior。
 - Nick direct commits 是否包含更多 schema route / migration / report repair。
 - production issue / ticket / MR 說明 Nick 實際處理過 route bug 或 partition migration。
+- G3 data source routing current behavior與 production runbook。
+
+## Project-level 回填
+
+可回填 `antplay-slot-game-job contribution claim consolidation refresh`:
+
+- `db_partition v2` / `fix ag_report_player` 作「分表 / report path 維護」直接 evidence。
+- `@UseSchema` / G2 routing / ThreadLocal restore 作 code-backed 面試素材。
+- G3 / DDL / migration / backfill 作不可誇大與待補邊界。

@@ -14,6 +14,8 @@
 
 2026-05-25 補充: `db-partition-job-report-routing Step 4` 已完成。該 flow 已整理成正式面試 case，可講高流量表固定表名 + `agentId` schema route、SQL filter、ThreadLocal context、metadata cache、migration / report summary failure window；仍不單獨更新 `05 / 08`，也不把 Step 4 面試稿當成 Step 5 claim gate。
 
+2026-05-25 補充: `db-partition-job-report-routing Step 5` 已完成。Step 5 補查 current `DataSourceConfig` / `DataSourceType` / `SchemaContextHolder#set`、report job call sites、path-specific blame 與 important commit stat。結論是 Nick / `10gt12nc` 的 direct evidence 可支撐 bet record / request log / report 分表與 report path repair；current `@UseSchema` framework 主要是 Eliot / Arnold，多人後續；G3 只有 logical enum / aspect branch，未看到完整 data source mapping。此 flow 只作 project-level supporting evidence，不單獨更新 `05 / 08`。
+
 ## 結論
 
 `antplay-slot-game-job` 可以列為 Nick / `10gt12nc` 真實開發過的 job / event processing repo。Direct commits 觸及 Kafka consumer、Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、db partition / job config 與後續 report 修正。
@@ -232,8 +234,8 @@ Step 5 收口:
 
 ## Suggested Next
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5`、`activity-accumulated-bet-voucher Step 5`、`big-win-notification Step 5`、`settle-pool-monitor-darkpool-sync Step 5` 與 `db-partition-job-report-routing Step 4` 已完成。下一步若延續本 repo，可做 Rank 5 `db-partition-job-report-routing Step 5` 作支線 claim gate；目前不需要因本 flow 改寫正式履歷。
+`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5`、`activity-accumulated-bet-voucher Step 5`、`big-win-notification Step 5`、`settle-pool-monitor-darkpool-sync Step 5` 與 `db-partition-job-report-routing Step 5` 已完成。下一步若延續本 repo，應做 `contribution claim consolidation refresh`，把五條代表 flows 的 Step 5 結論重新收斂一次；目前不需要因單條 flow 直接改寫正式履歷。
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 5
+antplay antplay-slot-game-job contribution claim consolidation refresh
 ```

@@ -2,6 +2,7 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 核心面試題
 
@@ -83,7 +84,7 @@ Result:
 
 Q: 你怎麼避免 `@UseSchema` 找不到 agentId？
 
-A: 我會把這當成 annotation contract。方法簽名必須明確有 `agentId`，或物件要有 `getAgentId()`；找不到時不要 fallback default，要 fail fast 並 log method signature。現有 code 有自動解析，但 Step 5 還要補 null safety 與 call site 檢查。
+A: 我會把這當成 annotation contract。方法簽名必須明確有 `agentId`，或物件要有 `getAgentId()`；找不到時不要 fallback default，要 fail fast 並 log method signature。Step 5 已確認本 flow 主要 report call sites 都有傳 `agentId`，但 aspect 層仍缺 null safety，這點不能粉飾。
 
 Q: ThreadLocal schema context 有什麼坑？
 
@@ -104,6 +105,10 @@ A: 它是 derived aggregate，不是 source of truth。summary、backup、delete
 Q: 這能放履歷嗎？
 
 A: 能作 project-level supporting evidence，併入「參與 AntPlay slot job / event processing、report projection、分表維護」。不單獨寫主導 DB sharding，因為 direct evidence 是分表與 report path repair，完整 schema framework 是多人後續完成。
+
+Q: G3 route 完整嗎？
+
+A: 不能這樣說。current code 有 `SchemaGroup.G3` 和 aspect 選路，但 `DataSourceType`、`DataSourceConfig`、`SchemaContextHolder#set` 只看到 DEFAULT/G1/G2 對應的 master/slave 與 G2 data source。面試只能說我有發現這個落差，會要求 config test / route test / runbook 補齊，不能說 G3 已完整落地。
 
 ## 面試陷阱
 
@@ -135,9 +140,9 @@ A: 能作 project-level supporting evidence，併入「參與 AntPlay slot job /
 - migration 時有沒有 shadow read、checksum、row count、雙寫或回滾表？
 - report / BI derived table 有沒有 idempotent rebuild 或 repair runbook？
 
-## 下一步 Step 5 應補
+## Step 5 Claim Gate
 
-- 補 current call sites 是否都能提供 `agentId`，避免 null route。
-- 補 G3 data source routing 是否完整。
-- 補 path-specific blame / important diff，確認 Nick direct evidence 邊界。
-- 補單條 flow claim gate，決定是否只作 supporting evidence。
+- 已補 current call sites: 主要 report job / repository call sites 都有 `agentId`，但 aspect 本身仍有找不到 agentId 的 NPE / fail-fast 缺口。
+- 已補 G3: logical enum / aspect branch 有 G3，data source mapping 未確認，不宣稱完整。
+- 已補 path-specific blame / important commit stat: Nick direct evidence 集中在 `db_partition v2`、`fix`、`fix ag_report_player`；current schema route framework 主要是 Eliot / Arnold。
+- Claim gate 結論: 作 project-level supporting evidence，不單獨更新 `05 / 08`，下一步應 refresh `antplay-slot-game-job` contribution claim consolidation。

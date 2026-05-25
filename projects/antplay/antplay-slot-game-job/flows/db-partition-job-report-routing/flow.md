@@ -2,13 +2,14 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
 - Flow 中文名稱: DB partition / report schema routing。
 - Flow slug: `db-partition-job-report-routing`。
-- 完成狀態: Step 4 面試 case 完成。
-- 證據層級: 真實開發過 + code-backed，但要分層。Nick / `10gt12nc` 有 `b754dae feat: db_partition v2` 與 `6866866 fix ag_report_player` direct commits；current `@UseSchema` / schema route 基礎主要由 Eliot / Arnold 在 2025-12 接續建立與調整。
+- 完成狀態: Step 5 claim gate 完成。
+- 證據層級: 真實開發過 + code-backed，但要分層。Nick / `10gt12nc` 有 `b754dae feat: db_partition v2`、`38b74bd fix` 與 `6866866 fix ag_report_player` direct commits；current `@UseSchema` / schema route 基礎主要由 Eliot / Arnold 在 2025-12 接續建立與調整。
 - 本 flow 類型: high-traffic table partition + agent schema routing + report repository repair。
 - 是否只確認到入口: 否，已確認 `@UseSchema` aspect、schema context、agent db group lookup、bet record / request log partition query、`ag_report_player` repository routing 與 path-specific history。
 
@@ -36,7 +37,7 @@ current code 走成另一種方向:
 - repository 忘記加 `agent_id` / `pt_day`，固定表名後可能查到跨代理或跨日資料。
 - report summary / backup / delete 的 `ag_report_player` 若忘記 agent 條件，會污染其他 agent。
 - schema context 沒 restore，後續同 thread query 可能串到錯 schema。
-- G3 已定義，但 `SchemaContextHolder#set` current code 只明確處理 DEFAULT / G1 / G2，G3 data source routing 需要 Step 5 再追設定與 current behavior。
+- G3 已定義，但 Step 5 只看到 logical enum / aspect branch，未看到 G3 data source mapping；不能宣稱完整 G3 routing 已落地。
 
 ## 2. 初中階 Code 分層對照
 
@@ -45,7 +46,7 @@ current code 走成另一種方向:
 | Annotation | `UseSchema` | 標示此 method / class 需要 schema route；預設自動偵測 `agentId` | 已確認 |
 | Aspect | `SchemaRouteAspect#switchSchema` | 攔截 `@UseSchema`，找 `agentId`，決定 `SchemaGroup`，push context | 已確認 |
 | Agent -> DB group | `SchemaContextUtils#getDatabaseGroup` | 依 agent cache / DB fallback 找 `dbGroupNum` | 已確認 |
-| Thread context | `SchemaContextHolder` | ThreadLocal 保存 schema，並切 master / slave data source | 已確認；G3 routing 待補 |
+| Thread context | `SchemaContextHolder` | ThreadLocal 保存 schema，並切 master / slave data source | 已確認；G3 data source mapping 未確認 |
 | Logical schema | `SchemaGroup` | DEFAULT / G1 / G2 / G3 對應 database name | 已確認 |
 | Bet record partition | `BetRecordRepositoryImpl` | `pt_bet_record` + `pt_day` + `agent_id` 查詢 | 已確認 |
 | Request log partition | `RequestLogRepositoryImpl` | `pt_request_log` + `pt_day` + `agent_id` 查寫 | 已確認 |
@@ -165,9 +166,9 @@ daily report rows by agent/player/day/currency
 
 | 風險 | 現況 | Senior / Owner 解讀 |
 | --- | --- | --- |
-| 找不到 `agentId` | `findAgentId` 回 null 時 current code 會走 `agentId < 0` 判斷，理論上有 NPE 風險；需 Step 5 再確認 current call sites 是否都帶 agentId | `@UseSchema` 的 contract 必須嚴格，不能靠猜 |
+| 找不到 `agentId` | `findAgentId` 回 null 時 current code 會走 `agentId < 0` 判斷，理論上有 NPE 風險；Step 5 已確認本 flow 的主要 report methods 都帶 `agentId`，但 aspect 本身沒有 null safety | `@UseSchema` 的 contract 必須嚴格，找不到 route key 應 fail fast |
 | agent cache stale | `SchemaContextUtils` 有 fallback DB reload | 有防呆，但 cache invalidation / dbGroup change rollout 仍需 runbook |
-| G3 route | `SchemaGroup` 有 G3；`SchemaContextHolder#set` current code 明確處理 DEFAULT/G1/G2，未見 G3 data source branch | 若 production 有 G3，需要補查 data source config / bug context |
+| G3 route | `SchemaGroup` 有 G3；`DataSourceType` / `DataSourceConfig` / `SchemaContextHolder#set` current code 只看到 DEFAULT/G1/G2 對應 master/slave，未見 G3 data source branch | 不能宣稱完整 G1/G2/G3 route；若 production 有 G3，需要補 data source mapping / runbook |
 | nested schema switch | Aspect 用 `inUse` 記錄並 warn nested switch | 能觀察 nested routing，但不是防止所有 context leak 的完整方案 |
 | context restore | finally close `schemaScope`，exception 時 clear | 基本防 ThreadLocal 污染；仍要確認 async / new thread 不共享 context |
 | fixed table + missing condition | `pt_bet_record` / `pt_request_log` 必須帶 `pt_day` / `agent_id` | 少條件會造成跨日 / 跨 agent 查詢錯誤 |
@@ -212,7 +213,36 @@ Owner 建議:
 | Per-agent grouping | report repository group by agent | 避免同 batch 混 schema | 增加 grouping / multiple DB round-trip 成本 |
 | Fixed report table | `ag_report_player` + `agent_id` | 較容易做統一 SQL / backup | 需要 DDL / index 支撐，不可漏 agent filter |
 
-## 11. 面試 / 履歷邊界摘要
+## 11. Step 5 Claim Gate
+
+結論: Step 5 已完成。這條 flow 可以作 `antplay-slot-game-job` project-level supporting evidence，支撐「bet record / request log / report 分表與 report path repair」；不單獨改寫 `05 / 08`，也不把 Nick 升級成完整 DB sharding / schema routing owner。
+
+直接 evidence:
+
+- `b754dae feat: db_partition v2`: Nick / `10gt12nc` direct commit，觸及 bet record repository、request log、Kafka consumer 與 request log service。
+- `38b74bd fix`: Nick / `10gt12nc` direct commit，report path 拆 internal repository / transactional context 的周邊修正。
+- `6866866 fix ag_report_player`: Nick / `10gt12nc` direct commit，將 report path 從 per-agent table name 修向固定 `ag_report_player` / `ag_report_player_bak`，並補 `agent_id` 條件。
+
+Code-backed / 分析過:
+
+- current `@UseSchema` / `SchemaRouteAspect` / `SchemaContextUtils` / `SchemaContextHolder` route chain。
+- current report projection / Quartz summary / backup / delete 會透過 `agentId` route schema，SQL 再用 `agent_id`、player、day、currency 限制資料。
+- current `DataSourceConfig` 僅看到 master / master-g2 / slave / slave-g2；G3 只有 logical enum / aspect selection evidence，沒有完整 data source mapping evidence。
+
+不可誇大:
+
+- 不寫主導完整 DB sharding architecture。
+- 不寫主導完整 `@UseSchema` framework；current framework 主要是 Eliot / Arnold 後續建立與調整。
+- 不寫 G3 routing 已完整落地。
+- 不寫完整 migration / backfill / DDL / index owner。
+- 不寫完整 report / BI platform owner。
+
+正式履歷使用方式:
+
+- 可併入 `antplay-slot-game-job` project-level bullet: 「參與 Kafka / Quartz job、代理玩家報表聚合、big-win notification、活動累積投注、bet record / request log / report 分表與 job config 維護」。
+- 不建議單獨新增「DB sharding」主 bullet；面試可展開成 high-traffic table governance case。
+
+## 12. 面試 / 履歷邊界摘要
 
 可面試講:
 
@@ -235,5 +265,5 @@ Owner 建議:
 下一步:
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 5
+antplay antplay-slot-game-job contribution claim consolidation refresh
 ```
