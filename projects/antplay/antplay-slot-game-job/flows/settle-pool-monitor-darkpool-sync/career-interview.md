@@ -7,7 +7,7 @@
 - 證據層級: 專案存在 / code-backed / analysis-first。
 - Nick evidence: 本輪未找到 Nick / `10gt12nc` 對 settle pool monitor 主路徑的 direct path-specific commit。
 - Current behavior evidence: `SettlePoolMonitorConsumerService`、`GroupSettleTypeRecord`、`MainHandler`、`SyncDbFromRedis`、`SettledPoolRepositoryImpl` 可完整追到。
-- 完成狀態: Step 3 學習包完成。
+- 完成狀態: Step 4 正式面試 case 完成。
 - 本文件是 flow-level 素材，不是 project-level final consolidation。正式履歷仍以 contribution consolidation / rolling resume package 為準。
 
 ## 履歷保守 Bullet
@@ -40,7 +40,7 @@ settled_bets -> grouping -> settled_pool increment -> reset sync -> alert
 
 ## 面試 30 秒版本
 
-我有分析過 AntPlay job 裡的 settle pool monitor flow。它消費 `settled_bets`，把 bet records 依 normal spin、free spin、jackpot、activity、player control 分群，再把 batch total bet / win increment 到 `settled_pool`，並用 dark pool before value、RTP 與 maxWin 做 alert。這條我會保守講成 code-backed analysis，不是我的 direct implementation；面試重點會放在 Kafka replay idempotency、Redis / DB reset sync、partial failure 和 cent / hao 單位邊界。
+我有分析過 AntPlay job 裡的 settle pool monitor / dark pool sync flow。它消費 `settled_bets`，把 bet record 依 normal spin、free spin、jackpot、activity、player control 分群，計算 batch total bet / win 後 increment 到 `settled_pool`；如果 Redis 有 reset flag，還會從 Redis dark pool snapshot 重建 DB。這條我會保守講成 code-backed analysis，不是我的 direct implementation；面試重點會放在 Kafka replay idempotency、Redis / DB reset sync、truncate rebuild failure window、cent / hao 單位與 alert 邊界。
 
 ## 面試 90 秒版本
 
@@ -71,6 +71,24 @@ Senior 要看的不是單純「有沒有寫 DB」，而是 consistency。像 Kaf
 | Action | 追 `SettlePoolMonitorConsumerService`、`GroupSettleTypeRecord`、`MainHandler`、`SyncDbFromRedis`、`SettledPoolRepositoryImpl`，整理 grouping、increment、reset sync 與 claim boundary。 |
 | Result | 形成 code-backed 面試素材，可說明 event projection 的 idempotency、reset sync partial failure、Redis / DB consistency 與不可誇大邊界。 |
 
+## Senior 追問短答
+
+### Q1: 這條 flow 的 source of truth 是什麼？
+
+下注與派彩 source of truth 仍是 bet record / wallet / settlement；`settled_pool` 是 settlement event 後的 monitor projection，用來查 pool 狀態和 alert。
+
+### Q2: replay-safe 要怎麼做？
+
+current code 是 increment projection，未見 event idempotency。可補 `batchId + betId + poolType` processed-event table，或讓 projection 可從 bet record 重算，再用 reconciliation 修正差異。
+
+### Q3: reset sync 怎麼改安全？
+
+不要只靠刪 Redis flag。應加 sync 狀態、distributed lock、staging table rebuild、row count / checksum 驗證、restore / retry runbook。
+
+### Q4: 為什麼這條不放正式履歷？
+
+因為本輪 path-specific log / blame 沒有找到 Nick direct evidence；可作 code-backed analysis 和面試素材，但不說真實開發或主導。
+
 ## 可說
 
 - 這是 code-backed analysis，不是 Nick direct implementation。
@@ -87,6 +105,6 @@ Senior 要看的不是單純「有沒有寫 DB」，而是 consistency。像 Kaf
 - 不說已確認 production runbook / reconciliation / DLT。
 - 不直接更新 `05 / 08`。
 
-## Step 3 結論
+## Step 4 結論
 
-Step 3 已完成學習包。下一步應做 Step 4，把這條整理成正式面試 case；仍維持 code-backed / analysis-first，不升級履歷 claim。
+Step 4 已完成正式面試 case；仍維持 code-backed / analysis-first，不升級履歷 claim。下一步 Step 5 應做 claim gate，確認是否只能作 interview-only supporting case，並同步 project-level claim boundary。

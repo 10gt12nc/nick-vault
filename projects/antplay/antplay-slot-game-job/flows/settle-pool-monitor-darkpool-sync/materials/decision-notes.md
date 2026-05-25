@@ -1,6 +1,7 @@
 # Decision Notes - settle-pool-monitor-darkpool-sync
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 1. Projection vs Source Of Truth
 
@@ -69,6 +70,18 @@ Normal / activity 使用 cent，jackpot 使用 hao。這種設計能讓 jackpot 
 
 Career decision:
 
-- Step 3 / Step 4 可作面試 analysis case。
+- Step 4 已可作正式面試 analysis case。
 - 不回填正式履歷主 bullet。
 - 不說主導 complete risk / dark pool / jackpot platform。
+
+## 6. Step 4 面試用 Owner Decision
+
+如果面試官追問「你會怎麼收斂這條 flow」，回答順序建議是:
+
+1. 先補 projection idempotency：用 `batchId + betId + poolType` 或 processed-event table 防 replay double count。
+2. 再補 reset sync 安全性：sync state、distributed lock、staging table、row count / checksum、restore / retry runbook。
+3. 補 observability：skipped additional_info、group count、increment count、reset rows、sync failure、alert count。
+4. 補 unit governance：每個 key / threshold / log / dashboard 標清 cent 或 hao。
+5. 最後補 reconciliation：從 bet record 重算 expected pool，和 `settled_pool` / Redis snapshot 比對。
+
+這個順序能表現 Senior / Owner 判斷：先保 correctness，再保 recoverability，最後補 visibility 與 runbook。

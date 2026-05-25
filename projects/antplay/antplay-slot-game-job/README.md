@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `settle-pool-monitor-darkpool-sync` Step 3 已完成 / 2026-05-25 |
+| Flow Track | `settle-pool-monitor-darkpool-sync` Step 4 已完成 / 2026-05-25 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 Kafka / Quartz job、代理玩家報表、活動累積投注、big-win notification、分表 / job config |
-| 下一步 | `antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 4` |
+| 下一步 | `antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 5` |
 
 ## Claim Boundary
 
@@ -21,7 +21,7 @@
 - `proxy-user-data-report-projection Step 5` 已確認可回填 project-level claim，但單條 flow 不直接改 `05 / 08`。
 - `activity-accumulated-bet-voucher Step 5` 已確認只作 reward correctness 面試素材與 project-level supporting evidence；不單獨放正式履歷。
 - `big-win-notification Step 5` 已完成 claim gate；可回填 project-level supporting evidence，但不單獨更新 `05 / 08`。
-- `settle-pool-monitor-darkpool-sync Step 3` 已完成 learning package；目前只作 code-backed / analysis-first 面試素材，不回填正式履歷。
+- `settle-pool-monitor-darkpool-sync Step 4` 已完成正式面試 case；目前只作 code-backed / analysis-first 面試素材，不回填正式履歷。
 
 不可誇大:
 

@@ -1,6 +1,7 @@
 # Evidence - settle-pool-monitor-darkpool-sync
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 1. Source Repo 狀態
 
@@ -147,3 +148,25 @@ Nick / `10gt12nc` path-specific result:
 - 可面試講: code-backed analysis / event projection / consistency。
 - 可回填 project-level: 暫不回填正式履歷，只能作 supporting study evidence。
 - 不可誇大: 不說真實開發、主導風控、主導 jackpot / player control / dark pool。
+
+## 10. Step 4 Evidence 補充
+
+本輪 Step 4 沒有改變 source repo 最新性判斷：fetch 先前已失敗，依本地 refs / 本地 working tree 保守分析。
+
+Step 4 重新確認的 interview evidence:
+
+| 面試點 | Code evidence | 面試結論 |
+| --- | --- | --- |
+| consumer entry | `SettlePoolMonitorConsumerService#consumeLatest` 先 parse event、呼叫 `syncIfResetFlagPresent`、再 `mainExecute` | 可講「event 前先做 reset sync，再做 projection」 |
+| grouping | `GroupSettleTypeRecord#groupBySettleType` 分 normal / activity / player control，jackpot game 額外進 jackpot bucket | 可講「同一 settled bet 可能進 normal 與 jackpot 兩種 projection bucket」 |
+| increment | `MainHandler#handleBatchCommon` 呼叫 `saveOneIncrement` 寫 total bet / total win | 可講 replay-sensitive increment projection |
+| reset sync | `SyncDbFromRedis#syncData` 先 delete reset flag，再讀 Redis / DB context，最後 `saveAll` | 可講 delete-before-success failure window |
+| truncate rebuild | `SettledPoolRepositoryImpl#saveAll` backup、truncate、insert | 可講 staging / checksum / restore runbook 改善 |
+| concurrency | `AtomicBoolean busy` 存在但 guard 註解 | 可講 local guard 不等於 distributed lock，且 current guard 未啟用 |
+| unit | `MainMethod#getTotalBet/getTotalWin` 對 jackpot 轉 hao，normal / activity 多為 cent | 可講 threshold / alert / log 必須標明 unit |
+
+Step 4 結論:
+
+- 已形成正式面試稿與追問短答。
+- 仍不新增 Nick direct evidence。
+- 下一步 Step 5 只做 claim gate，不應直接回填 `05 / 08`。

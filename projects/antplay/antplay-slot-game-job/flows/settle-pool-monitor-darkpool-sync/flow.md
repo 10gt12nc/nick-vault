@@ -1,12 +1,13 @@
 # settle-pool-monitor-darkpool-sync
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
 - Flow 中文名稱: settle pool monitor / dark pool Redis -> DB sync。
 - Flow slug: `settle-pool-monitor-darkpool-sync`。
-- 完成狀態: Step 3 Level 2 flow 深掃完成。
+- 完成狀態: Step 4 正式面試 case 完成；Step 3 Level 2 flow 深掃已完成。
 - 證據層級: 專案存在 / code-backed / analysis-first。current code 技術價值高，但主路徑 current blame 幾乎是 Arnold，早期基礎有 Eliot；目前沒有 Nick / `10gt12nc` direct path evidence，不能寫成 Nick 真實開發或主導 settle pool / risk / jackpot owner。
 - 本 flow 類型: Kafka settlement event -> risk / dark pool monitor projection -> DB / alert。
 - 是否只確認到入口: 否，已確認 consumer、分群、handler、DB repository、reset flag sync 與 path-specific history；未掃 admin / monitoring 查詢畫面與 game-api producer 最新 contract。
@@ -221,7 +222,97 @@ Owner 建議:
 | Activity 用 voucher bet | activity pool 用 `voucherBet` | 符合活動投放成本語意 | 若 voucherBet 單位或空值不一致會造成池差 |
 | Player control diff | `totalWin - totalBet` | 可看單玩家控制差額 | success / status governance 不在本 flow |
 
-## 13. 面試 / 履歷邊界摘要
+## 13. Step 4 正式面試 Case
+
+### 面試定位
+
+這條 flow 面試時要定位成「settlement event 後的 monitor projection / Redis DB sync case」，不是下注結算、錢包、完整風控或完整 jackpot 平台。
+
+安全主軸:
+
+```text
+settled_bets -> group by pool type -> settled_pool increment -> reset from Redis -> alert
+```
+
+### 30 秒版本
+
+我有分析過 AntPlay job 裡的 settle pool monitor / dark pool sync flow。它消費 `settled_bets`，把 bet record 依 normal spin、free spin、jackpot、activity、player control 分群，計算 batch total bet / win 後 increment 到 `settled_pool`；如果 Redis 有 reset flag，還會從 Redis dark pool snapshot 重建 DB。這條我會保守講成 code-backed analysis，不是我的 direct implementation；面試重點會放在 Kafka replay idempotency、Redis / DB reset sync、truncate rebuild failure window、cent / hao 單位與 alert 邊界。
+
+### 90 秒版本
+
+這條 flow 是 settlement 事件後的 monitor projection。`SettlePoolMonitorConsumerService` 消費 `settled_bets` 後，會先檢查 Redis reset flag；如果有，就由 `SyncDbFromRedis` 讀 normal、activity、player control 等 dark pool key，backup `settled_pool`、truncate current table，再把 snapshot insert 回 DB。接著 consumer 會把本批 bet records 依 pool type 分群，透過 `MainHandler` 計算 batch total bet / total win，呼叫 repository 做 increment。
+
+Senior 要看的不是「有沒有寫 DB」，而是這個 projection 在 failure 下能不能被信任。current `saveOneIncrement` 沒有看到 batch id / bet id 去重，所以 Kafka event replay 可能 double count。reset sync 先刪 flag，再做 backup / truncate / insert，中途失敗就需要人工 retry / restore runbook。jackpot pool 用 hao，一般 pool 多是 cent，單位混用會讓 maxWin / diff alert 失真。這些都是我會主動講的 owner trade-off。
+
+### 3 分鐘版本
+
+我可以講一條 AntPlay job 裡的 settle pool monitor / dark pool sync flow。這條 flow 不是下注或派彩 source of truth，而是 settlement event 後的 monitor projection。上游結算完成後送 `settled_bets`，job consumer 讀 `SettleBetsVo` 裡的一批 `BetRecord`。
+
+第一段是 reset sync。consumer 每次處理前會檢查 Redis reset flag。flag 存在時，`SyncDbFromRedis` 先刪 flag，再枚舉 enabled agent、game、active activity、active player control，從 Redis 讀 normal spin、free spin、jackpot、activity、player control diff 等 key。接著 repository 會 backup current `settled_pool` 到 `settled_pool_bak`，truncate current table，再 insert snapshot rows。這裡的 owner 風險是 flag 先刪、table truncate、逐筆 insert，中途 exception 或 process crash 會讓 monitor DB 可能不完整，而且本 repo 沒看到 durable sync state 或 restore command evidence。
+
+第二段是 event projection。`GroupSettleTypeRecord` 會 parse `additional_info`，依 bet type 分成 normal、activity、player control。normal bet 又會分 spin / free；如果是 jackpot game，還會額外進 jackpot bucket。`MainHandler` 會計 batch total bet / win，對 normal / activity 寫 total bet 和 total win，對 player control 寫 diff amount，也就是 `totalWin - totalBet`。一般池和 activity 多是 cent，jackpot 會轉 hao，所以面試時我會主動說單位邊界，不能把 cent / hao 混在同一個 alert 判斷。
+
+可靠性上，這條 flow 最大的問題是它是 projection。Kafka event 如果 replay，而 DB 是 increment，沒有 deterministic event idempotency key，就會 double count。reset sync 內有 `AtomicBoolean busy`，但 compare-and-set guard 被註解，跨 instance 更不是 distributed lock；目前主要靠 Redis flag delete 降低重入，不是完整同步治理。`additional_info` null 時 production 只 log error 並跳過該筆，也會造成 projection 漏算。
+
+所以我會把這條定位成 code-backed analysis case。它很適合展示我能從 Senior Backend 角度分析 event-driven projection、Redis / DB consistency、reset / rebuild、alert、reconciliation 與 owner decision；但我不會說這是我真實開發或我主導完整風控平台，因為 current path evidence 主要是 Arnold / Eliot。
+
+### STAR
+
+| 面向 | 內容 |
+| --- | --- |
+| Situation | AntPlay slot job 需要把 settlement event 後的 pool 狀態投影到 DB，並用 dark pool / settle pool 差異和 maxWin 做異常提醒。 |
+| Task | 研讀 settle pool monitor flow，釐清 Kafka event、Redis dark pool、DB snapshot、alert 與 failure window。 |
+| Action | 追 `SettlePoolMonitorConsumerService`、`GroupSettleTypeRecord`、`MainHandler`、`SyncDbFromRedis`、`SettledPoolRepositoryImpl`，整理 grouping、increment、reset sync、單位邊界與 claim boundary。 |
+| Result | 形成 code-backed 面試 case，可回答 event projection idempotency、reset sync partial failure、Redis / DB consistency、reconciliation 與不可誇大邊界。 |
+
+### Senior 追問短答
+
+#### Q1: 這條 flow 的 source of truth 是什麼？
+
+下注與派彩 source of truth 仍是 bet record / wallet / settlement；`settled_pool` 是 settlement event 後的 monitor projection，用來查 pool 狀態和 alert，不能反推交易一定正確。
+
+#### Q2: Kafka event replay 會怎樣？
+
+current code 以 `saveOneIncrement` 將 batch delta 累加到 DB，未見 processed event table 或 `batchId + betId + poolType` 去重。若同一 event replay，就可能 double count。改善方向是 deterministic idempotency key、processed-event table，或可重建 projection 的 reconciliation job。
+
+#### Q3: reset sync 最大 failure window 是什麼？
+
+`SyncDbFromRedis` 先刪 reset flag，再讀 Redis snapshot，最後 backup / truncate / insert DB。若刪 flag 後中途失敗，後續不一定自動重跑；若 truncate 後 insert 失敗，DB 可能 partial。Owner 要補 sync state、distributed lock、staging table、checksum 與 restore / retry runbook。
+
+#### Q4: `AtomicBoolean busy` 有解決並發嗎？
+
+沒有完整解決。code 裡 `busy` 存在，但 compare-and-set 和 release 被註解；就算啟用也只管 single JVM，不是 distributed lock。多 instance 場景仍需要 Redis lock / DB lock / sync state。
+
+#### Q5: 為什麼 cent / hao 是面試重點？
+
+normal / activity 多是 cent，jackpot 轉 hao。maxWin / diff alert 如果混用單位，可能誤報或漏報。Senior 要主動問清每個 key 的 unit，並讓 log、dashboard、threshold 都標明單位。
+
+#### Q6: `additional_info` null 會怎樣？
+
+production log error 後跳過該筆，projection 會漏算。這代表 upstream contract 很重要，應補 missing metric / alert，並確認 game-api producer 是否保證 before dark pool、jackpot amount、player control config 等欄位。
+
+### Lead / Architect 追問
+
+| 追問 | 回答方向 |
+| --- | --- |
+| 如果只能先改一件事？ | 先補 event-level idempotency 或 processed-event table，避免 replay double count。 |
+| reset sync 怎麼設計更安全？ | pending / running / failed / done state、distributed lock、staging table rebuild、row count / checksum、restore command。 |
+| 要不要 outbox？ | 這是 consumer projection，不是 producer side 事件發送；重點是 consumer idempotency、DLQ / replay 與 reconciliation，不一定先談 outbox。 |
+| 怎麼做 reconciliation？ | 從 bet record 按同樣 grouping 重算 expected pool，和 `settled_pool` / Redis snapshot 比對，輸出差異與修復建議。 |
+| 怎麼觀測？ | skipped additional_info、group count、increment success/failure、reset rows、sync failure、alert count、unit-specific threshold dashboard。 |
+| 怎麼處理多 instance？ | 不靠 local `AtomicBoolean`；使用 Redis lock with TTL 或 DB state lock，並讓 sync operation idempotent。 |
+
+### 面試常見陷阱
+
+| 陷阱 | 避免方式 |
+| --- | --- |
+| 說成交易 source of truth | 改說 monitor projection，交易真相回 bet / wallet / settlement |
+| 說成自己開發 | 改說 code-backed analysis；未找到 Nick direct path evidence |
+| 只講流程不講風險 | 主動講 replay、reset partial failure、unit、additional_info |
+| 說已經 exactly-once | 改說 current code 未見 event idempotency，需補設計 |
+| 說完整風控 / jackpot owner | 改說 settle pool / dark pool monitor flow 分析 |
+
+## 14. 面試 / 履歷邊界摘要
 
 可面試講:
 
@@ -243,7 +334,7 @@ Owner 建議:
 - 不把 Arnold / Eliot 的 commits 說成 Nick direct contribution。
 - 不直接更新 `05 / 08`。
 
-## 14. 本次實際掃描範圍
+## 15. 本次實際掃描範圍
 
 Vault:
 
@@ -286,14 +377,14 @@ Git history:
 - Kafka listener ack / DLT / retry runtime behavior。
 - Level 3 逐檔逐 commit diff。
 
-## 15. Step 3 結論
+## 16. Step 4 結論
 
-這條 flow 已完成 Step 3 學習包。它是 AntPlay job repo 裡技術含量高的 code-backed flow，可用來練 Senior Backend 對 event projection、Redis / DB consistency、reset sync、alert、risk monitor 的分析能力。
+這條 flow 已完成 Step 4 正式面試 case。它是 AntPlay job repo 裡技術含量高的 code-backed flow，可用來練 Senior Backend 對 event projection、Redis / DB consistency、reset sync、alert、risk monitor 的分析能力。
 
 但 claim boundary 必須非常保守：current implementation 主要是 Arnold / Eliot，不是 Nick direct evidence。它可以當面試中的「我分析過 / 能講清楚」素材，不能當履歷主成果或主導經驗。
 
-下一步應做 Step 4，把這條整理成正式面試 case，並持續維持 analysis-first 邊界。
+下一步應做 Step 5，補 claim gate：確認是否有任何新增 direct evidence、是否仍維持 analysis-first、是否可只作 interview-only supporting case，並同步 project-level 邊界。
 
 ```text
-antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 4
+antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 5
 ```

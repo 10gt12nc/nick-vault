@@ -222,9 +222,9 @@ antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
 - Rank 2 `activity-accumulated-bet-voucher` 已完成 Step 5，定位為 code-backed reward correctness 面試素材與 project-level supporting evidence；Nick 只有 merge evidence，current implementation 主要是 Gill / Arnold / Eliot context，不升級正式履歷 claim。
 - Step 5 已補查 `BetVoucherService#addVoucher` 下游 idempotency / unique key；本 repo 沒有下游 implementation / DB unique key evidence，`refId` 每次 UUID 只能保守視為 trace id。
 - Rank 3 `big-win-notification` 已完成 Step 5，確認 `#303` direct commits、current consumer / producer / translation path、後續多人修改與 derived notification failure windows，並補 `_id` / bet id 去重、`BetIdPersistence`、下游 `antplay-push` bridge / privacy 邊界。結論是可作 project-level supporting evidence，不單獨更新 `05 / 08`。
-- Rank 4 `settle-pool-monitor-darkpool-sync` 已完成 Step 3，建立 Kafka `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的 learning package。結論是 code-backed / analysis-first，未找到 Nick / `10gt12nc` direct path-specific evidence，不作 Nick 主導 settle pool / risk owner。
-- 下一步延續同 flow Step 4，整理正式面試 case；不更新 `05 / 08`。
+- Rank 4 `settle-pool-monitor-darkpool-sync` 已完成 Step 4，建立 Kafka `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的正式面試 case。結論是 code-backed / analysis-first，未找到 Nick / `10gt12nc` direct path-specific evidence，不作 Nick 主導 settle pool / risk owner。
+- 下一步延續同 flow Step 5，做單條 flow claim gate；不更新 `05 / 08`。
 
 ```text
-antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 4
+antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 5
 ```
