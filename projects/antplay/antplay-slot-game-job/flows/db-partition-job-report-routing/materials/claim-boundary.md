@@ -1,10 +1,11 @@
 # db-partition-job-report-routing Claim Boundary
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 結論
 
-本 flow 可作 `antplay-slot-game-job` project-level supporting evidence，但 Step 3 不直接更新 `05 / 08`。
+本 flow 可作 `antplay-slot-game-job` project-level supporting evidence，但 Step 4 不直接更新 `05 / 08`。
 
 可保守定位:
 
@@ -32,11 +33,12 @@
 - 不說主導完整 `@UseSchema` framework。
 - 不說完整 migration / backfill / DDL / index owner。
 - 不說完整 report / BI platform owner。
-- 不說 G3 routing 已完整確認；current code 仍需 Step 4 / Step 5 補查。
+- 不說 G3 routing 已完整確認；current code 仍需 Step 5 補查。
+- 不把 Step 4 面試稿當成 Step 5 claim gate；正式單條 flow claim 仍需 Step 5 追 current call sites / blame / G3 route。
 
 ## 後續回填條件
 
-若 Step 4 / Step 5 補到以下 evidence，可再回填 project-level consolidation:
+若 Step 5 補到以下 evidence，可再回填 project-level consolidation:
 
 - DDL / index / unique key。
 - G3 data source routing current behavior。

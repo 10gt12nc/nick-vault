@@ -222,12 +222,12 @@ antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
 - Rank 2 `activity-accumulated-bet-voucher` Step 5 已完成。
 - Rank 3 `big-win-notification` Step 5 已完成。
 - Rank 4 `settle-pool-monitor-darkpool-sync` Step 5 已完成。
-- Rank 5 `db-partition-job-report-routing` Step 3 已完成。本 Step 確認 `@UseSchema` / `SchemaRouteAspect` / `SchemaContextHolder` current behavior、`pt_bet_record` / `pt_request_log` partition query、`ag_report_player` report path repair，以及 `b754dae feat: db_partition v2`、`6866866 fix ag_report_player` direct evidence。
+- Rank 5 `db-partition-job-report-routing` Step 4 已完成。本 Step 已把 `@UseSchema` / `SchemaRouteAspect` / `SchemaContextHolder`、`pt_bet_record` / `pt_request_log` partition query、`ag_report_player` report path repair，以及 `b754dae feat: db_partition v2`、`6866866 fix ag_report_player` direct evidence，整理成 30 秒 / 90 秒 / 3 分鐘說法、STAR、Senior / Lead 追問與不可誇大邊界。
 
 下一步:
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 4
+antplay antplay-slot-game-job db-partition-job-report-routing Step 5
 ```
 
 - `proxy-user-data-report-projection` 已完成 Step 5，已回填 project-level report projection / Quartz summary evidence。
@@ -235,8 +235,8 @@ antplay antplay-slot-game-job db-partition-job-report-routing Step 4
 - Step 5 已補查 `BetVoucherService#addVoucher` 下游 idempotency / unique key；本 repo 沒有下游 implementation / DB unique key evidence，`refId` 每次 UUID 只能保守視為 trace id。
 - Rank 3 `big-win-notification` 已完成 Step 5，確認 `#303` direct commits、current consumer / producer / translation path、後續多人修改與 derived notification failure windows，並補 `_id` / bet id 去重、`BetIdPersistence`、下游 `antplay-push` bridge / privacy 邊界。結論是可作 project-level supporting evidence，不單獨更新 `05 / 08`。
 - Rank 4 `settle-pool-monitor-darkpool-sync` 已完成 Step 5，建立 Kafka `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的正式面試 case 與 claim gate。結論是 code-backed / analysis-first，未找到 Nick / `10gt12nc` direct path-specific evidence，不作 Nick 主導 settle pool / risk owner，不更新 `05 / 08`。
-- 下一步若延續本 repo，繼續 Rank 5 `db-partition-job-report-routing Step 4`。這是支線加強，不是履歷必需。
+- 下一步若延續本 repo，繼續 Rank 5 `db-partition-job-report-routing Step 5`。這是支線加強，不是履歷必需。
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 4
+antplay antplay-slot-game-job db-partition-job-report-routing Step 5
 ```

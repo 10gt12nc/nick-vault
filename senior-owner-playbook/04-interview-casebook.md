@@ -232,6 +232,9 @@ AntPlay slot game job 補充案例：
 - `antplay-slot-game-job/settle-pool-monitor-darkpool-sync` 已完成 Step 5，可作 Kafka settlement projection / Redis DB consistency / reset sync 的 analysis-first 面試 case；未找到 Nick / `10gt12nc` direct path-specific evidence，不回填正式履歷，也不說主導 settle pool / dark pool / risk / jackpot platform。
 - 面試主軸：它不是下注 / 派彩 source of truth，而是 settlement event 後的 monitor projection。要能說清 `settled_bets` 分 normal / free / jackpot / activity / player control，`settled_pool` increment replay risk、Redis reset flag delete-before-success、backup / truncate / insert partial failure、cent / hao 單位與 alert threshold。
 - 保守邊界：current core code 主要 Arnold / Eliot；只能說 code-backed analysis，不能說真實開發、完整風控 owner、exactly-once projection、完整 reconciliation 或 production restore runbook 已確認。
+- `antplay-slot-game-job/db-partition-job-report-routing` 已完成 Step 4，可作高流量 table partition / schema routing 面試 case。Nick / `10gt12nc` 有 `db_partition v2` 與 `fix ag_report_player` direct evidence，可講參與 bet record / request log / report 分表與 report path repair；current `@UseSchema` framework 是 Eliot / Arnold 等多人後續脈絡。
+- 面試主軸：固定表名加 `pt_day` / `agent_id` / currency 條件，再透過 `@UseSchema` 依 agent `dbGroupNum` 切 schema。要能說清 route key、SQL filter、ThreadLocal restore、agent metadata cache、G3 route 待確認、migration / backfill 與 report summary / backup / delete partial failure。
+- 保守邊界：Step 4 是面試稿，不是 Step 5 claim gate；不寫主導完整 DB sharding、schema route framework、migration / DDL / index owner，也不說 G3 routing 已完整確認。
 
 ## 案例 5：K3s / rollout / observability
 

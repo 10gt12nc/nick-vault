@@ -40,4 +40,4 @@
 
 - 可回填 project-level consolidation，作為 `antplay-slot-game-job` big-win notification supporting evidence。
 - 不直接更新 `05 / 08`，因為它仍是單條 flow Step 5；正式履歷要吃 project-level consolidation / rolling resume package。
-- 2026-05-25 後續進度: Rank 4 `settle-pool-monitor-darkpool-sync Step 5` 已完成，Rank 5 `db-partition-job-report-routing Step 3` 已完成；下一步若延續本 repo，可做 `db-partition-job-report-routing Step 4`。
+- 2026-05-25 後續進度: Rank 4 `settle-pool-monitor-darkpool-sync Step 5` 已完成，Rank 5 `db-partition-job-report-routing Step 4` 已完成；下一步若延續本 repo，可做 `db-partition-job-report-routing Step 5`。

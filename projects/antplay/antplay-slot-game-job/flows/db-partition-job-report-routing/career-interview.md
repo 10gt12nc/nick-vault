@@ -1,6 +1,7 @@
 # db-partition-job-report-routing Career Interview
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## Evidence Level
 
@@ -21,6 +22,18 @@
 我會從三個風險看這件事。第一是 route key，Aspect 一定要拿到正確 `agentId`，否則可能查錯 schema。第二是 SQL 條件，固定表名後必須帶 `pt_day`、`agent_id`，report 還要帶 currency / player 條件，不然會跨 agent 污染。第三是 context restore，schema context 是 ThreadLocal，method 結束或 exception 時要 restore，否則同 thread 後續 query 會被污染。
 
 我實際能講的 evidence 是 `db_partition v2` 和 `fix ag_report_player` 這類 path-specific commit；current `@UseSchema` 框架是多人後續完成，所以正式履歷我只會寫參與分表 / report path 維護，不會誇大成完整 sharding architecture owner。
+
+## 3 分鐘說法
+
+我會把這條 flow 講成「高流量資料表分區與 schema routing 的一致性治理」，不是單純說我改了幾個 table name。
+
+背景是 AntPlay job repo 裡有幾類資料量大的表：投注紀錄、request / response log、代理玩家報表。早期寫法偏向動態表名，例如依日期和 agent 拼出表；這樣短期很直覺，但長期會讓 repository 到處拼 SQL，DDL、index、migration、查詢條件都分散，任何一個 path 漏掉 agent 或日期條件，都可能查錯資料。
+
+current code 的方向是固定表名加 route：`pt_bet_record`、`pt_request_log` 用 `pt_day` 和 `agent_id` 限制資料；`ag_report_player` 用 `agent_id`、player、day、currency 做 report key；然後透過 `@UseSchema` 的 Aspect 從 method 參數或物件裡抓 `agentId`，再用 agent 的 `dbGroupNum` 切到對應 schema。report projection 還會先 group by agent，再逐組呼叫 internal repository，避免一個 batch 裡不同 agent 混在同一次 routed SQL。
+
+這裡 Senior 追問的重點不是「有沒有切 schema」，而是五個風險。第一，`agentId` 找不到要 fail fast，不能默默打 default schema。第二，固定表名後 SQL 還是要帶 `agent_id` / `pt_day`，schema route 不能取代資料條件。第三，`Agent.dbGroupNum` 是 route metadata，cache stale 或 migration 時要有 refresh / freeze / rollback。第四，schema context 是 ThreadLocal，exception、nested route、async thread 都要注意 restore。第五，report summary / backup / delete 是 derived data，要有重跑、checksum 或人工 repair 邊界。
+
+我的 evidence 邊界也會講清楚：我有 `db_partition v2` 和 `fix ag_report_player` direct commits，可以說參與分表與 report path 維護；但完整 `@UseSchema` framework 是多人後續完成，所以不能說我主導整套 sharding architecture。這樣講比較扛得住追問，也比較符合實際貢獻。
 
 ## STAR
 
@@ -61,6 +74,32 @@ Q: 這和 report projection 有什麼關係？
 
 A: report projection 會累積代理玩家每日投注 / 輸贏資料。projection 寫入時若同一批資料包含不同 agent，就要先 group by agent，再分別進 routed internal repository；summary / backup / delete 也要依 `agentId` route 且 SQL 帶 agent filter。
 
+Q: 為什麼 schema route 了還要在 SQL 帶 `agent_id`？
+
+A: 因為 route 是 physical / logical schema 的隔離，`agent_id` 是資料層條件與防呆。兩者目的不同。少了 `agent_id`，即使在同 schema 內也可能跨 agent；少了 route，可能打錯庫。高流量多租戶資料通常兩層都要守。
+
+Q: AOP route 和顯式 route 你怎麼取捨？
+
+A: AOP 的好處是呼叫方簡潔，缺點是 hidden contract 很強，review 時不一定看得出有切 schema。若用 AOP，我會要求 fail fast、route log / metric、annotation 使用規範，以及 integration test；如果是極 critical path，顯式 route 或 route wrapper 會比較容易被 code review 看見。
+
+Q: 你會怎麼驗證 migration 沒壞？
+
+A: 我會分成 DDL / data / application 三層。DDL 看 index 和 unique key 是否支撐新查詢；data 看 row count、checksum、抽樣對帳、舊表新表雙讀比對；application 看錯 schema / missing `agentId` / slow query / report summary error 的 metric 和 alert。這些本 Step 沒有 production runbook evidence，所以面試時只能講 owner 建議，不說已全部落地。
+
+Q: 如果 `Agent.dbGroupNum` 改錯怎麼辦？
+
+A: 這是 route metadata 問題，比一般 config 更危險。要有變更凍結窗口、cache invalidation、灰度驗證、rollback plan，最好還有 route decision log，能查某次 query 是因哪個 agent metadata 打到哪個 schema。
+
+## Senior / Lead 追問提綱
+
+| 追問方向 | 保守回答 |
+| --- | --- |
+| table partition vs sharding | 本 flow 是 high-traffic table partition + schema route 維護，不是完整 sharding platform |
+| ThreadLocal 安全嗎 | 同步 method 內可用 try / finally 控制；async / nested route / thread pool 要額外防 context leak |
+| G3 是否完整 | current code 有 G3 enum，但 holder 明確 data source branch 只看到 DEFAULT/G1/G2；Step 5 前不宣稱完整 |
+| report summary 是否 idempotent | current Step 只確認 summary / backup / delete path；backup duplicate / partial failure 仍需 Step 5 追 |
+| Nick 貢獻程度 | direct evidence 是 `db_partition v2` / `fix ag_report_player`；schema framework 多人後續，不講完整 owner |
+
 ## 履歷邊界
 
 可放:
@@ -77,5 +116,5 @@ A: report projection 會累積代理玩家每日投注 / 輸贏資料。projecti
 ## 下一步
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 4
+antplay antplay-slot-game-job db-partition-job-report-routing Step 5
 ```

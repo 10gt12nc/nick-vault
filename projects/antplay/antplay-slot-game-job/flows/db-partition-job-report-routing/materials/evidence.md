@@ -1,12 +1,13 @@
 # db-partition-job-report-routing Evidence
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 掃描等級
 
 Level 2 single-flow scan。
 
-理由: Nick 指定單條 flow Step 3，目標是建立可讀學習包與面試素材初版；本輪已讀入口、主要 module、資料流、path-specific history 與重要 diff。尚未做 Level 3 全 commit / DDL / migration runbook 深追。
+理由: Nick 指定同一條 flow Step 4，目標是把 Step 3 深掃轉成正式面試 case；本輪沿用 Step 3 的 Level 2 掃描，並重讀 `@UseSchema` / schema context / report internal repository / path-specific log。尚未做 Level 3 全 commit / DDL / migration runbook 深追。
 
 ## Vault / KB 重讀範圍
 
@@ -19,6 +20,10 @@ Level 2 single-flow scan。
 - `projects/antplay/antplay-slot-game-job/contribution-claim-consolidation.md`
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`
 - `senior-owner-playbook/06-todo.md`
+- `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/flow.md`
+- `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/career-interview.md`
+- `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/materials/interview.md`
+- `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/materials/claim-boundary.md`
 
 ## Source Repo 狀態
 
@@ -89,6 +94,14 @@ Related historical / removed context:
 - `ReportAgentPlayerRepositoryCustomImpl` 先 group by `agentId`，再呼叫 internal routed methods。
 - `ReportAgentPlayerRepositoryInternal` 用 `@UseSchema` 查寫 `ag_report_player`，並帶 `agent_id` / `player_id` / `data_day` / `currency`。
 - `6866866` 將 `report_agent_player_{agentId}` / `report_agent_player_backup_{agentId}` 改成 `ag_report_player` / `ag_report_player_bak`，補 `agent_id` 條件。
+
+## Step 4 補充確認
+
+- Step 3 文件符合目前 KB，可沿用；沒有發現需要先重整 Step 3 才能做 Step 4 的問題。
+- `SchemaRouteAspect#switchSchema` 會在 finally close scope，Step 4 面試稿可以保守講 ThreadLocal restore，但不能說 async / nested route 全面安全。
+- `SchemaContextHolder#set` current code 明確處理 DEFAULT / G1 / G2；G3 仍列待確認。
+- `ReportAgentPlayerRepositoryInternal#findOldPlayers` current code對 `agentId == null` 有 guard；但 Aspect 自身對 `findAgentId` 回 null 的路徑仍需 Step 5 追 call sites / null safety。
+- path-specific log 仍顯示 current schema framework 主要是 Eliot / Arnold 後續脈絡，Nick direct evidence 集中在 `db_partition v2` 與 `fix ag_report_player`。
 
 ## 待確認
 

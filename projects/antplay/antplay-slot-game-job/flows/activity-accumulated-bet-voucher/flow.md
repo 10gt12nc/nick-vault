@@ -289,4 +289,4 @@ Nick evidence 仍維持保守: `62fa93f` 是 `nick` merge `feature/accumate_bet`
 - `可直接履歷`: 不單獨新增正式 bullet；只能回填 project-level consolidation，作活動累積投注 / voucher flow supporting evidence。
 - `不可誇大`: 不說完整 reward platform owner、不說完整 idempotency / exactly-once、不說已確認 reconciliation，也不把 Gill / Arnold / Eliot 的 implementation 說成 Nick direct contribution。
 
-本 Step 不直接更新 `05 / 08`。2026-05-25 後續進度: Step 2 排序第三順位 `big-win-notification Step 5` 已完成，第四順位 `settle-pool-monitor-darkpool-sync Step 5` 已完成，Rank 5 `db-partition-job-report-routing Step 3` 已完成；下一步若延續 `antplay-slot-game-job` Flow Track，可做 `db-partition-job-report-routing Step 4`。
+本 Step 不直接更新 `05 / 08`。2026-05-25 後續進度: Step 2 排序第三順位 `big-win-notification Step 5` 已完成，第四順位 `settle-pool-monitor-darkpool-sync Step 5` 已完成，Rank 5 `db-partition-job-report-routing Step 4` 已完成；下一步若延續 `antplay-slot-game-job` Flow Track，可做 `db-partition-job-report-routing Step 5`。

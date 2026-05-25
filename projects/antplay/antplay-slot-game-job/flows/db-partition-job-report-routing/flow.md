@@ -1,12 +1,13 @@
 # db-partition-job-report-routing
 
 日期: 2026-05-25
+Step 4 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
 - Flow 中文名稱: DB partition / report schema routing。
 - Flow slug: `db-partition-job-report-routing`。
-- 完成狀態: Step 3 深掃初版完成。
+- 完成狀態: Step 4 面試 case 完成。
 - 證據層級: 真實開發過 + code-backed，但要分層。Nick / `10gt12nc` 有 `b754dae feat: db_partition v2` 與 `6866866 fix ag_report_player` direct commits；current `@UseSchema` / schema route 基礎主要由 Eliot / Arnold 在 2025-12 接續建立與調整。
 - 本 flow 類型: high-traffic table partition + agent schema routing + report repository repair。
 - 是否只確認到入口: 否，已確認 `@UseSchema` aspect、schema context、agent db group lookup、bet record / request log partition query、`ag_report_player` repository routing 與 path-specific history。
@@ -35,7 +36,7 @@ current code 走成另一種方向:
 - repository 忘記加 `agent_id` / `pt_day`，固定表名後可能查到跨代理或跨日資料。
 - report summary / backup / delete 的 `ag_report_player` 若忘記 agent 條件，會污染其他 agent。
 - schema context 沒 restore，後續同 thread query 可能串到錯 schema。
-- G3 已定義，但 `SchemaContextHolder#set` current code 只明確處理 DEFAULT / G1 / G2，G3 data source routing 需要 Step 4 / Step 5 再追設定與 current behavior。
+- G3 已定義，但 `SchemaContextHolder#set` current code 只明確處理 DEFAULT / G1 / G2，G3 data source routing 需要 Step 5 再追設定與 current behavior。
 
 ## 2. 初中階 Code 分層對照
 
@@ -164,7 +165,7 @@ daily report rows by agent/player/day/currency
 
 | 風險 | 現況 | Senior / Owner 解讀 |
 | --- | --- | --- |
-| 找不到 `agentId` | `findAgentId` 回 null 時 current code 會走 `agentId < 0` 判斷，理論上有 NPE 風險；需 Step 4 / Step 5 再確認 current call sites 是否都帶 agentId | `@UseSchema` 的 contract 必須嚴格，不能靠猜 |
+| 找不到 `agentId` | `findAgentId` 回 null 時 current code 會走 `agentId < 0` 判斷，理論上有 NPE 風險；需 Step 5 再確認 current call sites 是否都帶 agentId | `@UseSchema` 的 contract 必須嚴格，不能靠猜 |
 | agent cache stale | `SchemaContextUtils` 有 fallback DB reload | 有防呆，但 cache invalidation / dbGroup change rollout 仍需 runbook |
 | G3 route | `SchemaGroup` 有 G3；`SchemaContextHolder#set` current code 明確處理 DEFAULT/G1/G2，未見 G3 data source branch | 若 production 有 G3，需要補查 data source config / bug context |
 | nested schema switch | Aspect 用 `inUse` 記錄並 warn nested switch | 能觀察 nested routing，但不是防止所有 context leak 的完整方案 |
@@ -234,5 +235,5 @@ Owner 建議:
 下一步:
 
 ```text
-antplay antplay-slot-game-job db-partition-job-report-routing Step 4
+antplay antplay-slot-game-job db-partition-job-report-routing Step 5
 ```
