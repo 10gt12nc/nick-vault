@@ -67,6 +67,25 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 目前至少已達到「中等可面」的素材條件，且三條主力 case 已有 90 秒 / 3 分鐘草稿；但還沒完成「中等可面」的實戰口說條件。換句話說，文件裡已經有可用 case 和稿；口說練習是可選補強，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」時再啟動。
 
+## 投遞前閱讀 / 練習順序
+
+目標是讀完、練完，就開始投 Senior Java Backend / Platform Backend，對標 10 萬以上。
+
+1. 先讀 `08-application-autobiography-zh.md`，整理 104 / LinkedIn 可貼版本。
+2. 讀 `05-resume-master-zh.md`，確認正式 claim 與不可誇大邊界。
+3. 讀 `04-interview-casebook.md`，挑三條主力 case 練 90 秒。
+4. 每條主力 case 再練 3 分鐘與追問。
+5. 讀 `17-salary-negotiation.md`，準備薪資區間、底線與說法。
+6. 讀 `12-role-target-readiness-matrix.md`，決定投 Senior Backend、Platform Backend、System Owner 或 Lead / Architect 候選。
+
+投遞通路不要只押單一路線：
+
+- 104 主動投遞維持量。
+- LinkedIn / 獵頭提高曝光，讓懂金流、遊戲錢包、provider、MQ、legacy takeover 的人幫忙對職缺。
+- 內推優先吃高品質機會。
+
+策略不是改成只靠獵頭，而是 `104 投遞量 + LinkedIn / 獵頭曝光 + 內推高品質機會` 三線並行。
+
 第一輪主力 case：
 
 1. Payment：`payment-order-provider-request` / `payment-provider-callback`
