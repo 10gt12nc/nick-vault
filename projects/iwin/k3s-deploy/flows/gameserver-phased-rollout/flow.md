@@ -342,7 +342,7 @@ Step 4 的收斂重點：
 我用 iwin-gameserver 這個 code-backed case 分析過 legacy game runtime 上 K3s 時的 rollout 風險。這類服務不能只看 Pod Ready，因為它靠 Zookeeper 註冊 server id 與 peer address；所以 phase order、Recreate strategy、config externalization 和 rollback 要一起設計。這目前是分析素材，不是我已主導 production rollout 的 claim。
 ```
 
-## 13. 下一步建議
+## 13. 歷史下一步紀錄
 
 Step 5 已完成，claim gate 結論維持 interview-only：這條 flow 只保留為 rollout / rollback / observability 面試案例，不整理成正式履歷或 project-level career claim。
 

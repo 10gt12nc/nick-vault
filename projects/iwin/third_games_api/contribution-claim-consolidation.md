@@ -194,9 +194,9 @@
 - 公司 repo 文件。
 - `third_games_api` standalone 履歷主成果。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 iwin k3s-deploy gameserver-phased-rollout Step 5

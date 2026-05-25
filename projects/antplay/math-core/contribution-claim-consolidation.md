@@ -12,9 +12,9 @@
 
 不要寫:
 
-- 主導完整 slot math framework。
+- 不得寫成主導完整 slot math framework。
 - 主導遊戲數學模型、RTP 策略或派彩設計。
-- 主導完整 simulator / validation platform。
+- 不得寫成主導完整 simulator / validation platform。
 
 ## Evidence Summary
 

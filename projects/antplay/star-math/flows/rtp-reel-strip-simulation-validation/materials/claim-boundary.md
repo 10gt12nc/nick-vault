@@ -30,7 +30,7 @@
 
 目前不應說：
 
-- 主導完整 RTP 策略。
+- 不得寫成主導完整 RTP 策略。
 - 獨立設計遊戲數學模型。
 - 負責 certification。
 - 負責完整 simulator platform。

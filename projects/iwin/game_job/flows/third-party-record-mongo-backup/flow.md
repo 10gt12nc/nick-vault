@@ -238,16 +238,16 @@ delete active by _id
 
 Step 5 已完成，`10gt12nc` 的 GSC 分批查詢 / batch size 調整 commit 可保守升級成「局部真實開發過」；仍不可擴大成完整第三方紀錄備份 owner。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 原本的下一步已完成：
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，claim 已收斂為局部真實開發過。
 - `coin-flow-batch-projection` Step 5 已完成，正式履歷 / 自傳不更新。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

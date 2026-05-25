@@ -180,7 +180,7 @@ branch contains：
 
 - Nick 主導 `game_job`。
 - Nick 是完整 BI / data platform owner。
-- Nick 主導完整第三方遊戲紀錄備份 / retention system。
+- 不得寫成 Nick 主導完整第三方遊戲紀錄備份 / retention system。
 - Nick 主導金幣流水清算、payment reporting、schema migration platform。
 - Nick 負責上游 gameserver writer 到 app_bi 查詢端全鏈路。
 - Nick 修復 production incident 或改善 X%，除非之後補 ticket / incident / metric。
@@ -218,10 +218,10 @@ branch contains：
 - `senior-owner-playbook/06-todo.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 
-## 歷史下一步狀態
+## 收斂狀態
 
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

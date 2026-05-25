@@ -22,7 +22,7 @@ Step：5
 2026-05-19 Step 4 重新 fetch `game_api` remote refs，確認 local `main` 與 `origin/main` 仍同步，並把 Step 3 的 code-backed flow 收斂成面試素材：
 
 - `career-interview.md`：補一句話、30 秒、2 分鐘、5 分鐘、STAR、不同職缺講法與 Step 5 下一步。
-- `materials/interview.md`：補 3 分鐘講法、常見追問、Lead / Architect 追問、反問面試官與 Step 5 待補。
+- `materials/interview.md`：補 3 分鐘講法、常見追問、Lead / Architect 追問、反問面試官以及當時 Step 5 待補（現已完成）。
 - `materials/claim-boundary.md`：維持 code-backed 面試素材；未看到 Nick / `10gt12nc` direct path evidence 前，不更新正式履歷 / 自傳。
 - `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 4，下一步為 Step 5。
 - `senior-owner-playbook/04-interview-casebook.md`：新增 Partner API 上分 / 下分 / 查單案例索引。
@@ -250,5 +250,5 @@ Nick / `10gt12nc` author filter：
 下一步：
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

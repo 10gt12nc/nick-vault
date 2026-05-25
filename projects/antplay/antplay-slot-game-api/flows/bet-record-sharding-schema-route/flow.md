@@ -194,7 +194,7 @@ Table creator service 可以依 agent + 日期建立類似以下的實體表：
 
 暫時不要寫進正式履歷：
 
-- 主導完整 sharding architecture。
+- 不得寫成主導完整 sharding architecture。
 - 完整設計 / 落地所有分表規則。
 - 已確認 production automatic table creation。
 - ShardingSphere / middleware owner。

@@ -142,7 +142,7 @@ app_bi：
 - 本 flow 已完成 Step 3。
 - 已建立 payment runtime config selection 的 code-backed 主線。
 - 不更新正式履歷 / 自傳。
-- 下一步建議轉 Step 4，把 config consistency / partial sync / cold-cache fallback 轉成面試 case。
+- 當時下一步建議轉 Step 4，把 config consistency / partial sync / cold-cache fallback 轉成面試 case。
 
 ## Step 4 補充掃描
 
@@ -210,7 +210,7 @@ payment `origin/k3s` path-specific log 補看到：
 - 本 flow 已完成 Step 4。
 - 已補 3 分鐘講法、高頻追問、production 排查順序、Lead / Architect 追問與 owner decision。
 - 不更新正式履歷 / 自傳。
-- 下一步建議做 Step 5：檢查 claim boundary、履歷 / 自傳是否需要更新；以目前 evidence 預期仍不更新正式履歷。
+- 當時下一步建議做 Step 5：檢查 claim boundary、履歷 / 自傳是否需要更新；以目前 evidence 預期仍不更新正式履歷。
 
 ## Step 5 claim gate
 
@@ -309,5 +309,5 @@ app_bi 補查：
 ## 下一步
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

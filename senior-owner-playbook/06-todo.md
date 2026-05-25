@@ -76,7 +76,7 @@
 - 已完成 `iwin payment contribution claim consolidation`；2026-05-20 已重新覆核並補入 GoldenPay direct evidence。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但這是履歷 claim 收斂，不是 payment 全量 flow 完成；仍不寫完整金流 owner。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`；原 Step 5 判定暫不更新正式履歷 / 自傳，2026-05-20 project-level consolidation 已用 Nick / `10gt12nc` direct commits 升級為可併入第三方 provider 投派整合保守 claim。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 3`，建立 center_http 上分 / 下分主學習包；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 5`，追完 source repo refs、path-specific history、重要 diff 與 blame；結論維持 code-backed interview-only，不更新正式履歷 / 自傳。後續同 project `game-spin-settlement-log-reel` 與 `bet-target-set-query` 也已完成到 Step 5。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 3`，選 `slots-game40-sgj` 作代表 game，追一般 slot spin 到 center wallet sync 與 `log_reel` 寫入；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 4`，轉成正式面試 case；不更新正式履歷 / 自傳。

@@ -106,7 +106,7 @@
 - 更新 `senior-owner-playbook/05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`，但只採保守第三方 provider 投派整合 claim。
 - 不把第三方投派 commits 擴張成完整 gameserver owner、完整遊戲錢包 owner 或完整上分 / 下分 owner。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 `center-http-deposit-withdraw`、`game-spin-settlement-log-reel`、`bet-target-set-query` 都已完成到 Step 5；Career Track 的 rolling / scoped contribution consolidation 也已完成。後續 `third_games_api` 本批代表 flows 與 `k3s-deploy gameserver-phased-rollout` 也已收斂；目前沒有預設下一步。
 

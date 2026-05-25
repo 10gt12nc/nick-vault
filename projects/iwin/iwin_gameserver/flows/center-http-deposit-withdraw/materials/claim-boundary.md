@@ -49,7 +49,7 @@
 - Nick 主導 `iwin_gameserver`。
 - Nick 是 gameserver wallet owner。
 - Nick 獨立完成上分 / 下分系統。
-- Nick 主導完整金流交易一致性。
+- 不得寫成 Nick 主導完整金流交易一致性。
 - Nick 解決過本 flow 的 production duplicate deposit / withdraw incident。
 - 本 flow 已證明 Nick 開發完整 payment + gameserver money pipeline。
 

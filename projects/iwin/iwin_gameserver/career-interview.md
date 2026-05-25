@@ -50,9 +50,9 @@
 - 完整 gameserver wallet owner、dbproxy owner、idempotency / reconciliation owner。
 - production incident / 改善比例。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 iwin third_games_api gsc-transfer-bet-settle-rollback Step 5

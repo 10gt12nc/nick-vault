@@ -39,7 +39,7 @@ Step 5 不直接更新正式履歷 / 自傳。coupon 打碼入口只作既有 co
 
 ## 不可說
 
-- Nick 主導完整提款打碼系統。
+- 不得寫成 Nick 主導完整提款打碼系統。
 - Nick 設計完整 wagering rule engine。
 - Nick 負責 app_bi / payment / game_api 全部上游 contract。
 - Nick 解決過打碼錯誤 production incident。

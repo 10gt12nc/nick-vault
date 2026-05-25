@@ -198,12 +198,12 @@ Owner 要追問：
 - Nick 負責 payment provider callback 或提款出款 source of truth。
 - Nick 改善支付報表正確率或效能 X%。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 原本的下一步已完成：
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：本 flow Step 5 已完成 claim gate；正式履歷 / 自傳不更新，面試 case 保留為 code-backed。`game_job`、`app_bi`、`game_api` contribution claim consolidation 都已完成，後續 iwin_gameserver 代表 flows 已完成到 Step 5；目前沒有預設下一步。

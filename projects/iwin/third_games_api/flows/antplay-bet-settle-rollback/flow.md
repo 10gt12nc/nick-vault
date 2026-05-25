@@ -273,9 +273,9 @@ Step 5 claim gate 結論：
 - 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪沒有找到新的 Nick / `10gt12nc` production adapter direct evidence。
 - 不可反向歸因：下游 `iwin_gameserver` Antplay direct commits 仍屬於 `iwin_gameserver` project-level third-party provider 投派整合 claim。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 iwin k3s-deploy gameserver-phased-rollout Step 5

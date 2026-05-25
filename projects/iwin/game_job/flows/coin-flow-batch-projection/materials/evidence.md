@@ -133,7 +133,7 @@ Step 5 重查：
 - `flow.md`：同步 Step 5 結論與下一步。
 - `career-interview.md`：同步面試素材可用、履歷不可用與下一條建議。
 - `projects/iwin/game_job/README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`：同步本 flow 已完成 Step 5。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 未更新：
 

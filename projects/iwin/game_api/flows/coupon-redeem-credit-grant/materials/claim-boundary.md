@@ -51,7 +51,7 @@ Step 4 已轉成保守面試案例，但不改變 claim 層級：
 
 ## 目前不能主張
 
-- Nick 主導完整 coupon 兌換功能。
+- 不得寫成 Nick 主導完整 coupon 兌換功能。
 - Nick 修復 coupon 雙領 production incident。
 - Nick 設計 Redis lock。
 - Nick 負責完整 `game_api` 或 `iwin_gameserver` owner。

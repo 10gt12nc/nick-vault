@@ -100,7 +100,7 @@ Step 2 重新排序後，結論分兩層：
 
 | 排名 | Flow | 中文名稱 | Senior / Owner 價值 | 目前 evidence | 最大缺口 | 建議 |
 | --- | --- | --- | --- | --- | --- | --- |
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 | 2 | `point-control-admin-operation` | 單點控制 / 營運控制操作 | 中高 | Step 5 已完成；MySQL / Redis / GM command / Mongo log | 下游 GM receiver 未掃；Nick 貢獻依三層 claim gate 判斷 | 保留為面試分析素材 |
 | 3 | `admin-config-redis-sync` | 後台設定同步 Redis | 中高 | 已 Step 5；Redis projection 與欄位漏投影 history 清楚 | runtime consumer 未掃 | 先保留，不更新履歷 |
 | 4 | `daily-game-record-summary` | 每日遊戲資料彙總 | 中高 | Step 5 已完成；查詢端、game_job producer、SQL / 時區修正 history 與保守面試 case | Nick 貢獻未確認 | 不更新正式履歷 |
@@ -113,7 +113,7 @@ Step 2 重新排序後，結論分兩層：
 
 這裡不是重排價值，而是「下一個最適合叫 AI 做什麼」。
 
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
    - 原因：`app_bi` 的金流人工入口已完成定位，後端主線已轉到 `payment-provider-callback`，且該 flow 已完成 Step 4。
    - 產出：iwin_gameserver center_http 上分 / 下分的面試 case，不把 app_bi 人工入口或單條 flow 硬當完整 project owner。
    - 是否更新履歷：否，至少等 payment flow Step 4 / Step 5。
@@ -437,7 +437,7 @@ admin-config-redis-sync Step 1-5
 原本的下一步已完成：
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
@@ -446,4 +446,4 @@ admin-config-redis-sync Step 1-5
 - `admin-config-redis-sync` 已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
 - `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

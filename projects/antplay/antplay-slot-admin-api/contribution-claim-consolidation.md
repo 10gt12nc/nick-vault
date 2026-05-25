@@ -12,9 +12,9 @@
 
 不要寫:
 
-- 主導完整 AntPlay slot platform。
-- 主導完整遊戲下注 / 派彩 / rollback runtime。
-- 主導完整 wallet / ledger / reconciliation。
+- 不得寫成主導完整 AntPlay slot platform。
+- 不得寫成主導完整遊戲下注 / 派彩 / rollback runtime。
+- 不得寫成主導完整 wallet / ledger / reconciliation。
 - 建立完整 RabbitMQ architecture、exactly-once 或 outbox。
 - 完整風控平台 owner、完整報表平台 owner 或量化改善。
 

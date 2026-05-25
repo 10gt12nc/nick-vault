@@ -24,9 +24,9 @@ Refresh: 2026-05-21（五條代表 flow 全部 Step 5 後的 project-level claim
 不要寫:
 
 - 主導全部 `*-math` module。
-- 主導完整遊戲數學模型 / RTP 策略 / 派彩設計。
-- 主導完整 math release / simulator / certification platform。
-- 主導完整 jackpot pool、buy free、Special Wild 或單一遊戲完整 feature owner。
+- 不得寫成主導完整遊戲數學模型 / RTP 策略 / 派彩設計。
+- 不得寫成主導完整 math release / simulator / certification platform。
+- 不得寫成主導完整 jackpot pool、buy free、Special Wild 或單一遊戲完整 feature owner。
 
 ## Evidence Summary
 

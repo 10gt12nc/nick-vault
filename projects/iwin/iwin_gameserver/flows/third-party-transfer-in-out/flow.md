@@ -234,19 +234,9 @@ Step 5 結論：
 - 已更新正式履歷 master 與投遞用自傳，但只採保守第三方 provider 投派整合口徑。
 - 若要升級為完整 owner、incident、完整防重 / 對帳 claim，仍需更多 evidence。
 
-## 下一步建議
+## 收斂狀態
 
-只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
-
-- 本 flow 已完成 Step 5，且已由 project-level consolidation 升級為保守履歷 evidence。
-- 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 5，結論為 interview-only。
-- `game-spin-settlement-log-reel Step 5` 已完成，下一步做 Step 2 Rank 4。
+本 flow 已完成 Step 5，且已由 project-level consolidation 升級為保守履歷 evidence。後續 `center-http-deposit-withdraw`、`game-spin-settlement-log-reel` 與 `bet-target-set-query` 也都已完成到 Step 5；目前沒有預設 project flow 下一步。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

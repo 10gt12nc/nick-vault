@@ -249,7 +249,7 @@ math side 能做到的是：
 
 不可寫：
 
-- 主導完整 jackpot platform / jackpot pool。
+- 不得寫成主導完整 jackpot platform / jackpot pool。
 - 負責錢包入帳、settlement、provider pool 對帳。
 - 保證所有 `*-math` jackpot module 都完整深掃。
 - 設計完整遊戲數學模型或 jackpot 機率策略。

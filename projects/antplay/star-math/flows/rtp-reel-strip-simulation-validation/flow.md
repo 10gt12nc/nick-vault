@@ -212,7 +212,7 @@ sequenceDiagram
 
 不可寫：
 
-- 主導完整 RTP 策略。
+- 不得寫成主導完整 RTP 策略。
 - 設計完整遊戲數學模型。
 - 負責 certification / full simulator platform。
 - 保證所有 `*-math` repo 都完整深掃或都由 Nick 主導。

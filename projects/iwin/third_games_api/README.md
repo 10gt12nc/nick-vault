@@ -74,7 +74,7 @@
 - Nick 是第三方遊戲錢包、下注派彩、rollback 或對帳 owner。
 - 把下游 `iwin_gameserver` direct commits 包裝成 `third_games_api` direct contribution。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 `third_games_api` 本批代表 flows 已完成到 Step 5，維持 code-backed / interview-only，不新增 standalone 正式履歷主成果。後續 `k3s-deploy gameserver-phased-rollout Step 5`、rolling resume package、104 投遞欄位檢查與 `04` 面試 case 對齊也已完成；目前沒有預設下一步。
 

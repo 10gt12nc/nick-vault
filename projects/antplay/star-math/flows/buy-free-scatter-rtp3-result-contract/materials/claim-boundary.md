@@ -30,9 +30,9 @@
 
 目前不應說：
 
-- 主導完整 buy free 商業設計。
-- 主導完整 RTP 策略或遊戲數學模型。
-- 主導完整 wallet / settlement / darkpool。
+- 不得寫成主導完整 buy free 商業設計。
+- 不得寫成主導完整 RTP 策略或遊戲數學模型。
+- 不得寫成主導完整 wallet / settlement / darkpool。
 - 完整負責所有 `*-math` buy free flow。
 - 完整負責前端展示契約。
 

@@ -17,10 +17,10 @@ Step：5
 
 2026-05-15 Step 4 已將 Step 3 的 code-backed flow 收斂成面試案例，主要更新：
 
-- `career-interview.md`：重寫為 Step 4 面試案例，補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官與 Step 5 待補。
+- `career-interview.md`：重寫為 Step 4 面試案例，補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官以及當時 Step 5 待補（現已完成）。
 - `materials/interview.md`：補 Step 4 前檢查、一句話版本、深講版、Senior 追問、Lead / Architect 追問與 Step 4 結論。
 - `materials/claim-boundary.md`：補 Step 4 面試可說 / 不可說邊界。
-- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：當時下一步從 Step 4 更新為 Step 5（現已完成）。
 - `senior-owner-playbook/04-interview-casebook.md`、`01-senior-owner-flow-inventory.md`：同步新增 / 更新此 flow 的面試案例索引。
 
 Step 4 當時尚未補到 Nick path-specific evidence，因此不更新正式履歷 master，也不新增 `真實開發過` claim；此限制已由 2026-05-19 Step 5 claim gate 重新覆核並更新。

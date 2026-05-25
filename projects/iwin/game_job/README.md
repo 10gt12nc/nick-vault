@@ -80,23 +80,12 @@
 - Nick 是第三方遊戲紀錄備份 owner。
 - Nick 是金幣流水清算 owner。
 - Nick 設計完整 Antplay / GSC / Oneapi retention policy。
-- Nick 主導完整上游 gameserver -> game_job -> app_bi 報表鏈路。
+- 不得寫成 Nick 主導完整上游 gameserver -> game_job -> app_bi 報表鏈路。
 - 寫任何未驗證的量化改善，例如報表正確率、查帳時間或效能改善 X%。
 
-## 歷史下一步狀態
+## 收斂狀態
 
-原本的下一步已完成：
-
-```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
-```
-
-原因：
-
-- `game_job` contribution claim consolidation 已完成，2026-05-20 重新覆核後結論不變。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
-- `game_api`、`payment`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+`game_job` Top 5 flows 與 project-level contribution claim consolidation 均已收斂，2026-05-20 重新覆核後結論不變。`game_api`、`payment`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂；目前沒有預設 project flow 下一步。全域狀態以 [01-senior-owner-flow-inventory.md](../../../senior-owner-playbook/01-senior-owner-flow-inventory.md) 與 [06-todo.md](../../../senior-owner-playbook/06-todo.md) 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

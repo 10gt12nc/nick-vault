@@ -12,11 +12,11 @@
 
 不要寫:
 
-- 主導完整 UGSoft 平台。
-- 主導完整 provider gateway / connector。
+- 不得寫成主導完整 UGSoft 平台。
+- 不得寫成主導完整 provider gateway / connector。
 - 完整 wallet / money flow owner。
 - 完整 RabbitMQ architecture owner。
-- 改善 X% 或完整事故 owner。
+- 不得寫改善 X% 或完整事故 owner。
 
 ## Evidence Summary
 

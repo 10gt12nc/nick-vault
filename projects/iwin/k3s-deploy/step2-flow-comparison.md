@@ -344,9 +344,9 @@ Step 3 已依此範圍補讀 / 標示待確認：
 - `senior-owner-playbook/08-application-autobiography-zh.md`：同上。
 - 共用 KB：本輪是 project-level 比較，沒有新增全 vault 規則。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 rolling resume package

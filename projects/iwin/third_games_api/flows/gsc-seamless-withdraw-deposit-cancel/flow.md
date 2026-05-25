@@ -305,9 +305,9 @@ Owner 判斷：
 
 Step 5 已完成單條 flow claim gate，本輪不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。結論維持 interview-only，不新增 `third_games_api` standalone 正式履歷成果。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 iwin k3s-deploy gameserver-phased-rollout Step 5

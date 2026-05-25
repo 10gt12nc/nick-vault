@@ -66,7 +66,7 @@
 | `projects/iwin/game_job/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | `projects/iwin/app_bi/flows/daily-game-record-summary/*` | 可沿用 / 但只涵蓋 app_bi 查詢端與 game_job producer 線索 | 若改做 `game_job` flow，應以 `game_job` code 為主重寫，不複製舊文 |
 | `senior-owner-playbook/01-senior-owner-flow-inventory.md` | 已同步 | 目前已更新到 `daily-game-data-summary` Step 5 狀態 |
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 掃描等級判斷
 
@@ -374,15 +374,15 @@ source repo 狀態：
 | `redis-message-sync` | repo 有 Redis queue consumer / command handler，但本次未深掃；需要先確認是否為 production high-value flow |
 | agent / weekly bonus 類 job | 可能有業務價值，但目前優先級低於遊戲資料、第三方紀錄、payment projection |
 
-## 歷史下一步狀態
+## 收斂狀態
 
 原本的下一步已完成：
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - `partition-table-creation` 已完成 Step 5，正式履歷 / 自傳不更新。
-- `game_job` Top 5 flow 都已收斂，但尚未做 project-level contribution consolidation。
+- `game_job` Top 5 flow 與 project-level contribution consolidation 均已收斂。

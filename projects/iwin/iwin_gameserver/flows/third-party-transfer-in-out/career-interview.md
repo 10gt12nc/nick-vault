@@ -131,20 +131,9 @@ Result：
 
 這句可以放正式履歷，但不可改成「主導完整 / owner / 改善 X%」。
 
-## 下一步建議
+## 收斂狀態
 
-只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
-
-- 本 flow 已完成 Step 5。
-- 同 project 下一條候選 `center-http-deposit-withdraw` 已完成 Step 5，結論為 interview-only。
-- Career Track 的 rolling / scoped contribution consolidation 已完成。
-- `game-spin-settlement-log-reel Step 5` 已完成，下一步做 Step 2 Rank 4；後續新增 gameserver flow 時再回填校正 project-level claim。
+本 flow 已完成 Step 5，且 Career Track 的 rolling / scoped contribution consolidation 已完成。後續 `center-http-deposit-withdraw`、`game-spin-settlement-log-reel` 與 `bet-target-set-query` 也都已完成到 Step 5；目前沒有預設 project flow 下一步。之後若新增 gameserver flow，再回填校正 project-level claim。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

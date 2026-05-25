@@ -14,7 +14,7 @@
 | 可用於 Senior / Owner 面試討論 | 分析素材 / learning-only | Step 4 已整理 30 秒 / 2 分鐘 / 5 分鐘版本 |
 | project-level career boundary | 部分真實開發過 + code-backed | 2026-05-20 project-level consolidation 已找到 Nick / `10gt12nc` direct commits |
 | Nick 實作此 flow 的部分 gameserver path | 真實開發過 + code-backed | Antplay / GSC / PG center_http command、money job、`GamePlayer` log dispatch、log reel path 有 direct commits |
-| Nick 主導完整此 flow | 待確認 | 仍需要 MR / ticket / production owner evidence |
+| 完整 flow owner claim | 待確認 | 仍需要 MR / ticket / production owner evidence |
 | production incident / 改善比例 | 待確認 | 本輪沒有證據 |
 
 ## Step 5 結論

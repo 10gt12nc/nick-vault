@@ -64,7 +64,7 @@
 - Nick 建立完整 DevOps / SRE system。
 - 單靠 `gameserver-phased-rollout` Step 5 寫入正式履歷 / 自傳。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 `gameserver-phased-rollout` Step 5 已完成，claim gate 結論維持 interview-only，不更新正式履歷 / 自傳。後續 `rolling resume package`、104 投遞欄位檢查與 `04` 面試 case 對齊也已完成；目前沒有預設下一步。
 

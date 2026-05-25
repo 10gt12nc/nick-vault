@@ -349,9 +349,9 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 - `senior-owner-playbook/04-interview-casebook.md`：已補 OneAPI / PG bet_result 面試案例。
 - `senior-owner-playbook/05-resume-master-zh.md`、`08-application-autobiography-zh.md`：後續 rolling consolidation 已補 claim boundary note，但不新增正式成果 bullet。
 
-## 下一步建議
+## 歷史下一步紀錄
 
-只推薦一件事：
+當時只推薦一件事：
 
 ```text
 iwin k3s-deploy gameserver-phased-rollout Step 5

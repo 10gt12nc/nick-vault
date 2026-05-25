@@ -157,10 +157,10 @@ repo-wide Nick / `10gt12nc` author log 在 `app_bi` 目前只看到 KB / catalog
 - 結論是不新增 app_bi 正式履歷成果。
 - 既有 05 / 08 已有泛化的「後台營運功能 / 報表查詢 / RBAC / 權限 / 營運工具」描述，足以涵蓋 app_bi 的輔助定位。
 
-## 歷史下一步狀態
+## 收斂狀態
 
 下一步維持回 `iwin_gameserver`，先把已完成 Step 3 的 `center-http-deposit-withdraw` 轉成面試 case。`app_bi` 本身已收斂，不需要重做或放正式履歷主成果。
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

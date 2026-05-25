@@ -236,7 +236,7 @@ Step 5 結論：
 
 不可使用口徑：
 
-- 主導完整 jackpot platform。
+- 不得寫成主導完整 jackpot platform。
 - 負責 jackpot pool / wallet / settlement / provider reconciliation。
 - 設計完整 jackpot odds / RTP 策略。
 - 完整驗證全部 `*-math` jackpot module。

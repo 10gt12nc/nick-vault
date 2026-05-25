@@ -19,9 +19,9 @@
 
 不要寫:
 
-- 主導完整 UGSoft 平台。
+- 不得寫成主導完整 UGSoft 平台。
 - 主導全部 provider integration。
-- 主導完整 wallet / ledger / reconciliation。
+- 不得寫成主導完整 wallet / ledger / reconciliation。
 - 建立 exactly-once / outbox。
 - 完整架構 owner 或量化改善。
 

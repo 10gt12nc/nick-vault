@@ -39,10 +39,10 @@
 
 2026-05-15 Step 4 已將 Step 3 的 code-backed flow 收斂成面試案例，主要更新：
 
-- `career-interview.md`：補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官與 Step 5 待補。
+- `career-interview.md`：補 30 秒、2 分鐘、5 分鐘版本、STAR 版本、反問面試官以及當時 Step 5 待補（現已完成）。
 - `materials/interview.md`：補深講版、常見追問、Senior 能力點與 Lead / Architect 延伸追問。
 - `materials/claim-boundary.md`：補 Step 4 可說 / 不可說面試邊界。
-- `README.md`、`step2-flow-comparison.md`、`flow.md`：下一步從 Step 4 更新為 Step 5。
+- `README.md`、`step2-flow-comparison.md`、`flow.md`：當時下一步從 Step 4 更新為 Step 5（現已完成）。
 
 Step 4 不更新正式履歷 master，不新增 `真實開發過` claim。
 

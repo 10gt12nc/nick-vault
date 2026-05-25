@@ -24,12 +24,12 @@
 
 不要寫:
 
-- 主導完整 AntPlay slot platform。
-- 主導完整遊戲數學 / RTP 策略。
-- 主導完整 wallet / ledger / reconciliation。
+- 不得寫成主導完整 AntPlay slot platform。
+- 不得寫成主導完整遊戲數學 / RTP 策略。
+- 不得寫成主導完整 wallet / ledger / reconciliation。
 - 建立完整 RabbitMQ / Kafka architecture、exactly-once 或 outbox。
 - 建立完整 sharding platform 或 production automatic table creation owner。
-- 主導完整 dark pool / player control / jackpot platform。
+- 不得寫成主導完整 dark pool / player control / jackpot platform。
 - 完整風控平台 owner、完整報表平台 owner 或量化改善。
 
 ## Evidence Summary
@@ -258,5 +258,5 @@ Step 5 後更精準的單條 flow 口徑:
 `antplay-slot-game-api` Career Track 已 refresh；Flow Track 本批代表 flows 已全部 Step 5；05 / 08 rolling 履歷 / 自傳投遞稿已回填。後續全域 queue 已收斂；目前沒有預設下一步。
 
 ```text
-- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

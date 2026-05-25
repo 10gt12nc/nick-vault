@@ -14,8 +14,8 @@
 
 不要寫:
 
-- 主導完整 UGSoft workspace / DevOps / release owner。
-- 主導完整 provider migration 或 production runbook 執行。
+- 不得寫成主導完整 UGSoft workspace / DevOps / release owner。
+- 不得寫成主導完整 provider migration 或 production runbook 執行。
 - 主導 `ugsoft-admin-api` / `ugsoft-connector-api` production 功能，除非回到對應 service repo 的 commits / MR / ticket 補證據。
 - 完整落地 SerialSyncJob、AntPlay migration、deploy harness 到所有環境。
 
