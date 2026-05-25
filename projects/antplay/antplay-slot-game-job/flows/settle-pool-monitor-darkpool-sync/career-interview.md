@@ -1,13 +1,14 @@
 # settle-pool-monitor-darkpool-sync Career / Interview
 
 日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## Evidence Level
 
 - 證據層級: 專案存在 / code-backed / analysis-first。
 - Nick evidence: 本輪未找到 Nick / `10gt12nc` 對 settle pool monitor 主路徑的 direct path-specific commit。
 - Current behavior evidence: `SettlePoolMonitorConsumerService`、`GroupSettleTypeRecord`、`MainHandler`、`SyncDbFromRedis`、`SettledPoolRepositoryImpl` 可完整追到。
-- 完成狀態: Step 4 正式面試 case 完成。
+- 完成狀態: Step 5 claim gate 完成。
 - 本文件是 flow-level 素材，不是 project-level final consolidation。正式履歷仍以 contribution consolidation / rolling resume package 為準。
 
 ## 履歷保守 Bullet
@@ -105,6 +106,6 @@ current code 是 increment projection，未見 event idempotency。可補 `batch
 - 不說已確認 production runbook / reconciliation / DLT。
 - 不直接更新 `05 / 08`。
 
-## Step 4 結論
+## Step 5 Claim Gate
 
-Step 4 已完成正式面試 case；仍維持 code-backed / analysis-first，不升級履歷 claim。下一步 Step 5 應做 claim gate，確認是否只能作 interview-only supporting case，並同步 project-level claim boundary。
+Step 5 已完成 claim gate；仍維持 code-backed / analysis-first，不升級履歷 claim。重新掃 Nick / `10gt12nc` author log、Nick 命名 branch、`origin/settle-pool` / `origin/risk-mng` path log 與 current blame 後，沒有找到 Nick direct path-specific evidence。這條只能作 interview-only supporting case，不回填 `05 / 08`，不寫成真實開發或主導 settle pool / risk。

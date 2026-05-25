@@ -1,10 +1,11 @@
 # Interview Notes - settle-pool-monitor-darkpool-sync
 
 日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
-## Step 4 狀態
+## Step 5 狀態
 
-本檔是 `settle-pool-monitor-darkpool-sync` 的正式面試稿。這條 flow 是 code-backed / analysis-first case，不是 Nick direct implementation；面試價值在於 event projection、Redis / DB consistency、reset sync 與 owner decision。
+本檔是 `settle-pool-monitor-darkpool-sync` 的正式面試稿，已完成 Step 5 claim gate。這條 flow 是 code-backed / analysis-first case，不是 Nick direct implementation；面試價值在於 event projection、Redis / DB consistency、reset sync 與 owner decision。
 
 ## 面試主軸
 
@@ -128,6 +129,6 @@ production log error 後跳過該筆，projection 會漏算。這代表 upstream
 - alert threshold 的單位和 source of truth 是誰定義的？
 - 多 instance consumer 同時看到 reset flag 時，你們用什麼 lock / state 防重？
 
-## Step 4 結論
+## Step 5 結論
 
-Step 4 已完成正式面試 case。這條 flow 可以當 Senior Backend 的 code-backed analysis case，用來講 event projection consistency、reset sync partial failure、Redis / DB source boundary、單位治理、observability 與 reconciliation。下一步 Step 5 應做 claim gate，確認仍維持 interview-only / analysis-first，不回填正式履歷主成果。
+Step 5 已完成 claim gate。這條 flow 可以當 Senior Backend 的 code-backed analysis case，用來講 event projection consistency、reset sync partial failure、Redis / DB source boundary、單位治理、observability 與 reconciliation。它不回填正式履歷主成果；面試時要主動說明這是分析過的 code-backed flow，不是 Nick direct implementation。

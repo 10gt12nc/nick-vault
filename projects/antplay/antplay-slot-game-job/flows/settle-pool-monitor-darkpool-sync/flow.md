@@ -2,12 +2,13 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
 - Flow 中文名稱: settle pool monitor / dark pool Redis -> DB sync。
 - Flow slug: `settle-pool-monitor-darkpool-sync`。
-- 完成狀態: Step 4 正式面試 case 完成；Step 3 Level 2 flow 深掃已完成。
+- 完成狀態: Step 5 claim gate 完成。
 - 證據層級: 專案存在 / code-backed / analysis-first。current code 技術價值高，但主路徑 current blame 幾乎是 Arnold，早期基礎有 Eliot；目前沒有 Nick / `10gt12nc` direct path evidence，不能寫成 Nick 真實開發或主導 settle pool / risk / jackpot owner。
 - 本 flow 類型: Kafka settlement event -> risk / dark pool monitor projection -> DB / alert。
 - 是否只確認到入口: 否，已確認 consumer、分群、handler、DB repository、reset flag sync 與 path-specific history；未掃 admin / monitoring 查詢畫面與 game-api producer 最新 contract。
@@ -377,14 +378,24 @@ Git history:
 - Kafka listener ack / DLT / retry runtime behavior。
 - Level 3 逐檔逐 commit diff。
 
-## 16. Step 4 結論
+## 16. Step 5 Claim Gate 結論
 
-這條 flow 已完成 Step 4 正式面試 case。它是 AntPlay job repo 裡技術含量高的 code-backed flow，可用來練 Senior Backend 對 event projection、Redis / DB consistency、reset sync、alert、risk monitor 的分析能力。
+這條 flow 已完成 Step 5 claim gate。它是 AntPlay job repo 裡技術含量高的 code-backed flow，可用來練 Senior Backend 對 event projection、Redis / DB consistency、reset sync、alert、risk monitor 的分析能力。
 
-但 claim boundary 必須非常保守：current implementation 主要是 Arnold / Eliot，不是 Nick direct evidence。它可以當面試中的「我分析過 / 能講清楚」素材，不能當履歷主成果或主導經驗。
+Step 5 重新確認後，claim boundary 維持保守：
 
-下一步應做 Step 5，補 claim gate：確認是否有任何新增 direct evidence、是否仍維持 analysis-first、是否可只作 interview-only supporting case，並同步 project-level 邊界。
+- `git log --all --author='10gt12nc|Nick|nick' -- <settle pool paths>` 沒有找到 direct path-specific commit。
+- `beta-dev-bigWin-Nick` / `kafka_Nick` 對此 path 沒有修改紀錄。
+- `origin/settle-pool` 主要是 Eliot / Arnold；`origin/risk-mng` 只看到早期 Eliot settle pool context。
+- current blame 顯示 core files 仍是 Arnold-heavy，早期 base 有 Eliot。
+- 因此本 flow 只能作 `專案存在 / code-backed / analysis-first`，不能標 `真實開發過`。
+
+可面試講：能分析 `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的 projection consistency、reset sync partial failure、unit boundary 與 reconciliation 改善。
+
+不可履歷主寫：不回填 `05 / 08`，不單獨寫成正式履歷 bullet，不說 Nick 主導 settle pool / dark pool / risk / jackpot / player control platform。
+
+下一步回到同 project Step 2 ranking，若 Nick 要繼續 `antplay-slot-game-job`，應做下一條未完成候選 flow `db-partition-job-report-routing Step 3`。這是支線加強，不是履歷必需；目前已完成的 job project-level consolidation 仍可沿用。
 
 ```text
-antplay antplay-slot-game-job settle-pool-monitor-darkpool-sync Step 5
+antplay antplay-slot-game-job db-partition-job-report-routing Step 3
 ```

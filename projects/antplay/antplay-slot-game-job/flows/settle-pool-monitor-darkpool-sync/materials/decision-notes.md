@@ -2,6 +2,7 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 1. Projection vs Source Of Truth
 
@@ -85,3 +86,12 @@ Career decision:
 5. 最後補 reconciliation：從 bet record 重算 expected pool，和 `settled_pool` / Redis snapshot 比對。
 
 這個順序能表現 Senior / Owner 判斷：先保 correctness，再保 recoverability，最後補 visibility 與 runbook。
+
+## 7. Step 5 Claim Decision
+
+Step 5 不改 technical recommendation，但收斂 career claim:
+
+- 這條 flow 的技術價值高，適合面試追問。
+- Nick direct evidence 不足，不能轉成正式履歷成果。
+- 若面試官問「你做過嗎」，回答要改成「這條是我 code-backed 分析過的 flow；我會用它說明我如何拆 projection consistency，不會說這是我主導開發」。
+- 若要補成可履歷 claim，需要 Nick 本人確認或 ticket / MR / production issue evidence。

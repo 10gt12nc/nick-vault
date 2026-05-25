@@ -2,6 +2,7 @@
 
 日期: 2026-05-25
 Step 4 補充日期: 2026-05-25
+Step 5 補充日期: 2026-05-25
 
 ## 1. Source Repo 狀態
 
@@ -170,3 +171,36 @@ Step 4 結論:
 - 已形成正式面試稿與追問短答。
 - 仍不新增 Nick direct evidence。
 - 下一步 Step 5 只做 claim gate，不應直接回填 `05 / 08`。
+
+## 11. Step 5 Claim Gate Evidence
+
+Step 5 重新確認 source repo 狀態:
+
+| 項目 | 狀態 |
+| --- | --- |
+| source branch | `master` |
+| local HEAD | `d847357` |
+| local `origin/master` | `d847357` |
+| ahead / behind | `0 / 0` |
+| source working tree | clean |
+| remote refs | 先前 fetch 失敗；依 KB 不反覆重試 |
+| 最新性判斷 | 未確認最新遠端；依本地 refs / 本地 working tree 保守判斷 |
+
+Step 5 補掃:
+
+| 檢查 | 結果 | Claim 影響 |
+| --- | --- | --- |
+| Nick / `10gt12nc` path-specific log | 無輸出 | 無 direct path evidence |
+| `beta-dev-bigWin-Nick` path log | 無輸出 | Nick 命名 branch 未覆蓋此 flow path |
+| `kafka_Nick` path log | 無輸出 | Nick 命名 branch 未覆蓋此 flow path |
+| `origin/settle-pool` path log | Eliot / Arnold | settle-pool branch 不能轉成 Nick direct evidence |
+| `origin/risk-mng` path log | 早期 Eliot commit | risk-mng branch 不能轉成 Nick direct evidence |
+| current blame | `SettlePoolMonitorConsumerService` 94 lines Arnold；`MainHandler` 400 lines Arnold；`SyncDbFromRedis` 301 lines Arnold；`GroupSettleTypeRecord` 101 lines Arnold | current implementation 非 Nick direct |
+
+Step 5 結論:
+
+- 真實開發過: 不成立。
+- code-backed: 成立。
+- 可面試講: 成立，但必須標成 analysis-first。
+- 可回填 project-level claim: 只作 supporting interview case，不新增正式履歷主成果。
+- 不可誇大: 不說 settle pool / dark pool / risk / jackpot / player control owner。
