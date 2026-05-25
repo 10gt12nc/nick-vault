@@ -236,7 +236,7 @@ Step 5 已完成：本 flow 可作 `game_api` project contribution consolidation
 下一步：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

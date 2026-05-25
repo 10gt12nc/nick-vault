@@ -431,12 +431,12 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 - 單條 coupon flow 已完成 Step 5，且已補到 Nick / `10gt12nc` path-specific commits，可作 project contribution consolidation evidence。
 - 其他 `game_api` flow 仍不可因 coupon evidence 自動升級。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：

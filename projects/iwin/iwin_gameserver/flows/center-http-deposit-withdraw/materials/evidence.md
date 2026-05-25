@@ -191,7 +191,7 @@
 
 ## Step 4 掃描範圍
 
-任務：`iwin iwin_gameserver center-http-deposit-withdraw Step 4`
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 日期：2026-05-21
 掃描等級：Level 2 文件復核 + Step 4 面試 case 整理；未做 Level 3 逐 commit diff
 

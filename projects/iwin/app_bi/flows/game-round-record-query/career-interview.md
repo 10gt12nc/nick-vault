@@ -134,17 +134,17 @@ Step 5 已完成；目前不放入：
 
 ## 下一步
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - 本 flow Step 5 已完成，不更新正式履歷 / 自傳。
 - `app_bi` 主要 flow 已收斂；下一個高價值方向是金流 source of truth。
-- `iwin iwin_gameserver center-http-deposit-withdraw Step 4` 會補 iwin_gameserver center_http 代表 flow，不會直接把單條 flow 寫成完整 project owner。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

@@ -63,7 +63,7 @@
 | Step | 狀態 | 判斷 |
 | --- | --- | --- |
 | Step 1 | 可沿用 | 已列 candidate flows，且已同步此 flow 進度 |
-| Step 2 | 可沿用 | 已同步 Step 5 完成與下一步轉 `iwin_gameserver center-http-deposit-withdraw Step 4` |
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 | Step 3 | 已完成 | 已確認 app_bi 查詢端與 game_job producer |
 | Step 4 | 本次完成 | 轉成保守面試 case |
 | Step 5 | 已完成 | 已判定不更新正式履歷 / 自傳 |
@@ -229,14 +229,14 @@ Step 5 已完成履歷 / 自傳更新判定：不更新正式履歷 / 自傳。
 - `materials/interview.md`：本 Step 4 詳細面試稿附錄。
 - `materials/claim-boundary.md`：履歷 / 自傳更新邊界與 Step 5 結論。
 
-下一步只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - `daily-game-record-summary` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - 依 KB，一條 flow 完成後回同 project candidate ranking。
-- `game-round-record-query` Step 5 已完成，已判定不更新正式履歷 / 自傳；下一步轉 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

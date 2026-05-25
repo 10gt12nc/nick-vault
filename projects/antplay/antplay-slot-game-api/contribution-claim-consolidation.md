@@ -253,10 +253,10 @@ Step 5 後更精準的單條 flow 口徑:
 
 若篇幅有限，可併入現職的「遊戲 API runtime / betting settlement / transfer wallet / async data processing」一段，不需要單獨寫成完整平台 owner。
 
-## Suggested Next
+## Historical Next-Step Status
 
 `antplay-slot-game-api` Career Track 已 refresh；Flow Track 本批代表 flows 已全部 Step 5；05 / 08 rolling 履歷 / 自傳投遞稿已回填。下一步回全域 todo 的 iwin Flow Track。
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

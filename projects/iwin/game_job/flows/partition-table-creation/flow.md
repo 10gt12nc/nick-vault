@@ -190,12 +190,12 @@ Game 分表 template：
 - production 實際啟用已驗證。
 - 這條 flow 有完整 migration / rollback / schema drift 管理。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
-原因：本 flow Step 5 已完成 claim gate，正式履歷 / 自傳不更新，面試 case 保留為 code-backed；`game_job contribution claim consolidation` 已完成，下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

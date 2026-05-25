@@ -76,8 +76,8 @@
 - 已完成 `iwin payment contribution claim consolidation`；2026-05-20 已重新覆核並補入 GoldenPay direct evidence。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但這是履歷 claim 收斂，不是 payment 全量 flow 完成；仍不寫完整金流 owner。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`；原 Step 5 判定暫不更新正式履歷 / 自傳，2026-05-20 project-level consolidation 已用 Nick / `10gt12nc` direct commits 升級為可併入第三方 provider 投派整合保守 claim。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 3`，建立 center_http 上分 / 下分主學習包；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
-- 已完成 `iwin_gameserver center-http-deposit-withdraw Step 4`，轉成正式面試 case；仍維持 `專案存在 / code-backed`，不更新正式履歷 / 自傳。
-- 已完成 `iwin_gameserver center-http-deposit-withdraw Step 5`，追完 source repo refs、path-specific history、重要 diff 與 blame；結論維持 code-backed interview-only，不更新正式履歷 / 自傳，下一步回同 project Step 2 Rank 3 `game-spin-settlement-log-reel Step 3`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
+- 已完成 `iwin_gameserver center-http-deposit-withdraw Step 5`，追完 source repo refs、path-specific history、重要 diff 與 blame；結論維持 code-backed interview-only，不更新正式履歷 / 自傳。後續同 project `game-spin-settlement-log-reel` 與 `bet-target-set-query` 也已完成到 Step 5。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 3`，選 `slots-game40-sgj` 作代表 game，追一般 slot spin 到 center wallet sync 與 `log_reel` 寫入；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 4`，轉成正式面試 case；不更新正式履歷 / 自傳。
 - 已完成 `iwin_gameserver game-spin-settlement-log-reel Step 5`，一般 Game40 spin 維持 interview-only；provider log reel / 投派整合 direct evidence 回填既有 project-level claim，不新增一般 slot spin 履歷 bullet。
@@ -191,9 +191,9 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 6. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
 8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，下一步先掃 `ugsoft-connector-api`。
-9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 ugsoft，應做 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
+9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補非 iwin 廣度，可選 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
 10. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
-11. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。下一步若繼續 antplay，應做 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
+11. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補 AntPlay 後台廣度，可選 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
 12. `antplay-slot-game-api contribution claim consolidation`：已完成 refreshed 收口，且已回填 `slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 5`。本批代表 flows 已全部 Step 5；05 / 08 已由 `rolling resume package` 回填。
 13. `antplay-slot-game-job contribution claim consolidation`：已完成 refreshed 收口；可保守補入履歷。Flow Track Step 1 / Step 2 已完成，五條代表 flows 均已 Step 5 並已由 2026-05-25 `rolling resume package` 回填通用履歷 / 自傳 / 談薪邊界。
 14. `math-core / *-math contribution claim consolidation`：已完成 refreshed / grouped 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 contribution claim consolidation refresh 已完成。後續除非 Nick 指定 Level 3 final，不再平均掃 71 repo。
@@ -236,12 +236,12 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 8. `k3s-deploy`：`gameserver-phased-rollout Step 5` 已完成；維持 interview-only，不更新正式履歷。
 9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
 10. `ugsoft-admin-api`：contribution consolidation 已完成；可作後台 API / async data processing 履歷素材。
-11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。下一步建議 Step 1 / Step 2。
+11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。Step 1 / Step 2 是可選加強，不是預設下一步。
 12. `ugsoft-workspace`：contribution consolidation 已完成；只作 workspace / docs / harness / runbook supporting evidence，不作正式履歷主成果。
-13. `antplay-slot-admin-api`：contribution consolidation 已完成；可作 AntPlay 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理素材。下一步建議 Step 1 / Step 2。
+13. `antplay-slot-admin-api`：contribution consolidation 已完成；可作 AntPlay 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理素材。Step 1 / Step 2 是可選加強，不是預設下一步。
 14. `antplay-slot-game-api`：refreshed contribution consolidation 已完成，Step 1 / Step 2 / `slot-bet-settle-rollback Step 5` / `transfer-wallet-money-in-out Step 5` / `request-log-rabbitmq-async Step 5` / `bet-record-sharding-schema-route Step 5` / `runtime-rtp-darkpool-player-control Step 5` 已完成。可作 AntPlay 遊戲 API runtime / 下注結算 / 轉帳錢包 / 分表 / RabbitMQ request log / high-traffic table governance / runtime decision 素材；05 / 08 已回填。
 15. `antplay-slot-game-job`：contribution consolidation refresh 已完成，Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5` 已完成並回填 project-level report projection / Quartz summary evidence，`activity-accumulated-bet-voucher Step 5` 已完成且只作 reward correctness 面試素材 / supporting evidence，`big-win-notification Step 5` 已完成並回填 project-level supporting evidence，`settle-pool-monitor-darkpool-sync Step 5` 已完成且只作 analysis-first 面試素材，`db-partition-job-report-routing Step 5` 已完成且作分表 / report path supporting evidence；可作 AntPlay job / event processing、Kafka / Quartz、報表 projection / summary、activity accumulated bet supporting flow、big-win notification 與分表 / report path 維護素材。2026-05-25 rolling resume package 已回填。
-16. `math-core`：contribution consolidation 已完成；可作 slot math core / contract / debug tooling 素材。下一步建議 Step 1 / Step 2。
+16. `math-core`：contribution consolidation 已完成；可作 slot math core / contract / debug tooling 素材。Step 1 / Step 2 是可選加強，不是預設下一步。
 17. `*-math`：contribution consolidation 已完成 refreshed / grouped，`fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成；可作多個 slot math module / RTP / reel strip / debug / fixedMultiBet / buy free / jackpot / feature state transform 素材。已收斂，不平均掃 71 repo。
 18. `math-workspace`：contribution consolidation 已完成；只作 cross-math KB / validation workflow supporting evidence。
 19. `platform-mock`：contribution consolidation 已完成；只作 provider failure injection supporting evidence。

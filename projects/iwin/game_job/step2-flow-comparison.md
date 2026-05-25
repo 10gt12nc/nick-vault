@@ -75,7 +75,7 @@
 
 這裡不是直接做 flow，而是排「下一個最適合叫 AI 做什麼」。
 
-1. `iwin iwin_gameserver center-http-deposit-withdraw Step 4`
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
    - 原因：`game_job` contribution claim consolidation 已完成；`game_api` 第三順位 flow 已完成 Step 4，下一步做單條 flow claim gate。
    - 產出：確認代理佣金領取 / 轉帳 flow 是否有 Nick / `10gt12nc` direct evidence 或只能保留為 code-backed 面試素材。
    - 是否更新履歷：否。
@@ -260,12 +260,12 @@ Senior / Owner 價值：
 - 不適合單獨做第一條 flow。
 - 可在其他 Step 3 的架構圖與 failure window 補充。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：

@@ -295,7 +295,7 @@ Step 3 成本:
 此 Step 3 建議已於 2026-05-20 完成，原始起手式為:
 
 ```text
-antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 3
+- 歷史下一步已完成：antplay *-math fixed-multi-bet-currency-math-core-compatibility 已完成到 Step 5，且 *-math contribution claim consolidation refresh 已完成；目前沒有預設下一步。
 ```
 
 建議 Step 3 寫入:

@@ -55,16 +55,16 @@
 
 ## 下一步
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - app_bi 已完成 rolling / scoped negative consolidation。
-- 下一步回 `iwin_gameserver center-http-deposit-withdraw Step 4`，把後端 runtime 上分 / 下分代表 flow 轉成面試 case。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

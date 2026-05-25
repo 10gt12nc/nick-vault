@@ -65,7 +65,7 @@
 
 ## 下一步
 
-payment project 已完成 Top 5 flow 與 contribution consolidation；下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

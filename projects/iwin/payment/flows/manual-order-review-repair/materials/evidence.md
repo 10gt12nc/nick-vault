@@ -213,5 +213,5 @@ app_bi `bill_check` / `repairOrderService` / repair UI 相關 path 的 `10gt12nc
 ## 下一步
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

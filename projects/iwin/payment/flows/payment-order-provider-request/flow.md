@@ -313,10 +313,10 @@ Owner 判斷：
 
 ## 14. 下一步
 
-後續狀態更新：`manual-order-review-repair` 已完成 Step 5，`payment-channel-config-selection` 已完成 Step 5，project-level payment contribution consolidation 已完成並於 2026-05-20 重新覆核，補入 GoldenPay direct evidence。下一步回到 iwin Career Track 的 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

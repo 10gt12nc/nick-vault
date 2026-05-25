@@ -218,10 +218,10 @@ branch contains：
 - `senior-owner-playbook/06-todo.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 
-## 下一步建議
+## 歷史下一步狀態
 
-`game_job` 已重新覆核，不需要因本輪重做；`iwin_gameserver` contribution consolidation 也已完成。下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```

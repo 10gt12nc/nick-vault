@@ -357,15 +357,15 @@ Step 5 已完成：本 flow 可作 game_job project contribution consolidation e
 - 不寫負責上游 gameserver 到 app_bi 全鏈路。
 - 不寫已修復 production incident 或改善 X%。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
-原因：本 flow Step 5 已收斂，且 `game_job contribution claim consolidation` 已完成；下一步回到 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

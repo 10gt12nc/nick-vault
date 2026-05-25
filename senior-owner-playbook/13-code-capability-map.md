@@ -150,10 +150,15 @@
 
 Lead / Architect 候選能力可以準備，但目前應以「候選能力 / 思維」呈現，不應包裝成正式職責。
 
-下一步不是開始寫大量專案 case，也不是一次掃完所有 repo。`projects/` 規範已建立後，應依 `01-senior-owner-flow-inventory.md` 與 `06-todo.md` 只選一條最值得做的 flow：
+下一步不是開始寫大量專案 case，也不是一次掃完所有 repo。`projects/` 規範已建立後，已完成多個 project-level consolidation、代表 flows Step 5、rolling resume package、104 投遞欄位檢查與 `04` 面試 case 對齊。
 
-- 若目標是最快收斂 Senior Backend 履歷 / 面試素材，`iwin payment contribution claim consolidation`、`iwin game_job contribution claim consolidation`、`iwin game_api contribution claim consolidation`、`iwin iwin_gameserver contribution claim consolidation` 都已完成，不需要因新規則重做；`app_bi` 與 `bi_share` 也已做 negative consolidation，不放正式履歷主成果。下一步回 Flow Track 補 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`；單條 flow Step 5 只提供 evidence，不直接代表整個 project 的履歷結論。
-- 若目標是開新 domain 做差異化題材，`*-math` Step 2 已完成，下一步做 `antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 3`；仍不可跳過單條 flow Step 3~5 直接寫成完整履歷 claim。
+目前狀態應依 `01-senior-owner-flow-inventory.md` 與 `06-todo.md` 判斷：
+
+- 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定。
+- 若 Nick 要補架構視角，可選 `iwin system map v1`，但這是可選加強，不是投遞前必做。
+- 若 Nick 要補非 iwin 廣度，可選 `ugsoft-connector-api Step 1 / Step 2 + 1-2 條代表 flow`，但不要把它包裝成必要 backlog。
+- 若 Nick 要練面試，再啟動三條主力 case 90 秒 / 3 分鐘口說練習；未要求時先暫停。
+- 若有實際 JD，才客製 `08` 與 `17`；沒有 JD 時維持通用 Senior Java Backend / Platform Backend 版本。
 
 每個 case 都必須：
 

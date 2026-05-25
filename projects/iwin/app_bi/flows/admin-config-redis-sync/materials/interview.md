@@ -183,10 +183,10 @@ Step 5 已完成履歷 / 自傳更新判定：
 - `materials/claim-boundary.md`：不能誇大的邊界。
 - `materials/interview.md`：本 Step 4 詳細面試稿附錄。
 
-下一步只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
@@ -194,4 +194,4 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 - `admin-config-redis-sync` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `point-control-admin-operation` 已完成 Step 5，且不更新正式履歷 / 自傳。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`，收斂 iwin_gameserver center_http 上分 / 下分的面試素材。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

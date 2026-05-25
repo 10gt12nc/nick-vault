@@ -282,12 +282,12 @@ Owner 判斷：
 
 目前 Step 5 已完成單條 flow claim gate；第三順位 `agent-bonus-receive-transfer` 也已完成 Step 5。三條代表 flow 都已收斂，且 `game_api contribution claim consolidation` 已完成；本 flow 仍只作 code-backed 面試素材。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：

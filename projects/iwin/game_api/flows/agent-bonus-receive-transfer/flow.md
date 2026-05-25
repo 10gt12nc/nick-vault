@@ -256,12 +256,12 @@ sequenceDiagram
 
 本輪重新 fetch `game_api` 與 `game_job`，重跑 agent bonus path-specific history 與 Nick / `10gt12nc` author filter；目前未看到 Nick direct path evidence，也沒有本人確認。因此本 flow 正式收斂為「code-backed 面試素材，不進正式履歷」。後續 `game_api contribution claim consolidation` 已完成，仍維持本判斷。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：

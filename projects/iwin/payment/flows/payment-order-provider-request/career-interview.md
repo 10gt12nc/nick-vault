@@ -124,7 +124,7 @@ Step 5 證據更新：Pay4z / NaNapay / BFPAY / NimTestPay 相關 commits 由 `1
 ## 下一步
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

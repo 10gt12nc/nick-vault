@@ -95,12 +95,12 @@
 - `08-application-autobiography-zh.md`：只補 supporting context note，不新增主成果段落。
 - 真正的履歷主成果仍由 `payment`、`game_api`、`game_job`、`iwin_gameserver` 等 project-level consolidation 支撐。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：

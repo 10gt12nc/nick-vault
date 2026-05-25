@@ -594,10 +594,10 @@ Owner 風險：
 
 ## Step 5 結論與下一步
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
@@ -606,7 +606,7 @@ iwin iwin_gameserver center-http-deposit-withdraw Step 4
 - Step 5 判定不更新正式履歷 / 自傳。
 - `admin-config-redis-sync` 也已完成 Step 5。
 - `daily-game-record-summary` Step 5 已完成，且不更新正式履歷 / 自傳。
-- `game-round-record-query` Step 5 已完成；下一步轉 `iwin iwin_gameserver center-http-deposit-withdraw Step 4`，收斂 iwin_gameserver center_http 上分 / 下分的面試素材。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 - 若本次有改檔，完成自查後 commit；若需要 push，直接觸發 `git push` approval 視窗。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

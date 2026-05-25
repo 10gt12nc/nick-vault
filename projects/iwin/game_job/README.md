@@ -83,20 +83,20 @@
 - Nick 主導完整上游 gameserver -> game_job -> app_bi 報表鏈路。
 - 寫任何未驗證的量化改善，例如報表正確率、查帳時間或效能改善 X%。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 
 - `game_job` contribution claim consolidation 已完成，2026-05-20 重新覆核後結論不變。
-- `iwin_gameserver contribution claim consolidation` 已完成，下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 - `game_api`、`payment`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
-- 若近期目標是先把履歷 / 面試 claim 風險收斂，下一個最值得做的是 `iwin_gameserver` rolling / scoped contribution consolidation；Flow Track 之後仍可回 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

@@ -194,18 +194,18 @@ repo-wide Nick / `10gt12nc` commits：
 - Partner API / agent bonus formal resume bullet。
 - 量化改善或事故修復 claim。
 
-## 下一步建議
+## 歷史下一步狀態
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 原因：
 - `game_api` project-level contribution consolidation 已完成。
-- `iwin_gameserver contribution claim consolidation` 已完成，下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 - `game_api` 本批代表 flow 與 project-level contribution claim 已收斂。
 - `payment`、`game_job`、`app_bi`、`bi_share` 的 contribution consolidation 也已收斂。
-- 若近期目標是先把履歷 / 面試 claim 風險收斂，`iwin_gameserver` 目前比重做 `game_api` 更值得做 rolling / scoped consolidation；後續 Flow Track 仍可回 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。

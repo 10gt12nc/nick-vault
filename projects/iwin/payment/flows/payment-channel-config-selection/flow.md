@@ -351,14 +351,14 @@ code-backed runtime config consistency 面試案例
 不是正式履歷成果
 ```
 
-payment project 目前 Top 5 代表 flow 都已完成到 Step 5，project-level contribution consolidation 也已完成；這代表履歷 claim 已先保守收斂，不代表全 payment project 都整理完。下一步依目前總 queue，先做 `iwin_gameserver center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ## 13. 下一步建議
 
-只推薦一件事：
+原本的下一步已完成：
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）

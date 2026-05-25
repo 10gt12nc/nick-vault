@@ -250,10 +250,10 @@ git log --all --author='10gt12nc|Nick|nick'
 
 本輪只在 05 / 08 的 evidence note 補充 `bi_share` negative consolidation，避免之後誤把 `bi_share` 寫成 Nick 主力經驗。
 
-## 下一步建議
+## 歷史下一步狀態
 
-`bi_share` 已完成 negative consolidation；`iwin_gameserver` contribution consolidation 也已完成。下一步回 Flow Track 補 `center-http-deposit-withdraw Step 4`。
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 
 ```text
-iwin iwin_gameserver center-http-deposit-withdraw Step 4
+- 歷史下一步已完成：iwin_gameserver center-http-deposit-withdraw 已完成到 Step 5；目前沒有預設下一步，請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
 ```
