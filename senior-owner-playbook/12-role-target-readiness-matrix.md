@@ -26,6 +26,8 @@ Senior Java Backend
 
 > 2026-05-25 KB refresh：`05 / 08 / 17` 已完成 rolling refresh，`08` 已完成 104 投遞欄位檢查，`04 / 面試 case 對齊檢查` 與三條主力 case 90 秒 / 3 分鐘口說稿也已完成。沒有特定 JD 時，不需要重新客製履歷；面試口說練習先暫停，等 Nick 明確要求才開始。
 
+> 2026-05-25 方向校正：這份矩陣不是要求 Nick 一個人扛完整大系統。Senior / Platform Backend 的可面試證據是「代表性 production flows + project-level claims + 可防追問邊界」。完整公司級系統地圖是團隊知識管理工作；個人準備只需要能講清楚核心 flows 與跨系統協作，不需要把所有 repo 全量掃完。
+
 可以投：
 
 - Senior Java Backend Engineer
@@ -336,3 +338,5 @@ Senior Java Backend
 這個定位真實，而且市場有價值。
 
 接下來只要把 3-5 條 case 做實，就不是空喊 Senior，而是有東西可以打。
+
+如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment / wallet / bet-settle / MQ / batch flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。

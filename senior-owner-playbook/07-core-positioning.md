@@ -250,6 +250,19 @@ System owner 想的是：
 
 這些直接對應 Senior Java Backend / Platform Backend / System Owner 市場價值。
 
+### 不需要一個人扛完整大系統
+
+你一直追問「是不是要把整個大系統都搞懂、是不是要能 0 到 1 架完整系統」，背後其實是在確認自己有沒有資格往 Senior 走。
+
+結論要保守但清楚：
+
+- Senior / Platform Backend 不是要求一個人掌握公司所有 repo、所有前後台、所有 DevOps、所有 production incident。
+- 真正要證明的是：你能接住幾條高價值 production flow，知道上下游邊界、資料狀態、failure window、補償、監控與人工修復方式。
+- 大地圖有價值，但它是用來建立架構視角，不是用來逼自己變成一整個團隊。
+- 從 0 到 1 的能力也不是「單人做完整平台」，而是能把核心交易子系統拆成 API、state、DB、MQ、cache、observability、rollback 與維運邊界。
+
+所以方向不要再歪成「把全部 repo 掃完才有資格」。現在最值得做的是：把已完成的代表 flows 轉成能講、能畫、能被追問的案例；需要架構補強時，再補 domain-level system map。
+
 ## 9. 目前最大缺口
 
 ### System Design Articulation

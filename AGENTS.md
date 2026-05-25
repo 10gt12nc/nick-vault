@@ -43,6 +43,9 @@
 - `nick-vault` 的目標不是無限掃完所有 repo，而是對標 Senior Java Backend / Platform Backend 形成可投遞、可面試、可防追問的證據包。AI 回答「下一步 / 還剩多少 / 要不要繼續」時，必須分成 `必做收口`、`可選加強`、`暫不建議做`，不得把 backlog 包裝成永遠必做。
 - Senior 對標結束點：3-5 個 project-level claim 可保守放履歷、8-10 條 production flow 能講 3 分鐘並抗追問、每條 claim 都分清真實開發 / code-backed / 不可誇大、`05 / 08 / 04 / 17` 與最新 claim 對齊。達到後應建議停止大規模整理，轉為投履歷、練面試、針對職缺補洞。
 - Senior 面試準備度不要只用「最低能投」判斷，改用三段門檻：`中等可面`（3 條主力 case 能講 3 分鐘、有 evidence / claim boundary / 常見追問）、`穩過可抗追問`（5 條 case 覆蓋 payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability，且能講 owner decision）、`完全對標 Senior / Platform`（8-10 條 production flow 可依 JD 切換，`05 / 08 / 04 / 17` 與 claim boundary 全部對齊）。回答下一步時要說目前屬於哪一段，不得再把低標當完成。
+- 當 Nick 問「flow 都完整嗎 / map 夠完整嗎 / 真的夠扛資深嗎 / 能不能 0 到 1 架完整系統 / 我是不是方向歪了」時，AI 要先處理收斂與焦慮，不得直接加新 backlog。回答必須區分：`履歷 / 面試證據包已足夠`、`全公司大系統不可能也不需要一人完整掌握`、`domain-level 大地圖若缺是可選架構補強，不是投遞前必做`。
+- `System Owner` 在本 vault 的意思是能對「一條核心 production flow」理解結果、風險、failure window、補償、觀測與交接邊界；不是一個人負責整個公司、完整金流、完整遊戲平台、完整 DevOps 或完整架構決策。履歷、面試與 KB 都不得把「能 owner flow」擴張成「全系統 owner」。
+- 完整度分三層：`flow-level 完整`（單條 flow 可讀、可講、claim boundary 清楚）、`project-level 完整`（代表 flows + contribution consolidation 可支撐履歷 / 面試）、`domain-level 完整`（跨 project architecture / integration map）。目前 Senior 求職必做的是前兩層；第三層只在要練架構視角、面 Platform / Lead 候選、或 Nick 明確要求大地圖時補。
 - 目前收斂策略：先完成必做收口，再視需要只補 2 個非 iwin project 的代表 flow；不要平均掃所有 repo。已完成或低價值 repo（官網、前端、workspace、mock、全部 legacy / 全部 math repo 平均深掃）預設列入暫不建議，除非 Nick 明確指定。
 - `senior-owner-playbook/01~17` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~17。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
@@ -81,6 +84,7 @@
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 若 Nick 問的是「還有多少 step / 會不會一直建議 / 何時結束 / 對標資深是否夠了」，AI 要先回答收斂狀態與終點，不要直接丟下一個 flow。回答必須說明：最小必做剩多少、可選加強有哪些、哪些暫不建議做，以及做完後是否轉為投遞 / 面試練習。
+- 若 Nick 問的是「是不是要一個人搞整個大系統 / 是否方向歪了 / 是否真的要全會」時，AI 必須先校正方向：Senior / Platform Backend 的準備重點是能掌握代表性核心 flows、講清楚跨系統邊界與風險，而不是取代一整個團隊完成全平台 knowledge ownership。不得用「再掃更多 repo」回避這個問題。
 - 不可以自行創造新 Step 或新下一步名稱；下游定位、補 evidence、補 decision-notes、架構圖都只能是目前 Step 內的待確認或補充，除非 Nick 明確指定。
 - 下一步判斷必須先看 Nick 當下是不是在要求「待辦事項、KB 規則、缺口清單、優先順序、下一步規劃」。若是，AI 只能先維護 todo / KB / index，把缺口列清楚並等待 Nick 指定下一個 flow Step；不得把自己列出的缺口自動當成已授權執行 Step 4 / Step 5。
 - 若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪屬於 `KB-only` 模式。AI 完成後只能回報 KB 檢查結果、改了哪些規則、是否 commit / push；不得附上 project flow 下一步 prompt，也不得把 todo 裡的收口項目當成本輪授權。

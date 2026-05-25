@@ -155,6 +155,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 這份 todo 不是無限 backlog。對標 Senior Java Backend / Platform Backend 的收斂終點是：3-5 個可放履歷的 project-level claim、8-10 條可講 3 分鐘且能抗追問的 production flow、乾淨的 claim boundary，以及 `05 / 08 / 04 / 17` 對齊。
 
+方向校正：這個收斂終點不是「Nick 一個人把整個公司大系統全量掃完」。完整大系統本來是團隊工作；個人準備要做到的是：代表 flows 能講清楚、project claims 保守可信、跨系統邊界能畫出主要協作與風險。domain-level 大地圖是可選架構補強，不是目前投遞前必做。
+
 目前回答「還剩多少」時，優先用這個分類：
 
 必做收口：
@@ -167,13 +169,15 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 資深補強，可選：
 
 1. `ugsoft-connector-api Step 1 / Step 2 + 1-2 條代表 flow`
-2. 依目標 JD 補 1 條 payment / provider / MQ 類缺口 flow；沒有 JD 時先不新增。
+2. `iwin system map v1`：補 `projects/iwin/architecture-map.md` / `integration-map.md`，把 game_api、game_job、payment、third_games_api、iwin_gameserver、app_bi、bi_share、k3s-deploy 的協作關係與 claim boundary 收成 domain-level 大地圖。
+3. 依目標 JD 補 1 條 payment / provider / MQ 類缺口 flow；沒有 JD 時先不新增。
 
 暫不建議做：
 
 - 官網、前端、workspace、mock、低價值 legacy repo 平均整理。
 - 71 個 `*-math` repo 全量逐一深掃；目前只保留代表 flow 與 grouped claim。
 - 已完成 contribution consolidation 且沒有新 evidence 的 project 反覆重做。
+- 為了追求「全量完整」而把所有 domain-level map、所有 repo、所有 flow 都排成必做。這會把團隊級知識管理誤當成個人求職前置條件。
 
 完成必做收口，且視需要補 2 個非 iwin project 代表 flow 後，就可以停止大規模整理，改成投遞、面試練習與依職缺補洞。
 
@@ -194,6 +198,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 14. `math-core / *-math contribution claim consolidation`：已完成 refreshed / grouped 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 contribution claim consolidation refresh 已完成。後續除非 Nick 指定 Level 3 final，不再平均掃 71 repo。
 15. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
 16. `domain-level system map`：2026-05-25 確認 KB 已補規則。`projects/iwin/` 目前尚缺 domain-level `architecture-map.md` / `integration-map.md`；之後若 Nick 問 iwin 整體大地圖或代表 project 收斂後要總結，應先做 `iwin system map v1`，整理 game_api、game_job、payment、third_games_api、iwin_gameserver、app_bi、bi_share、k3s-deploy 的協作與 claim boundary。`antplay` / `ugsoft` 也要依同規則檢查，不得只口頭說應該有。
+17. `0 到 1 system design template`：若 Nick 想補完整系統架構能力，應從已完成的 payment / wallet / bet-settle / MQ / batch flows 萃取 template，而不是重掃全部 repo。此項是可選加強，用於 Platform / Lead 候選面試，不是目前投遞前必做。
 
 ### 1. 收斂後狀態
 
