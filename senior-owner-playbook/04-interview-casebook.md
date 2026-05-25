@@ -233,6 +233,7 @@ AntPlay slot game job 補充案例：
 - 面試主軸：它不是下注 / 派彩 source of truth，而是 settlement event 後的 monitor projection。要能說清 `settled_bets` 分 normal / free / jackpot / activity / player control，`settled_pool` increment replay risk、Redis reset flag delete-before-success、backup / truncate / insert partial failure、cent / hao 單位與 alert threshold。
 - 保守邊界：current core code 主要 Arnold / Eliot；只能說 code-backed analysis，不能說真實開發、完整風控 owner、exactly-once projection、完整 reconciliation 或 production restore runbook 已確認。
 - `antplay-slot-game-job/db-partition-job-report-routing` 已完成 Step 5，可作高流量 table partition / schema routing 面試 case。Nick / `10gt12nc` 有 `db_partition v2`、`fix` 與 `fix ag_report_player` direct evidence，可講參與 bet record / request log / report 分表與 report path repair；current `@UseSchema` framework 是 Eliot / Arnold 等多人後續脈絡，且 G3 data source mapping 未確認，不誇大成完整 DB sharding owner。
+- `antplay-slot-game-job/contribution-claim-consolidation` 已完成 2026-05-25 refresh。五條代表 flows 的 Step 5 結論已收斂為 project-level 說法：可講 AntPlay slot job / event processing、Kafka / Quartz、代理玩家報表 projection、big-win notification、活動累積投注 supporting evidence 與分表 / report path 維護；settle pool / darkpool 只作 analysis-first，不作正式履歷主 claim。
 - 面試主軸：固定表名加 `pt_day` / `agent_id` / currency 條件，再透過 `@UseSchema` 依 agent `dbGroupNum` 切 schema。要能說清 route key、SQL filter、ThreadLocal restore、agent metadata cache、G3 route 待確認、migration / backfill 與 report summary / backup / delete partial failure。
 - 保守邊界：Step 4 是面試稿，不是 Step 5 claim gate；不寫主導完整 DB sharding、schema route framework、migration / DDL / index owner，也不說 G3 routing 已完整確認。
 

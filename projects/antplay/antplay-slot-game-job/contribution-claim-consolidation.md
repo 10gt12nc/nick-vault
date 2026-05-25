@@ -1,49 +1,36 @@
 # antplay-slot-game-job Contribution Claim Consolidation
 
 日期: 2026-05-20
-
-2026-05-25 補充: `proxy-user-data-report-projection Step 5` 已完成。該 flow 可作 project-level Kafka report projection / Quartz summary / report key correctness 的直接 evidence；但 `ReportAgentPlayerRepositoryInternal` 的 2026 batch padding / safety 修正屬後續他人 context，Kafka replay / DLQ 消費治理與 DB unique key 仍未確認，不能升級成完整 Kafka / BI platform owner。
-
-2026-05-25 補充: `activity-accumulated-bet-voucher Step 5` 已完成。該 flow 可作 activity accumulated bet / voucher reward supporting evidence 與 reward correctness 面試素材；但 `BetVoucherService` implementation、DB unique key、transaction boundary 不在本 repo，且 current implementation 主要是 Gill / Arnold / Eliot。Nick 的 `62fa93f` 屬 merge evidence，不足以把此 flow 單獨升級成正式履歷主 claim。
-
-2026-05-25 補充: `big-win-notification Step 5` 已完成。該 flow 有 `#303` direct evidence，可支撐 Nick 參與中大獎通知初版與金額格式修正；current behavior 後續由 Gill / Arnold / Eliot 修正玩家遮罩、currency / translation、`totalWin` 判斷與 id collection。Step 5 已補查 `_id`、`BetIdPersistence` 與 `antplay-push` 下游 bridge：目前不能證明通知去重或 `fullPlayerName` 已被過濾，因此只回填 project-level supporting evidence，不單獨更新 `05 / 08`。
-
-2026-05-25 補充: `settle-pool-monitor-darkpool-sync Step 5` 已完成。該 flow 技術價值高，可作 Kafka settlement projection / Redis DB consistency / dark pool reset sync 的 analysis-first 正式面試素材；但 path-specific log / blame / Nick 命名 branch 檢查顯示 current implementation 主要是 Arnold / Eliot，未找到 Nick / `10gt12nc` direct evidence，因此不回填正式履歷主 claim，也不單獨更新 `05 / 08`。
-
-2026-05-25 補充: `db-partition-job-report-routing Step 3` 已完成。該 flow 已確認 Nick / `10gt12nc` 有 `b754dae feat: db_partition v2` 與 `6866866 fix ag_report_player` direct evidence，可支撐 project-level 的 bet record / request log / report 分表與 job 維護 supporting evidence；但 current `@UseSchema` / schema route framework 主要由 Eliot / Arnold 接續建立與調整，本 Step 不把 Nick 升級成完整 DB sharding / schema routing owner，也不單獨更新 `05 / 08`。
-
-2026-05-25 補充: `db-partition-job-report-routing Step 4` 已完成。該 flow 已整理成正式面試 case，可講高流量表固定表名 + `agentId` schema route、SQL filter、ThreadLocal context、metadata cache、migration / report summary failure window；仍不單獨更新 `05 / 08`，也不把 Step 4 面試稿當成 Step 5 claim gate。
-
-2026-05-25 補充: `db-partition-job-report-routing Step 5` 已完成。Step 5 補查 current `DataSourceConfig` / `DataSourceType` / `SchemaContextHolder#set`、report job call sites、path-specific blame 與 important commit stat。結論是 Nick / `10gt12nc` 的 direct evidence 可支撐 bet record / request log / report 分表與 report path repair；current `@UseSchema` framework 主要是 Eliot / Arnold，多人後續；G3 只有 logical enum / aspect branch，未看到完整 data source mapping。此 flow 只作 project-level supporting evidence，不單獨更新 `05 / 08`。
+Refresh 日期: 2026-05-25
 
 ## 結論
 
-`antplay-slot-game-job` 可以列為 Nick / `10gt12nc` 真實開發過的 job / event processing repo。Direct commits 觸及 Kafka consumer、Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、db partition / job config 與後續 report 修正。
+`antplay-slot-game-job` 可以列為 Nick / `10gt12nc` 真實開發過的 job / event processing repo。五條代表 flows 已完成 Step 5，本次 refresh 後的 project-level 結論是：
 
-履歷可以保守寫:
+- 可放履歷：AntPlay slot job / event processing、Kafka consumer、Quartz job、代理玩家報表 projection / summary、big-win notification、bet record / request log / report 分表與 job config 維護。
+- 可面試講：event-driven projection、derived report correctness、reward flow 防重邊界、derived notification privacy / delivery、Redis / DB consistency analysis、schema route / partition table governance。
+- 不可誇大：不說主導完整 AntPlay slot platform、完整 Kafka event platform、exactly-once / outbox / replay architecture、完整 settle pool / risk / jackpot owner、完整 reward platform、完整 DB sharding / schema routing framework、完整 BI / report platform 或完整遊戲數學 / RTP 策略。
 
-> 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / report 分表與 job config。
+履歷保守句：
 
-不要寫:
+> 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / request log / report 分表與 job config。
 
-- 主導完整 AntPlay slot platform。
-- 主導完整 Kafka event platform、exactly-once、outbox 或 replay architecture。
-- 主導完整 settle pool / risk / jackpot owner。
-- 主導完整 BI / report platform 或完整遊戲數學 / RTP 策略。
-- 量化改善或完整 incident owner，除非後續補 production issue / metric。
+若篇幅較長，可拆成兩句：
 
-## Evidence Summary
+> 參與 AntPlay slot job / event processing 開發維護，處理 Kafka `settled_bets` consumer、Quartz report summary、代理玩家報表 projection 與 historical summary / backup / delete。
+>
+> 參與 big-win notification、活動累積投注 reward flow 以及 bet record / request log / report 分表維護；面試可展開 event correctness、idempotency、schema route、privacy 與 failure recovery 邊界。
 
-| 類別 | 判斷 | Evidence |
-| --- | --- | --- |
-| 直接開發 | 真實開發過 | `git log --all --author='10gt12nc|Nick|nick'` 有 direct commits；`shortlog --all` 顯示 `10gt12nc` 約 51 筆、`nick` 約 1 筆 |
-| Kafka job foundation | 真實開發過 + code-backed | `kafka JOB` branch commits 涉及 `KafkaConsumerService`、`KafkaProducerService`、application config、rollback / platform-mock notification 嘗試 |
-| 代理玩家資料 | 真實開發過 + code-backed | `#386` 系列新增 `ProxyUserDataConsumerService`、`ReportAgentPlayerService`、repository / entity、`ReportAgentPlayerJob` |
-| 報表 currency / key 修正 | 真實開發過 + code-backed | `#590` ReportAgentPlayer 拆 currency、每天一次；`#702` key 重複；`fix ag_report_player` |
-| big-win notification | 真實開發過 + code-backed / Step 5 已完成 | `#303` 新增 `BigWinConsumerService`、game / message cache、push user topic，後續小數格式修正；current behavior 有多人後續修改；下游未見 notification dedupe / privacy filtering |
-| activity accumulate bet | code-backed / Step 5 已收口 supporting evidence | `62fa93f` merge by `nick`，source 有 `ActivityAccumateBetConsumerService`；可面試講 reward correctness，但不單獨放正式履歷 |
-| settle pool / risk | 專案存在 / code-backed / Step 5 已完成，Nick claim 保守 | source 有 settle pool consumer / processor；Step 5 已確認 current implementation 主要 Arnold / Eliot，未找到 Nick direct evidence，不作 Nick 完整 owner claim |
-| final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
+## Evidence 等級總表
+
+| 主題 | project-level 判斷 | 履歷用途 | 不能說 |
+| --- | --- | --- | --- |
+| Kafka job foundation | 真實開發過 + code-backed | 可作 job / event processing 背景 evidence | 不說完整 Kafka platform / outbox / replay owner |
+| Proxy user data report projection | 真實開發過 + code-backed | 可作主力履歷與面試 case | 不說完整 BI / report platform 或 exactly-once |
+| Big-win notification | 真實開發過 + code-backed | 可作 project-level supporting evidence | 不說完整 push platform / guaranteed delivery / privacy 已完整治理 |
+| Activity accumulated bet / voucher | code-backed + Nick merge evidence | 可作 supporting evidence / 面試素材 | 不說 Nick 主開發或完整 reward platform owner |
+| Settle pool monitor / darkpool sync | code-backed / analysis-first | 可面試講分析，不作履歷主 claim | 不說 Nick 真實開發或主導 risk / jackpot / darkpool |
+| DB partition / report routing | 真實開發過 + code-backed | 可作分表 / report path supporting evidence | 不說完整 DB sharding / `@UseSchema` framework owner |
 
 ## Source Scan Record
 
@@ -55,187 +42,219 @@
 
 遠端狀態:
 
-- 已嘗試執行 `git fetch --all --prune`，但 remote 為內網 Git，當前連線失敗；remote refs 未能更新。
 - local branch: `master`
 - local HEAD: `d847357f0a8262c0c91cf9b20989c6296c3d9892`
-- remote HEAD: `origin/imgtest`
-- 本機既有 `origin/master`: `d847357f0a8262c0c91cf9b20989c6296c3d9892`
+- local `origin/master`: `d847357f0a8262c0c91cf9b20989c6296c3d9892`
 - local vs 本機既有 `origin/master`: `0 / 0`
-- `origin/develop` 不存在。
-- source repo 工作樹乾淨。
-- 重要限制：因 fetch 失敗，本次只能宣稱「本機既有 refs / code-backed」，不能宣稱已看最新 remote。
+- source working tree: clean
+- 先前 `git fetch --all --prune` 因內網 remote 連線失敗；依 KB 不反覆重試。
+- 最新性判斷：未確認最新遠端；本 refresh 依本地 refs / 本地 working tree 保守分析。
 
-本次掃描範圍:
+本次 refresh 重讀:
 
-- vault KB: `AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`、`03-flow-learning-package-template.md`
-- vault index: source repo inventory、flow inventory、05 / 08 / todo、既有 antplay admin-api / game-api claim 邊界
-- source git: `git log --all`、`shortlog --all`、remote branch list、key commit stats
-- key branches: `origin/master`、`origin/kafka_Nick`、`origin/kafka_Nick_dockerTest`、`origin/ProxyUserData`、`origin/feature/accumate_bet`、`origin/beta-dev-bigWin-Nick`、`origin/settle-pool`、`origin/risk-mng`、`origin/jackpot-balance`
-- key commits: `kafka JOB` 系列、`#303` big-win notification、`#386` 代理用戶數據、`#590` ReportAgentPlayer currency / schedule、`#702` key 重複、`db_partition v2`、`fix ag_report_player`
-- source code: `BigWinConsumerService`、`ProxyUserDataConsumerService`、`ReportAgentPlayerService`、`ReportAgentPlayerJob`、`ActivityAccumateBetConsumerService`、`SettlePoolMonitorConsumerService`、`GroupSettleTypeRecord`、`SyncDbFromRedis`
+- KB: `AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、`senior-owner-playbook/09-ai-prompt-manual.md`
+- Project docs: `README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`
+- Flow docs: 五條代表 flow 的 `flow.md`、`career-interview.md`、`materials/claim-boundary.md`
+- Source evidence: Nick / `10gt12nc` author log、`shortlog --all`、source repo branch / HEAD 狀態
 
-未完成:
+重要限制:
 
-- 未做 `antplay-slot-game-job` 全量 Step 1 / Step 2。
-- 未逐條 flow 建立 `flow.md` / `career-interview.md`。
-- 未逐檔逐行 Level 3。
-- 未把 settle pool / risk / jackpot 做 Nick claim；後續 commit 需要另行拆 flow 並判斷 owner boundary。
+- 未做 Level 3 全 repo 逐檔逐行。
+- 未確認最新 remote refs。
+- 未掃 live DB schema、Kafka runtime topic / group、Quartz DB schedule、production runbook。
+- 未把本檔直接回寫 `05 / 08`；若要更新履歷 / 自傳，下一步應做 rolling resume package 或指定 `05 / 08` refresh。
 
-## Important Commit Evidence
+## 直接 Commit Evidence
 
-### Kafka job / event processing foundation
+Nick / `10gt12nc` 在本地 refs 中約 51 commits，另有 `nick` 1 commit。和本 consolidation 直接相關的 commit 包含：
 
-重要 commits:
+| Commit | 日期 | 作者 | 主題 | Claim 用法 |
+| --- | --- | --- | --- | --- |
+| `6846246` ~ `be86b4d` | 2024-11 ~ 2024-12 | `10gt12nc` | Kafka job foundation / config / platform-mock / rollback 嘗試 | job / event processing 背景 evidence |
+| `a2bad6f` / `c2cd523` 等 | 2025-02 | `10gt12nc` | `#303` 中大獎通知與金額格式 | big-win notification direct evidence |
+| `7945101` / `7aa06ed` | 2025-04 | `10gt12nc` | `#386` 代理用戶數據 Kafka 匯入 DB / report flow | report projection direct evidence |
+| `4411d88` / `a9bb983` / `dbb5a66` / `806dc23` | 2025-05 ~ 2025-06 | `10gt12nc` | `#590` currency / log / schedule | report currency / schedule correctness evidence |
+| `ef4f8f5` | 2025-08 | `10gt12nc` | `#702` key 重複 | report key correctness evidence |
+| `b754dae` | 2025-12 | `10gt12nc` | `db_partition v2` | DB partition / request log / bet record supporting evidence |
+| `38b74bd` | 2025-12 | `10gt12nc` | report path fix context | report path repair supporting evidence |
+| `6866866` | 2025-12 | `10gt12nc` | `fix ag_report_player` | report fixed table + `agent_id` direct evidence |
+| `62fa93f` | 2025-11 | `nick` | merge `feature/accumate_bet` | activity voucher merge evidence；不是細節主開發 evidence |
 
-- `kafka JOB` 系列：Kafka consumer / producer、rollback、platform-mock notification、OutOfMemoryError 處理與設定檔。
-- `be86b4d`: `kafka JOB - 設定檔`。
-- `a695231`: `kafka JOB - 通知 platform-mock`。
-- `5998c4b`: `kafka JOB - 先做rollback`。
+## Flow-by-flow Refresh
 
-可支撐:
+### 1. Proxy user data report projection
 
-- 參與 job repo 的 Kafka consumer / producer 與 event processing 嘗試。
-- 面試可講 event consumer 與下游通知 / rollback 嘗試、payload wrapper、記憶體風險與 job 設定。
+Step 5 狀態: 已完成。
+
+Project-level claim:
+
+- 真實開發過 + code-backed。
+- 可回填 `antplay-slot-game-job` 主力 claim，作 Kafka report projection / Quartz summary / report key correctness 的直接 evidence。
+
+可說:
+
+- `settled_bets` event 進來後，依 agent / player / day / currency 聚合 bet count、bet amount、win、profit。
+- `ReportAgentPlayerJob` 對歷史資料做 summary、backup、delete。
+- report projection 是 derived report，不是交易 source of truth；重跑、partial completion、currency key 與 batch update 都要保守處理。
+- source code 有基本 Kafka retry / dead-letter-topic evidence，但不能升級成完整 replay / exactly-once。
 
 不可誇大:
 
 - 不說完整 Kafka platform owner。
-- 不說已建立 exactly-once / outbox / full replay architecture。
+- 不說完整 BI / report platform owner。
+- 不說完整 exactly-once / replay / DLQ 消費治理 owner。
+- 不把後續 Arnold / Eliot current fixes 全部算成 Nick direct contribution。
 
-### 代理玩家資料聚合 / report job
+### 2. Activity accumulated bet / voucher
 
-重要 commits:
+Step 5 狀態: 已完成。
 
-- `12df475`: `feat(#386): 代理用戶數據 kafka匯入db`。
-- `7aa06ed`: `feat(#386): Squash 代理用戶數據`。
-- `512f1dd`: `feat(#386): 代理用戶數據 job匯總`。
-- `4411d88`: `feat(#590): ReportAgentPlayer 拆 currency`。
-- `806dc23`: `fix(#590): 每天一次`。
-- `ef4f8f5`: `fix(#702): key重複`。
-- `6866866`: `fix ag_report_player`。
+Project-level claim:
 
-已確認 code path:
+- code-backed + Nick merge evidence。
+- 可作 reward correctness / Redis + DB 防重分析素材。
+- 不建議單獨新增正式履歷 bullet。
 
-- `ProxyUserDataConsumerService`: consume `settled_bets`，以 agent / player / day / currency 聚合 bet count、bet amount、win、profit。
-- `ReportAgentPlayerService`: batch insert / update、summary、backup、delete report。
-- `ReportAgentPlayerJob`: per-agent / per-player 汇總三天前資料，依 currency 更新 summary，backup 後刪除舊資料。
+可說:
 
-可支撐:
-
-- 參與代理玩家報表資料從 Kafka 匯入 DB、每日 / 歷史 summary、currency 維度拆分與 key collision 修正。
-- 面試可講 event-driven projection 的 key design、currency 維度、報表與交易真相的差異、batch job 重跑與資料清理風險。
+- `settled_bets` event 依活動設定、agent、player、currency、date / period 累積投注。
+- Redis 累積投注與發放紀錄搭配 DB voucher count guard，形成 reward flow 防重邊界。
+- 面試可講 daily / period overlap、Redis / DB race、voucher duplicate award、idempotency key 與 reconciliation。
 
 不可誇大:
 
-- 不說完整 BI / report platform owner。
-- 不說完整對帳或完整資料平台 owner。
+- 不說 Nick 主導此 flow 細節開發。
+- 不說完整 reward platform owner。
+- 不說已確認完整 idempotency；本 repo 沒有 `BetVoucherService` 實作、table schema、DB unique key 或 transaction boundary。
+- 不把每次新 UUID `refId` 說成 deterministic 防重 key。
 
-### Big-win notification
+### 3. Big-win notification
 
-重要 commits:
+Step 5 狀態: 已完成。
 
-- `1135490`: `feat(#303): 中大奖通知`。
-- `c2cd523`: `feat(#303): 中大奖通知 小數X.00`。
+Project-level claim:
 
-已確認 code path:
+- 真實開發過 + code-backed。
+- 可作 big-win notification / Kafka derived event supporting evidence。
 
-- `BigWinConsumerService`: consume `settled_bets`，判斷 total win 是否達 bet + voucher bet 的 10 倍，依 agent / currency 找遊戲翻譯名稱，遮罩玩家名稱，產生 push user message。
-- `GameDataCache` / `TransGames` / `TransMessageTemplates`: 補足通知資料來源。
+可說:
 
-可支撐:
-
-- 參與 big-win notification 的 Kafka consumer 與 push message 組裝。
-- 面試可講事件通知不是交易 source of truth，需保守處理缺翻譯、玩家遮罩、金額格式與下游 push topic。
-- 2026-05-25 Step 5 已補 current code-backed flow、正式面試 case 與 claim gate: `(bet + voucherBet) * 10` 門檻、currency-based translation、`push_user` message、producer async failure、privacy boundary、重送去重與 outbox 取捨；`BetIdPersistence` 不是通知去重，下游 `antplay-push` 未見 `_id` dedupe 或 `fullPlayerName` 過濾。
+- Nick / `10gt12nc` 有 `#303` direct evidence，參與中大獎通知初版與金額格式修正。
+- current flow 會判斷 `(bet + voucherBet) * 10` 門檻，組 push user message，包含玩家遮罩名稱、game translation、prize、currency。
+- 面試可講 derived notification 不是交易真相、缺翻譯 fallback、producer async failure、privacy、重送去重與 outbox 改善。
 
 不可誇大:
 
 - 不說完整 push platform owner。
-- 不說完整獎金 / jackpot owner。
-- 不說通知 exactly-once / guaranteed delivery。
+- 不說 notification guaranteed delivery / exactly-once。
+- 不說下游已做 `_id` dedupe 或 `fullPlayerName` filtering；Step 5 未見 evidence。
+- 不說完整 jackpot / bonus owner。
 
-### Activity accumulated bet / voucher
+### 4. Settle pool monitor / darkpool sync
 
-已確認 code path:
+Step 5 狀態: 已完成。
 
-- `ActivityAccumateBetConsumerService`: consume `settled_bets`，依活動設定、agent、player、currency、date / period 聚合投注，使用 Redis 累計投注與發放紀錄，再透過 `BetVoucherUtils` 發送 voucher。
+Project-level claim:
 
-可支撐:
+- code-backed / analysis-first。
+- 技術含量高，可作面試分析素材，但不回填正式履歷主 claim。
 
-- 作為下一步 Flow Track 候選，能面試活動累積投注、Redis key design、每日 / 期間限制、voucher 發放冪等邊界。
+可說:
 
-Step 5 收口:
+- 能分析 `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的 projection consistency。
+- 可講 reset sync partial failure、Redis / DB consistency、busy guard、unit boundary、reconciliation 與 monitoring 改善。
 
-- 已追 consumer、Redis key、voucher wrapper、path-specific history、merge evidence 與 current blame。
-- 本 repo 沒有 `BetVoucherService` 下游 implementation / DB unique key evidence；每次發券使用新的 UUID `refId`，不能證明 deterministic idempotency。
-- current implementation 主要是 Gill，後續 Arnold / Eliot context；Nick 是 merge evidence。
-- 可作 project-level supporting evidence 與面試素材；暫不單獨寫入正式履歷主 bullet。
+不可誇大:
 
-### DB partition / report path repair
+- 不說 Nick 真實開發這條 flow。
+- 不說主導 settle pool / dark pool / risk / jackpot / player control platform。
+- 不寫進 `05 / 08` 作正式履歷 bullet，除非之後補到 Nick direct evidence 或本人確認 + ticket / MR。
 
-重要 commits:
+### 5. DB partition / report routing
 
-- `b754dae`: `feat: db_partition v2`，觸及 bet record repository、request log、jackpot balance repository、Kafka consumer 與 request log service。
-- `6866866`: `fix ag_report_player`，修正 report repository 查詢 / 聚合 path。
+Step 5 狀態: 已完成。
 
-可支撐:
+Project-level claim:
 
-- 參與 job / report path 的分表與查詢維護。
-- 面試可講分表會影響 repository、job、request log 與報表查詢，不只是 schema 名稱變更。
+- 真實開發過 + code-backed。
+- 可作 bet record / request log / report 分表與 report path repair supporting evidence。
+
+可說:
+
+- `db_partition v2` 觸及 bet record repository、request log、Kafka consumer 與 request log service。
+- `fix ag_report_player` 將 report path 從 per-agent table name 修向固定 `ag_report_player` / `ag_report_player_bak`，並補 `agent_id` 條件。
+- 面試可講 high-traffic table governance、`agentId` route key、SQL filter、ThreadLocal restore、metadata cache、migration / backfill 風險。
 
 不可誇大:
 
 - 不說主導完整 DB sharding architecture。
+- 不說主導完整 `@UseSchema` framework；current framework 主要是 Eliot / Arnold 後續建立與調整。
+- 不說 G3 routing 已完整落地；current evidence 只有 logical enum / aspect branch，未看到完整 data source mapping。
+- 不說完整 migration / backfill / DDL / index owner。
 
-### Settle pool / risk / jackpot boundary
+### 6. Kafka job foundation
 
-已確認 code path:
+狀態: 背景 evidence，不作獨立代表 flow。
 
-- `SettlePoolMonitorConsumerService`: consume `settled_bets`，分 normal / activity / player-control 類型處理 settle pool。
-- `GroupSettleTypeRecord`: 依 bet type、free spin、jackpot game、player control config 分群。
-- `SyncDbFromRedis`: reset flag 出現時，從 Redis sync normal / activity / player control dark pool data 到 DB。
+可說:
 
-保守判斷:
+- 早期 Kafka job / config / producer / platform-mock notification / rollback 嘗試，能支撐「參與 job repo event processing foundation」。
 
-- 這是很高價值的 code-backed 面試候選，但近期 log 顯示 Arnold / Eliot 在 2026-01 到 2026-02 有大量 settle pool / risk / jackpot 後續 commits。
-- 本輪不把 settle pool / risk / jackpot 寫成 Nick 真實開發 owner。若 Nick 要用，需另做 Step 1 / Step 2 / flow 深挖，並逐 commit 判斷 Nick 的實際參與邊界。
+不可誇大:
+
+- 不說這已形成完整 production-grade Kafka platform。
+- 不說有完整 outbox、exactly-once、replay 或 DLQ governance。
 
 ## Resume Claim
 
 可放履歷:
 
-- 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / report 分表與 job config。
+- 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / request log / report 分表與 job config。
 - 參與代理玩家報表 projection 維護，處理 `settled_bets` event 匯入、agent / player / day / currency 聚合、daily summary、backup / delete 與 key collision / currency 維度修正。
-- 參與 big-win notification，處理 settled bet event 判斷、玩家名稱遮罩、遊戲名稱翻譯、金額格式與 push user topic message。
+- 參與 big-win notification 與 report path / partition 維護，處理 derived notification、玩家名稱遮罩、遊戲名稱翻譯、金額格式、push user topic message 與 `ag_report_player` 查詢修正。
 
 可面試講:
 
-- Kafka `settled_bets` event 如何分流成 report projection、activity accumulate bet、big-win notification。
-- 報表 projection 為什麼要設計 agent / player / day / currency key，以及 key collision / missing currency 的風險。
-- Quartz job 如何做 historical summary、backup / delete，以及為什麼 schedule 要避免一天多次重複副作用。
-- Big-win notification 為什麼不能當交易真相，只能當 derived event / notification。
-- Activity accumulate bet 的 Redis key、每日 / 期間累積、voucher 發放與冪等風險。
+- Kafka `settled_bets` event 如何分流成 report projection、activity accumulated bet、big-win notification、settle pool monitor。
+- 報表 projection 的 key design：agent / player / day / currency，與 key collision / missing currency 的風險。
+- Quartz summary / backup / delete 的 partial failure、重跑、idempotency 與 repair runbook。
+- Reward flow 的 Redis accumulate、DB awarded count、duplicate voucher 與 deterministic idempotency key 取捨。
+- Big-win notification 的 derived event、privacy、producer failure、duplicate notification 與 outbox / deterministic key 改善。
+- 分表與 schema route的 route key、SQL filter、metadata cache、ThreadLocal restore、G3 / DDL / migration 邊界。
+- Settle pool monitor 可作 code-backed analysis-first 題材，講 Redis / DB consistency 與 reset sync，不包裝成 Nick direct owner。
 
 不可誇大:
 
 - 不說主導完整 AntPlay slot platform。
-- 不說完整 Kafka event platform、exactly-once、outbox、full replay architecture。
-- 不說完整 settle pool / risk / jackpot owner。
+- 不說完整 Kafka event platform、exactly-once、outbox 或 full replay architecture。
+- 不說完整 settle pool / risk / jackpot / player control owner。
+- 不說完整 reward platform / voucher platform owner。
+- 不說完整 DB sharding / schema routing framework owner。
 - 不說完整 BI / report platform owner。
 - 不說完整遊戲數學 / RTP 策略 owner。
+- 不寫量化改善、正式 incident owner、全權 owner，除非後續補 production issue / ticket / metric。
 
-## 05 / 08 更新口徑
+## 05 / 08 回填口徑
 
-建議補入履歷 / 自傳的保守句:
+本 refresh 可以支撐後續 `rolling resume package` 或 `05 / 08` refresh，但本輪不直接改 `05 / 08`。
 
-> 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表聚合、活動累積投注、big-win notification、bet record / report 分表與 job config。
+建議口徑：
 
-若篇幅有限，可併入現職的「遊戲 API runtime / betting settlement / transfer wallet / event processing / scheduled job」一段，不需要單獨寫成完整平台 owner。
+> 參與 AntPlay slot job / event processing 開發維護，處理 Kafka consumer / Quartz job、代理玩家報表 projection / summary、big-win notification、活動累積投注與 bet record / request log / report 分表維護；可從 event correctness、idempotency、schema route、derived notification 與 Redis / DB consistency 角度說明 production flow 的風險與改善方向。
 
-## Suggested Next
+更短版：
 
-`antplay-slot-game-job` 的 Career Track 已能保守補履歷；Flow Track Step 1 / Step 2 已完成，`proxy-user-data-report-projection Step 5`、`activity-accumulated-bet-voucher Step 5`、`big-win-notification Step 5`、`settle-pool-monitor-darkpool-sync Step 5` 與 `db-partition-job-report-routing Step 5` 已完成。下一步若延續本 repo，應做 `contribution claim consolidation refresh`，把五條代表 flows 的 Step 5 結論重新收斂一次；目前不需要因單條 flow 直接改寫正式履歷。
+> 參與 AntPlay slot job / event processing 維護，涵蓋 Kafka / Quartz、代理玩家報表 projection、big-win notification、活動累積投注與分表 / report path 修正。
+
+## Refresh 後狀態
+
+- Career Track: refreshed / 2026-05-25。
+- Flow Track: Step 1 / Step 2 已完成；五條代表 flows 均已 Step 5。
+- `05 / 08`: 可後續回填，但本輪未直接修改。
+- domain / system map: 本輪不建立。若 Nick 之後要求 AntPlay 大地圖，再檢查 / 建立 domain-level architecture / integration map。
+
+下一步建議:
 
 ```text
-antplay antplay-slot-game-job contribution claim consolidation refresh
+rolling resume package
 ```

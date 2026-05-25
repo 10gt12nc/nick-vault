@@ -48,7 +48,7 @@ Step 5 補充日期: 2026-05-25
 
 ## Project-level 回填
 
-可回填 `antplay-slot-game-job contribution claim consolidation refresh`:
+已回填 `antplay-slot-game-job contribution claim consolidation refresh`:
 
 - `db_partition v2` / `fix ag_report_player` 作「分表 / report path 維護」直接 evidence。
 - `@UseSchema` / G2 routing / ThreadLocal restore 作 code-backed 面試素材。
