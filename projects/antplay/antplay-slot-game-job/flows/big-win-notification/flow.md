@@ -261,4 +261,4 @@ Step 5 補查後結論:
 - `_id` 每次 UUID，`BetIdPersistence` 是 id 進度紀錄，`antplay-push` 下游未見去重；不能宣稱通知 exactly-once、guaranteed delivery 或完整 push platform owner。
 - 下游 websocket bridge 會把 JSON 原樣送到 channel，未見 `fullPlayerName` 過濾；因此面試要主動指出 privacy 最小化風險。
 
-下一步若延續 `antplay-slot-game-job` Flow Track，應回 Step 2 排序做 Rank 4 `settle-pool-monitor-darkpool-sync Step 3`。這是 code-backed analysis-first flow，不應直接包裝成 Nick 主導的 settle pool / risk owner。
+2026-05-25 後續進度: Rank 4 `settle-pool-monitor-darkpool-sync Step 3` 已完成。下一步若延續 `antplay-slot-game-job` Flow Track，應做同 flow Step 4。這是 code-backed analysis-first flow，不應直接包裝成 Nick 主導的 settle pool / risk owner。
