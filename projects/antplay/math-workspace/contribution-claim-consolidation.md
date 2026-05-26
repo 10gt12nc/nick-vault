@@ -30,14 +30,14 @@
 
 - 已執行 `git fetch --all --prune`，成功。
 - local branch: `main`
-- local HEAD: `ad7f3294862c6770b2e2fc0e5b3a1df895942929`
-- 本機既有 upstream HEAD: `ad7f3294862c6770b2e2fc0e5b3a1df895942929`
+- local HEAD: `324d9904862c7cc7eec713ccbf834bb7aeb81a9a`
+- 本機既有 upstream HEAD: `324d9904862c7cc7eec713ccbf834bb7aeb81a9a`
 - local vs upstream: `0 / 0`
-- source repo 工作樹目前有既有 docs / index 未提交修改；本檔只把 `math-workspace` 當 supporting evidence，不採未提交內容擴張 production claim。
+- source repo 工作樹乾淨。
 
 2026-05-26 code / KB recheck:
 
-- 重新確認 `main` 與 upstream 同步，但工作樹有既有文件修改。
+- 重新確認 `main` 與 upstream 同步，工作樹乾淨；本檔只把 `math-workspace` 當 supporting evidence，不擴張 production claim。
 - 結論不變：`math-workspace` 支撐跨 repo code reading / validation / KB 方法，不作 standalone production service 或 math module 開發成果。
 
 本次掃描範圍:

@@ -65,7 +65,7 @@
 
 > 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
 
-> 2026-05-26 code / KB recheck：已重新比對核心 source repo branch / log 狀態與 project contribution consolidation。A / B / C 三版定位仍成立；本次只修正 source 狀態，不擴張履歷主張。限制要持續保留：部分 AntPlay repo 因遠端不可達只能依本地 refs；`ugsoft-admin-api`、`ugsoft-connector-api` remote refs 已前進但本檔不因此自動加入新 claim；`math-workspace` 有既有未提交 docs 修改，只作 supporting evidence；`k3s-deploy` 沒有 Nick direct commit，仍只能作 interview-only 架構素材。
+> 2026-05-26 code / KB recheck：已重新比對核心 source repo branch / log 狀態與 project contribution consolidation。A / B / C 三版定位仍成立；本次只修正 source 狀態，不擴張履歷主張。限制要持續保留：部分 AntPlay repo 因遠端不可達只能依本地 refs；`ugsoft-admin-api`、`ugsoft-connector-api` remote refs 已前進但本檔不因此自動加入新 claim；`math-workspace` 與 `iwin-workspace` 只作 workspace / KB / validation supporting evidence；`k3s-deploy` 沒有 Nick direct commit，仍只能作 interview-only 架構素材。
 
 ### 三版補充比較
 

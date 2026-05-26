@@ -28,11 +28,16 @@
 - 路徑：`/Users/nick/Git/iwin/iwin-workspace`
 - 已執行：`git fetch --all --prune`
 - local branch：`arnold`
-- local HEAD：`9ae9eafc8a0455f070bd7e475338384743a52360`
-- remote HEAD：`origin/arnold` = `9ae9eafc8a0455f070bd7e475338384743a52360`
-- ahead / behind：`0 / 0`
+- local HEAD：`4ef92ae23f61eec24d7957524284ed1e12e43d24`
+- remote HEAD：`origin/arnold` = `2dcf62abd62e67d2e51d4b8225ab6442dd704973`
+- ahead / behind：`0 / 1`
 - working tree：乾淨
 - remote refs：`origin/arnold`、`origin/main`、`origin/Nick-app-bi-knowledge-base`、`origin/Nick-payment-knowledge-base`、`origin/feature/ai-cross-project-kb-scan`、`origin/feature/ai-payment-dev`、`origin/claude/ecstatic-blackburn-65b33e`、`origin/claude/flamboyant-nash-becfd2`
+
+2026-05-26 code / KB recheck:
+
+- 重新 fetch 後，local `arnold` 落後 `origin/arnold` 1 commit；工作樹乾淨。本檔未 pull / checkout / merge，只記錄 source 狀態限制。
+- 結論不變：`iwin-workspace` 只作跨 repo KB / docs / environment index 與 system reconstruction supporting evidence，不作 standalone production service 或子 repo 業務開發 claim。
 
 ## 掃描範圍
 
