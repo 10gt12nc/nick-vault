@@ -56,6 +56,24 @@ Senior Java Backend Engineer / Platform Backend Engineer
 
 Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider 串接、金流 / 錢包、遊戲下注結算、事件流、排程報表、後台控制面與 slot math module 維護；擅長接手文件不足的既有系統，透過 code reading、log 追蹤與資料流梳理重建 production flow，關注交易一致性、冪等、補償、對帳與可觀測性。
 
+### 公開 / 客製履歷版本強度覆核
+
+這段用來避免把三個方向誤判成同等強度。正式對外公開時只放一份主版本；其他版本只在獵頭或公司職缺明確對應時調整排序。
+
+| 版本 | 定位 | 強度判斷 | Evidence | 使用方式 | 不可誇大 |
+| --- | --- | --- | --- | --- | --- |
+| A 版：通用高交易 Java Backend / Platform Backend | 第三方 provider、金流 / 錢包、下注結算、MQ / batch、legacy production flow takeover | 最強，公開主版本 | payment 本人確認 + direct commits；iwin_gameserver / game_job 部分真實開發過；UGSoft connector / admin、AntPlay game-api / game-job 有大量 direct commits；多條代表 flow 已 Step 5 | 104 / LinkedIn / 獵頭公開主版本；沒有 JD 時預設使用 | 不寫完整金流 owner、完整 wallet / ledger / reconciliation、完整 Kafka / MQ platform |
+| B 版：遊戲 / Slot / Provider Backend | 遊戲 provider、slot game API / runtime、bet / settle / rollback、slot job、`*-math` | 次強，是 A 的 domain 差異化，不是獨立主身份 | AntPlay game-api / game-job / math-core / `*-math` 有 direct commits 與 Step 5；iwin_gameserver provider 投派整合有 direct evidence | 投遊戲、slot、provider gateway、game platform 類 JD 時，把 B 相關段落往前 | 不寫完整 slot platform、完整遊戲數學模型、完整 RTP 策略、全部 math module owner |
+| C 版：Platform / Legacy Takeover / System Reconstruction | 缺交接文件接手、cross-repo reconstruction、MQ / batch、observability、AI-assisted workflow | 輔助版，是 A 的工作方法與平台視角，不宜單獨當最強主線 | legacy takeover 為本人確認 + workspace / KB supporting evidence；MQ / batch 有 direct evidence；K3s 為 interview-only；AI-assisted workflow 為工程方法 evidence | 遇到 platform、legacy system、內部平台、系統整合、維運改善 JD 時，把 C 相關段落往前 | 不寫完整 DevOps / SRE owner、完整 K3s migration、完整 platform architect 或 AI 自動完成 production 開發 |
+
+結論：
+
+```text
+A 是本體；B 是領域差異化；C 是工作方法與平台視角。
+```
+
+公開履歷不要三份一起公開。公開版應固定成「高交易 Java Backend / Platform Backend」，再在內容中帶出遊戲 / slot math domain 與 legacy takeover 方法論。遇到明確 JD 時，只調整排序與字詞，不重寫成完全不同的人設。
+
 ### 履歷精簡工作經驗
 
 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）

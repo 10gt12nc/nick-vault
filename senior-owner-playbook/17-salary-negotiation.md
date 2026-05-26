@@ -35,6 +35,14 @@ Senior Java Backend / Platform Backend
 
 投遞時若沒有特定 JD，直接使用 `08` 與本檔的通用版；不要為了客製而要求 Nick 先貼 JD。若 JD 寫「payment / wallet / provider / reconciliation / settlement / Kafka / high traffic / legacy system」，再把這些關鍵字往前放；若 JD 只寫一般 CRUD、後台管理或內部系統，應降調金流 / slot math 比重，避免對方覺得履歷太窄或過度博弈領域。
 
+履歷版本策略：
+
+- 公開主版本只放 A 版：通用高交易 Senior Java Backend / Platform Backend。
+- B 版：遊戲 / Slot / Provider Backend，只在 JD 明確吃遊戲、slot、provider gateway、math module 時客製。
+- C 版：Platform / Legacy Takeover，只在 JD 明確吃 legacy system、platform backend、cross-repo reconstruction、MQ / batch、observability 時客製。
+
+三版不是同等強度。A 是主身份，B 是 domain 差異化，C 是工作方法與平台視角。談薪時也以 A 的高交易 / provider / wallet / MQ / legacy takeover 作主軸；B / C 只在對方職務吃得到時用來拉高匹配度。
+
 ## 市場錨點
 
 2026-05-20 快照，已依補讀舊 104 PDF 後的 legacy takeover / 兩套平台恢復可維護 claim 重新校正：

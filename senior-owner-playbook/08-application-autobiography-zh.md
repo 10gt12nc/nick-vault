@@ -63,6 +63,8 @@
 
 > 104 欄位檢查結果：工作經驗可貼目前 7 + 4 bullets；專長可貼目前 6 bullets；自傳建議使用「一般投遞版：700-1200 字」；自我推薦可貼本節 `自我推薦`。目前沒有加入主導、完整 owner、量化改善或未證實事故修復；若投純後台 / 純 DevOps / 純管理職，再另做 JD-specific 降調。
 
+> 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
+
 ### 104 欄位版
 
 #### 工作經驗
