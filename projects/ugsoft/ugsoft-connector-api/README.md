@@ -7,13 +7,28 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling |
-| Step 1 / Step 2 | 尚未正式建立；Flow Track 缺口 |
+| Step 1 | 已完成：[`step1-candidate-flows.md`](step1-candidate-flows.md) |
+| Step 2 | 尚未建立；下一步應比較候選 flow，不得直接跳 Step 3 |
 | Flow packages | 尚未建立；不得宣稱 flow 完整 |
 | 正式履歷 | 可保守補入 provider connector / transfer wallet / MQ 素材 |
 
 ## 先讀
 
 - [contribution-claim-consolidation.md](contribution-claim-consolidation.md)
+- [step1-candidate-flows.md](step1-candidate-flows.md)
+
+## Flow Track
+
+Step 1 已篩出 6 條候選：
+
+1. `transfer-wallet-in-out-query`
+2. `provider-callback-bet-settle-to-mq`
+3. `request-bet-record-mq-sync`
+4. `provider-client-login-launch-game`
+5. `provider-circuit-breaker-fast-fail`
+6. `schema-route-partition-transfer-record`
+
+下一步必須做 Step 2，比較 evidence 強度、技術價值、風險邊界與哪 1-2 條最值得進 Step 3。
 
 ## 履歷邊界
 

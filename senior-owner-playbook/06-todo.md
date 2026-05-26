@@ -172,7 +172,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 資深補強，可選：
 
-1. `ugsoft-connector-api Step 1 / Step 2 + 1-2 條代表 flow`
+1. `ugsoft-connector-api Step 2 + 1-2 條代表 flow`
 2. `iwin system map v1`：補 `projects/iwin/architecture-map.md` / `integration-map.md`，把 game_api、game_job、payment、third_games_api、iwin_gameserver、app_bi、bi_share、k3s-deploy 的協作關係與 claim boundary 收成 domain-level 大地圖。
 3. 依目標 JD 補 1 條 payment / provider / MQ 類缺口 flow；沒有 JD 時先不新增。
 
@@ -187,8 +187,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
-0. `Completeness Audit 規則補強`：2026-05-26 發現 `ugsoft` 已有 contribution consolidation，但沒有任何 Step 1 / Step 2 / `flows/`，先前「全掃 / 都完整」判斷混淆了 Career Track 與 Flow Track。之後凡是回答「全掃、都完整、還缺什麼、flow 都完整嗎」，必須逐 project 分列 Flow Track / Career Track / Domain Map。Career Track 完成只能表示履歷 claim 可用；不能表示 flow 完整。
-0.1 `四 domain flow completeness audit`：已建立 `projects/source-repo-flow-audit.md`，盤點 `/Users/nick/Git/antplay`（排除 `*-math`）、`/Users/nick/Git/iwin`、`/Users/nick/Git/ugsoft`、`/Users/nick/Git/DevOps` project folders。結論：不要全 repo 開工；只把缺口記入待辦。最值得補的是 `ugsoft-connector-api Step 1 / Step 2`，其次 `ugsoft-admin-api Step 1 / Step 2`，再其次 `antplay-slot-admin-api Step 1 / Step 2`。`payment-thirdparty-simulator`、`openobserve`、`antplay-api-deploy` 只作可選加強；官網、前端、workspace、bot、notify、tool web、mock 與無 Nick direct commits repo 暫不建議。
+0. `Completeness Audit 規則補強`：2026-05-26 發現 `ugsoft` 已有 contribution consolidation，但當時沒有任何 Step 1 / Step 2 / `flows/`，先前「全掃 / 都完整」判斷混淆了 Career Track 與 Flow Track。`ugsoft-connector-api Step 1` 已補上，但 `ugsoft-admin-api` 仍只有 Career Track，且 connector 尚無 Step 2 / flow package。之後凡是回答「全掃、都完整、還缺什麼、flow 都完整嗎」，必須逐 project 分列 Flow Track / Career Track / Domain Map。Career Track 完成只能表示履歷 claim 可用；不能表示 flow 完整。
+0.1 `四 domain flow completeness audit`：已建立 `projects/source-repo-flow-audit.md`，盤點 `/Users/nick/Git/antplay`（排除 `*-math`）、`/Users/nick/Git/iwin`、`/Users/nick/Git/ugsoft`、`/Users/nick/Git/DevOps` project folders。結論：不要全 repo 開工；只把缺口記入待辦。`ugsoft-connector-api Step 1` 已完成，下一步是 `ugsoft-connector-api Step 2`；其次 `ugsoft-admin-api Step 1 / Step 2`，再其次 `antplay-slot-admin-api Step 1 / Step 2`。`payment-thirdparty-simulator`、`openobserve`、`antplay-api-deploy` 只作可選加強；官網、前端、workspace、bot、notify、tool web、mock 與無 Nick direct commits repo 暫不建議。
 
 1. `rolling resume package`：已於 2026-05-25 回填 `third_games_api`、`k3s-deploy` 與 `antplay-slot-game-job` 最新 Step 5 / case 狀態到 `05 / 08 / 17`，並標明 `third_games_api`、`k3s-deploy` 維持 interview-only，`antplay-slot-game-job` 可保守寫 job / event processing、report projection / summary、big-win notification、activity supporting flow 與 partition / report path。
 3. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
@@ -196,8 +196,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 5. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 6. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
-8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。但 Flow Track 尚未建立 Step 1 / Step 2 / `flows/`，不得宣稱 flow 完整。若 Nick 指定 ugsoft flow，應先做 `ugsoft ugsoft-admin-api Step 1` 或優先做 connector 的 Step 1。
-9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。但 Flow Track 尚未建立 Step 1 / Step 2 / `flows/`，不得宣稱 flow 完整。若 Nick 要補非 iwin 廣度，可選 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
+8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。但 Flow Track 尚未建立 Step 1 / Step 2 / `flows/`，不得宣稱 flow 完整。若 Nick 指定 admin-api flow，應先做 `ugsoft ugsoft-admin-api Step 1`；若補非 iwin 廣度仍優先 connector 的 Step 2。
+9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。Flow Track Step 1 已完成，已篩出 transfer wallet、provider callback、bet record MQ sync、login launch、circuit breaker、schema route 候選；但 Step 2 / `flows/` 尚未建立，不得宣稱 flow 完整。若 Nick 要補非 iwin 廣度，下一步做 `ugsoft ugsoft-connector-api Step 2`。
 10. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
 11. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補 AntPlay 後台廣度，可選 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
 12. `antplay-slot-game-api contribution claim consolidation`：已完成 refreshed 收口，且已回填 `slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 5`。本批代表 flows 已全部 Step 5；05 / 08 已由 `rolling resume package` 回填。
@@ -243,7 +243,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 8. `k3s-deploy`：`gameserver-phased-rollout Step 5` 已完成；維持 interview-only，不更新正式履歷。
 9. `iwin-workspace`：contribution consolidation 已完成；不作 flow 主題，不因新規則重做。
 10. `ugsoft-admin-api`：contribution consolidation 已完成；可作後台 API / async data processing 履歷素材。
-11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。Step 1 / Step 2 是可選加強，不是預設下一步。
+11. `ugsoft-connector-api`：contribution consolidation 已完成；可作 provider connector / transfer wallet / MQ 履歷素材。Step 1 已完成；Step 2 是目前 connector Flow Track 的下一步，可選加強但已由 Nick 明確指定進行。
 12. `ugsoft-workspace`：contribution consolidation 已完成；只作 workspace / docs / harness / runbook supporting evidence，不作正式履歷主成果。
 13. `antplay-slot-admin-api`：contribution consolidation 已完成；可作 AntPlay 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理素材。Step 1 / Step 2 是可選加強，不是預設下一步。
 14. `antplay-slot-game-api`：refreshed contribution consolidation 已完成，Step 1 / Step 2 / `slot-bet-settle-rollback Step 5` / `transfer-wallet-money-in-out Step 5` / `request-log-rabbitmq-async Step 5` / `bet-record-sharding-schema-route Step 5` / `runtime-rtp-darkpool-player-control Step 5` 已完成。可作 AntPlay 遊戲 API runtime / 下注結算 / 轉帳錢包 / 分表 / RabbitMQ request log / high-traffic table governance / runtime decision 素材；05 / 08 已回填。

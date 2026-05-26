@@ -35,7 +35,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
+| final 全量 flow | 待補 | Step 1 已建立；尚未建立 Step 2 與 flow packages。本檔是 rolling consolidation |
 
 ## Source Scan Record
 
@@ -82,7 +82,7 @@
 
 未完成:
 
-- 未做 `ugsoft-connector-api` 全量 Step 1 / Step 2。
+- 已補 `ugsoft-connector-api` Step 1；尚未做 Step 2 / 單條 flow 深掃。
 - 未逐條 flow 建立 `flow.md` / `career-interview.md`。
 - 未逐檔逐行 Level 3。
 - 未驗證每個 provider adapter 是否已實際上線。
@@ -226,8 +226,8 @@ claim 邊界:
 
 ## Suggested Next
 
-如果繼續 ugsoft，下一步應做 Flow Track Step 1 / Step 2，避免只有履歷線、沒有可面試的完整 flow package。最值得先選的是 provider transfer / callback flow。
+如果繼續 ugsoft，下一步應做 Flow Track Step 2，比較 Step 1 篩出的候選 flow，避免只有履歷線、沒有可面試的完整 flow package。最值得優先比較的是 transfer wallet / callback / bet record MQ sync。
 
 ```text
-ugsoft ugsoft-connector-api Step 1
+ugsoft ugsoft-connector-api Step 2
 ```

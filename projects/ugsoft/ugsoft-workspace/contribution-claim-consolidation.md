@@ -173,8 +173,8 @@ remote branches:
 
 ## Suggested Next
 
-`ugsoft-workspace` 已收斂，下一步應回 `ugsoft-connector-api` Flow Track，因為那才是 UGSoft 線最有 Senior Backend 面試價值的 production runtime repo。
+`ugsoft-workspace` 已收斂，下一步應回 `ugsoft-connector-api` Flow Track Step 2，因為那才是 UGSoft 線最有 Senior Backend 面試價值的 production runtime repo。
 
 ```text
-ugsoft ugsoft-connector-api Step 1
+ugsoft ugsoft-connector-api Step 2
 ```

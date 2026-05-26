@@ -72,7 +72,7 @@ Git repo:
 - `ugsoft-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / control plane、RabbitMQ / Quartz / report job 類履歷素材；不寫完整 UG 平台或 provider gateway owner。
 - `ugsoft-connector-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作 AntPlay / DerPlay provider connector、transfer wallet、callback、request / bet record MQ、分表與 provider reliability 類履歷素材；不寫完整 connector architecture / wallet / reconciliation owner。
 - `ugsoft-workspace`: contribution claim consolidation 已完成 / rolling。這是 workspace / docs / harness / runbook repo，只支撐 cross-repo system reconstruction、工程規範、local / deploy harness 與 migration / release 風險整理；不放 standalone 正式履歷主成果，不反向包裝成 `ugsoft-admin-api` / `ugsoft-connector-api` service code。
-- 2026-05-26 completeness audit：`ugsoft-admin-api` 與 `ugsoft-connector-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows。若補非 iwin 廣度，優先 `ugsoft-connector-api Step 1 / Step 2`，其次 `ugsoft-admin-api Step 1 / Step 2`。
+- 2026-05-26 completeness audit：`ugsoft-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；`ugsoft-connector-api` 已補 Step 1，尚無 Step 2 / flows。若補非 iwin 廣度，優先 `ugsoft-connector-api Step 2`，其次 `ugsoft-admin-api Step 1 / Step 2`。
 
 ## antplay
 
