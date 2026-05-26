@@ -12,12 +12,12 @@
 
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
-| `antplay-slot-admin-api` | Java / Spring Boot 後台 API、control plane、風控監控、報表、RabbitMQ / Quartz | contribution consolidation 已完成 / rolling | 可保守放「後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」；不寫完整 slot platform owner | `antplay antplay-slot-admin-api Step 1` |
+| `antplay-slot-admin-api` | Java / Spring Boot 後台 API、control plane、風控監控、報表、RabbitMQ / Quartz | contribution consolidation 已完成 / rolling；Flow Track 尚未建立 | 可保守放「後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」；不寫完整 slot platform owner | AntPlay 目前唯一真正值得補的 Flow Track 缺口；可選 `antplay antplay-slot-admin-api Step 1` |
 | `antplay-slot-game-api` | Java / Spring Boot 遊戲 API、slot runtime、轉帳錢包、下注結算、RabbitMQ / Quartz | contribution consolidation 已完成 / refreshed / 2026-05-21；五條代表 flow 均已 Step 5；05 / 08 已回填 | 可保守放「遊戲 API runtime / betting-settlement / transfer wallet / async log / high-traffic table governance / runtime decision」；不寫完整 slot platform / wallet / RTP owner | 已收斂 |
 | `antplay-slot-game-job` | Java / Spring Boot job、Kafka consumer、Quartz、報表 projection、notification | contribution consolidation 已完成 / refreshed / 2026-05-25；五條代表 flow 均已 Step 5；05 / 08 已回填 | 可保守放「Kafka / Quartz job、代理玩家報表、活動累積投注 supporting flow、big-win notification、分表 / report path」；不寫完整 Kafka / settle pool owner | 已收斂 |
-| `math-core` | Slot math core contract / debug / RTP / symbol library | contribution consolidation 已完成 / rolling | 可保守放「slot math core contract / debugBet / RTP / symbol 相容調整」；不寫完整 math framework owner | `antplay math-core Step 1` |
+| `math-core` | Slot math core contract / debug / RTP / symbol library | contribution consolidation 已完成 / rolling | 可保守放「slot math core contract / debugBet / RTP / symbol 相容調整」；不寫完整 math framework owner | 已收斂；不單獨新增 Flow Track |
 | `*-math` | 多個 slot game math module | contribution consolidation 已完成 / refreshed grouped / 2026-05-21；本批五條代表 flow 已全部 Step 5 並已回填 | 可保守放「slot math core / 多個 math module 維護與驗證」；強 evidence 在 `sph`、`spn`、`sfm`、`setl`、`sdt`、`slc` | 已收斂 |
-| `math-workspace` | math KB / docs / sync workspace | contribution consolidation 已完成 / rolling | supporting evidence；可支撐 cross-math code reading / validation workflow，不作 standalone 主成果 | 回 `math-core` 或 `*-math` |
+| `math-workspace` | math KB / docs / sync workspace | contribution consolidation 已完成 / rolling | supporting evidence；可支撐 cross-math code reading / validation workflow，不作 standalone 主成果 | 已收斂 |
 | `platform-mock` | Java / Spring Boot mock platform | contribution consolidation 已完成 / rolling | 局部真實開發過；只作 provider failure injection / rollback testing supporting evidence | 不優先 |
 | `buffer-id` | Java ID buffer library | contribution consolidation 已完成 / rolling | 未見 Nick direct commits；只作 ID generator learning-only | 不優先 |
 | `antplay-slot-admin` | 後台前端 | 未開始 | 通常只作入口 | 待 Nick 指定 |
@@ -32,3 +32,10 @@
 - `math-workspace` 是 KB / docs / sync workspace，只作 cross-math code reading / GDD / RTP / reel strip / debug flow supporting evidence，不作 standalone 正式履歷主成果。
 - `platform-mock` 只有局部 failure injection commits，可作 provider rollback / compensation 測試 supporting evidence，不作正式主成果。
 - `buffer-id` 未掃到 Nick / `10gt12nc` direct commits，只作 ID generator learning-only。
+
+## 2026-05-26 AntPlay Re-audit
+
+- 已重新掃 `/Users/nick/Git/antplay` 下各 repo 的 git log、Nick / `10gt12nc` commits、主要 module 與既有 KB 狀態。
+- 真正值得補的只有 `antplay-slot-admin-api` Flow Track Step 1 / Step 2，候選方向是 request log RabbitMQ、風控通知 RabbitMQ、RTP / 暗池風控監控、Game API 白名單同步、admin / merchant auth。
+- 不新增 `antplay-push`、`platform-mock`、`math-core` 單獨 Flow Track；它們只能作 supporting evidence，沒有比既有 game-api / game-job / `*-math` 代表 flows 更值得。
+- 履歷目前不需新增新 claim；`antplay-slot-admin-api` 的 project-level claim 已在 contribution consolidation 中保守收斂，等 Flow Track 補出代表 flow 後再回填 05 / 08。

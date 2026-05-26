@@ -119,7 +119,7 @@ Git repo:
 - `math-workspace`: contribution claim consolidation 已完成 / rolling。Nick 有 workspace KB / docs commits，只支撐 cross-math module reconstruction / validation workflow；不作 standalone 正式履歷主成果。
 - `platform-mock`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有局部 bet / money_inout failure injection commits，只作 provider rollback / compensation 測試 supporting evidence；不作正式主成果。
 - `buffer-id`: contribution claim consolidation 已完成 / rolling。未掃到 Nick / `10gt12nc` direct commits，只作 ID generator learning-only。
-- 2026-05-26 completeness audit：`antplay-slot-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；若要補後台 / 風控 / admin control plane 廣度可選它。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 代表 flows 已足夠，暫不建議重做。
+- 2026-05-26 completeness audit / AntPlay re-audit：`antplay-slot-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows，是 AntPlay 目前唯一真正值得補的 Flow Track 缺口；但它屬於後台 / 風控 / admin control plane 廣度補強，不是投遞前必做。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 代表 flows 已足夠，暫不建議重做；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，除非 Nick 明確指定。
 
 ## DevOps / primestar
 
