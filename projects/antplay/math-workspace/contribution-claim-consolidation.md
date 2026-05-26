@@ -30,14 +30,14 @@
 
 - 已執行 `git fetch --all --prune`，成功。
 - local branch: `main`
-- local HEAD: `324d9904862c7cc7eec713ccbf834bb7aeb81a9a`
-- 本機既有 upstream HEAD: `324d9904862c7cc7eec713ccbf834bb7aeb81a9a`
+- local HEAD: `349ec333d971b6ae517c67e1a11383bba15c4925`
+- 本機既有 upstream HEAD: `349ec333d971b6ae517c67e1a11383bba15c4925`
 - local vs upstream: `0 / 0`
-- source repo 工作樹乾淨。
+- source repo 工作樹有 4 個既有未提交文件異動：`.work/README.md`、`docs/AI-OPERATING-PROTOCOL.md`、`docs/README.md`、`docs/relations/all-math-code-kb-audit.md`。
 
 2026-05-26 code / KB recheck:
 
-- 重新確認 `main` 與 upstream 同步，工作樹乾淨；本檔只把 `math-workspace` 當 supporting evidence，不擴張 production claim。
+- 重新 fetch 後確認 `main` 與 upstream 同步；工作樹有既有文件異動，未納入本 vault 履歷 claim。本檔只把 `math-workspace` 當 supporting evidence，不擴張 production claim。
 - 結論不變：`math-workspace` 支撐跨 repo code reading / validation / KB 方法，不作 standalone production service 或 math module 開發成果。
 
 本次掃描範圍:
