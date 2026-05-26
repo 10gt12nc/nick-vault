@@ -187,14 +187,16 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
+0. `Completeness Audit 規則補強`：2026-05-26 發現 `ugsoft` 已有 contribution consolidation，但沒有任何 Step 1 / Step 2 / `flows/`，先前「全掃 / 都完整」判斷混淆了 Career Track 與 Flow Track。之後凡是回答「全掃、都完整、還缺什麼、flow 都完整嗎」，必須逐 project 分列 Flow Track / Career Track / Domain Map。Career Track 完成只能表示履歷 claim 可用；不能表示 flow 完整。
+
 1. `rolling resume package`：已於 2026-05-25 回填 `third_games_api`、`k3s-deploy` 與 `antplay-slot-game-job` 最新 Step 5 / case 狀態到 `05 / 08 / 17`，並標明 `third_games_api`、`k3s-deploy` 維持 interview-only，`antplay-slot-game-job` 可保守寫 job / event processing、report projection / summary、big-win notification、activity supporting flow 與 partition / report path。
 3. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
 4. `game_job contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；保留為 project-level claim evidence，不因新規則重做。
 5. `app_bi contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 6. `bi_share contribution claim consolidation`：已完成 rolling / scoped negative 收口；不放正式履歷主成果。
 7. `iwin-workspace contribution claim consolidation`：已完成 rolling / scoped 收口；只作 supporting evidence，不新增正式主成果。
-8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若要強化 ugsoft provider integration，可選加強再掃 `ugsoft-connector-api`。
-9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補非 iwin 廣度，可選 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
+8. `ugsoft-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。但 Flow Track 尚未建立 Step 1 / Step 2 / `flows/`，不得宣稱 flow 完整。若 Nick 指定 ugsoft flow，應先做 `ugsoft ugsoft-admin-api Step 1` 或優先做 connector 的 Step 1。
+9. `ugsoft-connector-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。但 Flow Track 尚未建立 Step 1 / Step 2 / `flows/`，不得宣稱 flow 完整。若 Nick 要補非 iwin 廣度，可選 Flow Track Step 1 / Step 2，挑 provider transfer / callback / MQ 代表 flow。
 10. `ugsoft-workspace contribution claim consolidation`：已完成 rolling 收口；只作 supporting evidence，不作 Flow Track 主題，不新增正式履歷主成果。
 11. `antplay-slot-admin-api contribution claim consolidation`：已完成 rolling 收口；可保守補入履歷。若 Nick 要補 AntPlay 後台廣度，可選 Flow Track Step 1 / Step 2，挑 RabbitMQ request log / 風控通知、RTP / 暗池風控監控、Game API 白名單同步代表 flow。
 12. `antplay-slot-game-api contribution claim consolidation`：已完成 refreshed 收口，且已回填 `slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5` 與 `runtime-rtp-darkpool-player-control Step 5`。本批代表 flows 已全部 Step 5；05 / 08 已由 `rolling resume package` 回填。

@@ -18,6 +18,7 @@
 - 不寫 secret、token、內網 IP、production URL、客戶資料。
 - 履歷與面試不能誇大。
 - Flow 線與履歷 / 自傳線分開但互相回填：Flow 線負責系統理解與面試，Career 線負責 project-level 履歷 claim。單條 flow Step 5 不能直接代表整個 project 的履歷結論；05 / 08 原則上只吃 project contribution consolidation 結果。contribution consolidation 可以先做 rolling / scoped 版，flows 之後照舊深掃並回填履歷素材。
+- contribution consolidation 完成不代表 flow 完成。當 Nick 問「全掃 / 檢查所有 / flow 都完整 / 為什麼沒 flow」時，AI 必須分開檢查 Flow Track、Career Track、Domain Map；不能只因 `contribution-claim-consolidation.md` 存在就回答 project 已完整。若缺 `step1-candidate-flows.md`、`step2-flow-comparison.md` 或 `flows/`，必須明確標成 Flow Track 缺口。
 - 若 Nick 要先把所有 contribution consolidation 匯成 05 / 08，AI 要產出 `rolling resume package`：更新 05 的可直接使用履歷版、08 的投遞版，標示目前可用但非 final，並保留「後續 flow 深掃互相回填」規則。`05` 是母稿與證據池；`08` 是投遞輸出版，必須維持 104 可貼欄位：工作經驗、專長、自傳、自我推薦。
 - 若 Nick 問薪資、期望待遇、談薪或 offer，AI 要先讀 `17-salary-negotiation.md`，並重新查當下市場行情；薪資資料具時效性，不可只拿舊數字回答。談薪說法要對齊 05 / 08 的保守 claim，不得用未證實的 owner / architect / 主導完整系統來抬價。
 - 若 Nick 問 `*-workspace`、AI 開發閉環、Codex / Claude / Cursor 經驗是否能放履歷，AI 要把它歸類為 Career Track 的 supporting evidence：可支撐 AI-assisted engineering workflow / knowledge-base driven development，但不得反向包裝成 production service 功能開發或 AI 自動主導工程成果。可放在 05 / 08 / 17 的工程方法、自我推薦與談薪支撐，不作 standalone 主成果。
@@ -234,6 +235,11 @@ push 前只做乾淨確認：
 
 如果上一個 Step 不乾淨，請不要直接建議下一個 Step。
 請先建議重整上一個 Step 或補 evidence。
+
+如果 project 只有 contribution-claim-consolidation.md，沒有 Step 1 / Step 2 / flows，請明確寫：
+- Career Track：已完成 / rolling / scoped
+- Flow Track：未建立，不可宣稱 flow 完整
+- 下一步只是候選缺口；除非 Nick 明確下 Step，不要自動開工
 ```
 
 ## 1. Step 1：找 Flow

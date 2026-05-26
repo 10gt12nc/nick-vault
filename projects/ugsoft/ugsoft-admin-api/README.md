@@ -7,8 +7,8 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling |
-| Step 1 / Step 2 | 尚未正式建立 |
-| Flow packages | 尚未建立 |
+| Step 1 / Step 2 | 尚未正式建立；Flow Track 缺口 |
+| Flow packages | 尚未建立；不得宣稱 flow 完整 |
 | 正式履歷 | 可保守補入「後台控制面與非同步資料處理」 |
 
 ## 先讀

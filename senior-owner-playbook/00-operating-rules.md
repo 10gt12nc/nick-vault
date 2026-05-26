@@ -25,6 +25,32 @@ AI 都必須套用同一套規則。
 
 若 Nick 暫時沒有特定職缺 JD，`08 / 17` 預設維持「通用 Senior Java Backend / Platform Backend 投遞版」，主軸是金流 / provider gateway / wallet / bet-settle / MQ / batch / legacy takeover。AI 不得每次都要求 Nick 貼 JD 才能繼續；只有 Nick 明確要投某個職缺、提供 JD、或要求客製時，才做 JD-specific 客製。沒有 JD 時，下一步應優先轉為通用版面試自我介紹、104 投遞欄位檢查、面試 case 練習或投遞準備。
 
+### 完整性稽核：consolidation 不等於 flow
+
+AI 回答「全掃了、都完整、沒有問題、還缺什麼、flow 都完整嗎」時，必須做 `Completeness Audit`，不能只看 Career Track。
+
+每個受影響 project 至少分三欄判斷：
+
+| 層級 | 要檢查什麼 | 判斷口徑 |
+| --- | --- | --- |
+| Flow Track | `step1-candidate-flows.md`、`step2-flow-comparison.md`、`flows/{flow}/flow.md`、`career-interview.md`、`materials/evidence.md` / `claim-boundary.md` | 用來判斷系統理解與面試 case 是否完整 |
+| Career Track | `contribution-claim-consolidation.md`、`05 / 08 / 04 / 17` 回填狀態 | 用來判斷履歷 claim 是否可用 |
+| Domain Map | `architecture-map.md` / `integration-map.md` / domain README | 用來判斷跨 project 協作圖是否存在；多數時候是可選補強 |
+
+禁止錯誤回答：
+
+```text
+contribution claim consolidation 已完成，所以這個 project 沒問題 / flow 完整。
+```
+
+正確回答：
+
+```text
+Career Track 已完成 rolling consolidation，可支撐保守履歷；但 Flow Track 尚未建立 Step 1 / Step 2 / flows，因此不能說 flow 完整。
+```
+
+若某 project 只有 `contribution-claim-consolidation.md`，但沒有 `step1-candidate-flows.md` 或 `flows/`，下一步只能列為「Flow Track 缺口」。除非 Nick 明確下 Step，AI 不得在 KB-only / 缺口盤點模式中直接開工補 flow。
+
 重要優先級：若只是學系統或準備單條面試 case，走 Flow Track。若要判斷 Nick 經驗、履歷、自傳、project claim，走 Career Track。完整 `project contribution claim consolidation` 預設要等該 project 的 Step 2 所定義「本批代表 flows / Top candidate flows」全部完成到 Step 5；若 Nick 明確縮小本批 consolidation scope，只能標成 limited consolidation。若只有單條 flow Step 5，只能保留為單條 flow claim evidence；不得推薦或命名為完整 project consolidation，下一步應回 Step 2 ranking 繼續做同 project 下一條 flow。
 
 若某 project 的 Step 2 本批代表 flows 已全部完成 Step 5，且尚未完成 project-level contribution consolidation，該 project 進入「待收口」狀態。Nick 問「下一步、缺啥、履歷、自傳、能不能放、contribution claim consolidation」時，待收口 project 的 consolidation 優先於跨 project queue 與其他 project 的單條 flow Step；除非 Nick 明確指定先做別的 project / flow。AI 必須在 project README、todo 或 inventory 明確標示「已達 consolidation 條件 / 待收口」，避免把已可收口的 project 和一般 flow queue 混在一起。

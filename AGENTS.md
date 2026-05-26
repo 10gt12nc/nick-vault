@@ -29,6 +29,11 @@
 - flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
 - Nick 本人明確說「我做過 / 我開發很多 / 這是我負責或參與的」時，屬於 `本人確認` evidence，不能被 AI 當成沒有 evidence。AI 必須把它和 commit / MR / ticket 一起納入 claim 判斷，但仍要保守標示為「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，不得反過來把 Nick 的經驗抹掉。
 - Flow 線與履歷 / 自傳線必須分開但互相回填：Flow 線是 `Step 1 -> Step 2 -> 單條 flow Step 3 -> Step 4 -> Step 5`，負責系統理解、深掃規範、面試 case 與單條 flow claim gate；履歷 / 自傳線是 `project contribution claim consolidation -> 05 / 08`，負責 project-level 經驗包裝。`05-resume-master-zh.md` / `08-application-autobiography-zh.md` 原則上只吃 project-level consolidation 結果，不直接吃單條 flow Step 5 結論。單條 flow Step 5 不能代表整個 project 履歷結論。若 Nick 要先補履歷或 contribution consolidation，可以先做 rolling / scoped project consolidation，不必等待所有代表 flows 都 Step 5；但文件必須標明掃描範圍、已完成 flow、未完成 flow、可放履歷 / 可面試講 / 不可誇大的邊界。之後 flow Step 照舊進行，新的 flow evidence 要回填 consolidation、05 / 08 與 claim boundary。
+- 反向也成立：`project contribution claim consolidation` 完成不代表 Flow Track 完成。AI 不得因某 project 已完成 consolidation、05 / 08 已回填或履歷 claim 已可用，就回答「flow 完整 / 全掃沒問題」。判斷完整度時必須分開列出：
+  - Flow Track：是否有 `step1-candidate-flows.md`、`step2-flow-comparison.md`、`flows/{flow}/flow.md`、`career-interview.md`、`materials/evidence.md` / `claim-boundary.md`。
+  - Career Track：是否有 `contribution-claim-consolidation.md`、是否已回填 `05 / 08 / 04 / 17`。
+  - Domain Map：是否有 `architecture-map.md` / `integration-map.md`，以及是否只是可選架構補強。
+  若 Flow Track 缺 Step 1 / Step 2 或完全沒有 `flows/`，必須明確說「履歷線已收斂，但 flow 線未建立 / 未完整」，不能用「已完成 contribution consolidation」帶過。
 - 若 Nick 要「就目前所有 Contribution Claim Consolidation 先匯總 05 / 08，讓我能寫履歷」，AI 要做 `rolling resume package`：彙總目前所有 project-level consolidation，更新 `05-resume-master-zh.md` 的可直接使用履歷版與 `08-application-autobiography-zh.md` 的投遞版；明確標示這是目前可投遞草稿，不是 final consolidation。`05` 是履歷 / 自傳 / claim 母稿與證據池，可以較完整；`08` 是投遞用輸出版，必須維持 104 可貼欄位：工作經驗、專長、自傳、自我推薦。後續 flow / Step / 新 evidence 必須互相回填修正 05 / 08，不得因 flow 尚未全部完成而拒絕先產履歷稿。
 - 若 Nick 暫時沒有特定職缺 JD，`08 / 17` 預設維持「通用 Senior Java Backend / Platform Backend 投遞版」，主軸是金流 / provider gateway / wallet / bet-settle / MQ / batch / legacy takeover。AI 不得每次都要求 Nick 貼 JD 才能繼續；只有 Nick 明確要投某個職缺、提供 JD、或要求客製時，才做 JD-specific 客製。沒有 JD 時，下一步應優先轉為通用版面試自我介紹、104 投遞欄位檢查、面試 case 練習或投遞準備。
 - 參考 workspace 正確路徑：
@@ -56,6 +61,7 @@
 - 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
 - 每次改檔後、commit 前必須做 `Relationship Check`，不是等 push 後才補救。先判斷本輪「事實變更」是什麼，再檢查是否影響權威檔：`projects/source-repo-inventory.md`、`projects/{domain}/README.md`、`projects/{domain}/{project}/README.md`、`senior-owner-playbook/06-todo.md`、`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`、對應 `contribution-claim-consolidation.md`、`flow.md / career-interview.md / materials/claim-boundary.md`。有影響就同步修；無影響要在 final 說已檢查、不需更新。
 - `Relationship Check` 只強制檢查權威檔；動態 / 衍生檔不要求每次即時同步，例如自動產物、匯出稿、暫存稿、練習稿、排序稿、一次性檢查輸出。只有當它被升級成正式閱讀入口、履歷 / 面試素材，或與權威檔產生會誤導下一輪 AI 的衝突時，才需要整理或回填。cache、log、工具輸出、外部 repo 產物預設不納入 KB，除非 Nick 明確要求。
+- 當 Nick 要求「深掃全部 / 檢查所有 / flow 都完整嗎 / KB 跟 code 比對 / 有沒有漏」時，Relationship Check 要升級為 `Completeness Audit`：逐一檢查受影響 domain / project 是否同時具備 Flow Track、Career Track、Domain Map 的狀態標示；沒有 flow 文件的 project 要列為缺口，不得回答全都完整。這個 audit 可以先只更新 KB / todo，不代表已授權立即開工補 Step。
 - push 前只做乾淨確認：`git status`、`git diff --cached --name-only`、`git diff --check`，確認 commit 前的關聯檢查已收口；不要把關聯檢查延到 push 後才做。
 - 日常模式預設只在 `main` 開發，且同一時間只允許一個 session 具備改檔 / stage / commit 權限；其他 session 若存在，只能只讀查詢、review 或討論，不得改檔、stage、commit 或切 branch。`nick-vault` 是個人知識庫，優先保持連貫性與乾淨 history，不追求多 session 平行吞吐。
 - 例外模式只有在 Nick 明確需要並行整理不同 project / submodule，且每個 session 都有獨立 worktree 時才使用 project / submodule branch，例如 `codex/iwin-app-bi`、`codex/iwin-game-job`、`codex/iwin-iwin-gameserver`。禁止多 session 共用同一 worktree 互相切 branch；同一 branch / worktree 同一時間只能有一個 session 負責改檔與 commit。
