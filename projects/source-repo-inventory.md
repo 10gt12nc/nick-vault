@@ -8,6 +8,7 @@
 
 - `projects/source-repo-flow-audit.md`：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 所有 project folders，標記已有 KB / 缺 Flow Track / 值得補 / 暫不建議。這份是下一輪補 Step 1 / Step 2 的入口，不代表已授權逐一開工。
 - 2026-05-26 iwin re-audit：重新掃 `/Users/nick/Git/iwin` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 iwin 沒有新的 project Flow Track 必做缺口；`payment-thirdparty-simulator` 降為 payment provider contract / callback 測試 supporting evidence，不列主待辦。
+- 2026-05-26 UGSoft re-audit：重新掃 `/Users/nick/Git/ugsoft` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 UGSoft 仍有收斂後的 Flow Track 缺口：第一順位 `ugsoft-connector-api transfer-wallet-in-out-query Step 3`，第二順位 `ugsoft-admin-api Step 1 / Step 2`；官網、前端、workspace 不列主待辦。
 
 ## 使用規則
 
@@ -79,7 +80,7 @@ Git repo:
 - `ugsoft-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / control plane、RabbitMQ / Quartz / report job 類履歷素材；不寫完整 UG 平台或 provider gateway owner。
 - `ugsoft-connector-api`: contribution claim consolidation 已完成 / rolling；Flow Track Step 1 / Step 2 已完成。Nick / `10gt12nc` 有大量 direct commits，可保守作 AntPlay / DerPlay provider connector、transfer wallet、callback、request / bet record MQ、分表與 provider reliability 類履歷素材；不寫完整 connector architecture / wallet / reconciliation owner。Step 2 已選 `transfer-wallet-in-out-query` 為第一條 Step 3 代表 flow。
 - `ugsoft-workspace`: contribution claim consolidation 已完成 / rolling。這是 workspace / docs / harness / runbook repo，只支撐 cross-repo system reconstruction、工程規範、local / deploy harness 與 migration / release 風險整理；不放 standalone 正式履歷主成果，不反向包裝成 `ugsoft-admin-api` / `ugsoft-connector-api` service code。
-- 2026-05-26 completeness audit：`ugsoft-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；`ugsoft-connector-api` 已補 Step 1 / Step 2，尚無單條 flow package。若補非 iwin 廣度，優先 `ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3`，其次 `ugsoft-admin-api Step 1 / Step 2`。
+- 2026-05-26 completeness audit / re-audit：`ugsoft-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；`ugsoft-connector-api` 已補 Step 1 / Step 2，尚無單條 flow package。若補非 iwin 廣度，優先 `ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3`，其次 `ugsoft-admin-api Step 1 / Step 2`。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦。
 
 ## antplay
 

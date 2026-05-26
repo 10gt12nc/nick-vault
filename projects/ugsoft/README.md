@@ -10,9 +10,11 @@
 
 ## Project Status
 
+2026-05-26 re-audit：已重新掃 `/Users/nick/Git/ugsoft` 各來源 repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB。結論：UGSoft 仍有真正值得補的 Flow Track，但只保留收斂後兩個方向：第一順位 `ugsoft-connector-api transfer-wallet-in-out-query Step 3`，第二順位 `ugsoft-admin-api Step 1 / Step 2`。官網、前端與 workspace 不列主待辦；workspace 只作 cross-repo reconstruction / runbook supporting evidence。
+
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
-| `ugsoft-admin-api` | Java / Spring Boot 後台 API、控制面、報表、RabbitMQ / Quartz | Career Track 已完成 rolling；Flow Track 未建立 | 可保守放「後台控制面與非同步資料處理」；不寫完整 UG 平台 owner | 如要深挖，先做 Step 1 / Step 2 選代表 flow |
+| `ugsoft-admin-api` | Java / Spring Boot 後台 API、控制面、報表、RabbitMQ / Quartz | Career Track 已完成 rolling；Flow Track 未建立；2026-05-26 re-audit 後仍值得補 | 可保守放「後台控制面與非同步資料處理」；不寫完整 UG 平台 owner | 第二順位；如要深挖，先做 Step 1 / Step 2 選代表 flow |
 | `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | Career Track 已完成 rolling；Flow Track Step 1 / Step 2 已完成，尚未建立單條 flow package | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | `ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3` |
 | `ugsoft-admin-web` | 後台前端 | 未開始 | 通常只作入口 | 待 Nick 指定 |
 | `official-web-v3` | 官網 | 未開始 | 不當主線 | 待 Nick 指定 |
