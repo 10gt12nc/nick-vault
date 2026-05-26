@@ -43,10 +43,15 @@
 - 已執行 `git fetch --all --prune` 更新 remote refs。
 - local branch: `main`
 - local HEAD: `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`
-- `origin/main`: `7e000c97078605879ec1b6a485b02c53d0054b99`
-- ahead / behind: `0 / 40`，本機工作樹落後 `origin/main` 40 commits；本次 code 判斷以 fetched `origin/main` object、`origin/main` log 與 remote branch log 為準。
+- `origin/main`: `b1b83f64ffc971cc838ef935867a5a2234e3d201`
+- ahead / behind: `0 / 42`，本機工作樹落後 `origin/main` 42 commits；本次 code 判斷以 fetched `origin/main` object、`origin/main` log 與 remote branch log 為準。
 - source repo 工作樹乾淨。
 - source README 含內部位址，已排除，不寫入 vault。
+
+2026-05-26 code / KB recheck:
+
+- 重新 fetch 成功，`origin/main` 已前進；本檔保留原本 contribution claim，不因新 remote refs 自動擴張履歷主張。
+- 目前結論仍成立：可寫後台 / control plane、RabbitMQ / report job / 白名單 / 權限等真實開發經驗；不可寫完整 UGSoft 平台、完整 provider gateway 或完整 wallet owner。
 
 本次掃描範圍:
 
