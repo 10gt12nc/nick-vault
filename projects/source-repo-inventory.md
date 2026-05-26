@@ -7,6 +7,7 @@
 最新 completeness audit：
 
 - `projects/source-repo-flow-audit.md`：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 所有 project folders，標記已有 KB / 缺 Flow Track / 值得補 / 暫不建議。這份是下一輪補 Step 1 / Step 2 的入口，不代表已授權逐一開工。
+- 2026-05-26 iwin re-audit：重新掃 `/Users/nick/Git/iwin` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 iwin 沒有新的 project Flow Track 必做缺口；`payment-thirdparty-simulator` 降為 payment provider contract / callback 測試 supporting evidence，不列主待辦。
 
 ## 使用規則
 
@@ -44,6 +45,12 @@ Git repo:
 - 核心後端候選: `payment`、`game_api`、`game_job`、`iwin_gameserver`、`third_games_api`
 - 後台 / BI / control plane: `app_bi`、`bi_share`
 - client / deploy / simulator / workspace: 依 flow 需要作參考；`iwin-workspace` 已完成 rolling consolidation，不新增 standalone 正式履歷主成果
+
+整理狀態:
+
+- 2026-05-26 re-audit：`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 代表 flows / contribution consolidation 已足夠支撐目前 Senior Backend 投遞與面試，沒有新的 iwin project Flow Track 必做缺口。
+- `payment-thirdparty-simulator`: 有 Nick / `10gt12nc` direct commits，code 涵蓋 provider sign、order state、query、callback、GoldenPay / NimTestPay simulator 與 CI / deploy supporting path；定位只作 `payment` provider contract / callback 測試 supporting evidence，不新增主履歷 claim，不列 project Flow Track 主待辦。
+- 可選補強只剩 `iwin system map v1`：整理跨 repo collaboration / architecture / integration / claim boundary；這是 domain-level map，不是投遞前必做。
 
 ## ugsoft
 

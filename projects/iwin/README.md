@@ -16,6 +16,8 @@
 
 ## 目前內容
 
+2026-05-26 re-audit：已重新掃 `/Users/nick/Git/iwin` 各來源 repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB。結論：iwin 沒有新的 project Flow Track 必做缺口；現有代表 flows / contribution consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 只作 `payment` provider contract / callback 測試 supporting evidence，不升級主履歷 flow；可選補強只剩 domain-level `iwin system map v1`，不是投遞前必做。
+
 | Project | 目前內容 | 下一步 |
 | --- | --- | --- |
 | `game_api` | 三條代表 flow 已完成 Step 5；project-level contribution consolidation 已完成並於 2026-05-20 重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材 | 已收斂，不因新規則重做 |

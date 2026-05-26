@@ -6,6 +6,8 @@
 
 2026-05-26 AntPlay re-audit：已重新掃 `/Users/nick/Git/antplay` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module 與 path history。結論是：AntPlay 目前沒有新的「必做」缺口；真正值得保留在待辦的只有 `antplay-slot-admin-api` Flow Track Step 1 / Step 2，且它是可選補強，不是通用投遞前必做。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 已有足夠代表 flows / consolidation；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，不升級為新主線。
 
+2026-05-26 iwin re-audit：已重新掃 `/Users/nick/Git/iwin` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `nick-vault/projects/iwin` KB。結論是：iwin 目前沒有新的「真正值得補」的 project Flow Track 缺口；`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 的代表 flows / consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 有 Nick direct commits，但定位是 payment provider contract / callback 測試支撐，不升級成主履歷 flow；若要補，只作 payment case 的 supporting evidence。iwin 目前唯一保留的可選補強是 domain-level `iwin system map v1`，用來整理跨 repo 協作與 claim boundary，不是投遞前必做。
+
 ## 判斷規則
 
 - `已有`：已具備 Step 1 / Step 2 / 代表 flows，或已明確標成 supporting / interview-only。
@@ -50,7 +52,7 @@
 | `iwin_gameserver` | Nick direct commits 約 98 | Step 1 / Step 2 / flows / consolidation 已完成 | 已有 transfer-in-out、center-http、spin settlement、bet target | 已有，暫不新增 |
 | `k3s-deploy` | 未見 Nick direct commits；本機落後遠端且有既有髒檔 | Step 1 / Step 2 / 1 flow 已完成；無 contribution consolidation | 已有 `gameserver-phased-rollout` interview-only | 已有，除 JD 需要 Platform 再補 |
 | `payment` | Nick direct commits 約 100 | Step 1 / Step 2 / 5 flows / consolidation 已完成；2026-05-26 已降回 provider integration 口徑 | 已有 provider callback、withdraw、provider request、manual repair、config selection | 已有，暫不新增 |
-| `payment-thirdparty-simulator` | Nick direct commits 約 13，GoldenPay / NimTestPay simulator | 無 KB | `provider-simulator-contract-testing` 可支援 payment 測試故事，但不作主履歷 | 可選加強，不優先 |
+| `payment-thirdparty-simulator` | Nick direct commits 約 13，GoldenPay / NimTestPay simulator；2026-05-26 re-audit 確認含 order state、sign、callback、query、CI / deploy supporting path | 無 KB | `provider-simulator-contract-testing` 可支援 payment 測試故事，但不作主履歷，不升級 project Flow Track 主線 | supporting only，不放主待辦 |
 | `shareinstall-back` | 未見 Nick direct commits | 無 KB | install attribution / tracking，價值未知 | 暫不建議 |
 | `third_games_api` | Nick commits 少，主要測試 / merge；下游 evidence 在 gameserver | Step 1 / Step 2 / 4 flows / consolidation 已完成 | 已有 GSC / OneAPI / Antplay / GSC split flows | 已有，暫不新增 |
 
@@ -78,12 +80,12 @@
 
 ## 建議收斂
 
-必須記入待辦，但不代表必須全部開工：
+全域候選與邊界如下；不代表必須全部開工。iwin re-audit 後，iwin 沒有新的 project Flow Track 主待辦：
 
 1. `ugsoft-connector-api`：最值得補 Flow Track。Step 1 / Step 2 已完成，下一步是 `transfer-wallet-in-out-query Step 3`。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，能補非 iwin 廣度。
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。可補 admin control plane / RabbitMQ / Quartz / risk monitor。
 3. `antplay-slot-admin-api`：AntPlay 目前唯一真正值得補的 Flow Track 缺口；但目前已有 AntPlay game-api / game-job / `*-math` 主力 evidence，所以它是可選補強，不是投遞前必做。若 Nick 要補後台 / 風控 / admin control plane，先做 Step 1 / Step 2。
-4. `payment-thirdparty-simulator`：可補 payment 測試支撐，不作主線。
+4. `payment-thirdparty-simulator`：2026-05-26 iwin re-audit 後降為 payment provider contract / callback 測試 supporting evidence；不作主線、不放主履歷、不列 project Flow Track 必做。
 5. `DevOps openobserve / antplay-api-deploy`：只在 Nick 要 Platform / Lead / observability 時補，不作履歷主 claim。
 
 目前不建議：
