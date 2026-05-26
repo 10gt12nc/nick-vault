@@ -10,7 +10,7 @@
 可說：
 
 - 我分析過 iwin payment 的支付方式 / 商戶 / 提現設定選擇 flow，重點是 DB 設定如何透過 Redis projection 被 payment runtime 消費。
-- 這條 flow 不是直接 money movement，但它決定玩家能否看到正確的充值 / 提現入口。
+- 這條 flow 不是直接 money movement，也不是完整金流核心；它決定玩家能否看到正確的充值 / 提現入口。
 - 面試時可討論玩家層級、channel、device、商戶 status、Redis partial sync、cold-cache fallback 與 config versioning。
 
 不可說：
@@ -45,7 +45,7 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 
 | 問題 | 保守答法 |
 | --- | --- |
-| 這條 flow 跟金流 correctness 有關嗎？ | 有，但它是前置條件。它不直接上分 / 扣款，但會決定玩家能否進入正確支付 / 提現 flow。 |
+| 這條 flow 跟 payment correctness 有關嗎？ | 有，但它是前置條件。它不直接上分 / 扣款，也不代表完整 wallet；它只決定玩家能否進入正確支付 / 提現 flow。 |
 | payment list 怎麼決定顯示哪些支付方式？ | 讀玩家層級，讀 Redis 裡的 `payTypeList`、`merchantList`、`convenientPay`、`vipPay`，再依 channel、device、layers 過濾。 |
 | payment detail 跟 list 差在哪？ | list 決定有哪些支付類型；detail 決定該 pay code 下有哪些商戶、快捷支付或 VIP 充值 detail。 |
 | 最大風險是什麼？ | DB / Redis / runtime filter 不一致，尤其是多 key partial sync，會造成支付入口空白、錯商戶、錯檔位或提現限制錯誤。 |
@@ -83,5 +83,5 @@ payment 的支付列表不是硬編碼，也不是把所有商戶都丟給前端
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不單獨升級成本 flow 的真實開發成果；project-level payment contribution consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
-- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 runtime config consistency、partial sync、cold-cache fallback、fail closed 與支付入口狀態風險；不可說成完整 money movement / wallet 實作。
 - 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

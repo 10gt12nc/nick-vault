@@ -10,16 +10,16 @@
 
 - Step 5 結論：不更新 `senior-owner-playbook/05-resume-master-zh.md` 或 `08-application-autobiography-zh.md`。
 - 原因：目前只有 `專案存在 / code-backed` 與 `分析素材 / learning-only`；缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
-- 可用方式：作為 Senior Backend 面試案例，保守說「我分析 / 梳理過這類金流 callback flow 的一致性與補償風險」。
+- 可用方式：作為 Senior Backend 面試案例，保守說「我分析 / 梳理過這類 payment provider callback flow 的狀態轉移、冪等與補償風險」。
 - 不可用方式：不可寫成 Nick 主導 payment callback、修復重複退款、設計 exactly-once 或負責完整 payment owner。
 
 ## 30 秒版本
 
-我會把這條 flow 當成金流 callback consistency 的案例來講：三方 provider callback 進來後，payment 先做白名單與簽章驗證，再把 provider 狀態轉成內部訂單狀態，透過 XXL-MQ 非同步交給 consumer 處理。consumer 端會再做訂單狀態 guard，避免重複 callback 或 MQ retry 導致重複處理；payment 也會把 `billNo` 傳到 game lobby / center 作為跨系統追蹤鍵。提現失敗退款是最高風險分支，因為退款成功後如果再 retry，可能造成重複退款，所以 code 裡有針對退款例外後回 SUCCESS 的防護。
+我會把這條 flow 當成 payment provider callback 狀態風險案例來講：三方 provider callback 進來後，payment 先做白名單與簽章驗證，再把 provider 狀態轉成內部訂單狀態，透過 XXL-MQ 非同步交給 consumer 處理。consumer 端會再做訂單狀態 guard，避免重複 callback 或 MQ retry 導致重複處理；payment 也會把 `billNo` 傳到 game lobby / center 作為跨系統追蹤鍵。提現失敗退款是最高風險分支，因為退款成功後如果再 retry，可能造成重複退款，所以 code 裡有針對退款例外後回 SUCCESS 的防護。
 
 ## 3 分鐘版本
 
-這條 flow 的核心不是單純接 provider API，而是 provider callback、payment 訂單、玩家錢包三邊要收斂一致。
+這條 flow 的核心不是單純接 provider API，而是 provider callback、payment order 與玩家餘額副作用要能被追蹤並收斂；它不是完整 wallet / ledger 設計。
 
 正常情境下，provider 打 `/pay/notify` 或 `/withdraw/notify` 到各 provider controller。controller 會解析 provider 欄位、檢查 IP 白名單、重算簽章、查 `payment_order` 並確認訂單還在 `WAIT` / `PROCESSING`。如果訂單已經是成功、拒絕、退回或異常，controller 會回 provider ack 並阻止再次處理。
 
@@ -29,8 +29,8 @@ Senior 角度我會特別看三個點：第一，callback ack 與 MQ enqueue 不
 
 ## 可以安全放在面試的能力點
 
-- 分析金流 callback 的 trust boundary：IP 白名單、簽章驗證、provider 狀態 mapping。
-- 分析 money correctness：provider 狀態、payment order、玩家錢包三邊一致性。
+- 分析 payment provider callback 的 trust boundary：IP 白名單、簽章驗證、provider 狀態 mapping。
+- 分析狀態風險：provider 狀態、payment order、玩家餘額副作用的收斂邊界。
 - 分析至少一次 delivery 下的 idempotency：controller guard、consumer no-op、終態保護。
 - 分析 cross-system correlation key：`billNo` / `billNos` 從 payment 傳到 game lobby / center 與 currency log。
 - 分析 MQ retry 與補償：retryCount、consumer fail / success、提現失敗退款的重複退款防護。
@@ -82,7 +82,7 @@ Step 4 補掃後，可以再補一句：payment 確實會把 `billNo` 以 `billN
 
 以下只能在 Nick 補到本人參與 evidence 後再考慮放入正式履歷：
 
-- 分析並整理金流 provider callback flow，聚焦三方 callback 驗證、訂單狀態轉移、XXL-MQ retry、玩家上分 / 提現退款與重複 callback 冪等風險。
+- 分析並整理 payment provider callback flow，聚焦三方 callback 驗證、訂單狀態轉移、XXL-MQ retry、玩家上分 / 提現退款與重複 callback 冪等風險。
 - 針對提現失敗退款場景梳理重複退款 failure window，整理 callback ack、MQ retry、終態 guard 與人工補償邊界。
 
 本 flow 不單獨放入正式履歷；payment project-level contribution consolidation 已完成，正式履歷只保守併入 provider 對接 / 維護與 order consistency。
@@ -90,5 +90,5 @@ Step 4 補掃後，可以再補一句：payment 確實會把 `billNo` 以 `billN
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不單獨升級成本 flow 的真實開發成果；project-level payment contribution consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
-- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 payment provider callback 狀態轉移、冪等、retry、補償、人工修復與查單 / 對帳邊界；不可說成已實作完整 wallet / reconciliation。
 - 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

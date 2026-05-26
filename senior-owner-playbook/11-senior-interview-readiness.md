@@ -36,6 +36,8 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 > 2026-05-25 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`08` 已可作通用 104 投遞稿。`04 / 面試 case 對齊檢查` 也已完成：104 主打 bullet 已對應到可講 3 分鐘的 cases、證據層級與不可誇大邊界。2026-05-25 已補三條主力 case 的 90 秒 / 3 分鐘口說稿：payment provider、wallet / bet-settle、Kafka / report projection。現在缺口已從「有沒有稿」轉成「Nick 能不能實際講出來並抗追問」。但口說練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動式練習。
 
+> 2026-05-26 code-first claim audit：payment 題要講成 provider / 商戶對接，不講成完整金流帳務或 wallet / reconciliation 實作。中等可面的三條主力仍可保留 payment provider、wallet / bet-settle、MQ / projection，但 payment 只負責 provider integration evidence；Senior 深度要靠三條組合，而不是單靠 payment。
+
 ### 已完成
 
 - Senior / Owner 核心定位已整理。
@@ -109,7 +111,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 至少能從以下類型選出 3 條講到 3 分鐘並抗追問：
 
-1. 金流 / payment：`payment-provider-callback` 或 `payment-order-provider-request`
+1. payment provider / 商戶對接：`payment-provider-callback` 或 `payment-order-provider-request`
 2. 遊戲錢包 / bet-settle：`iwin_gameserver/third-party-transfer-in-out`、`antplay-slot-game-api/slot-bet-settle-rollback` 或 `transfer-wallet-money-in-out`
 3. MQ / report projection：`antplay-slot-game-job/proxy-user-data-report-projection`、`request-log-rabbitmq-async` 或 `daily-game-data-summary`
 4. high-traffic data / partition：`bet-record-sharding-schema-route` 或 `db-partition-job-report-routing`
@@ -298,7 +300,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 理由：
 
-- 金流 callback 對 Senior 面試價值最高。
+- Payment provider callback 對 Senior 面試有價值，但只能作 provider integration / order state case；Senior 深度要和 wallet / bet-settle、MQ / projection 等 case 組合。
 - 第三方遊戲 provider / wallet / bet-settle 最能講 state、timeout、compensation 與 provider transaction。
 - Batch / projection / Mongo backup 能補上 retry、重跑、資料一致性、記憶體壓力與資料保留策略。
 

@@ -6,15 +6,17 @@
 
 > 2026-05-25 履歷包同步：`antplay-slot-game-job` contribution refresh 已回填。談薪主軸可新增 / 強化 AntPlay job / event processing、Kafka / Quartz、proxy report projection / summary、big-win notification、activity supporting flow、partition / report path；settle pool / darkpool 只作 analysis-first 面試素材，不可當作完整 Kafka event platform、reward platform、DB sharding / schema routing、BI / report platform 或 risk / jackpot owner 來抬價。
 
+> 2026-05-26 code-first claim audit：payment 談薪口徑降級為 provider / 商戶 integration，不再把 `iwin/payment` 單獨當成完整 money correctness 或 reconciliation 深度。談薪價值仍成立，但要靠「payment provider 對接 + 遊戲 wallet / bet-settle + MQ / batch projection + high-traffic partition + slot math / legacy reconstruction」的組合，而不是只靠 payment 組。
+
 ## 定位
 
 Nick 不應只用「4 年 Java 後端」談薪，而應用以下定位：
 
 ```text
-Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / bet-settle production flow 經驗
+Java Backend + payment / game provider 串接 + 遊戲 wallet / bet-settle + MQ / batch / high-traffic production flow 經驗
 ```
 
-這個定位的價值不是技術名詞多，而是能接手高交易、跨服務、第三方 provider、狀態一致性、retry / compensation、報表 projection、缺乏交接文件的既有平台、legacy system takeover，以及 AI-assisted engineering workflow 的可追蹤開發閉環。
+這個定位的價值不是技術名詞多，而是能接手高交易、跨服務、第三方 provider、狀態一致性風險、retry / compensation、報表 projection、缺乏交接文件的既有平台、legacy system takeover，以及 AI-assisted engineering workflow 的可追蹤開發閉環。payment 只作 provider integration evidence，不單獨代表完整帳務 / wallet / reconciliation 能力。
 
 ## 通用目標職缺版
 
@@ -22,12 +24,12 @@ Java Backend + 金流 / 遊戲平台 + provider 串接 + MQ / batch / wallet / b
 
 ```text
 Senior Java Backend / Platform Backend
-偏金流 / 遊戲 provider gateway、wallet / bet-settle、MQ / batch、交易一致性、legacy production flow takeover
+偏 payment / game provider gateway、遊戲 wallet / bet-settle、MQ / batch、跨系統狀態一致性風險、legacy production flow takeover
 ```
 
 投遞與談薪主軸：
 
-- 主軸 1：第三方金流 provider request / callback / query / withdraw，能講簽章、callback 重送、timeout、訂單狀態與補償邊界。
+- 主軸 1：第三方金流 provider / 商戶 request / callback / query / withdraw，能講簽章、callback ack / 重送風險、timeout unknown、訂單狀態與查單 / 人工補償邊界；不包裝成完整 wallet / reconciliation。
 - 主軸 2：第三方遊戲 provider / gameserver 錢包與下注結算，能講 bet / settle / refund / transfer-in-out、wallet boundary、round log 與 projection。
 - 主軸 3：MQ / Kafka / Quartz / batch，能講 request log、bet record、report projection / summary、big-win notification、partition / report path、retry、DLT、重跑與營運查詢。
 - 主軸 4：legacy takeover / system reconstruction，能講如何用 code reading、git history、DB / Redis / MQ / log flow 重建可維護脈絡。
@@ -41,7 +43,7 @@ Senior Java Backend / Platform Backend
 - B 版：遊戲 / Slot / Provider Backend，只在 JD 明確吃遊戲、slot、provider gateway、math module 時客製。
 - C 版：Platform / Legacy Takeover，只在 JD 明確吃 legacy system、platform backend、cross-repo reconstruction、MQ / batch、observability 時客製。
 
-三版不是同等強度。A 是主身份，B 是 domain 差異化，C 是工作方法與平台視角。談薪時也以 A 的高交易 / provider / wallet / MQ / legacy takeover 作主軸；B / C 只在對方職務吃得到時用來拉高匹配度。
+三版不是同等強度。A 是主身份，B 是 domain 差異化，C 是工作方法與平台視角。談薪時也以 A 的 provider integration、遊戲 wallet / bet-settle、MQ / batch、partition / high-traffic data 與 legacy takeover 作主軸；payment 只作 provider 對接證據，不單獨拿來抬成完整金流 owner。B / C 只在對方職務吃得到時用來拉高匹配度。
 
 ## 市場錨點
 
@@ -52,7 +54,7 @@ Senior Java Backend / Platform Backend
 - Java / Senior Backend 職缺可見月薪約 `80,000-150,000`。
 - 部分 Mid~Senior Java Backend 可見年薪約 `100-160 萬`，資深 Java / 後端職缺常見 `100,000+` 或 `80,000-150,000`。
 
-以上只作談薪錨點，不是保證可拿到。正式談薪前要重查當下資料，並看職缺是否真的需要金流、遊戲平台、provider gateway、交易一致性或 MQ / Kafka 經驗。
+以上只作談薪錨點，不是保證可拿到。正式談薪前要重查當下資料，並看職缺是否真的需要 payment provider integration、遊戲平台、provider gateway、wallet / bet-settle、交易一致性風險或 MQ / Kafka 經驗。
 
 ## 建議區間
 
@@ -216,37 +218,37 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 ### 標準版
 
 ```text
-我目前會以年薪 160-180 萬作為主要期待，實際會看職務範圍與整體 package。如果職務內容包含核心金流、provider 串接、高交易 flow、MQ / Kafka、legacy 系統接手、AI-assisted engineering workflow 或平台穩定性維護，我會希望落在區間中上段；若團隊成長性與技術深度足夠，也可以依整體條件討論。
+我目前會以年薪 160-180 萬作為主要期待，實際會看職務範圍與整體 package。如果職務內容包含 payment / game provider 串接、遊戲 wallet / bet-settle、高交易 flow、MQ / Kafka、legacy 系統接手、AI-assisted engineering workflow 或平台穩定性維護，我會希望落在區間中上段；若團隊成長性與技術深度足夠，也可以依整體條件討論。
 ```
 
 ### 通用目標職缺版
 
 ```text
-我會以年薪 160-180 萬作為主要期待，實際會依職務範圍、獎金結構與整體 package 討論。這個區間主要是因為我過去經驗不只是一般 API 維護，而是長期接觸金流 / 遊戲 provider 串接、wallet / bet-settle、MQ / batch、交易狀態一致性與 legacy production flow 接手。如果這個職缺確實需要處理 provider gateway、payment / wallet、retry / compensation、report projection 或既有系統重建，我會希望落在區間中上段。
+我會以年薪 160-180 萬作為主要期待，實際會依職務範圍、獎金結構與整體 package 討論。這個區間主要是因為我過去經驗不只是一般 API 維護，而是長期接觸 payment / game provider 串接、遊戲 wallet / bet-settle、MQ / batch、跨系統狀態一致性風險與 legacy production flow 接手。如果這個職缺確實需要處理 provider gateway、payment provider 對接、遊戲 wallet、retry / compensation、report projection 或既有系統重建，我會希望落在區間中上段。
 ```
 
 ### 對方問「為什麼是這個區間」
 
 ```text
-我的經驗不只是在單一 API 或 CRUD，而是長期接觸遊戲平台、金流 / 錢包、第三方 provider、下注結算、MQ / batch、報表 projection 與 legacy 系統維護，也有在缺乏完整交接文件時協助梳理兩套既有平台、恢復可維護狀態的經驗。近期我也把 AI coding tools 放進可控工程流程，用於 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。這類工作需要處理 callback 重送、provider timeout、retry 重複副作用、狀態一致性、線上可追蹤性、跨 repo 系統理解與工程流程控管，所以我會用 Senior Java Backend / Platform Backend 的職責範圍來評估待遇。
+我的經驗不只是在單一 API 或 CRUD，而是長期接觸遊戲平台、payment provider 對接、第三方遊戲 provider、遊戲 wallet / 下注結算、MQ / batch、報表 projection 與 legacy 系統維護，也有在缺乏完整交接文件時協助梳理兩套既有平台、恢復可維護狀態的經驗。近期我也把 AI coding tools 放進可控工程流程，用於 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。這類工作需要處理 callback 重送、provider timeout、retry 重複副作用、狀態一致性風險、線上可追蹤性、跨 repo 系統理解與工程流程控管，所以我會用 Senior Java Backend / Platform Backend 的職責範圍來評估待遇。
 ```
 
 ### 對方擔心「博弈 / 遊戲領域太窄」
 
 ```text
-我會把領域經驗轉成通用後端能力來看：第三方 provider 串接、金流 / wallet、下注結算、MQ / batch、報表 projection，本質上都是高交易系統的一致性、冪等、retry、補償、對帳與可觀測性問題。這些能力可以轉到 payment、wallet、fintech、B2B platform、high traffic API 或需要接 legacy production flow 的後端團隊。
+我會把領域經驗轉成通用後端能力來看：第三方 provider 串接、payment provider 對接、遊戲 wallet / 下注結算、MQ / batch、報表 projection，本質上都是高交易系統的狀態邊界、冪等、retry、補償、對帳與可觀測性問題。這些能力可以轉到 payment provider integration、wallet、B2B platform、high traffic API 或需要接 legacy production flow 的後端團隊；但我不會把 payment 經驗誇大成完整 fintech 帳務 owner。
 ```
 
 ### 對方壓低到 9 萬以下
 
 ```text
-我理解每家公司都有既有薪資區間。不過以我目前希望承擔的職務範圍，包含第三方 provider、金流 / 錢包、高交易 flow、缺交接文件的既有平台接手與系統維護，我會希望整體 package 至少能接近年薪 160 萬。如果月薪較低，可能需要看年終、分紅、職責範圍與成長性是否能補足。
+我理解每家公司都有既有薪資區間。不過以我目前希望承擔的職務範圍，包含第三方 provider、payment provider 對接、遊戲 wallet / bet-settle、高交易 flow、缺交接文件的既有平台接手與系統維護，我會希望整體 package 至少能接近年薪 160 萬。如果月薪較低，可能需要看年終、分紅、職責範圍與成長性是否能補足。
 ```
 
 ### 對方問「K3s / AI-assisted 能不能算主力」
 
 ```text
-我會把 K3s / rollout / observability 和 AI-assisted workflow 當作加分項，不會把它們說成主力 owner 經驗。我的主力仍是 Java backend 的 provider 串接、金流 / wallet、bet-settle、MQ / batch 與 legacy production flow reconstruction。K3s 和 AI 工具的價值在於我能更有效率地理解系統、整理風險、做 diff review 與交接文件，而不是取代工程判斷。
+我會把 K3s / rollout / observability 和 AI-assisted workflow 當作加分項，不會把它們說成主力 owner 經驗。我的主力仍是 Java backend 的 provider 串接、payment provider 對接、遊戲 wallet / bet-settle、MQ / batch 與 legacy production flow reconstruction。K3s 和 AI 工具的價值在於我能更有效率地理解系統、整理風險、做 diff review 與交接文件，而不是取代工程判斷。
 ```
 
 ## 不能這樣談
@@ -261,7 +263,7 @@ AI 對薪資的判斷可能偏樂觀，因為 KB 主要整理 Nick 的 code evid
 
 可支撐談薪的真實 / 保守定位：
 
-- 參與第三方金流 provider request / callback / query / withdraw 對接與維護。
+- 參與第三方金流 provider / 商戶 request / callback / query / withdraw 對接與維護。
 - 參與 payment / withdraw order consistency 類問題修正。
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接。
 - 參與 AntPlay slot game API / job / math module、UGSoft provider connector / gateway、RabbitMQ / Kafka / Quartz 非同步處理；game-job 可講 proxy report projection / summary、big-win notification、activity supporting flow 與 partition / report path。

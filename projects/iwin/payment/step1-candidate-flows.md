@@ -7,12 +7,12 @@
 
 ## 本次結論
 
-`payment` 是 iwin 金流 / 充值 / 提現核心後端，比 `app_bi` 更值得深挖。`app_bi` 只能看到人工查單 / 修單入口；真正的 provider request、callback、MQ 消費、玩家上下分與訂單狀態轉移在本 repo。
+`payment` 是 iwin 充值 / 提現與第三方金流 provider 對接後端，比 `app_bi` 更值得深挖。`app_bi` 只能看到人工查單 / 修單入口；真正的 provider request、callback、MQ 消費、玩家上下分呼叫與訂單狀態轉移在本 repo。2026-05-26 code-first audit 後，本 project 口徑需收斂為 provider integration / payment order state case，不包裝成完整 wallet、ledger、reconciliation 或完整 money correctness owner。
 
 目前最值得延伸的候選 flow：
 
 1. `payment-provider-callback`：三方充值 / 提現 callback，面試價值最高，直接涉及重複 callback、終態保護、MQ retry、玩家上下分與退款。
-2. `withdrawal-auto-review-refund`：玩家提款建單後的自動出款 / 失敗退款，money correctness、狀態轉移與 failure window 最密集。
+2. `withdrawal-auto-review-refund`：玩家提款建單後的自動出款 / 失敗退款，provider 出款狀態、payment order state、跨系統副作用與 failure window 最密集。
 3. `payment-order-provider-request`：玩家充值建單與 provider request，涉及商戶路由、簽章、外部 API timeout、訂單與 provider order id。
 4. `manual-order-review-repair`：人工審核 / 補單 / 退回，銜接 `app_bi` 的 payment repair 線索，適合做 owner decision 與補償邊界。
 5. `payment-channel-config-selection`：支付列表 / 支付詳情 / 提現設定選擇，涉及 Redis projection、玩家分層、商戶配置與 runtime 設定一致性。
@@ -232,7 +232,7 @@ production 風險：
 
 為什麼重要：
 
-- 從玩家提交提现到自動出款、provider request、callback 成功 / 失敗退款，完整碰到 money correctness。
+- 從玩家提交提现到自動出款、provider request、callback 成功 / 失敗退款，完整碰到 payment order、玩家餘額副作用與 provider payout status 的狀態收斂風險。
 - 涉及玩家綁定資料、黑名單、提现配置、打碼目標、玩家是否已有待審單、扣分、訂單建單、auto merchant selection、MQ 出款。
 - 有自動免審 / 自動出款規則，Owner decision 題很多。
 

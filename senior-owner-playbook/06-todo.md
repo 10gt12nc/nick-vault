@@ -64,7 +64,7 @@
 - 已完成 `game_job partition-table-creation Step 3`，建立每日 / 每月分表建立主學習包；目前只作 code-backed 面試分析素材，不更新正式履歷 / 自傳。
 - 已完成 `game_job partition-table-creation Step 4`，轉成 table rollover / schema rollout reliability 的正式面試 case；目前仍只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 已完成 `game_job partition-table-creation Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為 table rollover reliability 的 code-backed 面試案例。
-- 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為金流 callback consistency / compensation 的保守面試素材。
+- 已完成 `payment payment-provider-callback Step 5`，判定不更新正式履歷 / 自傳；2026-05-26 code-first audit 後，本 flow 改定位為 payment provider callback 狀態風險 / compensation 的保守面試素材，不包裝成完整 money correctness / wallet / reconciliation。
 - 已完成 `payment withdrawal-auto-review-refund Step 5`，判定不更新正式履歷 / 自傳；本 flow 保留為提款、自動審核 / 自動出款、失敗退款的一致性與補償面試素材。
 - 已完成 `payment payment-order-provider-request Step 5`，完成 provider request claim gate；已確認 Nick 在 Pay4z / NaNapay / BFPAY / NimTestPay 等 provider request / query / callback 相關 code 有 path-specific commits，2026-05-20 consolidation 重新覆核後又補入 GoldenPay direct commits；正式履歷可用「參與」口徑，不寫主導完整金流。
 - 已完成 `payment manual-order-review-repair Step 3`，建立人工審核 / 補單 / 訂單修復主學習包；目前只作面試素材，不更新正式履歷 / 自傳。
@@ -73,7 +73,7 @@
 - 已完成 `payment payment-channel-config-selection Step 3`，建立支付列表 / 商戶 / 玩家層級 / 提現設定選擇的 runtime config 主學習包；目前只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-channel-config-selection Step 4`，轉成可面試 case；目前仍只作面試素材，不更新正式履歷 / 自傳。
 - 已完成 `payment payment-channel-config-selection Step 5`，判定不更新正式履歷 / 自傳；payment Top 5 代表 flow 已收斂，但不代表全 payment project 已完成。
-- 已完成 `iwin payment contribution claim consolidation`；2026-05-20 已重新覆核並補入 GoldenPay direct evidence。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但這是履歷 claim 收斂，不是 payment 全量 flow 完成；仍不寫完整金流 owner。
+- 已完成 `iwin payment contribution claim consolidation`；2026-05-20 已重新覆核並補入 GoldenPay direct evidence，2026-05-26 再做 code-first claim audit。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 payment 升級為「部分真實開發過」，但 claim 只限 provider / 商戶對接、payment / withdraw order consistency、查單與人工補償邊界；不是 payment 全量 flow 完成，也不寫完整金流 / wallet / ledger / reconciliation owner。
 - 已完成 `iwin_gameserver third-party-transfer-in-out Step 5`；原 Step 5 判定暫不更新正式履歷 / 自傳，2026-05-20 project-level consolidation 已用 Nick / `10gt12nc` direct commits 升級為可併入第三方 provider 投派整合保守 claim。
 - 已完成 `iwin_gameserver center-http-deposit-withdraw Step 3`，建立 center_http 上分 / 下分主學習包；目前只作 code-backed 面試素材，不更新正式履歷 / 自傳。
 - 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
@@ -232,7 +232,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 
 1. `game_api`：`contribution claim consolidation` 已完成；正式履歷只採 coupon 保守 claim，不因新規則重做。
 2. `game_job`：`contribution claim consolidation` 已完成，不因新規則重做。
-3. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，2026-05-20 已重新覆核並補入 GoldenPay direct evidence，不因新規則重做；若 Nick 指定可追加 provider-by-provider、transfer wallet、MQ / reconciliation、game lobby 上下分等 flow。
+3. `payment`：Top 5 代表 flow 與 contribution consolidation 已收斂，2026-05-20 已重新覆核並補入 GoldenPay direct evidence，2026-05-26 已降回 provider / 商戶對接口徑；不因新規則重做。若 Nick 指定，可追加 provider-by-provider、MQ / reconciliation 邊界、game lobby 上下分等 flow，但這是可選加強。
 4. `app_bi`：rolling / scoped negative contribution claim consolidation 已完成；不放正式履歷主成果。
 5. `bi_share`：rolling / scoped negative contribution claim consolidation 已完成；不放正式履歷主成果。
 6. `third_games_api`：rolling / scoped contribution consolidation 已完成；`gsc-transfer-bet-settle-rollback Step 5`、`oneapi-wallet-bet-result Step 5`、`antplay-bet-settle-rollback Step 5`、`gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；本 project 本批代表 flow claim gate 已收斂。

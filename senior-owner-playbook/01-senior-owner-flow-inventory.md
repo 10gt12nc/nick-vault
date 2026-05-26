@@ -23,12 +23,12 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 用途：當 Nick 只問「下一個整理哪個 project / repo」時，先用這份排序判斷；真正開工前仍必須做該 repo 的 Step 1 / Step 2，不能把本表當 code evidence。
 
-評估目標：Senior Java Backend / Platform Backend / System Owner 的履歷與面試素材價值。優先看 production flow、money correctness、wallet / bet / settlement、idempotency、retry / compensation、reconciliation、observability、rollout / rollback。workspace、官網、前端、mock、simulator 預設只當輔助入口。
+評估目標：Senior Java Backend / Platform Backend / System Owner 的履歷與面試素材價值。優先看 production flow、provider integration、wallet / bet / settlement、idempotency、retry / compensation、reconciliation 邊界、observability、rollout / rollback。workspace、官網、前端、mock、simulator 預設只當輔助入口。
 
 | 排名 | Project / repo | 初步判斷 |
 | --- | --- | --- |
 | 1 | `math-core` / `*-math` | 差異化最高；若有遊戲數學、RTP、派彩、模擬驗證，是最稀缺素材 |
-| 2 | `payment` | 金流 callback、訂單狀態、MQ retry、上分 / 退款、對帳，Backend 最高價值主線 |
+| 2 | `payment` | 第三方金流 provider request / callback / query / withdraw、訂單狀態、MQ retry、上分 / 退款與查單 / 人工補償邊界；高價值但不可包裝成完整 wallet / ledger owner |
 | 3 | `iwin_gameserver` | 遊戲 runtime / wallet source of truth，可追投注、派彩、退款、錢包一致性 |
 | 4 | `third_games_api` | 第三方遊戲 seamless wallet、bet / settle / rollback，交易邊界清楚 |
 | 5 | `antplay-slot-game-api` | 遊戲 API 主線，可能接下注、遊戲啟動、玩家狀態與錢包 |
@@ -71,7 +71,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 使用提醒：
 
 - 若目標是最快產出 Senior Backend 履歷素材，依最新 KB 先檢查 Step 2 定義的本批代表 flows 是否都完成。`payment`、`game_job`、`game_api` 已完成 project-level consolidation，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，不需要因新規則重做。`game_api` 正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
-- 2026-05-20 補充：Nick 已明確確認 `payment` 實際開發很多，且已完成 project-level consolidation / 重新覆核。`payment` 可保守寫「參與多個第三方金流 provider 對接與維護、provider callback / sign / response parsing bugfix、payment / withdraw order consistency 修正」，GoldenPay 可列入多 provider evidence，但不得寫成主導完整金流、全部 provider owner 或 GoldenPay production owner。
+- 2026-05-26 code-first claim audit：`payment` 確認有 Nick / `10gt12nc` 多 provider 對接與維護 evidence，定位要收斂為 provider / 商戶 integration、payment / withdraw order consistency、查單與人工補償邊界；不得把 `payment` 單獨寫成完整 money correctness、wallet、ledger、reconciliation 或完整金流 owner。2026-05-20 補充仍有效：GoldenPay 可列入多 provider evidence，但不得寫成主導完整金流、全部 provider owner 或 GoldenPay production owner。
 - 2026-05-20 補充：`iwin_gameserver` 已完成 rolling / scoped contribution consolidation。Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits；可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」，不得寫成完整 gameserver owner、完整 wallet owner、完整上分 / 下分 owner 或完整 idempotency / reconciliation owner。
 - 2026-05-20 補充：`iwin-workspace` 已完成 rolling / scoped contribution consolidation。Nick / `10gt12nc` 有大量 KB / docs / environment index / tool direct commits，但 repo 本身不是 production service，不新增 standalone 正式履歷主成果；只作工作方法、cross-repo system reconstruction 與 knowledge governance supporting evidence。
 - 2026-05-20 補充：`ugsoft-admin-api` 已完成 rolling contribution consolidation。Nick / `10gt12nc` 在 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record 與 Quartz / report job 有大量 direct commits；可保守寫「參與 UGSoft 後台 API / control plane 與非同步資料處理開發維護」，不得寫成完整 UG 平台、完整 provider gateway、完整 wallet / money flow 或完整 RabbitMQ architecture owner。

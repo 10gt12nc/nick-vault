@@ -30,13 +30,15 @@ Senior Java Backend
 
 > 2026-05-25 面試準備比例：通用對標用 `70 / 20 / 10` 收斂。70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 遇到 case 卡點或面試回饋再補；10% LeetCode / coding test 作投遞前保險。不同角色只調整 case 權重，不改主線。
 
+> 2026-05-26 code-first claim audit：`payment` 在本矩陣中只代表 payment provider / 商戶對接 case，不代表完整金流帳務、wallet、ledger 或 reconciliation owner。若職缺明確要求完整 payment platform / wallet / fintech 帳務 owner，要更小心；Nick 目前更適合 provider integration、遊戲 wallet / bet-settle、MQ / batch、partition / high-traffic data 與 legacy takeover 的組合型 Senior Backend。
+
 可以投：
 
 - Senior Java Backend Engineer
 - Backend Engineer 偏 Senior
 - Platform Backend Engineer
-- Gaming / Payment / Wallet / Provider Integration Backend
-- 需要接手複雜系統、整合、維運、事件流、金流 / 錢包的職缺
+- Gaming / Provider Integration / Wallet / Platform Backend
+- 需要接手複雜系統、整合、維運、事件流、payment provider 對接、遊戲錢包 / 下注結算的職缺
 
 要小心：
 
@@ -59,7 +61,7 @@ Senior Java Backend
 
 第一優先：
 
-- `payment-provider-callback`
+- `payment-provider-callback`（provider / 商戶對接，不作完整 payment platform owner）
 - `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
 - `antplay-slot-game-job/proxy-user-data-report-projection` 或 `request-log-rabbitmq-async`
 
@@ -83,7 +85,7 @@ Senior Java Backend
 可以寫：
 
 - 參與 / 維護 / 分析 / 優化高交易平台後端流程。
-- 參與金流、錢包、遊戲結算、MQ、排程報表與後台控制面相關開發與維護。
+- 參與 payment provider 對接、遊戲錢包、遊戲結算、MQ、排程報表與後台控制面相關開發與維護。
 - 具備既有系統逆向、log 追蹤、資料流梳理與 production issue 排查經驗。
 
 避免寫：
@@ -239,7 +241,7 @@ Senior Java Backend
 
 如果只能準備 5 條，順序如下：
 
-1. `payment-provider-callback`
+1. `payment-provider-callback` / `payment-order-provider-request`
 2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
 3. `antplay-slot-game-job/proxy-user-data-report-projection`
 4. `request-log-rabbitmq-async` 或 `bet-record-sharding-schema-route`
@@ -247,8 +249,8 @@ Senior Java Backend
 
 這 5 條分別覆蓋：
 
-- 金流 callback
-- wallet / ledger / compensation
+- payment provider callback / request
+- 遊戲 wallet / ledger / compensation
 - Kafka / MQ reliability
 - 遊戲交易 / 結算 / rollback
 - observability / rollout / production tracing
@@ -286,7 +288,7 @@ Senior Java Backend
 
 狀態：
 
-- payment、wallet / bet-settle、MQ / projection 至少各有一條。
+- payment provider 對接、遊戲 wallet / bet-settle、MQ / projection 至少各有一條。
 - 每條能講 3 分鐘，有 evidence、claim boundary 與 5 個常見追問。
 - 能回答入口、source of truth、failure window、state transition、retry / compensation。
 
@@ -299,7 +301,7 @@ Senior Java Backend
 
 狀態：
 
-- payment、wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability 都有。
+- payment provider 對接、遊戲 wallet / bet-settle、MQ / projection、partition / high-traffic data、rollout / observability 都有。
 - 每條都有 90 秒、3 分鐘、STAR、failure scenarios、owner decision 與不可誇大邊界。
 - 履歷 bullet 已依 evidence 調整。
 - 能依 JD 重排案例順序，不靠背稿硬講。
@@ -334,11 +336,11 @@ Senior Java Backend
 
 ```text
 我是一名正在往 Senior / Platform Backend / System Owner 發展的 Java 後端工程師，
-強項是高交易平台、既有系統接手、金流 / 錢包 / 遊戲結算、MQ / Kafka、production flow 分析與可恢復性思維。
+強項是高交易平台、既有系統接手、payment provider 對接、遊戲錢包 / 遊戲結算、MQ / Kafka、production flow 分析與可恢復性思維。
 ```
 
 這個定位真實，而且市場有價值。
 
 接下來只要把 3-5 條 case 做實，就不是空喊 Senior，而是有東西可以打。
 
-如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment / wallet / bet-settle / MQ / batch flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。
+如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment provider / game wallet / bet-settle / MQ / batch flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。

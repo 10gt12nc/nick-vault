@@ -150,7 +150,7 @@ payment log grep 找到：
 
 ## Step 4 面試 case 結論
 
-- 本 flow 已可作為保守面試 case，主軸是跨系統 money correctness。
+- 本 flow 已可作為保守面試 case，主軸是 provider 出款狀態風險與跨系統副作用邊界；不代表 Nick 已實作完整 wallet / reconciliation。
 - 核心講法：`payment_order`、game lobby / center 餘額、provider payout status 是三個 source of truth。
 - 高風險斷點：扣分成功但建單失敗、MQ produce fail only log、provider accepted no callback、重複 callback / MQ retry、下游 `billNo` 去重待確認。
 - 仍不可升級履歷 claim，因為 Nick 本人 evidence 未補。
@@ -161,7 +161,7 @@ payment log grep 找到：
 - 不更新 `senior-owner-playbook/05-resume-master-zh.md`。
 - 不更新 `senior-owner-playbook/08-application-autobiography-zh.md`。
 - 原因：目前 evidence 只到 `專案存在 / code-backed` 與 `分析素材 / learning-only`，缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
-- 可保留為 Senior 面試素材：提款 money correctness、扣分後建單 failure window、自動審核條件、provider accepted 不等於成功、失敗退款防重複、`billNo` trace 與 reconciliation 邊界。
+- 可保留為 Senior 面試素材：提款 provider flow、扣分後建單 failure window、自動審核條件、provider accepted 不等於成功、失敗退款防重複、`billNo` trace 與 reconciliation 邊界。
 - 不可升級成：Nick 主導自動出款、設計提款退款架構、修復重複退款、確認 wallet exactly-once、完整 payment owner。
 
 ## 下一步

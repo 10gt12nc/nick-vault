@@ -8,13 +8,15 @@
 
 > 2026-05-25 面試 case 對齊檢查：已完成。`08` 的 104 主打 bullet 已對應到本檔 8-10 條可切換 case；目前不是缺履歷素材，而是要先把三條主力 case 練到能穩定講 90 秒 / 3 分鐘並抗追問。沒有特定 JD 時，先用「payment provider」、「wallet / bet-settle」、「Kafka / report projection」三條組成中等可面版本。
 
+> 2026-05-26 code-first claim audit：payment case 要降級為 `provider integration / merchant integration` case。它可以講 request / callback / query / withdraw、sign、amount unit、merchant order id、provider response parsing、timeout unknown 與查單 / 人工補償風險；但不能讓面試官以為 Nick 實作過完整 wallet、ledger、reconciliation 或完整 money correctness framework。真正撐 Senior 技術深度的是 payment provider + 遊戲 wallet / bet-settle + MQ projection + partition / high-traffic data + math module 的組合。
+
 ## 104 主打 bullet 對齊表
 
 用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。
 
 | 104 / 08 主打 claim | 優先面試 case | 證據層級 | 3 分鐘主軸 | 不可誇大 |
 | --- | --- | --- | --- | --- |
-| 多個第三方金流 provider request / callback / query / withdraw 對接與維護 | 案例 1：金流 callback 一致性；`payment-order-provider-request` | 本人確認 + 真實開發過 + code-backed | provider sign、merchant order id、callback 重送、timeout、order state 與補償邊界 | 不說主導完整金流、全部 provider owner、完整 reconciliation owner |
+| 多個第三方金流 provider request / callback / query / withdraw 對接與維護 | 案例 1：payment provider 對接；`payment-order-provider-request` | 本人確認 + 真實開發過 + code-backed | provider sign、merchant order id、callback ack / 重送風險、timeout unknown、order state 與查單 / 人工補償邊界 | 不說主導完整金流、全部 provider owner、完整 wallet / reconciliation owner；不把 payment 包成完整 money correctness framework |
 | 第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接 | 案例 3：下注 / 派彩 / rollback；`iwin_gameserver/third-party-transfer-in-out`；`third_games_api` GSC / OneAPI / Antplay 補充 | 部分真實開發過 + code-backed；部分 adapter interview-only | provider transaction、wallet mutation boundary、round log、adapter Mongo evidence、retry duplicate failure window | 不把 `third_games_api` adapter 包成 Nick 主導；不說完整 gameserver / wallet owner |
 | AntPlay slot game API / runtime、bet / settle / rollback、transfer wallet | 案例 3：AntPlay slot game API 補充；Transfer wallet API 面試主軸 | 真實開發過 + code-backed | bet record state、single / transfer wallet、provider settle / rollback、request log MQ、deadlock / compensation 邊界 | 不說完整 slot platform、完整 wallet / ledger / reconciliation、完整 RTP / math owner |
 | RabbitMQ / Kafka / Quartz / batch、request log、報表 projection、big-win notification | 案例 4：Kafka / MQ 可靠性；AntPlay slot game job 補充；案例 6：報表 projection | 真實開發過 + code-backed；部分 analysis-first | event -> DB projection、consumer retry / DLT、summary / backup / delete、notification duplicate、report source of truth | 不說完整 Kafka event platform、exactly-once、完整 BI / report platform |
@@ -29,7 +31,7 @@
 
 1. `payment-order-provider-request` / `payment-provider-callback`
    - 對應履歷：第三方金流 provider 對接與維護。
-   - 要講到：簽章、建單、callback / query、timeout、重送、訂單終態、補償 / 對帳。
+   - 要講到：簽章、建單、callback / query、timeout unknown、callback ack / 重送風險、訂單終態、查單 / 人工補償邊界。
    - 保守說法：我參與多個 provider request / callback / query / withdraw flow 的對接與維護，並處理過 provider sign、response parsing 與 order consistency 類問題。
 
 2. `antplay-slot-game-api/slot-bet-settle-rollback` 或 `iwin_gameserver/third-party-transfer-in-out`
@@ -56,12 +58,12 @@
 通用 Senior Java Backend / Platform Backend 預設先用下面 10 條排序；有特定 JD 時再依職缺重排，不要重新平均掃 repo。
 
 1. `payment-order-provider-request` / `payment-provider-callback`
-   - 主軸：金流 provider、簽章、callback 重送、查單、訂單狀態、補償。
-   - 定位：第一主力，正式履歷可用 project-level payment 保守 claim 支撐。
+   - 主軸：payment provider / 商戶對接、簽章、callback ack / 重送風險、查單、訂單狀態、timeout unknown。
+   - 定位：第一主力之一，正式履歷可用 project-level payment 保守 claim 支撐；但它不是完整 wallet / reconciliation case，技術深度要和 case 3 / 4 / 6 組合。
 
 2. `withdrawal-auto-review-refund`
-   - 主軸：提款審核、自動出款、失敗退款、money correctness。
-   - 定位：補強 payment 不只充值，也懂提款側；不單獨寫完整出款 owner。
+   - 主軸：提款審核、自動出款、失敗退款、provider accepted / failed 邊界。
+   - 定位：補強 payment 不只充值，也懂提款側；只作 payment provider / withdraw flow 分析，不單獨寫完整出款、wallet 或 money correctness owner。
 
 3. `antplay-slot-game-api/slot-bet-settle-rollback`
    - 主軸：下注、結算、rollback、bet record state、wallet 邊界。
@@ -161,7 +163,7 @@
 ```text
 我比較有代表性的一條經驗是第三方金流 provider request / callback。
 
-這類 flow 表面上是接 provider API，但真正麻煩的是 money state。玩家建立充值訂單後，系統要產生 merchant order id、組 provider request、做簽章與金額單位轉換；provider 後續可能 callback 成功、失敗、重送，或 request timeout 但實際已收款。所以我在看這類 flow 時，不會只看 API 回傳，而會先確認訂單狀態機、callback log、查單入口與補償邊界。
+這類 flow 表面上是接 provider API，但真正麻煩的是 payment order state 與外部 provider 狀態收斂。玩家建立充值訂單後，系統要產生 merchant order id、組 provider request、做簽章與金額單位轉換；provider 後續可能 callback 成功、失敗、重送，或 request timeout 但實際已收款。所以我在看這類 flow 時，不會只看 API 回傳，而會先確認訂單狀態機、callback log、查單入口與補償邊界。
 
 我會把 source of truth 放在本地 payment order 和可審計的 provider callback / query evidence，而不是單次 HTTP response。重複 callback 要能用 merchant order id 或 provider transaction id 做冪等；已終態訂單不能被舊 callback 覆蓋；如果 DB 成功但後續 MQ 或上分失敗，要能留下 pending / failed 狀態，讓 reconciliation 或人工補償可以接手。
 
@@ -181,7 +183,7 @@
 
 如果要我 owner 這條 flow，我會先補三件事：第一，明確定義 payment order lifecycle 和 allowed transition；第二，把 callback / query evidence 保存成可追蹤 audit，不讓單次 response 變成唯一判斷；第三，針對 DB 成功但下游失敗、provider 成功但本地 timeout、重複 callback 這幾個 failure window 設計 alert 與補償 runbook。
 
-我的實際說法會保守一點：我參與過多個第三方金流 provider request / callback / query / withdraw 對接與維護，也處理過 provider sign、response parsing、查單與 payment / withdraw order consistency 類問題。這可以支撐我講 provider integration 和 money correctness，但我不會說自己主導完整金流、完整帳務或完整 reconciliation。
+我的實際說法會保守一點：我參與過多個第三方金流 provider request / callback / query / withdraw 對接與維護，也處理過 provider sign、response parsing、查單與 payment / withdraw order consistency 類問題。這可以支撐我講 provider integration、訂單狀態與外部副作用風險，但我不會說自己主導完整金流、完整帳務、完整 wallet 或完整 reconciliation。
 ```
 
 常見追問：
@@ -298,7 +300,7 @@
 先把 3 條主力講熟 -> 開始投遞 / 面試 -> 用追問回填缺口 -> 再補第 4、5 條。
 ```
 
-## 案例 1：金流 callback 一致性
+## 案例 1：Payment provider callback 狀態風險
 
 對應 flow：
 
@@ -308,7 +310,7 @@
 
 面試主軸：
 
-第三方金流 callback 不是單純接 API。真正困難在於 provider 可能重送、timeout、欄位不一致、簽章失敗、訂單已終態、MQ 副作用失敗、人工補償介入。Senior 要能定義訂單 lifecycle、冪等 key、callback audit、對帳查詢與補償邊界。
+第三方金流 provider callback 不是單純接 API。真正困難在於 provider 可能重送、timeout、欄位不一致、簽章失敗、訂單已終態、MQ 副作用失敗、人工補償介入。Senior 要能定義訂單 lifecycle、冪等 key、callback audit、查單與補償邊界；不能把它說成已實作完整 wallet / ledger / reconciliation。
 
 可講重點：
 

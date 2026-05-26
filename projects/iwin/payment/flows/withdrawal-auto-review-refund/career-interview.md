@@ -63,7 +63,7 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 
 最穩的講法不是「我做了自動出款」，而是：
 
-> 我會用提款 flow 說明跨系統資金一致性：payment order、game lobby 玩家餘額、provider payout status 是三個 source of truth；每個副作用都有半成功風險，所以要靠狀態機、idempotency key、MQ retry 邊界、查單 / reconciliation 和人工補償 SOP 收斂。
+> 我會用提款 flow 說明 provider 出款與玩家餘額之間的狀態風險：payment order、game lobby 玩家餘額、provider payout status 是三個狀態來源；每個副作用都有半成功風險，所以要靠狀態機、idempotency key、MQ retry 邊界、查單 / reconciliation 和人工補償 SOP 收斂。這是 code-backed 分析，不代表我已實作完整 wallet / reconciliation。
 
 ## 高風險斷點回答
 
@@ -80,7 +80,7 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 - Situation：提款 flow 橫跨 payment 訂單、game lobby 錢包、provider 代付與 callback。
 - Task：釐清提款成功、失敗退款、卡單、重複 callback 時的資金一致性邊界。
 - Action：把 flow 拆成扣分建單、自動審核、provider request、callback notify、退款補償；逐段標出 source of truth、idempotency guard、retry 和人工補償點。
-- Result：可形成一套 money correctness 面試案例，但目前仍是 code-backed 分析素材，不升級成真實開發 claim。
+- Result：可形成一套 provider 出款狀態風險面試案例，但目前仍是 code-backed 分析素材，不升級成完整 wallet / reconciliation 或真實開發 claim。
 
 ## 下一步
 
@@ -89,5 +89,5 @@ provider 下單成功不代表終態完成，通常還要等 callback。provider
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不單獨升級成本 flow 的真實開發成果；project-level payment contribution consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
-- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 provider 狀態風險、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
 - 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

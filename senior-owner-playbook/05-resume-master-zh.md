@@ -6,6 +6,8 @@
 
 > 2026-05-19 payment consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/payment/contribution-claim-consolidation.md`。Nick 本人確認加上 `10gt12nc` commits / branches / 重要 diff，可把 `iwin/payment` 升級為「部分真實開發過」：多個 provider request / callback / query / withdraw 對接或維護、provider sign / response parsing bugfix、payment / withdraw order consistency 修正；2026-05-20 另補入 GoldenPay skeleton / protocol / spec handling / k3s enable direct commits。仍不得寫成主導完整金流、全部 provider owner、完整 wallet / reconciliation owner 或量化改善。
 
+> 2026-05-26 code-first claim audit：重新對照 `iwin/payment` source repo、`10gt12nc` path-specific log 與 payment flow claim boundary。結論要更保守：payment 的真實履歷價值是「第三方金流 provider / 商戶對接與維護」，包含 request / callback / query / withdraw、簽章驗簽、欄位 / 金額單位、merchant order id、provider response parsing 與 order insert consistency。不要把 payment 本身說成 Nick 從實作中掌握完整 money correctness、wallet consistency、reconciliation 或完整金流帳務 owner；這些只能作為面試分析風險點，且要和遊戲 wallet / bet-settle、MQ projection、partition、math module 等其他 evidence 分開支撐。
+
 > 2026-05-19 game_api consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/game_api/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_api` coupon Controller / Service / DAO / mapper / entity 與 `iwin_gameserver` bet target handler 有 path-specific commits，可保守寫「參與玩家優惠券兌換上分 / 打碼要求 flow 開發」。`partner-deposit-withdraw-bill` 與 `agent-bonus-receive-transfer` 目前只作 code-backed 面試素材；邀請好友轉盤活動有 direct commits，但尚未做完整 flow package，只作補充 evidence。仍不得寫成主導完整 coupon / reward system、Partner API、代理佣金、修復 production 雙領事故、設計 Redis lock 或完整玩家端 API owner。
 
 > 2026-05-19 game_job consolidation，2026-05-20 重新覆核：已完成 `projects/iwin/game_job/contribution-claim-consolidation.md`。Nick / `10gt12nc` 在 `game_job` daily summary job / service / mapper / config path 有 #247 主體 commits，也有 PG / Antplay 時區修正、新增玩家 / 留存與備份 / 清理相關 commits，可保守寫「參與每日遊戲資料彙總 batch / BI projection 開發與維護」。仍不得寫成主導完整 BI pipeline、完整 game_job owner、負責上游 gameserver 到 app_bi 全鏈路或改善 X%。
@@ -54,7 +56,7 @@ Senior Java Backend Engineer / Platform Backend Engineer
 
 ### 一句話定位
 
-Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider 串接、金流 / 錢包、遊戲下注結算、事件流、排程報表、後台控制面與 slot math module 維護；擅長接手文件不足的既有系統，透過 code reading、log 追蹤與資料流梳理重建 production flow，關注交易一致性、冪等、補償、對帳與可觀測性。
+Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider 串接、金流 provider 對接、遊戲錢包 / 下注結算、事件流、排程報表、後台控制面與 slot math module 維護；擅長接手文件不足的既有系統，透過 code reading、log 追蹤與資料流梳理重建 production flow，關注跨系統狀態、冪等、補償、對帳風險與可觀測性。
 
 ### 公開 / 客製履歷版本強度覆核
 
@@ -62,7 +64,7 @@ Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider
 
 | 版本 | 定位 | 強度判斷 | Evidence | 使用方式 | 不可誇大 |
 | --- | --- | --- | --- | --- | --- |
-| A 版：通用高交易 Java Backend / Platform Backend | 第三方 provider、金流 / 錢包、下注結算、MQ / batch、legacy production flow takeover | 最強，公開主版本 | payment 本人確認 + direct commits；iwin_gameserver / game_job 部分真實開發過；UGSoft connector / admin、AntPlay game-api / game-job 有大量 direct commits；多條代表 flow 已 Step 5 | 104 / LinkedIn / 獵頭公開主版本；沒有 JD 時預設使用 | 不寫完整金流 owner、完整 wallet / ledger / reconciliation、完整 Kafka / MQ platform |
+| A 版：通用高交易 Java Backend / Platform Backend | 第三方 provider、payment provider 對接、遊戲錢包 / 下注結算、MQ / batch、legacy production flow takeover | 最強，公開主版本 | payment 本人確認 + direct commits，但限 provider / 商戶對接；iwin_gameserver / game_job 部分真實開發過；UGSoft connector / admin、AntPlay game-api / game-job 有大量 direct commits；多條代表 flow 已 Step 5 | 104 / LinkedIn / 獵頭公開主版本；沒有 JD 時預設使用 | 不寫完整金流 owner、完整 wallet / ledger / reconciliation、完整 Kafka / MQ platform；payment 不包裝成完整 money correctness 來源 |
 | B 版：遊戲 / Slot / Provider Backend | 遊戲 provider、slot game API / runtime、bet / settle / rollback、slot job、`*-math` | 次強，是 A 的 domain 差異化，不是獨立主身份 | AntPlay game-api / game-job / math-core / `*-math` 有 direct commits 與 Step 5；iwin_gameserver provider 投派整合有 direct evidence | 投遊戲、slot、provider gateway、game platform 類 JD 時，把 B 相關段落往前 | 不寫完整 slot platform、完整遊戲數學模型、完整 RTP 策略、全部 math module owner |
 | C 版：Platform / Legacy Takeover / System Reconstruction | 缺交接文件接手、cross-repo reconstruction、MQ / batch、observability、AI-assisted workflow | 輔助版，是 A 的工作方法與平台視角，不宜單獨當最強主線 | legacy takeover 為本人確認 + workspace / KB supporting evidence；MQ / batch 有 direct evidence；K3s 為 interview-only；AI-assisted workflow 為工程方法 evidence | 遇到 platform、legacy system、內部平台、系統整合、維運改善 JD 時，把 C 相關段落往前 | 不寫完整 DevOps / SRE owner、完整 K3s migration、完整 platform architect 或 AI 自動完成 production 開發 |
 
@@ -79,8 +81,8 @@ A 是本體；B 是領域差異化；C 是工作方法與平台視角。
 後端工程師｜瀚鼎股份有限公司（前星元資訊，同團隊轉移）
 `2023/10 - 至今｜Java / Spring Boot｜博弈 / 遊戲平台後端`
 
-- 參與中大型博弈 / 遊戲平台後端開發與維護，涵蓋 Java / Spring Boot API、第三方 provider 串接、金流 / 錢包流程、遊戲下注結算、事件流、排程報表、後台控制面與 slot math module 維護。
-- 參與多個第三方金流 provider request / callback / query / withdraw 對接與維護，處理簽章驗證、金額單位、merchant order id、callback ack、查單、provider response parsing 與 payment / withdraw order consistency 類問題。
+- 參與中大型博弈 / 遊戲平台後端開發與維護，涵蓋 Java / Spring Boot API、第三方 provider 串接、金流 provider 對接、遊戲錢包 / 下注結算、事件流、排程報表、後台控制面與 slot math module 維護。
+- 參與多個第三方金流 provider / 商戶 request / callback / query / withdraw 對接與維護，處理簽章驗證、金額單位、merchant order id、callback ack、查單、provider response parsing 與 payment / withdraw order insert consistency 類問題；不把此項包裝成完整 wallet / reconciliation 經驗。
 - 參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，處理 Antplay / GSC / PG（正式時建議取代為「多個第三方遊戲 provider」）類 bet / settle / refund / transfer-in-out、center command、玩家餘額異動 hook、log reel / bet log projection 與 refund 邊界。
 - 參與 AntPlay slot 遊戲 API / runtime（正式時建議取代為「Slot 遊戲 API / runtime」）開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record / request log / transfer transaction 分表、RabbitMQ request log、Quartz 補通知、schema routing 與 RTP / dark pool / player control 關聯修正。
 - 參與 UGSoft provider connector / gateway（正式時建議取代為「第三方遊戲 provider connector / gateway」）開發維護，串接 AntPlay / DerPlay（正式時建議取代為「第三方遊戲 provider」）等第三方遊戲 provider 的 login、balance、transfer in / out、bet-settle、callback、request / bet record MQ、transfer wallet compensation、分表與 provider fail-fast。
@@ -105,7 +107,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 
 | 專案包 | 可用說法 | 證據狀態 |
 | --- | --- | --- |
-| iwin payment（正式時建議取代為「遊戲平台金流系統」） | 多 provider 金流 request / callback / query / withdraw、sign / response parsing、order consistency | 本人確認 + direct commits + code-backed |
+| iwin payment（正式時建議取代為「第三方金流 provider 對接」） | 多 provider / 商戶 request / callback / query / withdraw、sign / response parsing、order insert consistency；只作 provider integration，不作完整金流 / wallet owner | 本人確認 + direct commits + code-backed |
 | iwin gameserver / game_api / game_job（正式時建議取代為「遊戲平台 gameserver / 遊戲 API / batch job」） | 第三方遊戲 provider 投派、coupon 上分、daily summary、Mongo backup | 部分真實開發過 + code-backed |
 | UGSoft connector / admin（正式時建議取代為「provider connector / 後台控制面」） | provider connector、transfer wallet、request / bet record MQ、後台 control plane | 真實開發過 + code-backed |
 | AntPlay game-api / game-job / admin-api（正式時建議取代為「Slot 遊戲 API / job / 後台 API」） | slot runtime、bet / settle / rollback、transfer wallet、schema routing、runtime decision、job / event processing、後台風控監控 | 真實開發過 + code-backed |
@@ -122,7 +124,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 
 `2023/10 - 至今｜台北｜博弈 / 遊戲平台後端、平台整合、營運後台、事件流與維運`
 
-- 參與中大型博弈 / 遊戲平台後端系統維護與功能開發，工作範圍涵蓋 Java / Spring Boot API、後台營運功能、第三方 provider 串接、金流 / 錢包相關流程、排程報表、Redis / MQ / DB 資料流與部署環境理解。
+- 參與中大型博弈 / 遊戲平台後端系統維護與功能開發，工作範圍涵蓋 Java / Spring Boot API、後台營運功能、第三方 provider 串接、金流 provider 對接、遊戲錢包 / 下注結算相關流程、排程報表、Redis / MQ / DB 資料流與部署環境理解。
 - 接手缺乏完整交接文件、服務邊界複雜的既有系統，協助主管梳理兩套平台的服務、部署環境、資料流與維運脈絡；透過 code reading、log 追蹤、git history、資料流梳理與文件化，重建核心 flow 的理解，讓平台逐步恢復到可維護、可交接的狀態。
 - 參與 AntPlay 後台 API / 商戶控制面（正式時建議取代為「Slot 平台後台 API / 商戶控制面」）開發維護，處理 admin / merchant auth、商戶白名單、Game API 白名單同步、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控，以及 RabbitMQ request log / 風控通知與 Quartz job 維護；不寫主導完整 AntPlay slot platform 或完整遊戲 runtime。
 - 參與 AntPlay slot 遊戲 API / runtime（正式時建議取代為「Slot 遊戲 API / runtime」）開發維護，處理 game init、bet / settle / rollback、轉帳錢包、bet record / request log / transfer transaction 分表、RabbitMQ request log、Quartz 補通知、schema routing 與 RTP / dark pool / player control 關聯修正；可面試延伸 high-traffic table governance、async audit、runtime decision / result acceptance 與 failure window，但不寫主導完整 slot platform、完整遊戲數學、完整錢包或完整 sharding owner。
@@ -130,7 +132,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 - 參與 AntPlay slot math core / 多個 math module（正式時建議取代為「Slot math core / 多個 math module」）維護與驗證，處理 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整；不寫主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 jackpot pool 或單一遊戲 feature owner。
 - 參與平台服務版本升級與相容性調整相關工作，包含 Java / Spring Boot 版本、相依套件、部署驗證與既有功能風險確認；若正式履歷要寫成完整主導升級，需再補 commit / MR / release evidence。
 - 參與前台 REST API、服務間 gRPC / ProtoBuf 或類似契約式通訊維護，處理欄位定義、資料結構、版本相容與多模組整合情境。
-- 參與第三方金流 provider 對接與維護，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 provider request / callback / query / withdraw flow，處理簽章驗證、金額單位、merchant order id、callback ack、查單與 provider response 異常；不寫主導完整金流或全部 provider owner。
+- 參與第三方金流 provider / 商戶對接與維護，包含 Owenpay、HamBit、Wwwpago、BFPAY、Pay4z、NaNapay、GoldenPay 等 provider request / callback / query / withdraw flow，處理簽章驗證、金額單位、merchant order id、callback ack、查單與 provider response 異常；不寫主導完整金流、完整 wallet / reconciliation 或全部 provider owner。
 - 修正或維護 payment / withdraw order 建單一致性與 provider callback / sign 類問題，例如 BeanUtil copied id 造成 order insert collision 的風險、Pay4z / NaNapay / SitoBank / OnePay 類 provider 驗簽與欄位格式問題；不寫完整 reconciliation 或量化事故改善。
 - 參與玩家優惠券兌換上分 / 打碼要求 flow 開發，串接 `game_api` API、coupon setting / record、GM command 與 `iwin_gameserver` 下游上分 / 打碼處理；可面試延伸 transaction boundary、idempotency、partial success 與 reconciliation，但不寫主導完整活動獎勵系統或修復 production 雙領事故。
 - 參與每日遊戲資料彙總 batch / BI projection 開發與維護，處理 `log_reel` 投注明細到 `log_game_daily_record` 的彙總、資料日 / 時區窗口、delete + insert 重跑、新增玩家 / 留存與歷史資料備份 / 清理；並參與 GSC 第三方遊戲紀錄 Mongo 備份 job（正式時建議取代為「第三方遊戲紀錄 Mongo 備份 job」）的分批查詢與 batch size 調整；不寫主導完整 BI pipeline、完整資料平台 owner 或完整第三方紀錄備份 owner。

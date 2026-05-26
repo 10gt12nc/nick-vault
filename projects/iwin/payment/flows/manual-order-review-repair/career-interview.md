@@ -18,7 +18,7 @@
 - Nick 主導人工審核 / 補單系統。
 - Nick 設計了 repair workflow。
 - Nick 修過 manual-order-review-repair production issue。
-- 這條 flow 已確認完整 reconciliation。
+- 這條 flow 已確認不等於完整 reconciliation；只能說有人工審核 / 修復入口與部分狀態 guard。
 
 ## 30 秒講法
 
@@ -73,5 +73,5 @@
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：目前不單獨升級成本 flow 的真實開發成果；project-level payment contribution consolidation 已完成，payment 履歷只保守寫 provider 對接 / 維護與 order consistency。
-- 可面試講：code-backed / 分析過。可用本 flow 說明 money correctness、狀態轉移、冪等、retry、補償、人工修復或 runtime config consistency。
+- 可面試講：code-backed / 分析過。可用本 flow 說明 payment 人工修復狀態風險、狀態轉移、冪等、retry、補償、人工修復與 break-glass repair 邊界；不可說成完整 reconciliation 實作。
 - 不可誇大：不得把本 flow 寫成 Nick 主導完整 payment / wallet owner、設計整套金流架構、解決全部對帳或 production incident，除非後續補到本人 MR / ticket / production issue / 本人確認與重要 diff。

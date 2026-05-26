@@ -388,7 +388,7 @@ sequenceDiagram
 - `payment` 專案存在 provider callback flow，涵蓋充值成功、提現成功、提現失敗退款。
 - code-backed 看到 callback 驗簽 / IP 白名單、訂單終態 guard、XXL-MQ retry、consumer 端 no-op、玩家上分 / 退款與訂單更新。
 - Step 4 進一步 code-backed 確認：payment 會把 `billNo` 當 `billNos` 傳到 game lobby / center；下游會把 `billNo` 傳入玩家餘額異動與 currency log；app_bi local HEAD 有人工狀態修復入口。
-- 這條 flow 可作為 Senior Backend 面試的「金流 callback consistency / idempotency / compensation」分析素材。
+- 這條 flow 可作為 Senior Backend 面試的「payment provider callback 狀態風險 / idempotency / compensation」分析素材。
 
 目前不能說：
 
@@ -422,7 +422,7 @@ Step 5 claim gate 結論：
 
 - 不更新正式履歷 / 自傳：目前仍缺 Nick 本人 MR / ticket / commit author / production issue / 本人確認。
 - 本 flow 保留為 `專案存在 / code-backed` 與 `分析素材 / learning-only` 的 Senior 面試素材。
-- 面試可講 money correctness、callback trust boundary、MQ retry、提現失敗退款防重複補償、`billNo` cross-system trace 與人工 repair boundary。
+- 面試可講 payment provider callback 狀態風險、callback trust boundary、MQ retry、提現失敗退款防重複補償、`billNo` cross-system trace 與人工 repair boundary。
 - 不可說 Nick 主導 / 設計 payment callback，不可說修復 pay4z 重複退款，不可說下游 wallet 已確認 exactly-once。
 
 - 全域下一步狀態：目前沒有預設 project flow 下一步；請以 senior-owner-playbook/01-senior-owner-flow-inventory.md 與 senior-owner-playbook/06-todo.md 為準。
@@ -430,5 +430,5 @@ Step 5 claim gate 結論：
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 
 - 可放履歷：本 flow 目前不單獨升級成真實開發成果；project-level consolidation 已完成，payment 履歷只保守寫多 provider callback / sign / response parsing 維護，不寫 callback owner。
-- 可面試講：code-backed / 分析過。可講本 flow 的 money correctness、狀態轉移、冪等、retry、補償、人工修復或 config consistency。
+- 可面試講：code-backed / 分析過。可講本 flow 的 payment provider callback 狀態轉移、冪等、retry、補償、人工修復與查單 / 對帳邊界；不可說成已實作完整 wallet / reconciliation。
 - 不可誇大：不得寫成 Nick 主導完整 payment / wallet owner、設計完整金流架構、建立完整 reconciliation 或解決 production incident。

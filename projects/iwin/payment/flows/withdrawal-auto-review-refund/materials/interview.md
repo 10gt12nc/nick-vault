@@ -33,7 +33,7 @@
 
 ### 90 秒版本
 
-這條提款 flow 我會從 money correctness 看。玩家提款時，payment 先檢查玩家、綁定、黑名單、提款設定、待審單與打碼目標；通過後先呼叫 game lobby `WITHDRAW` 扣分，扣分成功才建 `payment_order`。後面自動審核 job 會掃 `is_auto_review=1` 且 `WAIT` 的訂單，再依玩家層級、金額、今日充值與打碼比例決定是否出款。出款時訂單改 `PROCESSING`，再呼叫 provider。
+這條提款 flow 我會從 provider 出款狀態風險看。玩家提款時，payment 先檢查玩家、綁定、黑名單、提款設定、待審單與打碼目標；通過後先呼叫 game lobby `WITHDRAW` 扣分，扣分成功才建 `payment_order`。後面自動審核 job 會掃 `is_auto_review=1` 且 `WAIT` 的訂單，再依玩家層級、金額、今日充值與打碼比例決定是否出款。出款時訂單改 `PROCESSING`，再呼叫 provider。
 
 真正的難點是 provider accepted 不等於成功，最終要看 callback 或查單。失敗時走 `asynUpdateOrderStatus` / `updateUserInfo`，呼叫 game lobby `DEPOSIT` 退回玩家。我要特別看扣分成功建單失敗、MQ produce 失敗只 log、provider no callback、重複 callback 是否重複退款，以及下游 `billNo` 是否真的去重。
 

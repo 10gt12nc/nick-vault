@@ -2,7 +2,7 @@
 
 ## 開場講法
 
-這條 flow 我會拿來講金流 callback 的一致性，而不是只講串接第三方 API。provider callback 通常是非同步、可能重送、可能晚到，也可能和 payment 本地狀態不同步；所以重點是怎麼驗證 callback、怎麼把外部狀態轉成內部狀態、怎麼避免重複入帳 / 退款，以及出了問題怎麼對帳補償。
+這條 flow 我會拿來講 payment provider callback 的狀態轉換與風險，而不是只講串接第三方 API。provider callback 通常是非同步、可能重送、可能晚到，也可能和 payment 本地狀態不同步；所以重點是怎麼驗證 callback、怎麼把外部狀態轉成內部狀態、怎麼避免重複副作用，以及出了問題怎麼查單 / 人工補償。這是 provider integration case，不是完整 wallet / reconciliation 實作 claim。
 
 ## STAR 草稿
 
@@ -12,7 +12,7 @@ payment 專案需要接多家三方金流 provider，每家都有自己的 callb
 
 Task：
 
-整理 provider callback 到內部狀態更新的主線，確認 money correctness、state transition、MQ retry、idempotency 與人工補償邊界。
+整理 provider callback 到內部狀態更新的主線，確認 state transition、MQ retry、idempotency、查單與人工補償邊界；不包裝成完整 money correctness framework。
 
 Action：
 
