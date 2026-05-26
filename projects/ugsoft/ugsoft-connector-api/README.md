@@ -8,7 +8,7 @@
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成：[`step1-candidate-flows.md`](step1-candidate-flows.md) |
-| Step 2 | 尚未建立；下一步應比較候選 flow，不得直接跳 Step 3 |
+| Step 2 | 已完成：[`step2-flow-comparison.md`](step2-flow-comparison.md) |
 | Flow packages | 尚未建立；不得宣稱 flow 完整 |
 | 正式履歷 | 可保守補入 provider connector / transfer wallet / MQ 素材 |
 
@@ -16,10 +16,11 @@
 
 - [contribution-claim-consolidation.md](contribution-claim-consolidation.md)
 - [step1-candidate-flows.md](step1-candidate-flows.md)
+- [step2-flow-comparison.md](step2-flow-comparison.md)
 
 ## Flow Track
 
-Step 1 已篩出 6 條候選：
+Step 1 已篩出 6 條候選，Step 2 已完成比較與排序：
 
 1. `transfer-wallet-in-out-query`
 2. `provider-callback-bet-settle-to-mq`
@@ -28,7 +29,17 @@ Step 1 已篩出 6 條候選：
 5. `provider-circuit-breaker-fast-fail`
 6. `schema-route-partition-transfer-record`
 
-下一步必須做 Step 2，比較 evidence 強度、技術價值、風險邊界與哪 1-2 條最值得進 Step 3。
+本批代表 flows：
+
+1. `transfer-wallet-in-out-query`
+2. `provider-callback-bet-settle-to-mq`
+3. `request-bet-record-mq-sync`
+
+下一步應做第一順位單條 flow Step 3：
+
+```text
+ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3
+```
 
 ## 履歷邊界
 

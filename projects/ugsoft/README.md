@@ -13,10 +13,10 @@
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
 | `ugsoft-admin-api` | Java / Spring Boot 後台 API、控制面、報表、RabbitMQ / Quartz | Career Track 已完成 rolling；Flow Track 未建立 | 可保守放「後台控制面與非同步資料處理」；不寫完整 UG 平台 owner | 如要深挖，先做 Step 1 / Step 2 選代表 flow |
-| `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | Career Track 已完成 rolling；Flow Track Step 1 已完成，Step 2 未建立 | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | `ugsoft ugsoft-connector-api Step 2` |
+| `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | Career Track 已完成 rolling；Flow Track Step 1 / Step 2 已完成，尚未建立單條 flow package | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | `ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3` |
 | `ugsoft-admin-web` | 後台前端 | 未開始 | 通常只作入口 | 待 Nick 指定 |
 | `official-web-v3` | 官網 | 未開始 | 不當主線 | 待 Nick 指定 |
-| `ugsoft-workspace` | workspace / docs / harness / runbook | contribution consolidation 已完成 / rolling | supporting evidence；不放 standalone 正式履歷主成果 | 已收斂；回 `ugsoft-connector-api Step 2` |
+| `ugsoft-workspace` | workspace / docs / harness / runbook | contribution consolidation 已完成 / rolling | supporting evidence；不放 standalone 正式履歷主成果 | 已收斂；回 connector 第一條 flow Step 3 |
 
 ## Claim Boundary
 
@@ -29,7 +29,8 @@
 ## 2026-05-26 Completeness Audit
 
 - `ugsoft-admin-api` 與 `ugsoft-workspace` 目前仍只有 Career Track：project-level `contribution-claim-consolidation.md`。
-- `ugsoft-connector-api` 已完成 Flow Track Step 1；尚無 Step 2 / `flows/{flow}/flow.md`。
-- 因此只能說「UGSoft 履歷 claim 已有 rolling consolidation，且 connector 已開始 Flow Track」，不能說「UGSoft flow 已完整」或「已逐條深掃 flow」。
+- `ugsoft-connector-api` 已完成 Flow Track Step 1 / Step 2；尚無 `flows/{flow}/flow.md`。
+- 因此只能說「UGSoft 履歷 claim 已有 rolling consolidation，且 connector 已完成候選 flow 排序」，不能說「UGSoft flow 已完整」或「已逐條深掃 flow」。
 - `ugsoft-connector-api` Step 1 候選 flow 見 `projects/ugsoft/ugsoft-connector-api/step1-candidate-flows.md`。
-- 若 Nick 之後指定補 `ugsoft-connector-api` flow，下一步必須先做 Step 2 比較候選 flow，不得直接跳單條 flow Step 3。
+- `ugsoft-connector-api` Step 2 比較排序見 `projects/ugsoft/ugsoft-connector-api/step2-flow-comparison.md`。
+- 若 Nick 之後指定補 `ugsoft-connector-api` flow，下一步應做 `transfer-wallet-in-out-query Step 3`。

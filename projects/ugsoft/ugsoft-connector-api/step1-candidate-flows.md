@@ -30,7 +30,7 @@
 | `README.md` | 可沿用，需同步 Step 1 狀態 | project 定位、履歷邊界清楚，但本輪前仍標為 Flow Track 缺口。 |
 | `contribution-claim-consolidation.md` | 可沿用 | Career Track rolling consolidation 已完成，可支撐保守履歷；但不能代表 flow 完整。 |
 | `step1-candidate-flows.md` | 本輪新增 | 補 Flow Track 第一層缺口。 |
-| `step2-flow-comparison.md` | 尚未建立 | 下一步必須做 Step 2；不得直接跳單條 flow Step 3，除非 Nick 明確指定。 |
+| `step2-flow-comparison.md` | 已完成 / 2026-05-26 | 已比較候選 flow，第一順位是 `transfer-wallet-in-out-query`。 |
 | `flows/` | 尚未建立 | 任何候選 flow 都還不是完整面試包。 |
 
 ## Source Repo 狀態
@@ -333,9 +333,9 @@ Evidence：
 - 直接做 contribution consolidation refresh：Career Track 已有 rolling 結論，本輪先補 Flow Track。
 - 直接更新 05 / 08：Step 1 只找到候選 flow，尚未產生新的 project-level claim。
 
-## Step 2 要回答的問題
+## Step 2 已回答的問題
 
-下一步 Step 2 應比較：
+2026-05-26 Step 2 已比較：
 
 - 哪 1-2 條 flow 最能補非 iwin 廣度。
 - 哪些候選有 Nick / `10gt12nc` direct commits，哪些只是 code-backed / 待本人確認。
@@ -362,8 +362,8 @@ Evidence：
 
 ## 下一步
 
-Step 1 已完成。依 KB，新 project 完成 Step 1 後，下一步必須是 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。
+Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。後續若繼續此 project，應進第一順位單條 flow Step 3。
 
 ```text
-ugsoft ugsoft-connector-api Step 2
+ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3
 ```

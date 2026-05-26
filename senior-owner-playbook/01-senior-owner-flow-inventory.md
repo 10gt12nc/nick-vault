@@ -198,7 +198,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | 7 | antplay | antplay-slot-game-api | `contribution claim consolidation` | 五條代表 flow Step 5 後的 project-level claim refresh | 已完成 refreshed consolidation，且已回填 05 / 08；game runtime、betting-settlement、transfer wallet、async log、schema routing、runtime decision 可保守使用 | 已完成 |
 | done | antplay | antplay-slot-game-job | `contribution claim consolidation` | 五條代表 flow Step 5 後的 project-level claim refresh | 已完成 refreshed consolidation；Kafka / Quartz / report projection / big-win / activity supporting / partition 可保守使用，settle pool analysis-only；05 / 08 / 17 已回填 | 已完成 |
 | 9 | antplay | `*-math` | `contribution claim consolidation` | `*-math` 五條代表 flow 收口後的 claim refresh | 已完成；保留為 refreshed grouped claim evidence，後續除非 Nick 指定 Level 3 final，不再搶下一步 | 已完成 |
-| 10 | ugsoft | ugsoft-connector-api | `ug-adapter-provider-gateway` | UG Adapter provider gateway | 可選加強：若 Nick 要補非 iwin 廣度，再做 Step 1 / Step 2 挑 provider transfer / callback / MQ 代表 flow | `ugsoft ugsoft-connector-api Step 1` |
+| 10 | ugsoft | ugsoft-connector-api | `transfer-wallet-in-out-query` | UGSoft transfer wallet in / out / query | 可選加強：Step 1 / Step 2 已完成；若 Nick 要補非 iwin 廣度，先做第一順位 transfer wallet flow Step 3，再視需要補 callback / MQ sync | `ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3` |
 | 11 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
 
 Career Track 補充：`iwin iwin_gameserver contribution claim consolidation` 已完成 rolling / scoped 履歷風險收斂。`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 已完成 Step 5；若後續新增 gameserver flow，要回填校正 project-level claim。

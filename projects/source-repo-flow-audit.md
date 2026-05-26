@@ -59,7 +59,7 @@
 | `official-web-v3` | 官網，未見 Nick direct commits；本機落後遠端 | 無 KB | 官網 | 暫不建議 |
 | `ugsoft-admin-api` | Nick direct commits 約 207；admin auth / 白名單 / report / risk / RabbitMQ / Quartz | 只有 contribution consolidation，沒有 Step 1 / Step 2 / flows | `request-log-rabbitmq-admin-consumer`、`connect-bet-record-mq-ingestion`、`provider-white-ip-game-api-whitelist-sync`、`merchant-auth-rbac-token-kick`、`risk-monitor-alert-quartz`、`daily-hourly-report-job` | 缺 Flow Track 但值得補 |
 | `ugsoft-admin-web` | 前端 repo，未見 Nick direct commits；本機落後遠端 | 無 KB | 後台入口，不作主線 | 暫不建議 |
-| `ugsoft-connector-api` | Nick direct commits 約 217；provider connector / transfer wallet / callback / MQ / circuit breaker | contribution consolidation + Step 1 已完成；尚無 Step 2 / flows | `provider-client-login-launch-game`、`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`、`provider-circuit-breaker-fast-fail`、`schema-route-partition-transfer-record` | Step 2 最值得補 |
+| `ugsoft-connector-api` | Nick direct commits 約 217；provider connector / transfer wallet / callback / MQ / circuit breaker | contribution consolidation + Step 1 / Step 2 已完成；尚無單條 flow package | Step 2 已選：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`；可選 `provider-client-login-launch-game` | 缺單條 flow Step 3，第一順位是 `transfer-wallet-in-out-query` |
 | `ugsoft-workspace` | workspace / docs / harness；未見 `10gt12nc` author，需本人確認 arnold | contribution consolidation 已完成 | workspace / migration runbook supporting | 已收斂，暫不建議 |
 
 ## DevOps / primestar
@@ -78,7 +78,7 @@
 
 必須記入待辦，但不代表必須全部開工：
 
-1. `ugsoft-connector-api`：最值得補 Flow Track。Step 1 已完成，下一步是 Step 2。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，能補非 iwin 廣度。
+1. `ugsoft-connector-api`：最值得補 Flow Track。Step 1 / Step 2 已完成，下一步是 `transfer-wallet-in-out-query Step 3`。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，能補非 iwin 廣度。
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。可補 admin control plane / RabbitMQ / Quartz / risk monitor。
 3. `antplay-slot-admin-api`：值得補 Flow Track，但目前已有 AntPlay game-api / game-job 主力 evidence；除非要補後台 / 風控 / admin control plane，否則可選。
 4. `payment-thirdparty-simulator`：可補 payment 測試支撐，不作主線。
