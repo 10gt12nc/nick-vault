@@ -65,6 +65,99 @@
 
 > 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
 
+### 三版補充比較
+
+用途：這段是比較差異用，不是三份同時公開。沒有特定 JD 時使用 A 版；B / C 只在獵頭或公司職缺明確對應時，把相關段落往前調。
+
+#### A 版：通用高交易 Senior Java Backend / Platform Backend
+
+一句話定位：
+
+```text
+Java Backend，主力在第三方 provider 串接、金流 / 錢包 / 下注結算、MQ / batch projection 與既有高交易系統接手；另具 slot math module 維護與 AI-assisted engineering workflow 經驗。
+```
+
+公開主打：
+
+- 第三方金流 provider request / callback / query / withdraw。
+- 第三方遊戲 provider、gameserver wallet、bet / settle / rollback。
+- RabbitMQ / Kafka / Quartz、request log、bet record、report projection、batch job。
+- 缺交接文件下重建 production flow，整理 code path、DB / Redis / MQ / log 與 git history。
+- slot math / AI-assisted workflow 作為加分，不壓過 backend 主線。
+
+適合職缺：
+
+- Senior Java Backend。
+- Platform Backend。
+- Payment / wallet / provider gateway。
+- 高交易 API、MQ / batch、legacy system takeover。
+
+不要這樣寫：
+
+- 不寫完整金流 owner。
+- 不寫完整 wallet / ledger / reconciliation owner。
+- 不寫完整 Kafka / MQ platform owner。
+
+#### B 版：遊戲 / Slot / Provider Backend
+
+一句話定位：
+
+```text
+Java Backend，熟悉遊戲 provider 串接、slot game API / runtime、bet / settle / rollback、transfer wallet、slot job / event processing，並具 slot math core / 多個 math module 維護與驗證經驗。
+```
+
+公開主打：
+
+- 第三方遊戲 provider login / balance / transfer in-out / bet-settle / callback。
+- Slot game init、bet / settle / rollback、transfer wallet、runtime decision。
+- Bet record / request log / transfer transaction 分表與 schema routing。
+- Slot job / Kafka / Quartz、代理玩家報表 projection、big-win notification。
+- Slot math core、RTP / reel strip、fixedMultiBet、buy free、jackpot / symbol、feature result contract。
+
+適合職缺：
+
+- 遊戲平台後端。
+- Slot / casino backend。
+- Provider gateway / seamless wallet。
+- 遊戲數學周邊、math module integration / validation。
+
+不要這樣寫：
+
+- 不寫完整 Slot platform owner。
+- 不寫完整遊戲數學模型 / RTP 策略 owner。
+- 不寫全部 math module owner。
+- 不寫完整 jackpot / simulator / certification owner。
+
+#### C 版：Platform / Legacy Takeover / System Reconstruction
+
+一句話定位：
+
+```text
+Java Backend / Platform Backend，擅長接手文件不足、服務邊界複雜的既有系統，透過 code reading、git history、DB / Redis / MQ / log flow 與 AI-assisted workflow，重建可維護、可追蹤、可交接的 production flow。
+```
+
+公開主打：
+
+- 缺交接文件下協助梳理兩套既有平台的服務、部署、資料流與維運脈絡。
+- Cross-repo code reading、git history / diff 追蹤、DB / Redis / MQ / log flow reconstruction。
+- MQ / Kafka / Quartz、batch / projection、retry / compensation、report source of truth。
+- K3s rollout / rollback / observability analysis 作為 interview-only 加分。
+- AI-assisted engineering workflow：需求拆解、code reading、diff review、文件同步、測試檢查、commit 收斂與 KB 回填。
+
+適合職缺：
+
+- Platform Backend。
+- Legacy system takeover。
+- 內部平台 / B2B platform。
+- 需要接手複雜既有系統、補文件、整理 flow、提升可維護性的團隊。
+
+不要這樣寫：
+
+- 不寫完整 DevOps / SRE owner。
+- 不寫完整 K3s migration owner。
+- 不寫正式 Architect / Lead 職責。
+- 不寫 AI 自動完成 production 開發。
+
 ### 104 欄位版
 
 #### 工作經驗
