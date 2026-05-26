@@ -19,7 +19,7 @@
 - 兩個 repo 的本機 `main` 都與 `origin/main` 同步，工作樹乾淨。
 - 重新跑 repo-wide Nick / `10gt12nc` author log，`game_api` 仍只看到 coupon 與邀請好友轉盤兩組 direct evidence。
 - `iwin_gameserver` 有更多 Nick / `10gt12nc` gameserver commits，但在本文件只採與 `game_api coupon` 下游直接相關的 `6c99dd3`、`30a9fcb`；其他 gameserver evidence 已放到 `projects/iwin/iwin_gameserver/contribution-claim-consolidation.md`，不反向擴張 `game_api` claim。
-- 重讀 05 / 08 / todo / inventory 與 archive 搜尋結果後，沒有新增足以把 partner / agent bonus 升級成 Nick 真實開發過的 evidence。
+- 重讀 05 / 08 / todo / inventory 與 vault 既有素材後，沒有新增足以把 partner / agent bonus 升級成 Nick 真實開發過的 evidence；`archive/` 已清空，不再作必要來源。
 
 ## 本次重讀與掃描範圍
 
@@ -42,7 +42,7 @@
 - `senior-owner-playbook/06-todo.md`
 - `senior-owner-playbook/08-application-autobiography-zh.md`
 - `senior-owner-playbook/13-code-capability-map.md`
-- `archive/` 內與 `game_api`、coupon、partner、agent bonus、履歷相關線索
+- vault 既有 `projects/` / `senior-owner-playbook/` 內與 `game_api`、coupon、partner、agent bonus、履歷相關線索；`archive/` 已清空，不再作必要來源
 
 已掃 source repo：
 

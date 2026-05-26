@@ -218,9 +218,9 @@ Source repo：`/Users/nick/Git/iwin/game_api`
 
 `game_api` partner / agent share paths：
 
-- `ad58834 2023-12-07 arnold <arnold@tychetech.com.tw> feat(#first): first commit`
-- `ddbaa85 2026-05-06 arnold <arnold@tychetech.com.tw> feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
-- `a8d6a0a 2026-05-13 arnold <arnold@tychetech.com.tw> security: 安全性更新`
+- `ad58834 2023-12-07 arnold feat(#first): first commit`
+- `ddbaa85 2026-05-06 arnold feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
+- `a8d6a0a 2026-05-13 arnold security: 安全性更新`
 
 Nick / `10gt12nc` author filter：
 
@@ -229,8 +229,8 @@ Nick / `10gt12nc` author filter：
 
 `game_job` agent bonus paths：
 
-- `c8a3fde 2023-12-07 arnold <arnold@tychetech.com.tw> feat(#first): first commit`
-- `42ae838 2026-05-07 arnold <arnold@tychetech.com.tw> feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
+- `c8a3fde 2023-12-07 arnold feat(#first): first commit`
+- `42ae838 2026-05-07 arnold feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
 
 Nick / `10gt12nc` author filter：
 

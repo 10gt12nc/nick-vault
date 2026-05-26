@@ -112,10 +112,10 @@ history / diff：
 - Nick / `10gt12nc` author filter for same paths。
 - `origin/main..origin/k3s` diff for partner paths。
 
-archive / vault reference：
+vault reference：
 
-- 搜尋 `archive`、`projects`、`senior-owner-playbook` 中的 Partner、NewPay、Withdraw、BillInfo、BillList、上分、下分等既有材料。
-- 未直接複製 archive 舊文；本輪依 code 重寫。
+- 搜尋 `projects`、`senior-owner-playbook` 中的 Partner、NewPay、Withdraw、BillInfo、BillList、上分、下分等既有材料；`archive/` 已清空，不再作必要來源。
+- 未直接複製舊文；本輪依 code 重寫。
 
 ## 主要 code evidence
 
@@ -221,10 +221,10 @@ archive / vault reference：
 
 針對 PartnerController、PartnerServiceImpl、PartnerLogServiceImpl、ValidatedServiceImpl、PartnerLoginDto、BillInfo：
 
-- `ad58834 2023-12-07 arnold <arnold@tychetech.com.tw> feat(#first): first commit`
-- `ddbaa85 2026-05-06 arnold <arnold@tychetech.com.tw> feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
-- `c7b5049 2026-05-13 arnold <arnold@tychetech.com.tw> fix(login): redisPhpService.hget null 防呆,避免登入前接口 NPE`
-- `a8d6a0a 2026-05-13 arnold <arnold@tychetech.com.tw> security: 安全性更新`
+- `ad58834 2023-12-07 arnold feat(#first): first commit`
+- `ddbaa85 2026-05-06 arnold feat(k3s): 升 Java 21 + Spring Boot 3.2,改走容器化部署`
+- `c7b5049 2026-05-13 arnold fix(login): redisPhpService.hget null 防呆,避免登入前接口 NPE`
+- `a8d6a0a 2026-05-13 arnold security: 安全性更新`
 
 Nick / `10gt12nc` author filter：
 

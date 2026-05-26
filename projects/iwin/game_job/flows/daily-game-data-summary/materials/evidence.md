@@ -94,7 +94,7 @@ Step 4 開始前已重新檢查 Step 3：
 
 已看遠端分支清單：`origin/main`、`origin/k3s`、`origin/feature/gsc_record_backup`、`origin/antplay_new_bak_job`、`origin/nick-DailyReport`、`origin/feature/setBlacklistHset`、`origin/antplay-pg-mongo`、`origin/fix-ci-deploy`、`origin/beta`、`origin/feature/RD-128`、`origin/ci_test`、`origin/feature/RD-71`。
 
-已看本 flow path-specific log，重點包含，且下列 daily summary 相關 commits 的 author / committer 為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
+已看本 flow path-specific log，重點包含，且下列 daily summary 相關 commits 的 author / committer 為 `10gt12nc`：
 
 - `4174d3f`：新增每日遊戲資料彙總早期 job / service / mapper / quartz / config 主體。
 - `562f1e6`：重整 `GameDailyJob`、`GameDailyServiceImpl`、`GameDailyDao.xml` 等每日彙總主 path。

@@ -65,7 +65,7 @@
 - `src/main/java/com/ps/domain/manage/service`
 - `src/main/resources/mapper`
 - `sql/`
-- vault 既有 `projects/`、`senior-owner-playbook/`、`archive/` 內 ugsoft / resume 關鍵字
+- vault 既有 `projects/`、`senior-owner-playbook/` 內 ugsoft / resume 關鍵字；`archive/` 已清空，不再作必要來源
 
 未完成:
 

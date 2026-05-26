@@ -78,7 +78,7 @@
 - `src/main/java/com/ps/domain/game/slot/...` 相關 bet record / compensation / job path
 - `src/main/java/com/ps/common/rabbitMq` / `RabbitMQConfig` / `RabbitMq`
 - `docs/circuit-breaker.md` 只讀摘要，未複製內部測試 URL。
-- vault 既有 `projects/`、`senior-owner-playbook/`、`archive/` 內 ugsoft / resume 關鍵字
+- vault 既有 `projects/`、`senior-owner-playbook/` 內 ugsoft / resume 關鍵字；`archive/` 已清空，不再作必要來源
 
 未完成:
 

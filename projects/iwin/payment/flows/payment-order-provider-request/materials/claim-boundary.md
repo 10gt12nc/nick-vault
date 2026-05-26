@@ -14,7 +14,7 @@
 
 原因：
 
-- `git log --all` 與 path-specific history 顯示 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 對多個 provider request / callback / query 相關檔案有新增與修正。
+- `git log --all` 與 path-specific history 顯示 `10gt12nc` 對多個 provider request / callback / query 相關檔案有新增與修正。
 - `origin/pay4z-Nick` 指向 Pay4z 對接分支，`7853917` / `702cc73` 新增 `Pay4zController` 與 `Pay4zServiceImpl`。
 - `origin/NaNapay_Nick` 包含 NaNapay 對接，`7ae7f11` 新增 `NanaPayController` 與 `NanaPayServiceImpl`。
 - 2026-05-20 project consolidation 重新覆核補到 GoldenPay direct commits：`aed5ac3`、`27f5238`、`a00170b`、`8acd150`、`20cee78`，集中在 `GoldenPayController` 與 `GoldenPayServiceImpl`。

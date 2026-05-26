@@ -98,13 +98,13 @@ payment：
 
 | 分支 / commit | Author / Committer | 日期 | 檔案 | 判斷 |
 | --- | --- | --- | --- | --- |
-| `origin/pay4z-Nick` / `702cc73` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 新增 Pay4z provider request / callback / query / withdraw service |
-| `7853917` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 同 Pay4z 對接 commit，進入主線 history |
-| `9aa0477` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-12-01 | `Pay4zController.java`、`Utils.java` | 修正 Pay4z callback / sign 解析：`errorMsg` 加號被空格替換造成 sign mismatch |
-| `origin/NaNapay_Nick` / `7ae7f11` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2025-11-13 | `NanaPayController.java`、`NanaPayServiceImpl.java` | 新增 NaNapay provider request / callback / query / withdraw service |
-| `260e550` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2024-12-26 | `BFPayController.java`、`NewCashPayController.java` | BFPAY order / callback 修正與 NewCashPay 查單更新 |
-| `7403277` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2026-04-30 | `NimTestPayController.java`、`application.yml` | 新增 NimTestPay local / SIT manual testing controller；Co-Authored-By Claude，不能包裝成 production provider owner |
-| `03c28e3` | `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` | 2026-05-14 | `BaseServiceImpl#createOrderNo`、unit test | 修正 `log_user.id` 被 BeanUtil 複製到 `payment_order.id`，避免同 uid 第二筆 order 撞主鍵 |
+| `origin/pay4z-Nick` / `702cc73` | `10gt12nc` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 新增 Pay4z provider request / callback / query / withdraw service |
+| `7853917` | `10gt12nc` | 2025-01-14 | `Pay4zController.java`、`Pay4zServiceImpl.java` | 同 Pay4z 對接 commit，進入主線 history |
+| `9aa0477` | `10gt12nc` | 2025-12-01 | `Pay4zController.java`、`Utils.java` | 修正 Pay4z callback / sign 解析：`errorMsg` 加號被空格替換造成 sign mismatch |
+| `origin/NaNapay_Nick` / `7ae7f11` | `10gt12nc` | 2025-11-13 | `NanaPayController.java`、`NanaPayServiceImpl.java` | 新增 NaNapay provider request / callback / query / withdraw service |
+| `260e550` | `10gt12nc` | 2024-12-26 | `BFPayController.java`、`NewCashPayController.java` | BFPAY order / callback 修正與 NewCashPay 查單更新 |
+| `7403277` | `10gt12nc` | 2026-04-30 | `NimTestPayController.java`、`application.yml` | 新增 NimTestPay local / SIT manual testing controller；Co-Authored-By Claude，不能包裝成 production provider owner |
+| `03c28e3` | `10gt12nc` | 2026-05-14 | `BaseServiceImpl#createOrderNo`、unit test | 修正 `log_user.id` 被 BeanUtil 複製到 `payment_order.id`，避免同 uid 第二筆 order 撞主鍵 |
 
 ### 重要 diff 摘要
 

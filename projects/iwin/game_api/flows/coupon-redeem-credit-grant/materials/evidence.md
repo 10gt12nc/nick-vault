@@ -231,7 +231,7 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 
 ### Branch history
 
-`game_api` path-specific log 顯示 coupon 相關 commit，且 author / committer 皆為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
+`game_api` path-specific log 顯示 coupon 相關 commit，且 author / committer 皆為 `10gt12nc`：
 
 - `8683e32 feat(#): 兑换码功能`：新增 `CouponRedeemController`、`CouponRedeemServiceImpl`、`CouponRecordDao`、`CouponSettingDao`、mapper、DTO / entity、GM command name、LogUser 查詢等 coupon flow 主體。
 - `c2dabf7 feat(#): 兑换码功能 ##`：調整 GM command 與 service 細節。
@@ -251,7 +251,7 @@ Nick 提醒 KB 已更新後，已依最新規則重新覆核：
 - 本文件只採 coupon service diff；不搬運 profile / config 內容。
 - coupon service 新增 `coupon:lock:{uid}:{couponCode}`，用 `redisService.setIfAbsent(..., 10_000L)` 搶 lock，finally delete lock。
 
-`iwin_gameserver` path-specific log 顯示 coupon 下游，且 author / committer 皆為 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>`：
+`iwin_gameserver` path-specific log 顯示 coupon 下游，且 author / committer 皆為 `10gt12nc`：
 
 - `30a9fcb feat(#): 兑换码功能 betCnt`
 - `6c99dd3 feat(#): 兑换码功能 #`

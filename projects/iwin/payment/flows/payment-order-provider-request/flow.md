@@ -7,7 +7,7 @@
 - 專案：`/Users/nick/Git/iwin/payment`。
 - 完成狀態：Step 5，Level 2+ claim gate；2026-05-18 建立主學習包、轉成面試 case，並完成 Nick 個人貢獻判定。
 - 證據層級：`真實開發過` / `專案存在 / code-backed` 混合。
-- Nick 個人貢獻層級：`部分 provider request 真實開發過`。已從 source repo path-specific history 確認 `10gt12nc <60815760+10gt12nc@users.noreply.github.com>` 在 `origin/pay4z-Nick` / `origin/NaNapay_Nick` / `origin/feature/nimtestpay-dev` / GoldenPay 相關 commits 中，新增或修改 Pay4z、NaNapay、BFPAY、GoldenPay、NimTestPay 這類 provider request / query / callback code。整體 `payment` 金流架構、全部 provider、完整 reconciliation owner 仍不得誇大。
+- Nick 個人貢獻層級：`部分 provider request 真實開發過`。已從 source repo path-specific history 確認 `10gt12nc` 在 `origin/pay4z-Nick` / `origin/NaNapay_Nick` / `origin/feature/nimtestpay-dev` / GoldenPay 相關 commits 中，新增或修改 Pay4z、NaNapay、BFPAY、GoldenPay、NimTestPay 這類 provider request / query / callback code。整體 `payment` 金流架構、全部 provider、完整 reconciliation owner 仍不得誇大。
 - 是否只確認到入口：否。已確認玩家支付選擇、provider controller `/newPay`、訂單建立、商戶設定、簽章、金額單位轉換、provider HTTP request、回傳支付資訊、失敗標 `ERROR`、查單入口；但 DB unique key、provider accepted 後無 callback 的自動 reconciliation、完整 request / callback raw log 仍是 `待確認`。
 
 本 flow 的核心問題是：
