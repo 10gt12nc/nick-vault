@@ -254,6 +254,45 @@ project / submodule branch 可以合回 `main` 的時機：
 - 跑 `git status --short`，確認只動預期檔案。
 - 跑 `git diff --cached --name-only`，確認沒有非本輪 staged 檔案會混入 commit。
 - 確認沒有 secret、token、internal IP、production URL、客戶資料。
+- 完成 commit 前的 `Relationship Check`：確認本輪事實變更是否影響權威檔；有影響就同步，無影響 final 要說已檢查、不需更新。
+
+### Relationship Check：關聯檔案路由檢查
+
+`Relationship Check` 的目的不是每次大改，而是避免只修局部檔案，導致 README / todo / 履歷 / 索引落後。檢查時機固定在「改檔後、commit 前」，不是 push 後才補救。
+
+流程：
+
+1. 判斷本輪事實變更是什麼，例如 source repo 狀態、flow Step 狀態、project 收斂狀態、contribution claim、履歷主張、下一步策略或共用規則。
+2. 檢查權威檔是否受影響。
+3. 有影響就同步修正。
+4. 無影響不大改，但 final 要說明已檢查哪些類型的關聯檔、不需更新。
+
+權威檔分層：
+
+- 全域規則 / prompt：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`。
+- 全域索引 / 下一步：`projects/source-repo-inventory.md`、`projects/README.md`、`senior-owner-playbook/06-todo.md`。
+- domain / project 入口：`projects/{domain}/README.md`、`projects/{domain}/{project}/README.md`、必要時的 `architecture-map.md` / `integration-map.md` / `career-interview.md`。
+- 履歷 / 面試輸出：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`。
+- project / flow evidence：`contribution-claim-consolidation.md`、`flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/claim-boundary.md`、必要時的 `materials/decision-notes.md`。
+
+動態 / 衍生檔不要求每次即時同步，例如：
+
+- 自動產物、匯出稿、暫存稿。
+- 練習稿、排序稿、一次性檢查輸出。
+- 測試或工具產出的摘要。
+
+只有兩種情況要處理動態 / 衍生檔：
+
+1. 它被升級成正式閱讀入口、履歷素材、面試素材或長期 KB。
+2. 它和權威檔產生會誤導下一輪 AI 或 Nick 的衝突。
+
+不追蹤 / 不納入 KB 的檔：
+
+- cache、log、工具輸出、外部 repo 產物。
+- 公司 source repo 內的動態產物。
+- 未經 Nick 指定整理的一次性檢查檔。
+
+push 前只做乾淨確認：`git status`、`git diff --cached --name-only`、`git diff --check`，確認 commit 前的關聯檢查已收口。不要把關聯檢查延到 push 後才做；push 後才發現漏改只會製造補丁 commit 與 history 碎片。
 
 ### 重大 / 實質改檔
 
@@ -269,6 +308,7 @@ project / submodule branch 可以合回 `main` 的時機：
    - 跑 `git diff --cached --name-only`，確認 staged 內容沒有混入其他 session 或其他任務。
    - 檢查沒有 secret、token、internal IP、production URL、客戶資料。
    - 檢查履歷 / 面試 claim 沒有誇大，且已標示 evidence 層級。
+   - 完成 `Relationship Check`，確認受影響權威檔已同步，或明確判斷不需更新。
 重大 / 實質改檔包含：
 
 - 目錄結構調整。

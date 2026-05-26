@@ -54,6 +54,9 @@
 - `senior-owner-playbook/01~17` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~17。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
 - 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
+- 每次改檔後、commit 前必須做 `Relationship Check`，不是等 push 後才補救。先判斷本輪「事實變更」是什麼，再檢查是否影響權威檔：`projects/source-repo-inventory.md`、`projects/{domain}/README.md`、`projects/{domain}/{project}/README.md`、`senior-owner-playbook/06-todo.md`、`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`、對應 `contribution-claim-consolidation.md`、`flow.md / career-interview.md / materials/claim-boundary.md`。有影響就同步修；無影響要在 final 說已檢查、不需更新。
+- `Relationship Check` 只強制檢查權威檔；動態 / 衍生檔不要求每次即時同步，例如自動產物、匯出稿、暫存稿、練習稿、排序稿、一次性檢查輸出。只有當它被升級成正式閱讀入口、履歷 / 面試素材，或與權威檔產生會誤導下一輪 AI 的衝突時，才需要整理或回填。cache、log、工具輸出、外部 repo 產物預設不納入 KB，除非 Nick 明確要求。
+- push 前只做乾淨確認：`git status`、`git diff --cached --name-only`、`git diff --check`，確認 commit 前的關聯檢查已收口；不要把關聯檢查延到 push 後才做。
 - 日常模式預設只在 `main` 開發，且同一時間只允許一個 session 具備改檔 / stage / commit 權限；其他 session 若存在，只能只讀查詢、review 或討論，不得改檔、stage、commit 或切 branch。`nick-vault` 是個人知識庫，優先保持連貫性與乾淨 history，不追求多 session 平行吞吐。
 - 例外模式只有在 Nick 明確需要並行整理不同 project / submodule，且每個 session 都有獨立 worktree 時才使用 project / submodule branch，例如 `codex/iwin-app-bi`、`codex/iwin-game-job`、`codex/iwin-iwin-gameserver`。禁止多 session 共用同一 worktree 互相切 branch；同一 branch / worktree 同一時間只能有一個 session 負責改檔與 commit。
 - 若暫時仍在共用工作樹，AI commit 前必須檢查 `git status --short`、`git diff --cached --name-only` 與 `git diff --cached`；只能精準 stage 本輪檔案，禁止 `git add .`。若發現非本輪 staged 檔案，不得 commit，必須先回報並等待 Nick 處理或明確指示。
@@ -152,6 +155,7 @@ projects/{domain}/{project}/
 - 是否有把推測與已確認分開？
 - 是否有避免履歷誇大？
 - 是否有更新 README 或 todo？
+- 是否已做 Relationship Check，確認權威關聯檔已同步或不需更新？
 - 是否已自行全掃確認已改檔案與相關規則？
 - 是否已依改動大小完成輕量自查或全掃確認，並 commit？
 - 是否只有一個 session 具備寫入 / commit 權限？若使用多 session，其他 session 是否保持只讀，或已使用獨立 worktree？

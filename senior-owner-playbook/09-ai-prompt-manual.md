@@ -53,7 +53,7 @@
 - `senior-owner-playbook/01~17` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。
-- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；commit 前仍須遵守多 session / staging area 防污染規則，確認沒有非本輪 staged 檔案。若需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不要只用文字回覆本地已提交、等待 Nick 另外要求推送。
+- 小型 / 低風險改檔可以輕量自查後直接 commit；重大 / 實質改檔必須完整全掃確認後 commit；commit 前仍須做 Relationship Check，確認權威關聯檔是否需同步；並遵守多 session / staging area 防污染規則，確認沒有非本輪 staged 檔案。若需要 push，AI 必須直接執行 `git push` 觸發 approval 視窗，不要只用文字回覆本地已提交、等待 Nick 另外要求推送。
 
 ## 0. 開新對話時的總提示詞
 
@@ -81,7 +81,7 @@
 - 所有履歷說法要保守，沒有證據不要寫主導、獨立完成、改善百分比。
 - 每次完成後，若任務尚未收口，請自動給下一步建議，只推薦一件最值得做的事，並說明是否會更新履歷、是否需要 commit / push。若已收斂且 Nick 未指定下一件事，請回報「沒有預設下一步，可以自由提問或彈性指定」。
 - 只有真的需要 Nick 複製下一步時，才把 prompt 放成 fenced code block，格式固定為 ` ```text ... ``` `，code block 內只放一行短 prompt。收斂 / 自由提問狀態不要輸出 prompt。
-- 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。確認通過後自動 commit；commit 前仍須檢查 `git diff --cached --name-only`，不得混入其他 session / 其他 project 檔案。若本輪需要 push，直接執行 `git push` 觸發 approval 視窗，不要只用文字請 Nick approval。
+- 如果本次是小型 / 低風險改檔，請輕量自查後直接 commit；如果本次是重大 / 實質改檔，請完成後自行全掃確認：重讀已改檔案、重讀受影響規則、檢查規則衝突、做 Relationship Check、跑 `git diff --check`、確認沒有 secret / 誇大 / 非預期檔案。Relationship Check 只強制權威檔；動態 / 衍生檔只在升級成正式素材或與權威檔衝突時處理。確認通過後自動 commit；commit 前仍須檢查 `git diff --cached --name-only`，不得混入其他 session / 其他 project 檔案。若本輪需要 push，直接執行 `git push` 觸發 approval 視窗，不要只用文字請 Nick approval。
 - 每次分析都要在 evidence 寫明掃描範圍：主分支、近期分支、相關 code path、相關後端 / 下游 repo 是否已看；未看就明確標未看。
 - 每份 flow.md 要先用白話與圖讓人看懂，再進資深分析；如果是 PHP / ThinkPHP、後台、前端或 BI 專案，必須轉成 Nick 熟悉的後端分層語言。
 - 如果 Nick 說「深掃」，至少使用 Level 2；如果 Nick 說「極限深度 / 逐檔逐行 / 每個 commit diff」，使用 Level 3，並分批完成。
@@ -153,26 +153,49 @@ Code repo:
 如果本次是小型 / 低風險改檔：
 
 1. 重讀改過的檔案片段。
-2. 跑 git diff --check。
-3. 跑 git status --short，確認只動預期檔案。
-4. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
-5. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
-6. 自查通過後直接 commit。
+2. 做 Relationship Check：判斷本輪事實變更是否影響權威檔；有影響就同步，無影響 final 要說已檢查、不需更新。
+3. 跑 git diff --check。
+4. 跑 git status --short，確認只動預期檔案。
+5. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
+6. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+7. 自查通過後直接 commit。
 
 如果本次是重大 / 實質改檔：
 
 1. 重讀本次改過的檔案。
 2. 重讀受影響的共用規則 / prompt / README / index。
 3. 檢查規則是否互相衝突。
-4. 跑 git diff --check。
-5. 跑 git status --short，確認只動預期檔案。
-6. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
-7. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
-8. 檢查履歷 / 面試 claim 沒有誇大，且 evidence 層級清楚。
-9. 自查通過後自動 commit。
-10. commit 後回報 commit hash。
-11. 若需要 push，直接執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No；未通過 approval 不推。
-12. 不要在 final 只回覆本地已提交、等待 Nick 另外要求推送。除非 Nick 明確說「不要 push / 只 commit」。
+4. 做 Relationship Check：確認受影響權威檔已同步；動態 / 衍生檔只在升級成正式素材或與權威檔衝突時處理。
+5. 跑 git diff --check。
+6. 跑 git status --short，確認只動預期檔案。
+7. 跑 git diff --cached --name-only，確認沒有非本輪 staged 檔案。
+8. 檢查沒有 secret、token、internal IP、production URL、客戶資料。
+9. 檢查履歷 / 面試 claim 沒有誇大，且 evidence 層級清楚。
+10. 自查通過後自動 commit。
+11. commit 後回報 commit hash。
+12. 若需要 push，直接執行 `git push` 觸發 approval 視窗，讓 Nick 按 Yes / No；未通過 approval 不推。
+13. 不要在 final 只回覆本地已提交、等待 Nick 另外要求推送。除非 Nick 明確說「不要 push / 只 commit」。
+
+Relationship Check 權威檔：
+
+- 全域規則 / prompt：`AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`。
+- 全域索引 / 下一步：`projects/source-repo-inventory.md`、`projects/README.md`、`06-todo.md`。
+- domain / project 入口：`projects/{domain}/README.md`、`projects/{domain}/{project}/README.md`、必要時的 architecture / integration / career files。
+- 履歷 / 面試輸出：`05`、`08`、`04`、`17`。
+- project / flow evidence：`contribution-claim-consolidation.md`、`flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/claim-boundary.md`。
+
+動態 / 衍生檔處理：
+
+- 自動產物、匯出稿、暫存稿、練習稿、排序稿、一次性檢查輸出，不要求每次即時同步。
+- 只有被升級成正式入口 / 履歷 / 面試素材，或與權威檔產生誤導衝突時才整理。
+- cache、log、工具輸出、外部 repo 產物預設不納入 KB，除非 Nick 明確要求。
+
+push 前只做乾淨確認：
+
+- `git status`
+- `git diff --cached --name-only`
+- `git diff --check`
+- 確認 commit 前的 Relationship Check 已收口；不要等 push 後才做關聯補救。
 
 多 session 防污染補充：
 
@@ -631,9 +654,10 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 7. 是否有檢查這條 flow 以前是否讀過？
 8. 是否有更新 README 或 todo？
 9. 是否已自行全掃確認？
-10. 是否已依改動大小完成輕量自查或全掃確認，且 commit 前確認沒有非本輪 staged 檔案？
-11. 若需要 push，是否已直接觸發 `git push` approval 視窗，而不是只停在本地文字回報？
-12. 下一步只推薦一件事。
+10. 是否已做 Relationship Check，確認權威關聯檔已同步或不需更新？
+11. 是否已依改動大小完成輕量自查或全掃確認，且 commit 前確認沒有非本輪 staged 檔案？
+12. 若需要 push，是否已直接觸發 `git push` approval 視窗，而不是只停在本地文字回報？
+13. 下一步只推薦一件事。
 ```
 
 ## 8. 自動下一步 / 自由提問格式
@@ -662,7 +686,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 
 不會做：
 - 不更新履歷，除非 evidence 足夠且 Nick 明確要求。
-- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；commit 前必須確認 staged 內容沒有混入其他 session / 其他 project；若需要 push，直接觸發 `git push` approval 視窗。
+- 小型 / 低風險改檔輕量自查後 commit；重大 / 實質改檔全掃確認後 commit；commit 前必須做 Relationship Check，確認權威關聯檔已同步或不需更新，並確認 staged 內容沒有混入其他 session / 其他 project；若需要 push，直接觸發 `git push` approval 視窗。
 
 建議提示詞：
 {Nick 下一句可以直接貼的短 prompt}
