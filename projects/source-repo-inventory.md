@@ -4,6 +4,10 @@
 
 這份不是 evidence，也不是履歷 claim。做任何 flow 前仍要重讀 KB、檢查當下 branch / log / code path，不能只靠本清單。
 
+最新 completeness audit：
+
+- `projects/source-repo-flow-audit.md`：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 所有 project folders，標記已有 KB / 缺 Flow Track / 值得補 / 暫不建議。這份是下一輪補 Step 1 / Step 2 的入口，不代表已授權逐一開工。
+
 ## 使用規則
 
 - 只能讀這些公司 / 來源 repo，不能改。
@@ -68,6 +72,7 @@ Git repo:
 - `ugsoft-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / control plane、RabbitMQ / Quartz / report job 類履歷素材；不寫完整 UG 平台或 provider gateway owner。
 - `ugsoft-connector-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作 AntPlay / DerPlay provider connector、transfer wallet、callback、request / bet record MQ、分表與 provider reliability 類履歷素材；不寫完整 connector architecture / wallet / reconciliation owner。
 - `ugsoft-workspace`: contribution claim consolidation 已完成 / rolling。這是 workspace / docs / harness / runbook repo，只支撐 cross-repo system reconstruction、工程規範、local / deploy harness 與 migration / release 風險整理；不放 standalone 正式履歷主成果，不反向包裝成 `ugsoft-admin-api` / `ugsoft-connector-api` service code。
+- 2026-05-26 completeness audit：`ugsoft-admin-api` 與 `ugsoft-connector-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows。若補非 iwin 廣度，優先 `ugsoft-connector-api Step 1 / Step 2`，其次 `ugsoft-admin-api Step 1 / Step 2`。
 
 ## antplay
 
@@ -114,6 +119,7 @@ Git repo:
 - `math-workspace`: contribution claim consolidation 已完成 / rolling。Nick 有 workspace KB / docs commits，只支撐 cross-math module reconstruction / validation workflow；不作 standalone 正式履歷主成果。
 - `platform-mock`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有局部 bet / money_inout failure injection commits，只作 provider rollback / compensation 測試 supporting evidence；不作正式主成果。
 - `buffer-id`: contribution claim consolidation 已完成 / rolling。未掃到 Nick / `10gt12nc` direct commits，只作 ID generator learning-only。
+- 2026-05-26 completeness audit：`antplay-slot-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；若要補後台 / 風控 / admin control plane 廣度可選它。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 代表 flows 已足夠，暫不建議重做。
 
 ## DevOps / primestar
 
@@ -137,6 +143,7 @@ Git repo:
 
 - deploy / CI / observability / Kafka 參考。
 - DevOps 不是履歷主戰場時，只補必要的 deployment、monitoring、Kafka 運維理解。
+- 2026-05-26 completeness audit：DevOps / primestar repo 未見 Nick direct commits。`openobserve`、`kafka`、`antplay-api-deploy` 可作 Platform / observability 可選加強，不作正式履歷主 claim；其餘暫不建議。
 
 ## 下一步使用方式
 

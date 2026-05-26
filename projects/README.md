@@ -2,6 +2,10 @@
 
 這裡放未來各專案整理後的新分析。
 
+最新完整性盤點：
+
+- [Source Repo Flow Audit](source-repo-flow-audit.md)：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 的 project folders，標記 `已有`、`缺 Flow Track 但值得補`、`可選加強`、`暫不建議`。這份只作待辦與優先順序入口，不代表要逐一開工。
+
 所有 project 都套用同一套共用維護規則，不需要 Nick 每次重複提醒「重讀 KB / 重讀 code」。
 
 先讀：

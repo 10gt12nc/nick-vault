@@ -188,6 +188,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 目前深掃 `nick-vault` 後，應放入待辦的缺口：
 
 0. `Completeness Audit 規則補強`：2026-05-26 發現 `ugsoft` 已有 contribution consolidation，但沒有任何 Step 1 / Step 2 / `flows/`，先前「全掃 / 都完整」判斷混淆了 Career Track 與 Flow Track。之後凡是回答「全掃、都完整、還缺什麼、flow 都完整嗎」，必須逐 project 分列 Flow Track / Career Track / Domain Map。Career Track 完成只能表示履歷 claim 可用；不能表示 flow 完整。
+0.1 `四 domain flow completeness audit`：已建立 `projects/source-repo-flow-audit.md`，盤點 `/Users/nick/Git/antplay`（排除 `*-math`）、`/Users/nick/Git/iwin`、`/Users/nick/Git/ugsoft`、`/Users/nick/Git/DevOps` project folders。結論：不要全 repo 開工；只把缺口記入待辦。最值得補的是 `ugsoft-connector-api Step 1 / Step 2`，其次 `ugsoft-admin-api Step 1 / Step 2`，再其次 `antplay-slot-admin-api Step 1 / Step 2`。`payment-thirdparty-simulator`、`openobserve`、`antplay-api-deploy` 只作可選加強；官網、前端、workspace、bot、notify、tool web、mock 與無 Nick direct commits repo 暫不建議。
 
 1. `rolling resume package`：已於 2026-05-25 回填 `third_games_api`、`k3s-deploy` 與 `antplay-slot-game-job` 最新 Step 5 / case 狀態到 `05 / 08 / 17`，並標明 `third_games_api`、`k3s-deploy` 維持 interview-only，`antplay-slot-game-job` 可保守寫 job / event processing、report projection / summary、big-win notification、activity supporting flow 與 partition / report path。
 3. `game_api contribution claim consolidation`：已完成且 2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作面試素材，不因新規則重做。
