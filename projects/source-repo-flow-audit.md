@@ -10,7 +10,7 @@
 
 2026-05-26 UGSoft re-audit：已重新掃 `/Users/nick/Git/ugsoft` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `projects/ugsoft` KB。結論是：UGSoft 仍有真正值得補的 Flow Track，但範圍很收斂，不是全 repo 平均掃。第一順位維持 `ugsoft-connector-api transfer-wallet-in-out-query Step 3`，因為它已完成 Step 1 / Step 2，且 transfer in / out / query、provider adapter、request log、transaction / lookup、callback / MQ 都有高履歷與面試價值。第二順位是 `ugsoft-admin-api Step 1 / Step 2`，用來整理後台 control plane、白名單、RabbitMQ request / bet record consumer、Quartz report job 與 risk monitor。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦；workspace 只作 supporting evidence。
 
-2026-05-26 DevOps re-audit：已重新掃 `/Users/nick/Git/DevOps/primestar` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` / `arnold` commits、主要 manifests / docker-compose / CI / observability docs 與 path history。結論是：DevOps 沒有新的 Senior Backend 主履歷 Flow Track 必做缺口；`10gt12nc` / Nick author 未命中。`antplay-docker-deploys` 有大量 `arnold` commits，集中在 k3s dev / UAT manifests、UGSoft admin / connector deployment、rolling update / probes、configmap / ingress、Fluent Bit / Loki / Grafana 與 apply SOP；若 Nick 確認 `arnold` 是本人帳號，這可作 Platform / deployment / observability supporting case，但仍不應升級成正式主履歷。`openobserve`、`kafka` 只有他人 commits，且 source 含敏感設定，僅作 learning-only，不列待辦。
+2026-05-26 DevOps re-audit：已重新掃 `/Users/nick/Git/DevOps/primestar` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` / `arnold` commits、主要 manifests / docker-compose / CI / observability docs 與 path history。結論是：DevOps 沒有新的 Senior Backend 主履歷 Flow Track 必做缺口；`10gt12nc` / Nick author 未命中。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。`antplay-docker-deploys` 的 `arnold` commits 只能作主管 / 團隊 deployment context 或 learning / supporting，不列 Nick 履歷、不升級 Flow Track 主線。`openobserve`、`kafka` 只有他人 commits，且 source 含敏感設定，僅作 learning-only，不列待辦。
 
 ## 判斷規則
 
@@ -68,15 +68,15 @@
 | `ugsoft-admin-api` | Nick direct commits 約 207；admin auth / 白名單 / report / risk / RabbitMQ / Quartz；2026-05-26 re-audit 確認近期 commits 仍集中 login、provider white IP、report job、BetRecord / RequestLog MQ | 只有 contribution consolidation，沒有 Step 1 / Step 2 / flows | `request-log-rabbitmq-admin-consumer`、`connect-bet-record-mq-ingestion`、`provider-white-ip-game-api-whitelist-sync`、`merchant-auth-rbac-token-kick`、`risk-monitor-alert-quartz`、`daily-hourly-report-job` | 缺 Flow Track 但值得補；第二順位 |
 | `ugsoft-admin-web` | 前端 repo，未見 Nick direct commits；本機落後遠端 | 無 KB | 後台入口，不作主線 | 暫不建議 |
 | `ugsoft-connector-api` | Nick direct commits 約 217；provider connector / transfer wallet / callback / MQ / circuit breaker；2026-05-26 re-audit 確認 transfer adapter、callback -> MQ、bet record sync job、currency / pt_day 修正都有 direct evidence | contribution consolidation + Step 1 / Step 2 已完成；尚無單條 flow package | Step 2 已選：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`；可選 `provider-client-login-launch-game` | 缺單條 flow Step 3；UGSoft 第一順位是 `transfer-wallet-in-out-query` |
-| `ugsoft-workspace` | workspace / docs / harness；2026-05-26 re-audit 仍未見 `10gt12nc` / Nick author，需本人確認 arnold | contribution consolidation 已完成 | workspace / migration runbook supporting | 已收斂，暫不建議 |
+| `ugsoft-workspace` | workspace / docs / harness；2026-05-26 re-audit 仍未見 `10gt12nc` / Nick author；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence | contribution consolidation 已完成 | workspace / migration runbook supporting | 已收斂，暫不建議 |
 
 ## DevOps / primestar
 
 | Project folder | Git / code evidence | KB 狀態 | 值得深入的 flows | 標記 |
 | --- | --- | --- | --- | --- |
-| `primestar/antplay-api-deploy` | 未見 Nick direct commits | 無 KB | API deployment / rollout / rollback | 可選 Platform 加強 |
-| `primestar/antplay-docker-deploys` | 未見 `10gt12nc` / Nick commits；2026-05-26 re-audit 掃到 `arnold` commits 約 46，集中 k3s dev / UAT manifests、UGSoft admin / connector deployment、rolling update / probes、configmap / ingress、Fluent Bit / Loki / Grafana 與 apply SOP | 無 KB | `k3s-ugsoft-deploy-observability-supporting`，僅在 Nick 確認 `arnold` 是本人帳號且目標 JD 偏 Platform / DevOps 時補 | 可選 supporting，不放主履歷 |
-| `primestar/antplay-web-deploy` | 未見 `10gt12nc` / Nick commits；少量 `arnold` web deploy domain / Dockerfile / CI commits，需本人確認 | 無 KB | web deploy / nginx / CI | 暫不建議 |
+| `primestar/antplay-api-deploy` | 未見 Nick direct commits | 無 KB | API deployment / rollout / rollback reference | learning-only / 暫不建議 |
+| `primestar/antplay-docker-deploys` | 未見 `10gt12nc` / Nick commits；2026-05-26 re-audit 掃到 `arnold` commits 約 46；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence | 無 KB | 主管 / 團隊 k3s deployment / observability context；可輔助理解，不作 Nick Flow Track | learning-only / supporting，不放主履歷 |
+| `primestar/antplay-web-deploy` | 未見 `10gt12nc` / Nick commits；少量 `arnold` web deploy domain / Dockerfile / CI commits；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence | 無 KB | web deploy / nginx / CI reference | 暫不建議 |
 | `primestar/ci-template` | 未見 Nick direct commits | 無 KB | CI template | 暫不建議 |
 | `primestar/ci-test` | 未見 Nick direct commits | 無 KB | CI sandbox | 暫不建議 |
 | `primestar/kafka` | 未見 Nick / `arnold` direct commits；他人 commits，local learning docker-compose | 無 KB | Kafka KRaft / Kafdrop local learning-only | learning-only，不放待辦 |
@@ -90,12 +90,12 @@
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。2026-05-26 re-audit 後維持第二順位，可補 admin control plane / RabbitMQ / Quartz / risk monitor。若要做，先做 Step 1，再 Step 2，不直接跳單條 flow。
 3. `antplay-slot-admin-api`：AntPlay 目前唯一真正值得補的 Flow Track 缺口；但目前已有 AntPlay game-api / game-job / `*-math` 主力 evidence，所以它是可選補強，不是投遞前必做。若 Nick 要補後台 / 風控 / admin control plane，先做 Step 1 / Step 2。
 4. `payment-thirdparty-simulator`：2026-05-26 iwin re-audit 後降為 payment provider contract / callback 測試 supporting evidence；不作主線、不放主履歷、不列 project Flow Track 必做。
-5. `antplay-docker-deploys`：只在 Nick 確認 `arnold` 是本人帳號，且目標 JD 偏 Platform / DevOps / observability 時，才可補 `k3s-ugsoft-deploy-observability-supporting`；不作 Senior Backend 主線、不放主履歷。`openobserve` / `kafka` 經 re-audit 後降為 learning-only。
+5. `antplay-docker-deploys`：Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence；降為主管 / 團隊 deployment context 與 learning / supporting，不作 Nick Flow Track、不放主履歷。`openobserve` / `kafka` 經 re-audit 後降為 learning-only。
 
 目前不建議：
 
 - 官網、前端、workspace、bot、notify、tool web、mock、無 Nick direct commits repo。
 - `antplay-push`、`platform-mock`、`math-core` 單獨開 Flow Track：都有 supporting evidence，但不比既有 game-api / game-job / `*-math` 代表 flows 更值得；除非 Nick 明確指定特定職缺需要 push / testing / math-core contract。
-- `DevOps` repo 平均開 Flow Track：目前缺 `10gt12nc` / Nick direct evidence；`arnold` evidence 未經本人確認前只能 supporting / 待確認。`openobserve` / `kafka` 是 learning-only，不作履歷 claim。
+- `DevOps` repo 平均開 Flow Track：目前缺 `10gt12nc` / Nick direct evidence；Nick 已確認 `arnold` 是主管帳號，因此 `arnold` commits 只能作主管 / 團隊 context 或 learning-only，不作 Nick 履歷 claim。`openobserve` / `kafka` 是 learning-only。
 - 對已完成 Step 1 / Step 2 / 代表 flows 的 iwin、AntPlay game-api、AntPlay game-job、`*-math` 反覆重做。
 - 因「全掃焦慮」把所有 repo 都排成必做 flow。

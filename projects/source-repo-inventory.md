@@ -9,7 +9,7 @@
 - `projects/source-repo-flow-audit.md`：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 所有 project folders，標記已有 KB / 缺 Flow Track / 值得補 / 暫不建議。這份是下一輪補 Step 1 / Step 2 的入口，不代表已授權逐一開工。
 - 2026-05-26 iwin re-audit：重新掃 `/Users/nick/Git/iwin` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 iwin 沒有新的 project Flow Track 必做缺口；`payment-thirdparty-simulator` 降為 payment provider contract / callback 測試 supporting evidence，不列主待辦。
 - 2026-05-26 UGSoft re-audit：重新掃 `/Users/nick/Git/ugsoft` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 UGSoft 仍有收斂後的 Flow Track 缺口：第一順位 `ugsoft-connector-api transfer-wallet-in-out-query Step 3`，第二順位 `ugsoft-admin-api Step 1 / Step 2`；官網、前端、workspace 不列主待辦。
-- 2026-05-26 DevOps re-audit：重新掃 `/Users/nick/Git/DevOps/primestar` 各 repo 的 remote refs、Nick / `10gt12nc` / `arnold` commits、manifests / docker-compose / CI / observability docs 與 path history 後，結論是 DevOps 沒有 Senior Backend 主履歷 Flow Track 必做缺口。`antplay-docker-deploys` 只有在 Nick 確認 `arnold` 是本人帳號且 JD 偏 Platform / DevOps 時，才作 k3s deployment / observability supporting case；`openobserve` / `kafka` 是 learning-only。
+- 2026-05-26 DevOps re-audit：重新掃 `/Users/nick/Git/DevOps/primestar` 各 repo 的 remote refs、Nick / `10gt12nc` / `arnold` commits、manifests / docker-compose / CI / observability docs 與 path history 後，結論是 DevOps 沒有 Senior Backend 主履歷 Flow Track 必做缺口。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence；`antplay-docker-deploys` 只能作主管 / 團隊 deployment context 或 learning / supporting，不作 Nick 履歷 claim；`openobserve` / `kafka` 是 learning-only。
 
 ## 使用規則
 
@@ -152,7 +152,7 @@ Git repo:
 
 - deploy / CI / observability / Kafka 參考。
 - DevOps 不是履歷主戰場時，只補必要的 deployment、monitoring、Kafka 運維理解。
-- 2026-05-26 completeness audit / re-audit：DevOps / primestar repo 未見 `10gt12nc` / Nick direct commits。`antplay-docker-deploys` 有大量 `arnold` commits，集中 k3s dev / UAT manifests、UGSoft admin / connector deployment、rolling update / probes、configmap / ingress、Fluent Bit / Loki / Grafana 與 apply SOP；需 Nick 本人確認 `arnold` 才能作實作 evidence，且只作 Platform supporting case。`openobserve` / `kafka` 無 Nick / `arnold` commits，source 含敏感設定，不搬內容進 vault，只作 learning-only。其他 repo 暫不建議。
+- 2026-05-26 completeness audit / re-audit：DevOps / primestar repo 未見 `10gt12nc` / Nick direct commits。`antplay-docker-deploys` 有大量 `arnold` commits，集中 k3s dev / UAT manifests、UGSoft admin / connector deployment、rolling update / probes、configmap / ingress、Fluent Bit / Loki / Grafana 與 apply SOP；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence，因此只作主管 / 團隊 context 或 learning / supporting，不作 Nick Flow Track 或履歷 claim。`openobserve` / `kafka` 無 Nick / `arnold` commits，source 含敏感設定，不搬內容進 vault，只作 learning-only。其他 repo 暫不建議。
 
 ## 下一步使用方式
 

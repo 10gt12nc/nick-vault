@@ -24,7 +24,7 @@
 
 - `ugsoft-admin-api` 有 Nick / `10gt12nc` 大量 direct commits，範圍包含 login / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record、Quartz / report job 維護。
 - `ugsoft-connector-api` 有 Nick / `10gt12nc` 大量 direct commits，範圍包含 AntPlay / DerPlay provider adapter、login / balance / transfer in-out / bet-settle / callback、request / bet record MQ、transfer wallet compensation、分表與 circuit breaker code-backed reliability。
-- `ugsoft-workspace` 是 workspace / docs / harness repo。source git author 主要是 `arnold`，本次未命中 `10gt12nc` / `Nick` author；若 `arnold` 是 Nick 公司帳號，可作 workspace / docs / tooling 真實貢獻，否則待本人確認。無論如何都只作 cross-repo system reconstruction / runbook / harness supporting evidence，不反向包裝成 service runtime code。
+- `ugsoft-workspace` 是 workspace / docs / harness repo。source git author 主要是 `arnold`，本次未命中 `10gt12nc` / `Nick` author；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。因此 `ugsoft-workspace` 只能作主管 / 團隊 context、workspace learning 或 cross-repo system reconstruction / runbook / harness supporting evidence，不作 Nick 真實開發貢獻，也不反向包裝成 service runtime code。
 - 可以放履歷的是「參與後台控制面與非同步資料處理開發維護」，不是「主導完整 UG 平台」。
 - connector/provider gateway 可以保守使用 `ugsoft-connector-api` consolidation 結論，但完整 flow 面試包仍需 Step 1 / Step 2 後逐條深掃。
 

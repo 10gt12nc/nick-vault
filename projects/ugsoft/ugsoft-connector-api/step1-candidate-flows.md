@@ -7,7 +7,7 @@
 - 掃描等級：Level 1 Flow 掃描
 - 目標：建立 project / module / upstream-downstream 地圖，篩出值得進 Step 2 比較的 production flows。
 - 本輪不做：不建立單條 `flows/{flow}`、不寫 Step 3 深掃報告、不更新 05 / 08 履歷輸出版。
-- 證據層級：`真實開發過 + code-backed`、`code-backed / 待本人確認`、`分析素材 / 待深掃` 混合；每條候選 flow 下方分開標示。
+- 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待深掃` 混合；每條候選 flow 下方分開標示。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。
 
 ## 已重讀與既有文件狀態
 
@@ -78,7 +78,7 @@
 - 未讀所有 provider adapter 每一個 method。
 - 未讀完整 DB migration / DDL。
 - 未讀 production incident / ticket。
-- 未驗證 `arnold` 是否為 Nick 另一個公司帳號；本檔將 `arnold` commits 視為 code-backed / 待本人確認，不直接當 Nick 本人 commits。
+- Nick 已確認 `arnold` 是主管帳號；本檔將 `arnold` commits 視為主管 / 團隊 context，不直接當 Nick 本人 commits。
 
 ## Project / Module Map
 
@@ -148,12 +148,12 @@ flowchart LR
 Evidence：
 
 - `10gt12nc` commits：`9913ed2`、`261e1a2`、`5e4448a` 等 AntPlay login / info 系列。
-- `arnold` commits：login v3、subAgentId、lang allow list、innerTransferOther 等，需本人確認是否 Nick。
+- `arnold` commits：login v3、subAgentId、lang allow list、innerTransferOther 等；Nick 已確認 `arnold` 是主管帳號，只作主管 / 團隊 context。
 
 證據層級：
 
 - AntPlay adapter login：`真實開發過 + code-backed`
-- provider position / inner transfer：`code-backed / 待本人確認`
+- provider position / inner transfer：`code-backed / 主管或團隊 context`
 
 ### 2. transfer-wallet-in-out-query
 
@@ -188,12 +188,12 @@ Evidence：
 Evidence：
 
 - `10gt12nc` commits：AntPlay transfer API / DerPlay transfer / single transaction 系列，例如 `575996d`、`80828c1`、`04473d5`、`48ee13b`、`04e2c84`、`1a1c0b1`、`92b6a1f`。
-- `arnold` commits：`beforeTransaction` / `afterTransaction`、lookup、idempotency replay、subAgentId 修正，需本人確認。
+- `arnold` commits：`beforeTransaction` / `afterTransaction`、lookup、idempotency replay、subAgentId 修正；Nick 已確認 `arnold` 是主管帳號，只作主管 / 團隊 context。
 
 證據層級：
 
 - Provider adapter transfer：`真實開發過 + code-backed`
-- transaction facade / idempotency / lookup：`code-backed / 待本人確認`
+- transaction facade / idempotency / lookup：`code-backed / 主管或團隊 context`
 
 ### 3. provider-callback-bet-settle-to-mq
 
@@ -221,12 +221,12 @@ Evidence：
 
 - `10gt12nc` commits：callback 寫 MQ、DerPlay / AntPlay bet record MQ，例如 `e95b353`、`120c0fb`、`a173cf3`、`df1fdcf`、`b6329a8`。
 - `10gt12nc` commits：AntPlay callback / balance / bet-settle 早期 adapter path，例如 `842a3df`、`59121a3`。
-- 後續 amount / subAgent 修正多為 `arnold` commits，待本人確認。
+- 後續 amount / subAgent 修正多為 `arnold` commits；Nick 已確認 `arnold` 是主管帳號，只作主管 / 團隊 context。
 
 證據層級：
 
 - callback -> MQ 初版與修正：`真實開發過 + code-backed`
-- 最新 callback amount / subAgent 行為：`code-backed / 待本人確認`
+- 最新 callback amount / subAgent 行為：`code-backed / 主管或團隊 context`
 
 ### 4. request-bet-record-mq-sync
 
@@ -284,7 +284,7 @@ Evidence：
 
 證據層級：
 
-- `code-backed / 待本人確認`
+- `code-backed / 主管或團隊 context`
 
 ### 6. schema-route-partition-transfer-record
 
@@ -338,11 +338,11 @@ Evidence：
 2026-05-26 Step 2 已比較：
 
 - 哪 1-2 條 flow 最能補非 iwin 廣度。
-- 哪些候選有 Nick / `10gt12nc` direct commits，哪些只是 code-backed / 待本人確認。
+- 哪些候選有 Nick / `10gt12nc` direct commits，哪些只是 code-backed / 主管或團隊 context。
 - `transfer-wallet-in-out-query` 要不要拆成 transfer in/out 與 get-single-transaction。
 - `provider-callback-bet-settle-to-mq` 和 `request-bet-record-mq-sync` 是否同屬 bet record eventual consistency domain，還是分成 callback path / job path 兩條。
 - `schema-route-partition-transfer-record` 是否獨立做，或併入 transfer / MQ 的 supporting architecture。
-- 是否需要先向 Nick 確認 `arnold` 是否為本人公司帳號；未確認前不可把 `arnold` commits 寫成 Nick 真實開發。
+- Nick 已確認 `arnold` 是主管帳號；不可把 `arnold` commits 寫成 Nick 真實開發。
 
 ## Claim Boundary
 

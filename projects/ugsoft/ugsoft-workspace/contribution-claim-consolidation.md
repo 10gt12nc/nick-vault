@@ -6,7 +6,7 @@
 
 `ugsoft-workspace` 是 supporting evidence，不是獨立履歷主成果。它可以支撐 Nick 的「跨 repo 系統重建、工程規範化、AI / harness 協作、release / deploy runbook、provider migration 風險整理」能力，但不能把 workspace 文件反向包裝成 `ugsoft-admin-api` 或 `ugsoft-connector-api` 的 production code 貢獻。
 
-本 repo 的 git author 主要是 `arnold`，本次掃描沒有命中 `10gt12nc` / `Nick` author。若 `arnold` 是 Nick 的公司帳號，則可視為 Nick 真實做過的 workspace / docs / tooling 貢獻；若不是，則只能標為「專案存在 / code-backed + 待本人確認」。無論哪種情況，正式履歷都不新增 `ugsoft-workspace` standalone bullet。
+本 repo 的 git author 主要是 `arnold`，本次掃描沒有命中 `10gt12nc` / `Nick` author。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。因此本 repo 不能視為 Nick 真實做過的 workspace / docs / tooling 貢獻；只能標為「專案存在 / code-backed + 主管 / 團隊 context」。正式履歷不新增 `ugsoft-workspace` standalone bullet。
 
 可保守使用的說法:
 
@@ -24,7 +24,7 @@
 | 類別 | 判斷 | Evidence |
 | --- | --- | --- |
 | repo 類型 | supporting evidence | `README.md` 明確定位為 UGSoft 三核心專案理解入口、需求開發查核區、Harness Engineer 規範入口 |
-| 直接 author | 待本人確認 | `git log --all --author='10gt12nc|Nick|nick'` 無命中；`shortlog --all` 顯示 40 筆 `arnold` commits |
+| 直接 author | 非 Nick evidence | `git log --all --author='10gt12nc|Nick|nick'` 無命中；`shortlog --all` 顯示 40 筆 `arnold` commits；Nick 已確認 `arnold` 是主管帳號 |
 | cross-repo system reconstruction | code-backed / docs-backed | `docs/01`、`docs/07`、`docs/08`、`docs/10`、`docs/12~15` |
 | provider API / contract | code-backed / docs-backed | `docs/05` 整理 connector API endpoint、sign、transfer、bet record contract |
 | infra / async / job | code-backed / docs-backed | `docs/06`、`docs/21` 整理 Redis ID_STORE、RabbitMQ、Quartz / SerialSyncJob 風險 |

@@ -7,7 +7,7 @@
 - 掃描等級: Level 1.5 flow comparison；不是單條 flow Level 2 深掃，也不是 Level 3 逐 commit final。
 - 目標: 比較 Step 1 篩出的候選 production flows，決定本批最值得進 Step 3 的代表 flow。
 - 本輪不做: 不建立 `flows/{flow}/`、不寫 Step 3 主報告、不直接更新 `05 / 08 / 04 / 17`。
-- 證據層級: `真實開發過 + code-backed`、`code-backed / 待本人確認`、`分析素材 / 待深掃` 混合；本檔只做排序與邊界，不把 candidate 直接升級成完整履歷 claim。
+- 證據層級: `真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待深掃` 混合；本檔只做排序與邊界，不把 candidate 直接升級成完整履歷 claim。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。
 
 ## 已重讀與既有文件狀態
 
@@ -71,17 +71,17 @@
 
 - 未逐檔逐行 Level 3。
 - 未建立單條 flow 的 `flow.md / career-interview.md / materials/*`。
-- 未驗證 `arnold` 是否為 Nick 另一個公司帳號；本檔將 `arnold` commits 視為 code-backed / 待本人確認，不直接當 Nick direct evidence。
+- Nick 已確認 `arnold` 是主管帳號；本檔將 `arnold` commits 視為主管 / 團隊 context，不直接當 Nick direct evidence。
 - 未驗證 production 目前到底跑 `origin/master` 或 `origin/develop`；本輪以 `origin/master` 的 connector runtime code 與 path history 做保守比較。
 
 ## Candidate Flow 比較表
 
 | Rank | Flow | Evidence 強度 | 技術價值 | Failure / owner 追問價值 | 履歷 / 面試價值 | 邊界 | Step 2 決策 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `transfer-wallet-in-out-query` | 高。Nick / `10gt12nc` 有 AntPlay / DerPlay transfer API、single transaction、provider adapter direct commits；transaction facade / replay / lookup 多為 code-backed / 待本人確認。 | 很高。簽名、agent / subAgent、Redis duplicate guard、provider adapter、request log、wallet transaction、order lookup、查單集中在同一條 money-adjacent flow。 | 很高。可追問重複提交、provider 成功但 DB 寫入失敗、query order 不一致、transfer out / in failure window。 | 很高。最適合補 UGSoft 非 iwin 的 Senior Backend 主力 case。 | 不能寫完整 wallet / ledger / reconciliation owner；`beforeTransaction / afterTransaction` ownership 待本人確認。 | 本批第一順位，進 Step 3。 |
-| 2 | `provider-callback-bet-settle-to-mq` | 高。Nick / `10gt12nc` 有 callback 寫 MQ、AntPlay / DerPlay bet record MQ、pt_day / currency 類 commits；部分最新 amount / subAgent 修正待本人確認。 | 很高。provider callback、驗簽、wallet type、bet-settle、MQ eventual consistency、payload normalize。 | 高。可追問 callback 重送、MQ duplicate / missing、bet id 去重、BigDecimal / cents conversion、late data。 | 很高。可和 AntPlay / iwin bet-settle case 互相補強。 | 不能寫 exactly-once / outbox owner；callback 最新細節需 Step 3 再追。 | 第二順位，適合 transfer flow 後接著做。 |
+| 1 | `transfer-wallet-in-out-query` | 高。Nick / `10gt12nc` 有 AntPlay / DerPlay transfer API、single transaction、provider adapter direct commits；transaction facade / replay / lookup 多為 code-backed / 主管或團隊 context。 | 很高。簽名、agent / subAgent、Redis duplicate guard、provider adapter、request log、wallet transaction、order lookup、查單集中在同一條 money-adjacent flow。 | 很高。可追問重複提交、provider 成功但 DB 寫入失敗、query order 不一致、transfer out / in failure window。 | 很高。最適合補 UGSoft 非 iwin 的 Senior Backend 主力 case。 | 不能寫完整 wallet / ledger / reconciliation owner；`beforeTransaction / afterTransaction` 若只見 `arnold` evidence，須標為主管 / 團隊 context，不作 Nick direct claim。 | 本批第一順位，進 Step 3。 |
+| 2 | `provider-callback-bet-settle-to-mq` | 高。Nick / `10gt12nc` 有 callback 寫 MQ、AntPlay / DerPlay bet record MQ、pt_day / currency 類 commits；部分最新 amount / subAgent 修正屬主管 / 團隊 context。 | 很高。provider callback、驗簽、wallet type、bet-settle、MQ eventual consistency、payload normalize。 | 高。可追問 callback 重送、MQ duplicate / missing、bet id 去重、BigDecimal / cents conversion、late data。 | 很高。可和 AntPlay / iwin bet-settle case 互相補強。 | 不能寫 exactly-once / outbox owner；callback 最新細節需 Step 3 再追。 | 第二順位，適合 transfer flow 後接著做。 |
 | 3 | `request-bet-record-mq-sync` | 中高。Nick / `10gt12nc` 有 MQ / pt_day / currency / job 修正 evidence；完整 sync service owner 需深掃。 | 高。Quartz pull provider bet record、時間窗、水位、跨日查重、批次 existing keys、MQ 補資料。 | 高。可追問水位不前進、跨日分區、重播、provider 拉取失敗、資料晚到。 | 高。可補 asynchronous data / report projection 類廣度。 | 容易和 callback -> MQ 重疊；要避免包成完整 reconciliation。 | 第三順位，作本批代表 flow 或可選補強。 |
-| 4 | `provider-client-login-launch-game` | 中高。Nick / `10gt12nc` 有 AntPlay login / info direct commits；login v3、subAgent、lang allow list、provider switch 多為 code-backed / 待本人確認。 | 中高。gateway contract、sign / currency / game route、provider adapter、transfer wallet provider position。 | 中。可追問 provider switch、inner transfer、gameUrl / html 差異，但 money state 較間接。 | 中高。適合作為 connector gateway supporting case。 | 不宜當第一條主力，因核心風險比 transfer / callback 弱。 | 可選第四順位。 |
+| 4 | `provider-client-login-launch-game` | 中高。Nick / `10gt12nc` 有 AntPlay login / info direct commits；login v3、subAgent、lang allow list、provider switch 多為 code-backed / 主管或團隊 context。 | 中高。gateway contract、sign / currency / game route、provider adapter、transfer wallet provider position。 | 中。可追問 provider switch、inner transfer、gameUrl / html 差異，但 money state 較間接。 | 中高。適合作為 connector gateway supporting case。 | 不宜當第一條主力，因核心風險比 transfer / callback 弱。 | 可選第四順位。 |
 | 5 | `provider-circuit-breaker-fast-fail` | 中。code-backed 存在 `ConnectAdapterExecute` / `ConnectorCircuitBreaker` / provider-level breaker；Nick direct ownership 未確認。 | 高。provider HTTP wrapper、request / response log、elapsed time、Resilience4j fast-fail。 | 中高。可追問熔斷打開後的 user experience、retry / fallback、不能解決的 consistency 問題。 | 中。Platform / reliability JD 可加分。 | 目前 evidence 不足以放主履歷 bullet。 | 可選 supporting，不列本批必做。 |
 | 6 | `schema-route-partition-transfer-record` | 中。schema route / partition code-backed，Nick direct ownership 混合；部分 high-volume data commits 在其他 path。 | 中高。`@UseSchema`、agent / table route、read-only route、partition table。 | 中。可追問跨 schema 查詢、nested schema route、table existence、讀寫分離。 | 中。適合作為 transfer / MQ flow 的支撐，不宜獨立第一條。 | 抽成獨立 flow 會偏 infrastructure；應先嵌入 transfer / MQ。 | 支撐材料，不列本批必做。 |
 
@@ -132,7 +132,7 @@ Step 3 必須補清楚:
 - provider adapter transfer in / out / query order。
 - `TransferFacade#afterTransaction` 如何寫 wallet transaction / order lookup。
 - failure window: provider 成功但 DB 寫入失敗、DB 有交易但 provider query 不一致、Redis guard 過短、provider timeout / duplicate request。
-- claim boundary: Nick direct evidence 限於 provider adapter transfer；transaction facade / replay / subAgent 若未找到 Nick evidence，標成 code-backed / 待本人確認。
+- claim boundary: Nick direct evidence 限於 provider adapter transfer；transaction facade / replay / subAgent 若只找到 `arnold` evidence，標成 code-backed / 主管或團隊 context，不作 Nick direct claim。
 
 ## Relationship Check
 
