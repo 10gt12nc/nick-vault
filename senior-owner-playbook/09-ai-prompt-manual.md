@@ -26,6 +26,7 @@
 - Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」時，本輪是 `KB-only` 模式。完成後不要給 project flow 下一步 prompt，也不要自動開工 todo 裡的收口項目；只回報 KB 修正、檢查結果、commit / push 狀態。
 - 每次完成後，若 flow / project / Career Track 尚未收口，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
 - 若目前已收斂、沒有 active flow、沒有特定 JD、Nick 也沒有指定下一個任務，AI 不要硬塞下一步；改成回報「沒有預設下一步，可以自由提問或彈性指定」。此時不要輸出 fenced prompt，也不要把可選方向包裝成必做 backlog。
+- 若 Nick 追問「這種下一步建議不錯 / 幫記 KB」，保留的格式是：先判斷 `必做收口` 是否存在，再列少數 `可選加強`（廣度延伸、深度延伸、架構視角、投遞準備），最後列 `暫不建議`。可選加強是選單，不是授權開工；不建議事項要明確，避免 AI 用 backlog 製造壓力。
 - 下一步建議若需要輸出 prompt，必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 每次 Step 也要寫清楚 code repo 遠端最新性：是否已 fetch、local HEAD、remote HEAD、是否 ahead / behind；若未 fetch 或本機落後遠端，必須標示「未確認最新 code」。
@@ -683,6 +684,7 @@ projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
 - 如果 Nick 問「還剩多少 / 會不會一直做 / 是否有結束點」，先給收斂版回答：最小必做剩多少、可選加強剩多少、暫不建議做哪些、達標後轉投遞或面試練習。不要把所有 backlog 加總成壓力數字。
 - 如果 Nick 明確要求 `KB-only` 或「專案先不下一步」，本段格式停用；不要輸出 project flow 建議 prompt。
 - 如果已達收斂狀態，且 Nick 沒指定下一個任務，本段格式停用；改說「沒有預設下一步，可以自由提問或彈性指定」。可列出 2-4 個可問方向，但不得用 fenced prompt、不得暗示必做。
+- 收斂狀態下可用小儀表板格式：必做收口 / 可選加強 / 暫不建議；可選加強最多 1-3 項，並標示廣度或深度，不要列成長 backlog。
 
 原因：
 - {為什麼現在最適合做這件事}
