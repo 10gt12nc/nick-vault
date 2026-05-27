@@ -1,12 +1,12 @@
-# connect-bet-record-mq-ingestion Step 4
+# connect-bet-record-mq-ingestion Step 5
 
 ## 閱讀定位
 
 - Flow 中文名稱：Connector BetRecord MQ 入庫與 quota update
 - Flow slug：`connect-bet-record-mq-ingestion`
 - Project：`ugsoft-admin-api`
-- Step：Step 4 / Interview case
-- 完成狀態：Step 3 主報告與 Step 4 面試 case 已完成；尚未完成 Step 5 claim gate。
+- Step：Step 5 / Claim gate
+- 完成狀態：Step 3 主報告、Step 4 面試 case 與 Step 5 claim gate 已完成；本 flow 已形成 flow-level 閉環，但不代表整個 `ugsoft-admin-api` project 完整。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：RabbitMQ consumer / provider bet record ingestion / duplicate check / quota async supporting flow。
 - 是否只確認到入口：否。已確認 listener、consumer service、MQ config、payload、mapper duplicate query、`pt_bet_record` entity、quota update publish 與 quota consumer context；未驗證 production broker ack / retry / DLQ 實際設定、DB schema migration、真實 incident / ticket。
@@ -268,6 +268,16 @@ event time 算 `ptDay` 比 consume time 更適合 provider late data。這也是
 - 不把 `arnold` 的 quota monitoring、id 生成、amount normalization 說成 Nick direct evidence。
 - 不說完整 provider connector / gateway owner；那是 `ugsoft-connector-api` 的 project-level claim 另外收斂。
 
+## Step 5 Claim Gate 結論
+
+本 flow 可作 `ugsoft-admin-api` project-level 「RabbitMQ bet record 非同步入庫 / 後台非同步資料處理」的強 supporting evidence。
+
+可放履歷的層級是：參與 UGSoft 後台 API / control plane 中 RabbitMQ bet record 非同步入庫與資料處理維護，包含 BetRecord MQ 初版、consumer 調整、mapper 查重與 currency default。這句仍應放在 project-level consolidation 的大句裡，不單獨寫成完整 RabbitMQ / quota / provider gateway owner。
+
+可面試講的層級是：provider callback / job sync 送 MQ 後，admin-api consumer 如何 parse payload、用 event time 算 `ptDay`、做 duplicate check、寫 `pt_bet_record`，以及 save 後 fire-and-forget 發 quota update 帶來的 eventual consistency / failure window。可以講 outbox、publisher confirm、DLQ replay、quota rebuild 是 owner 補強方向。
+
+不可誇大：不能說主導完整 quota monitoring、完整 wallet / ledger / reconciliation、完整 exactly-once / outbox / DLQ 平台、完整 provider gateway，且不能把 `arnold` 的 quota monitoring、id 生成、amount normalization 當 Nick direct evidence。
+
 ## 下一步
 
-Step 4 已把這條 flow 轉成正式面試 case。若繼續同一條 flow，下一步應做 Step 5 claim gate：追 direct evidence / current behavior 邊界，判斷能否回填 project-level consolidation，但仍不得直接把單條 flow 當成整個 project 履歷結論。
+本 flow 已完成 Step 5。若繼續 `ugsoft-admin-api` Flow Track，下一步應回到同 project Step 2 ranking，做第二條代表 flow `request-log-rabbitmq-admin-consumer Step 3`；不要跳到 project contribution final，也不要把單條 flow Step 5 當成整個 project 完整。

@@ -4,9 +4,9 @@
 
 - Flow：`connect-bet-record-mq-ingestion`
 - Project：`ugsoft-admin-api`
-- 目前 Step：Step 4
+- 目前 Step：Step 5
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
-- 用途：單條 flow 的正式面試素材與履歷候選素材；尚未進 Step 5，因此不直接更新 `05 / 08`。
+- 用途：單條 flow 的正式面試素材與 flow-level claim gate；可回填 `ugsoft-admin-api` project-level consolidation，但不直接更新 `05 / 08`。
 
 ## 30 秒摘要
 
@@ -41,17 +41,19 @@ save 成功後會發 quota update MQ。這裡我會特別把主事實和衍生 v
 5. 能主動說明 bet record save 成功但 quota publish 失敗的 failure window。
 6. 能保守指出目前 evidence 不足以宣稱 exactly-once / outbox /完整 replay。
 
-## 可安全使用的履歷素材候選
+## Step 5 Claim Gate
 
-> 參與 UGSoft 後台 API / control plane 中 RabbitMQ bet record 非同步入庫與資料處理維護，處理 provider bet record payload、重複檢查、currency default、`ptDay` 分區與 quota update supporting flow。
+### 可放履歷
 
-使用前提：
+> 參與 UGSoft 後台 API / control plane 中 RabbitMQ bet record 非同步入庫與資料處理維護，處理 provider bet record payload、重複檢查、currency default 與 `ptDay` 分區等資料入庫邊界。
 
-- 這句只能作 `ugsoft-admin-api` project-level consolidation 的補充素材。
-- 正式寫入 `05 / 08` 前，要等 Step 5 claim gate 或 project contribution consolidation refresh。
-- 不寫「主導完整 RabbitMQ 架構」、「完整 quota owner」、「完整 provider gateway owner」。
+使用限制：
 
-## 可面試講但不一定放履歷
+- 這句只能併入 `ugsoft-admin-api` project-level consolidation，不單獨包成一個正式主成果。
+- 本輪不直接更新 `05 / 08`，因為那要走 project-level consolidation refresh 或 rolling resume package。
+- `quota update` 只能作 supporting flow / 面試追問，不寫成自己主導完整 quota monitoring。
+
+### 可面試講但不一定放履歷
 
 - listener catch exception 對 redelivery / ack 語意的影響。
 - duplicate query 和 entity unique constraint 不完全一致的風險。
@@ -66,8 +68,8 @@ save 成功後會發 quota update MQ。這裡我會特別把主事實和衍生 v
 - 不說 production incident owner 或改善百分比。
 - 不說完整 UGSoft 平台 owner。
 
-## 待 Step 5 追查
+## Step 5 收斂
 
-- 追 direct evidence / current behavior 邊界。
-- 判斷本 flow 能否回填 project-level contribution consolidation refresh。
-- 不直接把單條 flow 寫進 `05 / 08`。
+- 已完成 direct evidence / current behavior 邊界切分。
+- 可回填 project-level contribution consolidation 作為 BetRecord MQ evidence。
+- 不直接把單條 flow 寫進 `05 / 08`；若要更新履歷 master，要另做 `ugsoft-admin-api contribution claim consolidation refresh` 或 rolling resume package。

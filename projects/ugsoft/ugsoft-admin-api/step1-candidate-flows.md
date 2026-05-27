@@ -308,8 +308,8 @@ Senior 點:
 
 ## 下一步
 
-`ugsoft-admin-api` Step 1 已完成；2026-05-27 後續 Step 2 也已完成，詳見 [step2-flow-comparison.md](step2-flow-comparison.md)。第一條代表 flow `connect-bet-record-mq-ingestion Step 4` 也已完成；下一步如果繼續本 project，應做同一條 flow Step 5，不能跳到其他 flow。
+`ugsoft-admin-api` Step 1 已完成；2026-05-27 後續 Step 2 也已完成，詳見 [step2-flow-comparison.md](step2-flow-comparison.md)。第一條代表 flow `connect-bet-record-mq-ingestion Step 5` 也已完成；下一步如果繼續本 project，應回到本 project 第二條代表 flow `request-log-rabbitmq-admin-consumer Step 3`，不能跳到其他 project。
 
 ```text
-ugsoft ugsoft-admin-api connect-bet-record-mq-ingestion Step 5
+ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 3
 ```

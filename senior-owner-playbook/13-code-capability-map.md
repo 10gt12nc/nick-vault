@@ -156,7 +156,7 @@ Lead / Architect 候選能力可以準備，但目前應以「候選能力 / 思
 
 - 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定。
 - 若 Nick 要補架構視角，可選 `iwin system map v1`，但這是可選加強，不是投遞前必做。
-- 若 Nick 要補非 iwin 廣度，`ugsoft-connector-api` Step 1 / Step 2 已完成，本批三條代表 flow `transfer-wallet-in-out-query Step 5`、`provider-callback-bet-settle-to-mq Step 5`、`request-bet-record-mq-sync Step 5` 也已完成，且 project-level contribution refresh 已完成；`ugsoft-admin-api Step 1 / Step 2` 已完成，第一條 `connect-bet-record-mq-ingestion Step 4` 也已完成，之後可選 `ugsoft-admin-api connect-bet-record-mq-ingestion Step 5` 補 claim gate / 邊界收斂，但不要把它包裝成必要 backlog。
+- 若 Nick 要補非 iwin 廣度，`ugsoft-connector-api` Step 1 / Step 2 已完成，本批三條代表 flow `transfer-wallet-in-out-query Step 5`、`provider-callback-bet-settle-to-mq Step 5`、`request-bet-record-mq-sync Step 5` 也已完成，且 project-level contribution refresh 已完成；`ugsoft-admin-api Step 1 / Step 2` 已完成，第一條 `connect-bet-record-mq-ingestion Step 5` 也已完成，之後可選 `ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 3` 補 audit ingestion / RabbitMQ consumer 廣度，但不要把它包裝成必要 backlog。
 - 若 Nick 要練面試，再啟動三條主力 case 90 秒 / 3 分鐘口說練習；未要求時先暫停。
 - 若有實際 JD，才客製 `08` 與 `17`；沒有 JD 時維持通用 Senior Java Backend / Platform Backend 版本。
 
