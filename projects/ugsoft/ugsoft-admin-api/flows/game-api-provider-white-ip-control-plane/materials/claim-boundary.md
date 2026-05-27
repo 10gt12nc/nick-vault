@@ -13,7 +13,7 @@
 
 ## 可放履歷的保守素材
 
-此 flow Step 3 先不直接更新 `05 / 08`。若後續 Step 5 或 project contribution refresh 採用，可用:
+此 flow Step 4 先不直接更新 `05 / 08`。若後續 Step 5 或 project contribution refresh 採用，可用:
 
 - 參與 UGSoft 後台 Game API / provider IP 白名單控制面開發維護，處理後台 CRUD、DB / Redis 同步、權限範圍與操作紀錄。
 
@@ -33,6 +33,12 @@
 - 不說已建立完整強一致 DB / Redis / MQ cache coherence。
 - 不說這條 flow 等同完整 provider gateway、wallet、ledger 或 money correctness。
 - 不說有量化改善或 production incident owner，除非 Nick 之後補 ticket / incident evidence。
+
+## Step 4 判定
+
+- 可作正式面試 case: 是。
+- 可直接更新 `05 / 08`: 否。Step 4 只完成口說與追問防線，尚未做單條 flow claim gate。
+- 可作 project-level supporting evidence: 待 Step 5 判斷。
 
 ## 待 Step 5 判斷
 

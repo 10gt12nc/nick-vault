@@ -51,3 +51,19 @@ DB + Redis / RabbitMQ fanout 沒有強交易。可選策略:
 - provider cache reload 若失敗，應至少有 last refresh time、reload error log、manual reload 或 health check。
 - 操作權限需要比一般查詢更嚴格，因為這是 runtime access-control setting。
 - operation log 必須包含 agent / provider / ip / operator，否則出了問題很難追。
+
+## Step 4 補充: 面試決策框架
+
+面試時可以用「三層」講法避免發散:
+
+1. Setting layer: 後台 DB 是 source of truth，必須有 duplicate boundary、權限與 operation log。
+2. Propagation layer: Game API 走 Redis set，Provider latest 走 RabbitMQ fanout reload；兩者都是 propagation，不是 source of truth。
+3. Enforcement layer: connector runtime filter / callback check 只看 runtime view，所以 cache freshness 決定實際放行結果。
+
+如果面試官追問「怎麼做更好」，不要直接喊微服務或重架構，先按風險分級:
+
+- 小補強: IP 格式校驗、DB unique、operation log 欄位完整、Redis / cache rebuild endpoint。
+- 中補強: reload metric、last refresh time、manual reload、刪除操作告警。
+- 大補強: outbox pattern、retry worker、節點健康檢查、定期 reconcile DB 與 cache。
+
+本 flow 不適合包裝成 money correctness；它的價值是 runtime access boundary、cache consistency 與安全設定治理。

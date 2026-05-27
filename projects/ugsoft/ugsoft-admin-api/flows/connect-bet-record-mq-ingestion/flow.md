@@ -280,4 +280,4 @@ event time 算 `ptDay` 比 consume time 更適合 provider late data。這也是
 
 ## 下一步
 
-本 flow 已完成 Step 5。後續第二條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 也已完成，第三條代表 flow `game-api-provider-white-ip-control-plane Step 3` 已完成；若繼續 `ugsoft-admin-api` Flow Track，下一步應做同 flow Step 4；不要跳到 project contribution final，也不要把單條 flow Step 5 當成整個 project 完整。
+本 flow 已完成 Step 5。後續第二條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 也已完成，第三條代表 flow `game-api-provider-white-ip-control-plane Step 4` 已完成；若繼續 `ugsoft-admin-api` Flow Track，下一步應做同 flow Step 5；不要跳到 project contribution final，也不要把單條 flow Step 5 當成整個 project 完整。

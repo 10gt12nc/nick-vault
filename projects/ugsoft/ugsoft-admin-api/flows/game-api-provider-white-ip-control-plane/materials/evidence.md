@@ -1,10 +1,35 @@
-# Evidence - game-api-provider-white-ip-control-plane Step 3
+# Evidence - game-api-provider-white-ip-control-plane Step 3 / Step 4
 
 日期: 2026-05-27
 
 ## 本輪任務
 
 `ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 3`
+
+## Step 4 補充掃描
+
+本輪任務: `ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 4`。
+
+掃描等級:
+
+- Level 2 面試轉換。
+- 已重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`。
+- 已再次 fetch `ugsoft-admin-api` 與 `ugsoft-connector-api` remote refs；只更新 refs，不 pull、不 checkout、不改 source repo。
+- 已重看 latest `origin/main` / `origin/master` 的白名單 controller、service、mapper、connector filter、provider cache listener / cache service / callback controller。
+- Step 4 沒有新增 Nick direct commit evidence；本輪目標是把 Step 3 evidence 轉成正式 30 秒 / 90 秒 / 3 分鐘、STAR、Senior / Lead 追問、反問與誇大陷阱。
+- Step 4 不更新 `05 / 08 / 04 / 17`；下一步 Step 5 才做單條 flow claim gate。
+
+Step 4 source repo 狀態:
+
+- `ugsoft-admin-api`: fetch 成功；local branch `main`，local HEAD `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`，`origin/main` `b1b83f64ffc971cc838ef935867a5a2234e3d201`，ahead / behind `0 / 42`，working tree 乾淨。
+- `ugsoft-connector-api`: fetch 成功；local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`，`origin/HEAD` 指向 `origin/develop`，本輪下游 runtime snapshot 仍以 `origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0` 為準；source working tree 有既有 `.DS_Store`、test、docs local changes / untracked，本輪只讀，不採用髒檔。
+
+Step 4 事實變更:
+
+- `career-interview.md` 已從 Step 3 草稿升級為 Step 4 正式面試稿，補 STAR、Senior / Lead 追問、反問面試官與 Step 4 結論。
+- `materials/interview.md` 已從 Step 3 草稿升級為 Step 4 正式面試材料。
+- `materials/decision-notes.md` 補上 setting / propagation / enforcement 三層決策框架。
+- `materials/claim-boundary.md` 狀態改為 Step 4 完成；仍不直接更新 `05 / 08`。
 
 ## 掃描等級
 
@@ -130,8 +155,8 @@
 
 本輪事實變更:
 
-- `ugsoft-admin-api game-api-provider-white-ip-control-plane` Step 3 已建立。
-- `ugsoft-admin-api` 本批第三條代表 flow 已進入 Flow Track，但尚未完成 Step 4 / Step 5。
+- `ugsoft-admin-api game-api-provider-white-ip-control-plane` Step 4 已完成。
+- `ugsoft-admin-api` 本批第三條代表 flow 已進入 Flow Track，尚未完成 Step 5。
 - 不直接更新 `05 / 08 / 04 / 17`。
 
 需要同步:
@@ -148,6 +173,6 @@
 
 不更新:
 
-- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`: Step 3 不直接更新履歷。
-- `04-interview-casebook.md`: 尚未完成 Step 4 正式面試稿。
+- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`: Step 4 不直接更新履歷。
+- `04-interview-casebook.md`: 本輪先不更新全域 casebook；Step 4 正式面試稿已在 flow-level `career-interview.md` 與 `materials/interview.md`，等 Step 5 或 rolling resume package 再判斷是否回填全域 casebook。
 - `17-salary-negotiation.md`: 沒有薪資策略變更。

@@ -163,17 +163,17 @@ Step 3 要補:
 
 ## 後續建議順序
 
-第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 3。若繼續本 flow，下一步是 Step 4:
+第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 4。若繼續本 flow，下一步是 Step 5:
 
 ```text
-ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 4
+ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 5
 ```
 
 原因:
 
 - Step 3 已補 Game API white IP 的 DB + Redis 更新、provider white IP current behavior、operation log / RoleFilter 邊界，並明確切開 `arnold` 後續 provider fanout reload context。
-- Step 4 要把 control plane -> runtime access-control、DB / Redis / fanout consistency、scope decision 與不可誇大邊界整理成正式面試 case。
-- 不直接更新 `05 / 08`；等第三條代表 flow Step 5 或後續 project contribution refresh 再判斷是否回填。
+- Step 4 已把 control plane -> runtime access-control、DB / Redis / fanout consistency、scope decision 與不可誇大邊界整理成正式面試 case。
+- Step 5 要做單條 flow claim gate，判斷是否可作 project-level supporting evidence；不直接更新 `05 / 08`。
 
 ## Relationship Check
 
@@ -183,7 +183,7 @@ ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 4
 - 本批代表 flows 選定 3 條：`connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`。
 - 第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5。
 - 第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5。
-- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 3；下一步建議同 flow Step 4。
+- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 4；下一步建議同 flow Step 5。
 
 需要同步的權威檔:
 
