@@ -10,6 +10,8 @@
 
 > 2026-05-26 code-first claim audit：payment case 要降級為 `provider integration / merchant integration` case。它可以講 request / callback / query / withdraw、sign、amount unit、merchant order id、provider response parsing、timeout unknown 與查單 / 人工補償風險；但不能讓面試官以為 Nick 實作過完整 wallet、ledger、reconciliation 或完整 money correctness framework。真正撐 Senior 技術深度的是 payment provider + 遊戲 wallet / bet-settle + MQ projection + partition / high-traffic data + math module 的組合。
 
+> 2026-05-27 rolling resume package：`ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 已回填。UGSoft 可作非 iwin 廣度 case，主軸是後台 API / control plane、provider connector、RequestLog / BetRecord MQ、Game API / provider IP 白名單控制面與 Quartz / report job；不可包裝成完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
+
 ## 104 主打 bullet 對齊表
 
 用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。
@@ -19,7 +21,7 @@
 | 多個第三方金流 provider request / callback / query / withdraw 對接與維護 | 案例 1：payment provider 對接；`payment-order-provider-request` | 本人確認 + 真實開發過 + code-backed | provider sign、merchant order id、callback ack / 重送風險、timeout unknown、order state 與查單 / 人工補償邊界 | 不說主導完整金流、全部 provider owner、完整 wallet / reconciliation owner；不把 payment 包成完整 money correctness framework |
 | 第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接 | 案例 3：下注 / 派彩 / rollback；`iwin_gameserver/third-party-transfer-in-out`；`third_games_api` GSC / OneAPI / Antplay 補充 | 部分真實開發過 + code-backed；部分 adapter interview-only | provider transaction、wallet mutation boundary、round log、adapter Mongo evidence、retry duplicate failure window | 不把 `third_games_api` adapter 包成 Nick 主導；不說完整 gameserver / wallet owner |
 | AntPlay slot game API / runtime、bet / settle / rollback、transfer wallet | 案例 3：AntPlay slot game API 補充；Transfer wallet API 面試主軸 | 真實開發過 + code-backed | bet record state、single / transfer wallet、provider settle / rollback、request log MQ、deadlock / compensation 邊界 | 不說完整 slot platform、完整 wallet / ledger / reconciliation、完整 RTP / math owner |
-| RabbitMQ / Kafka / Quartz / batch、request log、報表 projection、big-win notification | 案例 4：Kafka / MQ 可靠性；AntPlay slot game job 補充；案例 6：報表 projection | 真實開發過 + code-backed；部分 analysis-first | event -> DB projection、consumer retry / DLT、summary / backup / delete、notification duplicate、report source of truth | 不說完整 Kafka event platform、exactly-once、完整 BI / report platform |
+| RabbitMQ / Kafka / Quartz / batch、request log、報表 projection、big-win notification | 案例 4：Kafka / MQ 可靠性；AntPlay slot game job 補充；案例 6：報表 projection；UGSoft RequestLog / BetRecord MQ 補充 | 真實開發過 + code-backed；部分 analysis-first | event -> DB projection、consumer retry / DLT、summary / backup / delete、notification duplicate、report source of truth、後台 audit / bet record async ingestion | 不說完整 Kafka / RabbitMQ event platform、exactly-once、完整 BI / report platform |
 | 高流量資料治理、分表、schema routing、report path | `bet-record-sharding-schema-route`、`db-partition-job-report-routing` | 真實開發過 + code-backed；current framework 有多人脈絡 | partition key、schema route、ThreadLocal restore、report query filter、migration / backfill / route miss | 不說完整 sharding platform 或完整 DB migration owner |
 | AntPlay slot math core / 多個 math module 維護與驗證 | 案例 12-16：fixedMultiBet / RTP / buy free / jackpot / special wild | 真實開發過 + code-backed | math-core contract、module compatibility、RTP / reel strip、result contract、simulation validation | 不說主導完整遊戲數學模型、全部 math module、完整 RTP 策略 |
 | 缺乏交接文件時重建兩套平台可維護脈絡 | 可穿插在案例 1 / 3 / 4 / 6 的開頭或結尾 | 本人確認 + workspace / KB supporting evidence | 用 code reading、git history、DB / Redis / MQ / log flow 重建 production flow 與 claim boundary | 不寫成完整 DevOps / workspace owner；不抱怨公司流程 |
@@ -101,8 +103,11 @@
 
 - `fixed-multi-bet-currency-math-core-compatibility`
 - `rtp-reel-strip-simulation-validation`
+- `ugsoft-admin-api/connect-bet-record-mq-ingestion`
+- `ugsoft-admin-api/request-log-rabbitmq-admin-consumer`
+- `ugsoft-admin-api/game-api-provider-white-ip-control-plane`
 
-這兩條 `*-math` 只有在職缺靠近遊戲 / slot / RTP / 高風險 domain validation 時提前；一般 Senior Backend 通用投遞先放第 11 條以後。
+`*-math` 只有在職缺靠近遊戲 / slot / RTP / 高風險 domain validation 時提前；`ugsoft-admin-api` 三條只在職缺吃後台 control plane、RabbitMQ admin consumer、provider whitelist / access-control 或 non-iwin 廣度時提前。一般 Senior Backend 通用投遞先放第 11 條以後。
 
 ## 通用 3 分鐘順序
 
