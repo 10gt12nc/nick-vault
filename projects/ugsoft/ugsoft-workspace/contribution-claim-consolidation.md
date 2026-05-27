@@ -173,8 +173,8 @@ remote branches:
 
 ## Suggested Next
 
-`ugsoft-workspace` 已收斂；`ugsoft-connector-api` Flow Track Step 1 / Step 2 也已完成。下一步若繼續 UGSoft，應回 connector 第一順位單條 flow Step 3，因為那才是 UGSoft 線最有 Senior Backend 面試價值的 production runtime repo。
+`ugsoft-workspace` 已收斂；`ugsoft-connector-api` Flow Track Step 1 / Step 2 也已完成。第一順位 `transfer-wallet-in-out-query` 已完成 Step 5，第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 3。下一步若繼續 UGSoft，應做 connector 第二順位 flow Step 4，因為那才是 UGSoft 線目前最有 Senior Backend 面試價值的 production runtime 收口。
 
 ```text
-ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 3
+ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 4
 ```

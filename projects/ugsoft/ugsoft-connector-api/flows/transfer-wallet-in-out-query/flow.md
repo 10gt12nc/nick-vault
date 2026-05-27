@@ -281,7 +281,7 @@ Step 5 claim gate 結論：
 - 不單獨寫成「主導完整 transfer wallet / idempotency / recovery / reconciliation owner」。
 - 不直接更新 `05 / 08`；正式履歷仍吃 `ugsoft-connector-api contribution-claim-consolidation.md` 的 project-level rolling conclusion。
 
-同 project 下一步若繼續 Flow Track，回到 Step 2 ranking 的第二順位 `provider-callback-bet-settle-to-mq Step 3`。
+同 project 的第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 3；若繼續 Flow Track，下一步是該 flow Step 4。
 
 ## 本次實際掃描範圍
 

@@ -15,7 +15,7 @@
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
 | `ugsoft-admin-api` | Java / Spring Boot 後台 API、控制面、報表、RabbitMQ / Quartz | Career Track 已完成 rolling；Flow Track 未建立；2026-05-26 re-audit 後仍值得補 | 可保守放「後台控制面與非同步資料處理」；不寫完整 UG 平台 owner | 第二順位；如要深挖，先做 Step 1 / Step 2 選代表 flow |
-| `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | Career Track 已完成 rolling；Flow Track Step 1 / Step 2 已完成；`transfer-wallet-in-out-query` Step 5 已完成 | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | 第二條代表 flow：`provider-callback-bet-settle-to-mq Step 3` |
+| `ugsoft-connector-api` | provider connector / gateway、AntPlay / DerPlay adapter、transfer wallet、MQ | Career Track 已完成 rolling；Flow Track Step 1 / Step 2 已完成；`transfer-wallet-in-out-query` Step 5 已完成；`provider-callback-bet-settle-to-mq` Step 3 已完成 | 可保守放 provider connector / transfer wallet / MQ 素材；不寫完整 gateway owner | 第二條代表 flow：`provider-callback-bet-settle-to-mq Step 4` |
 | `ugsoft-admin-web` | 後台前端 | 未開始 | 通常只作入口 | 待 Nick 指定 |
 | `official-web-v3` | 官網 | 未開始 | 不當主線 | 待 Nick 指定 |
 | `ugsoft-workspace` | workspace / docs / harness / runbook | contribution consolidation 已完成 / rolling | supporting evidence；不放 standalone 正式履歷主成果 | 已收斂；connector 第一條 flow 已到 Step 5 |
@@ -35,4 +35,4 @@
 - 因此只能說「UGSoft 履歷 claim 已有 rolling consolidation，且 connector 第一條代表 flow 已完成 Step 5」，不能說「UGSoft 全部 flow 已完整」或「已逐條深掃所有代表 flow」。
 - `ugsoft-connector-api` Step 1 候選 flow 見 `projects/ugsoft/ugsoft-connector-api/step1-candidate-flows.md`。
 - `ugsoft-connector-api` Step 2 比較排序見 `projects/ugsoft/ugsoft-connector-api/step2-flow-comparison.md`。
-- 若 Nick 之後繼續 `ugsoft-connector-api` Flow Track，下一步應做第二順位 `provider-callback-bet-settle-to-mq Step 3`。
+- 若 Nick 之後繼續 `ugsoft-connector-api` Flow Track，下一步應做第二順位 `provider-callback-bet-settle-to-mq Step 4`。

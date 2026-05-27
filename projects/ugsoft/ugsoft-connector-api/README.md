@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成：[`step1-candidate-flows.md`](step1-candidate-flows.md) |
 | Step 2 | 已完成：[`step2-flow-comparison.md`](step2-flow-comparison.md) |
-| Flow packages | 第一條 `transfer-wallet-in-out-query` Step 5 已完成；不得宣稱全 project flow 完整 |
+| Flow packages | 第一條 `transfer-wallet-in-out-query` Step 5 已完成；第二條 `provider-callback-bet-settle-to-mq` Step 3 已完成；不得宣稱全 project flow 完整 |
 | 正式履歷 | 可保守補入 provider connector / transfer wallet / MQ 素材 |
 
 ## 先讀
@@ -41,7 +41,13 @@ Step 1 已篩出 6 條候選，Step 2 已完成比較與排序：
 projects/ugsoft/ugsoft-connector-api/flows/transfer-wallet-in-out-query/flow.md
 ```
 
-若 Nick 繼續同 project Flow Track，下一步回到 Step 2 ranking 的第二順位：`provider-callback-bet-settle-to-mq Step 3`。
+第二順位單條 flow Step 3 已完成：
+
+```text
+projects/ugsoft/ugsoft-connector-api/flows/provider-callback-bet-settle-to-mq/flow.md
+```
+
+若 Nick 繼續同一條 flow，下一步是 `provider-callback-bet-settle-to-mq Step 4`，把 callback / MQ flow 轉成正式面試 case。
 
 ## 履歷邊界
 

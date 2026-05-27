@@ -29,8 +29,8 @@
 | --- | --- | --- |
 | `contribution-claim-consolidation.md` | 可沿用，rolling | Career Track 已能保守支撐 provider connector / gateway claim；但不代表 flow 完整。 |
 | `step1-candidate-flows.md` | 可沿用 | 已整理 module map 與 6 條 candidate flows。 |
-| `step2-flow-comparison.md` | 本輪新增 | 用來決定本批代表 flow 與下一步 Step 3。 |
-| `flows/` | 尚未建立 | 任何候選 flow 都還不是完整面試包。 |
+| `step2-flow-comparison.md` | 可沿用，已同步進度 | 用來決定本批代表 flow 與下一步。 |
+| `flows/` | 已建立部分代表 flow | `transfer-wallet-in-out-query` 已完成 Step 5；`provider-callback-bet-settle-to-mq` 已完成 Step 3；`request-bet-record-mq-sync` 尚未建立。 |
 
 ## Source Repo 狀態
 
@@ -79,7 +79,7 @@
 | Rank | Flow | Evidence 強度 | 技術價值 | Failure / owner 追問價值 | 履歷 / 面試價值 | 邊界 | Step 2 決策 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `transfer-wallet-in-out-query` | 高。Nick / `10gt12nc` 有 AntPlay / DerPlay transfer API、single transaction、provider adapter direct commits；transaction facade / replay / lookup 多為 code-backed / 主管或團隊 context。 | 很高。簽名、agent / subAgent、Redis duplicate guard、provider adapter、request log、wallet transaction、order lookup、查單集中在同一條 money-adjacent flow。 | 很高。可追問重複提交、provider 成功但 DB 寫入失敗、query order 不一致、transfer out / in failure window。 | 很高。最適合補 UGSoft 非 iwin 的 Senior Backend 主力 case。 | 不能寫完整 wallet / ledger / reconciliation owner；`beforeTransaction / afterTransaction` 若只見 `arnold` evidence，須標為主管 / 團隊 context，不作 Nick direct claim。 | 已完成 Step 5；可回填 project-level provider connector / transfer wallet evidence。 |
-| 2 | `provider-callback-bet-settle-to-mq` | 高。Nick / `10gt12nc` 有 callback 寫 MQ、AntPlay / DerPlay bet record MQ、pt_day / currency 類 commits；部分最新 amount / subAgent 修正屬主管 / 團隊 context。 | 很高。provider callback、驗簽、wallet type、bet-settle、MQ eventual consistency、payload normalize。 | 高。可追問 callback 重送、MQ duplicate / missing、bet id 去重、BigDecimal / cents conversion、late data。 | 很高。可和 AntPlay / iwin bet-settle case 互相補強。 | 不能寫 exactly-once / outbox owner；callback 最新細節需 Step 3 再追。 | 第二順位，適合 transfer flow 後接著做。 |
+| 2 | `provider-callback-bet-settle-to-mq` | 高。Nick / `10gt12nc` 有 callback 寫 MQ、AntPlay / DerPlay bet record MQ、pt_day / currency 類 commits；部分最新 amount / subAgent 修正屬主管 / 團隊 context。 | 很高。provider callback、驗簽、wallet type、bet-settle、MQ eventual consistency、payload normalize。 | 高。可追問 callback 重送、MQ duplicate / missing、bet id 去重、BigDecimal / cents conversion、late data。 | 很高。可和 AntPlay / iwin bet-settle case 互相補強。 | 不能寫 exactly-once / outbox owner；callback 最新細節需 Step 4 / Step 5 再收口。 | Step 3 已完成；下一步 Step 4。 |
 | 3 | `request-bet-record-mq-sync` | 中高。Nick / `10gt12nc` 有 MQ / pt_day / currency / job 修正 evidence；完整 sync service owner 需深掃。 | 高。Quartz pull provider bet record、時間窗、水位、跨日查重、批次 existing keys、MQ 補資料。 | 高。可追問水位不前進、跨日分區、重播、provider 拉取失敗、資料晚到。 | 高。可補 asynchronous data / report projection 類廣度。 | 容易和 callback -> MQ 重疊；要避免包成完整 reconciliation。 | 第三順位，作本批代表 flow 或可選補強。 |
 | 4 | `provider-client-login-launch-game` | 中高。Nick / `10gt12nc` 有 AntPlay login / info direct commits；login v3、subAgent、lang allow list、provider switch 多為 code-backed / 主管或團隊 context。 | 中高。gateway contract、sign / currency / game route、provider adapter、transfer wallet provider position。 | 中。可追問 provider switch、inner transfer、gameUrl / html 差異，但 money state 較間接。 | 中高。適合作為 connector gateway supporting case。 | 不宜當第一條主力，因核心風險比 transfer / callback 弱。 | 可選第四順位。 |
 | 5 | `provider-circuit-breaker-fast-fail` | 中。code-backed 存在 `ConnectAdapterExecute` / `ConnectorCircuitBreaker` / provider-level breaker；Nick direct ownership 未確認。 | 高。provider HTTP wrapper、request / response log、elapsed time、Resilience4j fast-fail。 | 中高。可追問熔斷打開後的 user experience、retry / fallback、不能解決的 consistency 問題。 | 中。Platform / reliability JD 可加分。 | 目前 evidence 不足以放主履歷 bullet。 | 可選 supporting，不列本批必做。 |
@@ -134,18 +134,18 @@ Step 3 必須補清楚:
 - failure window: provider 成功但 DB 寫入失敗、DB 有交易但 provider query 不一致、Redis guard 過短、provider timeout / duplicate request。
 - claim boundary: Nick direct evidence 限於 provider adapter transfer；transaction facade / replay / subAgent 若只找到 `arnold` evidence，標成 code-backed / 主管或團隊 context，不作 Nick direct claim。
 
-後續若繼續同 project Flow Track，下一步是第二順位：
+後續若繼續同 project Flow Track，第二順位已完成 Step 3；下一步是同 flow Step 4：
 
 ```text
-ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 3
+ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 4
 ```
 
 ## Relationship Check
 
-- `projects/ugsoft/ugsoft-connector-api/README.md`: 已同步第一條 flow Step 5 完成，下一步回到第二順位。
+- `projects/ugsoft/ugsoft-connector-api/README.md`: 已同步第一條 flow Step 5 完成、第二條 flow Step 3 完成，下一步是第二條 flow Step 4。
 - `projects/ugsoft/README.md`: 已同步 connector Flow Track 狀態。
 - `projects/source-repo-inventory.md`: 已同步 UGSoft 整理狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 connector 第一條 flow Step 5 完成。
-- `senior-owner-playbook/06-todo.md`: 已同步目前待辦，下一步改為第二順位 Step 3。
+- `senior-owner-playbook/06-todo.md`: 已同步目前待辦，下一步改為第二順位 Step 4。
 - `contribution-claim-consolidation.md`: 已同步 Flow Track 狀態與 Suggested Next；不擴張履歷 claim。
 - `05 / 08 / 04 / 17`: 本輪不更新，因 Step 2 只做 candidate ranking，沒有新增 final project-level claim 或可直接投遞內容。

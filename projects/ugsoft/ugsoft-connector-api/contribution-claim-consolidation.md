@@ -35,7 +35,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 5 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / final consolidation。 |
+| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 5 已完成；第二條 `provider-callback-bet-settle-to-mq` Step 3 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / final consolidation。 |
 
 ## Source Scan Record
 
@@ -226,8 +226,8 @@ claim 邊界:
 
 ## Suggested Next
 
-如果繼續 `ugsoft-connector-api` Flow Track，下一步應回 Step 2 ranking 的第二順位 `provider-callback-bet-settle-to-mq Step 3`。第一條 `transfer-wallet-in-out-query` 已完成 Step 5，可作本 project provider connector / transfer wallet claim 的強化 evidence，但本檔仍是 rolling consolidation，不是 final 全量收口。
+如果繼續 `ugsoft-connector-api` Flow Track，下一步應做第二順位 `provider-callback-bet-settle-to-mq Step 4`。第一條 `transfer-wallet-in-out-query` 已完成 Step 5，可作本 project provider connector / transfer wallet claim 的強化 evidence；第二條 callback / MQ flow 已完成 Step 3，可作面試素材候選，但尚未完成 Step 4 / Step 5。本檔仍是 rolling consolidation，不是 final 全量收口。
 
 ```text
-ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 3
+ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 4
 ```
