@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成：[`step1-candidate-flows.md`](step1-candidate-flows.md) |
 | Step 2 | 已完成：[`step2-flow-comparison.md`](step2-flow-comparison.md) |
-| Flow packages | 尚未建立；不得宣稱 flow 完整 |
+| Flow packages | 第一條 `transfer-wallet-in-out-query` Step 3 已完成；不得宣稱全 project flow 完整 |
 | 正式履歷 | 可保守補入 provider connector / transfer wallet / MQ 素材 |
 
 ## 先讀
@@ -35,11 +35,13 @@ Step 1 已篩出 6 條候選，Step 2 已完成比較與排序：
 2. `provider-callback-bet-settle-to-mq`
 3. `request-bet-record-mq-sync`
 
-下一步應做第一順位單條 flow Step 3：
+第一順位單條 flow Step 3 已完成：
 
 ```text
-ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3
+projects/ugsoft/ugsoft-connector-api/flows/transfer-wallet-in-out-query/flow.md
 ```
+
+若 Nick 繼續同一條 flow，下一步應做 Step 4。
 
 ## 履歷邊界
 

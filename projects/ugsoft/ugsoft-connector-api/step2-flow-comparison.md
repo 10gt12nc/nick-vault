@@ -112,7 +112,7 @@
 
 ## Step 3 首選
 
-首選:
+首選已於 2026-05-27 完成:
 
 ```text
 ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3
@@ -133,6 +133,12 @@ Step 3 必須補清楚:
 - `TransferFacade#afterTransaction` 如何寫 wallet transaction / order lookup。
 - failure window: provider 成功但 DB 寫入失敗、DB 有交易但 provider query 不一致、Redis guard 過短、provider timeout / duplicate request。
 - claim boundary: Nick direct evidence 限於 provider adapter transfer；transaction facade / replay / subAgent 若只找到 `arnold` evidence，標成 code-backed / 主管或團隊 context，不作 Nick direct claim。
+
+後續若繼續同 flow，下一步是：
+
+```text
+ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 4
+```
 
 ## Relationship Check
 

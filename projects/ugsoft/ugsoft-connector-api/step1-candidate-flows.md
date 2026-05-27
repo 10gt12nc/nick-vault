@@ -362,8 +362,8 @@ Evidence：
 
 ## 下一步
 
-Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。後續若繼續此 project，應進第一順位單條 flow Step 3。
+Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 3`。後續若繼續同 flow，應進 Step 4。
 
 ```text
-ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 3
+ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 4
 ```

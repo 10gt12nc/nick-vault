@@ -2,13 +2,13 @@
 
 用途：回應 Nick 要求，盤點 `/Users/nick/Git/antplay`（排除 `*-math`）、`/Users/nick/Git/iwin`、`/Users/nick/Git/ugsoft`、`/Users/nick/Git/DevOps` 下所有 project folder，對照 source git evidence 與 `nick-vault/projects` Flow Track / Career Track 狀態。
 
-最近檢查日期：2026-05-26。
+最近檢查日期：2026-05-27。
 
 2026-05-26 AntPlay re-audit：已重新掃 `/Users/nick/Git/antplay` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module 與 path history。結論是：AntPlay 目前沒有新的「必做」缺口；真正值得保留在待辦的只有 `antplay-slot-admin-api` Flow Track Step 1 / Step 2，且它是可選補強，不是通用投遞前必做。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 已有足夠代表 flows / consolidation；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，不升級為新主線。
 
 2026-05-26 iwin re-audit：已重新掃 `/Users/nick/Git/iwin` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `nick-vault/projects/iwin` KB。結論是：iwin 目前沒有新的「真正值得補」的 project Flow Track 缺口；`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 的代表 flows / consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 有 Nick direct commits，但定位是 payment provider contract / callback 測試支撐，不升級成主履歷 flow；若要補，只作 payment case 的 supporting evidence。iwin 目前唯一保留的可選補強是 domain-level `iwin system map v1`，用來整理跨 repo 協作與 claim boundary，不是投遞前必做。
 
-2026-05-26 UGSoft re-audit：已重新掃 `/Users/nick/Git/ugsoft` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `projects/ugsoft` KB。結論是：UGSoft 仍有真正值得補的 Flow Track，但範圍很收斂，不是全 repo 平均掃。第一順位維持 `ugsoft-connector-api transfer-wallet-in-out-query Step 3`，因為它已完成 Step 1 / Step 2，且 transfer in / out / query、provider adapter、request log、transaction / lookup、callback / MQ 都有高履歷與面試價值。第二順位是 `ugsoft-admin-api Step 1 / Step 2`，用來整理後台 control plane、白名單、RabbitMQ request / bet record consumer、Quartz report job 與 risk monitor。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦；workspace 只作 supporting evidence。
+2026-05-26 UGSoft re-audit：已重新掃 `/Users/nick/Git/ugsoft` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `projects/ugsoft` KB。結論是：UGSoft 仍有真正值得補的 Flow Track，但範圍很收斂，不是全 repo 平均掃。第一順位維持 `ugsoft-connector-api transfer-wallet-in-out-query`，因為它已完成 Step 1 / Step 2，且 transfer in / out / query、provider adapter、request log、transaction / lookup、callback / MQ 都有高履歷與面試價值。2026-05-27 已完成該 flow Step 3；若繼續同 flow，下一步是 Step 4。第二順位是 `ugsoft-admin-api Step 1 / Step 2`，用來整理後台 control plane、白名單、RabbitMQ request / bet record consumer、Quartz report job 與 risk monitor。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦；workspace 只作 supporting evidence。
 
 2026-05-26 DevOps re-audit：已重新掃 `/Users/nick/Git/DevOps/primestar` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` / `arnold` commits、主要 manifests / docker-compose / CI / observability docs 與 path history。結論是：DevOps 沒有新的 Senior Backend 主履歷 Flow Track 必做缺口；`10gt12nc` / Nick author 未命中。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence。`antplay-docker-deploys` 的 `arnold` commits 只能作主管 / 團隊 deployment context 或 learning / supporting，不列 Nick 履歷、不升級 Flow Track 主線。`openobserve`、`kafka` 只有他人 commits，且 source 含敏感設定，僅作 learning-only，不列待辦。
 
@@ -67,7 +67,7 @@
 | `official-web-v3` | 官網，未見 Nick direct commits；2026-05-26 re-audit 後仍無 backend 主線 evidence | 無 KB | 官網 | 暫不建議 |
 | `ugsoft-admin-api` | Nick direct commits 約 207；admin auth / 白名單 / report / risk / RabbitMQ / Quartz；2026-05-26 re-audit 確認近期 commits 仍集中 login、provider white IP、report job、BetRecord / RequestLog MQ | 只有 contribution consolidation，沒有 Step 1 / Step 2 / flows | `request-log-rabbitmq-admin-consumer`、`connect-bet-record-mq-ingestion`、`provider-white-ip-game-api-whitelist-sync`、`merchant-auth-rbac-token-kick`、`risk-monitor-alert-quartz`、`daily-hourly-report-job` | 缺 Flow Track 但值得補；第二順位 |
 | `ugsoft-admin-web` | 前端 repo，未見 Nick direct commits；本機落後遠端 | 無 KB | 後台入口，不作主線 | 暫不建議 |
-| `ugsoft-connector-api` | Nick direct commits 約 217；provider connector / transfer wallet / callback / MQ / circuit breaker；2026-05-26 re-audit 確認 transfer adapter、callback -> MQ、bet record sync job、currency / pt_day 修正都有 direct evidence | contribution consolidation + Step 1 / Step 2 已完成；尚無單條 flow package | Step 2 已選：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`；可選 `provider-client-login-launch-game` | 缺單條 flow Step 3；UGSoft 第一順位是 `transfer-wallet-in-out-query` |
+| `ugsoft-connector-api` | Nick direct commits 約 217；provider connector / transfer wallet / callback / MQ / circuit breaker；2026-05-26 re-audit 確認 transfer adapter、callback -> MQ、bet record sync job、currency / pt_day 修正都有 direct evidence | contribution consolidation + Step 1 / Step 2 已完成；`transfer-wallet-in-out-query` Step 3 已完成 | Step 2 已選：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`；可選 `provider-client-login-launch-game` | 第一條 flow 已完成 Step 3；下一步可做 Step 4，或之後補第二條 callback / MQ flow |
 | `ugsoft-workspace` | workspace / docs / harness；2026-05-26 re-audit 仍未見 `10gt12nc` / Nick author；Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence | contribution consolidation 已完成 | workspace / migration runbook supporting | 已收斂，暫不建議 |
 
 ## DevOps / primestar
@@ -86,7 +86,7 @@
 
 全域候選與邊界如下；不代表必須全部開工。iwin re-audit 後，iwin 沒有新的 project Flow Track 主待辦：
 
-1. `ugsoft-connector-api`：最值得補 Flow Track。2026-05-26 re-audit 後仍維持第一順位；Step 1 / Step 2 已完成，下一步是 `transfer-wallet-in-out-query Step 3`。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，能補非 iwin 廣度。
+1. `ugsoft-connector-api`：最值得補 Flow Track。2026-05-26 re-audit 後仍維持第一順位；Step 1 / Step 2 已完成，且 `transfer-wallet-in-out-query Step 3` 已於 2026-05-27 完成。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，能補非 iwin 廣度；下一步可做同 flow Step 4。
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。2026-05-26 re-audit 後維持第二順位，可補 admin control plane / RabbitMQ / Quartz / risk monitor。若要做，先做 Step 1，再 Step 2，不直接跳單條 flow。
 3. `antplay-slot-admin-api`：AntPlay 目前唯一真正值得補的 Flow Track 缺口；但目前已有 AntPlay game-api / game-job / `*-math` 主力 evidence，所以它是可選補強，不是投遞前必做。若 Nick 要補後台 / 風控 / admin control plane，先做 Step 1 / Step 2。
 4. `payment-thirdparty-simulator`：2026-05-26 iwin re-audit 後降為 payment provider contract / callback 測試 supporting evidence；不作主線、不放主履歷、不列 project Flow Track 必做。
