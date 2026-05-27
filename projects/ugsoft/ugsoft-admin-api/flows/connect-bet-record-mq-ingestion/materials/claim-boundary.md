@@ -48,4 +48,4 @@
 
 - 可回填：`ugsoft-admin-api contribution-claim-consolidation.md` 的 RabbitMQ / async evidence，標註本 flow Step 5 已完成。
 - 不直接回填：`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`。原因是本輪是單條 flow Step 5，不是 project-level consolidation refresh 或 rolling resume package。
-- 後續若 Nick 要正式更新履歷輸出版，應先做 `ugsoft-admin-api contribution claim consolidation refresh` 或 rolling resume package。
+- 後續 `ugsoft-admin-api contribution claim consolidation refresh` 已完成。若 Nick 要正式更新履歷輸出版，應另做 rolling resume package。

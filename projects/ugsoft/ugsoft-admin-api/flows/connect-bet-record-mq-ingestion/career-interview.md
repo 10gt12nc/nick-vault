@@ -72,4 +72,4 @@ save 成功後會發 quota update MQ。這裡我會特別把主事實和衍生 v
 
 - 已完成 direct evidence / current behavior 邊界切分。
 - 可回填 project-level contribution consolidation 作為 BetRecord MQ evidence。
-- 不直接把單條 flow 寫進 `05 / 08`；若要更新履歷 master，要另做 `ugsoft-admin-api contribution claim consolidation refresh` 或 rolling resume package。
+- 不直接把單條 flow 寫進 `05 / 08`；後續 `ugsoft-admin-api contribution claim consolidation refresh` 已完成。若要更新正式履歷輸出版，要另做 rolling resume package。

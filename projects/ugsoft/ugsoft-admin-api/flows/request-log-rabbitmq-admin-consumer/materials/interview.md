@@ -83,4 +83,4 @@ Result: 主請求與 log DB 寫入耦合降低，後台仍能查 request-respons
 
 ## Step 4 結論
 
-這條 flow 已具備正式面試素材，且後續 Step 5 claim gate 已完成。`ugsoft-admin-api` 本批三條代表 flows 均已 Step 5；下一步若繼續本 project，做 project-level contribution claim consolidation refresh。
+這條 flow 已具備正式面試素材，且後續 Step 5 claim gate 已完成。`ugsoft-admin-api` 本批三條代表 flows 均已 Step 5，project-level contribution claim consolidation refresh 也已完成。

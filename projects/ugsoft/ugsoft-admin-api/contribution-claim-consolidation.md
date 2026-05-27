@@ -1,14 +1,20 @@
 # ugsoft-admin-api Contribution Claim Consolidation
 
-日期: 2026-05-20
+日期: 2026-05-27 refreshed
 
 ## 結論
 
-`ugsoft-admin-api` 可以列為 Nick 真實開發過的後台 / control plane repo。Nick / `10gt12nc` 在 `origin/main` 可見大量 direct commits，涵蓋後台登入 / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record、Quartz / report job 等功能。
+`ugsoft-admin-api` 可以列為 Nick 真實開發過的後台 API / control plane repo。2026-05-27 已完成本批三條代表 flow 的 Step 5 claim gate refresh：`connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`。Nick / `10gt12nc` 在 `origin/main` 可見大量 direct commits，涵蓋後台登入 / JWT / RBAC、商戶 / provider 白名單、超級代理、報表查詢、風控監控、RabbitMQ request log / bet record、Quartz / report job 等功能。
 
 履歷可以保守寫:
 
 > 參與 UGSoft 後台 API / control plane 開發與維護，處理登入權限、商戶 / provider 白名單、報表查詢、風控監控、RabbitMQ request / bet record 非同步資料處理與 Quartz / report job 維護。
+
+這次 refresh 後，project-level 可用 claim 收斂成三層:
+
+1. `BetRecord MQ ingestion`：可說參與 BetRecord RabbitMQ 入庫與資料處理，包含 payload parse、`ptDay`、duplicate check、currency default 與 quota update supporting boundary；不可寫完整 wallet / ledger / quota / exactly-once owner。
+2. `RequestLog MQ audit ingestion`：可說參與 RequestLog RabbitMQ 非同步入庫與後台查詢支援，包含 audit log consumer、分區、重複檢查、list / count query boundary；不可寫完整 RabbitMQ platform、DLQ / replay / outbox owner。
+3. `White IP control plane`：可說參與 Game API / provider IP 白名單控制面與 DB / Redis 同步維護，並能分析後台設定如何影響 connector runtime access-control；不可寫完整 access-control platform、connector reload owner 或 provider gateway owner。
 
 不要寫:
 
@@ -29,6 +35,7 @@
 | 風控 / 監控 | 真實開發過 | `feat(#659) 商戶遊戲風控概況`、RTP exceed / monitor alert / voucher monitor 相關 commits |
 | RabbitMQ / async | 真實開發過 | `feat(#774) RequestLog 改丟 rabbitmq 非同步執行`、`feat(#775) rabbitmq 收風控通知`、`feat: BetRecord MQ 入庫` |
 | connector / provider gateway | 待確認 | admin API 可見白名單 / provider config，完整 gateway 要另掃 `ugsoft-connector-api` |
+| final 本批代表 flow | refreshed | Step 1 / Step 2 已建立；本批三條代表 flow `connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane` 均已完成 Step 5；本檔已於 2026-05-27 回填三條 Step 5 到 project-level claim。這仍不代表全 project 所有候選 flow 都完成，也不代表完整 UGSoft 平台 owner。 |
 
 ## Source Scan Record
 
@@ -53,12 +60,22 @@
 - 重新 fetch 成功，`origin/main` 已前進；本檔保留原本 contribution claim，不因新 remote refs 自動擴張履歷主張。
 - 目前結論仍成立：可寫後台 / control plane、RabbitMQ / report job / 白名單 / 權限等真實開發經驗；不可寫完整 UGSoft 平台、完整 provider gateway 或完整 wallet owner。
 
+2026-05-27 contribution claim consolidation refresh:
+
+- 已重新 fetch remote refs；source repo local branch `main`，local HEAD `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`，`origin/main` `b1b83f64ffc971cc838ef935867a5a2234e3d201`。
+- local vs `origin/main`: ahead / behind = `0 / 42`；source repo 工作樹乾淨。
+- 已重讀三條代表 flow 的 `flow.md`、`career-interview.md`、`materials/claim-boundary.md` 與 Step 5 結論。
+- 已抽查 Nick / `10gt12nc` direct commits 與 path-specific history，三條代表 flow 的 direct evidence 仍成立。
+- `arnold` 已由 Nick 確認為主管帳號；`arnold` 的 auth refresh P0、provider fanout reload、quota monitoring、報表修正與 provider scope refactor 只作 current behavior / team context，不當 Nick direct evidence。
+- 本次 refresh 只刷新 `ugsoft-admin-api` project-level claim；`05 / 08 / 04 / 17` 只做必要狀態同步，不重產完整 rolling resume package。
+
 本次掃描範圍:
 
 - `git log origin/main --author='10gt12nc|Nick|nick'`
 - `git log --all --author='10gt12nc|Nick|nick'`
 - `git show --stat --name-only` 抽查 key commits
 - `git diff --stat 1df26c0..origin/main`
+- 三條代表 flow 的 `flow.md`、`career-interview.md`、`materials/claim-boundary.md`
 - `src/main/java/com/ps/domain/admin/controller`
 - `src/main/java/com/ps/domain/admin/rabbitMq`
 - `src/main/java/com/ps/domain/admin/service`
@@ -69,9 +86,10 @@
 
 未完成:
 
-- 未做 `ugsoft-admin-api` 全量 Step 1 / Step 2。
-- 未逐條 flow 建立 `flow.md` / `career-interview.md`。
-- 未掃 `ugsoft-connector-api` 的 provider gateway 實作。
+- 未做 Level 3 逐檔逐行 / 每個 commit diff。
+- 未把 `daily-hourly-report-quartz-job`、`admin-auth-token-refresh-security`、`risk-monitor-alert-rabbitmq` 建成完整 flow；它們仍是可選 / supporting。
+- 未把 `ugsoft-admin-api` 寫成全 project 所有候選 flow final；本次只針對 Step 2 本批三條代表 flow refresh。
+- 未把 admin-api 白名單反向包裝成完整 `ugsoft-connector-api` provider gateway；connector runtime 只作 code-backed context。
 
 ## Important Commit Evidence
 
@@ -115,6 +133,7 @@
 
 - 參與 UGSoft 後台 API / control plane 開發與維護，處理 login / JWT / RBAC、商戶 / provider 白名單、超級代理與報表查詢功能。
 - 參與 RabbitMQ request log / bet record 非同步資料處理與風控通知 consumer 維護，處理資料入庫、重複檢查、時間分區與 job / report 查詢的資料一致性。
+- 參與 Game API / provider IP 白名單控制面與 DB / Redis 同步維護，處理後台 CRUD、權限範圍、操作紀錄與 runtime access-control 設定邊界。
 
 可面試講:
 
@@ -123,6 +142,7 @@
 - request log 從同步寫入改為 RabbitMQ consumer 後，會出現哪些 idempotency、lost message、duplicate、partition key 與 observability 風險。
 - bet record MQ 入庫為什麼要檢查 provider bet id / pt_day / agent_id，amount normalization 與 quota async publish 失敗如何界定。
 - 報表 / job 重跑時，delete + insert、時間窗口、分表與 partial failure 怎麼處理。
+- 後台白名單控制面如何影響 connector runtime filter / provider callback access-control，以及 DB source of truth 與 Redis / in-memory cache runtime view 的一致性邊界。
 
 不可誇大:
 
@@ -130,6 +150,25 @@
 - 不說完整設計 RabbitMQ event architecture。
 - 不說完整 provider connector / wallet owner。
 - 不說改善多少性能或事故數字。
+- 不把 `arnold` 的 provider fanout reload、global provider scope、quota monitoring、auth refresh P0 修正寫成 Nick direct evidence。
+
+## 05 / 08 更新口徑
+
+若後續做 `rolling resume package` 或正式更新 05 / 08，可保守併入現職主軸:
+
+> 參與 UGSoft 後台 API / control plane 開發維護，範圍包含 login / JWT / RBAC、商戶 / provider 白名單、Game API / provider IP 白名單控制面、RabbitMQ request log / bet record 非同步入庫、報表查詢、風控監控與 Quartz / report job。
+
+如果篇幅有限，和 `ugsoft-connector-api` 合併成一段:
+
+> 參與 UGSoft 後台 API 與 provider connector 維護，處理後台權限 / 白名單、Game API / provider IP 控制面、AntPlay / DerPlay provider adapter、transfer wallet、request / bet record MQ、Quartz / report job 與 provider fail-fast 類流程。
+
+限制:
+
+- 不寫主導完整 UGSoft 平台。
+- 不寫完整 provider gateway / connector architecture owner。
+- 不寫完整 wallet / ledger / reconciliation owner。
+- 不寫完整 RabbitMQ event platform、exactly-once、outbox、DLQ / replay owner。
+- 不寫完整 access-control / security platform owner。
 
 ## Flow Track 狀態
 
@@ -141,4 +180,16 @@
 2. `request-log-rabbitmq-admin-consumer`
 3. `game-api-provider-white-ip-control-plane`
 
-本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。Step 2 完成後，第一條代表 flow `connect-bet-record-mq-ingestion Step 5` 已建立；可回填本檔 RabbitMQ / BetRecord async evidence，但本檔仍維持 rolling，不升級 final。第二條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已建立 RequestLog RabbitMQ 非同步入庫 learning package、正式面試稿與 claim gate；可回填本檔 RabbitMQ / request log async supporting evidence，但仍不直接更新 `05 / 08`。第三條代表 flow `game-api-provider-white-ip-control-plane Step 5` 已建立後台白名單 control plane learning package、正式面試 case 與 claim gate；可回填本檔後台 white IP control plane / runtime access-control supporting evidence，但仍不直接更新 `05 / 08`。若繼續本 project，下一步是 project-level contribution claim consolidation refresh。
+## Refresh Result
+
+2026-05-27 refresh：本批三條代表 flow 已全部完成 Step 5，並已回填成 project-level claim。
+
+| Flow | Project-level 可用結論 | 不可誇大 |
+| --- | --- | --- |
+| `connect-bet-record-mq-ingestion` | BetRecord RabbitMQ 入庫、payload parse、`ptDay`、duplicate check、currency default、quota update supporting boundary | 不寫完整 wallet / ledger / quota / exactly-once / outbox / DLQ owner |
+| `request-log-rabbitmq-admin-consumer` | RequestLog RabbitMQ 非同步入庫、audit log consumer、分區、重複檢查、後台查詢支援 | 不寫完整 RabbitMQ platform、DLQ / replay / outbox 或 money correctness owner |
+| `game-api-provider-white-ip-control-plane` | Game API / provider IP 白名單控制面、DB / Redis 同步、權限與 operation log、runtime access-control 邊界 | 不寫完整 access-control platform、connector reload owner、provider gateway owner |
+
+## Suggested Next
+
+`ugsoft-admin-api` 本批代表 flows 與 project-level contribution claim 已收口。沒有預設下一步；可自由提問或彈性指定。若之後要把最新 UGSoft admin refresh 正式重產進 `05 / 08`，應另下 `rolling resume package`，不要由單一 project refresh 自動擴張整份履歷。

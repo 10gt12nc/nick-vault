@@ -28,7 +28,7 @@ Step 5 事實變更:
 - `game-api-provider-white-ip-control-plane` 單條 flow claim gate 完成。
 - 本 flow 可作 `ugsoft-admin-api` project-level 後台 control plane / runtime access-control supporting evidence。
 - 本 flow 不直接更新 `05 / 08 / 04 / 17`。
-- 因本批三條代表 flows 均已完成 Step 5，`ugsoft-admin-api` 下一步若繼續應做 project-level `contribution claim consolidation refresh`。
+- 因本批三條代表 flows 均已完成 Step 5，後續 `ugsoft-admin-api` project-level `contribution claim consolidation refresh` 也已完成。
 
 ## Step 4 補充掃描
 
@@ -180,7 +180,7 @@ Step 4 事實變更:
 本輪事實變更:
 
 - `ugsoft-admin-api game-api-provider-white-ip-control-plane` Step 5 已完成。
-- `ugsoft-admin-api` 本批三條代表 flows 均已完成 Step 5，下一步若繼續本 project 是 project-level contribution claim consolidation refresh。
+- `ugsoft-admin-api` 本批三條代表 flows 均已完成 Step 5，且 project-level contribution claim consolidation refresh 已完成。
 - 不直接更新 `05 / 08 / 04 / 17`。
 
 需要同步:

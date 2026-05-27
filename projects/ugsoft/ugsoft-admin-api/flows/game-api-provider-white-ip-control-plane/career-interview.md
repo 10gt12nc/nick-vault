@@ -7,7 +7,7 @@
 - Flow: `game-api-provider-white-ip-control-plane`
 - Step: Step 5
 - 證據層級: `真實開發過 + code-backed` 混合下游 `code-backed context`。
-- 是否直接更新 05 / 08: 否。本輪是單條 flow Step 5 claim gate，不是 project contribution refresh；正式履歷更新要等 `ugsoft-admin-api contribution claim consolidation refresh` 或 rolling resume package。
+- 是否直接更新 05 / 08: 否。本輪是單條 flow Step 5 claim gate；後續 project contribution refresh 已完成，正式履歷輸出版仍要等 rolling resume package。
 
 ## 30 秒版
 
@@ -114,4 +114,4 @@ Result: 這條 flow 可作為後台 control plane 影響 runtime access-control 
 
 ## Step 5 結論
 
-Step 5 已完成。本 flow 已有 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問、反問、誇大陷阱與單條 flow claim gate。下一步若繼續 `ugsoft-admin-api`，應做 project-level contribution claim consolidation refresh，而不是再補同一條 flow。
+Step 5 已完成。本 flow 已有 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問、反問、誇大陷阱與單條 flow claim gate。後續 `ugsoft-admin-api` project-level contribution claim consolidation refresh 也已完成，已回填成 project-level supporting evidence。

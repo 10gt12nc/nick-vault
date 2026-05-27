@@ -267,10 +267,9 @@ Step 4 可講的 owner decision:
 
 `game-api-provider-white-ip-control-plane` Step 5 已完成。這條 flow 已具備可讀主報告、正式面試 case 與單條 flow claim gate。
 
-因為 `ugsoft-admin-api` 本批三條代表 flows 都已完成 Step 5，下一步若繼續本 project，應做 project-level `contribution claim consolidation refresh`，把三條 flow 的 claim gate 回填到 rolling consolidation。這仍不代表直接改 `05 / 08`；正式履歷更新要等 project-level refresh 或 rolling resume package。
+因為 `ugsoft-admin-api` 本批三條代表 flows 都已完成 Step 5，後續 project-level `contribution claim consolidation refresh` 也已完成，已把三條 flow 的 claim gate 回填到 project consolidation。這仍不代表直接改 `05 / 08`；正式履歷更新要等 rolling resume package。
 
 下一步重點:
 
-- 整合 `connect-bet-record-mq-ingestion Step 5`、`request-log-rabbitmq-admin-consumer Step 5`、本 flow Step 5。
-- 更新 `ugsoft-admin-api` project-level「可放履歷 / 可面試講 / 不可誇大」。
-- 決定是否後續回填 `05 / 08 / 04`。
+- 三條 flow 已整合到 `ugsoft-admin-api` project-level「可放履歷 / 可面試講 / 不可誇大」。
+- 若之後要更新正式輸出版，另跑 rolling resume package。

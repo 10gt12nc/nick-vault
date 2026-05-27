@@ -163,17 +163,13 @@ Step 3 要補:
 
 ## 後續建議順序
 
-第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 5。若繼續本 project，下一步是 contribution claim consolidation refresh:
-
-```text
-ugsoft ugsoft-admin-api contribution claim consolidation refresh
-```
+第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 5。後續 project-level contribution claim consolidation refresh 也已完成；目前本 project 沒有預設下一步。
 
 原因:
 
 - Step 3 已補 Game API white IP 的 DB + Redis 更新、provider white IP current behavior、operation log / RoleFilter 邊界，並明確切開 `arnold` 後續 provider fanout reload context。
 - Step 4 已把 control plane -> runtime access-control、DB / Redis / fanout consistency、scope decision 與不可誇大邊界整理成正式面試 case。
-- Step 5 已完成單條 flow claim gate，可作 project-level supporting evidence；不直接更新 `05 / 08`。
+- Step 5 已完成單條 flow claim gate，且已回填 project-level contribution refresh；正式履歷輸出版仍等 rolling resume package 統一重產。
 
 ## Relationship Check
 
@@ -183,7 +179,7 @@ ugsoft ugsoft-admin-api contribution claim consolidation refresh
 - 本批代表 flows 選定 3 條：`connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`。
 - 第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5。
 - 第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5。
-- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 5；本批三條代表 flows 均已 Step 5。下一步若繼續本 project，建議做 project-level contribution claim consolidation refresh。
+- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 5；本批三條代表 flows 均已 Step 5。後續 project-level contribution claim consolidation refresh 已完成。
 
 需要同步的權威檔:
 

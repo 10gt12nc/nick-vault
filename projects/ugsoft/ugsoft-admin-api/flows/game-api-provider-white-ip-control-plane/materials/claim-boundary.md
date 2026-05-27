@@ -48,6 +48,6 @@
 
 - 可作正式面試 case: 是。
 - 可直接更新 `05 / 08`: 否。單條 flow Step 5 不直接更新正式履歷 / 自傳。
-- 可作 project-level supporting evidence: 是，建議回填 `ugsoft-admin-api contribution claim consolidation refresh`。
+- 可作 project-level supporting evidence: 是，已回填 `ugsoft-admin-api contribution claim consolidation refresh`。
 - Provider white IP latest behavior: 只能列為「我能分析 / code-backed / team current behavior」，不能列為 Nick 主導。
 - 建議在 project contribution refresh 中把泛稱「商戶 / provider 白名單」拆成更具體的「Game API / provider IP 白名單控制面、DB / Redis 同步、runtime access-control 邊界」。
