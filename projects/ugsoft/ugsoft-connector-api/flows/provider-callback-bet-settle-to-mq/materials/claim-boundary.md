@@ -1,8 +1,8 @@
 # provider-callback-bet-settle-to-mq Claim Boundary
 
-## Step 4 判定
+## Step 5 判定
 
-Step 4 已完成正式面試 case。本 flow 可作 `ugsoft-connector-api` provider callback / MQ / bet record pipeline 的強面試素材，但目前尚未完成 Step 5 claim gate，因此不直接更新正式履歷 / 自傳。
+Step 5 已完成。本 flow 可作 `ugsoft-connector-api` provider callback / MQ / bet record pipeline 的強面試素材，並可回填 project-level provider connector / callback / MQ rolling claim 作強化 evidence。本輪不直接更新正式履歷 / 自傳。
 
 ## 可以說
 
@@ -31,7 +31,8 @@ Step 4 已完成正式面試 case。本 flow 可作 `ugsoft-connector-api` provi
 - 完整解決 callback 重送、MQ missing、amount scaling、currency、duplicate 所有問題。
 - 有量化改善或 production incident owner。
 
-## Step 5 前待補
+## Step 5 結論
 
-- 若要升級履歷 claim，Step 5 需再確認 direct commits 和 current behavior 的邊界。
-- 若要更強 claim，需補 Rabbit listener ack / retry / DLQ、monitoring、incident / ticket evidence。
+- 可回填 `contribution-claim-consolidation.md`：第二條代表 flow `provider-callback-bet-settle-to-mq` 已完成 Step 5，可強化 provider connector / callback / MQ claim。
+- 不直接更新 `05 / 08 / 04 / 17`：正式投遞素材仍吃 project-level consolidation，單條 flow Step 5 只提供 evidence。
+- 若要更強 claim，仍需補 Rabbit listener ack / retry / DLQ、monitoring、incident / ticket evidence。

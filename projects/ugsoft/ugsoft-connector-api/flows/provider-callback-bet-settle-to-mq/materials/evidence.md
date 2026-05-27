@@ -16,6 +16,19 @@
 - source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 4 只採 Step 3 已記錄的 remote objects / code-backed evidence，不採 source repo 髒檔。
 - Step 4 未新增 code evidence；本輪目標是把 Step 3 evidence 轉成正式面試 case。
 
+## Step 5 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 5`。
+- 掃描等級：Level 2 Flow 深掃 / claim gate；未做 Level 3 逐檔逐行。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-connector-api` 的 `git fetch --all --prune`。
+- connector source repo 狀態：local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`；`origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0`；`origin/develop` `079aa6603b50db3c185e383295ca5966bbe272fb`；local vs `origin/master` `0 / 61`，local vs `origin/develop` `190 / 0`。
+- connector source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 5 只採 remote refs / git history / 已記錄 code-backed evidence，不採 source repo 髒檔。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-admin-api` 的 `git fetch --all --prune`。
+- admin-api source repo 狀態：local branch `main`，local HEAD `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`；`origin/develop` `ad4ee3704eec0cb2c3542ff52f6a50180b6825ab`；local vs `origin/develop` `793 / 2`。
+- 已重看 Nick / `10gt12nc` path-specific logs：connector producer `ConnectBetRecordMqService` / `ConnectCallbackService` / `CallbackDerplayService` / RabbitMQ config；admin consumer `ConnectBetRecordListener` / `ConnectBetRecordConsumerService` / `BetRecordMqPayload` / RabbitMQ config。
+- 已抽查 key commit touched files：connector `e95b353`、`a173cf3`、`b6329a8`、`df1fdcf`、`120c0fb`；admin-api `98ad763`、`f641b04`、`c99a325`。
+- Step 5 結論：direct commits 足以支撐「參與 provider callback / bet-settle / bet record MQ pipeline」與 project-level claim 強化；current behavior 中 IP whitelist、subAgent rewrite、amount scaling、error code propagation 等仍歸 `arnold` / 團隊 context，不升級成 Nick direct claim。
+
 ## KB / Vault 已重讀
 
 - `AGENTS.md`

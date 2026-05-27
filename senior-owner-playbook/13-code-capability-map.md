@@ -156,7 +156,7 @@ Lead / Architect 候選能力可以準備，但目前應以「候選能力 / 思
 
 - 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定。
 - 若 Nick 要補架構視角，可選 `iwin system map v1`，但這是可選加強，不是投遞前必做。
-- 若 Nick 要補非 iwin 廣度，`ugsoft-connector-api` Step 1 / Step 2 已完成，`transfer-wallet-in-out-query Step 5` 已完成，且 `provider-callback-bet-settle-to-mq Step 4` 已完成；可先把第二順位補到 Step 5，或之後再補 request / bet record MQ sync 代表 flow，但不要把它包裝成必要 backlog。
+- 若 Nick 要補非 iwin 廣度，`ugsoft-connector-api` Step 1 / Step 2 已完成，`transfer-wallet-in-out-query Step 5` 與 `provider-callback-bet-settle-to-mq Step 5` 已完成；之後可選補 `request-bet-record-mq-sync Step 3` 作 job-driven late data / sync 代表 flow，但不要把它包裝成必要 backlog。
 - 若 Nick 要練面試，再啟動三條主力 case 90 秒 / 3 分鐘口說練習；未要求時先暫停。
 - 若有實際 JD，才客製 `08` 與 `17`；沒有 JD 時維持通用 Senior Java Backend / Platform Backend 版本。
 

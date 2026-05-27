@@ -65,3 +65,16 @@ Owner 視角要追：
 - providerBetId、id、currency、ptDay 誰當 duplicate key？
 - DerPlay amount 為什麼要 normalize？
 - consumer 寫 DB 成功但 quota update 失敗怎麼看？
+
+## Step 5 owner 結論
+
+這條 flow 的可用 owner thinking 是「我知道 callback 成功不等於資料落地成功，必須拆 producer publish、queue delivery、consumer idempotency、DB persistence 與 quota update 來看」。這能放進面試與 project-level provider connector / MQ claim。
+
+不能升級成「我設計完整可靠投遞架構」。目前 evidence 仍缺：
+
+- transactional outbox 或 durable replay 的實作證據。
+- listener retry / DLQ / ack policy 的確認。
+- monitoring / alert / incident ticket。
+- quota update failure 的完整補償邊界。
+
+因此 Step 5 最終口徑是：可講 provider callback / MQ eventual consistency 的維護與風險判斷；不講完整 exactly-once / reconciliation / callback platform owner。

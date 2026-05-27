@@ -137,8 +137,10 @@ Step 4 已完成。正式口說主稿放在 `career-interview.md`；本檔保留
 - 不說所有 amount scaling / subAgent / whitelist 都是 Nick direct work。
 - 不說已完整解決 reconciliation。
 
-## Step 5 待補
+## Step 5 結論
 
-- 單條 flow claim gate。
-- 判斷可否作 project-level claim 強化 evidence。
-- 回填 `claim-boundary.md` 的 Step 5 結論。
+- Step 5 已完成。
+- 本 flow 可作 `ugsoft-connector-api` project-level provider connector / callback / MQ claim 強化 evidence。
+- 面試可講 provider callback / merchant callback / MQ / downstream consumer eventual consistency。
+- 正式履歷不直接由本單條 flow 更新，仍吃 project-level consolidation。
+- 誇大邊界維持：不說完整 exactly-once / outbox / DLQ / reconciliation owner，也不把 `arnold` / 團隊 context 當成 Nick direct evidence。

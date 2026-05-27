@@ -1,12 +1,12 @@
-# provider-callback-bet-settle-to-mq Step 3 / Step 4
+# provider-callback-bet-settle-to-mq Step 3 / Step 4 / Step 5
 
 ## 閱讀定位
 
 - Flow 中文名稱：Provider callback 下注結算到 MQ 入庫
 - Flow slug：`provider-callback-bet-settle-to-mq`
 - Project：`ugsoft-connector-api`
-- Step：Step 4 / 面試 case
-- 完成狀態：已建立 Step 3 主學習包，並完成 Step 4 面試 case；尚未完成 Step 5 claim gate。
+- Step：Step 5 / 單條 flow claim gate
+- 完成狀態：Step 3 主學習包、Step 4 面試 case、Step 5 claim gate 已完成；這不代表整個 `ugsoft-connector-api` final consolidation 已完成。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：provider callback / bet-settle / MQ eventual consistency / downstream bet record persistence。
 - 是否只確認到入口：否。已確認 connector callback 入口、service、adapter callback、MQ producer、RabbitMQ exchange / queue，以及 `ugsoft-admin-api` 下游 consumer；未驗證 production 部署 branch、實際 incident / ticket 或完整 DLQ / retry 策略。
@@ -388,10 +388,40 @@ Step 4 的面試主軸：
 - 最新 IP whitelist、subAgent rewrite、amount scaling、error code propagation 多為 `arnold` / 團隊 context，只能當 current behavior / team context。
 - 面試要主動說這不是 exactly-once，也不是完整 outbox / reconciliation owner。
 
+## Step 5 claim gate
+
+Step 5 判定：本 flow 可以回填 `ugsoft-connector-api` project-level provider connector / callback / MQ claim，作為既有 rolling contribution consolidation 的強化 evidence。
+
+可回填的 project-level claim：
+
+- 參與 UGSoft provider connector callback / bet-settle / bet record MQ pipeline。
+- 參與 AntPlay / DerPlay callback 後的 MQ payload normalization。
+- 參與 connector-api producer 與 admin-api consumer 的 bet record MQ 對接維護。
+- 能保守說明 `pt_day`、currency、provider bet id、duplicate boundary 與 eventual consistency 風險。
+
+證據層級：
+
+- `真實開發過 + code-backed`：Nick / `10gt12nc` direct commits 覆蓋 `ConnectBetRecordMqService`、callback 寫 MQ、DerPlay / AntPlay bet record MQ、admin-api BetRecord MQ 入庫、currency / pt_day 類修正。
+- `code-backed / 團隊 context`：IP whitelist、subAgent rewrite、amount scaling、error code propagation、request log connectorAgentId 等 current behavior 多為 `arnold` / 團隊 context；Nick 已確認 `arnold` 是主管，不當 Nick direct evidence。
+- `分析素材 / 待確認`：production branch、Rabbit listener ack / retry / DLQ、outbox / replay、monitoring、incident / ticket。
+
+不能升級的 claim：
+
+- 不說主導完整 callback / MQ / admin consumer architecture。
+- 不說設計完整 exactly-once、outbox、DLQ 或 lossless recovery。
+- 不說完整 owner bet record reconciliation、quota update 或所有 provider callback 行為。
+- 不說完整解決 amount scaling、currency、duplicate、missing MQ、callback 重送。
+- 不寫量化改善或 production incident owner。
+
+是否更新正式履歷：
+
+- 本 Step 5 不直接更新 `05 / 08 / 04 / 17`。
+- 既有 `contribution-claim-consolidation.md` 已有 provider connector / callback / MQ rolling claim，本輪只回填「第二條 flow 已 Step 5」與 evidence 邊界。
+
 ## 下一步
 
-Step 4 已完成。下一步應做同一條 flow Step 5 claim gate，判斷這條 callback / MQ flow 能否回填 project-level claim；Step 5 仍不等於整個 `ugsoft-connector-api` final consolidation。
+本 flow 已完成 Step 5。若繼續 `ugsoft-connector-api` Flow Track，應回到 Step 2 ranking 的第三順位 `request-bet-record-mq-sync`，補 job-driven bet record sync / late data / 時間窗 / 水位 / 跨日查重 flow。這是可選非 iwin 廣度補強，不是投遞前必做。
 
 ```text
-ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 5
+ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 3
 ```

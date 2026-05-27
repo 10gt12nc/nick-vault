@@ -1,13 +1,14 @@
 # provider-callback-bet-settle-to-mq Career / Interview
 
-## Step 4 狀態
+## Step 5 狀態
 
-本檔是 `ugsoft-connector-api provider-callback-bet-settle-to-mq` 的 Step 4 面試 case。Step 4 只把 Step 3 的 code-backed flow 轉成可口說、可追問、可防誇大的面試素材；不直接更新 `05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md` 或正式履歷 claim。
+本檔是 `ugsoft-connector-api provider-callback-bet-settle-to-mq` 的 Step 4 面試 case，並已完成 Step 5 單條 flow claim gate。Step 5 判定本 flow 可回填 project-level provider connector / callback / MQ claim 作強化 evidence；但不直接更新 `05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md` 或 `17-salary-negotiation.md`。
 
-Step 5 前的保守結論：
+Step 5 後的保守結論：
 
 - 可以面試講 provider callback / bet-settle / RabbitMQ / downstream consumer eventual consistency。
 - 可以說 Nick / `10gt12nc` 有 callback 寫 MQ、`ConnectBetRecordMqService`、admin-api BetRecord MQ 入庫、currency / pt_day 類 direct commits。
+- 可以回填 `ugsoft-connector-api contribution-claim-consolidation.md` 作 project-level provider connector / callback / MQ evidence。
 - Provider IP whitelist、subAgent rewrite、amount scaling、error code propagation、latest callback behavior 多為 `arnold` / 團隊 context；Nick 已確認 `arnold` 是主管，不是 Nick direct evidence。
 
 ## 定位
@@ -76,7 +77,7 @@ UGSoft connector 需要接第三方 provider callback，處理單一錢包 / 下
 
 - 參與 UGSoft connector 的 provider callback 與 RabbitMQ 非同步資料處理維護，協助整理 bet-settle payload、duplicate boundary 與下游 bet record consumer 對接。
 
-Step 4 判斷：以上仍只是候選素材；正式是否回填 `05 / 08` 要等 Step 5 或 project-level consolidation refresh。
+Step 5 判斷：以上可作 `ugsoft-connector-api` project-level rolling consolidation 的強化素材；正式投遞版仍吃 project-level consolidation，不由單條 flow 直接改 `05 / 08`。
 
 ## 常見追問
 
@@ -134,11 +135,11 @@ consumer 會先把 MQ payload parse 成 BetRecord payload，拿 providerBetId、
 - 不說 amount scaling / subAgent rewrite / whitelist 全部是 Nick direct work；目前多為主管 / 團隊 context。
 - 不說已完整解決所有重送、漏送、對帳問題。
 
-## Step 5 前待補
+## Step 5 claim gate
 
-Step 4 已能支撐面試口說。Step 5 需要做單條 flow claim gate：
+Step 5 已完成。單條 flow 結論：
 
-- 哪些可以升級成 project-level provider connector / MQ claim。
-- 哪些只能保留為 code-backed / analysis material。
-- 是否需要回填 `contribution-claim-consolidation.md`。
-- 是否仍不直接更新 `05 / 08`。
+- 可升級到 project-level claim：provider connector callback / bet-settle / bet record MQ pipeline、AntPlay / DerPlay callback payload normalization、connector producer + admin consumer 對接、currency / pt_day / duplicate boundary。
+- 只能保留為 code-backed / 團隊 context：IP whitelist、subAgent rewrite、amount scaling、error code propagation、request log connectorAgentId、完整 callback service refactor。
+- 不可誇大：完整 callback / MQ architecture owner、exactly-once / outbox / DLQ owner、完整 bet record reconciliation / quota owner、production incident owner。
+- `05 / 08 / 04 / 17` 不直接更新；本輪只回填 project-level consolidation 與索引狀態。
