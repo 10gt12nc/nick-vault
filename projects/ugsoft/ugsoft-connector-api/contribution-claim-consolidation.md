@@ -35,7 +35,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 4 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / Step 5。 |
+| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 5 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / final consolidation。 |
 
 ## Source Scan Record
 
@@ -52,8 +52,8 @@
 - local HEAD: `c2cab730c0cd6ead6d92a038ef56f97987577059`
 - remote HEAD: `origin/develop`
 - `origin/develop`: `079aa6603b50db3c185e383295ca5966bbe272fb`
-- `origin/master`: `5e3749b63af25ae923dd0a8a2caa122d2aef8121`
-- local vs `origin/master` ahead / behind: `0 / 60`
+- `origin/master`: `4bd2195e1e574978f11a1d4b5e744792f16ecad0`
+- local vs `origin/master` ahead / behind: `0 / 61`
 - local vs `origin/develop` ahead / behind: `190 / 0`
 - source repo 工作樹不乾淨：有 `.DS_Store`、test、docs 等 local changes / untracked files。本次只讀 remote objects，不改 source repo，不把本機髒檔當正式 evidence。
 - remote HEAD 雖指向 `origin/develop`，但 AntPlay / DerPlay adapter 與 latest tags 位於 `origin/master`；本次 provider connector claim 以 fetched `origin/master` 為主要 evidence，`origin/develop` 作背景。
@@ -226,8 +226,8 @@ claim 邊界:
 
 ## Suggested Next
 
-如果繼續 ugsoft，下一步應把第一條 Flow Track 單條 flow 做 Step 5 claim gate。Step 4 已完成 `transfer-wallet-in-out-query` 面試 case，接著要判斷哪些 evidence 能升級正式履歷 claim、哪些只保留 code-backed 面試素材。
+如果繼續 `ugsoft-connector-api` Flow Track，下一步應回 Step 2 ranking 的第二順位 `provider-callback-bet-settle-to-mq Step 3`。第一條 `transfer-wallet-in-out-query` 已完成 Step 5，可作本 project provider connector / transfer wallet claim 的強化 evidence，但本檔仍是 rolling consolidation，不是 final 全量收口。
 
 ```text
-ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 5
+ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 3
 ```

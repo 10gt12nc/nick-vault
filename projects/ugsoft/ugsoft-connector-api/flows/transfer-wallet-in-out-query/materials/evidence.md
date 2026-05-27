@@ -12,6 +12,7 @@
 
 - Step 3 已執行 `git fetch --all --prune`，成功。
 - Step 4 開始前再次執行 `git fetch --all --prune`，成功。
+- Step 5 開始前再次執行 `git fetch --all --prune`，成功。
 - local branch：`Nick_Test`
 - local HEAD：`c2cab730c0cd6ead6d92a038ef56f97987577059`
 - remote HEAD：`refs/remotes/origin/develop`
@@ -21,6 +22,15 @@
 - local vs `origin/develop` ahead / behind：`190 / 0`
 - source repo 工作樹不乾淨：`.DS_Store`、test、docs 與 `src/test/java/com/ps/domain/` 有既有 modified / untracked。本文只採 git history、remote object 與 source path，不採本機髒檔作正式 evidence。
 - 本輪主現況以 `origin/master:path` 讀取，避免 local branch 落後 `origin/master` 導致誤判。
+
+## Step 5 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 5`。
+- 掃描等級：Level 2+ claim gate；沿用 Step 3 / Step 4 code path，補跑 path-specific history、重要 diff、current blame 與 branch contains。
+- 已重讀：本 flow `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/claim-boundary.md`、`ugsoft-connector-api/contribution-claim-consolidation.md`。
+- 已補查：AntPlay / DerPlay adapter transfer commits、DerPlay get-single-transaction commits、transfer transaction / lookup / compensation commits、`TransferFacade` / `TransferService` current blame。
+- Step 5 不改公司 repo，不採 source repo dirty files。
+- Step 5 不直接更新 `05 / 08`；只回填 flow-level claim boundary 與 project-level索引。
 
 ## Step 4 補充掃描
 
@@ -138,6 +148,34 @@ Supervisor / team context commits, not Nick direct evidence:
 - `85d6f29` / 2026-05-20 / `arnold` / `fix: transferGetSingleTransaction 二級代理時用 replaceAgentId 查 lookup`
 - `d7a1717` / 2026-05-20 / `arnold` / `fix: transfer/bet_record 全鏈路把 subAgentId 傳給下游 Antplay`
 
+Additional Step 5 Nick / `10gt12nc` evidence:
+
+- `e236a59` / 2026-03-11 / `10gt12nc` / `feat: ugAdapter transfer～`
+  - touched early `ugAdapter` transfer response / adapter paths and later connector adapter path.
+- `aaddfdc` / 2025-11-27 / `10gt12nc` / `todo : ag_transfer_order_lookup`
+  - touched transfer order lookup service / entity / table-name path; older path, supports lookup concept evidence but not final `TransferFacade` ownership.
+- `3531f42` / 2025-11-27 / `10gt12nc` / `todo : pt_transfer_player_wallet_transaction`
+  - touched transfer transaction table creation job path; older path, supports transaction table / partition context.
+- `eb2573a` / 2025-11-27 / `10gt12nc` / `todo : pt_transfer_request_log`
+  - touched request log table creation job path; older path, supports request log table context.
+- `99c63ff` / 2025-11-27 / `10gt12nc` / `todo : ag_transfer_player_wallet`
+  - touched transfer player wallet table / service path; older path.
+- `54078fe` / `a2b2af5` / `31d7a46` / 2025-12-30~31 / `10gt12nc` / transfer wallet deadlock compensation
+  - touched `TransferBalanceService`, `CompensationService`, `GameFacade`, `GameFlowFacade`, `BetRecordManageService`; supports transfer wallet compensation / wallet update maintenance context.
+
+Step 5 current blame notes:
+
+- `ConnectAntplayAdapter` transfer in / out / out-all current lines still have substantial `10gt12nc` blame for request mapping, sign payload, request body, response parse call. Later HTTP execute wrapper changes are `arnold`.
+- `ConnectDerPlayAdapter` transfer in / out / out-all current lines have substantial `10gt12nc` blame for query balance before / after, create order, transfer chip, query order and response mapping. Later provider setting / execute wrapper / currency parameters are `arnold`.
+- `ConnectDerPlayAdapter#getSingleTransaction` has `10gt12nc` early implementation and current residual lines, but final production signature and provider transaction id mapping have important `arnold` changes. Treat as `Nick direct adapter work + team finalization` rather than pure Nick owner.
+- `TransferFacade#beforeTransaction / afterTransaction` current blame is dominated by `arnold` (`98ffb6a`, `5a2a204`, `7b47601`, `61a3ac6`, `cf5a1cf`); do not mark as Nick direct implementation.
+- `TransferService` / older `TransferBalanceService` transaction / lookup SQL has mixed history: `10gt12nc` touched insert / query / table context in 2025, while current class / later provider columns include `arnold` and older Derek context. Treat as supporting evidence, not sole ownership.
+
+Branch contains check:
+
+- `575996d`, `04e2c84`, `1a1c0b1` are contained in local `Nick_Test`, local `master`, `origin/master`, `origin/feat-transfer-inner-retry`, and `origin/codex/connector-api-harness-guide`.
+- This supports that adapter commits are not just orphan local experiments, but still does not prove production deployment branch.
+
 ## Blame Notes
 
 - `ConnectClientService#transferIn` 的 signature / sign / beforeTransaction / adapter call / afterTransaction 多為 `arnold` commits。
@@ -165,3 +203,14 @@ Supervisor / team context commits, not Nick direct evidence:
 - DB DDL / unique constraint 是否對 `agent_id + account + transfer_reference_id` 有更強保護。
 - provider 成功但本地 DB insert / lookup insert 失敗時，是否已有人工補償 SOP 或 job。
 - 是否有正式 ticket / MR / incident 可證明 Nick 參與 transaction facade / recovery。
+
+## Step 5 claim 判斷
+
+| Claim | 判斷 | 理由 |
+| --- | --- | --- |
+| 參與 AntPlay / DerPlay transfer adapter 串接 | 可放履歷 / 真實開發過 + code-backed | 多筆 `10gt12nc` commits 與 current blame 命中 adapter transfer path |
+| 參與 DerPlay get-single-transaction / provider query order | 可面試講，可作 project-level supporting evidence | 有 `10gt12nc` commits，但 final provider transaction id mapping 有 `arnold` 後續修正 |
+| 參與 transfer transaction / lookup / request log table path | 可作 supporting evidence | 2025 有 `10gt12nc` transfer table / lookup / request log path commits；final connector `TransferFacade` 仍非 Nick 主體 |
+| 參與 transfer wallet compensation / deadlock 補償 | 可作 project-level supporting evidence | `54078fe` / `a2b2af5` / `31d7a46` direct commits，與本 flow 同屬 transfer wallet domain，但不是 connector transfer API 全流程 |
+| 主導 `beforeTransaction / afterTransaction`、Redis guard、lookup replay | 不可寫 | current blame 與重要 commits 為 `arnold` / team context |
+| 完整 transfer wallet / ledger / reconciliation owner | 不可寫 | 缺 production branch、ticket、incident、reconciliation / outbox evidence |

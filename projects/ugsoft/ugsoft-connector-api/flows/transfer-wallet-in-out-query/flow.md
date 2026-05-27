@@ -1,17 +1,17 @@
-# transfer-wallet-in-out-query Step 3 / Step 4
+# transfer-wallet-in-out-query Step 3 / Step 4 / Step 5
 
 ## 閱讀定位
 
 - Flow 中文名稱：商戶轉帳錢包轉入 / 轉出 / 全額轉出 / 單筆交易查詢
 - Flow slug：`transfer-wallet-in-out-query`
 - Project：`ugsoft-connector-api`
-- Step：Step 3 / Level 2 Flow 深掃
-- 完成狀態：Step 3 flow 主學習包已完成；Step 4 面試 case 已完成；尚未做 Step 5 claim gate。
+- Step：Step 5 / Level 2+ claim gate
+- 完成狀態：Step 3 flow 主學習包、Step 4 面試 case、Step 5 單條 flow claim gate 已完成。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：provider connector / transfer wallet / money-adjacent transaction flow。
 - 是否只確認到入口：否。已確認 controller、service、transfer facade、provider adapter、DB table、Redis guard 與 request log；未驗證 production 實際部署 branch / incident / ticket。
 
-Nick / `10gt12nc` 的 direct evidence 主要落在 AntPlay / DerPlay provider adapter transfer 與 DerPlay single transaction。`TransferFacade#beforeTransaction / afterTransaction`、Redis duplicate guard、lookup replay 與二級代理修正主要是 `arnold` / 團隊 context；Nick 已確認 `arnold` 是主管帳號，不得當成 Nick direct evidence。
+Nick / `10gt12nc` 的 direct evidence 主要落在 AntPlay / DerPlay provider adapter transfer、DerPlay single transaction，以及 2025 transfer transaction / lookup / compensation 相關底層 path。`TransferFacade#beforeTransaction / afterTransaction`、Redis duplicate guard、final lookup replay 與二級代理修正主要是 `arnold` / 團隊 context；Nick 已確認 `arnold` 是主管帳號，不得當成 Nick direct evidence。
 
 ## 白話導讀
 
@@ -274,7 +274,14 @@ Step 4 已把本 flow 轉成面試 case：
 - 不寫 exactly-once、outbox、完整自動補償已完成。
 - 不把 `arnold` 的 transaction facade / idempotency / subAgent 修正當成 Nick direct evidence。
 
-Step 4 後的下一步是 Step 5：重新追 Nick / `10gt12nc` path-specific evidence 與 commit / branch / diff，判斷本 flow 是否能作正式履歷 claim，或只保留為 code-backed 面試案例。
+Step 5 claim gate 結論：
+
+- 本 flow 可以作為 `ugsoft-connector-api` project-level provider connector / transfer wallet 履歷素材的強化 evidence。
+- 可說 Nick / `10gt12nc` 參與 AntPlay / DerPlay transfer adapter、DerPlay get-single-transaction、transfer transaction / lookup 底層表路徑與 transfer wallet compensation 類維護。
+- 不單獨寫成「主導完整 transfer wallet / idempotency / recovery / reconciliation owner」。
+- 不直接更新 `05 / 08`；正式履歷仍吃 `ugsoft-connector-api contribution-claim-consolidation.md` 的 project-level rolling conclusion。
+
+同 project 下一步若繼續 Flow Track，回到 Step 2 ranking 的第二順位 `provider-callback-bet-settle-to-mq Step 3`。
 
 ## 本次實際掃描範圍
 

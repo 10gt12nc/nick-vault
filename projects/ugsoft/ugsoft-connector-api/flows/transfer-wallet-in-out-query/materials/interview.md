@@ -156,6 +156,6 @@ UGSoft 這條比較像 connector gateway：它對上統一商戶 API，對下轉
 
 ## Step 5 待補
 
-- 重跑 Nick / `10gt12nc` path-specific history，確認 adapter direct evidence 是否足以升級正式履歷 claim。
-- 確認 transaction facade / lookup / Redis guard 是否只有 team context，或有 Nick 本人確認 / ticket / MR 補強。
-- 判斷 `05 / 08 / 04 / 17` 是否需要回填；Step 4 本身先不更新正式履歷。
+- Step 5 已完成：adapter direct evidence 足以支撐 project-level provider connector / transfer wallet 履歷素材。
+- transaction facade / Redis guard / final lookup replay 仍主要是 team context，不能說成 Nick direct work。
+- `05 / 08 / 04 / 17` 本輪不直接更新；正式履歷仍以 project-level contribution consolidation 回填。

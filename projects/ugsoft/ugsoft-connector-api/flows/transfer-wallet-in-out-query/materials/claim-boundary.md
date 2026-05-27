@@ -2,7 +2,7 @@
 
 ## Step 4 判定
 
-Step 4 已完成面試 case。此時可把本 flow 當作 provider connector / transfer wallet / transaction lookup 的正式面試素材，但尚未完成 Step 5 claim gate；因此不直接更新正式履歷 / 自傳。
+Step 5 已完成 claim gate。此時可把本 flow 當作 `ugsoft-connector-api` provider connector / transfer wallet / transaction lookup 的 project-level 強化 evidence，但不代表整個 project final consolidation，也不直接更新正式履歷 / 自傳。
 
 目前最安全的面試口徑：
 
@@ -15,6 +15,40 @@ Step 4 已完成面試 case。此時可把本 flow 當作 provider connector / t
 - 「我主導完整 transfer wallet 架構。」
 - 「我 owner 完整 idempotency / recovery / reconciliation。」
 - 「transaction facade / Redis guard / lookup replay 都是我本人寫的。」
+
+## Step 5 判定
+
+本 flow 已完成 Step 5 單條 flow claim gate。
+
+### 結論
+
+可以升級為 `ugsoft-connector-api` project-level 履歷 claim 的強化 evidence，但不單獨更新 `05 / 08`，也不單獨寫成完整 transfer wallet owner。
+
+### 可寫入 project-level 履歷 / 自傳素材
+
+保守寫法：
+
+- 參與 UGSoft provider connector / gateway 開發維護，處理 AntPlay / DerPlay transfer in / out / out-all、get-single-transaction adapter、provider response normalization 與 transfer wallet transaction / lookup 相關維護。
+
+更短寫法：
+
+- 參與 AntPlay / DerPlay provider adapter 與 transfer wallet flow 維護，涵蓋轉入 / 轉出 / 全額轉出、查單、provider order mapping 與本地 transaction / lookup 邊界。
+
+### 可面試講
+
+- Nick / `10gt12nc` 直接做過 AntPlay / DerPlay transfer adapter path。
+- DerPlay transfer 不是單一 API，而是 before balance、create order、transfer chip、query order、after balance 的多步 provider contract。
+- 本地 transaction / lookup 與 provider order id 的對應邊界。
+- Redis short guard + DB success replay 的層次，以及它們為什麼不是 exactly-once。
+- provider success but local persist failed 的 failure window 與補強方向。
+
+### 不可寫 / 不可講成
+
+- 不寫「我主導完整 transfer wallet 架構」。
+- 不寫「我建立完整 idempotency / outbox / recovery / reconciliation」。
+- 不寫「beforeTransaction / afterTransaction 全部是我本人開發」。
+- 不寫「我 owner 完整 UGSoft connector」。
+- 不寫量化改善、事故 owner、production incident 修復。
 
 ## 可放履歷
 
@@ -63,6 +97,6 @@ Step 4 已完成面試 case。此時可把本 flow 當作 provider connector / t
 
 ## Step 5 前待補
 
-- 若要把本 flow 升級成更強履歷 claim，需補 MR / ticket / 本人確認，尤其是 transaction facade / idempotency / lookup / recovery 部分。
-- 需確認 production branch 與 deployment version。
-- 需確認是否有 DB unique constraint 或 repair SOP。
+- 若要再升級成更強 claim，仍需補 MR / ticket / 本人確認，尤其是 transaction facade / idempotency / lookup / recovery 部分。
+- production branch 與 deployment version 仍未確認。
+- DB unique constraint 或 repair SOP 仍未確認。
