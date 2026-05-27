@@ -135,4 +135,10 @@
 
 2026-05-27 已完成 `ugsoft-admin-api Step 1`，候選 flow 見 [step1-candidate-flows.md](step1-candidate-flows.md)。
 
-本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。若繼續本 project，下一步必須先做 Step 2，比較候選 flows 並選本批代表 flow；不能直接跳單條 Step 3。
+2026-05-27 已完成 `ugsoft-admin-api Step 2`，本批代表 flows 見 [step2-flow-comparison.md](step2-flow-comparison.md)。目前選定:
+
+1. `connect-bet-record-mq-ingestion`
+2. `request-log-rabbitmq-admin-consumer`
+3. `game-api-provider-white-ip-control-plane`
+
+本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。Step 2 完成後，若繼續本 project，下一步是 `connect-bet-record-mq-ingestion Step 3`；單條 Step 5 完成前，不直接更新 `05 / 08`。

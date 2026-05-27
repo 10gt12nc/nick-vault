@@ -308,8 +308,8 @@ Senior 點:
 
 ## 下一步
 
-`ugsoft-admin-api` Step 1 已完成。下一步如果繼續本 project，必須做 Step 2，比較候選 flows 並選本批代表 flow；不能直接跳 Step 3。
+`ugsoft-admin-api` Step 1 已完成；2026-05-27 後續 Step 2 也已完成，詳見 [step2-flow-comparison.md](step2-flow-comparison.md)。下一步如果繼續本 project，應做第一條代表 flow `connect-bet-record-mq-ingestion Step 3`；不能跳到其他 flow。
 
 ```text
-ugsoft ugsoft-admin-api Step 2
+ugsoft ugsoft-admin-api connect-bet-record-mq-ingestion Step 3
 ```

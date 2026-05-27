@@ -8,13 +8,14 @@
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成 / 2026-05-27；已盤點候選 flow |
-| Step 2 | 尚未建立；下一步若繼續本 project，必須先做 Step 2 |
+| Step 2 | 已完成 / 2026-05-27；已選本批三條代表 flow |
 | Flow packages | 尚未建立；不得宣稱 flow 完整 |
 | 正式履歷 | 可保守補入「後台控制面與非同步資料處理」 |
 
 ## 先讀
 
 - [step1-candidate-flows.md](step1-candidate-flows.md)
+- [step2-flow-comparison.md](step2-flow-comparison.md)
 - [contribution-claim-consolidation.md](contribution-claim-consolidation.md)
 
 ## 履歷邊界
@@ -33,4 +34,10 @@
 
 ## Flow Track 下一步
 
-若繼續 `ugsoft-admin-api`，下一步是 Step 2：比較 `connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`、`daily-hourly-report-quartz-job` 等候選 flow，選本批代表 flow。不得直接跳 Step 3。
+Step 2 已選本批代表 flows:
+
+1. `connect-bet-record-mq-ingestion`
+2. `request-log-rabbitmq-admin-consumer`
+3. `game-api-provider-white-ip-control-plane`
+
+若繼續 `ugsoft-admin-api`，下一步是第一條代表 flow 的 Step 3：`connect-bet-record-mq-ingestion Step 3`。Step 3 前仍要重讀 source repo 最新狀態與下游 evidence。
