@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成：[`step1-candidate-flows.md`](step1-candidate-flows.md) |
 | Step 2 | 已完成：[`step2-flow-comparison.md`](step2-flow-comparison.md) |
-| Flow packages | 第一條 `transfer-wallet-in-out-query` Step 5 已完成；第二條 `provider-callback-bet-settle-to-mq` Step 5 已完成；第三條 `request-bet-record-mq-sync` Step 4 已完成；不得宣稱全 project flow 完整 |
+| Flow packages | 本批三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5；不得宣稱全 project flow 完整 |
 | 正式履歷 | 可保守補入 provider connector / transfer wallet / MQ 素材 |
 
 ## 先讀
@@ -47,13 +47,13 @@ projects/ugsoft/ugsoft-connector-api/flows/transfer-wallet-in-out-query/flow.md
 projects/ugsoft/ugsoft-connector-api/flows/provider-callback-bet-settle-to-mq/flow.md
 ```
 
-第三順位單條 flow Step 3 / Step 4 已完成：
+第三順位單條 flow Step 3 / Step 4 / Step 5 已完成：
 
 ```text
 projects/ugsoft/ugsoft-connector-api/flows/request-bet-record-mq-sync/flow.md
 ```
 
-若 Nick 繼續 `ugsoft-connector-api` Flow Track，下一步是把第三順位 `request-bet-record-mq-sync` 做 Step 5 claim gate：判斷它能否回填 project-level claim。這是可選非 iwin 廣度補強，不是投遞前必做。
+若 Nick 繼續 `ugsoft-connector-api`，下一步是做 `contribution claim consolidation refresh`：把三條代表 flow 的 Step 5 claim gate 回填 project-level claim，並保留不可誇大的邊界。這是可選非 iwin 廣度補強，不是投遞前必做。
 
 ## 履歷邊界
 

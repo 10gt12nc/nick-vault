@@ -1,17 +1,17 @@
-# request-bet-record-mq-sync Step 3 / Step 4
+# request-bet-record-mq-sync Step 3 / Step 4 / Step 5
 
 ## 閱讀定位
 
 - Flow 中文名稱：Provider bet record job sync / late data 補資料到 MQ
 - Flow slug：`request-bet-record-mq-sync`
 - Project：`ugsoft-connector-api`
-- Step：Step 4 / 單條 flow 面試 case
-- 完成狀態：Step 3 learning package 與 Step 4 interview case 已完成；Step 5 claim gate 尚未完成。
+- Step：Step 5 / 單條 flow claim gate
+- 完成狀態：Step 3 learning package、Step 4 interview case、Step 5 claim gate 已完成；這不代表整個 `ugsoft-connector-api` final consolidation 已完成。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：Quartz job / provider bet record pull / Redis watermark / duplicate check / RabbitMQ eventual consistency。
 - 是否只確認到入口：否。已確認 Quartz job、sync service、provider adapter、existing-key 查重、MQ producer 與 Redis watermark；未驗證 production branch、實際 scheduler runtime、MQ ack / DLQ、監控告警與 incident。
 
-這是 `ugsoft-connector-api` 第三條代表 flow。第一條 `transfer-wallet-in-out-query` 與第二條 `provider-callback-bet-settle-to-mq` 已完成 Step 5；這條補的是 callback 以外的 job-driven late data / 補資料路徑。Nick / `10gt12nc` 的 direct evidence 主要落在 BetRecord MQ、job、跨日 `pt_day`、DerPlay 單一錢包日期、currency default / currency 修正；Redis watermark、amount normalization、subAgent 傳遞等較新的 current behavior 多為 code-backed / 團隊 context，不直接升級成 Nick direct claim。
+這是 `ugsoft-connector-api` 第三條代表 flow。第一條 `transfer-wallet-in-out-query` 與第二條 `provider-callback-bet-settle-to-mq` 已完成 Step 5；這條補的是 callback 以外的 job-driven late data / 補資料路徑。Nick / `10gt12nc` 的 direct evidence 主要落在 BetRecord MQ、job、跨日 `pt_day`、DerPlay 單一錢包日期、currency default / currency 修正；Redis watermark、amount normalization、subAgent 傳遞等較新的 current behavior 多為 code-backed / 團隊 context，不直接升級成 Nick direct claim。Step 5 判定：本 flow 可作 `ugsoft-connector-api` project-level provider connector / bet record MQ / job sync claim 的強化 evidence，但不單獨更新 `05 / 08 / 04 / 17`，也不寫完整 reconciliation / exactly-once / outbox owner。
 
 ## 白話導讀
 
@@ -262,12 +262,18 @@ provider request 有 page / pageSize / total，但 Step 3 掃描未看到針對 
 - 不寫完整 reconciliation owner。
 - 不把 `arnold` commits 當 Nick direct evidence。
 
-## Step 4 結論
+## Step 5 結論
 
-`request-bet-record-mq-sync` 已建立 Step 3 learning package，並完成 Step 4 面試 case。它補強 `ugsoft-connector-api` 在 job / async data / late data 補資料方面的廣度，和前兩條 transfer / callback flow 形成一組比較完整的 connector runtime 面試素材。
+`request-bet-record-mq-sync` 已建立 Step 3 learning package、Step 4 面試 case，並完成 Step 5 claim gate。它補強 `ugsoft-connector-api` 在 job / async data / late data 補資料方面的廣度，和前兩條 transfer / callback flow 形成一組比較完整的 connector runtime 面試素材。
 
-下一步若繼續本 flow，應做 Step 5 claim gate，把「可面試講」與「可否回填 project-level claim」分清楚：
+本 flow 的 claim gate 結論：
+
+- 可放入 project-level consolidation：參與 / 維護 provider bet record MQ、job sync、跨日 `pt_day` 查重與 currency boundary。
+- 可面試講：Quartz sync、Redis watermark、`pt_day` 查重、`providerBetId|currency` 去重、MQ eventual consistency，以及 watermark / publish failure / per-currency / pagination 風險。
+- 不可誇大：不說完整 reconciliation、exactly-once、outbox / DLQ 平台、完整 bet record owner，且不把 `arnold` / team context 當 Nick direct evidence。
+
+第三條代表 flow 已收口到 Step 5；若之後要繼續 `ugsoft-connector-api`，下一步應回到 project-level 狀態判斷，而不是同一條 flow 繼續加 Step：
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
+ugsoft ugsoft-connector-api contribution claim consolidation refresh
 ```

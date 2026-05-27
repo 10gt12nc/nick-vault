@@ -18,6 +18,18 @@
 - source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 4 只採 Step 3 已記錄的 remote refs / git history / code-backed evidence，不採 source repo 髒檔。
 - Step 4 未新增 code path evidence；本輪目標是把 Step 3 evidence 轉成正式 90 秒 / 3 分鐘面試 case、追問題庫、回答要點與誇大邊界。
 
+## Step 5 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5`
+- 日期：2026-05-27
+- 掃描等級：Level 2 Flow 深掃 / claim gate；未做 Level 3 逐檔逐行。
+- 已重讀 Step 3 / Step 4 的 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-connector-api` 的 `git fetch --all --prune`；第一次受 sandbox 權限限制失敗後，經 approval 成功更新 remote refs。
+- source repo 狀態：local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`；`origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0`；`origin/develop` `079aa6603b50db3c185e383295ca5966bbe272fb`；local vs `origin/master` `0 / 61`，local vs `origin/develop` `190 / 0`。
+- source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 5 只採 remote refs / git history / 已記錄 code-backed evidence，不採 source repo 髒檔。
+- 重新確認 Nick / `10gt12nc` path-specific logs：`ConnectBetRecordSyncService`、`ConnectBetRecordSyncRepository`、`AntplayBetRecordSyncJob`、`DerplayBetRecordSyncJob`、`ConnectBetRecordMqService` 命中 MQ / job / pt_day / currency 系列 commits。
+- Step 5 結論：direct evidence 足以支撐「參與 / 維護 provider bet record MQ、job sync、跨日 pt_day 查重與 currency boundary」，但 Redis watermark、per-currency current behavior、amount normalization、subAgent 傳遞與 publisher failure 分析仍多為 code-backed / team context / analysis，不升級為 Nick direct claim。
+
 ## KB / Vault 已重讀
 
 - `AGENTS.md`
@@ -188,6 +200,6 @@ Nick 已確認 `arnold` 是主管帳號；`arnold` commits 不作 Nick direct ev
 ## Relationship Check
 
 - Step 3 已同步過的 project README / step files / inventory / todo 仍可沿用。
-- 本輪 Step 4 已把狀態從「下一步 Step 4」推進到「Step 4 已完成 / 下一步 Step 5」。
+- Step 5 已把狀態從「下一步 Step 5」推進到「Step 5 已完成 / 本批三條代表 flows 已完成 Step 5」。
 - 已同步 `projects/ugsoft/ugsoft-connector-api/README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`、`contribution-claim-consolidation.md`、`projects/ugsoft/README.md`、`projects/source-repo-inventory.md`、`projects/source-repo-flow-audit.md`、`senior-owner-playbook/01-senior-owner-flow-inventory.md`、`senior-owner-playbook/06-todo.md`、`senior-owner-playbook/13-code-capability-map.md`。
-- `05 / 08 / 04 / 17`：本輪不更新。Step 4 是面試 case，不是 final claim gate，也沒有新的 project-level final consolidation。
+- `05 / 08 / 04 / 17`：本輪不更新。單條 flow Step 5 不直接更新正式履歷 / 自傳；後續若要正式投遞包回填，應走 project-level consolidation refresh / rolling resume package。

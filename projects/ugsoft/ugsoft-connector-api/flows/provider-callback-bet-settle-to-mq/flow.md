@@ -420,8 +420,8 @@ Step 5 判定：本 flow 可以回填 `ugsoft-connector-api` project-level provi
 
 ## 下一步
 
-本 flow 已完成 Step 5。若繼續 `ugsoft-connector-api` Flow Track，應回到 Step 2 ranking 的第三順位 `request-bet-record-mq-sync`，補 job-driven bet record sync / late data / 時間窗 / 水位 / 跨日查重 flow。這是可選非 iwin 廣度補強，不是投遞前必做。
+本 flow 已完成 Step 5。同 project 第三順位 `request-bet-record-mq-sync` 也已完成 Step 5。若繼續 `ugsoft-connector-api`，應回到 project-level `contribution claim consolidation refresh`，把三條代表 flow 的 claim gate 收口。這是可選非 iwin 廣度補強，不是投遞前必做。
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
+ugsoft ugsoft-connector-api contribution claim consolidation refresh
 ```

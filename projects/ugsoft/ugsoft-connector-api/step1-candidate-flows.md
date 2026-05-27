@@ -31,7 +31,7 @@
 | `contribution-claim-consolidation.md` | 可沿用 | Career Track rolling consolidation 已完成，可支撐保守履歷；但不能代表 flow 完整。 |
 | `step1-candidate-flows.md` | 本輪新增 | 補 Flow Track 第一層缺口。 |
 | `step2-flow-comparison.md` | 已完成 / 2026-05-26 | 已比較候選 flow，第一順位是 `transfer-wallet-in-out-query`。 |
-| `flows/` | 已建立部分代表 flow | `transfer-wallet-in-out-query` 已完成 Step 5；`provider-callback-bet-settle-to-mq` 已完成 Step 5；`request-bet-record-mq-sync` 已完成 Step 4；其他候選仍未建立完整面試包。 |
+| `flows/` | 已建立本批代表 flow | `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5；其他候選仍未建立完整面試包。 |
 
 ## Source Repo 狀態
 
@@ -330,7 +330,7 @@ Evidence：
 
 - `official-web-v3` / `ugsoft-admin-web`：官網或前端，不是本 project。
 - 全部 controller / service 平均 class summary：違反 KB，且會把焦點從 production flow 拉散。
-- 直接做 contribution consolidation refresh：Career Track 已有 rolling 結論，本輪先補 Flow Track。
+- 直接做 contribution consolidation refresh：Step 1 時 Career Track 已有 rolling 結論，當時先補 Flow Track；2026-05-27 本批三條代表 flow 已全部 Step 5，下一步若繼續 connector 才回到 consolidation refresh。
 - 直接更新 05 / 08：Step 1 只找到候選 flow，尚未產生新的 project-level claim。
 
 ## Step 2 已回答的問題
@@ -362,8 +362,8 @@ Evidence：
 
 ## 下一步
 
-Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`，第二順位 `provider-callback-bet-settle-to-mq Step 5`，以及第三順位 `request-bet-record-mq-sync Step 4`。後續若繼續同 project Flow Track，應把第三順位 flow 推進到 Step 5 claim gate。
+Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`、第二順位 `provider-callback-bet-settle-to-mq Step 5`、第三順位 `request-bet-record-mq-sync Step 5`。後續若繼續同 project，應做 project-level contribution claim consolidation refresh。
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
+ugsoft ugsoft-connector-api contribution claim consolidation refresh
 ```

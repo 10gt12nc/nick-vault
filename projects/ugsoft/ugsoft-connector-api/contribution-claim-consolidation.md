@@ -35,7 +35,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 5 已完成；第二條 `provider-callback-bet-settle-to-mq` Step 5 已完成；第三條 `request-bet-record-mq-sync` Step 4 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / final consolidation。 |
+| final 全量 flow | 待 refresh | Step 1 / Step 2 已建立；本批三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5。本檔仍是 2026-05-20 rolling consolidation，待 `contribution claim consolidation refresh` 將三條 Step 5 全量校正進 project-level claim。 |
 
 ## Source Scan Record
 
@@ -228,10 +228,10 @@ claim 邊界:
 
 2026-05-27 Step 5 回填：第二條代表 flow `provider-callback-bet-settle-to-mq` 已完成 Step 5，可強化本 project provider connector / callback / bet record MQ claim。Direct evidence 支撐 Nick / `10gt12nc` 參與 callback 寫 MQ、`ConnectBetRecordMqService`、admin-api BetRecord MQ 入庫、currency / pt_day / duplicate boundary；IP whitelist、subAgent rewrite、amount scaling、error code propagation 等 current behavior 多為 `arnold` / 團隊 context，不作 Nick direct claim。
 
-2026-05-27 Step 4 回填：第三條代表 flow `request-bet-record-mq-sync` 已完成 Step 4，可作本 project job-driven bet record sync / late data 補資料 / Redis watermark / 跨日查重 / MQ path 的正式面試 case。它尚未完成 Step 5，不直接升級履歷 claim，也不把本檔改成 final consolidation。
+2026-05-27 Step 5 回填：第三條代表 flow `request-bet-record-mq-sync` 已完成 Step 5，可作本 project job-driven bet record sync / late data 補資料 / 跨日 `pt_day` 查重 / MQ path 的 project-level claim 強化 evidence。Nick / `10gt12nc` direct evidence 支撐 BetRecord MQ、job、跨日 `pt_day`、DerPlay 單一錢包日期、currency default / currency 修正；Redis watermark、per-currency current behavior、amount normalization、subAgent 等仍屬 code-backed / 團隊 context，不升級成 Nick direct claim。
 
-如果繼續 `ugsoft-connector-api` Flow Track，下一步應做第三順位 `request-bet-record-mq-sync Step 5`。第一條 `transfer-wallet-in-out-query` 已完成 Step 5，可作本 project provider connector / transfer wallet claim 的強化 evidence；第二條 callback / MQ flow 已完成 Step 5，可作 provider callback / MQ claim 強化 evidence；第三條 job sync flow 目前只是 Step 4 面試 case。本檔仍是 rolling consolidation，不是 final 全量收口。
+`ugsoft-connector-api` 本批三條代表 flow 已全部完成 Step 5。下一步若繼續 connector，應做 `contribution claim consolidation refresh`，把 transfer wallet、callback / MQ、job-driven bet record sync 三條 Step 5 結論整理成 project-level claim，並保留 rolling / final 邊界。本檔仍是 rolling consolidation，不是已刷新後的 final 全量收口。
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
+ugsoft ugsoft-connector-api contribution claim consolidation refresh
 ```
