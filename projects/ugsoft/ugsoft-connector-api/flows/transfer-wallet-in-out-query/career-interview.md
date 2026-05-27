@@ -148,4 +148,4 @@ AntPlay 比較像 connector 直接組 transfer-in / transfer-out / transfer-out-
 
 ## Step 5 收口
 
-本 flow 已完成 Step 5。`ugsoft-connector-api` 第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 5，第三順位 `request-bet-record-mq-sync` 已完成 Step 3；若繼續 Flow Track，下一步應做第三順位 `request-bet-record-mq-sync Step 4`。若 Nick 想先做履歷，則只能做 rolling / scoped consolidation refresh，不得宣稱全部代表 flows 已完成 Step 5。
+本 flow 已完成 Step 5。`ugsoft-connector-api` 第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 5，第三順位 `request-bet-record-mq-sync` 已完成 Step 4；若繼續 Flow Track，下一步應做第三順位 `request-bet-record-mq-sync Step 5`。若 Nick 想先做履歷，則只能做 rolling / scoped consolidation refresh，不得宣稱全部代表 flows 已完成 Step 5。

@@ -1,12 +1,12 @@
-# request-bet-record-mq-sync Step 3
+# request-bet-record-mq-sync Step 3 / Step 4
 
 ## 閱讀定位
 
 - Flow 中文名稱：Provider bet record job sync / late data 補資料到 MQ
 - Flow slug：`request-bet-record-mq-sync`
 - Project：`ugsoft-connector-api`
-- Step：Step 3 / 單條 flow learning package
-- 完成狀態：Step 3 已建立；Step 4 面試 case 與 Step 5 claim gate 尚未完成。
+- Step：Step 4 / 單條 flow 面試 case
+- 完成狀態：Step 3 learning package 與 Step 4 interview case 已完成；Step 5 claim gate 尚未完成。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：Quartz job / provider bet record pull / Redis watermark / duplicate check / RabbitMQ eventual consistency。
 - 是否只確認到入口：否。已確認 Quartz job、sync service、provider adapter、existing-key 查重、MQ producer 與 Redis watermark；未驗證 production branch、實際 scheduler runtime、MQ ack / DLQ、監控告警與 incident。
@@ -262,12 +262,12 @@ provider request 有 page / pageSize / total，但 Step 3 掃描未看到針對 
 - 不寫完整 reconciliation owner。
 - 不把 `arnold` commits 當 Nick direct evidence。
 
-## Step 3 結論
+## Step 4 結論
 
-`request-bet-record-mq-sync` 已建立 Step 3 learning package。它補強 `ugsoft-connector-api` 在 job / async data / late data 補資料方面的廣度，和前兩條 transfer / callback flow 形成一組比較完整的 connector runtime 面試素材。
+`request-bet-record-mq-sync` 已建立 Step 3 learning package，並完成 Step 4 面試 case。它補強 `ugsoft-connector-api` 在 job / async data / late data 補資料方面的廣度，和前兩條 transfer / callback flow 形成一組比較完整的 connector runtime 面試素材。
 
-下一步若繼續本 flow，應做 Step 4，把本報告壓成 90 秒 / 3 分鐘 case、追問題庫與回答邊界：
+下一步若繼續本 flow，應做 Step 5 claim gate，把「可面試講」與「可否回填 project-level claim」分清楚：
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 4
+ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
 ```

@@ -7,6 +7,17 @@
 - 掃描等級：Level 2 Flow 深掃；未做 Level 3 逐檔逐行 / 每 commit diff 全量追查。
 - 目標：建立 provider bet record job sync / Redis watermark / duplicate check / MQ 補資料的 Step 3 learning package。
 
+## Step 4 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 4`
+- 日期：2026-05-27
+- 掃描等級：Level 2 Flow 深掃 / interview case；未做 Level 3 逐檔逐行。
+- 已重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-connector-api` 的 `git fetch --all --prune`；第一次受 sandbox 權限限制失敗後，經 approval 成功更新 remote refs。
+- source repo 狀態：local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`；`origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0`；`origin/develop` `079aa6603b50db3c185e383295ca5966bbe272fb`；local vs `origin/master` `0 / 61`，local vs `origin/develop` `190 / 0`。
+- source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 4 只採 Step 3 已記錄的 remote refs / git history / code-backed evidence，不採 source repo 髒檔。
+- Step 4 未新增 code path evidence；本輪目標是把 Step 3 evidence 轉成正式 90 秒 / 3 分鐘面試 case、追問題庫、回答要點與誇大邊界。
+
 ## KB / Vault 已重讀
 
 - `AGENTS.md`
@@ -176,9 +187,7 @@ Nick 已確認 `arnold` 是主管帳號；`arnold` commits 不作 Nick direct ev
 
 ## Relationship Check
 
-- `projects/ugsoft/ugsoft-connector-api/README.md`：已同步第三條 flow Step 3 已完成、下一步 Step 4。
-- `projects/ugsoft/ugsoft-connector-api/step1-candidate-flows.md`：已同步 Flow Track 狀態。
-- `projects/ugsoft/ugsoft-connector-api/step2-flow-comparison.md`：已把第三條 flow 決策從待做 Step 3 改成 Step 3 已完成 / 下一步 Step 4。
-- `projects/ugsoft/ugsoft-connector-api/contribution-claim-consolidation.md`：已同步 rolling consolidation 的 flow 深掃進度；不升級 final。
-- `projects/ugsoft/README.md`、`projects/source-repo-inventory.md`、`projects/source-repo-flow-audit.md`、`senior-owner-playbook/01-senior-owner-flow-inventory.md`、`senior-owner-playbook/06-todo.md`、`senior-owner-playbook/13-code-capability-map.md`：已同步下一步。
-- `05 / 08 / 04 / 17`：本輪不更新。Step 3 不是 final claim gate，也沒有新的 project-level final consolidation。
+- Step 3 已同步過的 project README / step files / inventory / todo 仍可沿用。
+- 本輪 Step 4 已把狀態從「下一步 Step 4」推進到「Step 4 已完成 / 下一步 Step 5」。
+- 已同步 `projects/ugsoft/ugsoft-connector-api/README.md`、`step1-candidate-flows.md`、`step2-flow-comparison.md`、`contribution-claim-consolidation.md`、`projects/ugsoft/README.md`、`projects/source-repo-inventory.md`、`projects/source-repo-flow-audit.md`、`senior-owner-playbook/01-senior-owner-flow-inventory.md`、`senior-owner-playbook/06-todo.md`、`senior-owner-playbook/13-code-capability-map.md`。
+- `05 / 08 / 04 / 17`：本輪不更新。Step 4 是面試 case，不是 final claim gate，也沒有新的 project-level final consolidation。

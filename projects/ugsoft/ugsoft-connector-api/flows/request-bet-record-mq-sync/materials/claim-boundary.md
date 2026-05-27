@@ -1,8 +1,8 @@
 # Claim Boundary - request-bet-record-mq-sync
 
-## Step 3 判定
+## Step 4 判定
 
-本 flow 已完成 Step 3 learning package，但尚未完成 Step 4 / Step 5。因此它目前可以作為面試準備素材與 project-level consolidation 的進度補充，不直接更新 `05 / 08 / 04 / 17`，也不升級成 final resume claim。
+本 flow 已完成 Step 3 learning package 與 Step 4 interview case，但尚未完成 Step 5 claim gate。因此它目前可以作為正式面試練習素材與 project-level consolidation 的進度補充，不直接更新 `05 / 08 / 04 / 17`，也不升級成 final resume claim。
 
 ## 證據層級
 
@@ -36,7 +36,7 @@
 
 ## 履歷回填規則
 
-本 flow Step 3 不直接改 `05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`。
+本 flow Step 4 不直接改 `05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`。
 
 若後續完成 Step 5，可以回填到 `ugsoft-connector-api` contribution consolidation，強化以下 project-level claim：
 

@@ -31,7 +31,7 @@
 | `contribution-claim-consolidation.md` | 可沿用 | Career Track rolling consolidation 已完成，可支撐保守履歷；但不能代表 flow 完整。 |
 | `step1-candidate-flows.md` | 本輪新增 | 補 Flow Track 第一層缺口。 |
 | `step2-flow-comparison.md` | 已完成 / 2026-05-26 | 已比較候選 flow，第一順位是 `transfer-wallet-in-out-query`。 |
-| `flows/` | 已建立部分代表 flow | `transfer-wallet-in-out-query` 已完成 Step 5；`provider-callback-bet-settle-to-mq` 已完成 Step 5；`request-bet-record-mq-sync` 已完成 Step 3；其他候選仍未建立完整面試包。 |
+| `flows/` | 已建立部分代表 flow | `transfer-wallet-in-out-query` 已完成 Step 5；`provider-callback-bet-settle-to-mq` 已完成 Step 5；`request-bet-record-mq-sync` 已完成 Step 4；其他候選仍未建立完整面試包。 |
 
 ## Source Repo 狀態
 
@@ -362,8 +362,8 @@ Evidence：
 
 ## 下一步
 
-Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`，第二順位 `provider-callback-bet-settle-to-mq Step 5`，以及第三順位 `request-bet-record-mq-sync Step 3`。後續若繼續同 project Flow Track，應把第三順位 flow 推進到 Step 4。
+Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`，第二順位 `provider-callback-bet-settle-to-mq Step 5`，以及第三順位 `request-bet-record-mq-sync Step 4`。後續若繼續同 project Flow Track，應把第三順位 flow 推進到 Step 5 claim gate。
 
 ```text
-ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 4
+ugsoft ugsoft-connector-api request-bet-record-mq-sync Step 5
 ```
