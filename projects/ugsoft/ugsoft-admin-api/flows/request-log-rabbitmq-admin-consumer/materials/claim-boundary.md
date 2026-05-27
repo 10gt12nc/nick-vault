@@ -35,4 +35,4 @@
 
 ## 目前狀態
 
-Step 3 完成。尚未 Step 4 / Step 5，所以本檔是 claim boundary 初版；正式履歷回填需等 project contribution refresh 或 rolling resume package 判斷。
+Step 4 完成。面試稿已可用，但尚未 Step 5 claim gate；正式履歷回填需等 Step 5、project contribution refresh 或 rolling resume package 判斷。

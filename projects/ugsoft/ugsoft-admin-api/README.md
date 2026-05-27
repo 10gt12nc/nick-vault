@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成 / 2026-05-27；已盤點候選 flow |
 | Step 2 | 已完成 / 2026-05-27；已選本批三條代表 flow |
-| Flow packages | `connect-bet-record-mq-ingestion` 已完成 Step 5；`request-log-rabbitmq-admin-consumer` 已完成 Step 3；其餘本批代表 flow 尚未深挖，仍不得宣稱 project flow 完整 |
+| Flow packages | `connect-bet-record-mq-ingestion` 已完成 Step 5；`request-log-rabbitmq-admin-consumer` 已完成 Step 4；其餘本批代表 flow 尚未深挖，仍不得宣稱 project flow 完整 |
 | 正式履歷 | 可保守補入「後台控制面與非同步資料處理」 |
 
 ## 先讀
@@ -42,4 +42,4 @@ Step 2 已選本批代表 flows:
 2. `request-log-rabbitmq-admin-consumer`
 3. `game-api-provider-white-ip-control-plane`
 
-`connect-bet-record-mq-ingestion` 已完成 Step 5，已建立 BetRecord MQ consumer / duplicate check / quota update supporting flow 主報告、正式面試 case 與 claim gate。`request-log-rabbitmq-admin-consumer` 已完成 Step 3，已建立 RequestLog RabbitMQ 非同步入庫 learning package；若繼續同 flow，下一步是 `request-log-rabbitmq-admin-consumer Step 4`，不要跳到其他 project。
+`connect-bet-record-mq-ingestion` 已完成 Step 5，已建立 BetRecord MQ consumer / duplicate check / quota update supporting flow 主報告、正式面試 case 與 claim gate。`request-log-rabbitmq-admin-consumer` 已完成 Step 4，已建立 RequestLog RabbitMQ 非同步入庫 learning package 與正式面試稿；若繼續同 flow，下一步是 `request-log-rabbitmq-admin-consumer Step 5`，不要跳到其他 project。

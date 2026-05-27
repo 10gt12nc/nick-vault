@@ -1,4 +1,4 @@
-# Evidence - request-log-rabbitmq-admin-consumer Step 3
+# Evidence - request-log-rabbitmq-admin-consumer Step 4
 
 日期: 2026-05-27
 
@@ -126,10 +126,34 @@
 本輪事實變更:
 
 - `request-log-rabbitmq-admin-consumer` Step 3 完成。
-- `ugsoft-admin-api` Flow Track 目前狀態變成: `connect-bet-record-mq-ingestion` Step 5 完成，`request-log-rabbitmq-admin-consumer` Step 3 完成，下一步是同 flow Step 4。
+- `ugsoft-admin-api` Flow Track 當時狀態變成: `connect-bet-record-mq-ingestion` Step 5 完成，`request-log-rabbitmq-admin-consumer` Step 3 完成，下一步是同 flow Step 4。
 - 發現並修正 Step 2 中「下一步是 request-log 但理由仍寫 BetRecord」的舊內容。
 
 同步 / 不同步判斷:
 
 - 已同步 project README、Step 1、Step 2、project consolidation、domain README、source inventory、flow audit、todo、capability map。
 - 不更新 `05 / 08 / 04 / 17`: 本輪是單條 flow Step 3，不是 project contribution refresh / rolling resume package / salary strategy。
+
+## Step 4 補充掃描
+
+日期: 2026-05-27
+
+本輪任務: `ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 4`。
+
+補充狀態:
+
+- 已重讀 Step 3 `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md`。
+- 已重新 fetch `/Users/nick/Git/ugsoft/ugsoft-admin-api` remote refs；第一次因 sandbox `.git/FETCH_HEAD` 權限失敗，approval 後成功。
+- local branch: `main`
+- local HEAD: `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`
+- `origin/main`: `b1b83f64ffc971cc838ef935867a5a2234e3d201`
+- ahead / behind: `0 / 42`
+- source working tree: 乾淨
+- path-specific latest log 仍維持 Step 3 判斷：Nick / `10gt12nc` direct evidence 到 `821bc2e`，後續 `arnold` commits 只作 current behavior / 主管 context。
+
+Step 4 事實變更:
+
+- `career-interview.md` 已從 Step 3 底稿升級為 Step 4 面試稿，補 30 秒、90 秒、3 分鐘、STAR、Senior 追問與反問。
+- `materials/interview.md` 已升級為正式面試素材。
+- `materials/claim-boundary.md` 狀態改為 Step 4 完成。
+- 不更新 `05 / 08 / 04 / 17`: 本輪仍是單條 flow Step 4，不是 Step 5 claim gate、project contribution refresh 或 rolling resume package。

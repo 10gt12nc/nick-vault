@@ -1,4 +1,4 @@
-# request-log-rabbitmq-admin-consumer Step 3
+# request-log-rabbitmq-admin-consumer Step 4
 
 日期: 2026-05-27
 
@@ -6,7 +6,7 @@
 
 這條 flow 是 `ugsoft-admin-api` 的第二條代表 flow，主題是 RequestLog 從同步寫入改為 RabbitMQ 非同步入庫後，後台 consumer 如何把 request / response log 寫入 `pt_request_log`，再供 admin `/request_log` 查詢。
 
-目前完成到 Step 3: 已建立 flow learning package、code 分層、正常流程、主要 failure window 與履歷邊界。Step 4 / Step 5 尚未完成，因此本文件可作深讀底稿，但還不是正式 90 秒 / 3 分鐘面試稿，也不直接回填 `05 / 08`。
+目前完成到 Step 4: 已建立 flow learning package、code 分層、正常流程、主要 failure window、履歷邊界與正式面試稿。Step 5 尚未完成，因此本文件可作深讀底稿與面試練習素材，但還不是單條 flow claim gate，也不直接回填 `05 / 08`。
 
 Evidence 層級:
 
@@ -201,8 +201,8 @@ current behavior context 有一個要注意的點: `arnold` 後續修正加入 `
 - 不說這條 flow 是完整 money / wallet correctness。
 - 不把 `arnold` commits 當 Nick direct evidence。
 
-## Step 3 結論
+## Step 4 結論
 
-`request-log-rabbitmq-admin-consumer` Step 3 已完成。這條 flow 能補 `ugsoft-admin-api` 的 async audit / observability / admin query case，和已完成的 `connect-bet-record-mq-ingestion` 形成「交易資料 MQ 入庫」與「request log MQ 入庫」兩種不同 failure policy 的對照。
+`request-log-rabbitmq-admin-consumer` Step 4 已完成。這條 flow 能補 `ugsoft-admin-api` 的 async audit / observability / admin query case，和已完成的 `connect-bet-record-mq-ingestion` 形成「交易資料 MQ 入庫」與「request log MQ 入庫」兩種不同 failure policy 的對照。
 
-下一步若繼續同 flow，應做 Step 4，把本文件收斂成面試可講的 90 秒 / 3 分鐘版本、追問清單與 claim gate 前置整理。
+下一步若繼續同 flow，應做 Step 5 claim gate，確認這條 flow 可放履歷 / 可面試講 / 不可誇大的邊界，並判斷是否需要回填 project-level consolidation。
