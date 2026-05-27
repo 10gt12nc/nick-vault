@@ -173,4 +173,4 @@ remote branches:
 
 ## Suggested Next
 
-`ugsoft-workspace` 已收斂；`ugsoft-connector-api` Flow Track Step 1 / Step 2、本批三條代表 flow Step 5 與 `contribution claim consolidation refresh` 也已完成。`ugsoft-admin-api Step 1 / Step 2` 已完成，第一條 `connect-bet-record-mq-ingestion Step 5` 與第二條 `request-log-rabbitmq-admin-consumer Step 4` 也已完成；下一步若繼續 UGSoft，可選 `ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 5`，但這是可選非 iwin 廣度補強，不是投遞前必做。
+`ugsoft-workspace` 已收斂；`ugsoft-connector-api` Flow Track Step 1 / Step 2、本批三條代表 flow Step 5 與 `contribution claim consolidation refresh` 也已完成。`ugsoft-admin-api Step 1 / Step 2` 已完成，第一條 `connect-bet-record-mq-ingestion Step 5` 與第二條 `request-log-rabbitmq-admin-consumer Step 5` 也已完成；下一步若繼續 UGSoft，可選 `ugsoft-admin-api game-api-provider-white-ip-control-plane Step 3`，但這是可選非 iwin 廣度補強，不是投遞前必做。

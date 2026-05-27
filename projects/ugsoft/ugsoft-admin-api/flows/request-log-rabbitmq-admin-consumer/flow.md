@@ -1,4 +1,4 @@
-# request-log-rabbitmq-admin-consumer Step 4
+# request-log-rabbitmq-admin-consumer Step 5
 
 日期: 2026-05-27
 
@@ -6,7 +6,7 @@
 
 這條 flow 是 `ugsoft-admin-api` 的第二條代表 flow，主題是 RequestLog 從同步寫入改為 RabbitMQ 非同步入庫後，後台 consumer 如何把 request / response log 寫入 `pt_request_log`，再供 admin `/request_log` 查詢。
 
-目前完成到 Step 4: 已建立 flow learning package、code 分層、正常流程、主要 failure window、履歷邊界與正式面試稿。Step 5 尚未完成，因此本文件可作深讀底稿與面試練習素材，但還不是單條 flow claim gate，也不直接回填 `05 / 08`。
+目前完成到 Step 5: 已建立 flow learning package、code 分層、正常流程、主要 failure window、正式面試稿與單條 flow claim gate。本 flow 可作 `ugsoft-admin-api` project-level 「RabbitMQ / request log 非同步資料處理」的 supporting evidence，但不直接回填 `05 / 08`；履歷 master 仍要等 project contribution refresh 或 rolling resume package 統一處理。
 
 Evidence 層級:
 
@@ -201,8 +201,15 @@ current behavior context 有一個要注意的點: `arnold` 後續修正加入 `
 - 不說這條 flow 是完整 money / wallet correctness。
 - 不把 `arnold` commits 當 Nick direct evidence。
 
-## Step 4 結論
+## Step 5 結論
 
-`request-log-rabbitmq-admin-consumer` Step 4 已完成。這條 flow 能補 `ugsoft-admin-api` 的 async audit / observability / admin query case，和已完成的 `connect-bet-record-mq-ingestion` 形成「交易資料 MQ 入庫」與「request log MQ 入庫」兩種不同 failure policy 的對照。
+`request-log-rabbitmq-admin-consumer` Step 5 已完成。這條 flow 能補 `ugsoft-admin-api` 的 async audit / observability / admin query case，和已完成的 `connect-bet-record-mq-ingestion` 形成「交易資料 MQ 入庫」與「request log MQ 入庫」兩種不同 failure policy 的對照。
 
-下一步若繼續同 flow，應做 Step 5 claim gate，確認這條 flow 可放履歷 / 可面試講 / 不可誇大的邊界，並判斷是否需要回填 project-level consolidation。
+Claim gate 結論:
+
+- 可放履歷: 可作 `ugsoft-admin-api` project-level RabbitMQ / request log 非同步資料處理 supporting evidence，採「參與」口徑。
+- 可面試講: async audit log、idempotency、`ptDay` partition、catch-and-log 對 retry / DLQ 的風險、admin query consistency。
+- 不直接更新 `05 / 08`: 單條 flow Step 5 不代表 project-level final consolidation；等 `ugsoft-admin-api` contribution refresh 或 rolling resume package 再統一回填。
+- 不可誇大: 不說完整 RabbitMQ platform、exactly-once、DLQ / replay / outbox、完整 provider connector 或 money correctness owner。
+
+若繼續 `ugsoft-admin-api` Flow Track，下一步回到本 project Step 2 ranking，做第三條代表 flow `game-api-provider-white-ip-control-plane Step 3`。

@@ -12,6 +12,10 @@
 | RabbitMQ retry / DLQ / exactly-once | 待確認 | 未驗證 runtime config，不可寫 |
 | request-log key / step filter 後續修正 | supervisor / team context | `arnold` commits，不當 Nick direct evidence |
 
+## Step 5 結論
+
+本 flow 可作 `ugsoft-admin-api` project-level claim 的 supporting evidence，但不單獨升級為 `05 / 08` 履歷 bullet。最保守、可用的說法是「參與 RequestLog RabbitMQ 非同步入庫與後台查詢支援」。
+
 ## 可放履歷
 
 - 參與 RequestLog RabbitMQ 非同步入庫與後台查詢支援，處理 request / response audit log 的 consumer、分區、重複檢查與 DB insert。
@@ -35,4 +39,4 @@
 
 ## 目前狀態
 
-Step 4 完成。面試稿已可用，但尚未 Step 5 claim gate；正式履歷回填需等 Step 5、project contribution refresh 或 rolling resume package 判斷。
+Step 5 完成。面試稿與單條 flow claim gate 已收斂；正式履歷回填需等 project contribution refresh 或 rolling resume package 判斷。

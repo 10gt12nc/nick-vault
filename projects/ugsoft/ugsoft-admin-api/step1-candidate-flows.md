@@ -13,7 +13,7 @@
 5. risk / monitor alert RabbitMQ ingestion。
 6. daily / hourly report Quartz job。
 
-本輪原始只做 candidate flow 盤點，不建立 `flows/{flow}/`，也不更新 `05 / 08`。後續已完成 project-level Step 2，第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5，第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 4；若繼續本 project，下一步應是同 flow Step 5。
+本輪原始只做 candidate flow 盤點，不建立 `flows/{flow}/`，也不更新 `05 / 08`。後續已完成 project-level Step 2，第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5，第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5；若繼續本 project，下一步應是第三條代表 flow Step 3。
 
 ## 掃描等級
 
@@ -308,8 +308,8 @@ Senior 點:
 
 ## 下一步
 
-`ugsoft-admin-api` Step 1 已完成；2026-05-27 後續 Step 2 也已完成，詳見 [step2-flow-comparison.md](step2-flow-comparison.md)。第一條代表 flow `connect-bet-record-mq-ingestion Step 5` 已完成，第二條代表 flow `request-log-rabbitmq-admin-consumer Step 4` 也已完成；下一步如果繼續本 project，應回到同 flow Step 5，不能跳到其他 project。
+`ugsoft-admin-api` Step 1 已完成；2026-05-27 後續 Step 2 也已完成，詳見 [step2-flow-comparison.md](step2-flow-comparison.md)。第一條代表 flow `connect-bet-record-mq-ingestion Step 5` 已完成，第二條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 也已完成；下一步如果繼續本 project，應回到第三條代表 flow `game-api-provider-white-ip-control-plane Step 3`，不能跳到其他 project。
 
 ```text
-ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 5
+ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 3
 ```
