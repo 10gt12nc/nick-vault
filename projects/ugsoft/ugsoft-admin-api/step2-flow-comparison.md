@@ -163,17 +163,17 @@ Step 3 要補:
 
 ## 後續建議順序
 
-第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 4。若繼續本 flow，下一步是 Step 5:
+第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 5；第三條代表 flow `game-api-provider-white-ip-control-plane` 已完成 Step 5。若繼續本 project，下一步是 contribution claim consolidation refresh:
 
 ```text
-ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 5
+ugsoft ugsoft-admin-api contribution claim consolidation refresh
 ```
 
 原因:
 
 - Step 3 已補 Game API white IP 的 DB + Redis 更新、provider white IP current behavior、operation log / RoleFilter 邊界，並明確切開 `arnold` 後續 provider fanout reload context。
 - Step 4 已把 control plane -> runtime access-control、DB / Redis / fanout consistency、scope decision 與不可誇大邊界整理成正式面試 case。
-- Step 5 要做單條 flow claim gate，判斷是否可作 project-level supporting evidence；不直接更新 `05 / 08`。
+- Step 5 已完成單條 flow claim gate，可作 project-level supporting evidence；不直接更新 `05 / 08`。
 
 ## Relationship Check
 
@@ -183,7 +183,7 @@ ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 5
 - 本批代表 flows 選定 3 條：`connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`。
 - 第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5。
 - 第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5。
-- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 4；下一步建議同 flow Step 5。
+- 第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 5；本批三條代表 flows 均已 Step 5。下一步若繼續本 project，建議做 project-level contribution claim consolidation refresh。
 
 需要同步的權威檔:
 
@@ -197,6 +197,6 @@ ugsoft ugsoft-admin-api game-api-provider-white-ip-control-plane Step 5
 
 不更新:
 
-- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`: 本輪只是 Step 2，不是 Step 5 或 project contribution refresh。
-- `04-interview-casebook.md`: 尚未建立單條 flow interview case。
+- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`: 本輪是單條 flow Step 5，不是 project contribution refresh。
+- `04-interview-casebook.md`: 本輪先完成 flow-level claim gate；project-level refresh 或 rolling resume package 時再判斷是否回填。
 - `17-salary-negotiation.md`: 沒有薪資策略變更。

@@ -5,9 +5,9 @@
 ## 定位
 
 - Flow: `game-api-provider-white-ip-control-plane`
-- Step: Step 4
+- Step: Step 5
 - 證據層級: `真實開發過 + code-backed` 混合下游 `code-backed context`。
-- 是否直接更新 05 / 08: 否。本輪是單條 flow Step 4，不是 Step 5 claim gate，也不是 project contribution refresh。
+- 是否直接更新 05 / 08: 否。本輪是單條 flow Step 5 claim gate，不是 project contribution refresh；正式履歷更新要等 `ugsoft-admin-api contribution claim consolidation refresh` 或 rolling resume package。
 
 ## 30 秒版
 
@@ -87,6 +87,31 @@ Result: 這條 flow 可作為後台 control plane 影響 runtime access-control 
 - runtime 節點 cache reload 失敗時，有沒有 last refresh time、metric、manual reload 或自動修復?
 - IP 白名單這類控制面，你們偏向 fail-open 還是 fail-closed? 不同 provider / merchant 會不會有例外?
 
-## Step 4 結論
+## Step 5 Claim Gate
 
-Step 4 已完成。本 flow 已有 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問、反問與誇大陷阱。下一步若繼續同 flow，做 Step 5 claim gate，確認單條 flow 可用履歷素材與不可誇大的邊界。
+本 flow 可作 `ugsoft-admin-api` project-level 後台 control plane / runtime access-control supporting evidence。它可以支撐「參與後台白名單控制面、DB / Redis 同步、權限與操作紀錄」這種保守履歷口徑。
+
+不建議單獨寫成獨立履歷主 bullet，因為它比較適合作為 `ugsoft-admin-api` 後台 API / control plane 經驗的一部分，和 BetRecord MQ、RequestLog MQ 一起支撐 project-level claim。
+
+### 可放履歷的保守素材
+
+- 參與 UGSoft 後台 Game API / provider IP 白名單控制面開發維護，處理後台 CRUD、DB / Redis 同步、權限範圍與操作紀錄。
+
+### 可面試講
+
+- 後台 control plane 設定如何影響 connector runtime access-control。
+- DB source of truth 與 Redis / in-memory cache runtime view 的一致性邊界。
+- DB + Redis / fanout 無法原子提交時的 partial failure。
+- provider white IP agent-scoped vs global-scoped 的 scope decision。
+- Nick direct evidence 與 `arnold` latest behavior 的界線。
+
+### 不可誇大
+
+- 不說主導完整 access-control platform。
+- 不說完整 connector reload owner。
+- 不把 provider fanout reload / global scope refactor 寫成 Nick direct evidence。
+- 不說強一致、exactly-once、完整資安平台或完整 provider gateway owner。
+
+## Step 5 結論
+
+Step 5 已完成。本 flow 已有 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問、反問、誇大陷阱與單條 flow claim gate。下一步若繼續 `ugsoft-admin-api`，應做 project-level contribution claim consolidation refresh，而不是再補同一條 flow。

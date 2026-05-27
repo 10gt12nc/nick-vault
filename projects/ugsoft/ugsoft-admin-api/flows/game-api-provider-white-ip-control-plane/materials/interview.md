@@ -94,6 +94,6 @@ Result: 這條 case 可用來說明 control plane 到 runtime enforcement、DB /
 - application duplicate check 不等於 DB unique constraint。
 - fanout 適合廣播 reload，但要搭配 startup reload / manual reload / observability。
 
-## Step 4 結論
+## Step 5 結論
 
-本 flow 已完成 Step 4，轉成正式面試 case。下一步若繼續同 flow，做 Step 5 claim gate，確認能否作單條 flow 履歷 supporting evidence，以及哪些 provider fanout / connector reload 內容只能當 code-backed 分析素材。
+本 flow 已完成 Step 5，正式面試 case 與 claim gate 都已收斂。面試口徑維持「後台 control plane / runtime access-control / DB cache consistency」，履歷口徑維持 project-level supporting evidence，不單獨誇大成完整 access-control platform。

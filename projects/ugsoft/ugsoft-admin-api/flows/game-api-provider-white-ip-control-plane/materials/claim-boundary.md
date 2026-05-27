@@ -11,9 +11,19 @@
 | Game API white IP 影響 connector runtime filter | code-backed context | `ugsoft-connector-api WhiteIpFilter` 讀 Redis set；下游 context，不當 admin-api owner |
 | Provider white IP fanout reload connector cache | 主管 / team context + code-backed | `caf9fe7`、`30fff32` 為 `arnold` commits；可講 latest behavior，不當 Nick direct evidence |
 
+## Step 5 Claim Gate 結論
+
+本 flow 可作 `ugsoft-admin-api` project-level 履歷 supporting evidence，但不直接更新 `05 / 08`，也不建議單獨升級成獨立履歷主 bullet。
+
+原因:
+
+- Nick direct evidence 足以支撐 Game API white IP 後台控制面與 provider white IP CRUD 初版。
+- 下游 connector runtime filter / provider cache reload 是 code-backed context，可面試講，但不能包裝成 admin-api complete owner。
+- `arnold` 的 fanout reload / global scope refactor 是 latest behavior / 主管 context，不是 Nick direct evidence。
+
 ## 可放履歷的保守素材
 
-此 flow Step 4 先不直接更新 `05 / 08`。若後續 Step 5 或 project contribution refresh 採用，可用:
+若後續 project contribution refresh 採用，可用:
 
 - 參與 UGSoft 後台 Game API / provider IP 白名單控制面開發維護，處理後台 CRUD、DB / Redis 同步、權限範圍與操作紀錄。
 
@@ -34,14 +44,10 @@
 - 不說這條 flow 等同完整 provider gateway、wallet、ledger 或 money correctness。
 - 不說有量化改善或 production incident owner，除非 Nick 之後補 ticket / incident evidence。
 
-## Step 4 判定
+## Step 5 判定
 
 - 可作正式面試 case: 是。
-- 可直接更新 `05 / 08`: 否。Step 4 只完成口說與追問防線，尚未做單條 flow claim gate。
-- 可作 project-level supporting evidence: 待 Step 5 判斷。
-
-## 待 Step 5 判斷
-
-- 本 flow 是否能單獨升級為 project-level履歷 supporting evidence。
-- Provider white IP latest behavior 中哪些只能列為「我能分析 / code-backed」，哪些可以列入「我參與」。
-- 是否需要在 project contribution refresh 中把白名單 control plane 從泛稱「商戶 / provider 白名單」拆成更具體 bullet。
+- 可直接更新 `05 / 08`: 否。單條 flow Step 5 不直接更新正式履歷 / 自傳。
+- 可作 project-level supporting evidence: 是，建議回填 `ugsoft-admin-api contribution claim consolidation refresh`。
+- Provider white IP latest behavior: 只能列為「我能分析 / code-backed / team current behavior」，不能列為 Nick 主導。
+- 建議在 project contribution refresh 中把泛稱「商戶 / provider 白名單」拆成更具體的「Game API / provider IP 白名單控制面、DB / Redis 同步、runtime access-control 邊界」。

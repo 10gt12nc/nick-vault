@@ -1,4 +1,4 @@
-# game-api-provider-white-ip-control-plane Step 4
+# game-api-provider-white-ip-control-plane Step 5
 
 日期: 2026-05-27
 
@@ -7,8 +7,8 @@
 - Flow 中文名稱: Game API / provider white IP 後台控制面
 - Flow slug: `game-api-provider-white-ip-control-plane`
 - Project: `ugsoft-admin-api`
-- Step: Step 4 / Interview case
-- 完成狀態: 已建立 Step 3 主報告、code 分層、正常流程、主要 failure window 與初步 claim boundary；Step 4 已補正式 30 秒、90 秒、3 分鐘、STAR、Senior / Lead 追問、反問與誇大陷阱；尚未做 Step 5 claim gate。
+- Step: Step 5 / Claim gate
+- 完成狀態: 已建立 Step 3 主報告、Step 4 正式面試 case 與 Step 5 單條 flow claim gate。本 flow 可作 `ugsoft-admin-api` project-level 後台 control plane / 白名單 runtime access-control supporting evidence；不直接更新 `05 / 08`。
 - 證據層級: `真實開發過 + code-backed`、`code-backed / 下游 context`、`主管或團隊 context` 混合。
 - 本 flow 類型: 後台 control plane / runtime access-control 設定 / DB + Redis + RabbitMQ fanout cache reload。
 - 是否只確認到入口: 否。已確認 admin controller、service、mapper、Redis key、operation log、provider fanout publish，以及 connector 端 Game API white IP filter / Provider White IP cache reload / callback IP check context；未驗證 production DB DDL、實際 RabbitMQ broker、admin-web 入口與真實 incident。
@@ -226,14 +226,51 @@ Step 4 可講的 owner decision:
 4. provider white IP 從 agent-scoped 改成 global-scoped 是 access-control scope decision；這是 `arnold` current behavior，不能當 Nick direct evidence。
 5. 白名單 control plane 必須有 RoleFilter、limited admin、operation log 與 reload observability；否則操作錯誤會直接影響 runtime access boundary。
 
-## Step 4 結論
+## Step 5 Claim Gate
 
-`game-api-provider-white-ip-control-plane` Step 4 已完成。這條 flow 已從 Step 3 learning package 轉成可口說、可追問、可防誇大的正式面試 case。
+### Claim 結論
 
-下一步若繼續本 flow，應做 Step 5 claim gate，確認這條白名單 control plane 能否作 `ugsoft-admin-api` project-level 履歷 supporting evidence，以及哪些說法只能留在 code-backed 面試分析。
+本 flow 可以作 `ugsoft-admin-api` project-level 履歷 supporting evidence，但不建議單獨升級成獨立履歷主 bullet。最保守可用口徑是:
 
-Step 5 重點:
+> 參與 UGSoft 後台 Game API / provider IP 白名單控制面開發維護，處理後台 CRUD、DB / Redis 同步、權限範圍與操作紀錄，並能分析後台設定如何影響 connector runtime access-control。
 
-- `真實開發過`: Game API white IP 後台、DB / Redis 同步、provider white IP CRUD 初版。
-- `code-backed / current behavior`: connector filter、provider fanout reload、global provider scope。
-- `不可誇大`: 完整 access-control platform、完整 connector reload owner、強一致 cache coherence、完整資安平台。
+這條 flow 的履歷價值在「後台 control plane 會改變 runtime access boundary」，不是完整資安平台，也不是 provider gateway / wallet / money correctness。
+
+### Evidence 分層
+
+| Claim | 判斷 |
+| --- | --- |
+| Game API white IP 後台控制面 | `真實開發過 + code-backed`；`f90a1eb`、`6cf3855`、`4c86d96`、`1dd366c` |
+| Provider white IP 後台表 / CRUD 初版 | `真實開發過 + code-backed`；`2fb2ce5` |
+| Game API white IP 影響 connector runtime filter | `code-backed context`；下游 `WhiteIpFilter` 讀 Redis set，不當 admin-api owner |
+| Provider fanout reload / global provider scope | `主管 / team context + code-backed`；`caf9fe7`、`30fff32` 是 `arnold` commits，不當 Nick direct evidence |
+
+### 可面試講
+
+- 後台 control plane 如何影響 runtime access-control。
+- DB source of truth 與 Redis / in-memory cache runtime view 的一致性邊界。
+- DB + Redis / RabbitMQ fanout 無法原子提交時的 partial failure。
+- 刪除 IP 後 cache stale 比新增 IP 後 cache stale 更危險。
+- provider white IP agent-scoped vs global-scoped 的 access-control scope decision。
+- RoleFilter、limited admin、operation log 對 runtime access-control 設定的保護價值。
+
+### 不可誇大
+
+- 不說主導完整 access-control platform。
+- 不說完整 connector reload owner。
+- 不把 `arnold` 的 provider fanout reload / 全站共用重構寫成 Nick direct evidence。
+- 不說已建立完整強一致 DB / Redis / MQ cache coherence。
+- 不說這條等同完整 provider gateway、wallet、ledger 或 money correctness。
+- 不說有量化改善或 production incident owner，除非 Nick 之後補 ticket / incident evidence。
+
+## Step 5 結論
+
+`game-api-provider-white-ip-control-plane` Step 5 已完成。這條 flow 已具備可讀主報告、正式面試 case 與單條 flow claim gate。
+
+因為 `ugsoft-admin-api` 本批三條代表 flows 都已完成 Step 5，下一步若繼續本 project，應做 project-level `contribution claim consolidation refresh`，把三條 flow 的 claim gate 回填到 rolling consolidation。這仍不代表直接改 `05 / 08`；正式履歷更新要等 project-level refresh 或 rolling resume package。
+
+下一步重點:
+
+- 整合 `connect-bet-record-mq-ingestion Step 5`、`request-log-rabbitmq-admin-consumer Step 5`、本 flow Step 5。
+- 更新 `ugsoft-admin-api` project-level「可放履歷 / 可面試講 / 不可誇大」。
+- 決定是否後續回填 `05 / 08 / 04`。

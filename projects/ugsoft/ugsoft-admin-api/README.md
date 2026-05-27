@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成 / 2026-05-27；已盤點候選 flow |
 | Step 2 | 已完成 / 2026-05-27；已選本批三條代表 flow |
-| Flow packages | `connect-bet-record-mq-ingestion` 已完成 Step 5；`request-log-rabbitmq-admin-consumer` 已完成 Step 5；`game-api-provider-white-ip-control-plane` 已完成 Step 4；本批第三條尚未 Step 5，仍不得宣稱 project flow 完整 |
+| Flow packages | `connect-bet-record-mq-ingestion` 已完成 Step 5；`request-log-rabbitmq-admin-consumer` 已完成 Step 5；`game-api-provider-white-ip-control-plane` 已完成 Step 5；本批三條代表 flows 均已 Step 5；下一步若繼續本 project，應做 contribution claim consolidation refresh |
 | 正式履歷 | 可保守補入「後台控制面與非同步資料處理」 |
 
 ## 先讀
@@ -43,4 +43,4 @@ Step 2 已選本批代表 flows:
 2. `request-log-rabbitmq-admin-consumer`
 3. `game-api-provider-white-ip-control-plane`
 
-`connect-bet-record-mq-ingestion` 已完成 Step 5，已建立 BetRecord MQ consumer / duplicate check / quota update supporting flow 主報告、正式面試 case 與 claim gate。`request-log-rabbitmq-admin-consumer` 已完成 Step 5，已建立 RequestLog RabbitMQ 非同步入庫 learning package、正式面試稿與 claim gate。`game-api-provider-white-ip-control-plane` 已完成 Step 4，已建立後台 white IP control plane、DB / Redis / fanout cache reload 與 runtime access-control 的 learning package；若繼續本 flow，下一步是 `game-api-provider-white-ip-control-plane Step 5`，不要跳到其他 project。
+`connect-bet-record-mq-ingestion` 已完成 Step 5，已建立 BetRecord MQ consumer / duplicate check / quota update supporting flow 主報告、正式面試 case 與 claim gate。`request-log-rabbitmq-admin-consumer` 已完成 Step 5，已建立 RequestLog RabbitMQ 非同步入庫 learning package、正式面試稿與 claim gate。`game-api-provider-white-ip-control-plane` 已完成 Step 5，已建立後台 white IP control plane、DB / Redis / fanout cache reload 與 runtime access-control 的 learning package；若繼續本 project，下一步是 `ugsoft-admin-api contribution claim consolidation refresh`，不要跳到其他 project。

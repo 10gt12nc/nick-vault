@@ -212,4 +212,4 @@ Claim gate 結論:
 - 不直接更新 `05 / 08`: 單條 flow Step 5 不代表 project-level final consolidation；等 `ugsoft-admin-api` contribution refresh 或 rolling resume package 再統一回填。
 - 不可誇大: 不說完整 RabbitMQ platform、exactly-once、DLQ / replay / outbox、完整 provider connector 或 money correctness owner。
 
-後續第三條代表 flow `game-api-provider-white-ip-control-plane Step 4` 已完成。若繼續 `ugsoft-admin-api` Flow Track，下一步做同 flow Step 5。
+後續第三條代表 flow `game-api-provider-white-ip-control-plane Step 5` 已完成。`ugsoft-admin-api` 本批三條代表 flows 均已 Step 5；若繼續本 project，下一步做 project-level contribution claim consolidation refresh。
