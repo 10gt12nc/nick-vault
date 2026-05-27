@@ -141,4 +141,4 @@
 2. `request-log-rabbitmq-admin-consumer`
 3. `game-api-provider-white-ip-control-plane`
 
-本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。Step 2 完成後，第一條代表 flow `connect-bet-record-mq-ingestion Step 3` 已建立；若繼續本 project，下一步是同 flow Step 4。單條 Step 5 完成前，不直接更新 `05 / 08`。
+本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。Step 2 完成後，第一條代表 flow `connect-bet-record-mq-ingestion Step 4` 已建立；若繼續本 project，下一步是同 flow Step 5。單條 Step 5 完成前，不直接更新 `05 / 08`。

@@ -4,13 +4,33 @@
 
 - Flow：`connect-bet-record-mq-ingestion`
 - Project：`ugsoft-admin-api`
-- 目前 Step：Step 3
+- 目前 Step：Step 4
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
-- 用途：先作單條 flow 的面試 / 履歷候選素材；尚未進 Step 4 / Step 5，因此不直接更新 `05 / 08`。
+- 用途：單條 flow 的正式面試素材與履歷候選素材；尚未進 Step 5，因此不直接更新 `05 / 08`。
 
-## 30 秒摘要草稿
+## 30 秒摘要
 
 這條 flow 是 UGSoft 的 provider bet record MQ 入庫。connector 把 provider callback 或 job sync 的注單資料送到 RabbitMQ，admin-api consumer 收到後解析 payload，依 event time 算 `ptDay`，用 `agentId + providerBetId` 做重複檢查，沒有資料才寫入 `pt_bet_record`。寫入成功後再非同步發 quota update message。這裡可以講 MQ 解耦、late data `ptDay`、duplicate boundary、quota eventual consistency 與 outbox / DLQ 補強方向。
+
+## 90 秒版本
+
+這條 flow 我會把它定位成 provider bet record 的 consumer 端。上游 `ugsoft-connector-api` 可能從 provider callback 或 job sync 拿到注單資料，最後都送到同一條 BetRecord MQ。`ugsoft-admin-api` 這邊的 `ConnectBetRecordListener` 收 message，交給 `ConnectBetRecordConsumerService` parse payload，檢查 `agentId / provider / providerBetId / currency`，再用 message event time 算 `ptDay`。
+
+入庫前會查 `pt_bet_record` 是否已有同一個 `ptDay + agentId + providerBetId`。不存在才建立 `BetRecord`，設成 `CREATE` step，補 currency default，寫入正式表。寫入後再 fire-and-forget 發 quota update message。這個設計的重點是 BetRecord 是主事實，quota 是衍生 view；所以 quota publish 失敗時不回滾 bet record，但需要補償或重建策略。
+
+我會主動講幾個風險：listener catch exception 後 retry / ack 語意要確認；duplicate query 和 entity unique boundary 不完全一致；quota update publish 失敗會造成 quota view 落後；如果要做得更穩，可以補 publisher confirm、outbox、DLQ replay、依 `pt_bet_record` rebuild quota。
+
+## 3 分鐘版本
+
+這條 flow 可以從上下游開始講。`ugsoft-connector-api` 負責接 provider callback 或定期 sync provider bet record，它不直接把所有下游都同步做完，而是把標準化後的 BetRecord payload 丟到 RabbitMQ。`ugsoft-admin-api` 是 consumer / ingestion side，負責把 MQ message 落到正式 `pt_bet_record`。
+
+consumer 的第一步是 `ConnectBetRecordListener` 收 message，真正業務邏輯在 `ConnectBetRecordConsumerService`。service 會 parse JSON payload，如果 payload 解析失敗、`agentId` 不合法、provider / providerBetId / currency 缺失，就 log 並 skip。正常情況下，它會用 payload 裡的 event time 算 `ptDay`。這點很重要，因為 provider 資料可能晚到或跨日，如果用 consumer 當下時間，查重和分區都可能查錯。
+
+接著它會查 `pt_bet_record` 是否已存在。最新 code 是用 `ptDay + agentId + providerBetId` 查；entity unique boundary 又包含 provider 和 currency，所以我不會說這裡已經完全解決所有 duplicate 問題，而是說目前有 duplicate check 和 DB unique boundary，真正 owner 要確認兩邊 key 是否對齊。不存在時才建立 `BetRecord`，補上 provider、providerBetId、game、account、bet / win 金額、currency、`BetRecordStep.CREATE`、notify flags，然後 save。
+
+save 成功後會發 quota update MQ。這裡我會特別把主事實和衍生 view 分開：`pt_bet_record` 是主事實，quota remaining 是從 bet record 推導出的 view。quota update 用 fire-and-forget 的好處是 bet record 入庫不被 quota 系統拖慢；代價是如果 publish 失敗，bet record 已經存在，但 quota view 沒更新。這時要靠 outbox、publisher confirm、重送 job、DLQ replay，或從 `pt_bet_record` rebuild quota 來補。
+
+這條 flow 面試時最能展現的是 MQ eventual consistency、late data 的 `ptDay` 判斷、duplicate / idempotency boundary、以及我不會把目前 evidence 誇大成 exactly-once。Nick direct evidence 可支撐 BetRecord MQ 初版、consumer 調整、mapper query 和 currency default；quota monitoring、id 生成、amount normalization 是後續主管 / team current behavior，我會當成我理解過的現況，不拿來誇成我主導。
 
 ## 目前可講的 Senior 能力點
 
@@ -46,10 +66,8 @@
 - 不說 production incident owner 或改善百分比。
 - 不說完整 UGSoft 平台 owner。
 
-## 待 Step 4 打磨
+## 待 Step 5 追查
 
-- 90 秒面試版本。
-- 3 分鐘面試版本。
-- STAR 版本。
-- 常見追問與保守回答。
-- 面試官追問「如果 quota publish 失敗怎麼辦」的 owner answer。
+- 追 direct evidence / current behavior 邊界。
+- 判斷本 flow 能否回填 project-level contribution consolidation refresh。
+- 不直接把單條 flow 寫進 `05 / 08`。

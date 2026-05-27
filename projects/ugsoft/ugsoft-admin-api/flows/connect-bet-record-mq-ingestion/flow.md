@@ -1,12 +1,12 @@
-# connect-bet-record-mq-ingestion Step 3
+# connect-bet-record-mq-ingestion Step 4
 
 ## 閱讀定位
 
 - Flow 中文名稱：Connector BetRecord MQ 入庫與 quota update
 - Flow slug：`connect-bet-record-mq-ingestion`
 - Project：`ugsoft-admin-api`
-- Step：Step 3 / Flow learning package
-- 完成狀態：已建立 Step 3 主報告；尚未完成 Step 4 面試 case 與 Step 5 claim gate。
+- Step：Step 4 / Interview case
+- 完成狀態：Step 3 主報告與 Step 4 面試 case 已完成；尚未完成 Step 5 claim gate。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：RabbitMQ consumer / provider bet record ingestion / duplicate check / quota async supporting flow。
 - 是否只確認到入口：否。已確認 listener、consumer service、MQ config、payload、mapper duplicate query、`pt_bet_record` entity、quota update publish 與 quota consumer context；未驗證 production broker ack / retry / DLQ 實際設定、DB schema migration、真實 incident / ticket。
@@ -270,4 +270,4 @@ event time 算 `ptDay` 比 consume time 更適合 provider late data。這也是
 
 ## 下一步
 
-Step 3 已建立這條 flow 的主報告與 evidence。若繼續同一條 flow，下一步應做 Step 4，把它轉成正式面試 case：30 秒、90 秒、3 分鐘說法、Senior 追問、Lead / Architect 追問與回答邊界。Step 4 仍不直接更新 `05 / 08`。
+Step 4 已把這條 flow 轉成正式面試 case。若繼續同一條 flow，下一步應做 Step 5 claim gate：追 direct evidence / current behavior 邊界，判斷能否回填 project-level consolidation，但仍不得直接把單條 flow 當成整個 project 履歷結論。

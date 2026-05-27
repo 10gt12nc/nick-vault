@@ -7,6 +7,16 @@
 - 掃描等級：Level 2 Flow 深掃；未做 Level 3 逐檔逐行 / 每個 commit diff 全量追查。
 - 目標：建立 `ugsoft-admin-api` BetRecord MQ consumer /入庫 / quota update supporting flow 的 Step 3 learning package。
 
+## Step 4 補充掃描
+
+- 任務：`ugsoft ugsoft-admin-api connect-bet-record-mq-ingestion Step 4`
+- 日期：2026-05-27
+- 掃描等級：Level 2 Flow 深掃 / interview case；未做 Level 3 逐檔逐行。
+- 已重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-admin-api` 的 `git fetch --all --prune`；第一次受 sandbox 權限限制失敗後，經 approval 成功更新 remote refs。
+- source repo 狀態：local branch `main`，local HEAD `0cc62e0e1a040e69b1650079d9ecfe92dd64380d`；`origin/main` `b1b83f64ffc971cc838ef935867a5a2234e3d201`；local vs `origin/main` `0 / 42`；source working tree 乾淨。
+- Step 4 未新增 code path evidence；本輪目標是把 Step 3 evidence 轉成正式 30 秒 / 90 秒 / 3 分鐘面試 case、STAR、追問、回答要點與誇大邊界。
+
 ## KB / Vault 已重讀
 
 - `AGENTS.md`
@@ -186,7 +196,7 @@ Nick 已確認 `arnold` 是主管帳號；`arnold` commits 不作 Nick direct ev
 本輪事實變更：
 
 - `ugsoft-admin-api` 第一條代表 flow `connect-bet-record-mq-ingestion` Step 3 已建立。
-- Flow Track 仍未完成；下一步是同 flow Step 4。
+- Step 4 已把本 flow 轉成正式面試 case；Flow Track 仍未完成，下一步是同 flow Step 5 claim gate。
 - Career Track `contribution-claim-consolidation.md` 不需改成 final；本輪沒有做 project-level refresh。
 
 需要同步：
@@ -201,6 +211,6 @@ Nick 已確認 `arnold` 是主管帳號；`arnold` commits 不作 Nick direct ev
 
 不更新：
 
-- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪只是 Step 3，不是 Step 5 或 project contribution refresh。
-- `04-interview-casebook.md`：Step 4 尚未完成。
+- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪只是單條 flow Step 4，不是 Step 5 或 project contribution refresh。
+- `04-interview-casebook.md`：本輪只完成單條 flow interview case，尚未做全域 04 對齊檢查，不更新。
 - `17-salary-negotiation.md`：沒有薪資策略變更。
