@@ -9,13 +9,14 @@
 | contribution claim consolidation | 已完成 / rolling |
 | Step 1 | 已完成 / 2026-05-27；已盤點候選 flow |
 | Step 2 | 已完成 / 2026-05-27；已選本批三條代表 flow |
-| Flow packages | 尚未建立；不得宣稱 flow 完整 |
+| Flow packages | `connect-bet-record-mq-ingestion` 已完成 Step 3；尚未 Step 4 / Step 5，仍不得宣稱 project flow 完整 |
 | 正式履歷 | 可保守補入「後台控制面與非同步資料處理」 |
 
 ## 先讀
 
 - [step1-candidate-flows.md](step1-candidate-flows.md)
 - [step2-flow-comparison.md](step2-flow-comparison.md)
+- [flows/connect-bet-record-mq-ingestion/flow.md](flows/connect-bet-record-mq-ingestion/flow.md)
 - [contribution-claim-consolidation.md](contribution-claim-consolidation.md)
 
 ## 履歷邊界
@@ -40,4 +41,4 @@ Step 2 已選本批代表 flows:
 2. `request-log-rabbitmq-admin-consumer`
 3. `game-api-provider-white-ip-control-plane`
 
-若繼續 `ugsoft-admin-api`，下一步是第一條代表 flow 的 Step 3：`connect-bet-record-mq-ingestion Step 3`。Step 3 前仍要重讀 source repo 最新狀態與下游 evidence。
+`connect-bet-record-mq-ingestion` 已完成 Step 3，建立 BetRecord MQ consumer / duplicate check / quota update supporting flow 主報告。若繼續 `ugsoft-admin-api`，下一步是同一條 flow 的 Step 4：把它轉成正式面試 case；不要跳到第二條 flow。
