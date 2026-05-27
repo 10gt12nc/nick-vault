@@ -131,10 +131,8 @@
 - 不說完整 provider connector / wallet owner。
 - 不說改善多少性能或事故數字。
 
-## Suggested Next
+## Flow Track 狀態
 
-如果要把 ugsoft 寫成更強的 provider integration / Platform Backend 素材，下一步應先掃 `ugsoft-connector-api`，因為 `ugsoft-admin-api` 的強項是 admin control plane 與 async data processing，不是完整 provider gateway。
+2026-05-27 已完成 `ugsoft-admin-api Step 1`，候選 flow 見 [step1-candidate-flows.md](step1-candidate-flows.md)。
 
-```text
-ugsoft ugsoft-connector-api contribution claim consolidation
-```
+本檔是 Career Track 的 project-level rolling consolidation；它可以支撐保守履歷 claim，但不代表 `ugsoft-admin-api` Flow Track 已完整。若繼續本 project，下一步必須先做 Step 2，比較候選 flows 並選本批代表 flow；不能直接跳單條 Step 3。
