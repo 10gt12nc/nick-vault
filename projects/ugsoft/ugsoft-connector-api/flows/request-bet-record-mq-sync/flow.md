@@ -272,8 +272,6 @@ provider request 有 page / pageSize / total，但 Step 3 掃描未看到針對 
 - 可面試講：Quartz sync、Redis watermark、`pt_day` 查重、`providerBetId|currency` 去重、MQ eventual consistency，以及 watermark / publish failure / per-currency / pagination 風險。
 - 不可誇大：不說完整 reconciliation、exactly-once、outbox / DLQ 平台、完整 bet record owner，且不把 `arnold` / team context 當 Nick direct evidence。
 
-第三條代表 flow 已收口到 Step 5；若之後要繼續 `ugsoft-connector-api`，下一步應回到 project-level 狀態判斷，而不是同一條 flow 繼續加 Step：
+第三條代表 flow 已收口到 Step 5，且 `ugsoft-connector-api contribution claim consolidation refresh` 已完成；若之後要繼續 `ugsoft-connector-api`，應回到 project-level 狀態判斷，而不是同一條 flow 繼續加 Step：
 
-```text
-ugsoft ugsoft-connector-api contribution claim consolidation refresh
-```
+完成狀態：`ugsoft ugsoft-connector-api contribution claim consolidation refresh` 已收口。

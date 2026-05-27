@@ -1,10 +1,10 @@
 # ugsoft-connector-api Contribution Claim Consolidation
 
-日期: 2026-05-20
+日期: 2026-05-27 refreshed
 
 ## 結論
 
-`ugsoft-connector-api` 可以列為 Nick 真實開發過、且履歷價值高於一般後台 CRUD 的 provider connector / gateway repo。Nick / `10gt12nc` 在 `origin/master` 與相關分支可見大量 direct commits，範圍包含:
+`ugsoft-connector-api` 可以列為 Nick 真實開發過、且履歷價值高於一般後台 CRUD 的 provider connector / gateway repo。2026-05-27 已完成本批三條代表 flow 的 Step 5 claim gate refresh：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`。Nick / `10gt12nc` 在 `origin/master` 與相關分支可見大量 direct commits，範圍包含:
 
 - AntPlay adapter：login / info / balance / request log / transfer API / bet record。
 - DerPlay adapter：login / prepare enter game、balance、transfer in / out / out-all、single transaction、bet record。
@@ -16,6 +16,12 @@
 履歷可以保守寫:
 
 > 參與 UGSoft provider connector / gateway 開發與維護，串接 AntPlay / DerPlay 等第三方遊戲 provider，處理 login、balance、transfer in / out、bet-settle、callback、request / bet record MQ、熔斷與轉帳錢包補償等流程。
+
+這次 refresh 後，project-level 可用 claim 更精準地收斂成三層：
+
+1. `transfer wallet / transaction lookup`：可說參與 AntPlay / DerPlay transfer in / out / out-all、get-single-transaction、provider response normalization、transaction / lookup 類維護；不可寫完整 transfer wallet / idempotency / reconciliation owner。
+2. `callback / bet-settle / MQ`：可說參與 provider callback 成功後送 bet record MQ、payload normalization、admin-api consumer 對接、`pt_day` / currency / duplicate boundary；不可寫 exactly-once / outbox / 完整 MQ platform owner。
+3. `job-driven bet record sync`：可說參與 request / bet record MQ、Quartz job sync、跨日查重、currency default / correction；不可寫完整 reconciliation / DLQ replay / 完整 bet record pipeline owner。
 
 不要寫:
 
@@ -35,7 +41,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待 refresh | Step 1 / Step 2 已建立；本批三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5。本檔仍是 2026-05-20 rolling consolidation，待 `contribution claim consolidation refresh` 將三條 Step 5 全量校正進 project-level claim。 |
+| final 全量 flow | refreshed | Step 1 / Step 2 已建立；本批三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5；本檔已於 2026-05-27 回填三條 Step 5 到 project-level claim。這仍不代表全 project 所有候選 flow 都完成，也不代表完整 provider gateway owner。 |
 
 ## Source Scan Record
 
@@ -64,6 +70,14 @@
 - source repo 仍有本機未提交 / untracked 內容，本檔只採 remote objects、git history 與已讀 source path，不採髒工作樹作履歷 evidence。
 - 目前結論仍成立：可寫 provider connector / gateway、AntPlay / DerPlay adapter、callback / MQ、transfer wallet / compensation 類真實開發與 code-backed 維護；不可寫完整 connector architecture、全部 provider owner 或完整 wallet / reconciliation owner。
 
+2026-05-27 contribution claim consolidation refresh:
+
+- 已重新 fetch remote refs；source repo local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`，`origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0`，`origin/develop` `079aa6603b50db3c185e383295ca5966bbe272fb`。
+- local vs `origin/master`: ahead / behind = `0 / 61`；local vs `origin/develop`: ahead / behind = `190 / 0`。
+- source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；本次只採 remote refs、git history 與既有 flow evidence，不採 source repo 髒工作樹作正式 evidence。
+- 已重讀三條代表 flow 的 `flow.md`、`career-interview.md`、`materials/claim-boundary.md` 與 Step 5 結論。
+- 本次 refresh 只刷新 `ugsoft-connector-api` project-level claim；`05 / 08 / 04 / 17` 只做必要狀態同步，不重產完整 rolling resume package。
+
 本次掃描範圍:
 
 - `git log origin/master --author='10gt12nc|Nick|nick'`
@@ -80,12 +94,12 @@
 - `docs/circuit-breaker.md` 只讀摘要，未複製內部測試 URL。
 - vault 既有 `projects/`、`senior-owner-playbook/` 內 ugsoft / resume 關鍵字；`archive/` 已清空，不再作必要來源
 
-未完成:
+未完成 / 邊界:
 
-- 已補 `ugsoft-connector-api` Step 1 / Step 2；尚未做單條 flow 深掃。
-- 未逐條 flow 建立 `flow.md` / `career-interview.md`。
 - 未逐檔逐行 Level 3。
 - 未驗證每個 provider adapter 是否已實際上線。
+- 未把第四順位 `provider-client-login-launch-game`、第五順位 `provider-circuit-breaker-fast-fail`、第六順位 `schema-route-partition-transfer-record` 建成完整 flow；它們目前只作 supporting / optional。
+- 本 refresh 不等於完整 UGSoft domain final，也不等於完整 connector architecture owner。
 
 ## Important Commit Evidence
 
@@ -195,6 +209,7 @@ claim 邊界:
 - 參與 UGSoft provider connector / gateway 開發與維護，串接 AntPlay / DerPlay 等第三方遊戲 provider，處理 login、balance、transfer in / out、bet-settle、callback 與 transaction / bet record 查詢。
 - 參與 callback 後 request / bet record MQ 非同步資料處理，處理 `pt_day`、currency、provider bet id、job sync 與資料入庫邊界。
 - 參與 transfer wallet provider position、provider switch、deadlock compensation 與分表 / schema route 類維護。
+- 參與 job-driven bet record sync / late data 補資料路徑，處理 Quartz job、跨日查重、currency default / correction 與 MQ eventual consistency 風險。
 
 可面試講:
 
@@ -224,14 +239,16 @@ claim 邊界:
 
 > 參與 UGSoft 後台 API 與 provider connector 維護，範圍包含後台權限 / 白名單、AntPlay / DerPlay provider adapter、transfer wallet、request / bet record MQ、Quartz / report job 與 provider fail-fast。
 
+## Refresh Result
+
+2026-05-27 refresh：本批三條代表 flow 已全部完成 Step 5，並已回填成 project-level claim。
+
+| Flow | Project-level 可用結論 | 不可誇大 |
+| --- | --- | --- |
+| `transfer-wallet-in-out-query` | transfer adapter、DerPlay get-single-transaction、transaction / lookup / transfer wallet maintenance evidence | 不寫完整 wallet / ledger / reconciliation owner |
+| `provider-callback-bet-settle-to-mq` | provider callback / bet-settle / bet record MQ、admin consumer 對接、`pt_day` / currency / duplicate boundary evidence | 不寫 exactly-once / outbox / 完整 MQ platform owner |
+| `request-bet-record-mq-sync` | request / bet record MQ、Quartz job sync、late data 補資料、跨日查重、currency boundary evidence | 不寫完整 reconciliation / DLQ replay / 完整 bet record pipeline owner |
+
 ## Suggested Next
 
-2026-05-27 Step 5 回填：第二條代表 flow `provider-callback-bet-settle-to-mq` 已完成 Step 5，可強化本 project provider connector / callback / bet record MQ claim。Direct evidence 支撐 Nick / `10gt12nc` 參與 callback 寫 MQ、`ConnectBetRecordMqService`、admin-api BetRecord MQ 入庫、currency / pt_day / duplicate boundary；IP whitelist、subAgent rewrite、amount scaling、error code propagation 等 current behavior 多為 `arnold` / 團隊 context，不作 Nick direct claim。
-
-2026-05-27 Step 5 回填：第三條代表 flow `request-bet-record-mq-sync` 已完成 Step 5，可作本 project job-driven bet record sync / late data 補資料 / 跨日 `pt_day` 查重 / MQ path 的 project-level claim 強化 evidence。Nick / `10gt12nc` direct evidence 支撐 BetRecord MQ、job、跨日 `pt_day`、DerPlay 單一錢包日期、currency default / currency 修正；Redis watermark、per-currency current behavior、amount normalization、subAgent 等仍屬 code-backed / 團隊 context，不升級成 Nick direct claim。
-
-`ugsoft-connector-api` 本批三條代表 flow 已全部完成 Step 5。下一步若繼續 connector，應做 `contribution claim consolidation refresh`，把 transfer wallet、callback / MQ、job-driven bet record sync 三條 Step 5 結論整理成 project-level claim，並保留 rolling / final 邊界。本檔仍是 rolling consolidation，不是已刷新後的 final 全量收口。
-
-```text
-ugsoft ugsoft-connector-api contribution claim consolidation refresh
-```
+`ugsoft-connector-api` 本批代表 flow 與 project-level contribution claim 已收口。沒有預設下一步；可自由提問或彈性指定。若之後要把最新 UGSoft connector refresh 正式重產進 `05 / 08`，應另下 `rolling resume package`，不要由單一 project refresh 自動擴張整份履歷。

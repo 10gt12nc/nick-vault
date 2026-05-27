@@ -134,18 +134,16 @@ Step 3 必須補清楚:
 - failure window: provider 成功但 DB 寫入失敗、DB 有交易但 provider query 不一致、Redis guard 過短、provider timeout / duplicate request。
 - claim boundary: Nick direct evidence 限於 provider adapter transfer；transaction facade / replay / subAgent 若只找到 `arnold` evidence，標成 code-backed / 主管或團隊 context，不作 Nick direct claim。
 
-後續若繼續同 project，本批三條代表 flows 已完成 Step 5；下一步回到 project-level claim refresh：
+後續同 project 已完成 project-level claim refresh：
 
-```text
-ugsoft ugsoft-connector-api contribution claim consolidation refresh
-```
+完成狀態：`ugsoft ugsoft-connector-api contribution claim consolidation refresh` 已收口。
 
 ## Relationship Check
 
-- `projects/ugsoft/ugsoft-connector-api/README.md`: 已同步本批三條代表 flow Step 5 完成，下一步是 `contribution claim consolidation refresh`。
+- `projects/ugsoft/ugsoft-connector-api/README.md`: 已同步本批三條代表 flow Step 5 完成，且 `contribution claim consolidation refresh` 已完成。
 - `projects/ugsoft/README.md`: 已同步 connector Flow Track 狀態。
 - `projects/source-repo-inventory.md`: 已同步 UGSoft 整理狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 connector 本批三條代表 flow Step 5 完成。
-- `senior-owner-playbook/06-todo.md`: 已同步目前待辦，下一步改為 connector contribution claim consolidation refresh。
-- `contribution-claim-consolidation.md`: 已同步 Flow Track 狀態與 Suggested Next；等 refresh 才擴張 project-level claim。
+- `senior-owner-playbook/06-todo.md`: 已同步目前待辦，connector 已收斂。
+- `contribution-claim-consolidation.md`: 已完成 refresh，回填三條 Step 5 到 project-level claim。
 - `05 / 08 / 04 / 17`: 本輪不更新，因 Step 2 只做 candidate ranking，沒有新增 final project-level claim 或可直接投遞內容。

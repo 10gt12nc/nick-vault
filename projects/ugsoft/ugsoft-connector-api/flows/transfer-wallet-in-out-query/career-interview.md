@@ -148,4 +148,4 @@ AntPlay 比較像 connector 直接組 transfer-in / transfer-out / transfer-out-
 
 ## Step 5 收口
 
-本 flow 已完成 Step 5。`ugsoft-connector-api` 第二順位 `provider-callback-bet-settle-to-mq` 與第三順位 `request-bet-record-mq-sync` 均已完成 Step 5；若繼續 connector，下一步應做 `contribution claim consolidation refresh`。若 Nick 想先做履歷，只能回到 project-level refresh，不得宣稱全 project 所有候選 flows 都已完成。
+本 flow 已完成 Step 5。`ugsoft-connector-api` 第二順位 `provider-callback-bet-settle-to-mq` 與第三順位 `request-bet-record-mq-sync` 均已完成 Step 5，且 project-level `contribution claim consolidation refresh` 已完成。若 Nick 想重產完整履歷包，應另跑 rolling resume package，不得宣稱全 project 所有候選 flows 都已完成。

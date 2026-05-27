@@ -1060,6 +1060,42 @@ Lead / Architect 追問：
 - 上分成功但 recharge side effects 失敗時，應該重送 `DEPOSIT` 還是補償 side effects？
 - 下分時玩家在子遊戲中，exit game callback 延遲如何影響 HTTP timeout 與上游訂單狀態？
 
+## 案例 18：UGSoft provider connector / transfer wallet / callback MQ / job sync
+
+對應 project / flows：
+
+- `ugsoft-connector-api/transfer-wallet-in-out-query`
+- `ugsoft-connector-api/provider-callback-bet-settle-to-mq`
+- `ugsoft-connector-api/request-bet-record-mq-sync`
+
+證據邊界：
+
+- `ugsoft-connector-api contribution claim consolidation refresh` 已於 2026-05-27 完成，三條代表 flows 均已 Step 5。
+- 可作非 iwin 廣度 case：provider connector / gateway、transfer wallet、callback / bet-settle / MQ、job-driven bet record sync。
+- Nick / `10gt12nc` direct evidence 支撐 AntPlay / DerPlay adapter、transfer API、DerPlay get-single-transaction、callback 寫 MQ、BetRecord MQ、job、跨日 `pt_day`、currency default / correction 類維護。
+- `TransferFacade` current behavior、Redis short guard、subAgent latest fixes、IP whitelist、amount scaling、Redis watermark 等部分屬 code-backed / 主管或團隊 context；Nick 已確認 `arnold` 是主管，不作 Nick direct evidence。
+- 不寫完整 UGSoft connector architecture、全部 provider owner、完整 wallet / ledger / reconciliation、exactly-once / outbox / DLQ platform。
+
+面試主軸：
+
+UGSoft connector 可以拆成三條互補 production flow：商戶主動 transfer / query、provider 主動 callback / bet-settle 後送 MQ，以及 job-driven late data sync。Senior 要能說清楚 provider contract mapping、idempotency boundary、MQ eventual consistency、consumer duplicate check、watermark / `pt_day` / currency 風險，而不是只說「接過第三方 API」。
+
+可講重點：
+
+- `transfer-wallet-in-out-query`：商戶 transfer in / out / out-all / get-single-transaction，重點是 provider adapter、request log、transaction / lookup、Redis short guard 與 provider success but local persist failed failure window。
+- `provider-callback-bet-settle-to-mq`：provider callback 成功呼叫商戶 callback 後才送 BetRecord MQ，下游 admin-api consumer 以 providerBetId / currency / ptDay 做查重落庫。
+- `request-bet-record-mq-sync`：Quartz job 依時間窗 / Redis watermark 拉 provider bet record，依 `pt_day` 查重後送同一條 BetRecord MQ，作 callback 之外的 late data 補資料。
+- owner 追問重點是 MQ publish failure、watermark 推進、per-currency partial success、pagination、consumer lag / duplicate / invalid payload metrics。
+
+Lead / Architect 追問：
+
+- provider callback 200 是否代表 bet record 已落庫？
+- transferReferenceId 的 Redis guard 和 DB success replay 各解決什麼，不能解決什麼？
+- provider 成功但 transaction / lookup persist 失敗時，如何 repair？
+- callback path 和 job sync path 如何避免重複寫同一筆 bet record？
+- BetRecord MQ 缺 outbox 時，publish failure 如何觀測與補送？
+- Redis watermark 應該以 global、agent、provider 還是 currency 粒度保存？
+
 ## 面試回答公式
 
 ```text

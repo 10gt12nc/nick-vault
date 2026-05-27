@@ -330,7 +330,7 @@ Evidence：
 
 - `official-web-v3` / `ugsoft-admin-web`：官網或前端，不是本 project。
 - 全部 controller / service 平均 class summary：違反 KB，且會把焦點從 production flow 拉散。
-- 直接做 contribution consolidation refresh：Step 1 時 Career Track 已有 rolling 結論，當時先補 Flow Track；2026-05-27 本批三條代表 flow 已全部 Step 5，下一步若繼續 connector 才回到 consolidation refresh。
+- 直接做 contribution consolidation refresh：Step 1 時 Career Track 已有 rolling 結論，當時先補 Flow Track；2026-05-27 本批三條代表 flow 已全部 Step 5，且 consolidation refresh 已完成。
 - 直接更新 05 / 08：Step 1 只找到候選 flow，尚未產生新的 project-level claim。
 
 ## Step 2 已回答的問題
@@ -362,8 +362,6 @@ Evidence：
 
 ## 下一步
 
-Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`、第二順位 `provider-callback-bet-settle-to-mq Step 5`、第三順位 `request-bet-record-mq-sync Step 5`。後續若繼續同 project，應做 project-level contribution claim consolidation refresh。
+Step 1 已完成。2026-05-26 已完成 Step 2，比較 candidate flows、技術點、風險、module / service 邊界與 evidence 強度。2026-05-27 已完成第一順位單條 flow `transfer-wallet-in-out-query Step 5`、第二順位 `provider-callback-bet-settle-to-mq Step 5`、第三順位 `request-bet-record-mq-sync Step 5`，並已完成 project-level contribution claim consolidation refresh。
 
-```text
-ugsoft ugsoft-connector-api contribution claim consolidation refresh
-```
+完成狀態：`ugsoft ugsoft-connector-api contribution claim consolidation refresh` 已收口。
