@@ -1,4 +1,4 @@
-# transfer-wallet-in-out-query Step 3
+# transfer-wallet-in-out-query Step 3 / Step 4
 
 ## 閱讀定位
 
@@ -6,7 +6,7 @@
 - Flow slug：`transfer-wallet-in-out-query`
 - Project：`ugsoft-connector-api`
 - Step：Step 3 / Level 2 Flow 深掃
-- 完成狀態：已建立單條 flow 主學習包；尚未做 Step 4 面試 case 與 Step 5 claim gate。
+- 完成狀態：Step 3 flow 主學習包已完成；Step 4 面試 case 已完成；尚未做 Step 5 claim gate。
 - 證據層級：`真實開發過 + code-backed`、`code-backed / 主管或團隊 context`、`分析素材 / 待確認` 混合。
 - 本 flow 類型：provider connector / transfer wallet / money-adjacent transaction flow。
 - 是否只確認到入口：否。已確認 controller、service、transfer facade、provider adapter、DB table、Redis guard 與 request log；未驗證 production 實際部署 branch / incident / ticket。
@@ -248,6 +248,12 @@ sequenceDiagram
 
 ## 面試 / 履歷邊界摘要
 
+Step 4 已把本 flow 轉成面試 case：
+
+- 主面試稿：[`career-interview.md`](career-interview.md)
+- 詳細追問與陷阱：[`materials/interview.md`](materials/interview.md)
+- claim 邊界：[`materials/claim-boundary.md`](materials/claim-boundary.md)
+
 可面試講：
 
 - 商戶 transfer API 如何經 connector 驗簽、找 provider、做 duplicate guard、呼叫 provider adapter、寫 transaction / lookup。
@@ -267,6 +273,8 @@ sequenceDiagram
 - 不寫完整 wallet / ledger / reconciliation owner。
 - 不寫 exactly-once、outbox、完整自動補償已完成。
 - 不把 `arnold` 的 transaction facade / idempotency / subAgent 修正當成 Nick direct evidence。
+
+Step 4 後的下一步是 Step 5：重新追 Nick / `10gt12nc` path-specific evidence 與 commit / branch / diff，判斷本 flow 是否能作正式履歷 claim，或只保留為 code-backed 面試案例。
 
 ## 本次實際掃描範圍
 

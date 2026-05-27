@@ -1,5 +1,21 @@
 # Claim Boundary - transfer-wallet-in-out-query
 
+## Step 4 判定
+
+Step 4 已完成面試 case。此時可把本 flow 當作 provider connector / transfer wallet / transaction lookup 的正式面試素材，但尚未完成 Step 5 claim gate；因此不直接更新正式履歷 / 自傳。
+
+目前最安全的面試口徑：
+
+- 「我參與過 AntPlay / DerPlay provider adapter transfer / query transaction 串接與維護。」
+- 「我深掃並能說明 UGSoft connector transfer wallet flow 的 request log、duplicate guard、transaction table、order lookup 與 provider query order 邊界。」
+- 「我能指出 Redis short guard、DB success replay 與 provider success but local persist failed 的風險與補強方向。」
+
+目前不安全的口徑：
+
+- 「我主導完整 transfer wallet 架構。」
+- 「我 owner 完整 idempotency / recovery / reconciliation。」
+- 「transaction facade / Redis guard / lookup replay 都是我本人寫的。」
+
 ## 可放履歷
 
 可以保守寫：

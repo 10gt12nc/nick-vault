@@ -10,7 +10,8 @@
 
 ## Remote / Local State
 
-- 已執行 `git fetch --all --prune`，成功。
+- Step 3 已執行 `git fetch --all --prune`，成功。
+- Step 4 開始前再次執行 `git fetch --all --prune`，成功。
 - local branch：`Nick_Test`
 - local HEAD：`c2cab730c0cd6ead6d92a038ef56f97987577059`
 - remote HEAD：`refs/remotes/origin/develop`
@@ -20,6 +21,14 @@
 - local vs `origin/develop` ahead / behind：`190 / 0`
 - source repo 工作樹不乾淨：`.DS_Store`、test、docs 與 `src/test/java/com/ps/domain/` 有既有 modified / untracked。本文只採 git history、remote object 與 source path，不採本機髒檔作正式 evidence。
 - 本輪主現況以 `origin/master:path` 讀取，避免 local branch 落後 `origin/master` 導致誤判。
+
+## Step 4 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 4`。
+- 掃描等級：Level 2 面試轉換；沿用 Step 3 code path 與 evidence，補確認 remote refs / local dirty state。
+- 已重讀：`AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`、`03-flow-learning-package-template.md`、本 flow `flow.md`、`career-interview.md`、`materials/interview.md`、`materials/claim-boundary.md`、本 evidence。
+- Step 4 未新增公司 code 結論；只把 Step 3 已確認 flow 轉成面試講法、追問、陷阱與 claim boundary。
+- Step 4 不更新正式履歷 / 自傳；下一步 Step 5 才做單條 flow claim gate。
 
 ## 已重讀 Vault 文件
 

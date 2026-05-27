@@ -35,7 +35,7 @@
 | Callback / bet-settle | 真實開發過 | AntPlay / DerPlay callback、bet-settle、bet record MQ commits |
 | MQ / async | 真實開發過 | `单一钱包：回调时候写mq`、`feat: mq`、`request log MQ`、`job BetRecordMq` |
 | Reliability | 真實開發過 + code-backed | Circuit Breaker docs / code、deadlock 補償、DB partition / schema route、white IP filter |
-| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 3 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / Step 5。 |
+| final 全量 flow | 待補 | Step 1 / Step 2 已建立；第一條 `transfer-wallet-in-out-query` Step 4 已完成。本檔仍是 rolling consolidation，尚未完成全部代表 flows / Step 5。 |
 
 ## Source Scan Record
 
@@ -226,8 +226,8 @@ claim 邊界:
 
 ## Suggested Next
 
-如果繼續 ugsoft，下一步應把第一條 Flow Track 單條 flow 轉成 Step 4 面試 case。Step 3 已選並完成 `transfer-wallet-in-out-query`，避免只有履歷線、沒有可面試的完整 flow package。
+如果繼續 ugsoft，下一步應把第一條 Flow Track 單條 flow 做 Step 5 claim gate。Step 4 已完成 `transfer-wallet-in-out-query` 面試 case，接著要判斷哪些 evidence 能升級正式履歷 claim、哪些只保留 code-backed 面試素材。
 
 ```text
-ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 4
+ugsoft ugsoft-connector-api transfer-wallet-in-out-query Step 5
 ```
