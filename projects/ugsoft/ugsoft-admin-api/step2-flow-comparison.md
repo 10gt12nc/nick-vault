@@ -163,18 +163,18 @@ Step 3 要補:
 
 ## 後續建議順序
 
-第一條代表 flow 後續已完成 Step 5。若繼續本 project，下一步回到第二條代表 flow:
+第一條代表 flow 後續已完成 Step 5；第二條代表 flow `request-log-rabbitmq-admin-consumer` 已完成 Step 3。若繼續本 project，下一步回到同一條 flow 的 Step 4:
 
 ```text
-ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 3
+ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 4
 ```
 
 原因:
 
-- 它是本批最高價值 flow。
-- 可和剛完成的 `ugsoft-connector-api request-bet-record-mq-sync` 串成上下游完整面試鏈。
-- 它對 Senior / Platform Backend 最有追問價值：duplicate、currency、amount normalization、MQ retry / redelivery、quota async failure、outbox / DLQ 邊界。
-- Step 5 已建立 claim gate；本 flow 可回填 project-level consolidation 作為 BetRecord MQ evidence。仍不會直接更新 `05 / 08`，除非後續 project-level consolidation refresh 或 rolling resume package 判定需要回填。
+- 它是本批第二條代表 flow，已完成 Step 3 learning package，應先收斂成 Step 4 面試素材。
+- 可補 async audit / observability / request-response log ingestion 的 production case，和 AntPlay request log async / UGSoft connector producer context 形成對照。
+- 它對 Senior / Platform Backend 有追問價值：MQ decoupling、partition / `ptDay`、duplicate / idempotency、poison message / retry / DLQ、admin query list / count consistency。
+- Step 3 不直接更新 `05 / 08`；後續 Step 4 / Step 5 完成後，再視 project-level consolidation refresh 或 rolling resume package 判定是否回填。
 
 ## Relationship Check
 
@@ -182,7 +182,8 @@ ugsoft ugsoft-admin-api request-log-rabbitmq-admin-consumer Step 3
 
 - `ugsoft-admin-api` Flow Track Step 2 已完成。
 - 本批代表 flows 選定 3 條：`connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`。
-- 第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5；下一步建議回到第二條代表 flow `request-log-rabbitmq-admin-consumer Step 3`。
+- 第一條 `connect-bet-record-mq-ingestion` 已完成 Step 5。
+- 第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 3；下一步建議回到同 flow Step 4。
 
 需要同步的權威檔:
 
