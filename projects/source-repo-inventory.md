@@ -8,7 +8,7 @@
 
 - `projects/source-repo-flow-audit.md`：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 所有 project folders，標記已有 KB / 缺 Flow Track / 值得補 / 暫不建議。這份是下一輪補 Step 1 / Step 2 的入口，不代表已授權逐一開工。
 - 2026-05-26 iwin re-audit：重新掃 `/Users/nick/Git/iwin` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 iwin 沒有新的 project Flow Track 必做缺口；`payment-thirdparty-simulator` 降為 payment provider contract / callback 測試 supporting evidence，不列主待辦。
-- 2026-05-26 UGSoft re-audit：重新掃 `/Users/nick/Git/ugsoft` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 UGSoft 仍有收斂後的 Flow Track 缺口：第一順位 `ugsoft-connector-api transfer-wallet-in-out-query` 已完成 Step 5；第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 3，下一步可做 Step 4；第二個 project 方向是 `ugsoft-admin-api Step 1 / Step 2`；官網、前端、workspace 不列主待辦。
+- 2026-05-26 UGSoft re-audit：重新掃 `/Users/nick/Git/ugsoft` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 UGSoft 仍有收斂後的 Flow Track 缺口：第一順位 `ugsoft-connector-api transfer-wallet-in-out-query` 已完成 Step 5；第二順位 `provider-callback-bet-settle-to-mq` 已完成 Step 4，下一步可做 Step 5；第二個 project 方向是 `ugsoft-admin-api Step 1 / Step 2`；官網、前端、workspace 不列主待辦。
 - 2026-05-26 DevOps re-audit：重新掃 `/Users/nick/Git/DevOps/primestar` 各 repo 的 remote refs、Nick / `10gt12nc` / `arnold` commits、manifests / docker-compose / CI / observability docs 與 path history 後，結論是 DevOps 沒有 Senior Backend 主履歷 Flow Track 必做缺口。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence；`antplay-docker-deploys` 只能作主管 / 團隊 deployment context 或 learning / supporting，不作 Nick 履歷 claim；`openobserve` / `kafka` 是 learning-only。
 
 ## 使用規則
@@ -79,9 +79,9 @@ Git repo:
 整理狀態:
 
 - `ugsoft-admin-api`: contribution claim consolidation 已完成 / rolling。Nick / `10gt12nc` 有大量 direct commits，可保守作後台 API / control plane、RabbitMQ / Quartz / report job 類履歷素材；不寫完整 UG 平台或 provider gateway owner。
-- `ugsoft-connector-api`: contribution claim consolidation 已完成 / rolling；Flow Track Step 1 / Step 2 已完成，第一條代表 flow `transfer-wallet-in-out-query` Step 5 已完成，第二條 `provider-callback-bet-settle-to-mq` Step 3 已完成。Nick / `10gt12nc` 有大量 direct commits，可保守作 AntPlay / DerPlay provider connector、transfer wallet、callback、request / bet record MQ、分表與 provider reliability 類履歷素材；不寫完整 connector architecture / wallet / reconciliation owner。若繼續 Flow Track，下一步是 `provider-callback-bet-settle-to-mq Step 4`。
+- `ugsoft-connector-api`: contribution claim consolidation 已完成 / rolling；Flow Track Step 1 / Step 2 已完成，第一條代表 flow `transfer-wallet-in-out-query` Step 5 已完成，第二條 `provider-callback-bet-settle-to-mq` Step 4 已完成。Nick / `10gt12nc` 有大量 direct commits，可保守作 AntPlay / DerPlay provider connector、transfer wallet、callback、request / bet record MQ、分表與 provider reliability 類履歷素材；不寫完整 connector architecture / wallet / reconciliation owner。若繼續 Flow Track，下一步是 `provider-callback-bet-settle-to-mq Step 5`。
 - `ugsoft-workspace`: contribution claim consolidation 已完成 / rolling。這是 workspace / docs / harness / runbook repo，只支撐 cross-repo system reconstruction、工程規範、local / deploy harness 與 migration / release 風險整理；不放 standalone 正式履歷主成果，不反向包裝成 `ugsoft-admin-api` / `ugsoft-connector-api` service code。
-- 2026-05-26 completeness audit / re-audit：`ugsoft-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；`ugsoft-connector-api` 已補 Step 1 / Step 2。2026-05-27 第一條 flow `transfer-wallet-in-out-query` Step 5 已完成，第二條 `provider-callback-bet-settle-to-mq` Step 3 已完成；本批第三條代表 flow 尚未建立。若補非 iwin 廣度，優先 `provider-callback-bet-settle-to-mq Step 4`，其次 `request-bet-record-mq-sync Step 3` 或 `ugsoft-admin-api Step 1 / Step 2`。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦。
+- 2026-05-26 completeness audit / re-audit：`ugsoft-admin-api` 只有 Career Track，尚無 Step 1 / Step 2 / flows；`ugsoft-connector-api` 已補 Step 1 / Step 2。2026-05-27 第一條 flow `transfer-wallet-in-out-query` Step 5 已完成，第二條 `provider-callback-bet-settle-to-mq` Step 4 已完成；本批第三條代表 flow 尚未建立。若補非 iwin 廣度，優先 `provider-callback-bet-settle-to-mq Step 5`，其次 `request-bet-record-mq-sync Step 3` 或 `ugsoft-admin-api Step 1 / Step 2`。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦。
 
 ## antplay
 

@@ -7,6 +7,15 @@
 - 掃描等級：Level 2 Flow 深掃。
 - 目標：建立 provider callback / bet-settle / MQ producer + downstream consumer 的 flow evidence。
 
+## Step 4 補充掃描
+
+- 任務：`ugsoft ugsoft-connector-api provider-callback-bet-settle-to-mq Step 4`。
+- 已重讀 Step 3 `flow.md`、`career-interview.md`、`materials/evidence.md`、`materials/interview.md`、`materials/claim-boundary.md`、`materials/decision-notes.md`。
+- 已重新執行 `/Users/nick/Git/ugsoft/ugsoft-connector-api` 的 `git fetch --all --prune`。
+- 重新確認 source repo 狀態未改變：local branch `Nick_Test`，local HEAD `c2cab730c0cd6ead6d92a038ef56f97987577059`；`origin/master` `4bd2195e1e574978f11a1d4b5e744792f16ecad0`；`origin/develop` `079aa6603b50db3c185e383295ca5966bbe272fb`；local vs `origin/master` `0 / 61`，local vs `origin/develop` `190 / 0`。
+- source repo 工作樹仍有既有 `.DS_Store`、test、docs 等 local changes / untracked files；Step 4 只採 Step 3 已記錄的 remote objects / code-backed evidence，不採 source repo 髒檔。
+- Step 4 未新增 code evidence；本輪目標是把 Step 3 evidence 轉成正式面試 case。
+
 ## KB / Vault 已重讀
 
 - `AGENTS.md`
