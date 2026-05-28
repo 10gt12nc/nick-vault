@@ -339,11 +339,7 @@ Step 3 不應做:
 fixed-multi-bet-currency-math-core-compatibility
 ```
 
-下一步:
-
-```text
-antplay antplay-slot-game-api Step 1
-```
+後續狀態：本批 `*-math` 五條代表 flow 已全數完成到 Step 5，且 `antplay-slot-game-api`、`antplay-slot-game-job`、`antplay-slot-admin-api` 與 AntPlay system map v1 也已收斂；目前沒有預設下一步。
 
 2026-05-20 更新：`fixed-multi-bet-currency-math-core-compatibility` 已完成 Step 5，材料位於 `flows/fixed-multi-bet-currency-math-core-compatibility/`。Step 2 排序仍保留作候選依據；下一條做 Rank 2 `rtp-reel-strip-simulation-validation`。
 

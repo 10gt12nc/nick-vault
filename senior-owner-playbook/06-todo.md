@@ -191,7 +191,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 資深補強，可選：
 
 1. `iwin system map v1`：已完成 / 2026-05-28。已補 `projects/iwin/architecture-map.md`、`projects/iwin/integration-map.md` 與 `projects/iwin/career-interview.md`，把 game_api、game_job、payment、third_games_api、iwin_gameserver、app_bi、bi_share、k3s-deploy 的協作關係與 claim boundary 收成 domain-level 大地圖。
-2. AntPlay / UGSoft 後台 control plane 已收斂：`antplay-slot-admin-api`、`ugsoft-admin-api`、`ugsoft-connector-api` 本批代表 flows / contribution refresh 都已完成。若想再補非 iwin 廣度，只能作可選加強，例如 domain-level map 或 Nick 明確指定的後台風控 flow；不是投遞前必做。
+2. `AntPlay system map v1`、`UGSoft system map v1`：已完成 / 2026-05-28。已補 `projects/antplay/architecture-map.md` / `integration-map.md` / `career-interview.md` 與 `projects/ugsoft/architecture-map.md` / `integration-map.md` / `career-interview.md`。AntPlay / UGSoft 後台 control plane、game runtime、job、math contract、connector gateway 的架構視角已收斂；不是新的必做 flow。
 3. 依目標 JD 補 1 條 payment / provider / MQ 類缺口 flow；沒有 JD 時先不新增。
 
 暫不建議做：
@@ -226,7 +226,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 13. `antplay-slot-game-job contribution claim consolidation`：已完成 refreshed 收口；可保守補入履歷。Flow Track Step 1 / Step 2 已完成，五條代表 flows 均已 Step 5 並已由 2026-05-27 `rolling resume package` 回填通用履歷 / 自傳 / 面試 / 談薪邊界。
 14. `math-core / *-math contribution claim consolidation`：已完成 refreshed / grouped 收口；可保守補入履歷。`antplay *-math fixed-multi-bet-currency-math-core-compatibility Step 5` 已完成，`rtp-reel-strip-simulation-validation Step 5` 已完成，`buy-free-scatter-rtp3-result-contract Step 5` 已完成，`jackpot-symbol-hit-and-prize-scaling Step 5` 已完成，`special-wild-feature-state-transform Step 5` 已完成，且 contribution claim consolidation refresh 已完成。後續除非 Nick 指定 Level 3 final，不再平均掃 71 repo。
 15. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
-16. `domain-level system map`：2026-05-28 已完成 `iwin system map v1`，新增 `projects/iwin/architecture-map.md` / `integration-map.md` / `career-interview.md`。`antplay` / `ugsoft` 若未來 Nick 問大地圖，也要依同規則檢查，不得只口頭說應該有。
+16. `domain-level system map`：2026-05-28 已完成 `iwin system map v1`、`AntPlay system map v1` 與 `UGSoft system map v1`，新增三個 domain 的 `architecture-map.md` / `integration-map.md` / `career-interview.md`。DevOps 目前維持 learning-only / supporting，不建立正式 system map，避免把非 Nick direct evidence 包裝成履歷主線。
 17. `0 到 1 system design template`：若 Nick 想補完整系統架構能力，應從已完成的 payment / wallet / bet-settle / MQ / batch flows 萃取 template，而不是重掃全部 repo。此項是可選加強，用於 Platform / Lead 候選面試，不是目前投遞前必做。
 
 ### 1. 收斂後狀態

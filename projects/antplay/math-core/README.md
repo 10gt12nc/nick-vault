@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | 未開始 |
+| Flow Track | 未開始；目前不建議單獨開新主線，已由 `*-math` grouped flows 與 AntPlay system map 吸收為 supporting evidence |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放 slot math contract / RTP / jackpot symbol / debug bet VO 維護 |
-| 下一步 | `antplay math-core Step 1` |
+| 下一步 | 已收斂；沒有預設下一步 |
 
 ## Claim Boundary
 

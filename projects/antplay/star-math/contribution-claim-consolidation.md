@@ -177,8 +177,4 @@ srm-math, stc-math, swv-math, szb-math
 
 ## Suggested Next
 
-`*-math` contribution claim consolidation 已 refresh 完成，五條代表 flow 都已回填到 grouped 履歷口徑。下一步若目標是最大化交易主線與 Senior Backend 面試素材，建議切到 `antplay-slot-game-api Step 1`，挑 bet / settle / rollback、transfer wallet、request log / partition 這類 runtime production flow。
-
-```text
-antplay antplay-slot-game-api Step 1
-```
+`*-math` contribution claim consolidation 已 refresh 完成，五條代表 flow 都已回填到 grouped 履歷口徑。`antplay-slot-game-api`、`antplay-slot-game-job`、`antplay-slot-admin-api` 與 AntPlay system map v1 後續也已收斂；目前沒有預設下一步。

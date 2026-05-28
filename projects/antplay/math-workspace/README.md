@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
 | Flow Track | 不建議作為主題 |
 | 履歷判斷 | supporting evidence，可支撐 cross-math module reconstruction / validation workflow；不作 standalone 正式履歷主成果 |
-| 下一步 | 回 `math-core` 或 `*-math` 的 Flow Track |
+| 下一步 | 已收斂；沒有預設下一步 |
 
 ## Claim Boundary
 

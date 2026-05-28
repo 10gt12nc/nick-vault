@@ -10,6 +10,15 @@
 
 ## Project Status
 
+2026-05-28 `AntPlay system map v1` 已完成：新增 [architecture-map.md](architecture-map.md)、[integration-map.md](integration-map.md) 與 [career-interview.md](career-interview.md)，把 runtime、job、admin control plane、math contract 與 supporting repos 收成 domain-level 架構視角。這不新增履歷 claim，也不代表全 AntPlay 全量 code audit。
+
+## 讀檔順序
+
+1. [architecture-map.md](architecture-map.md)：先建立 AntPlay runtime / job / admin / math 的 domain-level 大圖。
+2. [integration-map.md](integration-map.md)：再看下注結算、錢包、MQ、報表、風控與 math contract 的跨 repo 邊界。
+3. [career-interview.md](career-interview.md)：最後把大圖轉成保守履歷 / 面試口徑。
+4. 各 project 的 `contribution-claim-consolidation.md` 與單條 flow：需要證據或追問時再回讀。
+
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
 | `antplay-slot-admin-api` | Java / Spring Boot 後台 API、control plane、風控監控、報表、RabbitMQ / Quartz | contribution consolidation 已完成 / refreshed；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 5` 已完成 / 2026-05-28 | 可保守放「後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」；已回填 project-level claim | 已收斂 |

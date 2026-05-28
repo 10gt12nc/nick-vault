@@ -9,7 +9,7 @@
 | contribution claim consolidation | 已完成 / refreshed grouped / 2026-05-21；本批五條代表 flows 已全 Step 5 並已回填 project-level claim |
 | Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 5 已完成；`buy-free-scatter-rtp3-result-contract` Step 5 已完成；`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成；`special-wild-feature-state-transform` Step 5 已完成 |
 | 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math core / math module 維護、RTP / reel strip、debug / fixedMultiBet / currency、buy free、jackpot / symbol、特殊 feature result contract |
-| 下一步 | `antplay antplay-slot-game-api Step 1` |
+| 下一步 | 已收斂；沒有預設下一步 |
 
 ## Claim Boundary
 

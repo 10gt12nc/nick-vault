@@ -110,6 +110,4 @@ SFM 是單局 transform，最後收斂回 `W=50`；SLC LuckyClover 是跨 free s
 
 ## 9. 下一步
 
-```text
-antplay antplay-slot-game-api Step 1
-```
+後續 `antplay-slot-game-api`、`antplay-slot-game-job`、`antplay-slot-admin-api` 與 AntPlay system map v1 也已收斂；目前沒有預設下一步。

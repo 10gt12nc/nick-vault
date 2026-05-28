@@ -323,8 +323,4 @@ scy-math, sjj-math, spt-math, stp-math, swb-math 等
 
 `*-math` 值得繼續做 Flow Track。2026-05-21 已完成 Step 2 本批五條代表 flow 的 Step 5，且 `contribution-claim-consolidation.md` 已完成 refreshed grouped claim。
 
-建議下一步:
-
-```text
-antplay antplay-slot-game-api Step 1
-```
+後續狀態：`antplay-slot-game-api`、`antplay-slot-game-job`、`antplay-slot-admin-api` 與 AntPlay system map v1 也已收斂；目前沒有預設下一步。

@@ -209,8 +209,4 @@ Step 5 claim gate 結論:
 
 ## 10. 下一步
 
-```text
-antplay antplay-slot-game-api Step 1
-```
-
-`*-math` Step 2 本批五條代表 flow 已全部完成到 Step 5，且 project-level rolling contribution consolidation 已完成。若要繼續 antplay，下一步建議切到交易主線 `antplay-slot-game-api Step 1`；若 Nick 要先做 `*-math final contribution consolidation`，也可以另行指定。
+`*-math` Step 2 本批五條代表 flow 已全部完成到 Step 5，且 project-level rolling contribution consolidation 已完成。後續 `antplay-slot-game-api`、`antplay-slot-game-job`、`antplay-slot-admin-api` 與 AntPlay system map v1 也已收斂；目前沒有預設下一步。

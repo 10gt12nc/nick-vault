@@ -193,6 +193,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - `third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 已完成；2026-05-27 `rolling resume package` 已回填最新 interview-only 邊界、AntPlay job refresh 與 UGSoft admin / connector refresh。
 - 下一步不再慣性推 flow；沒有特定 JD 時，面試口說稿可保留，但練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動問答。有實際 JD 時，才客製 `08` 與談薪說法 `17`。iwin 架構視角已由 `iwin system map v1` 補齊；若 Nick 只是想聊方向、薪資、缺口、學習、焦慮或任一 flow，可以直接問，不需要先選固定下一步。
 - 2026-05-28 更新：`iwin system map v1` 已完成，位置是 `projects/iwin/architecture-map.md`、`projects/iwin/integration-map.md`、`projects/iwin/career-interview.md`。這補齊 iwin domain-level 架構視角，但不新增履歷 claim，也不代表全 iwin 全量 code audit。
+- 2026-05-28 更新：`AntPlay system map v1` 與 `UGSoft system map v1` 也已完成，位置是 `projects/antplay/architecture-map.md`、`projects/antplay/integration-map.md`、`projects/antplay/career-interview.md` 與 `projects/ugsoft/architecture-map.md`、`projects/ugsoft/integration-map.md`、`projects/ugsoft/career-interview.md`。DevOps 仍是 learning-only / supporting，不建立正式履歷向 system map。
 
 ## 近期候選 Queue
 

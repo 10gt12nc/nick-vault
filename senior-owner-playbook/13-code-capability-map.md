@@ -156,7 +156,7 @@ Lead / Architect 候選能力可以準備，但目前應以「候選能力 / 思
 
 - 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定。
 - `iwin system map v1` 已完成，位置是 `projects/iwin/architecture-map.md`、`projects/iwin/integration-map.md`、`projects/iwin/career-interview.md`；這是架構視角補強，不是投遞前必做，也不新增履歷 claim。
-- 非 iwin 廣度已收斂：`ugsoft-connector-api`、`ugsoft-admin-api`、`antplay-slot-admin-api` 的本批代表 flows 與 project-level contribution refresh 均已完成。目前沒有預設下一步；若要再補廣度，只在 Nick 明確指定 domain-level map、Level 3 架構審計或 JD-specific system design 時處理。
+- 非 iwin 廣度已收斂：`ugsoft-connector-api`、`ugsoft-admin-api`、`antplay-slot-admin-api` 的本批代表 flows 與 project-level contribution refresh 均已完成，`AntPlay system map v1` 與 `UGSoft system map v1` 也已完成。目前沒有預設下一步；若要再補廣度，只在 Nick 明確指定 Level 3 架構審計或 JD-specific system design 時處理。
 - 若 Nick 要練面試，再啟動三條主力 case 90 秒 / 3 分鐘口說練習；未要求時先暫停。
 - 若有實際 JD，才客製 `08` 與 `17`；沒有 JD 時維持通用 Senior Java Backend / Platform Backend 版本。
 

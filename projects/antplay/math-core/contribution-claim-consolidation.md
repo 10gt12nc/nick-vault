@@ -80,8 +80,4 @@
 
 ## Suggested Next
 
-`math-core` 已有可用履歷素材，但要變成面試 case，下一步先做 Step 1，比較 `SlotMath contract compatibility`、`debug bet tooling`、`RTP / symbol extension` 哪個最值得深挖。
-
-```text
-antplay math-core Step 1
-```
+`math-core` 已有可用履歷素材，且已由 `*-math` grouped flows 與 AntPlay system map 吸收為 supporting evidence。目前不建議單獨開新 Flow Track；除非 Nick 明確指定 Level 3 math core 架構審計，否則沒有預設下一步。

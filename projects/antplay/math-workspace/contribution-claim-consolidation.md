@@ -68,8 +68,4 @@
 
 ## Suggested Next
 
-`math-workspace` 本身不建議做 Flow Track；下一步應回到 `math-core` 或 `*-math` 的真實 source repo。
-
-```text
-antplay math-core Step 1
-```
+`math-workspace` 本身不建議做 Flow Track；目前只作 cross-math reconstruction / validation workflow supporting evidence。`*-math` grouped flows 已收斂，沒有預設下一步。

@@ -10,6 +10,15 @@
 
 ## Project Status
 
+2026-05-28 `UGSoft system map v1` 已完成：新增 [architecture-map.md](architecture-map.md)、[integration-map.md](integration-map.md) 與 [career-interview.md](career-interview.md)，把 connector gateway、admin control plane 與 workspace supporting 收成 domain-level 架構視角。這不新增履歷 claim，也不代表全 UGSoft 全量 code audit。
+
+## 讀檔順序
+
+1. [architecture-map.md](architecture-map.md)：先建立 connector gateway / admin control plane / workspace supporting 的 domain-level 大圖。
+2. [integration-map.md](integration-map.md)：再看 transfer wallet、provider callback、MQ sync、request / bet record 與 whitelist control 的跨 repo 邊界。
+3. [career-interview.md](career-interview.md)：最後把大圖轉成保守履歷 / 面試口徑。
+4. 各 project 的 `contribution-claim-consolidation.md` 與單條 flow：需要證據或追問時再回讀。
+
 2026-05-26 re-audit / 2026-05-27 flow closure：已重新掃 `/Users/nick/Git/ugsoft` 各來源 repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB。結論：UGSoft 仍有真正值得補的 Flow Track，但只保留收斂後兩個方向：`ugsoft-connector-api` 本批三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已完成 Step 5，且 contribution refresh 已完成；`ugsoft-admin-api Step 1 / Step 2` 已完成，第一條代表 flow `connect-bet-record-mq-ingestion` 已完成 Step 5，第二條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5，第三條 `game-api-provider-white-ip-control-plane` 已完成 Step 5，且 contribution refresh 已完成。官網、前端與 workspace 不列主待辦；workspace 只作 cross-repo reconstruction / runbook supporting evidence。
 
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
