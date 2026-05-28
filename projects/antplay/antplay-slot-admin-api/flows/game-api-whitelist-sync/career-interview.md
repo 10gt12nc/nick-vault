@@ -137,8 +137,4 @@
 
 這條 flow 已完成單條 flow claim gate。它比純後台 CRUD 更有價值，因為能講「control plane 設定如何影響 runtime allow / reject」，也能延伸到 Redis cache consistency、operation audit 與 access-control failure window。
 
-下一步若要讓本 project 更完整，應做 `antplay-slot-admin-api contribution claim consolidation refresh`，把兩條已 Step 5 的代表 flows 一起回填 project-level claim；仍不直接用單條 flow 改 `05 / 08`。
-
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+`antplay-slot-admin-api contribution claim consolidation refresh` 已完成，本 flow 已回填 project-level supporting evidence。目前沒有預設下一步。

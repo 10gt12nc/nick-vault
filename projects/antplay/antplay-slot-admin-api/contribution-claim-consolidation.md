@@ -1,10 +1,15 @@
 # antplay-slot-admin-api Contribution Claim Consolidation
 
-日期: 2026-05-20
+日期: 2026-05-28
 
 ## 結論
 
-`antplay-slot-admin-api` 可以列為 Nick / `10gt12nc` 真實開發過的後台 API / control plane repo。它比純前端或 workspace 更有履歷價值，因為本 repo 有大量 direct commits，且涉及商戶登入 / 白名單、JWT / RBAC、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、Quartz job、RabbitMQ request log 與風控通知。
+`antplay-slot-admin-api` 可以列為 Nick / `10gt12nc` 真實開發過的後台 API / control plane repo。本檔已於 2026-05-28 完成 contribution claim consolidation refresh，吸收兩條已完成 Step 5 的代表 flows:
+
+- `request-log-rabbitmq-admin-consumer Step 5`
+- `game-api-whitelist-sync Step 5`
+
+refresh 後的結論是：本 repo 可保守支撐「AntPlay 後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理」經驗。它比純前端或 workspace 更有履歷價值，因為本 repo 有大量 direct commits，且涉及商戶登入 / 白名單、JWT / RBAC、超級代理、玩家 / 投注 / request log / 報表查詢、RTP / 暗池 / 活動風控監控、Quartz job、RabbitMQ request log 與風控通知。
 
 履歷可以保守寫:
 
@@ -30,7 +35,7 @@
 | risk / RTP / dark pool monitoring | 真實開發過 | `feat(#659): 商户游戏风控概况`、`feat(656): 新增监控job`、`暗池调整会写记录`、monitor jobs / alert mapper |
 | 玩家單點控制 | 真實開發過 | `feat(#767): 单点控制，agentPlayer 建立`、player control mapper / service / record |
 | RabbitMQ / async | 真實開發過 | `feat(#774): RequestLog 改丢 rabbitmq 非同步执行`、`feat(#775): rabbitmq 收风控通知`、listener / mapper commits |
-| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 5` 已完成；本檔仍是 rolling consolidation，後續可做 contribution refresh |
+| 本批代表 flows | 已完成 / refreshed | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 5` 已完成；本檔已完成 project-level contribution refresh |
 
 ## Source Scan Record
 
@@ -63,7 +68,7 @@
 
 - 已完成 `antplay-slot-admin-api Step 1 / Step 2`；第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已建立 `flow.md` / `career-interview.md` / `materials/`、轉成正式面試 case，並完成單條 flow claim gate。
 - 已完成第二條代表 flow `game-api-whitelist-sync Step 5`，確認 admin-api 白名單 control plane、DB / Redis 同步與 game-api runtime `WhiteIpFilter` 邊界，並已完成單條 flow claim gate。
-- 尚未逐條建立其他候選 flow package；但本批兩條代表 flows 已足以支撐 `antplay-slot-admin-api` 後台 API / control plane 的保守 project-level refresh。
+- 本批兩條代表 flows 已回填本 project contribution refresh；尚未逐條建立其他候選 flow package，但不影響目前 project-level 保守履歷 claim。
 - 本輪只針對 `game-api-whitelist-sync` 補掃 `antplay-slot-game-api` runtime filter；不能把 admin API claim 擴張成完整遊戲 runtime claim。
 - 未逐檔逐行 Level 3。
 
@@ -154,13 +159,18 @@
 
 - 不說完整 RabbitMQ architecture、exactly-once、outbox 或全鏈路可靠性 owner。
 
-## Resume Claim
+## Refreshed Resume Claim
 
 可放履歷:
 
 - 參與 AntPlay 後台 API / 商戶控制面開發維護，處理 admin / merchant auth、JWT / refresh / RBAC、商戶白名單、Game API 白名單同步、超級代理與商戶玩家 / 投注 / request log / 報表查詢。
 - 參與 RTP / 暗池 / 活動風控監控與 Quartz job 維護，處理風控概況、threshold alert、暗池調整記錄與 monitor alert 資料流。
 - 參與 request log 與風控通知 RabbitMQ 非同步處理，處理 listener、mapper 與資料入庫邊界。
+
+可支撐上面 claim 的兩條已完成代表 flows:
+
+- `request-log-rabbitmq-admin-consumer`: 支撐 RequestLog RabbitMQ consumer、audit log 入庫、schema route、查重與後台 troubleshooting。
+- `game-api-whitelist-sync`: 支撐 Game API 白名單 control plane、DB / Redis 同步、runtime `WhiteIpFilter` allow / reject 與 access-control failure window。
 
 可面試講:
 
@@ -185,10 +195,10 @@
 
 若篇幅有限，可併入現職的「後台 control plane / risk ops / async data processing」一段，不需要單獨列成最大主成果。
 
-## Suggested Next
+## Refresh 結論
 
-`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2、第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 與第二條代表 flow `game-api-whitelist-sync Step 5` 已於 2026-05-28 完成。下一步若要讓本 repo 更乾淨，可做 `contribution claim consolidation refresh`，把兩條已 Step 5 的代表 flows 回填 project-level claim；仍不直接用單條 flow 改 `05 / 08`。
+`antplay-slot-admin-api` 的 Career Track 已完成 refreshed 收口。Flow Track Step 1 / Step 2、第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 與第二條代表 flow `game-api-whitelist-sync Step 5` 已於 2026-05-28 完成，並已回填本 project-level claim。
 
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+本輪可同步更新 `05 / 08 / 04 / 06 / inventory` 的狀態標記，但不新增 standalone 主成果；正式履歷仍維持「AntPlay 後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」的合併口徑。
+
+目前沒有預設下一步。若 Nick 後續要補 AntPlay 後台廣度，可再指定 `risk-monitor-alert-rabbitmq` 或 `rtp-darkpool-risk-monitor`，但它們是可選加強，不是投遞前必做。

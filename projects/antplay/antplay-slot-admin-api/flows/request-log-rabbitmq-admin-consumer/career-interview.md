@@ -70,10 +70,8 @@ processor 這層有兩個重點。第一是 `@UseSchema`，會依 agentId 路由
 
 這條 flow 已可作「後台 async audit / RabbitMQ consumer / troubleshooting」正式面試 case，也可以回填 `antplay-slot-admin-api` project-level consolidation 的 supporting evidence。
 
-不直接更新 `05 / 08`。原因是單條 flow Step 5 不代表整個 project final consolidation；`05 / 08` 仍應吃 project-level contribution consolidation 或 rolling resume package。若之後 refresh project-level claim，可把本 flow 併入「AntPlay 後台 API / control plane / 非同步資料處理」段落。
+不直接作單條 flow standalone 主成果。project-level contribution refresh 已完成，本 flow 已併入「AntPlay 後台 API / control plane / 非同步資料處理」段落的 supporting evidence。
 
 ## 下一步
 
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+目前沒有預設下一步。

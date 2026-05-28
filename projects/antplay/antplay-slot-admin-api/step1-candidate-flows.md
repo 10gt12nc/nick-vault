@@ -12,7 +12,7 @@
 2. 非同步資料處理與 audit：RequestLog RabbitMQ consumer、MonitorAlert RabbitMQ consumer、PlayerControl RabbitMQ。
 3. 風控 / 報表 / Quartz：RTP / 暗池 / 活動風控監控、玩家單點控制、日 / 小時報表與分表查詢。
 
-本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。第二條代表 flow `game-api-whitelist-sync Step 5` 也已完成；目前若要繼續本 repo，可做 `contribution claim consolidation refresh`。
+本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。第二條代表 flow `game-api-whitelist-sync Step 5` 也已完成，project-level contribution refresh 已完成；目前沒有預設下一步。
 
 ## 掃描深度
 
@@ -416,18 +416,14 @@ Step 2 初步判斷: 中優先。已有 `antplay-slot-game-job/activity-accumula
 
 ## Relationship Check
 
-- `README.md`: 已於 `game-api-whitelist-sync Step 5` 後更新 Flow Track 狀態，下一步可選 `contribution claim consolidation refresh`。
+- `README.md`: 已於 contribution refresh 後更新 Flow Track 與 Career Track 狀態為已收斂。
 - `projects/antplay/README.md`: 已同步 antplay-slot-admin-api 狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 Step 1 / Step 2 已完成。
 - `projects/source-repo-inventory.md`: 已同步 Step 1 / Step 2 狀態。
-- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 5` 完成，下一步可選 contribution refresh。
+- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 5` 與 contribution refresh 完成。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已同步 Flow Track Step 1 / Step 2 狀態。
-- `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 1 只是候選 flow 盤點，不是單條 flow claim gate 或 project contribution refresh。
+- `05 / 08 / 04`: 已於 contribution refresh 後同步狀態；`17` 不需更新，因本輪不涉及談薪策略。
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 已完成 Step 1 / Step 2、第一條代表 flow Step 5，以及第二條代表 flow `game-api-whitelist-sync Step 5`。若要繼續同 project，下一步是把兩條已 Step 5 的代表 flows 回填到 project-level contribution refresh。
-
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+`antplay-slot-admin-api` 已完成 Step 1 / Step 2、第一條代表 flow Step 5、第二條代表 flow `game-api-whitelist-sync Step 5`，且已完成 project-level contribution refresh。目前沒有預設下一步；其他候選 flow 只作可選加強。

@@ -326,12 +326,8 @@ Step 4 已完成，正式面試素材放在:
 | game-api producer 對接 | 真實開發過 + code-backed，可作上下游 context |
 | async audit / troubleshooting 面試 case | 可正式面試講 |
 | 完整 RabbitMQ reliability / exactly-once | 不可宣稱 |
-| 直接更新 05 / 08 | 本輪不更新，待 project contribution refresh 或 rolling resume package |
+| 直接更新 05 / 08 | 已透過 project contribution refresh 同步狀態；不作單條 flow standalone 主成果 |
 
 ## 16. 下一步
 
-這條 flow 已完成 Step 5。後續同 project 的下一條代表 flow `game-api-whitelist-sync Step 5` 也已完成。若要繼續補 `antplay-slot-admin-api`，可做 project-level contribution refresh，把兩條已完成的代表 flows 回填；這是可選後台 control plane 廣度補強，不是通用投遞前必做。
-
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+這條 flow 已完成 Step 5。後續同 project 的下一條代表 flow `game-api-whitelist-sync Step 5` 也已完成，且 project-level contribution refresh 已完成。目前沒有預設下一步；其他候選 flow 只作可選後台 control plane 廣度補強。

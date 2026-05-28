@@ -12,7 +12,7 @@
 
 > 2026-05-27 rolling resume package：`ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 已回填。UGSoft 可作非 iwin 廣度 case，主軸是後台 API / control plane、provider connector、RequestLog / BetRecord MQ、Game API / provider IP 白名單控制面與 Quartz / report job；不可包裝成完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
 
-> 2026-05-28 AntPlay admin 補充：`antplay-slot-admin-api/request-log-rabbitmq-admin-consumer` 與 `antplay-slot-admin-api/game-api-whitelist-sync` 已完成 Step 5，可作後台 control plane / async audit / Game API 白名單同步的補充面試 case；不單獨改 `05 / 08`，也不得包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner。
+> 2026-05-28 AntPlay admin refresh：`antplay-slot-admin-api/request-log-rabbitmq-admin-consumer` 與 `antplay-slot-admin-api/game-api-whitelist-sync` 已完成 Step 5，且已回填 `antplay-slot-admin-api` project-level contribution refresh。可作後台 control plane / async audit / Game API 白名單同步的補充面試 case；不單獨包裝成 05 / 08 主成果，也不得包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner。
 
 ## 104 主打 bullet 對齊表
 

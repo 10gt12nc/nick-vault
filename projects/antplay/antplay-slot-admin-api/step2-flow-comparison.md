@@ -383,23 +383,19 @@ Step 2 判斷: Rank 8。暫不建議本批做。
 2. `game-api-whitelist-sync`
 3. `rtp-darkpool-risk-monitor` 或 `risk-monitor-alert-rabbitmq`
 
-目前第一條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5，第二條 `game-api-whitelist-sync` 已完成 Step 5。若要讓 project-level claim 更乾淨，可做 contribution refresh；不要把八條候選都變成必做 backlog。
+目前第一條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5，第二條 `game-api-whitelist-sync` 已完成 Step 5，project-level contribution refresh 也已完成；不要把八條候選都變成必做 backlog。
 
 ## Relationship Check
 
-- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成、Rank 2 `game-api-whitelist-sync Step 5` 已完成，下一步可選 contribution refresh。
+- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成、Rank 2 `game-api-whitelist-sync Step 5` 已完成，且 contribution refresh 已完成。
 - `projects/antplay/README.md`: 已更新 antplay-slot-admin-api 狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 Step 5 已完成與下一條可選 Rank 2。
 - `projects/source-repo-inventory.md`: 已同步 Step 5 已完成。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已新增 Step 2 row。
-- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 5` 完成，下一步可選 contribution refresh。
-- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Rank 1 Step 5 已完成 / Rank 2 可選」。
-- `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 2 只做 Flow Track 排序，不是單條 flow claim gate 或 project contribution refresh。
+- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 5` 與 contribution refresh 完成。
+- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「本批兩條代表 flows 已 Step 5 / contribution refresh 已完成」。
+- `05 / 08 / 04`: 已於 contribution refresh 後同步狀態；`17` 不需更新，因本輪不涉及談薪策略。
 
 ## Suggested Next
 
-第一條代表 flow 的 Step 5 已完成，第二條代表 flow 的 Step 5 已完成。若要繼續本 project，下一步是 `contribution claim consolidation refresh`，把兩條代表 flows 回填 project-level claim。這是可選後台 control plane 廣度補強，不是投遞前必做。
-
-```text
-antplay antplay-slot-admin-api contribution claim consolidation refresh
-```
+第一條代表 flow 的 Step 5 已完成，第二條代表 flow 的 Step 5 已完成，project-level contribution refresh 也已完成。目前沒有預設下一步；其他候選 flow 只作後台 control plane 廣度的可選加強，不是投遞前必做。

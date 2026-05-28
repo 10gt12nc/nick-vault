@@ -292,5 +292,5 @@ Step 5 後，本 flow 已可作面試 case 與 project-level supporting evidence
 
 ## 14. 收斂後待補
 
-- 若要讓 `antplay-slot-admin-api` Career Track 更乾淨，可做 project-level `contribution claim consolidation refresh`，把 `request-log-rabbitmq-admin-consumer Step 5` 與本 flow Step 5 一起回填。
+- `antplay-slot-admin-api` project-level contribution refresh 已完成，本 flow 已作為「Game API 白名單 control plane」supporting evidence 回填。
 - 若要升級成更強 owner case，需補 DB DDL / unique key、Redis rebuild / reconciliation、filter deployment scope 與 production reject metrics。
