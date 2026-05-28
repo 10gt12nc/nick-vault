@@ -189,7 +189,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 ### 金流 / 錢包 / 遊戲平台
 
 - 第三方金流 provider request / callback / sign verification
-- Transfer wallet、provider transfer in / out、ledger、compensation retry
+- Transfer wallet、provider transfer in / out、bet record / request log、compensation retry
 - 遊戲登入、下注 / 派彩 / rollback、provider transaction、round settlement
 - Game Server 新遊戲 / 活動、slot 邏輯、RTP 模擬、reel strip 驗證
 - BI / admin reporting、record retention、營運查詢與對帳
