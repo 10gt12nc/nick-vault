@@ -35,12 +35,12 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | 6 | `game_api` | 玩家端 / partner API orchestration，有 coupon 上分、partner deposit / withdraw、agent bonus |
 | 7 | `antplay-slot-game-job` | 遊戲批次、報表、結算、projection / replay 可能性高 |
 | 8 | `game_job` | BI projection、daily summary、備份、重跑安全與資料一致性 |
-| 9 | `openobserve` | Observability / log / tracing / metrics，適合 System Owner 故障定位素材 |
-| 10 | `kafka` | Event-driven consistency、consumer lag、retention、retry / DLQ 題材 |
+| 9 | `openobserve` | DevOps re-audit 後維持 learning-only / supporting；未見 Nick direct evidence，不列近期 Flow Track |
+| 10 | `kafka` | DevOps re-audit 後維持 learning-only / supporting；可補 event-driven 概念，不列履歷主線 |
 | 11 | `antplay-slot-admin-api` | 後台 API；若有設定、風控、人工修正，可支援 owner story |
 | 12 | `k3s-deploy` | K8s / Kustomize rollout、config / secret、probe、rollback |
 | 13 | `ugsoft-connector-api` | 可能是 external integration / connector API；若有重試、冪等、同步，可升級 |
-| 14 | `antplay-api-deploy` | API deploy 主線，適合補 rollout / rollback / config 管理 |
+| 14 | `antplay-api-deploy` | deploy reference；未見 Nick direct evidence 前只作 learning-only / supporting |
 | 15 | `antplay-push-grpc` | gRPC realtime / push pipeline；若有 delivery / retry / backpressure 可升級 |
 | 16 | `ugsoft-admin-api` | 後台 API；價值取決於是否只是 CRUD，或有審核 / 修正 / 風控 |
 | 17 | `app_bi` | 已整理完；後台 / BI / control plane，輔助追後端，不當主線 |
@@ -48,8 +48,8 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | 19 | `antplay-bot` | bot / automation / ops tooling，通常輔助 |
 | 20 | `antplay-tg-notify` | 通知 / 告警，能補 observability，但不是主線 |
 | 21 | `buffer-id` | 若是 ID generator，可當 platform 小亮點，需確認 |
-| 22 | `ci-template` | CI 標準化素材，中等偏輔助 |
-| 23 | `antplay-docker-deploys` | Docker deploy / env 管理，價值看 production 接近度 |
+| 22 | `ci-template` | CI 標準化素材；目前無 Nick direct evidence，不列主線 |
+| 23 | `antplay-docker-deploys` | 主管 / 團隊 deployment context；`arnold` 不是 Nick，本 repo 不作 Nick 履歷 claim |
 | 24 | `bi_share` | 已做 rolling / scoped negative consolidation；偏 legacy Laravel 分享 / 佣金 / BI 報表，未見 Nick direct commits，不當正式履歷主線 |
 | 25 | `shareinstall-back` | 安裝歸因 / tracking / reward 可能有價值，但目前未知 |
 | 26 | `payment-thirdparty-simulator` | 支援 payment 測試，不當主專案 |
@@ -70,6 +70,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 
 使用提醒：
 
+- 2026-05-28 DevOps re-audit 會覆蓋上表的早期排序直覺：`openobserve`、`kafka`、`antplay-api-deploy`、`antplay-docker-deploys`、`ci-template` 目前都沒有 Nick / `10gt12nc` direct evidence；只能作 learning-only / supporting，不是近期 Flow Track 或履歷主線。
 - 若目標是最快產出 Senior Backend 履歷素材，依最新 KB 先檢查 Step 2 定義的本批代表 flows 是否都完成。`payment`、`game_job`、`game_api` 已完成 project-level consolidation，其中 `payment` 已於 2026-05-20 重新覆核並補入 GoldenPay direct evidence，不需要因新規則重做。`game_api` 正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
 - 2026-05-26 code-first claim audit：`payment` 確認有 Nick / `10gt12nc` 多 provider 對接與維護 evidence，定位要收斂為 provider / 商戶 integration、payment / withdraw order consistency、查單與人工補償邊界；不得把 `payment` 單獨寫成完整 money correctness、wallet、ledger、reconciliation 或完整金流 owner。2026-05-20 補充仍有效：GoldenPay 可列入多 provider evidence，但不得寫成主導完整金流、全部 provider owner 或 GoldenPay production owner。
 - 2026-05-20 補充：`iwin_gameserver` 已完成 rolling / scoped contribution consolidation。Nick / `10gt12nc` 在 Antplay / GSC / PG 第三方 provider 投派整合、gameserver money job、`GamePlayer` log dispatch 與 log reel path 有 direct commits；可保守寫「參與第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接」，不得寫成完整 gameserver owner、完整 wallet owner、完整上分 / 下分 owner 或完整 idempotency / reconciliation owner。
@@ -80,7 +81,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 - 2026-05-21 補充：`math-core` 與 `*-math` 已完成 contribution consolidation；`*-math` 五條代表 flows 已全部 Step 5 並完成 refreshed grouped claim。Nick / `10gt12nc` 在 `math-core` 有 slot math contract / debugBet / RTP / symbol direct commits；71 個 `*-math` repo 中有 49 個有 direct commits，強 evidence 是 `sph-math`、`spn-math`、`sfm-math`、`setl-math`、`sdt-math`、`slc-math`。可保守寫「參與 AntPlay slot math core / math module 維護與驗證」，包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free、jackpot / symbol、特殊 feature result contract 與 simulation validation；不得寫成完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner、完整 jackpot pool 或單一遊戲 feature owner。
 - 2026-05-20 補充：`math-workspace` 已完成 rolling consolidation，只作 cross-math KB / validation workflow supporting evidence；`platform-mock` 只有局部 failure injection commits，只作 provider failure testing supporting evidence；`buffer-id` 未見 Nick direct commits，只作 learning-only。
 - 若目標是差異化面試題，`*-math fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成，`rtp-reel-strip-simulation-validation` Step 5 已完成，`buy-free-scatter-rtp3-result-contract` Step 5 已完成，`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成，`special-wild-feature-state-transform` Step 5 已完成；`*-math contribution claim consolidation` refresh 也已完成。`antplay-slot-game-api slot-bet-settle-rollback Step 5`、`transfer-wallet-money-in-out Step 5`、`request-log-rabbitmq-async Step 5`、`bet-record-sharding-schema-route Step 5`、`runtime-rtp-darkpool-player-control Step 5`、project-level contribution claim consolidation refresh、2026-05-27 `rolling resume package`、`104 投遞欄位檢查`、`04 / 面試 case 對齊檢查` 與三條主力 case 口說稿已完成；`antplay-slot-game-job` 五條代表 flows Step 5 與 contribution consolidation refresh 也已完成，`ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 已回填 05 / 08 / 04 / 17。`iwin iwin_gameserver center-http-deposit-withdraw Step 5`、`game-spin-settlement-log-reel Step 5`、`bet-target-set-query Step 5`、`third_games_api gsc-transfer-bet-settle-rollback Step 5`、`third_games_api oneapi-wallet-bet-result Step 5`、`third_games_api antplay-bet-settle-rollback Step 5`、`third_games_api gsc-seamless-withdraw-deposit-cancel Step 5` 與 `k3s-deploy gameserver-phased-rollout Step 5` 也已完成。面試口說練習目前先暫停；除非 Nick 明確說「開始練 / 模擬面試 / 我先講一版」，AI 不得主動進入問答式實戰練習。
-- 若目標是 Platform / System Owner，`openobserve`、`kafka`、`k3s-deploy`、`antplay-api-deploy` 可往前，但必須和實際 production flow / incident / rollout evidence 串起來。
+- 若目標是 Platform / System Owner，優先用已完成的 `k3s-deploy/gameserver-phased-rollout` 作 interview-only 加分；`openobserve`、`kafka`、`antplay-api-deploy` 目前只作 learning-only / supporting，除非 Nick 明確指定或補到本人 evidence，否則不往前推成 Flow Track。
 
 ## 狀態定義
 
@@ -213,7 +214,7 @@ projects/{domain}/{project}/flows/{flow-name}/flow.md
 | done | antplay | antplay-slot-game-job | `contribution claim consolidation` | 五條代表 flow Step 5 後的 project-level claim refresh | 已完成 refreshed consolidation；Kafka / Quartz / report projection / big-win / activity supporting / partition 可保守使用，settle pool analysis-only；05 / 08 / 17 已回填 | 已完成 |
 | 9 | antplay | `*-math` | `contribution claim consolidation` | `*-math` 五條代表 flow 收口後的 claim refresh | 已完成；保留為 refreshed grouped claim evidence，後續除非 Nick 指定 Level 3 final，不再搶下一步 | 已完成 |
 | done | ugsoft | ugsoft-connector-api | `contribution claim consolidation refresh` | UGSoft connector 三條代表 flow 後的 project-level claim refresh | 已完成 refreshed consolidation；三條代表 flow `transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync` 均已 Step 5 並回填 project-level claim | 已收斂 |
-| 11 | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | production troubleshooting / logs / observability | `DevOps Step 1` |
+| paused | DevOps | primestar | `observability-pipeline` | OpenObserve / Fluent Bit 觀測性 pipeline | DevOps re-audit 後維持 learning-only / supporting；未見 Nick direct evidence，不列近期 queue | 暫不建議；除非 Nick 明確指定 Level 3 learning-only |
 
 Career Track 補充：`iwin iwin_gameserver contribution claim consolidation` 已完成 rolling / scoped 履歷風險收斂。`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 已完成 Step 5；若後續新增 gameserver flow，要回填校正 project-level claim。
 

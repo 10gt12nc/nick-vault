@@ -549,7 +549,7 @@ AntPlay slot game job 補充案例：
 - `k3s-migration-track`
 - `iwin-service-rollout`
 - `k3s-deploy/gameserver-phased-rollout`（已完成 Step 5，interview-only）
-- `observability-pipeline`
+- `observability-pipeline`（learning-only 候選；目前不作主 case）
 
 面試主軸：
 
