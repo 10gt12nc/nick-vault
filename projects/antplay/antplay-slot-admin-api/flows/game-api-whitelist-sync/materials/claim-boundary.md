@@ -14,7 +14,7 @@
 - 可說「參與」或「開發維護相關流程」。
 - 可說「支援商戶 API 來源 IP 管控」。
 - 可說「code-backed，且有 Nick / `10gt12nc` direct commits」。
-- Step 3 只能先作面試素材，不直接寫入 `05 / 08`。
+- Step 4 已可作正式面試素材，但不直接寫入 `05 / 08`；是否回填 project-level claim 等 Step 5。
 
 ## 不可說
 

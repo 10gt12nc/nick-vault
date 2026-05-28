@@ -2,6 +2,10 @@
 
 日期: 2026-05-28
 
+## Step 4 掃描補充
+
+Step 4 沒新增 code evidence，沿用 Step 3 的 Level 2 Flow 深掃結果，目標是把已確認的資料流、failure window 與 claim boundary 轉成正式面試素材。已重新確認 source repo 本機 refs 狀態；嘗試 fetch remote refs 失敗，依 KB 規則不反覆重試，以下仍只能宣稱「依本地 refs / 本地工作樹判斷」，不能宣稱已看最新 remote。
+
 ## Source Repo 狀態
 
 | Repo | Branch | Local HEAD | Local remote ref | Ahead / behind | Working tree | Fetch |

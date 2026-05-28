@@ -12,7 +12,7 @@
 2. 非同步資料處理與 audit：RequestLog RabbitMQ consumer、MonitorAlert RabbitMQ consumer、PlayerControl RabbitMQ。
 3. 風控 / 報表 / Quartz：RTP / 暗池 / 活動風控監控、玩家單點控制、日 / 小時報表與分表查詢。
 
-本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。第二條代表 flow `game-api-whitelist-sync Step 3` 也已完成；目前若要繼續本 repo，可做 `game-api-whitelist-sync Step 4`。
+本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。第二條代表 flow `game-api-whitelist-sync Step 4` 也已完成；目前若要繼續本 repo，可做 `game-api-whitelist-sync Step 5`。
 
 ## 掃描深度
 
@@ -416,18 +416,18 @@ Step 2 初步判斷: 中優先。已有 `antplay-slot-game-job/activity-accumula
 
 ## Relationship Check
 
-- `README.md`: 已於 `game-api-whitelist-sync Step 3` 後更新 Flow Track 狀態，下一步可選 `game-api-whitelist-sync Step 4`。
+- `README.md`: 已於 `game-api-whitelist-sync Step 4` 後更新 Flow Track 狀態，下一步可選 `game-api-whitelist-sync Step 5`。
 - `projects/antplay/README.md`: 已同步 antplay-slot-admin-api 狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 Step 1 / Step 2 已完成。
 - `projects/source-repo-inventory.md`: 已同步 Step 1 / Step 2 狀態。
-- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 3` 完成，下一步可選 Step 4。
+- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 4` 完成，下一步可選 Step 5。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已同步 Flow Track Step 1 / Step 2 狀態。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 1 只是候選 flow 盤點，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 已完成 Step 1 / Step 2、第一條代表 flow Step 5，以及第二條代表 flow `game-api-whitelist-sync Step 3`。若要繼續同 project，下一步是把 Game API 白名單控制面轉成正式面試 case。
+`antplay-slot-admin-api` 已完成 Step 1 / Step 2、第一條代表 flow Step 5，以及第二條代表 flow `game-api-whitelist-sync Step 4`。若要繼續同 project，下一步是完成 Game API 白名單控制面的單條 flow claim gate。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 4
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 5
 ```
