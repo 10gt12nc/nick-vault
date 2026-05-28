@@ -42,7 +42,7 @@
 
 > 2026-05-21 antplay math consolidation refresh：已完成 `projects/antplay/math-core/contribution-claim-consolidation.md`、`projects/antplay/star-math/contribution-claim-consolidation.md`、`projects/antplay/math-workspace/contribution-claim-consolidation.md`、`projects/antplay/platform-mock/contribution-claim-consolidation.md`、`projects/antplay/buffer-id/contribution-claim-consolidation.md`。`*-math` 五條代表 flow 已全部 Step 5 並回填 project-level claim。`math-core` 與 `*-math` 可保守寫 Nick 參與 AntPlay slot math core / math module 維護與驗證，範圍包含 SlotMath contract、debug bet、fixedMultiBet、currency、RTP / reel strip、buy free / purchasable free spin、jackpot / symbol、特殊 feature result contract 與模擬驗證調整；`math-workspace` 只作 supporting evidence，`platform-mock` 只作 failure injection supporting evidence，`buffer-id` 不放 Nick 實作成果。仍不得寫成主導完整遊戲數學模型、全部 math module、完整 RTP 策略、完整 simulator / certification owner、完整 jackpot pool、完整單一遊戲 feature owner 或完整 ID generator owner。
 
-> 2026-05-20 AI-assisted workspace 補充：`iwin-workspace`、`ugsoft-workspace`、`math-workspace` 等 `*-workspace` 可支撐 Nick 具備 AI-assisted engineering workflow / knowledge-base driven development 經驗：用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、測試檢查、commit 收斂與 KB 回填，把 legacy system reconstruction 變成可追蹤閉環。這是工程方法與自我推薦加分項，不是 standalone production 主成果；不得寫成 AI 自動主導 production 開發、完整 DevOps owner 或用 AI 取代工程判斷。
+> 2026-05-20 AI-assisted workspace 補充，2026-05-28 深掃 `iwin-workspace` / `math-workspace` 後補強：`iwin-workspace`、`ugsoft-workspace`、`math-workspace` 等 `*-workspace` 可支撐 Nick 具備 AI-assisted engineering workflow / knowledge-base driven development 經驗。`iwin-workspace` 的 payment 相關 workspace 與 `math-workspace` 已形成開發 / 驗證閉環：用 Codex 類工具輔助 code reading、需求拆解、diff review、驗證檢查、文件同步、commit 收斂與 KB 回填，把 provider 對接、slot math module 驗證與 legacy system reconstruction 變成可追蹤流程。2026-05-28 已重讀 source workspace KB、git log、payment related code、math child repo code facts 與 validation KB；結論可保留，但定位是工程方法與自我推薦加分項，不是 standalone production 主成果；不得寫成 AI 自動主導 production 開發、完整 DevOps owner、完整 AI 平台或用 AI 取代工程判斷。
 
 > 對外名稱替換提醒：本檔是 master / evidence pool，可以保留 `iwin`、`AntPlay`、`UGSoft`、`DerPlay`、`GSC`、`PG` 等內部產品 / repo / provider 名稱以利回查。正式履歷、104、LinkedIn 或給獵頭版本，建議替換為泛稱：`iwin` / `iwin_gameserver` -> 「遊戲平台 / gameserver」；`AntPlay` -> 「Slot 遊戲平台 / 第三方遊戲平台」；`UGSoft` -> 「provider connector / 後台控制面平台」；`DerPlay`、`GSC`、`PG` -> 「第三方遊戲 provider」。若保留品牌名，需先確認它是公開品牌且沒有保密風險。
 
@@ -66,7 +66,7 @@ Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider
 | --- | --- | --- | --- | --- | --- |
 | A 版：通用高交易 Java Backend / Platform Backend | 第三方 provider、payment provider 對接、遊戲錢包 / 下注結算、MQ / batch、legacy production flow takeover | 最強，公開主版本 | payment 本人確認 + direct commits，但限 provider / 商戶對接；iwin_gameserver / game_job 部分真實開發過；UGSoft connector / admin、AntPlay game-api / game-job 有大量 direct commits；多條代表 flow 已 Step 5 | 104 / LinkedIn / 獵頭公開主版本；沒有 JD 時預設使用 | 不寫完整金流 owner、完整 wallet / ledger / reconciliation、完整 Kafka / MQ platform；payment 不包裝成完整 money correctness 來源 |
 | B 版：遊戲 / Slot / Provider Backend | 遊戲 provider、slot game API / runtime、bet / settle / rollback、slot job、`*-math` | 次強，是 A 的 domain 差異化，不是獨立主身份 | AntPlay game-api / game-job / math-core / `*-math` 有 direct commits 與 Step 5；iwin_gameserver provider 投派整合有 direct evidence | 投遊戲、slot、provider gateway、game platform 類 JD 時，把 B 相關段落往前 | 不寫完整 slot platform、完整遊戲數學模型、完整 RTP 策略、全部 math module owner |
-| C 版：Platform / Legacy Takeover / System Reconstruction | 缺交接文件接手、cross-repo reconstruction、MQ / batch、observability、AI-assisted workflow | 輔助版，是 A 的工作方法與平台視角，不宜單獨當最強主線 | legacy takeover 為本人確認 + workspace / KB supporting evidence；MQ / batch 有 direct evidence；K3s 為 interview-only；AI-assisted workflow 為工程方法 evidence | 遇到 platform、legacy system、內部平台、系統整合、維運改善 JD 時，把 C 相關段落往前 | 不寫完整 DevOps / SRE owner、完整 K3s migration、完整 platform architect 或 AI 自動完成 production 開發 |
+| C 版：Platform / Legacy Takeover / System Reconstruction | 缺交接文件接手、cross-repo reconstruction、MQ / batch、observability、AI-assisted workflow | 輔助版，是 A 的工作方法與平台視角，不宜單獨當最強主線 | legacy takeover 為本人確認 + workspace / KB supporting evidence；MQ / batch 有 direct evidence；K3s 為 interview-only；iwin payment workspace 與 math-workspace 開發 / 驗證閉環為本人確認 + supporting evidence | 遇到 platform、legacy system、內部平台、系統整合、維運改善、AI-assisted engineering workflow JD 時，把 C 相關段落往前 | 不寫完整 DevOps / SRE owner、完整 K3s migration、完整 platform architect、完整 AI 平台或 AI 自動完成 production 開發 |
 
 結論：
 
@@ -126,7 +126,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 | UGSoft connector / admin（正式時建議取代為「provider connector / 後台控制面」） | provider connector、transfer wallet、request / bet record MQ、後台權限 / 白名單、Game API / provider IP 白名單控制面、Quartz / report job | 真實開發過 + code-backed |
 | AntPlay game-api / game-job / admin-api（正式時建議取代為「Slot 遊戲 API / job / 後台 API」） | slot runtime、bet / settle / rollback、transfer wallet、schema routing、runtime decision、job / event processing、後台風控監控 | 真實開發過 + code-backed |
 | AntPlay math-core / *-math（正式時建議取代為「Slot math core / math module」） | slot math core、RTP / reel strip、debug bet、fixedMultiBet、buy free、jackpot / symbol、feature result contract、simulation | 真實開發過 + code-backed |
-| workspace / mock / BI / deploy 入口 | cross-repo reconstruction、AI-assisted development loop、testing support、後台入口理解、K3s rollout / observability analysis | supporting / interview-only |
+| workspace / mock / BI / deploy 入口 | cross-repo reconstruction、iwin payment workspace 開發 / 驗證閉環、math-workspace slot math validation loop、AI-assisted development loop、testing support、後台入口理解、K3s rollout / observability analysis | supporting / interview-only；開發閉環為本人確認 + workspace evidence |
 
 ### 履歷不可誇大
 
@@ -176,7 +176,7 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 - REST API、gRPC / ProtoBuf 或契約式通訊、服務間整合、provider gateway、後台營運系統
 - Spring Security / JWT / RBAC / role-based control plane
 - 既有系統逆向、code reading、log analysis、production flow reconstruction
-- AI-assisted engineering workflow、knowledge-base driven development、diff review、commit 收斂、KB 回填
+- AI-assisted engineering workflow、knowledge-base driven development、payment / slot math workspace 開發閉環、diff review、驗證檢查、commit 收斂、KB 回填
 
 ### 資料與一致性
 
@@ -215,9 +215,11 @@ Java、Spring Boot、Spring MVC、MyBatis、Spring Data JPA、MySQL、MongoDB、
 
 ## 四、自我推薦
 
-我具備 4 年以上 Java 後端與博弈 / 遊戲平台相關經驗，熟悉 Spring Boot、MyBatis、Redis、MySQL、MQ / Kafka、Quartz、後台權限與第三方系統串接等場景。我的優勢在於能接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤與資料流梳理，快速建立可維護的系統理解。
+我具備 4 年以上 Java 後端與博弈 / 遊戲平台相關經驗，熟悉 Spring Boot、MyBatis、Redis、MySQL、MQ / Kafka、Quartz、後台權限與第三方系統串接等場景。我的優勢在於能接手文件不足、服務邊界複雜的既有系統，透過 code reading、log 追蹤、資料流梳理與 AI-assisted workspace，快速建立可維護、可驗證、可回填的系統理解。
 
 我特別重視 production flow 的正確性與可恢復性。面對金流 callback、錢包轉點、下注結算、報表彙總、大量資料批次處理、Redis cache rebuild、MQ retry 等流程時，我不只看 API 是否成功，也會關注冪等、狀態轉移、失敗窗口、補償、對帳、記憶體壓力與營運查詢。這讓我能用較成熟的方式處理平台型後端常見的真實問題。
+
+我也已在 iwin payment workspace 與 math-workspace 建立開發 / 驗證閉環，使用 AI 輔助讀 code、拆需求、檢查 diff、整理驗證結果與回填 KB；但最後仍由我判斷 production 風險、測試結果與 claim 邊界。這讓我的工作方式不只是「會寫功能」，也能把複雜系統整理成後續可維護、可交接、可追問的工程資產。
 
 我目前希望往月薪 10 萬以上的 Senior Java Backend / Platform Backend 方向前進，並持續補強系統設計、分散式一致性、Kafka / MQ、資料庫效能、JVM / GC、K8s / observability 與 owner decision 能力。若有機會加入重視穩定性、可維護性與工程品質的團隊，我能以務實、可落地的方式協助系統持續演進。
 
