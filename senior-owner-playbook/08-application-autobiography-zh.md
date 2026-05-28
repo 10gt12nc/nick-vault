@@ -67,6 +67,8 @@
 
 > 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
 
+> 欄位分工補充：`工作經驗` 可以放廣，完整呈現 A + B + C 的真實經驗與證據，包含高交易 / provider / wallet / MQ / batch、缺交接文件下重建系統可維護脈絡、遊戲平台 / slot runtime / slot math、後台 control plane。`自傳 / 自我推薦` 必須收斂，主打 A 版「高交易 Java Backend / Platform Backend」定位；B / C 只作亮點補充，不要把 slot math、RTP、jackpot、RBAC、白名單等細節全部展開。救活系統與遊戲邏輯都可以進 A 版，但要用來支撐 A，不要把 A 改成純遊戲版或純 legacy takeover 版。
+
 > 2026-05-28 final check recheck：已把 `ugsoft-admin-api` / `ugsoft-connector-api` 與 `antplay-slot-admin-api` contribution refresh 對齊通用投遞版。A / B / C 三版定位仍成立；限制要持續保留：部分 AntPlay repo 因遠端不可達只能依本地 refs；UGSoft 只能寫後台 API / control plane、provider connector、request / bet record MQ、白名單控制面與 Quartz / report job 參與維護，不寫完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner；AntPlay admin 只作後台 control plane / async audit / whitelist sync 補充，不單獨包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner；`math-workspace` 與 `iwin-workspace` 只作 workspace / KB / validation supporting evidence；`k3s-deploy` 沒有 Nick direct commit，仍只能作 interview-only 架構素材；system maps 不新增正式履歷 claim。
 
 ### 三版補充比較

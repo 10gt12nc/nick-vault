@@ -74,6 +74,20 @@ Java 後端工程師，主要經驗在博弈 / 遊戲平台、第三方 provider
 A 是本體；B 是領域差異化；C 是工作方法與平台視角。
 ```
 
+欄位分工：
+
+```text
+工作經驗 = 可以放廣，完整呈現 A + B + C 的真實經驗與證據。
+自傳 / 自我推薦 = 必須收斂，主打 A 版定位；B / C 只作亮點補充，不展開成三個人設。
+```
+
+具體判斷：
+
+- `工作經驗` 可以放高交易 / provider / wallet / MQ / batch，也可以放缺交接文件下重建系統可維護脈絡、遊戲平台 / slot runtime / slot math、後台 control plane。
+- `自傳` 要讓讀者記得 Nick 是「高交易 Java Backend / Platform Backend」，再補一句具備遊戲 domain 與 legacy takeover 差異化。
+- `自我推薦` 要主打能接手複雜既有系統、處理 provider / wallet / MQ / batch 風險、建立可維護 flow；不要把 slot math、RTP、RBAC、白名單等細節全部展開。
+- `救活系統 / 重建可維護脈絡` 與 `遊戲邏輯 / slot math` 都可以進 A 版，但它們是支撐 A 的亮點，不是把 A 改成純 B 或純 C。
+
 公開履歷不要三份一起公開。公開版應固定成「高交易 Java Backend / Platform Backend」，再在內容中帶出遊戲 / slot math domain 與 legacy takeover 方法論。遇到明確 JD 時，只調整排序與字詞，不重寫成完全不同的人設。
 
 ### 履歷精簡工作經驗
