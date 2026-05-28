@@ -12,7 +12,7 @@
 2. 非同步資料處理與 audit：RequestLog RabbitMQ consumer、MonitorAlert RabbitMQ consumer、PlayerControl RabbitMQ。
 3. 風控 / 報表 / Quartz：RTP / 暗池 / 活動風控監控、玩家單點控制、日 / 小時報表與分表查詢。
 
-下一步必須是 `antplay antplay-slot-admin-api Step 2`，比較候選 flows 的風險、證據強度、module 邊界與履歷 / 面試價值；不得直接跳單條 flow Step 3。
+本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 已於 2026-05-28 完成，第一條代表 flow 選定 `request-log-rabbitmq-admin-consumer`。目前若要繼續本 repo，應做 `request-log-rabbitmq-admin-consumer Step 3`。
 
 ## 掃描深度
 
@@ -416,18 +416,18 @@ Step 2 初步判斷: 中優先。已有 `antplay-slot-game-job/activity-accumula
 
 ## Relationship Check
 
-- `README.md`: 需要更新 Flow Track 狀態為 Step 1 已完成，下一步 Step 2。
-- `projects/antplay/README.md`: 需要更新 antplay-slot-admin-api 狀態。
-- `projects/source-repo-flow-audit.md`: 需要把「只有 contribution consolidation，沒有 Step 1」改成 Step 1 已完成。
-- `projects/source-repo-inventory.md`: 需要同步 Step 1 狀態。
-- `senior-owner-playbook/06-todo.md`: 需要同步下一步從 Step 1 / Step 2 改成 Step 2。
-- `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 需要同步 Flow Track Step 1 狀態。
+- `README.md`: 已於 Step 2 後更新 Flow Track 狀態為 Step 2 已完成，下一步 `request-log-rabbitmq-admin-consumer Step 3`。
+- `projects/antplay/README.md`: 已同步 antplay-slot-admin-api 狀態。
+- `projects/source-repo-flow-audit.md`: 已同步 Step 1 / Step 2 已完成。
+- `projects/source-repo-inventory.md`: 已同步 Step 1 / Step 2 狀態。
+- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 2 改成 `request-log-rabbitmq-admin-consumer Step 3`。
+- `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已同步 Flow Track Step 1 / Step 2 狀態。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 1 只是候選 flow 盤點，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 已完成 Step 1。依 KB 防跳 Step 規則，下一步只能做 Step 2，比較本批候選 flows 的技術點、風險、證據強度、module / repo / service 邊界，決定哪一條進 Step 3。
+`antplay-slot-admin-api` 已完成 Step 1 / Step 2。依 KB 防跳 Step 規則，下一步是第一條代表 flow Step 3，深掃 RequestLog RabbitMQ admin consumer。
 
 ```text
-antplay antplay-slot-admin-api Step 2
+antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 3
 ```

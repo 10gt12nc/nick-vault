@@ -12,7 +12,7 @@
 
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
-| `antplay-slot-admin-api` | Java / Spring Boot 後台 API、control plane、風控監控、報表、RabbitMQ / Quartz | contribution consolidation 已完成 / rolling；Flow Track Step 1 已完成 / 2026-05-28 | 可保守放「後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」；不寫完整 slot platform owner | 下一步 Step 2，比較 request log MQ、風控通知 MQ、Game API 白名單、RTP / 暗池風控監控等候選 flow |
+| `antplay-slot-admin-api` | Java / Spring Boot 後台 API、control plane、風控監控、報表、RabbitMQ / Quartz | contribution consolidation 已完成 / rolling；Flow Track Step 2 已完成 / 2026-05-28 | 可保守放「後台 API / 商戶控制面 / 風控監控 / 非同步資料處理」；不寫完整 slot platform owner | 下一步 `request-log-rabbitmq-admin-consumer Step 3` |
 | `antplay-slot-game-api` | Java / Spring Boot 遊戲 API、slot runtime、轉帳錢包、下注結算、RabbitMQ / Quartz | contribution consolidation 已完成 / refreshed / 2026-05-21；五條代表 flow 均已 Step 5；05 / 08 已回填 | 可保守放「遊戲 API runtime / betting-settlement / transfer wallet / async log / high-traffic table governance / runtime decision」；不寫完整 slot platform / wallet / RTP owner | 已收斂 |
 | `antplay-slot-game-job` | Java / Spring Boot job、Kafka consumer、Quartz、報表 projection、notification | contribution consolidation 已完成 / refreshed / 2026-05-25；五條代表 flow 均已 Step 5；05 / 08 已回填 | 可保守放「Kafka / Quartz job、代理玩家報表、活動累積投注 supporting flow、big-win notification、分表 / report path」；不寫完整 Kafka / settle pool owner | 已收斂 |
 | `math-core` | Slot math core contract / debug / RTP / symbol library | contribution consolidation 已完成 / rolling | 可保守放「slot math core contract / debugBet / RTP / symbol 相容調整」；不寫完整 math framework owner | 已收斂；不單獨新增 Flow Track |
@@ -36,6 +36,6 @@
 ## 2026-05-26 AntPlay Re-audit
 
 - 已重新掃 `/Users/nick/Git/antplay` 下各 repo 的 git log、Nick / `10gt12nc` commits、主要 module 與既有 KB 狀態。
-- 真正值得補的只有 `antplay-slot-admin-api` Flow Track Step 2；Step 1 已於 2026-05-28 完成，候選方向是 request log RabbitMQ、風控通知 RabbitMQ、Game API 白名單同步、RTP / 暗池風控監控、玩家單點控制、admin / merchant auth。
+- 真正值得補的只有 `antplay-slot-admin-api` Flow Track；Step 1 / Step 2 已於 2026-05-28 完成，第一條代表 flow 選定 `request-log-rabbitmq-admin-consumer`。
 - 不新增 `antplay-push`、`platform-mock`、`math-core` 單獨 Flow Track；它們只能作 supporting evidence，沒有比既有 game-api / game-job / `*-math` 代表 flows 更值得。
 - 履歷目前不需新增新 claim；`antplay-slot-admin-api` 的 project-level claim 已在 contribution consolidation 中保守收斂，等 Flow Track 補出代表 flow 後再回填 05 / 08。
