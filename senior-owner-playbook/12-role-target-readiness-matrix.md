@@ -343,4 +343,6 @@ Senior Java Backend
 
 接下來只要把 3-5 條 case 做實，就不是空喊 Senior，而是有東西可以打。
 
-如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment provider / game wallet / bet-settle / MQ / batch flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。
+如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment provider / game wallet / bet-settle / MQ / batch / math flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。
+
+建議模板只收斂成 4 份：`Provider Integration template`、`Wallet / Bet-Settle template`、`MQ / Batch / Projection template` 是主力；`Slot Math / RTP Validation template` 是遊戲 / slot / provider JD 的備用差異化。這四份的價值是展示從 production flow 抽象出 system design 的能力，不是宣稱 Nick 主導過完整 0 到 1 大系統。

@@ -107,6 +107,26 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
+## 0 到 1 System Design Template
+
+這是可選架構加強，不是新的必做 backlog。目的不是每個系統都重掃 code，也不是宣稱 Nick 主導過完整 0 到 1 大系統；而是從已完成 evidence 的 production flows 萃取出面試可講的架構模板，必要時才回 code 補查關鍵邊界。
+
+推薦只做 1 份通用框架加 2-3 個 domain 變體，實際落成時收斂成以下 4 份：
+
+| 類型 | 定位 | 價值 | 必做？ |
+| --- | --- | --- | --- |
+| `Provider Integration template` | payment provider、遊戲 provider、callback、query、補償、對帳 | 通用價值最高，最貼 Senior Backend / Platform Backend JD | 可選主力 |
+| `Wallet / Bet-Settle template` | wallet source of truth、bet record、settle、rollback、transaction boundary | 技術深度最高，可展示 state machine、idempotency、failure window | 可選主力 |
+| `MQ / Batch / Projection template` | Kafka / RabbitMQ、report projection、retry、DLQ、重跑、資料修復 | 最實務，可支撐 event-driven、projection、eventual consistency 追問 | 可選主力 |
+| `Slot Math / RTP Validation template` | math-core contract、simulation、result validation、版本相容 | 差異化最高，但職缺較窄，投遊戲 / slot / provider domain 時加分 | 備用差異化 |
+
+結論：
+
+```text
+目前不必做；如果要補架構口說與 Platform / Lead 面試深度，先做前三份。
+第四份 Slot Math / RTP Validation 只在遊戲 / slot / provider JD 或 Nick 想強化差異化時做。
+```
+
 ## Senior 面試分級門檻
 
 ### 中等可面
