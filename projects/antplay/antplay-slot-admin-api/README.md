@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `request-log-rabbitmq-admin-consumer Step 4` 已完成 / 2026-05-28 |
-| 履歷判斷 | 真實開發過 + code-backed，可保守放後台 API / risk ops / async data processing |
-| 下一步 | `antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5` |
+| Flow Track | `request-log-rabbitmq-admin-consumer Step 5` 已完成 / 2026-05-28 |
+| 履歷判斷 | 真實開發過 + code-backed；本 flow 可支撐後台 API / async audit，但不直接更新 05 / 08 |
+| 下一步 | 可選 `antplay antplay-slot-admin-api game-api-whitelist-sync Step 3` |
 
 ## Claim Boundary
 

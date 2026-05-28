@@ -4,7 +4,7 @@
 
 ## 定位
 
-這條 flow 可作 AntPlay 後台 API / async audit / RabbitMQ consumer 的正式面試素材。完成狀態是 Step 4；證據層級是 `真實開發過 + code-backed`，但只限 request log consumer / audit log 入庫，不擴張成完整 RabbitMQ platform owner。
+這條 flow 可作 AntPlay 後台 API / async audit / RabbitMQ consumer 的正式面試素材。完成狀態是 Step 5；證據層級是 `真實開發過 + code-backed`，但只限 request log consumer / audit log 入庫，不擴張成完整 RabbitMQ platform owner。
 
 ## 30 秒說法
 
@@ -66,12 +66,14 @@ processor 這層有兩個重點。第一是 `@UseSchema`，會依 agentId 路由
 - 不說 request log 能代表交易正確性。
 - 不說改善多少 latency 或故障率，除非之後補 metric / ticket。
 
-## Step 4 結論
+## Step 5 結論
 
-這條 flow 已可作「後台 async audit / RabbitMQ consumer / troubleshooting」面試 case。它適合作為 AntPlay 後台 API 廣度補強，不是主力 money correctness case。正式履歷是否回填，留到 Step 5 做 claim gate。
+這條 flow 已可作「後台 async audit / RabbitMQ consumer / troubleshooting」正式面試 case，也可以回填 `antplay-slot-admin-api` project-level consolidation 的 supporting evidence。
+
+不直接更新 `05 / 08`。原因是單條 flow Step 5 不代表整個 project final consolidation；`05 / 08` 仍應吃 project-level contribution consolidation 或 rolling resume package。若之後 refresh project-level claim，可把本 flow 併入「AntPlay 後台 API / control plane / 非同步資料處理」段落。
 
 ## 下一步
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
 ```

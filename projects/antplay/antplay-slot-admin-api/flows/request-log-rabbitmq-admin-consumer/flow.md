@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: RequestLog RabbitMQ 非同步入庫 / admin audit consumer
 - Flow slug: `request-log-rabbitmq-admin-consumer`
-- 完成狀態: Step 4 / 面試 case 已完成；Level 2 Flow 深掃沿用 Step 3 evidence
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成；Level 2 Flow 深掃沿用 Step 3 evidence
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 admin-api #774 consumer direct commits，game-api producer 也有 #774 direct commits；內網 remote fetch 失敗，本輪依本地 refs / 本地工作樹保守分析
 - 本 flow 類型: async audit / observability / admin consumer flow
 - 是否只確認到入口: 否。已確認 admin-api consumer、processor、mapper、RabbitMQ config、`pt_request_log` insert 與 admin query context；producer 端以既有 game-api flow + 本地 code 作上下游定位
@@ -284,10 +284,54 @@ Step 4 已完成，正式面試素材放在:
 - consumer 端重點是 JSON parse、`ptDay` partition key、`@UseSchema` multi-schema route、application-level dedupe 與 `pt_request_log` insert。
 - Senior 追問要主動承認未確認 DLQ / retry / ack mode / DB unique key，不誇大成 exactly-once。
 
-## 15. 下一步
+## 15. Step 5 Claim Gate
 
-下一步應做 Step 5，完成單條 flow claim gate，判斷本 flow 能否回填 project-level consolidation / 05 / 08，並收斂可放履歷、可面試講、不可誇大的邊界。
+### 結論
+
+本 flow 可以作為 `antplay-slot-admin-api` project-level contribution consolidation 的 supporting evidence，也可以作為正式面試 case。證據足以支撐「參與 AntPlay 後台 RequestLog RabbitMQ consumer 與 audit log 入庫流程」。
+
+但本 flow 不直接更新 `05 / 08` 成獨立履歷 bullet。原因是 `05 / 08` 原則上吃 project-level consolidation；`antplay-slot-admin-api` 目前已有 rolling consolidation，本 flow Step 5 只回填 project claim 的證據邊界，不代表整個 project final consolidation 完成。
+
+### 可放履歷的保守口徑
+
+若後續做 project-level refresh，可併入既有 AntPlay 後台 API / control plane bullet:
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
+參與 AntPlay 後台 API / 商戶控制面與非同步資料處理開發維護，範圍包含 RequestLog RabbitMQ consumer、message parse、schema route、查重與 audit log 入庫，支援 provider API request / response 後台追查。
+```
+
+目前不建議單獨放成最大主成果；它比較適合作為「後台 async audit / troubleshooting」支撐句。
+
+### 可面試講
+
+- game-api producer 與 admin-api consumer 的 RabbitMQ producer / consumer 邊界。
+- request log 是 audit / troubleshooting data，不是 money correctness source。
+- `ptDay`、`agentId`、`time`、`id` 的查重與 partition / schema route 風險。
+- application-level dedupe、query-then-insert race、DB unique key / upsert 改善方向。
+- 未確認 DLQ / retry / ack mode / queue lag monitoring，不能誇大成完整 reliable messaging。
+
+### 不可誇大
+
+- 不寫主導完整 AntPlay slot platform。
+- 不寫完整 RabbitMQ platform / exactly-once / outbox owner。
+- 不寫已落地完整 DLQ / retry / metrics / masking。
+- 不把 request log 說成下注、結算或錢包正確性的 source of truth。
+- 不寫量化改善、事故修復或 latency 改善，除非後續補 production metric / ticket。
+
+### Evidence level
+
+| Claim | Step 5 判斷 |
+| --- | --- |
+| admin-api request log consumer | 真實開發過 + code-backed，可作 project-level supporting evidence |
+| game-api producer 對接 | 真實開發過 + code-backed，可作上下游 context |
+| async audit / troubleshooting 面試 case | 可正式面試講 |
+| 完整 RabbitMQ reliability / exactly-once | 不可宣稱 |
+| 直接更新 05 / 08 | 本輪不更新，待 project contribution refresh 或 rolling resume package |
+
+## 16. 下一步
+
+這條 flow 已完成 Step 5。若要繼續補 `antplay-slot-admin-api` Flow Track，依 Step 2 排序回到同 project 的下一條代表 flow: `game-api-whitelist-sync Step 3`。這是可選後台 control plane 廣度補強，不是通用投遞前必做。
+
+```text
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
 ```

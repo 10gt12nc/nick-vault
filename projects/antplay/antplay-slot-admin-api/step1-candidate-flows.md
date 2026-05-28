@@ -12,7 +12,7 @@
 2. 非同步資料處理與 audit：RequestLog RabbitMQ consumer、MonitorAlert RabbitMQ consumer、PlayerControl RabbitMQ。
 3. 風控 / 報表 / Quartz：RTP / 暗池 / 活動風控監控、玩家單點控制、日 / 小時報表與分表查詢。
 
-本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 4` 已於 2026-05-28 完成。目前若要繼續本 repo，應做 `request-log-rabbitmq-admin-consumer Step 5`。
+本檔完成時的下一步是 `antplay antplay-slot-admin-api Step 2`；Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。目前若要繼續本 repo，可依 Step 2 排序做 `game-api-whitelist-sync Step 3`。
 
 ## 掃描深度
 
@@ -416,18 +416,18 @@ Step 2 初步判斷: 中優先。已有 `antplay-slot-game-job/activity-accumula
 
 ## Relationship Check
 
-- `README.md`: 已於 Step 4 後更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 4` 已完成，下一步 `request-log-rabbitmq-admin-consumer Step 5`。
+- `README.md`: 已於 Step 5 後更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成，下一步可選 `game-api-whitelist-sync Step 3`。
 - `projects/antplay/README.md`: 已同步 antplay-slot-admin-api 狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 Step 1 / Step 2 已完成。
 - `projects/source-repo-inventory.md`: 已同步 Step 1 / Step 2 狀態。
-- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 4 改成 `request-log-rabbitmq-admin-consumer Step 5`。
+- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 5 改成可選 `game-api-whitelist-sync Step 3`。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已同步 Flow Track Step 1 / Step 2 狀態。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 1 只是候選 flow 盤點，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 已完成 Step 1 / Step 2 與第一條代表 flow Step 4。依 KB 防跳 Step 規則，下一步是同一條 flow Step 5，完成單條 flow claim gate。
+`antplay-slot-admin-api` 已完成 Step 1 / Step 2 與第一條代表 flow Step 5。若要繼續同 project，下一步回到 Step 2 排序的 Rank 2，做 Game API 白名單控制面。
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
 ```

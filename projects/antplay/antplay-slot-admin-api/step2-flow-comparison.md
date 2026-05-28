@@ -387,19 +387,19 @@ Step 2 判斷: Rank 8。暫不建議本批做。
 
 ## Relationship Check
 
-- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 4` 已完成，下一步為 Step 5。
+- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成，下一步可選 Rank 2 `game-api-whitelist-sync Step 3`。
 - `projects/antplay/README.md`: 已更新 antplay-slot-admin-api 狀態。
-- `projects/source-repo-flow-audit.md`: 已同步 Step 4 已完成與下一步 Step 5。
-- `projects/source-repo-inventory.md`: 已同步 Step 4 已完成。
+- `projects/source-repo-flow-audit.md`: 已同步 Step 5 已完成與下一條可選 Rank 2。
+- `projects/source-repo-inventory.md`: 已同步 Step 5 已完成。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已新增 Step 2 row。
-- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 4 改成 `request-log-rabbitmq-admin-consumer Step 5`。
-- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Step 4 已完成 / Step 5 待做」。
+- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 5 改成可選 `game-api-whitelist-sync Step 3`。
+- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Rank 1 Step 5 已完成 / Rank 2 可選」。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 2 只做 Flow Track 排序，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-第一條代表 flow 的 Step 4 已完成。下一步應做 Step 5，完成單條 flow claim gate，判斷這個 request log MQ consumer case 能否回填 project-level consolidation / 05 / 08。
+第一條代表 flow 的 Step 5 已完成。若要繼續本 project，下一步回到本檔排序的 Rank 2，做 `game-api-whitelist-sync Step 3`。這是可選後台 control plane 廣度補強，不是投遞前必做。
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
 ```
