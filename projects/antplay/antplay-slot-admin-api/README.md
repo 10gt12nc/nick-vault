@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | `request-log-rabbitmq-admin-consumer Step 5` 已完成 / 2026-05-28 |
-| 履歷判斷 | 真實開發過 + code-backed；本 flow 可支撐後台 API / async audit，但不直接更新 05 / 08 |
-| 下一步 | 可選 `antplay antplay-slot-admin-api game-api-whitelist-sync Step 3` |
+| Flow Track | `request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 3` 已完成 / 2026-05-28 |
+| 履歷判斷 | 真實開發過 + code-backed；目前 flows 可支撐後台 API / async audit / Game API 白名單 control plane，但不直接更新 05 / 08 |
+| 下一步 | 可選 `antplay antplay-slot-admin-api game-api-whitelist-sync Step 4` |
 
 ## Claim Boundary
 
@@ -33,4 +33,6 @@
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/step2-flow-comparison.md)
 - [flows/request-log-rabbitmq-admin-consumer/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/flow.md)
 - [flows/request-log-rabbitmq-admin-consumer/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/career-interview.md)
+- [flows/game-api-whitelist-sync/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/game-api-whitelist-sync/flow.md)
+- [flows/game-api-whitelist-sync/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/game-api-whitelist-sync/career-interview.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/contribution-claim-consolidation.md)

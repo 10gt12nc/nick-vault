@@ -30,7 +30,7 @@
 | risk / RTP / dark pool monitoring | 真實開發過 | `feat(#659): 商户游戏风控概况`、`feat(656): 新增监控job`、`暗池调整会写记录`、monitor jobs / alert mapper |
 | 玩家單點控制 | 真實開發過 | `feat(#767): 单点控制，agentPlayer 建立`、player control mapper / service / record |
 | RabbitMQ / async | 真實開發過 | `feat(#774): RequestLog 改丢 rabbitmq 非同步执行`、`feat(#775): rabbitmq 收风控通知`、listener / mapper commits |
-| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；本檔仍是 rolling consolidation |
+| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 3` 已完成；本檔仍是 rolling consolidation |
 
 ## Source Scan Record
 
@@ -62,8 +62,9 @@
 未完成:
 
 - 已完成 `antplay-slot-admin-api Step 1 / Step 2`；第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已建立 `flow.md` / `career-interview.md` / `materials/`、轉成正式面試 case，並完成單條 flow claim gate。
-- 尚未逐條建立其他候選 flow package；下一條可選 `game-api-whitelist-sync Step 3`。
-- 未掃 `antplay-slot-game-api` / `antplay-slot-game-job`，不能把 admin API claim 擴張成遊戲 runtime claim。
+- 已完成第二條代表 flow `game-api-whitelist-sync Step 3`，確認 admin-api 白名單 control plane、DB / Redis 同步與 game-api runtime `WhiteIpFilter` 邊界。
+- 尚未完成 `game-api-whitelist-sync Step 4 / Step 5`；尚未逐條建立其他候選 flow package。
+- 本輪只針對 `game-api-whitelist-sync` 補掃 `antplay-slot-game-api` runtime filter；不能把 admin API claim 擴張成完整遊戲 runtime claim。
 - 未逐檔逐行 Level 3。
 
 ## Important Commit Evidence
@@ -186,8 +187,8 @@
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已於 2026-05-28 完成。Step 5 結論是：本 flow 可作 project-level supporting evidence 與正式面試 case，但不直接更新 `05 / 08`。下一步若要繼續本 repo，可依 Step 2 排序做 `game-api-whitelist-sync Step 3`。
+`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2、第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 與第二條代表 flow `game-api-whitelist-sync Step 3` 已於 2026-05-28 完成。`game-api-whitelist-sync` 目前只到 Step 3，不直接更新 `05 / 08`。下一步若要繼續本 repo，可做 `game-api-whitelist-sync Step 4`。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 4
 ```

@@ -330,8 +330,8 @@ Step 4 已完成，正式面試素材放在:
 
 ## 16. 下一步
 
-這條 flow 已完成 Step 5。若要繼續補 `antplay-slot-admin-api` Flow Track，依 Step 2 排序回到同 project 的下一條代表 flow: `game-api-whitelist-sync Step 3`。這是可選後台 control plane 廣度補強，不是通用投遞前必做。
+這條 flow 已完成 Step 5。後續同 project 的下一條代表 flow `game-api-whitelist-sync Step 3` 也已完成。若要繼續補 `antplay-slot-admin-api` Flow Track，可把 Game API 白名單控制面轉成正式面試 case；這是可選後台 control plane 廣度補強，不是通用投遞前必做。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 3
+antplay antplay-slot-admin-api game-api-whitelist-sync Step 4
 ```
