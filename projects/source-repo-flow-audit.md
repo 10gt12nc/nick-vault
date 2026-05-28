@@ -8,7 +8,9 @@
 
 2026-05-26 AntPlay re-audit：已重新掃 `/Users/nick/Git/antplay` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module 與 path history。當時結論是：AntPlay 沒有新的「必做」缺口；`antplay-slot-admin-api` Flow Track 屬可選補強，不是通用投遞前必做。2026-05-28 已補 Step 1 / Step 2、`request-log-rabbitmq-admin-consumer Step 5`、`game-api-whitelist-sync Step 5` 與 project-level contribution refresh。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 已有足夠代表 flows / consolidation；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，不升級為新主線。
 
-2026-05-26 iwin re-audit：已重新掃 `/Users/nick/Git/iwin` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `nick-vault/projects/iwin` KB。結論是：iwin 目前沒有新的「真正值得補」的 project Flow Track 缺口；`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 的代表 flows / consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 有 Nick direct commits，但定位是 payment provider contract / callback 測試支撐，不升級成主履歷 flow；若要補，只作 payment case 的 supporting evidence。iwin 目前唯一保留的可選補強是 domain-level `iwin system map v1`，用來整理跨 repo 協作與 claim boundary，不是投遞前必做。
+2026-05-26 iwin re-audit：已重新掃 `/Users/nick/Git/iwin` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `nick-vault/projects/iwin` KB。結論是：iwin 目前沒有新的「真正值得補」的 project Flow Track 缺口；`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 的代表 flows / consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 有 Nick direct commits，但定位是 payment provider contract / callback 測試支撐，不升級成主履歷 flow；若要補，只作 payment case 的 supporting evidence。原保留的可選補強是 domain-level `iwin system map v1`，已於 2026-05-28 完成。
+
+2026-05-28 iwin system map v1：已新增 `projects/iwin/architecture-map.md`、`projects/iwin/integration-map.md` 與 `projects/iwin/career-interview.md`。iwin domain-level 架構視角已補齊 v1；後續不再把 iwin 大地圖列為預設下一步。若要升級，只能在 Nick 明確指定時做 Level 3 架構審計或 JD-specific system design。
 
 2026-05-26 UGSoft re-audit / 2026-05-27 flow closure + refresh：已重新掃 `/Users/nick/Git/ugsoft` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `projects/ugsoft` KB。結論是：UGSoft 仍有值得補的 Flow Track，但目前兩個高價值方向已收斂，不需要全 repo 平均掃。`ugsoft-connector-api` 本批三條代表 flow 已完成 Step 5：`transfer-wallet-in-out-query`、`provider-callback-bet-settle-to-mq`、`request-bet-record-mq-sync`，且已完成 project-level `contribution claim consolidation refresh`。`ugsoft-admin-api Step 1 / Step 2` 也已完成，本批代表 flows 為 `connect-bet-record-mq-ingestion`、`request-log-rabbitmq-admin-consumer`、`game-api-provider-white-ip-control-plane`；三條代表 flow 均已完成 Step 5，且已完成 project-level `contribution claim consolidation refresh`。`official-web-v3`、`ugsoft-admin-web`、`ugsoft-workspace` 不列主待辦；workspace 只作 supporting evidence。
 
@@ -86,7 +88,7 @@
 
 ## 建議收斂
 
-全域候選與邊界如下；不代表必須全部開工。iwin re-audit 後，iwin 沒有新的 project Flow Track 主待辦：
+全域候選與邊界如下；不代表必須全部開工。iwin re-audit 後，iwin 沒有新的 project Flow Track 主待辦，且 2026-05-28 `iwin system map v1` 已完成：
 
 1. `ugsoft-connector-api`：最值得補 Flow Track。2026-05-26 re-audit 後仍維持第一順位；Step 1 / Step 2 已完成，本批三條代表 flow `transfer-wallet-in-out-query Step 5`、`provider-callback-bet-settle-to-mq Step 5`、`request-bet-record-mq-sync Step 5` 均已於 2026-05-27 完成，project-level contribution refresh 也已完成。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，已補足非 iwin 廣度；目前沒有預設下一步。
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。2026-05-27 已完成 Step 1 / Step 2，本批代表 flows 已選定，第一條 `connect-bet-record-mq-ingestion`、第二條 `request-log-rabbitmq-admin-consumer`、第三條 `game-api-provider-white-ip-control-plane` 均已完成 Step 5，且 contribution refresh 已完成。目前沒有預設下一步。

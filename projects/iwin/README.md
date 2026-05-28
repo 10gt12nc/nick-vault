@@ -4,19 +4,24 @@
 
 ## 讀檔順序
 
-1. [game_api](game_api/README.md)：玩家端 / partner API orchestration，三條代表 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
-2. [payment](payment/README.md)：金流 / 充值 / 提現 orchestration，Top 5 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核並補入 GoldenPay direct evidence；不因新規則重做。
-3. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
-4. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；不因新規則重做。
-5. [third_games_api](third_games_api/README.md)：第三方遊戲 provider adapter，`gsc-transfer-bet-settle-rollback` 已到 Step 5，`oneapi-wallet-bet-result` 已到 Step 5，`antplay-bet-settle-rollback` 已到 Step 5，`gsc-seamless-withdraw-deposit-cancel` 已到 Step 5，rolling / scoped contribution consolidation 已完成；不新增 standalone 正式履歷主成果。
-6. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`contribution-claim-consolidation` 已完成 rolling / scoped 收口；第三方 provider 投派整合可保守放履歷，本批代表 flows 已完成 Step 5。
-7. [k3s-deploy](k3s-deploy/README.md)：K3s / Kustomize deploy manifests，`gameserver-phased-rollout` 已到 Step 5；claim gate 結論維持 interview-only，不更新正式履歷。
-8. [bi_share](bi_share/README.md)：PHP / Laravel 分享、佣金與 BI 報表 legacy repo；rolling / scoped negative contribution consolidation 已完成，不放正式履歷主成果。
-9. [iwin-workspace](iwin-workspace/README.md)：workspace / KB / docs / environment index；contribution consolidation 已完成，不新增 standalone 正式履歷主成果，只作工作方法與 cross-repo reconstruction supporting evidence。
+1. [architecture-map.md](architecture-map.md)：iwin domain-level system map v1，先看整體分層、三條主線與 claim boundary。
+2. [integration-map.md](integration-map.md)：跨 repo integration map，整理金流、第三方遊戲、BI / batch / 後台查問題路徑。
+3. [career-interview.md](career-interview.md)：iwin domain-level 履歷 / 面試口徑，說明哪些能放履歷、哪些只能面試講。
+4. [game_api](game_api/README.md)：玩家端 / partner API orchestration，三條代表 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；正式履歷只採 coupon 保守 claim，partner / agent bonus 只作 code-backed 面試素材。
+5. [payment](payment/README.md)：金流 / 充值 / 提現 orchestration，Top 5 flow 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核並補入 GoldenPay direct evidence；不因新規則重做。
+6. [app_bi](app_bi/README.md)：PHP / ThinkPHP 後台與 BI / control plane，4 條主要 flow 已到 Step 5，定位為後台入口與面試分析素材。
+7. [game_job](game_job/README.md)：批次任務與 BI projection，Top 5 代表 flows 與 project-level contribution consolidation 已完成，2026-05-20 已重新覆核；不因新規則重做。
+8. [third_games_api](third_games_api/README.md)：第三方遊戲 provider adapter，`gsc-transfer-bet-settle-rollback` 已到 Step 5，`oneapi-wallet-bet-result` 已到 Step 5，`antplay-bet-settle-rollback` 已到 Step 5，`gsc-seamless-withdraw-deposit-cancel` 已到 Step 5，rolling / scoped contribution consolidation 已完成；不新增 standalone 正式履歷主成果。
+9. [iwin_gameserver](iwin_gameserver/README.md)：Java 遊戲伺服器，`contribution-claim-consolidation` 已完成 rolling / scoped 收口；第三方 provider 投派整合可保守放履歷，本批代表 flows 已完成 Step 5。
+10. [k3s-deploy](k3s-deploy/README.md)：K3s / Kustomize deploy manifests，`gameserver-phased-rollout` 已到 Step 5；claim gate 結論維持 interview-only，不更新正式履歷。
+11. [bi_share](bi_share/README.md)：PHP / Laravel 分享、佣金與 BI 報表 legacy repo；rolling / scoped negative contribution consolidation 已完成，不放正式履歷主成果。
+12. [iwin-workspace](iwin-workspace/README.md)：workspace / KB / docs / environment index；contribution consolidation 已完成，不新增 standalone 正式履歷主成果，只作工作方法與 cross-repo reconstruction supporting evidence。
 
 ## 目前內容
 
-2026-05-26 re-audit：已重新掃 `/Users/nick/Git/iwin` 各來源 repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB。結論：iwin 沒有新的 project Flow Track 必做缺口；現有代表 flows / contribution consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 只作 `payment` provider contract / callback 測試 supporting evidence，不升級主履歷 flow；可選補強只剩 domain-level `iwin system map v1`，不是投遞前必做。
+2026-05-26 re-audit：已重新掃 `/Users/nick/Git/iwin` 各來源 repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB。結論：iwin 沒有新的 project Flow Track 必做缺口；現有代表 flows / contribution consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 只作 `payment` provider contract / callback 測試 supporting evidence，不升級主履歷 flow。
+
+2026-05-28 `iwin system map v1` 已完成：新增 domain-level [architecture-map.md](architecture-map.md)、[integration-map.md](integration-map.md) 與 [career-interview.md](career-interview.md)，把跨 repo 協作關係、三條主線、查問題順序與 claim boundary 收成架構視角。這是可選架構補強，不新增履歷 claim，也不代表全 iwin 全量 code audit。
 
 | Project | 目前內容 | 下一步 |
 | --- | --- | --- |
