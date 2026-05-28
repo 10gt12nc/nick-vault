@@ -17,7 +17,7 @@
 | --- | --- | --- | --- |
 | 1 | Provider Integration template | payment provider、遊戲 provider、callback、query、補償、對帳 | v1 completed |
 | 2 | Wallet / Bet-Settle template | wallet source of truth、bet record、settle、rollback、transaction boundary | v1 completed |
-| 3 | MQ / Batch / Projection template | Kafka / RabbitMQ、report projection、retry、DLQ、重跑、資料修復 | pending |
+| 3 | MQ / Batch / Projection template | Kafka / RabbitMQ、report projection、retry、DLQ、重跑、資料修復 | v1 completed |
 | 4 | Slot Math / RTP Validation template | math-core contract、simulation、result validation、版本相容 | pending / optional |
 
 ## Provider Integration Template v1
@@ -700,6 +700,323 @@ evidence
 - 不說「report projection 是交易帳本」。
 - 不說「partner / provider analysis-only flow 是我開發」。
 
+## MQ / Batch / Projection Template v1
+
+### 1. 面試定位
+
+這份模板回答：
+
+```text
+如果我要從 0 設計一個 MQ / batch / report projection 系統，
+如何處理事件進入、consumer 冪等、報表投影、批次重跑、DLQ、資料修復與 observability？
+```
+
+適用場景：
+
+- Kafka / RabbitMQ event -> DB projection。
+- Bet record、request log、settled bet、report summary 等 async ingestion。
+- Quartz / batch summary / backup / cleanup。
+- Admin report、BI report、audit log、operation dashboard 類後台資料流。
+
+不適用或不可誇大：
+
+- 不代表 Nick 主導過完整 Kafka / RabbitMQ platform。
+- 不代表系統已具備 exactly-once、完整 outbox / inbox 或全自動資料修復。
+- 不把 report projection 當成交易 source of truth。
+- 不把 batch job 寫成完整資料平台 owner。
+
+### 2. Evidence 對照
+
+| Evidence | 用途 | Claim 邊界 |
+| --- | --- | --- |
+| `projects/antplay/antplay-slot-game-job/flows/proxy-user-data-report-projection/flow.md` | Kafka settled bets -> proxy / player / day / currency report projection，搭配 Quartz summary / backup / delete | 可談 Kafka projection、報表彙總與批次收斂；不可寫完整 Kafka platform owner |
+| `projects/iwin/game_job/flows/daily-game-data-summary/flow.md` | Quartz daily summary，從 log / day partition 彙總到 daily record，含時間窗、備份、清理風險 | 可談 batch summary、partition data、報表投影；不可寫完整 BI owner |
+| `projects/antplay/antplay-slot-game-api/flows/request-log-rabbitmq-async/flow.md` | API request log 透過 RabbitMQ async persistence，不阻塞主交易 | 可談 async audit / observability supporting flow；不可說 request log 是交易真相 |
+| `projects/ugsoft/ugsoft-admin-api/flows/connect-bet-record-mq-ingestion/flow.md` | RabbitMQ consumer 接收 bet record，寫入 `pt_bet_record`，處理 duplicate check 與後續 quota update | 可談 consumer ingestion / duplicate guard；不可寫完整 quota / settle owner |
+| `projects/ugsoft/ugsoft-connector-api/flows/provider-callback-bet-settle-to-mq/flow.md` | provider callback 經 connector publish MQ，再由 admin consumer 入庫 | 可談 callback -> MQ -> downstream persistence 邊界；不可寫完整 outbox owner |
+| `projects/antplay/integration-map.md` / `projects/iwin/integration-map.md` / `projects/ugsoft/integration-map.md` | 跨 project source of truth、projection 與排查順序 | 架構視角，不新增履歷 claim |
+
+### 3. 0 到 1 核心切法
+
+```mermaid
+flowchart LR
+  Source["Source of Truth\nwallet / bet / provider event"]
+  Producer["Producer / Publish Boundary"]
+  Broker["Kafka / RabbitMQ"]
+  Consumer["Consumer / Worker"]
+  Inbox["Message Log / Inbox"]
+  Projection["Projection DB\nreport / request log / bet record"]
+  Batch["Quartz / Batch Summary"]
+  Repair["Replay / Rebuild / Repair"]
+  Admin["Admin / Report View"]
+  Obs["Lag / DLQ / Metrics / Alerts"]
+
+  Source --> Producer
+  Producer --> Broker
+  Broker --> Consumer
+  Consumer --> Inbox
+  Consumer --> Projection
+  Projection --> Batch
+  Projection --> Admin
+  Batch --> Admin
+  Source --> Repair
+  Repair --> Consumer
+  Repair --> Projection
+  Broker --> Obs
+  Consumer --> Obs
+  Batch --> Obs
+```
+
+核心不是「丟 MQ」或「每天跑一支 job」，而是把 source of truth、event transport、projection 與 repair boundary 分清楚：
+
+1. Source of truth：wallet transaction、bet record、provider order 或原始交易表才是主要真相。
+2. Publish boundary：決定主交易成功是否包含 MQ publish；若不包含，要有補送 / outbox / alert。
+3. Message identity：每個 event 必須有可去重、可追蹤、可 replay 的 key。
+4. Consumer idempotency：consumer 不能假設 MQ 只送一次。
+5. Projection table：報表與查詢優化表必須可重建，不應反過來改交易真相。
+6. Batch summary：批次要有時間窗、batch id、expected / processed / failed count。
+7. Replay / repair：DLQ、重跑、補資料必須先 dry-run 或用 idempotent upsert。
+8. Observability：lag、DLQ、批次耗時、資料差異與 stale report age 要能被看見。
+
+### 4. 最小資料模型
+
+#### `message_inbox`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `message_id` | MQ message id 或 internal event id |
+| `topic` / `queue` | Kafka topic / RabbitMQ queue |
+| `partition` / `offset` | Kafka replay / trace 用；RabbitMQ 可用 delivery tag / publish sequence 替代 |
+| `event_type` | request_log / bet_record / settled_bet / daily_summary |
+| `idempotency_key` | consumer 去重主 key |
+| `payload_hash` | 比對 payload 是否重送不同內容 |
+| `status` | received / processing / projected / failed / dlq / replayed |
+| `retry_count` | retry 次數 |
+| `error_code` / `error_message` | 修復依據 |
+| `received_at` / `processed_at` | lag 與 SLA |
+
+#### `projection_record`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `projection_key` | 報表唯一維度，例如 day + agent + player + currency |
+| `source_event_key` | 對回 source event / bet / order |
+| `data_day` | 批次與分區查詢主軸 |
+| `metric_type` | bet_amount / win_amount / request_count / valid_bet |
+| `metric_value` | 彙總值 |
+| `version` | snapshot / rebuild 版本 |
+| `last_event_time` | projection freshness |
+| `updated_at` | stale report age |
+
+#### `batch_run`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `batch_id` | 每次 job 執行識別 |
+| `job_name` | daily_summary / backup / cleanup / rebuild |
+| `source_range_start` / `source_range_end` | 掃描來源時間窗 |
+| `target_table` | 投影或備份目標 |
+| `expected_count` / `processed_count` / `failed_count` | 完整度檢查 |
+| `status` | running / success / partial_failed / failed / repaired |
+| `started_at` / `finished_at` | job duration |
+| `operator` | system / manual repair user |
+
+### 5. State Machine
+
+#### Message / Projection
+
+```text
+PUBLISHED
+-> CONSUMED
+-> VALIDATED
+-> PROJECTED
+-> ACKED
+```
+
+異常分支：
+
+```text
+CONSUMED -> VALIDATION_FAILED
+VALIDATED -> PROJECT_FAILED
+PROJECT_FAILED -> RETRYING
+RETRYING -> DLQ
+DLQ -> REPLAYING
+REPLAYING -> PROJECTED / REPAIR_FAILED
+```
+
+#### Batch / Summary
+
+```text
+SCHEDULED
+-> RUNNING
+-> SOURCE_SCANNED
+-> STAGING_WRITTEN
+-> PUBLISHED_TO_REPORT
+-> COMPLETED
+```
+
+異常分支：
+
+```text
+SOURCE_SCANNED -> PARTIAL_FAILED
+STAGING_WRITTEN -> PUBLISH_FAILED
+PUBLISHED_TO_REPORT -> BACKUP_FAILED / CLEANUP_FAILED
+PARTIAL_FAILED -> REPAIR_PENDING
+REPAIR_PENDING -> REPLAYING / MANUAL_REPAIR
+```
+
+### 6. Idempotency / Replay 設計
+
+| 情境 | 建議 key | Owner 判斷 |
+| --- | --- | --- |
+| Kafka settled bets projection | `topic + partition + offset`，或 `settle_batch_id + bet_id` | offset 可 trace，business key 才能防重算 |
+| RabbitMQ request log | `request_id / trace_id + endpoint + request_time` | request log 是 audit supporting，不反推交易成功 |
+| Bet record ingestion | `provider + provider_bet_id + account + currency + event_type` | duplicate check 要在寫 projection / quota 前 |
+| Daily summary batch | `job_name + data_day + source_range + version` | 避免同日重跑時 delete / insert 造成空窗 |
+| Replay task | `original_message_key + replay_batch_id` | replay 要能標記來源，避免把修復當新交易 |
+
+Replay 原則：
+
+- Projection 可以重跑，但 source of truth 不應被 replay 直接改壞。
+- DLQ replay 要先確認 idempotency key 與 payload hash。
+- 若 projection 是累加型，重跑前要能辨識已加過；若做不到，改用 snapshot / staging / replace。
+- Batch delete + insert 要避免報表短暫查空；較穩的做法是 staging table + version switch。
+- Manual repair 要留下 before / after、operator、reason 與 source evidence。
+
+### 7. Failure Window
+
+| Failure window | 後果 | Owner 解法 |
+| --- | --- | --- |
+| 主交易成功但 MQ publish fail | source 已成功，projection / audit 缺資料 | outbox / publish retry / alert；不要把 report 缺資料判成交易失敗 |
+| MQ publish success 但 producer 未收到 ack | producer 可能重送 | idempotency key + payload hash；consumer 不假設只送一次 |
+| Consumer 寫 DB 成功但 ack fail | MQ 重送造成重複寫 | DB unique / upsert / inbox processed record |
+| Consumer 先 ack 後寫 DB fail | message 消失但 projection 缺資料 | 避免 ack before durable write；必要時有 audit log / replay source |
+| Projection 累加重複執行 | 報表金額或 count 放大 | business key 去重，或 snapshot 重建 |
+| Batch 掃描時間窗不準 | 漏資料 / 重複資料 | 明確 source range、watermark、補跑策略 |
+| Delete + insert 重建報表 | 查詢空窗或部分資料 | staging + version switch；或標示 rebuild in progress |
+| Backup success / cleanup fail | 儲存成本上升、舊資料仍被查到 | cleanup status / retry / retention monitor |
+| Cleanup success / backup fail | 資料遺失風險 | 先 backup verified，再 cleanup；cleanup 前有 count compare |
+| DLQ replay 缺邊界 | 修復時二次副作用 | replay dry-run、idempotent upsert、人工核准 |
+
+### 8. Reconciliation / Data Repair
+
+最小 reconciliation 分四層：
+
+1. Source vs message：source 交易筆數、金額、狀態是否都有 publish evidence。
+2. Message vs inbox：broker delivered count、consumer received count、DLQ count 是否一致。
+3. Inbox vs projection：processed message 是否都有投影結果。
+4. Projection vs report：報表彙總與 source aggregation 是否差異過大。
+
+Data repair 不應直接「補一筆看起來對的報表」：
+
+```text
+repair_task
+-> define source range
+-> dry-run count / amount compare
+-> rebuild staging projection
+-> compare old vs new
+-> switch version / apply upsert
+-> post-check report
+```
+
+常見修復策略：
+
+- 單筆 message replay：適合 request log、bet record ingestion。
+- 時間窗 rebuild：適合 daily summary、agent / player report。
+- Source aggregation compare：適合 money / bet amount correctness。
+- Versioned projection：適合避免重建空窗。
+- Manual exception list：適合無法自動判斷的 provider / partner 異常資料。
+
+### 9. Observability
+
+最少要能回答：
+
+- 這筆 source event 是否 publish 成功？
+- 這筆 message 是否被 consumer 收到？
+- Consumer 是否處理成功？失敗原因是 schema、DB、duplicate 還是 downstream？
+- Projection 目前延遲多久？
+- Batch 今天掃了哪個時間窗？處理幾筆？失敗幾筆？
+- DLQ 裡有多少筆？最老的是多久以前？
+- 報表與 source aggregation 差異是多少？
+
+建議指標：
+
+- Consumer lag / queue depth。
+- DLQ count / retry count / oldest message age。
+- Projection stale age。
+- Batch duration / expected vs processed count。
+- Rebuild / replay success rate。
+- Duplicate event count。
+- Source vs projection amount diff。
+- Report query latency。
+
+### 10. Rollout Plan
+
+#### Phase 1：先定 source of truth 與 projection 邊界
+
+- 說清楚交易真相在哪張表 / 哪個 service。
+- 報表、request log、audit log 不反向決定交易是否成功。
+- 明確 API success 是否包含 MQ publish。
+
+#### Phase 2：Message identity and idempotent consumer
+
+- 定義 business idempotency key。
+- Consumer 寫入前先查 processed / inbox / unique key。
+- Retry 不造成重複累加。
+
+#### Phase 3：Batch run metadata
+
+- 每支 job 都有 `batch_id`、source range、expected / processed / failed count。
+- 不只看排程有沒有跑，也要看資料是否完整。
+
+#### Phase 4：Replay / DLQ / repair path
+
+- DLQ 可查、可分類、可 replay。
+- Replay 前有 dry-run / compare。
+- Manual repair 有 audit trail。
+
+#### Phase 5：Projection rebuild and report cutover
+
+- 對重要報表補 staging / version switch。
+- 支援時間窗重建。
+- report UI 或 admin 查詢能標示資料延遲與重建狀態。
+
+### 11. 面試 3 分鐘講法
+
+```text
+如果我要設計 MQ / batch / report projection 系統，我會先把它拆成 source of truth、message transport、projection、batch summary、repair 五層。
+
+我不會把 MQ 或報表表當成交易真相。交易真相通常在 wallet transaction、bet record、provider order 或原始 source table；MQ 和 batch 的任務是把這些真相可靠地投影到查詢、報表、audit 或後台畫面。因此第一步要先定義 API 成功是否包含 MQ publish，以及如果 publish fail，要靠 outbox、補送或 alert 收斂。
+
+第二個重點是 consumer 冪等。Kafka / RabbitMQ 都不能假設只送一次，所以每筆 message 要有 business idempotency key，例如 bet id、provider bet id、request id、data day + agent + player + currency。consumer 寫 projection 前要先建立 processed record 或用 DB unique / upsert，避免 retry 或 replay 造成金額和 count 重複累加。
+
+第三個重點是 batch 和 report projection 必須可重建。每支 batch job 要有 batch id、source range、expected count、processed count、failed count。重要報表重建時，我會優先用 staging table 或 version switch，避免 delete + insert 造成查詢空窗。DLQ 或資料修復也不應直接改報表，而是先 dry-run，比對 source aggregation，再 replay 或 rebuild。
+
+我的實際材料主要來自 AntPlay Kafka report projection、RabbitMQ request log、UGSoft bet record MQ ingestion，以及 iwin game_job daily summary。這些能支撐我談 event-driven projection、batch summary、重跑、資料修復和 observability；但我不會誇大成我主導完整 Kafka platform 或 BI data platform。
+```
+
+### 12. 常見追問
+
+| 追問 | 回答要點 |
+| --- | --- |
+| MQ publish 成功才算交易成功嗎？ | 看 contract。money / bet source 通常先以交易 DB 為真相；若 projection 必須同步，需 outbox / local transaction boundary。 |
+| Consumer 如何防重？ | business idempotency key + processed record / DB unique / upsert；不要只靠 MQ delivery guarantee。 |
+| Kafka offset 可以當 idempotency key 嗎？ | 可以 trace delivery，但 business replay / rebuild 更適合用 bet id、order id、request id 等 business key。 |
+| RabbitMQ message ack 要放哪裡？ | durable write / processed record 成功後再 ack；先 ack 後寫 DB 會造成 message 消失。 |
+| 報表資料和交易資料不一致怎麼辦？ | 先判斷 source of truth，再做 source vs message vs projection vs report compare；不要直接改報表湊數。 |
+| Batch 重跑會不會重複累加？ | 若是累加型要有去重或重建策略；更穩的是 staging / snapshot / version replace。 |
+| DLQ replay 怎麼防二次副作用？ | replay 前檢查 idempotency key、payload hash、原處理狀態；優先 idempotent upsert 或 dry-run。 |
+| 怎麼知道 job 真的跑完？ | 不只看 scheduler success，要看 batch_run 的 source range、expected / processed / failed count 與 post-check。 |
+
+### 13. 不可誇大清單
+
+- 不說「我主導完整 Kafka / RabbitMQ 平台」。
+- 不說「我做過完整 exactly-once / outbox / inbox 架構」。
+- 不說「我主導完整 BI / data platform」。
+- 不說「所有報表都可以自動修復」。
+- 不說「request log / report projection 是交易 source of truth」。
+- 不把 analysis-only 或主管 / 團隊 context 寫成 Nick direct evidence。
+
 ## Relationship Check
 
 本檔新增的是 system design template，不是新履歷 claim。
@@ -708,5 +1025,5 @@ evidence
 - `08-application-autobiography-zh.md`：不更新。
 - `04-interview-casebook.md`：不更新；本模板可作 case 延伸材料。
 - `17-salary-negotiation.md`：不更新；不新增談薪 claim。
-- `06-todo.md`：需標示 Provider Integration template v1、Wallet / Bet-Settle template v1 已完成。
-- `11-senior-interview-readiness.md`：需標示前兩份 system design template 已完成。
+- `06-todo.md`：需標示 Provider Integration template v1、Wallet / Bet-Settle template v1、MQ / Batch / Projection template v1 已完成。
+- `11-senior-interview-readiness.md`：需標示前三份 system design template 已完成。

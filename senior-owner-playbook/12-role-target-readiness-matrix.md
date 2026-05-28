@@ -345,4 +345,4 @@ Senior Java Backend
 
 如果要再往「0 到 1 架構能力」補強，下一步不是平均掃更多 repo，而是把已掌握的 payment provider / game wallet / bet-settle / MQ / batch / math flows 抽成可重用的 system design template：狀態機、資料表、idempotency key、outbox / inbox、retry、reconciliation、observability、manual repair 與 rollout plan。這是可選加強，不是目前通用投遞稿的前置條件。
 
-建議模板只收斂成 4 份：`Provider Integration template`、`Wallet / Bet-Settle template`、`MQ / Batch / Projection template` 是主力；`Slot Math / RTP Validation template` 是遊戲 / slot / provider JD 的備用差異化。這四份的價值是展示從 production flow 抽象出 system design 的能力，不是宣稱 Nick 主導過完整 0 到 1 大系統。`Provider Integration template v1` 與 `Wallet / Bet-Settle template v1` 已完成，位置是 `18-system-design-templates.md`；其餘兩份仍是可選。
+建議模板只收斂成 4 份：`Provider Integration template`、`Wallet / Bet-Settle template`、`MQ / Batch / Projection template` 是主力；`Slot Math / RTP Validation template` 是遊戲 / slot / provider JD 的備用差異化。這四份的價值是展示從 production flow 抽象出 system design 的能力，不是宣稱 Nick 主導過完整 0 到 1 大系統。`Provider Integration template v1`、`Wallet / Bet-Settle template v1` 與 `MQ / Batch / Projection template v1` 已完成，位置是 `18-system-design-templates.md`；剩下 Slot Math / RTP Validation 仍是可選。
