@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: Game API 白名單控制面 / DB + Redis 同步
 - Flow slug: `game-api-whitelist-sync`
-- 完成狀態: Step 4 / 正式面試 case 已完成；Level 2 Flow 深掃沿用 Step 3 evidence
+- 完成狀態: Step 5 / 單條 flow claim gate 已完成；Level 2 Flow 深掃沿用 Step 3 / Step 4 evidence
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 `#682` admin-api 白名單 direct commits，game-api runtime filter 有 `#684` direct commits；內網 remote fetch 失敗，本輪依本地 refs / 本地工作樹保守分析
 - 本 flow 類型: 後台 control plane / runtime access-control support flow
 - 是否只確認到入口: 否。已確認 admin-api controller / service / mapper / Redis 寫入，以及 game-api `WhiteIpFilter` 讀同一 Redis key 做 request allow / reject；但完整 gateway / security platform、production deploy policy 與後續 team 改動效果仍待確認
@@ -267,9 +267,19 @@ source merchant IP list
 - 不說完整 production access-control / WAF / IAM owner。
 - 不把白名單控制面包裝成 money correctness。
 
-## 13. Step 4 面試收斂
+## 13. Step 5 Claim Gate
 
-這條 flow 已整理成正式面試 case。它的面試定位不是「後台 CRUD」，而是「後台 control plane 如何透過 DB + Redis 影響 game-api runtime access-control」。
+這條 flow 已完成單條 flow claim gate。它可以作為 AntPlay 後台 control plane / Game API access-control 的正式面試 case，也可以回填 `antplay-slot-admin-api` project-level contribution consolidation 的 supporting evidence。
+
+Step 5 結論:
+
+- 證據層級: `真實開發過 + code-backed`。
+- 可面試講: 參與 Game API 白名單控制面，處理 admin-api 新增 / 刪除 / 查詢 / sync、DB `game_api_login_ip_white`、Redis `antplay:GameApiWhiteIp:{agentId}` 與 game-api runtime `WhiteIpFilter` 的 allow / reject 邊界。
+- 可放履歷: 只能併入 project-level 「後台 API / 商戶控制面 / Game API 白名單同步」類 claim；不建議單獨列成主成果。
+- 不直接更新 `05 / 08`: 單條 flow Step 5 只完成 flow-level claim gate；正式履歷仍以 project-level contribution consolidation refresh 或 rolling resume package 為準。
+- 不可誇大: 不說完整 security platform、API gateway、WAF、IAM、完整 game-api runtime owner、完整 DB / Redis 強一致 owner、production incident owner 或量化改善。
+
+面試定位不是「後台 CRUD」，而是「後台 control plane 如何透過 DB + Redis 影響 game-api runtime access-control」。
 
 面試主軸:
 
@@ -278,9 +288,9 @@ source merchant IP list
 - 這不是 money correctness，但屬於 access-control correctness；錯會造成合法商戶被拒或不該放行的 IP 被放行。
 - DB / Redis 雙寫不是強一致，正式 owner 要補 unique key、cache rebuild、reconciliation、reject metrics 與告警。
 
-Step 4 不直接更新 `05 / 08`。單條 flow 的履歷 claim gate 要等 Step 5；project-level 履歷仍以 `contribution-claim-consolidation.md` 或後續 refresh 為準。
+Step 5 後，本 flow 已可作面試 case 與 project-level supporting evidence；但 `05 / 08` 不應因單條 flow 直接改寫，避免把一條白名單 flow 誇大成完整 access-control platform。
 
-## 14. Step 4 後待補
+## 14. 收斂後待補
 
-- Step 5 再做 claim gate，判斷是否只作 project-level supporting evidence，或能回填 `antplay-slot-admin-api` contribution refresh。
+- 若要讓 `antplay-slot-admin-api` Career Track 更乾淨，可做 project-level `contribution claim consolidation refresh`，把 `request-log-rabbitmq-admin-consumer Step 5` 與本 flow Step 5 一起回填。
 - 若要升級成更強 owner case，需補 DB DDL / unique key、Redis rebuild / reconciliation、filter deployment scope 與 production reject metrics。

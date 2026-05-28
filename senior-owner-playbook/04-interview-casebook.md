@@ -12,6 +12,8 @@
 
 > 2026-05-27 rolling resume package：`ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 已回填。UGSoft 可作非 iwin 廣度 case，主軸是後台 API / control plane、provider connector、RequestLog / BetRecord MQ、Game API / provider IP 白名單控制面與 Quartz / report job；不可包裝成完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
 
+> 2026-05-28 AntPlay admin 補充：`antplay-slot-admin-api/request-log-rabbitmq-admin-consumer` 與 `antplay-slot-admin-api/game-api-whitelist-sync` 已完成 Step 5，可作後台 control plane / async audit / Game API 白名單同步的補充面試 case；不單獨改 `05 / 08`，也不得包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner。
+
 ## 104 主打 bullet 對齊表
 
 用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。
@@ -106,8 +108,10 @@
 - `ugsoft-admin-api/connect-bet-record-mq-ingestion`
 - `ugsoft-admin-api/request-log-rabbitmq-admin-consumer`
 - `ugsoft-admin-api/game-api-provider-white-ip-control-plane`
+- `antplay-slot-admin-api/request-log-rabbitmq-admin-consumer`
+- `antplay-slot-admin-api/game-api-whitelist-sync`
 
-`*-math` 只有在職缺靠近遊戲 / slot / RTP / 高風險 domain validation 時提前；`ugsoft-admin-api` 三條只在職缺吃後台 control plane、RabbitMQ admin consumer、provider whitelist / access-control 或 non-iwin 廣度時提前。一般 Senior Backend 通用投遞先放第 11 條以後。
+`*-math` 只有在職缺靠近遊戲 / slot / RTP / 高風險 domain validation 時提前；`ugsoft-admin-api` 與 `antplay-slot-admin-api` 後台 cases 只在職缺吃後台 control plane、RabbitMQ admin consumer、provider whitelist / access-control 或 non-iwin 廣度時提前。一般 Senior Backend 通用投遞先放第 11 條以後。
 
 ## 通用 3 分鐘順序
 

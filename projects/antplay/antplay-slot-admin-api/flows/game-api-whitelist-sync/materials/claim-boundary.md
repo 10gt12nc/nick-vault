@@ -14,7 +14,7 @@
 - 可說「參與」或「開發維護相關流程」。
 - 可說「支援商戶 API 來源 IP 管控」。
 - 可說「code-backed，且有 Nick / `10gt12nc` direct commits」。
-- Step 4 已可作正式面試素材，但不直接寫入 `05 / 08`；是否回填 project-level claim 等 Step 5。
+- Step 5 已完成單條 flow claim gate，可作 project-level supporting evidence，但不直接寫入 `05 / 08`；正式履歷要等 project-level contribution refresh 或 rolling resume package 統一回填。
 
 ## 不可說
 
@@ -25,8 +25,8 @@
 - 不說完整 production incident owner。
 - 不說量化改善。
 
-## 待 Step 5 判斷
+## Step 5 判斷
 
-- 是否回填 `antplay-slot-admin-api` project-level contribution refresh。
-- 是否只作 project-level supporting evidence。
-- 是否與 UGSoft `game-api-provider-white-ip-control-plane` 合併成「後台 control plane / provider IP whitelist」通用履歷素材。
+- 可回填 `antplay-slot-admin-api` project-level contribution refresh，作為「後台 API / 商戶控制面 / Game API 白名單同步」的 supporting evidence。
+- 不建議單獨寫成履歷主成果；若履歷篇幅有限，併入 AntPlay 後台 API / control plane 一句即可。
+- 可和 UGSoft `game-api-provider-white-ip-control-plane` 合併成「後台 control plane / provider IP whitelist」通用面試素材，但不得擴張成完整 access-control platform owner。

@@ -4,7 +4,7 @@
 
 ## 定位
 
-這條 flow 是 AntPlay 後台 control plane / Game API runtime access-control 的正式面試素材。完成狀態是 Step 4；證據層級是 `真實開發過 + code-backed`，但目前只到單條 flow 面試 case，不直接更新 `05 / 08`。
+這條 flow 是 AntPlay 後台 control plane / Game API runtime access-control 的正式面試素材。完成狀態是 Step 5；證據層級是 `真實開發過 + code-backed`，已完成單條 flow claim gate。它可以回填 `antplay-slot-admin-api` project-level supporting evidence，但不直接更新 `05 / 08`。
 
 ## 30 秒說法
 
@@ -80,7 +80,34 @@
 
 - 參與 AntPlay Game API 白名單控制面與 runtime Redis 同步流程，處理後台白名單新增 / 刪除 / 查詢、DB / Redis 狀態同步與 game-api runtime filter 對接，支援商戶 API 來源 IP 管控。
 
-注意: 這只是 flow-level 草稿。正式 `05 / 08` 要等 Step 5 或 project-level contribution refresh 決定是否回填。
+注意: 這是 Step 5 後可用的 flow-level bullet。正式 `05 / 08` 仍應等 project-level contribution refresh 或 rolling resume package 統一回填；不建議把這條 flow 單獨列成主成果。
+
+## Step 5 Claim Gate
+
+### 可放履歷
+
+可併入 `antplay-slot-admin-api` project-level claim:
+
+> 參與 AntPlay 後台 API / 商戶控制面開發維護，處理 admin / merchant auth、商戶白名單、Game API 白名單同步、玩家 / 投注 / request log / 報表查詢、風控監控與非同步資料處理。
+
+若需要更技術導向，可在面試或履歷補充句使用:
+
+> 參與 Game API 白名單控制面與 Redis runtime cache 同步流程，支援商戶 API 來源 IP 管控與後台操作審計。
+
+### 可面試講
+
+- 後台 control plane 如何影響 game-api runtime allow / reject。
+- DB `game_api_login_ip_white` 與 Redis `antplay:GameApiWhiteIp:{agentId}` 的責任分工。
+- 新增 / 刪除 / sync 的 DB / Redis 雙寫 failure window。
+- `RoleFilter`、limited admin、agent scope 與 operation log 的 access-control 邊界。
+- owner 角度會補 unique key、rebuild cache、DB / Redis reconcile、runtime reject metrics 與告警。
+
+### 只能分析 / 不可升級
+
+- DB DDL / unique key 未確認，不能說已用 DB constraint 完整防重。
+- Redis rebuild / reconciliation / metrics / alert 未確認，不能說已完整落地。
+- sync API 帶有特定 merchant / prefix context，不能包裝成通用白名單平台。
+- game-api runtime 只確認到 `WhiteIpFilter` 與 Redis key 使用，不能說完整 game-api gateway owner。
 
 ## 不可誇大
 
@@ -106,12 +133,12 @@
 - 入口白名單 / API gateway 類規則會怎麼做 audit log 和 rollback?
 - 對商戶 API 被誤擋或誤放行，你們會看哪些 metrics?
 
-## Step 4 結論
+## Step 5 結論
 
-這條 flow 已轉成正式面試 case。它比純後台 CRUD 更有價值，因為能講「control plane 設定如何影響 runtime allow / reject」，也能延伸到 Redis cache consistency、operation audit 與 access-control failure window。
+這條 flow 已完成單條 flow claim gate。它比純後台 CRUD 更有價值，因為能講「control plane 設定如何影響 runtime allow / reject」，也能延伸到 Redis cache consistency、operation audit 與 access-control failure window。
 
-下一步應做 Step 5，完成單條 flow claim gate，判斷是否回填 project-level supporting evidence，仍不直接用單條 flow 改 `05 / 08`。
+下一步若要讓本 project 更完整，應做 `antplay-slot-admin-api contribution claim consolidation refresh`，把兩條已 Step 5 的代表 flows 一起回填 project-level claim；仍不直接用單條 flow 改 `05 / 08`。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 5
+antplay antplay-slot-admin-api contribution claim consolidation refresh
 ```

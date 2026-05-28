@@ -166,7 +166,7 @@ Senior / Owner 價值:
 - 可說真實開發過 + code-backed。
 - 下游 runtime filter / game-api 使用 Redis 的實際判斷未在本輪深掃；不能說完整 gateway / security platform owner。
 
-Step 2 判斷: Rank 2。非常值得做，但因已有 UGSoft 類似白名單 case，先讓 RequestLog MQ 補 AntPlay async ingestion 廣度。
+Step 2 判斷: Rank 2。已於 2026-05-28 完成 Step 5，可作 AntPlay 後台 control plane / Game API 白名單同步的正式面試 case與 project-level supporting evidence；不直接改 `05 / 08`。
 
 ### 3. `risk-monitor-alert-rabbitmq`
 
@@ -383,23 +383,23 @@ Step 2 判斷: Rank 8。暫不建議本批做。
 2. `game-api-whitelist-sync`
 3. `rtp-darkpool-risk-monitor` 或 `risk-monitor-alert-rabbitmq`
 
-目前第一條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5，第二條 `game-api-whitelist-sync` 已完成 Step 4。做完後再依當時履歷缺口決定是否補其他候選；不要把八條候選都變成必做 backlog。
+目前第一條 `request-log-rabbitmq-admin-consumer` 已完成 Step 5，第二條 `game-api-whitelist-sync` 已完成 Step 5。若要讓 project-level claim 更乾淨，可做 contribution refresh；不要把八條候選都變成必做 backlog。
 
 ## Relationship Check
 
-- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成、Rank 2 `game-api-whitelist-sync Step 4` 已完成，下一步可選 Step 5。
+- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 5` 已完成、Rank 2 `game-api-whitelist-sync Step 5` 已完成，下一步可選 contribution refresh。
 - `projects/antplay/README.md`: 已更新 antplay-slot-admin-api 狀態。
 - `projects/source-repo-flow-audit.md`: 已同步 Step 5 已完成與下一條可選 Rank 2。
 - `projects/source-repo-inventory.md`: 已同步 Step 5 已完成。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已新增 Step 2 row。
-- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 4` 完成，下一步可選 Step 5。
+- `senior-owner-playbook/06-todo.md`: 已同步 `game-api-whitelist-sync Step 5` 完成，下一步可選 contribution refresh。
 - `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Rank 1 Step 5 已完成 / Rank 2 可選」。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 2 只做 Flow Track 排序，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-第一條代表 flow 的 Step 5 已完成，第二條代表 flow 的 Step 4 已完成。若要繼續本 project，下一步是 `game-api-whitelist-sync Step 5`，完成後台 control plane / runtime access-control flow 的 claim gate。這是可選後台 control plane 廣度補強，不是投遞前必做。
+第一條代表 flow 的 Step 5 已完成，第二條代表 flow 的 Step 5 已完成。若要繼續本 project，下一步是 `contribution claim consolidation refresh`，把兩條代表 flows 回填 project-level claim。這是可選後台 control plane 廣度補強，不是投遞前必做。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 5
+antplay antplay-slot-admin-api contribution claim consolidation refresh
 ```

@@ -30,7 +30,7 @@
 | risk / RTP / dark pool monitoring | 真實開發過 | `feat(#659): 商户游戏风控概况`、`feat(656): 新增监控job`、`暗池调整会写记录`、monitor jobs / alert mapper |
 | 玩家單點控制 | 真實開發過 | `feat(#767): 单点控制，agentPlayer 建立`、player control mapper / service / record |
 | RabbitMQ / async | 真實開發過 | `feat(#774): RequestLog 改丢 rabbitmq 非同步执行`、`feat(#775): rabbitmq 收风控通知`、listener / mapper commits |
-| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 4` 已完成；本檔仍是 rolling consolidation |
+| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 5` 已完成；`game-api-whitelist-sync Step 5` 已完成；本檔仍是 rolling consolidation，後續可做 contribution refresh |
 
 ## Source Scan Record
 
@@ -62,8 +62,8 @@
 未完成:
 
 - 已完成 `antplay-slot-admin-api Step 1 / Step 2`；第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 已建立 `flow.md` / `career-interview.md` / `materials/`、轉成正式面試 case，並完成單條 flow claim gate。
-- 已完成第二條代表 flow `game-api-whitelist-sync Step 4`，確認 admin-api 白名單 control plane、DB / Redis 同步與 game-api runtime `WhiteIpFilter` 邊界，並已轉成正式面試 case。
-- 尚未完成 `game-api-whitelist-sync Step 5`；尚未逐條建立其他候選 flow package。
+- 已完成第二條代表 flow `game-api-whitelist-sync Step 5`，確認 admin-api 白名單 control plane、DB / Redis 同步與 game-api runtime `WhiteIpFilter` 邊界，並已完成單條 flow claim gate。
+- 尚未逐條建立其他候選 flow package；但本批兩條代表 flows 已足以支撐 `antplay-slot-admin-api` 後台 API / control plane 的保守 project-level refresh。
 - 本輪只針對 `game-api-whitelist-sync` 補掃 `antplay-slot-game-api` runtime filter；不能把 admin API claim 擴張成完整遊戲 runtime claim。
 - 未逐檔逐行 Level 3。
 
@@ -187,8 +187,8 @@
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2、第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 與第二條代表 flow `game-api-whitelist-sync Step 4` 已於 2026-05-28 完成。`game-api-whitelist-sync` 目前只到 Step 4，不直接更新 `05 / 08`。下一步若要繼續本 repo，可做 `game-api-whitelist-sync Step 5`。
+`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2、第一條代表 flow `request-log-rabbitmq-admin-consumer Step 5` 與第二條代表 flow `game-api-whitelist-sync Step 5` 已於 2026-05-28 完成。下一步若要讓本 repo 更乾淨，可做 `contribution claim consolidation refresh`，把兩條已 Step 5 的代表 flows 回填 project-level claim；仍不直接用單條 flow 改 `05 / 08`。
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 5
+antplay antplay-slot-admin-api contribution claim consolidation refresh
 ```

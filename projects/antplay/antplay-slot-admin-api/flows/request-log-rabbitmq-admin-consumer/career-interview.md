@@ -75,5 +75,5 @@ processor 這層有兩個重點。第一是 `@UseSchema`，會依 agentId 路由
 ## 下一步
 
 ```text
-antplay antplay-slot-admin-api game-api-whitelist-sync Step 4
+antplay antplay-slot-admin-api contribution claim consolidation refresh
 ```
