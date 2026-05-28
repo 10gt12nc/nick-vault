@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | 未開始 |
+| Flow Track | Step 1 已完成 / 2026-05-28 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放後台 API / risk ops / async data processing |
-| 下一步 | `antplay antplay-slot-admin-api Step 1` |
+| 下一步 | `antplay antplay-slot-admin-api Step 2` |
 
 ## Claim Boundary
 
@@ -29,4 +29,5 @@
 
 ## Files
 
+- [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/contribution-claim-consolidation.md)

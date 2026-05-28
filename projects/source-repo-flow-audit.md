@@ -4,7 +4,9 @@
 
 最近檢查日期：2026-05-27。
 
-2026-05-26 AntPlay re-audit：已重新掃 `/Users/nick/Git/antplay` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module 與 path history。結論是：AntPlay 目前沒有新的「必做」缺口；真正值得保留在待辦的只有 `antplay-slot-admin-api` Flow Track Step 1 / Step 2，且它是可選補強，不是通用投遞前必做。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 已有足夠代表 flows / consolidation；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，不升級為新主線。
+2026-05-28 AntPlay Step 1 更新：`antplay-slot-admin-api` Flow Track Step 1 已完成，候選 flows 包含 `request-log-rabbitmq-admin-consumer`、`risk-monitor-alert-rabbitmq`、`game-api-whitelist-sync`、`rtp-darkpool-risk-monitor`、`player-control-admin-and-mq-projection`、`admin-merchant-auth-rbac-scope`、`super-agent-report-query-scope`、`activity-reward-report-and-voucher-monitor`。下一步若繼續此 repo，必須做 Step 2；仍屬可選補強，不是通用投遞前必做。
+
+2026-05-26 AntPlay re-audit：已重新掃 `/Users/nick/Git/antplay` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module 與 path history。當時結論是：AntPlay 沒有新的「必做」缺口；真正值得保留在待辦的是 `antplay-slot-admin-api` Flow Track Step 1 / Step 2，且它是可選補強，不是通用投遞前必做。2026-05-28 已補 Step 1，目前只剩 Step 2。`antplay-slot-game-api`、`antplay-slot-game-job`、`*-math` 已有足夠代表 flows / consolidation；`antplay-push`、`platform-mock`、`math-core` 只作 supporting / 已收斂素材，不升級為新主線。
 
 2026-05-26 iwin re-audit：已重新掃 `/Users/nick/Git/iwin` 下各 git repo 的 remote refs、local HEAD、Nick / `10gt12nc` commits、主要 code module、path history 與既有 `nick-vault/projects/iwin` KB。結論是：iwin 目前沒有新的「真正值得補」的 project Flow Track 缺口；`payment`、`game_api`、`game_job`、`third_games_api`、`iwin_gameserver`、`app_bi` 的代表 flows / consolidation 已足夠支撐目前 Senior Backend 投遞與面試。`payment-thirdparty-simulator` 有 Nick direct commits，但定位是 payment provider contract / callback 測試支撐，不升級成主履歷 flow；若要補，只作 payment case 的 supporting evidence。iwin 目前唯一保留的可選補強是 domain-level `iwin system map v1`，用來整理跨 repo 協作與 claim boundary，不是投遞前必做。
 
@@ -29,7 +31,7 @@
 | `antplay-push` | Nick direct commits 約 9，集中 WebSocket / Kafka listener / auth / response encryption 相關 | 無 KB | push encryption / message delivery 可作小型 supporting case，但履歷價值低於既有 big-win notification / request log async case | 可選 supporting，不放主待辦 |
 | `antplay-push-grpc` | 未見 Nick direct commits | 無 KB | gRPC push delivery / retry 需另證明 production value | 暫不建議 |
 | `antplay-slot-admin` | 前端 repo，未見 Nick direct commits；工作樹有既有髒檔 | 無 KB | 後台入口，不作主線 | 暫不建議 |
-| `antplay-slot-admin-api` | Nick direct commits 約 195；admin / merchant auth、白名單、風控、RabbitMQ、Quartz；2026-05-26 re-audit 確認 source refs 與本機 `origin/main` 對齊 | 只有 contribution consolidation，沒有 Step 1 / Step 2 / flows | `request-log-rabbitmq-admin-consumer`、`risk-monitor-alert-rabbitmq`、`game-api-whitelist-sync`、`rtp-darkpool-risk-monitor`、`admin-auth-rbac-merchant-scope` | AntPlay 目前唯一真正值得補的 Flow Track 缺口；可選補強，不是必做 |
+| `antplay-slot-admin-api` | Nick direct commits 約 195；admin / merchant auth、白名單、風控、RabbitMQ、Quartz；2026-05-28 Step 1 嘗試 fetch 失敗，依本地 refs / 本地工作樹判斷，local 與本機既有 `origin/main` 對齊 | contribution consolidation 已完成；Step 1 已完成；尚無 Step 2 / flows | `request-log-rabbitmq-admin-consumer`、`risk-monitor-alert-rabbitmq`、`game-api-whitelist-sync`、`rtp-darkpool-risk-monitor`、`player-control-admin-and-mq-projection`、`admin-auth-rbac-merchant-scope` | AntPlay 目前唯一真正值得補的 Flow Track 缺口；下一步 Step 2；可選補強，不是必做 |
 | `antplay-slot-game-api` | Nick direct commits 約 154；bet / settle / transfer wallet / MQ / sharding | Step 1 / Step 2 / 5 flows / consolidation 已完成 | 已有：`slot-bet-settle-rollback`、`transfer-wallet-money-in-out`、`request-log-rabbitmq-async`、`bet-record-sharding-schema-route`、`runtime-rtp-darkpool-player-control` | 已有，暫不新增 |
 | `antplay-slot-game-job` | Nick direct commits 約 52；Kafka / Quartz / report projection / notification / partition | Step 1 / Step 2 / 5 flows / consolidation 已完成 | 已有：`proxy-user-data-report-projection`、`activity-accumulated-bet-voucher`、`big-win-notification`、`settle-pool-monitor-darkpool-sync`、`db-partition-job-report-routing` | 已有，暫不新增 |
 | `antplay-slot-lib` | 未見 Nick direct commits | 無 KB | 若含 common SDK 才有價值，目前 evidence 不足 | 暫不建議 |
@@ -88,7 +90,7 @@
 
 1. `ugsoft-connector-api`：最值得補 Flow Track。2026-05-26 re-audit 後仍維持第一順位；Step 1 / Step 2 已完成，本批三條代表 flow `transfer-wallet-in-out-query Step 5`、`provider-callback-bet-settle-to-mq Step 5`、`request-bet-record-mq-sync Step 5` 均已於 2026-05-27 完成，project-level contribution refresh 也已完成。它有真實 direct commits、交易 / provider / callback / MQ / transfer wallet，已補足非 iwin 廣度；目前沒有預設下一步。
 2. `ugsoft-admin-api`：值得補 Flow Track，但優先低於 connector。2026-05-27 已完成 Step 1 / Step 2，本批代表 flows 已選定，第一條 `connect-bet-record-mq-ingestion`、第二條 `request-log-rabbitmq-admin-consumer`、第三條 `game-api-provider-white-ip-control-plane` 均已完成 Step 5，且 contribution refresh 已完成。目前沒有預設下一步。
-3. `antplay-slot-admin-api`：AntPlay 目前唯一真正值得補的 Flow Track 缺口；但目前已有 AntPlay game-api / game-job / `*-math` 主力 evidence，所以它是可選補強，不是投遞前必做。若 Nick 要補後台 / 風控 / admin control plane，先做 Step 1 / Step 2。
+3. `antplay-slot-admin-api`：AntPlay 目前唯一真正值得補的 Flow Track 缺口；Step 1 已於 2026-05-28 完成，但目前已有 AntPlay game-api / game-job / `*-math` 主力 evidence，所以它仍是可選補強，不是投遞前必做。若 Nick 要補後台 / 風控 / admin control plane，下一步做 Step 2。
 4. `payment-thirdparty-simulator`：2026-05-26 iwin re-audit 後降為 payment provider contract / callback 測試 supporting evidence；不作主線、不放主履歷、不列 project Flow Track 必做。
 5. `antplay-docker-deploys`：Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence；降為主管 / 團隊 deployment context 與 learning / supporting，不作 Nick Flow Track、不放主履歷。`openobserve` / `kafka` 經 re-audit 後降為 learning-only。
 

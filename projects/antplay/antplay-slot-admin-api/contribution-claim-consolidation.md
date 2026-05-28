@@ -30,7 +30,7 @@
 | risk / RTP / dark pool monitoring | 真實開發過 | `feat(#659): 商户游戏风控概况`、`feat(656): 新增监控job`、`暗池调整会写记录`、monitor jobs / alert mapper |
 | 玩家單點控制 | 真實開發過 | `feat(#767): 单点控制，agentPlayer 建立`、player control mapper / service / record |
 | RabbitMQ / async | 真實開發過 | `feat(#774): RequestLog 改丢 rabbitmq 非同步执行`、`feat(#775): rabbitmq 收风控通知`、listener / mapper commits |
-| final 全量 flow | 待補 | 尚未建立 Step 1 / Step 2 與 flow packages；本檔是 rolling consolidation |
+| final 全量 flow | 待補 | Step 1 已於 2026-05-28 完成；尚未建立 Step 2 與 flow packages；本檔是 rolling consolidation |
 
 ## Source Scan Record
 
@@ -61,7 +61,7 @@
 
 未完成:
 
-- 未做 `antplay-slot-admin-api` 全量 Step 1 / Step 2。
+- 已完成 `antplay-slot-admin-api Step 1`；尚未做 Step 2 與單條 flow packages。
 - 未逐條 flow 建立 `flow.md` / `career-interview.md`。
 - 未掃 `antplay-slot-game-api` / `antplay-slot-game-job`，不能把 admin API claim 擴張成遊戲 runtime claim。
 - 未逐檔逐行 Level 3。
@@ -186,8 +186,8 @@
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 的 Career Track 已能保守補履歷；下一步應做 Flow Track Step 1，挑出最值得面試深挖的代表 flow。優先候選會是「RabbitMQ request log / 風控通知」、「RTP / 暗池風控監控」或「Game API 白名單同步」。
+`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 也已於 2026-05-28 完成。下一步若要繼續本 repo，應做 Step 2，比較 `request-log-rabbitmq-admin-consumer`、`risk-monitor-alert-rabbitmq`、`game-api-whitelist-sync`、`rtp-darkpool-risk-monitor` 等候選 flows 的證據強度、module 邊界與面試價值。
 
 ```text
-antplay antplay-slot-admin-api Step 1
+antplay antplay-slot-admin-api Step 2
 ```
