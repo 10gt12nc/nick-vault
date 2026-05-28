@@ -59,7 +59,7 @@
 
 ## Rolling 合併投遞版（目前可用）
 
-> 狀態：2026-05-27 rolling refresh + 104 投遞欄位檢查完成。已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh、`third_games_api` 本批 Step 5 收斂、`k3s-deploy gameserver-phased-rollout Step 5` interview-only 邊界、`antplay-slot-game-job` 五條代表 flow Step 5 / contribution consolidation refresh，以及 `ugsoft-admin-api` / `ugsoft-connector-api` 2026-05-27 contribution refresh。這版可作通用 Senior Java Backend / Platform Backend 104 投遞稿；後續 flow 深掃、Step 5 或新 evidence 仍要回填修正。
+> 狀態：2026-05-28 Resume / 104 final check。已吸收 iwin payment / game_api / game_job / iwin_gameserver、AntPlay game-api / game-job / admin-api / math、UGSoft admin-api / connector-api 等 project-level refresh。`third_games_api` 與 `k3s-deploy gameserver-phased-rollout` 維持 interview-only；iwin / AntPlay / UGSoft system maps 只作架構與面試視角，不新增正式履歷 claim。這版可作通用 Senior Java Backend / Platform Backend 104 投遞稿；正式外投前仍建議把內部產品 / repo / provider 名稱替換成泛稱。
 
 > 通用目標職缺假設：Senior Java Backend / Platform Backend，職務內容偏第三方 provider integration、payment provider 對接、遊戲 wallet / bet-settle、MQ / batch、跨系統狀態一致性風險、既有系統接手與 production troubleshooting。Nick 暫時沒有特定 JD 時，使用本通用版投遞；只有實際 JD 偏純後台、純 DevOps、純遊戲數學、純管理職，或 Nick 明確要求客製時，才另行改版。
 
@@ -67,7 +67,7 @@
 
 > 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
 
-> 2026-05-27 rolling package recheck：已把 `ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 回填到通用投遞版。A / B / C 三版定位仍成立；限制要持續保留：部分 AntPlay repo 因遠端不可達只能依本地 refs；UGSoft 只能寫後台 API / control plane、provider connector、request / bet record MQ、白名單控制面與 Quartz / report job 參與維護，不寫完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner；`math-workspace` 與 `iwin-workspace` 只作 workspace / KB / validation supporting evidence；`k3s-deploy` 沒有 Nick direct commit，仍只能作 interview-only 架構素材。
+> 2026-05-28 final check recheck：已把 `ugsoft-admin-api` / `ugsoft-connector-api` 與 `antplay-slot-admin-api` contribution refresh 對齊通用投遞版。A / B / C 三版定位仍成立；限制要持續保留：部分 AntPlay repo 因遠端不可達只能依本地 refs；UGSoft 只能寫後台 API / control plane、provider connector、request / bet record MQ、白名單控制面與 Quartz / report job 參與維護，不寫完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner；AntPlay admin 只作後台 control plane / async audit / whitelist sync 補充，不單獨包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner；`math-workspace` 與 `iwin-workspace` 只作 workspace / KB / validation supporting evidence；`k3s-deploy` 沒有 Nick direct commit，仍只能作 interview-only 架構素材；system maps 不新增正式履歷 claim。
 
 ### 三版補充比較
 

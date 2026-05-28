@@ -14,6 +14,8 @@
 
 > 2026-05-28 AntPlay admin refresh：`antplay-slot-admin-api/request-log-rabbitmq-admin-consumer` 與 `antplay-slot-admin-api/game-api-whitelist-sync` 已完成 Step 5，且已回填 `antplay-slot-admin-api` project-level contribution refresh。可作後台 control plane / async audit / Game API 白名單同步的補充面試 case；不單獨包裝成 05 / 08 主成果，也不得包裝成完整 security platform、API gateway、WAF、IAM 或完整 RabbitMQ platform owner。
 
+> 2026-05-28 Resume / 104 final check：`08` 的 A 版通用高交易 Senior Java Backend / Platform Backend 仍是公開主版本；B / C 只作 JD-specific 排序調整。iwin / AntPlay / UGSoft system maps 只補架構與跨 project 敘事，不新增履歷主 claim；本檔 8-10 條 production case 排序仍可支撐 104 主打 bullet。
+
 ## 104 主打 bullet 對齊表
 
 用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。

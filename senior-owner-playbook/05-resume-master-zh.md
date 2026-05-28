@@ -48,7 +48,7 @@
 
 ## 目前可直接使用履歷版（Rolling）
 
-> 狀態：2026-05-27 rolling refresh。已依目前所有 Contribution Claim Consolidation 匯總，並補讀 Nick 舊 104 PDF 履歷；已吸收 AntPlay game-api 五條代表 flow Step 5 與 project-level refresh、`third_games_api` 本批 Step 5 收斂、`k3s-deploy gameserver-phased-rollout Step 5` interview-only 邊界、`antplay-slot-game-job` 五條代表 flow Step 5 / contribution consolidation refresh，以及 `ugsoft-admin-api` / `ugsoft-connector-api` 2026-05-27 contribution refresh。這版可以先拿去寫履歷 / LinkedIn / 104，但不是 final；後續每條 flow 深掃、Step 5 或新 evidence 都要回填修正。
+> 狀態：2026-05-28 Resume / 104 final check。已依目前所有 Contribution Claim Consolidation 匯總，並補讀 Nick 舊 104 PDF 履歷；已吸收 iwin payment / game_api / game_job / iwin_gameserver、AntPlay game-api / game-job / admin-api / math、UGSoft admin-api / connector-api 等 project-level refresh。`third_games_api` 與 `k3s-deploy gameserver-phased-rollout` 維持 interview-only；iwin / AntPlay / UGSoft system maps 只作架構與面試視角，不新增正式履歷 claim。這版可以先拿去寫履歷 / LinkedIn / 104；後續若有新 flow evidence 或 JD-specific 需求再回填修正。
 
 ### 建議職稱定位
 

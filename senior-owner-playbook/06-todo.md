@@ -16,6 +16,7 @@
 - 建立新入口、維護規則、flow inventory、學習路線、flow 模板、面試案例與唯一履歷自傳。
 - 已補 `08-application-autobiography-zh.md` 的 104 欄位版：工作經驗、專長、自傳、自我推薦；`05` 維持母稿 / 證據池定位，`08` 維持投遞可貼定位。
 - 已完成 2026-05-25 `104 投遞欄位檢查`：`08-application-autobiography-zh.md` 的工作經驗、專長、自傳、自我推薦已標示為通用 Senior Java Backend / Platform Backend 可貼版；沒有加入未證實主導、完整 owner、量化改善或事故修復 claim。
+- 已完成 2026-05-28 `Resume / 104 final check`：`05 / 08 / 04 / 17 / 11` 已對齊 `antplay-slot-admin-api` contribution refresh 與 iwin / AntPlay / UGSoft system maps；system maps 僅作架構與面試視角，不新增正式履歷 claim。`08` A 版仍是公開主版本，正式外投前替換內部產品 / repo / provider 名稱即可。
 - 已新增 `17-salary-negotiation.md`：維護 104 / 面試用薪資談判定位、期望待遇區間、底線、口頭說法與不可誇大邊界；正式談 offer 前仍需重查當下行情。
 - 已依 2026-05-20 最新 104 職缺快照與舊履歷補強後定位，重新上修 `17-salary-negotiation.md`：104 建議填月薪 115,000-135,000 / 年薪 160-190 萬，面試主談年薪 160-180 萬，底線月薪 100,000。
 - 已補讀 Nick 舊 104 PDF 履歷，吸收可用素材：兩套缺乏交接文件平台的 legacy takeover / system reconstruction、早期高頻線上問題支援、ActiveMQ + Redis + Quartz 內部分享；負面主管 / 流程描述與未驗證強 claim 不放正式投遞稿。
@@ -275,7 +276,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 18. `math-workspace`：contribution consolidation 已完成；只作 cross-math KB / validation workflow supporting evidence。
 19. `platform-mock`：contribution consolidation 已完成；只作 provider failure injection supporting evidence。
 20. `buffer-id`：contribution consolidation 已完成；未見 Nick direct commits，只作 learning-only。
-21. `rolling resume package`：已完成 2026-05-27 refresh 目前可用版；已吸收 `antplay-slot-game-job contribution claim consolidation refresh`、`ugsoft-admin-api contribution claim consolidation refresh` 與 `ugsoft-connector-api contribution claim consolidation refresh`，2026-05-28 另同步 `antplay-slot-admin-api contribution claim consolidation refresh` 狀態到 `05 / 08 / 04`。UGSoft 可用後台 API / control plane、provider connector、RequestLog / BetRecord MQ、白名單控制面、Quartz / report job 口徑；AntPlay admin 可用後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理口徑；不寫完整 UGSoft / AntPlay 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
+21. `rolling resume package`：已完成 2026-05-28 Resume / 104 final check 目前可用版；已吸收 `antplay-slot-game-job contribution claim consolidation refresh`、`ugsoft-admin-api contribution claim consolidation refresh`、`ugsoft-connector-api contribution claim consolidation refresh` 與 `antplay-slot-admin-api contribution claim consolidation refresh`，並同步到 `05 / 08 / 04 / 17 / 11`。UGSoft 可用後台 API / control plane、provider connector、RequestLog / BetRecord MQ、白名單控制面、Quartz / report job 口徑；AntPlay admin 可用後台 API / 商戶控制面 / 風控監控 / RabbitMQ 與 Quartz 非同步資料處理口徑；iwin / AntPlay / UGSoft system maps 只作架構與面試視角，不新增正式履歷 claim；不寫完整 UGSoft / AntPlay 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
 
 ### 3. 每條完成後自動判斷是否更新
 

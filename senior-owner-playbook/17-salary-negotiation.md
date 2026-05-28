@@ -1,6 +1,6 @@
 # 薪資談判定位
 
-> 狀態：2026-05-27 rolling 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
+> 狀態：2026-05-28 Resume / 104 final check 版。這份用來支援 104 / LinkedIn / 面試談薪，不是永久行情表。薪資行情會變，正式投遞或談 offer 前要重新查 104 / CakeResume / LinkedIn / 同業職缺，並依職缺職責、地點、年終、分紅、遠端與工時調整。
 
 > 2026-05-22 履歷包同步：`third_games_api` 本批代表 flows 與 `k3s-deploy gameserver-phased-rollout` 已完成 Step 5，但都維持 interview-only，不新增談薪主 claim。談薪主軸仍放在 payment、iwin_gameserver / game_api / game_job、UGSoft、AntPlay game-api / game-job / math 的保守可用履歷 evidence；K3s / rollout / observability 只能作 Platform Backend 加分案例，不可當作完整 DevOps / SRE owner 來抬價。
 
@@ -9,6 +9,8 @@
 > 2026-05-26 code-first claim audit：payment 談薪口徑降級為 provider / 商戶 integration，不再把 `iwin/payment` 單獨當成完整 money correctness 或 reconciliation 深度。談薪價值仍成立，但要靠「payment provider 對接 + 遊戲 wallet / bet-settle + MQ / batch projection + high-traffic partition + slot math / legacy reconstruction」的組合，而不是只靠 payment 組。
 
 > 2026-05-27 履歷包同步：`ugsoft-admin-api` / `ugsoft-connector-api` contribution refresh 已回填。談薪可補 UGSoft 後台 API / control plane、Game API / provider IP 白名單控制面、RequestLog / BetRecord MQ、Quartz / report job、provider connector / transfer wallet / callback / job sync；但不得把它說成完整 UGSoft 平台、完整 provider gateway、完整 wallet / money flow、完整 RabbitMQ architecture owner 或完整 access-control platform owner。
+
+> 2026-05-28 Resume / 104 final check：`antplay-slot-admin-api` contribution refresh 可作後台 control plane / async audit / whitelist sync 補充，但不單獨抬高談薪主軸；iwin / AntPlay / UGSoft system maps 只支撐架構說明與面試敘事，不新增正式履歷 claim 或薪資 claim。談薪主軸仍是 payment provider / 商戶對接、遊戲 wallet / bet-settle、MQ / batch / projection、partition / high-traffic data、slot math / legacy reconstruction 的組合。
 
 ## 定位
 

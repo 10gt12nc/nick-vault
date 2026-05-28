@@ -36,6 +36,8 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 > 2026-05-27 KB refresh：`rolling resume package` 與 `104 投遞欄位檢查` 已完成，`05 / 08 / 04 / 17` 已回填 UGSoft admin-api / connector refresh，`08` 已可作通用 104 投遞稿。`04 / 面試 case 對齊檢查` 也已完成：104 主打 bullet 已對應到可講 3 分鐘的 cases、證據層級與不可誇大邊界。三條主力 case 的 90 秒 / 3 分鐘口說稿已補：payment provider、wallet / bet-settle、Kafka / report projection。現在缺口已從「有沒有稿」轉成「Nick 能不能實際講出來並抗追問」。但口說練習先暫停，等 Nick 明確要求「開始練 / 模擬面試 / 我先講一版」才進入互動式練習。
 
+> 2026-05-28 Resume / 104 final check：`05 / 08 / 04 / 17` 已對齊 `antplay-slot-admin-api` contribution refresh 與 iwin / AntPlay / UGSoft system maps。system maps 只作架構與面試視角，不新增履歷主 claim；`08` 仍維持 A 版公開主版本，正式外投前替換內部產品 / repo / provider 名稱即可。現在不是再補大量 repo，而是讀完投遞、或等 Nick 明確指定才進入口說練習 / JD-specific 客製。
+
 > 2026-05-26 code-first claim audit：payment 題要講成 provider / 商戶對接，不講成完整金流帳務或 wallet / reconciliation 實作。中等可面的三條主力仍可保留 payment provider、wallet / bet-settle、MQ / projection，但 payment 只負責 provider integration evidence；Senior 深度要靠三條組合，而不是單靠 payment。
 
 ### 已完成
@@ -50,7 +52,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 - 未來專案資料夾 `projects/` 已建立。
 - 已有 `app_bi` 四條完成到 Step 5 的 flow 作為入門分析 case：`point-control-admin-operation`、`admin-config-redis-sync`、`daily-game-record-summary`、`game-round-record-query`。但它們目前仍屬於後台 / BI / control plane 分析素材，Nick 個人貢獻待確認，不足以作為 10 萬 Senior 面試主力 case。
 - 已有多條 iwin / antplay / ugsoft flow 轉成保守面試素材或完成 claim gate，例如 `payment-provider-callback`、`payment/payment-order-provider-request`、`game_api/coupon-redeem-credit-grant`、`game_job/daily-game-data-summary`、`game_job/third-party-record-mongo-backup`、`third_games_api/gsc-transfer-bet-settle-rollback`、`iwin_gameserver/third-party-transfer-in-out`、`k3s-deploy/gameserver-phased-rollout`、`antplay-slot-game-api` 五條代表 flow、`antplay-slot-game-job` 五條代表 flow 與 `*-math` 五條代表 flow。`payment`、`game_api`、`game_job`、`iwin_gameserver`、`ugsoft-admin-api`、`ugsoft-connector-api`、`antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core / *-math` 已完成 project contribution claim consolidation，可採各自保守 claim；`third_games_api` 與 `k3s-deploy` 目前維持 interview-only，不能只靠單條 flow Step 5 直接升級成履歷主張。
-- `05 / 08 / 04 / 17` 已完成 2026-05-27 rolling refresh，`08` 已完成 104 投遞欄位檢查，可作通用 Senior Java Backend / Platform Backend 投遞稿。
+- `05 / 08 / 04 / 17` 已完成 2026-05-28 Resume / 104 final check，`08` 已完成 104 投遞欄位檢查，可作通用 Senior Java Backend / Platform Backend 投遞稿；system maps 不新增履歷主 claim。
 
 ### 尚未完成
 
