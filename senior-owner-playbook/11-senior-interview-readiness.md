@@ -116,7 +116,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 | 類型 | 定位 | 價值 | 必做？ |
 | --- | --- | --- | --- |
 | `Provider Integration template` | payment provider、遊戲 provider、callback、query、補償、對帳 | 通用價值最高，最貼 Senior Backend / Platform Backend JD | v1 completed |
-| `Wallet / Bet-Settle template` | wallet source of truth、bet record、settle、rollback、transaction boundary | 技術深度最高，可展示 state machine、idempotency、failure window | 可選主力 |
+| `Wallet / Bet-Settle template` | wallet source of truth、bet record、settle、rollback、transaction boundary | 技術深度最高，可展示 state machine、idempotency、failure window | v1 completed |
 | `MQ / Batch / Projection template` | Kafka / RabbitMQ、report projection、retry、DLQ、重跑、資料修復 | 最實務，可支撐 event-driven、projection、eventual consistency 追問 | 可選主力 |
 | `Slot Math / RTP Validation template` | math-core contract、simulation、result validation、版本相容 | 差異化最高，但職缺較窄，投遊戲 / slot / provider domain 時加分 | 備用差異化 |
 
@@ -127,7 +127,7 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 第四份 Slot Math / RTP Validation 只在遊戲 / slot / provider JD 或 Nick 想強化差異化時做。
 ```
 
-目前已完成第一份：`18-system-design-templates.md` 的 `Provider Integration Template v1`。它是面試架構口說素材，不新增履歷 claim；剩下三份仍是可選，不是新的必做下一步。
+目前已完成前兩份：`18-system-design-templates.md` 的 `Provider Integration Template v1` 與 `Wallet / Bet-Settle Template v1`。它們是面試架構口說素材，不新增履歷 claim；剩下 `MQ / Batch / Projection` 與 `Slot Math / RTP Validation` 仍是可選，不是新的必做下一步。
 
 ## Senior 面試分級門檻
 
