@@ -2,6 +2,10 @@
 
 日期: 2026-05-28
 
+## Step 4 更新
+
+Step 4 已把本 flow 轉成正式面試 case。claim 邊界不升級：仍然只限 `RequestLog RabbitMQ consumer / audit log 入庫`，正式履歷是否回填留到 Step 5 判斷。
+
 ## 可說
 
 - 參與 AntPlay 後台 RequestLog RabbitMQ consumer 與 audit log 入庫流程。

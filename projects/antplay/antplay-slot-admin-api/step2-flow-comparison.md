@@ -387,19 +387,19 @@ Step 2 判斷: Rank 8。暫不建議本批做。
 
 ## Relationship Check
 
-- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 3` 已完成，下一步為 Step 4。
+- `README.md`: 已更新 Flow Track 狀態為 `request-log-rabbitmq-admin-consumer Step 4` 已完成，下一步為 Step 5。
 - `projects/antplay/README.md`: 已更新 antplay-slot-admin-api 狀態。
-- `projects/source-repo-flow-audit.md`: 已同步 Step 3 已完成與下一步 Step 4。
-- `projects/source-repo-inventory.md`: 已同步 Step 3 已完成。
+- `projects/source-repo-flow-audit.md`: 已同步 Step 4 已完成與下一步 Step 5。
+- `projects/source-repo-inventory.md`: 已同步 Step 4 已完成。
 - `senior-owner-playbook/01-senior-owner-flow-inventory.md`: 已新增 Step 2 row。
-- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 3 改成 `request-log-rabbitmq-admin-consumer Step 4`。
-- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Step 3 已完成 / Step 4 待做」。
+- `senior-owner-playbook/06-todo.md`: 已同步下一步從 Step 4 改成 `request-log-rabbitmq-admin-consumer Step 5`。
+- `contribution-claim-consolidation.md`: 已同步 final flow 狀態為「Step 4 已完成 / Step 5 待做」。
 - `05 / 08 / 04 / 17`: 本輪不更新，因為 Step 2 只做 Flow Track 排序，不是單條 flow claim gate 或 project contribution refresh。
 
 ## Suggested Next
 
-第一條代表 flow 的 Step 3 已完成。下一步應做 Step 4，把 request log MQ consumer 的 code path、message contract、DB insert、duplicate check、transaction / schema boundary、failure window 與 producer / consumer 邊界轉成正式面試 case。
+第一條代表 flow 的 Step 4 已完成。下一步應做 Step 5，完成單條 flow claim gate，判斷這個 request log MQ consumer case 能否回填 project-level consolidation / 05 / 08。
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 4
+antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
 ```

@@ -6,7 +6,7 @@
 
 - Flow 中文名稱: RequestLog RabbitMQ 非同步入庫 / admin audit consumer
 - Flow slug: `request-log-rabbitmq-admin-consumer`
-- 完成狀態: Step 3 / Level 2 Flow 深掃
+- 完成狀態: Step 4 / 面試 case 已完成；Level 2 Flow 深掃沿用 Step 3 evidence
 - 證據層級: 真實開發過 + code-backed；Nick / `10gt12nc` 有 admin-api #774 consumer direct commits，game-api producer 也有 #774 direct commits；內網 remote fetch 失敗，本輪依本地 refs / 本地工作樹保守分析
 - 本 flow 類型: async audit / observability / admin consumer flow
 - 是否只確認到入口: 否。已確認 admin-api consumer、processor、mapper、RabbitMQ config、`pt_request_log` insert 與 admin query context；producer 端以既有 game-api flow + 本地 code 作上下游定位
@@ -270,10 +270,24 @@ Source:
 - 未確認 `pt_request_log` DDL / unique key。
 - 未確認 production queue lag / monitoring / alerting。
 
-## 14. 下一步
+## 14. Step 4 面試包摘要
 
-下一步應做 Step 4，把本 flow 轉成面試 case：30 秒、90 秒、3 分鐘講法、STAR、Senior / Lead 追問，以及不可誇大的回答邊界。
+Step 4 已完成，正式面試素材放在:
+
+- [career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/career-interview.md)
+- [materials/interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/materials/interview.md)
+
+本 flow 面試主軸:
+
+- RequestLog 是 async audit / troubleshooting data，不是交易 source of truth。
+- game-api producer 與 admin-api consumer 以 RabbitMQ direct exchange / durable queue 解耦。
+- consumer 端重點是 JSON parse、`ptDay` partition key、`@UseSchema` multi-schema route、application-level dedupe 與 `pt_request_log` insert。
+- Senior 追問要主動承認未確認 DLQ / retry / ack mode / DB unique key，不誇大成 exactly-once。
+
+## 15. 下一步
+
+下一步應做 Step 5，完成單條 flow claim gate，判斷本 flow 能否回填 project-level consolidation / 05 / 08，並收斂可放履歷、可面試講、不可誇大的邊界。
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 4
+antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
 ```

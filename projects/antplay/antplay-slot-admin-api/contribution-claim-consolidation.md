@@ -30,7 +30,7 @@
 | risk / RTP / dark pool monitoring | 真實開發過 | `feat(#659): 商户游戏风控概况`、`feat(656): 新增监控job`、`暗池调整会写记录`、monitor jobs / alert mapper |
 | 玩家單點控制 | 真實開發過 | `feat(#767): 单点控制，agentPlayer 建立`、player control mapper / service / record |
 | RabbitMQ / async | 真實開發過 | `feat(#774): RequestLog 改丢 rabbitmq 非同步执行`、`feat(#775): rabbitmq 收风控通知`、listener / mapper commits |
-| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 3` 已建立單條 flow package；本檔仍是 rolling consolidation |
+| final 全量 flow | 待補 | Step 1 / Step 2 已於 2026-05-28 完成；`request-log-rabbitmq-admin-consumer Step 4` 已完成；本檔仍是 rolling consolidation |
 
 ## Source Scan Record
 
@@ -61,8 +61,8 @@
 
 未完成:
 
-- 已完成 `antplay-slot-admin-api Step 1 / Step 2`；第一條代表 flow `request-log-rabbitmq-admin-consumer Step 3` 已建立 `flow.md` / `career-interview.md` / `materials/`。
-- 尚未完成 `request-log-rabbitmq-admin-consumer Step 4 / Step 5`，也未逐條建立其他候選 flow package。
+- 已完成 `antplay-slot-admin-api Step 1 / Step 2`；第一條代表 flow `request-log-rabbitmq-admin-consumer Step 4` 已建立 `flow.md` / `career-interview.md` / `materials/` 並轉成正式面試 case。
+- 尚未完成 `request-log-rabbitmq-admin-consumer Step 5`，也未逐條建立其他候選 flow package。
 - 未掃 `antplay-slot-game-api` / `antplay-slot-game-job`，不能把 admin API claim 擴張成遊戲 runtime claim。
 - 未逐檔逐行 Level 3。
 
@@ -186,8 +186,8 @@
 
 ## Suggested Next
 
-`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 3` 已於 2026-05-28 完成。下一步若要繼續本 repo，應做 `request-log-rabbitmq-admin-consumer Step 4`，把 RequestLog RabbitMQ consumer 轉成可講的面試 case、追問題庫與誇大邊界。
+`antplay-slot-admin-api` 的 Career Track 已能保守補履歷，Flow Track Step 1 / Step 2 與第一條代表 flow `request-log-rabbitmq-admin-consumer Step 4` 已於 2026-05-28 完成。下一步若要繼續本 repo，應做 `request-log-rabbitmq-admin-consumer Step 5`，完成單條 flow claim gate，判斷是否回填 project-level consolidation / 05 / 08。
 
 ```text
-antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 4
+antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 5
 ```
