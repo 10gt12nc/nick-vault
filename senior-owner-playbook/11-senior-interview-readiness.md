@@ -129,6 +129,16 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 
 目前四份 v1 均位於 `18-system-design-templates.md`。它們是面試架構口說素材，不新增履歷 claim；Slot Math / RTP Validation 維持可選差異化，不是新的必做下一步。
 
+補充邊界：
+
+```text
+這四份模板符合 Senior / Platform 面試的 production thinking，但不是可直接上線的完整 production spec。
+面試時要講成「從實際 production flows 抽象出的設計骨架」，不能講成「我主導過完整可上線平台」或「這就是業界標準答案」。
+真正落地仍要補公司場景下的詳細 spec、POC、壓測、資安 / 法規 review、監控告警與 runbook。
+```
+
+選型邏輯要回到 failure mode：金流怕錢錯，wallet 怕重複扣補，MQ 怕漏消費 / 重複消費，batch 怕報表錯，slot math 怕長期 RTP / result contract 與 runtime 不一致。不要用「Kafka 很潮、RabbitMQ 很常見、ledger 聽起來高級」當選型理由。
+
 ## Senior 面試分級門檻
 
 ### 中等可面

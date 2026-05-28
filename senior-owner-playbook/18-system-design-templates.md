@@ -11,6 +11,55 @@
 - 面試定位：展示從 production flow 抽象出 API、state、DB、MQ、idempotency、reconciliation、observability 與 rollout plan 的能力。
 - 履歷邊界：不新增正式履歷 claim；正式履歷仍以 `05 / 08` 與 project-level contribution consolidation 為準。
 
+## Production Readiness 邊界
+
+四份 template 符合的是「Senior / Platform 面試的 production thinking」，不是可直接上線的完整 production spec。
+
+可以說：
+
+```text
+這四份模板是從實際 production flows 抽象出的 system design 骨架。
+它們能展示 state、idempotency、failure window、reconciliation、observability、rollout 與 claim boundary。
+真正落地時，仍要依公司現有 infra、流量、資料量、SLA、資安、法規、team ownership 與維運能力補詳細設計、POC、壓測、review、runbook。
+```
+
+不能說：
+
+```text
+這四份就是可以直接上線的系統。
+這四份是業界標準答案。
+Nick 主導過完整可上線平台。
+```
+
+更精準的判斷：
+
+| Template | 可上線程度 | 上線前必補 |
+| --- | --- | --- |
+| Provider Integration | 架構方向合理，但不是完整可上線規格 | provider contract、SLA、資安、驗簽 / 白名單、對帳批次、人工修復 SOP、壓測、告警 |
+| Wallet / Bet-Settle | production thinking 對，但不能宣稱金融級 ledger | transaction model、ledger / journal 取捨、鎖策略、reconciliation、壓測、權限與審計 |
+| MQ / Batch / Projection | 接近實務設計骨架，但不是 broker spec | Kafka / RabbitMQ 選型細節、DLQ policy、backpressure、retention、資料修復流程、監控告警 |
+| Slot Math / RTP Validation | 適合遊戲 domain validation 口說，但不是 certification-ready | 正式 math spec、seed / sample policy、validation artifact、QA / certification evidence、runtime validation |
+
+## 選型原則
+
+選型不是先選技術，而是先看 failure mode。
+
+| 問題類型 | 優先設計 | 原因 |
+| --- | --- | --- |
+| 同步交易 / 錢相關 | DB transaction、state machine、idempotency、reconciliation | 金額錯、重複扣補、狀態覆蓋是主要風險 |
+| 外部 provider | adapter pattern、local order source of truth、callback inbox、query / repair | provider timeout、callback 重送、查單差異、外部 contract 變動是主要風險 |
+| 高流量非同步 | MQ / batch / projection、DLQ、replay、projection rebuild | 主交易不應被報表 / audit 拖慢，且要處理漏消費 / 重複消費 |
+| 報表 / projection | source of truth 與 projection 分離、batch metadata、rebuild / compare | 報表錯不等於交易錯，修復要能回源重建 |
+| Slot math / RTP | deterministic input、simulation validation、result contract、runtime path 對齊 | 長期 RTP、feature state、前端展示與 runtime result 不一致是主要風險 |
+
+面試可用說法：
+
+```text
+我不會因為 Kafka 很潮、RabbitMQ 很常見或 ledger 聽起來高級就先選技術。
+我會先看 domain failure mode：金流怕錢錯，wallet 怕重複扣補，MQ 怕漏消費 / 重複消費，batch 怕報表錯，slot math 怕長期 RTP / result contract 和 runtime 不一致。
+選型要回到這些 failure mode，再決定 transaction boundary、MQ、projection、reconciliation、observability 和 rollout。
+```
+
 推薦模板：
 
 | 順序 | Template | 定位 | 狀態 |
@@ -1294,4 +1343,4 @@ raw symbols -> parent / child marker -> scoring symbol -> extraData display cont
 - `04-interview-casebook.md`：不更新；本模板可作 case 延伸材料。
 - `17-salary-negotiation.md`：不更新；不新增談薪 claim。
 - `06-todo.md`：需標示四份 system design template v1 已完成，其中 Slot Math / RTP Validation 是可選差異化。
-- `11-senior-interview-readiness.md`：需標示四份 system design template v1 已完成，Slot Math / RTP Validation 仍不是必做。
+- `11-senior-interview-readiness.md`：需標示四份 system design template v1 已完成，Slot Math / RTP Validation 仍不是必做，且四份模板是面試架構骨架，不是可直接上線 production spec。
