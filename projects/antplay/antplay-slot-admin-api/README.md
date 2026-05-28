@@ -7,9 +7,9 @@
 | 項目 | 狀態 |
 | --- | --- |
 | contribution claim consolidation | 已完成 / rolling / 2026-05-20 |
-| Flow Track | Step 2 已完成 / 2026-05-28 |
+| Flow Track | `request-log-rabbitmq-admin-consumer Step 3` 已完成 / 2026-05-28 |
 | 履歷判斷 | 真實開發過 + code-backed，可保守放後台 API / risk ops / async data processing |
-| 下一步 | `antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 3` |
+| 下一步 | `antplay antplay-slot-admin-api request-log-rabbitmq-admin-consumer Step 4` |
 
 ## Claim Boundary
 
@@ -31,4 +31,6 @@
 
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/step1-candidate-flows.md)
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/step2-flow-comparison.md)
+- [flows/request-log-rabbitmq-admin-consumer/flow.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/flow.md)
+- [flows/request-log-rabbitmq-admin-consumer/career-interview.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/flows/request-log-rabbitmq-admin-consumer/career-interview.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/antplay-slot-admin-api/contribution-claim-consolidation.md)
