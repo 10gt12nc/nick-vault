@@ -18,7 +18,7 @@
 | 1 | Provider Integration template | payment provider、遊戲 provider、callback、query、補償、對帳 | v1 completed |
 | 2 | Wallet / Bet-Settle template | wallet source of truth、bet record、settle、rollback、transaction boundary | v1 completed |
 | 3 | MQ / Batch / Projection template | Kafka / RabbitMQ、report projection、retry、DLQ、重跑、資料修復 | v1 completed |
-| 4 | Slot Math / RTP Validation template | math-core contract、simulation、result validation、版本相容 | pending / optional |
+| 4 | Slot Math / RTP Validation template | math-core contract、simulation、result validation、版本相容 | v1 completed / optional |
 
 ## Provider Integration Template v1
 
@@ -1017,6 +1017,274 @@ repair_task
 - 不說「request log / report projection 是交易 source of truth」。
 - 不把 analysis-only 或主管 / 團隊 context 寫成 Nick direct evidence。
 
+## Slot Math / RTP Validation Template v1
+
+### 1. 面試定位
+
+這份模板回答：
+
+```text
+如果我要從 0 設計一套 slot math module / RTP validation / result contract 的上線流程，
+如何處理 math-core contract、RTP / reel strip simulation、feature state、result schema、runtime 對齊與 release gate？
+```
+
+適用場景：
+
+- Slot math core / game math module 維護。
+- RTP / reel strip / simulation validation。
+- Buy free、scatter、jackpot、special wild、fixedMultiBet / currency 類 result contract。
+- 遊戲 / slot / provider domain 的差異化面試。
+
+不適用或不可誇大：
+
+- 不代表 Nick 主導完整遊戲數學模型。
+- 不代表 Nick 設計完整 RTP 策略、派彩模型或 certification 流程。
+- 不代表全部 `*-math` repo 都由 Nick 主導或全量 Level 3 深掃。
+- 不把 math module 寫成 wallet / settlement / jackpot pool owner。
+
+### 2. Evidence 對照
+
+| Evidence | 用途 | Claim 邊界 |
+| --- | --- | --- |
+| `projects/antplay/math-core/contribution-claim-consolidation.md` | SlotMath contract、DebugBetVO、RtpType、Symbol、fixedMultiBet / currency 類 core evidence | 可談 math-core contract 維護；不可寫完整 framework owner |
+| `projects/antplay/star-math/contribution-claim-consolidation.md` | `*-math` grouped claim gate，五條代表 flow 已 Step 5 | 可保守寫多個 slot math module 維護與驗證；不可寫全部 math modules owner |
+| `projects/antplay/star-math/flows/fixed-multi-bet-currency-math-core-compatibility/flow.md` | fixedMultiBet / currency / totalBet / jackpot scaling contract | 可談 money-like correctness；不可寫 wallet correctness owner |
+| `projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/flow.md` | RTP target、reel strip、simulation loop、sample size、runtime path 對齊 | 可談 high-risk domain validation；不可寫 RTP strategy owner |
+| `projects/antplay/star-math/flows/buy-free-scatter-rtp3-result-contract/flow.md` | buy free odds、RTP_3 routing、scatter / lastSymbols、RoundResult / FreeBetResult | 可談 feature result contract；不可寫完整 buy free owner |
+| `projects/antplay/star-math/flows/jackpot-symbol-hit-and-prize-scaling/flow.md` | jackpot symbol hit、balance callback、fixedMultiBet prize scaling、reward list | 可談 jackpot result contract；不可寫 jackpot pool / settlement owner |
+| `projects/antplay/star-math/flows/special-wild-feature-state-transform/flow.md` | feature state transform、extraData、front-end display contract、scoring symbol 收斂 | 可談 feature state / result consistency；不可寫完整 feature owner |
+| `projects/antplay/architecture-map.md` | AntPlay math / runtime system map | 架構視角，不新增履歷 claim |
+
+### 3. 0 到 1 核心切法
+
+```mermaid
+flowchart LR
+  Spec["GDD / Math Spec\nRTP target、feature rules"]
+  Core["math-core contract\nSlotMath、DebugBet、RtpType、Symbol"]
+  Module["*-math module\nspin、freeSpin、feature state"]
+  Sim["Simulation / Validation\nreel strip、sample、tolerance"]
+  Result["Result Contract\nRoundResult、FreeBetResult、extraData、jackpotReward"]
+  Runtime["Game API Runtime\nbet / settle / record / display"]
+  Gate["Release Gate\nsnapshot、diff、approval"]
+  Obs["Debug / Replay\nseed、input、output、histogram"]
+
+  Spec --> Core
+  Core --> Module
+  Spec --> Sim
+  Module --> Sim
+  Module --> Result
+  Sim --> Gate
+  Result --> Runtime
+  Gate --> Runtime
+  Runtime --> Obs
+  Obs --> Module
+```
+
+核心不是「會改輪帶」或「會跑一個 simulation」，而是建立一個可驗證、可追溯、可對齊 runtime 的 math release boundary：
+
+1. Spec boundary：RTP、free trigger、jackpot hit、buy free odds、feature rule 要能追到規格或調整理由。
+2. Core contract：math-core interface / VO / enum 必須讓多個 module 漸進相容。
+3. Module implementation：每個遊戲 module 的 `InputData`、factory、operator service、result contract 要一致。
+4. Simulation validation：用真實 spin path 跑樣本，不重新手寫一套派彩。
+5. Result contract：前端展示、bet record、runtime 統計與客服排查要讀得懂同一份 result。
+6. Runtime acceptance：game-api / wallet / bet record 只接受語意完整、可追蹤的 math result。
+7. Release gate：輪帶、RTP、feature contract 進 production 前要有 snapshot、diff、validation output。
+8. Debug / replay：能用 seed、input、RTP flag、result JSON 回放或定位問題。
+
+### 4. 最小資料 / Contract 模型
+
+#### `math_input`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `game_code` | 對應 math module |
+| `agent_id` / `currency` | jackpot balance、currency multiplier、agent override |
+| `line_bet` / `fixed_multi_bet` | totalBet / jackpot scaling / buy free cost |
+| `rtp_flag` | RTP_1 / RTP_2 / RTP_3 / optimizer table |
+| `game_state` | base game / free game / feature state |
+| `debug_seed` / `rng_sequence` | debug / replay |
+| `feature_input` | buy free type、jackpot switch、special feature trigger |
+
+#### `math_result`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `total_bet` | 上游扣款與統計語意 |
+| `total_win` | 派彩 / settlement input |
+| `round_results` | base / free rounds |
+| `free_bet_results` | free game 細節 |
+| `jackpot_reward_list` | jackpot type / amount / currency |
+| `extra_data` | 前端動畫、feature state、free game routing |
+| `rtp_flag` / `feature_type` | 排查 result 來源 |
+| `input_hash` / `result_hash` | snapshot / regression compare |
+
+#### `validation_run`
+
+| 欄位 | 用途 |
+| --- | --- |
+| `run_id` | 每次 validation 識別 |
+| `game_code` / `module_version` | 對應 repo / commit |
+| `target_rtp` / `tolerance` | 接受標準 |
+| `sample_size` / `attempts` | 統計可信度 |
+| `seed` | 可重跑性 |
+| `base_rtp` / `free_rtp` / `trigger_rate` / `jp_hit_rate` | validation output |
+| `accepted` | release gate |
+| `artifact_ref` | 輪帶、histogram、log snapshot |
+
+### 5. State / Feature Contract
+
+#### RTP / Reel Strip Validation
+
+```text
+SPEC_TARGET
+-> RATIO_DEFINED
+-> CANDIDATE_REEL_GENERATED
+-> SIMULATION_RUNNING
+-> METRIC_COLLECTED
+-> ACCEPTED / REJECTED
+-> RELEASE_CANDIDATE
+```
+
+#### Runtime Spin / Result
+
+```text
+INPUT_RECEIVED
+-> CONTRACT_NORMALIZED
+-> REEL_SELECTED
+-> SPIN_EXECUTED
+-> FEATURE_TRANSFORMED
+-> RESULT_ASSEMBLED
+-> RUNTIME_ACCEPTED
+```
+
+#### Feature State Examples
+
+```text
+Buy Free:
+request buyFree -> odds selected -> flagRTP=RTP_3 -> free result assembled -> result JSON carries buyFree metadata
+
+Jackpot:
+symbols hit -> jackpot type -> balance callback -> prize scaled -> reward list -> totalWin includes jackpot
+
+Special Wild:
+raw symbols -> parent / child marker -> scoring symbol -> extraData display contract -> free game routing
+```
+
+### 6. Validation / Regression 設計
+
+| 驗證層 | 要驗什麼 | Owner 判斷 |
+| --- | --- | --- |
+| Contract compile | math-core interface、VO、enum 是否讓舊 module 不壞 | default fallback 安全，但不能代表所有 module 完整支援 |
+| Deterministic debug | 同 input / seed / RNG 能否重現同 result | debugBet 要帶 currency、fixedMultiBet、RTP flag |
+| RTP simulation | base RTP、free trigger、free RTP、JP hit rate 是否在 tolerance | sample size、seed、runtime path 要記錄 |
+| Result schema | RoundResult、FreeBetResult、extraData、jackpotReward 是否完整 | 前端 / bet record /客服排查要讀得懂 |
+| Runtime alignment | simulation 用的 path 是否和 production spin path 一致 | 不應另外手寫 validation 派彩邏輯 |
+| Cross-module compatibility | 新 core contract 是否逐 module 落地 | module-by-module 驗證，不用 core default 直接宣稱完成 |
+
+### 7. Failure Window
+
+| Failure window | 後果 | Owner 解法 |
+| --- | --- | --- |
+| RTP target / tolerance 設錯 | validation 通過但 business target 錯 | target 需連到 GDD / math spec / approval |
+| sample size 不足 | RTP / hit rate 被隨機波動誤判 | 記錄 rounds、attempts、seed、confidence |
+| simulation 沒走 production spin path | 驗證結果不能代表 runtime | validation 呼叫真實 `AbstractSlotMath#spin` / module factory |
+| `rtp_flag` routing 錯 | buy free / optimizer 跑錯輪帶 | release test 檢查 RTP flag -> table mapping |
+| fixedMultiBet / currency 漏帶 | totalBet、jackpot scaling、debug result 不一致 | core contract + module input + result 欄位一起驗 |
+| jackpot balance callback 格式錯 | 查錯 agent / type / currency 或 amount 變 0 | payload contract test + runtime alert |
+| feature marker 流入 scoring | 特殊 wild / feature state 影響算分 | transform state 與 scoring symbol 明確收斂 |
+| `extraData` 與 symbols 不一致 | 前端動畫、客服查詢與結算不一致 | result schema snapshot / replay |
+| result JSON 缺 feature metadata | bet record / darkpool / report 混算 normal / buy free | afterBet / record contract 檢查 |
+| debug / replay 缺 seed 或 input | 事故後無法重現 | 保存 seed、input、RTP flag、result snapshot |
+
+### 8. Release Gate / Rollout Plan
+
+#### Phase 1：Contract first
+
+- 先定 `math_input` 與 `math_result` contract。
+- `SlotMath` 新簽名用 default fallback 保持相容。
+- 明確哪些 module 已 override，哪些仍是 fallback。
+
+#### Phase 2：Module-level validation
+
+- 每個 module 建立 sample input。
+- 覆蓋 normal bet、debug bet、free spin、buy free、jackpot / feature path。
+- fixedMultiBet / currency / RTP flag 要能在 input、totalBet、result 中核對。
+
+#### Phase 3：RTP / reel strip validation
+
+- 用真實 spin path 跑 simulation。
+- 記錄 target、tolerance、sample size、seed、output snapshot。
+- 不只看 total RTP，也看 free trigger、free RTP、jackpot hit、feature distribution。
+
+#### Phase 4：Runtime result acceptance
+
+- game-api 接 math result 前檢查必備欄位。
+- result JSON 要能支撐前端展示、bet record、客服查詢、報表分類。
+- Jackpot / buy free / special feature 不混成一般 spin。
+
+#### Phase 5：Release and rollback
+
+- 輪帶 / config / module version 要可 diff。
+- 上線後監控 feature trigger、RTP trend、error log、result schema error。
+- 若出問題，能回退輪帶 / module version，或關閉 feature flag。
+
+### 9. Observability / Debug
+
+最少要能查：
+
+- 這一局用了哪個 game module / commit / RTP flag。
+- `lineBet`、`fixedMultiBet`、`currency` 是否進入 math input。
+- 使用哪組 reel strip / buy free table / optimizer table。
+- result 的 `totalBet`、`totalWin`、`jackpotRewardList` 是否語意一致。
+- `extraData` 是否足以還原 feature transform 與前端動畫。
+- simulation run 的 seed、sample size、target、tolerance、output snapshot。
+- runtime record 是否保存 feature metadata，避免後續報表混算。
+
+建議保留：
+
+- debug input / output snapshot。
+- validation run report。
+- reel strip diff。
+- feature result schema sample。
+- RTP / trigger / hit rate histogram。
+- module version / config version。
+
+### 10. 面試 3 分鐘講法
+
+```text
+如果我要設計一套 slot math / RTP validation 流程，我會先把它拆成四層：math-core contract、game module implementation、validation pipeline、runtime result acceptance。
+
+第一層是 contract。math module 不是單純回一個 win amount，它要把 lineBet、currency、fixedMultiBet、RTP flag、game state、debug seed 這些 input 正確帶進 totalBet、totalWin、RoundResult、FreeBetResult、jackpotRewardList 和 extraData。像 fixedMultiBet / currency 這類欄位，如果 core interface 有了但某個 module 沒 override，就會出現 caller 以為支援、實際 totalBet 沒乘到的風險。
+
+第二層是 validation。RTP / reel strip 不能只看理論比例，也不能手寫另一套派彩邏輯來驗證。我會用真實 math spin path 跑大量 simulation，記錄 target RTP、tolerance、sample size、seed、base RTP、free trigger、free RTP、jackpot hit rate。這樣輪帶進 production 前，至少知道 validation 和 runtime 是同一條路徑。
+
+第三層是 feature result contract。Buy free 不是只有 RTP_3，還包含 odds、freeSpinBet routing、scatter / lastSymbols、FreeBetResult 和 result JSON；Jackpot 不是只有命中 symbol，還包含 agent / type / currency 查池、fixedMultiBet prize scaling、reward list 與 totalWin；Special Wild 也不是只改盤面，還要把 feature state 收斂成 scoring symbol，並把 extraData 給前端動畫。
+
+我的實際材料主要來自 AntPlay math-core 與多個 slot math module 的五條代表 flow：fixedMultiBet / currency contract、RTP reel strip simulation、buy free / RTP_3 result、jackpot scaling、special wild state transform。這能支撐我談高風險 domain logic 的 validation 和 result contract，但我不會說自己主導完整遊戲數學模型、RTP 策略或 certification platform。
+```
+
+### 11. 常見追問
+
+| 追問 | 回答要點 |
+| --- | --- |
+| Slot math 為什麼算 Backend 能力？ | 因為它是高風險 domain logic：contract、determinism、runtime alignment、result schema、release gate 都是 backend owner 能力。 |
+| RTP simulation pass 就可以上線嗎？ | 不夠。還要看 sample size、seed、runtime path 是否一致、feature trigger / jackpot hit / result schema 是否通過。 |
+| 如何避免 simulation 和 production 不一致？ | validation 要呼叫真實 math module spin path，並記錄 module version、RTP flag、reel strip、input snapshot。 |
+| fixedMultiBet / currency 的風險是什麼？ | totalBet、jackpot scaling、debug bet、前端 result 若有一層漏帶，金額語意就會不一致。 |
+| Buy free 最危險的點？ | odds、RTP_3 routing、free result schema、bet record metadata 要一致；否則扣款、展示、統計會對不上。 |
+| Jackpot 是 math 還是 wallet？ | math module 只負責 hit / prize contract；pool 扣減、wallet settlement、對帳在 runtime / wallet 層。 |
+| `extraData` 是 log 嗎？ | 不是。對 Special Wild 這類 feature，它是前端展示與 free game routing 的 result contract。 |
+| 怎麼做 release rollback？ | 保留 module version、config / reel strip diff、validation artifact；必要時回退輪帶或關 feature flag。 |
+
+### 12. 不可誇大清單
+
+- 不說「我主導完整遊戲數學模型」。
+- 不說「我設計完整 RTP 策略 / 派彩模型 / certification 流程」。
+- 不說「我負責全部 71 個 `*-math` repo」。
+- 不說「我主導完整 jackpot pool / wallet / settlement」。
+- 不說「所有 feature 都有完整 automated validation pipeline」。
+- 不把 grouped / code-backed 分析素材寫成單一遊戲完整 owner。
+
 ## Relationship Check
 
 本檔新增的是 system design template，不是新履歷 claim。
@@ -1025,5 +1293,5 @@ repair_task
 - `08-application-autobiography-zh.md`：不更新。
 - `04-interview-casebook.md`：不更新；本模板可作 case 延伸材料。
 - `17-salary-negotiation.md`：不更新；不新增談薪 claim。
-- `06-todo.md`：需標示 Provider Integration template v1、Wallet / Bet-Settle template v1、MQ / Batch / Projection template v1 已完成。
-- `11-senior-interview-readiness.md`：需標示前三份 system design template 已完成。
+- `06-todo.md`：需標示四份 system design template v1 已完成，其中 Slot Math / RTP Validation 是可選差異化。
+- `11-senior-interview-readiness.md`：需標示四份 system design template v1 已完成，Slot Math / RTP Validation 仍不是必做。
