@@ -15,12 +15,21 @@
 - JD fit analysis。
 - 104 客製工作經驗、專長、自傳、自我推薦。
 - HR / 薪資 / 文化 / 技術問答。
+- 20% 基本功最小複習清單：只針對 JD 與主力 cases 可能追問的 Java / Spring / SQL / Redis / MQ / microservice 原理，不建立泛用八股題海。
 - 投遞前閱讀與練習排序。
 
 流程固定：
 
 ```text
 JD -> fit analysis -> 決定是否客製 -> 客製履歷 / 自傳 / 問答 -> 若有面試回饋再回填
+```
+
+面試準備比例仍維持：
+
+```text
+70% production case / system design / claim boundary
+20% JD-specific Java / Spring / SQL / Redis / MQ 基本功
+10% coding test / LeetCode 保險
 ```
 
 保守邊界：

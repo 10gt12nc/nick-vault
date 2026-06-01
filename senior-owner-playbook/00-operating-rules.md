@@ -25,7 +25,7 @@ AI 都必須套用同一套規則。
 
 若 Nick 暫時沒有特定職缺 JD，`08 / 17` 預設維持「通用 Senior Java Backend / Platform Backend 投遞版」，主軸是金流 / provider gateway / wallet / bet-settle / MQ / batch / legacy takeover。AI 不得每次都要求 Nick 貼 JD 才能繼續；只有 Nick 明確要投某個職缺、提供 JD、或要求客製時，才做 JD-specific 客製。沒有 JD 時，下一步應優先轉為通用版面試自我介紹、104 投遞欄位檢查、面試 case 練習或投遞準備。
 
-有明確 JD 時，流程固定是 `JD -> fit analysis -> 決定是否客製 -> 客製履歷 / 自傳 / 問答 -> 若有面試回饋再回填`。先分析是否值得投、值得 market check、或應略過；不要每看到一個 JD 就直接產完整履歷包。若 Nick 想投、值得 market check，或 Nick 明確要求客製，客製內容放在 `senior-owner-playbook/applications/{company-or-role}-{date}/`，原則是一個公司 / 一個 JD / 一個資料夾；不要直接覆蓋通用 `05 / 08 / 17`。JD-specific package 至少包含：JD fit analysis、104 客製履歷 / 自傳 / 自我推薦、HR / 薪資 / 文化 / 技術問答、投遞前閱讀順序。客製只能重排與降調既有 evidence，不得因 JD 寫 Senior、架構、mentor 就把 Nick 包裝成正式 Tech Lead、架構師或完整系統 owner。只有當某個 JD 客製結論變成全域通用規則時，才回填 `05 / 08 / 17 / 04`。
+有明確 JD 時，流程固定是 `JD -> fit analysis -> 決定是否客製 -> 客製履歷 / 自傳 / 問答 -> JD-specific 20% 基本功 -> 若有面試回饋再回填`。先分析是否值得投、值得 market check、或應略過；不要每看到一個 JD 就直接產完整履歷包。若 Nick 想投、值得 market check，或 Nick 明確要求客製，客製內容放在 `senior-owner-playbook/applications/{company-or-role}-{date}/`，原則是一個公司 / 一個 JD / 一個資料夾；不要直接覆蓋通用 `05 / 08 / 17`。JD-specific package 至少包含：JD fit analysis、104 客製履歷 / 自傳 / 自我推薦、HR / 薪資 / 文化 / 技術問答、JD-specific 20% 基本功最小複習清單、投遞前閱讀順序。客製只能重排與降調既有 evidence，不得因 JD 寫 Senior、架構、mentor 就把 Nick 包裝成正式 Tech Lead、架構師或完整系統 owner。基本功複習也只能從 JD 與主力 production cases 長出來，例如 AOP、transaction、SQL index、Redis consistency、MQ duplicate consume；不得變成泛用八股題海或取代 70% production case。只有當某個 JD 客製結論變成全域通用規則時，才回填 `05 / 08 / 17 / 04`。
 
 ### 完整性稽核：consolidation 不等於 flow
 
