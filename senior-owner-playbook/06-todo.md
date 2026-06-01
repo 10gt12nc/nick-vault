@@ -10,6 +10,7 @@
 
 ## 已完成
 
+- 2026-06-01：已建立 `applications/weida-senior-java-backend-2026-05-26/`，針對微達軟體「資深 Java 後端工程師【擴編】」產出 JD fit analysis、客製履歷 / 自傳 / 自我推薦、HR / 薪資 / 文化 / 技術問答。此包是 JD-specific，不覆蓋通用 `05 / 08 / 17 / 04`；若後續真的投遞或面試，再依回饋回填通用素材或補洞。
 - 已將外層舊整理資料歸入 `archive/` 參考區，之後可由 Nick 人工審查是否刪除。
 - 2026-05-25：Nick 已確認 `archive/` 不需要保留，已清空內容，只保留 `.gitkeep` 佔位；後續 KB 不再把 archive 當必要來源。
 - 從待刪區重新建立 `senior-owner-playbook/`。
