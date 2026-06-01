@@ -32,7 +32,7 @@
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 每次 Step 也要寫清楚 code repo 遠端最新性：是否已 fetch、local HEAD、remote HEAD、是否 ahead / behind；若未 fetch 或本機落後遠端，必須標示「未確認最新 code」。
 - 若來源 repo remote 是內網 GitLab 或當下網路不可達，fetch 失敗一次後不要反覆重試；用本地 refs / 本地工作樹保守分析，並標示「fetch 失敗 / 未確認最新遠端 / 依本地 refs 判斷」。不要把內網 URL、IP 或敏感 remote 細節寫入 vault。
-- 若 Nick 要求參考 `iwin-workspace`、`math-workspace` 或其他 workspace 的新流程，AI 必須先輸出或內化 `可採 / 不採 / 轉譯` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、baseline / evidence 分層等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / deploy / child repo 規則搬進 `nick-vault`。
+- 若 Nick 要求參考 `iwin-workspace`、`math-workspace` 或其他 workspace 的新流程，AI 必須先輸出或內化 `可採 / 不採 / 轉譯` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、baseline / evidence 分層等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / deploy / child repo 規則搬進 `nick-vault`。若 Nick 只是問「要不要跟進」，先回答採用建議；若 Nick 說「維護 KB / 幫優化 / 幫改」，才把結論轉成最小規則更新，優先改 `00`、`09`、`06`，不要新增長期資料夾。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。

@@ -630,6 +630,15 @@ Step 5 只判斷該 flow 是否能作履歷 / 面試素材，並輸出 claim bou
 | `不採` | 多 agent 目錄、per-project `CLAUDE.md`、`docs/projects/{module}/kb/catalog/` 長期開發結構、GDD / RTP / JAR / optimizer / deploy / sync script / child repo 管理規則。 |
 | `轉譯` | 只把好做法轉成現有檔案的輕量規則，例如 `00-operating-rules.md`、`09-ai-prompt-manual.md`、`06-todo.md`、project README、flow `materials/evidence.md` / `claim-boundary.md`。不得新增 `docs/agent-roles/`、`kb/catalog/`、`.work/`、per-project `CLAUDE.md` 作為 nick-vault 長期結構。 |
 
+採用判斷的執行順序：
+
+1. 先讀來源 workspace 的入口規則、索引、操作協議與新流程代表文件。
+2. 先回答「這是開發 workspace 專用流程，還是可轉成 `nick-vault` 的 KB 治理方法」。
+3. 若只是評估，先只回覆採用建議，不改規格。
+4. 若 Nick 要「維護 KB / 幫優化 / 幫改」，只更新最小必要規則檔，優先落在 `00` / `09` / `06`；不要為了參考流程新增新資料夾。
+5. 若流程會影響 flow、履歷、JD 客製或下一步判斷，再同步受影響的 project README、todo、flow evidence 或 claim boundary。
+6. 若只是開發型細節、工具腳本、子 repo 管理、部署或 GDD / RTP domain 規則，一律不進 `nick-vault`，最多在 final 說明不採用原因。
+
 2026-06-01 參考 `math-workspace` 新流程後的結論：值得吸收的是「先定義定位 / non-goals / source base / behavior reference / baseline parity / reviewer gate」這種防超做方法；不跟進它的工程型目錄與新遊戲開發流程。對 `nick-vault` 來說，對應做法是：開新 project / flow / JD 客製前先寫清楚本輪目標、不是什麼、證據來源、成功條件與不可誇大邊界；不是把履歷 KB 改成開發 workspace。
 
 ## 只保留新資料
