@@ -10,6 +10,7 @@
 
 ## 已完成
 
+- 2026-06-01：已深掃 `/Users/nick/Git/antplay/math-workspace` 新流程作參考。結論是部分跟進，不整套搬：可吸收入口索引、狀態儀表板、source / KB / git log 分層、non-goals、scope、success criteria、handoff / reviewer gate、先 baseline 再變更、不留流水帳；不採用 `math-workspace` 的多 agent 目錄、per-project `CLAUDE.md`、`docs/projects/{module}/kb/catalog/` 長期開發結構、GDD / RTP / JAR / optimizer / deploy / child repo 規則。已回填 `00-operating-rules.md` 與 `09-ai-prompt-manual.md`，之後參考外部 workspace 新流程時一律先做 `可採 / 不採 / 轉譯` 判斷。
 - 2026-06-01：已建立 `applications/weida-senior-java-backend-2026-05-26/`，針對微達軟體「資深 Java 後端工程師【擴編】」產出 JD fit analysis、客製履歷 / 自傳 / 自我推薦、HR / 薪資 / 文化 / 技術問答，並補上 JD-specific 20% 基本功最小複習清單。此包是 JD-specific，不覆蓋通用 `05 / 08 / 17 / 04`；若後續真的投遞或面試，再依回饋回填通用素材或補洞。
 - 已將外層舊整理資料歸入 `archive/` 參考區，之後可由 Nick 人工審查是否刪除。
 - 2026-05-25：Nick 已確認 `archive/` 不需要保留，已清空內容，只保留 `.gitkeep` 佔位；後續 KB 不再把 archive 當必要來源。

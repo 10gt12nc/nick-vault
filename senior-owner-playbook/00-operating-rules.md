@@ -622,6 +622,16 @@ Step 5 只判斷該 flow 是否能作履歷 / 面試素材，並輸出 claim bou
 - 任何公司 workspace 的複雜開發型 docs 結構。
 - 個人路徑、內部 host、token、密碼或環境細節。
 
+參考 workspace 出現新流程時，AI 必須先做採用判斷，不得直接照搬。固定分成三類：
+
+| 類別 | 可怎麼用在 `nick-vault` |
+| --- | --- |
+| `可採` | 入口索引、狀態儀表板、source / KB / git log 分層、handoff / reviewer gate、non-goals、scope、success criteria、先 baseline 再變更、不留流水帳、git log 作歷史來源。 |
+| `不採` | 多 agent 目錄、per-project `CLAUDE.md`、`docs/projects/{module}/kb/catalog/` 長期開發結構、GDD / RTP / JAR / optimizer / deploy / sync script / child repo 管理規則。 |
+| `轉譯` | 只把好做法轉成現有檔案的輕量規則，例如 `00-operating-rules.md`、`09-ai-prompt-manual.md`、`06-todo.md`、project README、flow `materials/evidence.md` / `claim-boundary.md`。不得新增 `docs/agent-roles/`、`kb/catalog/`、`.work/`、per-project `CLAUDE.md` 作為 nick-vault 長期結構。 |
+
+2026-06-01 參考 `math-workspace` 新流程後的結論：值得吸收的是「先定義定位 / non-goals / source base / behavior reference / baseline parity / reviewer gate」這種防超做方法；不跟進它的工程型目錄與新遊戲開發流程。對 `nick-vault` 來說，對應做法是：開新 project / flow / JD 客製前先寫清楚本輪目標、不是什麼、證據來源、成功條件與不可誇大邊界；不是把履歷 KB 改成開發 workspace。
+
 ## 只保留新資料
 
 外層只保留新的長期結構：
