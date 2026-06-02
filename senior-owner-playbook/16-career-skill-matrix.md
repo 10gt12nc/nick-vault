@@ -23,6 +23,215 @@ production flow
 - 依 `70 / 20 / 10` 控制比例：70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 基本判斷遇到再補；10% LeetCode / coding test 只作投遞前保險。
 - AI 時代 coding 的訓練重點是 review AI 產物是否能進 production，不是把自己訓練成刷題型選手。
 
+## 完整技術結構
+
+這段是 Nick 對標 Senior Java Backend / Platform Backend 的完整技術結構。它不是新主線，也不是要求一次全會；用途是當「基本功到底要補什麼」的固定檢查表。真正學習仍要回到 production flow、面試追問與實際 JD。
+
+能力主線：
+
+```text
+Java / Spring 基礎
+-> 高交易 Production Flow 掌握
+-> Transaction / Idempotency / Consistency
+-> MQ / Kafka / Batch / Projection
+-> MySQL / Redis / JVM Troubleshooting
+-> Observability / Incident Handling
+-> Legacy Takeover / Flow Reconstruction
+-> System Owner Decision
+```
+
+### 1. Java / Spring Backend 基礎主幹
+
+這是基本盤，目標不是炫技，而是能穩定寫出可維護、可讀、可排查的後端服務。
+
+必須維持熟練：
+
+- Java 語法與集合。
+- Stream / Optional / Lambda。
+- Exception handling。
+- Thread / Executor / Future。
+- Spring Boot / Spring MVC。
+- Spring Transaction。
+- MyBatis。
+- REST API 設計。
+- Validation / DTO / VO / Entity 分層。
+- Log / Error Code / Global Exception。
+
+### 2. Production Flow / 業務流程掌握
+
+這是 Nick 最核心定位。要能重建一個 request / event / batch 從入口到資料落地，中間經過哪些服務、狀態、交易邊界與失敗點。
+
+優先掌握：
+
+- Provider Integration。
+- Payment Callback / Payment Query。
+- Wallet Flow。
+- Bet / Settle Flow。
+- Game Round Flow。
+- Batch Projection。
+- Report / Statement Flow。
+- Admin / RBAC Flow。
+- Third-party API Flow。
+- Legacy System Flow。
+
+### 3. Transaction / Consistency / Idempotency
+
+這是高交易系統的核心能力，也是往 Senior 拉開差距的地方。要能回答：失敗時資料會不會重複、錢會不會多扣、重試會不會二次入帳、DB 成功但 MQ 失敗怎麼辦。
+
+必須熟：
+
+- DB Transaction Boundary。
+- Spring Transaction 失效場景。
+- Isolation Level。
+- Lock / Deadlock / Lock Wait。
+- Optimistic Lock / Pessimistic Lock。
+- Idempotency Key / Request Deduplication。
+- Retry Safety。
+- Compensation。
+- Reconciliation。
+- Outbox Pattern。
+- 最終一致性。
+- Callback 重複通知處理。
+- Wallet Balance Consistency。
+
+### 4. MQ / Kafka / Async Event Flow
+
+這是平台型後端核心加分項。重點不是背 Kafka 指令，而是能說清楚 event 發出去後誰消費、失敗怎麼辦、能不能重跑、能不能補資料、資料會不會亂序。
+
+要掌握：
+
+- Producer / Consumer。
+- Topic / Partition。
+- Consumer Group / Offset。
+- Retry / DLQ。
+- At-least-once。
+- Duplicate Message。
+- Message Ordering。
+- Event Schema。
+- Kafka Lag。
+- Batch Consumer。
+- Projection。
+- Event-driven Integration。
+- Transaction + Event 的一致性問題。
+
+### 5. Database / MySQL Performance
+
+高交易後端不能只會查資料，還要能判斷這個查詢在線上高流量下會不會炸。
+
+要熟：
+
+- Index Design / Composite Index。
+- EXPLAIN。
+- Slow Query。
+- Join / Subquery / Pagination。
+- Transaction / Lock / Deadlock。
+- Partition。
+- Batch Insert / Batch Update。
+- 大 IN Query 風險。
+- Connection Pool。
+- Read / Write Pattern。
+- Report Query 與 Online Query 分離。
+
+### 6. Redis / Cache / Distributed Lock
+
+核心問題是什麼資料能放 Redis、什麼資料不能只信 Redis，以及 cache 跟 DB 不一致時怎麼處理。尤其 wallet / balance 類資料要非常保守。
+
+要熟：
+
+- Cache Aside。
+- Cache Penetration / Breakdown / Avalanche。
+- TTL Strategy。
+- Hot Key / Big Key。
+- Distributed Lock。
+- Token / Session。
+- Rate Limit。
+- Redis + DB Consistency。
+- Redis Memory / Eviction。
+- Redis Cluster 基礎。
+
+### 7. JVM / Runtime Troubleshooting
+
+這是 Senior 訊號。Nick 不需要一開始變 JVM 專家，但要能在線上服務異常時知道看什麼、怎麼縮小範圍、怎麼提出合理修正。
+
+要能處理：
+
+- Heap / Stack。
+- GC / Full GC。
+- OOM。
+- Thread Dump / Heap Dump。
+- CPU 100%。
+- Memory Leak。
+- Thread Pool Exhaustion。
+- Connection Pool Exhaustion。
+- Large Object / Large Query Result。
+- JVM Parameters 基礎。
+
+### 8. Observability / Production Operation
+
+這是從「會寫功能」到「能扛服務」的差距。每個重要流程都要能查、能追、能補、能解釋。
+
+要熟：
+
+- Structured Logging。
+- Trace ID / Request ID。
+- Error Code。
+- Metrics / Alert / Dashboard。
+- Slow Query Log。
+- Kafka Lag Monitoring。
+- Callback Failure Log。
+- Batch Job Result。
+- Reconciliation Report。
+- Incident Review。
+
+### 9. Legacy System Takeover / Reverse Engineering
+
+這是 Nick 的隱藏強項，要明確包裝成「接手複雜既有系統，重建 production flow，找出資料與穩定性風險」。
+
+要能做到：
+
+- 從 API Entry 找流程。
+- 從 DB Table 反推狀態機。
+- 從 Log 反推 production behavior。
+- 從 MQ Topic 找上下游。
+- 從 Batch Job 找資料投影。
+- 從錯誤案例找真實邊界。
+- 補文件、畫 flow、找風險點、提出改善順序。
+
+### 10. System Design / Owner Decision
+
+下一階段要補的是具體決策能力，不是空談架構。
+
+要能回答：
+
+- 何時同步？何時非同步？
+- 何時用 DB transaction？何時用最終一致？
+- 何時 retry？何時 compensation？
+- 何時用 cache？何時不要 cache？
+- 何時拆服務？何時不要拆？
+- 如何設計可重跑 batch？
+- 如何設計 callback query fallback？
+- 如何設計 wallet / ledger flow？
+- 如何讓系統可觀測、可補償、可排查？
+
+## 目前最該優先補的 5 個
+
+先不用再擴張太多。對標月薪 10 萬以上 Senior / Platform Backend，最有投遞與面試價值的是把下面 5 個補成「我做過什麼、遇過什麼問題、怎麼判斷、怎麼修、trade-off 是什麼」：
+
+1. Spring Transaction + DB Lock / Consistency。
+2. Kafka / MQ Retry / DLQ / Idempotency。
+3. MySQL Slow Query / Deadlock / Index。
+4. Redis Cache Consistency / Distributed Lock。
+5. Production Flow 文件化與案例化。
+
+補法仍然固定：
+
+```text
+先讀主力 production flow
+-> 從該 flow 裡抽出卡點
+-> 補對應基本功
+-> 回填 90 秒 / 3 分鐘口說與追問題庫
+```
+
 ## Level 1：初階 Backend
 
 定位：
