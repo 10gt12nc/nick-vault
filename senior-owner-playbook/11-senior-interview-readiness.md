@@ -107,6 +107,8 @@ Backlog 永遠會存在，但 backlog 不等於必做。
 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
+若 Nick 仍覺得焦慮，下一步不是再深掃全部 repo，而是進入 `Interview Coaching Track`：使用 `19-interview-coaching-question-bank.md`，由 AI 每輪問 3-5 題，Nick 回答後由 AI 評估、追問、教學、畫圖或代碼演示。這條線用來驗證「能不能講出來並抗追問」，不是新的文件整理 backlog。
+
 ## 0 到 1 System Design Template
 
 這是可選架構加強，不是新的必做 backlog。目的不是每個系統都重掃 code，也不是宣稱 Nick 主導過完整 0 到 1 大系統；而是從已完成 evidence 的 production flows 萃取出面試可講的架構模板，必要時才回 code 補查關鍵邊界。

@@ -240,6 +240,8 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
+可選加強：若 Nick 想降低焦慮、確認自己是否真的能面 Senior，不要再開全 repo 深掃；改走 `Interview Coaching Track`。位置是 `senior-owner-playbook/19-interview-coaching-question-bank.md`。AI 每輪只問 3-5 題，依回答做評估、追問、教學、畫圖、代碼演示或口說打磨；問答不記流水帳，只把能力判斷、補強主題與可回填素材整理進 KB。
+
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論維持 code-backed interview-only，不更新正式履歷 / 自傳。

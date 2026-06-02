@@ -48,6 +48,8 @@ nick-vault/
     15-project-architecture-map-system.md
     16-career-skill-matrix.md
     17-salary-negotiation.md
+    18-system-design-templates.md
+    19-interview-coaching-question-bank.md
   projects/
     iwin/
       app_bi/
@@ -79,6 +81,8 @@ nick-vault/
 - 投遞用自傳
 - Senior 面試 readiness、角色對標、談薪與轉職月份策略
 - 技術決策、架構地圖、軟硬實力檢查表
+- System design 模板
+- 互動問答診斷、教學題庫與口說打磨規則
 
 不要放：
 
@@ -169,6 +173,7 @@ Nick 不需要每次重複提醒「重讀 KB / 重讀 code / 維護規則」。
 7. 轉成該 flow 的 `career-interview.md`。
 8. 做 Step 5 單條 flow claim gate；若要碰正式履歷 / 自傳，改走 project contribution claim consolidation。
 9. 面試題與 Java / SQL / LeetCode 補強只能從主力 production case 延伸；不要把 20% / 10% 補強變成新主線。
+10. 若 Nick 明確要求互動問答、追問、教學、結構圖或代碼演示，改走 `19-interview-coaching-question-bank.md`，每輪只問 3-5 題，不記問答流水帳，只萃取能力判斷、補強主題與可回填素材。
 
 不要一次掃全部專案。
 
