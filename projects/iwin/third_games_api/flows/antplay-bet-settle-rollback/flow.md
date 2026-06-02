@@ -273,15 +273,7 @@ Step 5 claim gate 結論：
 - 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪沒有找到新的 Nick / `10gt12nc` production adapter direct evidence。
 - 不可反向歸因：下游 `iwin_gameserver` Antplay direct commits 仍屬於 `iwin_gameserver` project-level third-party provider 投派整合 claim。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
-
-原因：
+## 後續狀態
 
 - GSC transfer、OneAPI / PG bet_result、Antplay 三條 high-value transaction flow 都已完成 Step 5。
 - Step 2 ranking 的下一條未完成 candidate 是 GSC 分離式 withdraw / deposit / rollback / cancel，可用來確認 split endpoint 是否仍有 production / interview 價值。

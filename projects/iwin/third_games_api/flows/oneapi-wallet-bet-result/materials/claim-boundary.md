@@ -47,8 +47,6 @@ Step 5 結論：已完成 flow-level claim gate，evidence 層級不升級。這
 - gameserver wallet mutation 前的 idempotency guard 是否存在。
 - provider retry / timeout SLA。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

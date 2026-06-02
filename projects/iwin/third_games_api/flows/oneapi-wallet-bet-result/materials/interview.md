@@ -93,8 +93,6 @@ Adapter 會先用固定欄位順序重建 JSON，再用 HMAC-SHA256 驗 `X-Signa
 OneAPI adapter 本身我目前不會宣稱是我開發；我會把它當成分析過的第三方遊戲 callback case。比較強的本人 direct evidence 在下游 iwin_gameserver 的 PG / GSC / Antplay 投派整合與 money job，這部分我會另外用 iwin_gameserver 的 project claim 來講。
 ```
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

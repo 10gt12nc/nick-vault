@@ -83,7 +83,7 @@
 - `gsc-transfer-bet-settle-rollback` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
 - `oneapi-wallet-bet-result` Step 5 已完成，結論是不新增 `third_games_api` standalone 正式履歷成果。
 - `antplay-bet-settle-rollback` Step 5 已完成，結論維持 interview-only / no standalone resume bullet。
-- `gsc-seamless-withdraw-deposit-cancel` Step 5 已完成；`third_games_api` 本批代表 flow claim gate 已收斂，下一個必做收口回到 `k3s-deploy gameserver-phased-rollout Step 5`。
+- `gsc-seamless-withdraw-deposit-cancel` Step 5 已完成；`third_games_api` 本批代表 flow claim gate 已收斂；後續 `k3s-deploy gameserver-phased-rollout Step 5` 也已完成，目前沒有預設下一步。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

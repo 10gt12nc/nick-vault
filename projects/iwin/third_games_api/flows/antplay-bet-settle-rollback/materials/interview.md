@@ -76,8 +76,6 @@ Result：整理出核心 failure window 是 `gameserver wallet success -> adapte
 - adapter audit、wallet ledger、game reel log 是怎麼 reconciliation 的？
 - 如果 audit log 寫失敗，你們是自動補、人工補，還是依 provider statement 對帳？
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

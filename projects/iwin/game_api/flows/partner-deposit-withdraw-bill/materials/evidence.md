@@ -24,7 +24,7 @@ Step：5
 - `career-interview.md`：補一句話、30 秒、2 分鐘、5 分鐘、STAR、不同職缺講法與 Step 5 下一步。
 - `materials/interview.md`：補 3 分鐘講法、常見追問、Lead / Architect 追問、反問面試官以及當時 Step 5 待補（現已完成）。
 - `materials/claim-boundary.md`：維持 code-backed 面試素材；未看到 Nick / `10gt12nc` direct path evidence 前，不更新正式履歷 / 自傳。
-- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 4，下一步為 Step 5。
+- `flow.md`、README、Step 文件與共用索引：同步狀態為 Step 5 已完成，flow claim gate 已收斂。
 - `senior-owner-playbook/04-interview-casebook.md`：新增 Partner API 上分 / 下分 / 查單案例索引。
 
 Step 4 不新增正式履歷 claim。後續 `game_api contribution claim consolidation` 已完成，仍維持本 flow 只作面試素材。

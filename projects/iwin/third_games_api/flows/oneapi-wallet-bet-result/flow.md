@@ -378,13 +378,7 @@ OneAPI provider 會把 transactionId、betId、roundId、投注額、派彩、ja
 - 已回填 `projects/iwin/README.md`、`01-senior-owner-flow-inventory.md`、`04-interview-casebook.md`、`06-todo.md`。
 - 不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`，因為本 flow Step 5 只支撐面試素材，不支撐正式履歷新增。
 
-## 下一步
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
-
-原因：
+## 後續狀態
 
 - `gsc-transfer-bet-settle-rollback` 已完成 Step 5。
 - `oneapi-wallet-bet-result` 已完成 Step 5，結論是 code-backed interview-only，不新增正式履歷。

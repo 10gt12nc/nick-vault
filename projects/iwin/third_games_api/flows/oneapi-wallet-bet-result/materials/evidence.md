@@ -188,8 +188,6 @@ Step 5 判斷：
 - 不寫 provider secret / API key。
 - 不把舊 workspace 敏感環境文件內容複製進 vault。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

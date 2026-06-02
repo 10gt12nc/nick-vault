@@ -222,15 +222,7 @@ Step 3 結論：
 - 它有平台價值，但單獨做容易變 class summary。
 - 更好的方式是在 `third-party-transfer-in-out` 或 `center-http-deposit-withdraw` 裡追到 DB 寫入時，再把 dbproxy 當 transaction / consistency 附屬層深挖。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
+## 後續狀態
 
 - `center-http-deposit-withdraw` Step 5 已完成，結論為 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。

@@ -305,16 +305,8 @@ Owner 判斷：
 
 Step 5 已完成單條 flow claim gate，本輪不更新 `05-resume-master-zh.md` / `08-application-autobiography-zh.md`。結論維持 interview-only，不新增 `third_games_api` standalone 正式履歷成果。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
-
-原因：
+## 後續狀態
 
 - Step 5 已確認本 flow 維持 `專案存在 / code-backed` 面試素材，且仍不更新正式履歷。
-- `third_games_api` 本批代表 flow claim gate 已收斂，下一個必做收口回到 `k3s-deploy gameserver-phased-rollout Step 5`。
-- 這會補完 rollout / rollback 類 Platform / System Owner 素材；是否更新履歷仍以該 flow claim gate 判斷。
+- `third_games_api` 本批代表 flow claim gate 已收斂；後續 `k3s-deploy gameserver-phased-rollout Step 5` 也已完成，目前沒有預設下一步。
+- rollout / rollback 類 Platform / System Owner 素材已由 `k3s-deploy` interview-only flow 補充；是否更新履歷仍以該 flow claim gate 判斷。

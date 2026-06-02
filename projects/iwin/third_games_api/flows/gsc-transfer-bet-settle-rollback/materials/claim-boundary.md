@@ -61,8 +61,6 @@
 - 可面試講：code-backed / 分析過。可用 GSC transfer bet / settle / rollback flow 說明第三方 seamless wallet callback、gameserver wallet mutation、Mongo audit、retry、idempotency 與 rollback 語意。
 - 不可誇大：不得寫成 Nick 主導 GSC provider 串接、完整第三方遊戲錢包 owner、建立完整 idempotency / reconciliation 或解決 production 錯帳。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

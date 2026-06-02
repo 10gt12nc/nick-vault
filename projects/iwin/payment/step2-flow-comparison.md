@@ -84,7 +84,7 @@ payment-provider-callback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前已同步下一步為 `manual-order-review-repair` Step 5 |
+| `projects/iwin/payment/README.md` | 可沿用 / 已同步 | 專案定位清楚，目前 payment 本批代表 flows 與 contribution consolidation 已收斂，沒有預設下一步 |
 | `projects/iwin/payment/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 結構乾淨；已回補目前 payment 第三條 flow Step 5 完成與 `manual-order-review-repair` Step 4 完成 |
 | `projects/iwin/app_bi/step2-flow-comparison.md` | 可沿用 | 已正確指出 payment repair 應回到 `payment` source of truth |
 | `senior-owner-playbook/04-interview-casebook.md` | 可參考 | 已有 callback 一致性通用框架，但不能取代本 repo evidence |

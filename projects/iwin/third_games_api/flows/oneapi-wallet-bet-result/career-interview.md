@@ -97,8 +97,6 @@ Step 5 最終判斷：
 - 可補強其他 project：下游 PGTransferInOut direct commits 已屬 `iwin_gameserver` contribution claim。
 - 不可誇大：不說 Nick 開發 OneAPI adapter、不說 Nick 是 provider integration owner、不說已完成 exactly-once。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

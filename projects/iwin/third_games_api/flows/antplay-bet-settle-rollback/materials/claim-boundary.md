@@ -56,8 +56,6 @@ Step 5 結論：本 flow 只作 `專案存在 / code-backed` 與 `分析素材 /
 - production issue / incident evidence 顯示 Nick 處理過 Antplay adapter retry、金額、rollback、Mongo evidence 或 routing 問題。
 - 之後重新追 path-specific history 時找到更強 direct evidence。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

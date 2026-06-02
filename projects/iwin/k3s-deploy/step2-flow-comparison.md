@@ -334,9 +334,9 @@ Step 3 已依此範圍補讀 / 標示待確認：
 
 目前已同步：
 
-- `README.md`：目前下一步建議。
+- `README.md`：已同步目前收斂狀態。
 - `architecture-map.md`：修正 external dependency abstraction 的最新定位。
-- `step2-flow-comparison.md`：回補目前 Step 5 已完成與下一步轉 rolling resume package。
+- `step2-flow-comparison.md`：回補目前 Step 5 已完成與 rolling resume package 已完成。
 
 本輪不更新：
 
@@ -344,15 +344,7 @@ Step 3 已依此範圍補讀 / 標示待確認：
 - `senior-owner-playbook/08-application-autobiography-zh.md`：同上。
 - 共用 KB：本輪是 project-level 比較，沒有新增全 vault 規則。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-rolling resume package
-```
-
-原因：
+## 後續狀態
 
 - `gameserver-phased-rollout` Step 5 已完成，單條 flow claim gate 結論維持 interview-only。
 - 這條 flow 可支撐 release risk、service dependency、config boundary 與 owner decision 面試，不直接更新正式履歷。

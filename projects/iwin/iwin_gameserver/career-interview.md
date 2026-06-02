@@ -50,15 +50,7 @@
 - 完整 gameserver wallet owner、dbproxy owner、idempotency / reconciliation owner。
 - production incident / 改善比例。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
+## 後續狀態
 
 - `center-http-deposit-withdraw` Step 5 已完成，claim gate 結論為 code-backed interview-only。
 - `game-spin-settlement-log-reel` Step 5 已完成；一般 Game40 spin 維持 interview-only，provider log reel 支撐既有 project claim。

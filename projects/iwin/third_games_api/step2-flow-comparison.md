@@ -91,7 +91,7 @@ gsc-transfer-bet-settle-rollback
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步下一步為 `k3s-deploy gameserver-phased-rollout Step 5` |
+| `README.md` | 可沿用 / 已同步 | Step 1 後已乾淨；目前已同步本批代表 flows 與 k3s 補充 case 均已收斂，沒有預設下一步 |
 | `step1-candidate-flows.md` | 可沿用 | 有掃描等級、已掃 / 未掃、候選 flow 與履歷邊界 |
 | `step2-flow-comparison.md` | 可沿用 / 已回補現況 | 比較 Top candidate，選出第一條 flow；目前第一條 flow 已完成 Step 5 |
 | `flows/gsc-transfer-bet-settle-rollback/` | 已建立 | Step 3 / Step 4 / Step 5 已完成 |
@@ -341,8 +341,8 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 
 已更新：
 
-- `projects/iwin/third_games_api/README.md`：同步目前下一步。
-- `projects/iwin/third_games_api/step2-flow-comparison.md`：已回補目前 Step 5 狀態與下一條候選 flow。
+- `projects/iwin/third_games_api/README.md`：同步目前收斂狀態。
+- `projects/iwin/third_games_api/step2-flow-comparison.md`：已回補目前 Step 5 狀態與收斂邊界。
 
 本輪後續已更新：
 
@@ -351,16 +351,11 @@ projects/iwin/third_games_api/flows/gsc-transfer-bet-settle-rollback/
 
 ## 歷史下一步紀錄
 
-當時只推薦一件事：
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+當時推薦的 `iwin k3s-deploy gameserver-phased-rollout Step 5` 後續已完成。
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論是不新增 standalone 正式履歷主成果。
 - `antplay-bet-settle-rollback Step 5` 已完成。
-- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；`third_games_api` 本批代表 flow claim gate 已收斂，下一個必做收口回到 `k3s-deploy gameserver-phased-rollout Step 5`。
-- 需要 commit；不需要 push，除非 Nick 本輪明確要求。
+- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；`third_games_api` 本批代表 flow claim gate 已收斂；後續 `k3s-deploy gameserver-phased-rollout Step 5` 也已完成，目前沒有預設下一步。

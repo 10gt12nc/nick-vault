@@ -327,13 +327,7 @@ Step 5 claim gate 結論：
 
 Step 5 已完成。結論是：可作第三方 seamless wallet transaction boundary 的正式面試素材，但不新增 `third_games_api` standalone 履歷成果，不寫 Nick 主導 GSC provider 串接。
 
-## 下一步
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
-
-原因：
+## 後續狀態
 
 - 本 flow 已完成 Step 5 claim gate。
 - `oneapi-wallet-bet-result Step 5` 已完成，結論同樣維持 interview-only / no standalone resume bullet。

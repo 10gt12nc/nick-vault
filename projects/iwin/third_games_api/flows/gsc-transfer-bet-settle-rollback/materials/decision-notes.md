@@ -98,8 +98,6 @@ Owner 必須決定：
 - 本 flow 作為 Senior Backend 面試 case 很有價值。
 - 履歷只在 project-level consolidation 有新 evidence 時才回填。
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

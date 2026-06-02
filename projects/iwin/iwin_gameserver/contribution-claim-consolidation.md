@@ -95,15 +95,7 @@
 
 這份是 rolling / scoped consolidation。`center-http-deposit-withdraw` Step 5 已回填為 interview-only；`game-spin-settlement-log-reel` Step 5 已回填：一般 Game40 spin / settle 不新增履歷 claim，provider log reel / 投派整合 direct commits 只補強既有 project-level claim。`bet-target-set-query` Step 5 已完成，coupon 打碼入口有 `10gt12nc` direct commits，可作 coupon flow supporting evidence；完整打碼系統不新增 standalone 履歷 bullet。後續若新增其他 `iwin_gameserver` flow，必須回頭校正本檔、project README、`05-resume-master-zh.md` 與 `08-application-autobiography-zh.md`。
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
+## 後續狀態
 
 - Career Track 的 `iwin_gameserver` rolling / scoped consolidation 已先收口，正式履歷可以保守補第三方 provider 投派整合。
 - Flow Track 本批代表 flows 已完成 Step 5；`center-http-deposit-withdraw` 與 `game-spin-settlement-log-reel` 維持 interview-only / supporting evidence，`bet-target-set-query` 只把 coupon 打碼入口作 supporting evidence。

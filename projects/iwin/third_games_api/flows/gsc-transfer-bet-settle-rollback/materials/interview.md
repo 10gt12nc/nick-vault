@@ -114,8 +114,6 @@ money success 應以 gameserver wallet mutation 為準。Mongo 失敗要進 repa
 - 「如果要寫正式履歷，我會先確認本人參與 evidence 與底層 wallet 冪等實作。」
 - 「目前看到 rollback 分支沒有 wallet mutation，所以我會把它標成待確認，而不是包裝成已完成補償。」
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。

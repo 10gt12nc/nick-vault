@@ -196,15 +196,11 @@
 
 ## 歷史下一步紀錄
 
-當時只推薦一件事：
-
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+當時推薦的 `iwin k3s-deploy gameserver-phased-rollout Step 5` 後續已完成。
 
 原因：
 
 - `gsc-transfer-bet-settle-rollback Step 5` 已完成，結論仍是 interview-only / no standalone resume bullet。
 - 真正較強的第三方遊戲 direct evidence 在 `iwin_gameserver`，已由該 project consolidation 正確歸位。
 - `oneapi-wallet-bet-result Step 5` 與 `antplay-bet-settle-rollback Step 5` 都已完成。
-- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；`third_games_api` 本批代表 flow claim gate 已收斂，下一個必做收口回到 `k3s-deploy gameserver-phased-rollout Step 5`。
+- `gsc-seamless-withdraw-deposit-cancel Step 5` 已完成；`third_games_api` 本批代表 flow claim gate 已收斂；後續 `k3s-deploy gameserver-phased-rollout Step 5` 也已完成，目前沒有預設下一步。

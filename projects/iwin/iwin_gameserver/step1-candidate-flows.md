@@ -54,7 +54,7 @@
 
 | 文件 | 狀態 | 判斷 |
 | --- | --- | --- |
-| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步目前下一步為 `third_games_api gsc-transfer-bet-settle-rollback Step 5` |
+| `projects/iwin/iwin_gameserver/README.md` | 已建立 / 已同步 | project 入口，已同步本批代表 flows、third_games_api 與 k3s 補充 case 均已收斂，沒有預設下一步 |
 | `projects/iwin/iwin_gameserver/architecture-map.md` | 已建立 / 可沿用 | 最小定位圖，不是單條 flow 報告 |
 | `projects/iwin/iwin_gameserver/step1-candidate-flows.md` | 可沿用 / 已回補現況 | Step 1 主文件；本輪校正過期的「新建」描述 |
 | workspace `docs/專案分析/iwin_gameserver.md` | 可參考 / 不搬運 | 有 module 地圖，但含過舊路徑與不適合進 vault 的環境資訊，本次只取結構理解 |
@@ -349,15 +349,7 @@ third-party-transfer-in-out
 - `game_api/src/main/java/com/slots/web/service/partner/impl/PartnerServiceImpl.java`
 - `game_api/src/main/java/com/slots/web/service/tbwebmanager/impl/CouponRedeemServiceImpl.java`
 
-## 歷史下一步紀錄
-
-當時只推薦一件事：
-
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
-
-原因：
+## 後續狀態
 
 - `center-http-deposit-withdraw` Step 5 已完成 claim gate，維持 code-backed interview-only。
 - Career Track 的 rolling / scoped contribution consolidation 已完成。

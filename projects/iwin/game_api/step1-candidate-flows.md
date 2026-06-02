@@ -443,4 +443,3 @@ Step 3 已選定 coupon 後已補讀 / 待核對的重點：
 
 - coupon Step 5 已完成，`partner-deposit-withdraw-bill` Step 5 也已完成，`agent-bonus-receive-transfer` Step 5 已完成。
 - `game_api contribution claim consolidation` 已完成；後續 iwin_gameserver 代表 flows 已完成到 Step 5；目前沒有預設下一步。
-- 需要 commit；不需要 push，除非 Nick 明確要求。

@@ -88,8 +88,6 @@ Owner 角度的正確包裝是：
 我能分析第三方遊戲 provider callback 到 gameserver wallet mutation 的一致性與 idempotency 風險；其中 OneAPI flow 作為 code-backed 面試 case，實際 direct development claim 仍回到 iwin_gameserver 的 PG / GSC / Antplay 投派整合 evidence。
 ```
 
-## 下一步
+## 後續狀態
 
-```text
-iwin k3s-deploy gameserver-phased-rollout Step 5
-```
+目前沒有預設下一步。
