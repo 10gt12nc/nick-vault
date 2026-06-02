@@ -22,6 +22,45 @@
   - `反問模式`：模擬面試官連續追問。
 - 每輪最多問 3-5 題。不要一次把下面全部題目丟給 Nick 作答。
 
+## 題庫規模與使用輪次
+
+本題庫目前設計成 `10 個大主題 / 145 題`，但實務上不是 145 題全刷。它是診斷池，AI 依 Nick 的回答狀態挑題、追問、教學或打磨。
+
+10 個大主題：
+
+| 主題 | 題數 | 目的 |
+| --- | ---: | --- |
+| 履歷與自我定位 | 10 | 確認市場主軸、claim boundary、ownership 口徑 |
+| Production Flow 表達 | 10 | 確認會開發的內容能不能講成 3 分鐘 case |
+| Transaction / Consistency / Idempotency | 15 | 檢查高交易系統的正確性與失敗邊界 |
+| MQ / Kafka / RabbitMQ / Batch | 15 | 檢查 event-driven、projection、retry、DLQ、重跑 |
+| Database / SQL / Performance | 15 | 檢查 index、slow query、lock、partition、report query |
+| Redis / Cache / Distributed Lock | 15 | 檢查 cache / lock / consistency / fail mode 判斷 |
+| Java / Spring / Runtime 基本功 | 15 | 檢查 transaction、AOP、thread pool、JVM troubleshooting |
+| Observability / Incident / Legacy Takeover | 15 | 檢查排查、log、trace、交接文件與系統救援能力 |
+| System Design / Owner Decision | 15 | 檢查從 flow 抽象成架構、選型與 trade-off |
+| Behavior / HR / 談薪 / 團隊協作 | 15 | 檢查資深定位、薪資、弱點、合作與主管溝通 |
+
+建議輪次：
+
+1. `第 1 輪：5 題診斷主力市場定位`
+   先看 Nick 是否能講出 Senior 主軸、payment、wallet、MQ 與 ownership 邊界。
+2. `第 2 輪：10-15 題 production deep dive`
+   從第 1 輪卡住的地方追，例如 payment callback、transaction、MQ retry。
+3. `第 3 輪：10-15 題基本功補洞`
+   只補被追問打穿的 Spring transaction、SQL index、Redis、MQ、JVM。
+4. `第 4 輪：5-10 題 system design / owner decision`
+   練從 production flow 抽象成設計，不背空泛架構詞。
+5. `第 5 輪：5-10 題 HR / 談薪 / 弱點`
+   練不是完整 owner 但有資深潛力、為什麼 10 萬以上、如何保守但有力。
+
+判斷規則：
+
+- 第 1 輪若卡住，不往下刷題，先教學、畫圖、代碼演示或打磨回答。
+- 第 1 輪若穩，才進入第 2 輪 deep dive。
+- 基本功題只補被 production case 打穿的部分，不變成泛用八股題海。
+- 若某輪回答形成更好的履歷 / 面試說法，再回填 `04`、對應 flow `career-interview.md` 或 `05 / 08` 的保守素材。
+
 ## 評分方式
 
 每題用 0-3 分判斷：
