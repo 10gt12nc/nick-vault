@@ -54,7 +54,7 @@
 - 新 project 只有 Step 1 時，下一步必須是 Step 2；沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，不得直接建議或建立某 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / monorepo / 多 service 專案，Step 1 / Step 2 必須先整理 root module、submodule、service instance、tooling / config 邊界，並比較候選 flow 會跨哪些 module。這不是 class summary，而是避免跳過架構邊界。
 - 單條 flow 做到 Step 5 只代表該 flow 完成，不代表整個 project 完成；下一步要先回同 project 的 candidate ranking 選下一條未完成 flow，不要自行跨 project。
-- `senior-owner-playbook/01~19` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
+- `senior-owner-playbook/01~20` 是工具箱文件編號，不是 flow Step；flow Step 固定只有 Step 1~5。
 - 若 Nick 說「你來問我問題」、「我答覆你評估」、「直接教學」、「可深度詳細教」、「代碼演示」、「結構圖」等，先讀 `19-interview-coaching-question-bank.md`，進入 Interview Coaching Track。AI 每輪只問 3-5 題，依回答評分、追問、教學或打磨口說；不要建立問答流水帳，只回填能力判斷、補強主題與可用素材。
 - 「深掃」要標示深度：Level 1 Flow 掃描、Level 2 Flow 深掃、Level 3 極限深掃。Nick 明確要求極限深度時，要逐 module、逐檔、逐相關 commit diff 追原因與收斂。
 - AI 要主動判斷本次該用哪個深掃等級，並給 Nick 建議；不是每次都等 Nick 指定。

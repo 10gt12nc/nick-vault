@@ -1,5 +1,9 @@
 # 學習路線
 
+本檔是概念型學習路線，用來理解能力養成順序；不是投遞前唯一閱讀清單。
+
+投遞前實際順序以 [README.md](README.md) 的「投遞前衝刺讀法」與 [11-senior-interview-readiness.md](11-senior-interview-readiness.md) 為準。若目標是先投遞 / market check，不要從本檔開始平均補所有階段。
+
 ## 原則
 
 不要一次讀完全部。每次只選一條 flow，做完整學習包，再進下一條。

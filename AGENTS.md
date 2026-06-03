@@ -57,7 +57,7 @@
 - `System Owner` 在本 vault 的意思是能對「一條核心 production flow」理解結果、風險、failure window、補償、觀測與交接邊界；不是一個人負責整個公司、完整金流、完整遊戲平台、完整 DevOps 或完整架構決策。履歷、面試與 KB 都不得把「能 owner flow」擴張成「全系統 owner」。
 - 完整度分三層：`flow-level 完整`（單條 flow 可讀、可講、claim boundary 清楚）、`project-level 完整`（代表 flows + contribution consolidation 可支撐履歷 / 面試）、`domain-level 完整`（跨 project architecture / integration map）。目前 Senior 求職必做的是前兩層；第三層只在要練架構視角、面 Platform / Lead 候選、或 Nick 明確要求大地圖時補。
 - 目前收斂策略：先完成必做收口，再視需要只補 2 個非 iwin project 的代表 flow；不要平均掃所有 repo。已完成或低價值 repo（官網、前端、workspace、mock、全部 legacy / 全部 math repo 平均深掃）預設列入暫不建議，除非 Nick 明確指定。
-- `senior-owner-playbook/01~19` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~19。flow Step 固定只有 Step 1~5。
+- `senior-owner-playbook/01~20` 是工具箱 / 規則 / 學習路線的文件編號，不是 flow 的 Step 1~20。flow Step 固定只有 Step 1~5。
 - 小型 / 低風險改檔可以輕量自查後直接 commit，例如錯字、路徑修正、單句規則修正、索引同步、明顯不改語意的小補充。
 - 重大 / 實質改檔必須自行再全掃確認一次：重讀已改檔案、檢查相關規則是否互相衝突、跑 `git diff --check`，並確認沒有改到公司專案、沒有 secret、沒有未標示的推測或履歷誇大。結構大改、Step 主線調整、履歷正式 claim 更新，若 Nick 沒明確要求，必須先問。
 - 每次改檔後、commit 前必須做 `Relationship Check`，不是等 push 後才補救。先判斷本輪「事實變更」是什麼，再檢查是否影響權威檔：`projects/source-repo-inventory.md`、`projects/{domain}/README.md`、`projects/{domain}/{project}/README.md`、`senior-owner-playbook/06-todo.md`、`05-resume-master-zh.md`、`08-application-autobiography-zh.md`、`04-interview-casebook.md`、`17-salary-negotiation.md`、對應 `contribution-claim-consolidation.md`、`flow.md / career-interview.md / materials/claim-boundary.md`。有影響就同步修；無影響要在 final 說已檢查、不需更新。
