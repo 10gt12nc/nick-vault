@@ -15,3 +15,5 @@ Nick 的個人知識庫，用來整理 Senior Java Backend / Platform Backend / 
 - `archive/` 已清空，只保留 `.gitkeep`，不再當必要參考來源。
 
 投遞前不要平均掃全部 repo。先照 [senior-owner-playbook/README.md](senior-owner-playbook/README.md) 的「投遞前衝刺讀法」走；需要查某條 production flow 時，再回 `projects/` 對應 flow。
+
+目前 side project 明確暫不做；遊戲後端選型文件只作面試架構問答與未來備忘，不是投遞前主線。

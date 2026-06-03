@@ -6,6 +6,8 @@
 2. 商業用卡牌經營養成 / 回合制戰鬥 / 放置類養成戰鬥要怎麼選型。
 3. 四組既有系統的優點能否結合成新的遊戲服務器架構。
 
+目前策略：side project `暫不做`。它有差異化價值，但不是 Senior Java Backend / Platform Backend 投遞必要條件，也不是談 10 萬以上薪資的前置條件。現階段主線仍是履歷、production flows、case 口說、claim boundary 與基本功。本文只保留為架構選型備忘與面試問答素材；除非 Nick 明確要求啟動 side project，否則不產 spec、不寫 code、不部署雲端、不新增 backlog。
+
 它不是新的 flow Step，也不是履歷 claim 自動升級器。正式履歷仍以 `05 / 08` 與 project-level contribution consolidation 為準。
 
 ## Evidence Scope
@@ -107,7 +109,18 @@ Senior Backend 不必一開始變 SRE，但至少要懂：
 
 ## 面試用 Side Project 選型
 
-### 目標
+### 目前決策
+
+目前不做 side project。理由：
+
+- 已有真實 production flow、project contribution consolidation、履歷 / 自傳 / 面試 case，可先支撐投遞與 market check。
+- side project 是加分展示，不是 Senior Backend 必備證明。
+- 若為了證明自己才開始做，很容易變成焦慮型大工程，拖慢投遞與面試準備。
+- 雲端 demo / 後台試玩 / 免費部署雖然漂亮，但維護、資安、資料、帳號、成本與展示穩定性都會增加額外負擔。
+
+正確使用方式：面試官若追問「你會怎麼從 0 到 1 設計一個遊戲後端」，用本節口說架構；不要把它當成立即開工的 project spec。
+
+### 若未來明確啟動，目標才是這樣
 
 面試用 side project 不是要模仿公司完整大系統，而是要做一個能講清楚 Senior Backend 判斷的最小完整系統：
 
@@ -117,7 +130,7 @@ Senior Backend 不必一開始變 SRE，但至少要懂：
 - retry / idempotency / compensation 怎麼設計。
 - MQ / job / admin / observability 怎麼支撐 production。
 
-### 推薦架構
+### 若未來明確啟動，推薦架構
 
 先做 modular monolith 或少量 service，不要一開始就全微服務。
 
@@ -158,7 +171,7 @@ ops-support
   trace id
 ```
 
-### 技術選型
+### 若未來明確啟動，技術選型
 
 | 層 | 面試用推薦 |
 | --- | --- |
@@ -172,7 +185,7 @@ ops-support
 | Observability | Actuator / Prometheus / structured log / trace id |
 | Battle / math | Java pure module，不依賴 web framework |
 
-面試用不需要 Kubernetes、不需要完整 service mesh、不需要完整商城與金流，也不需要把所有 gameplay 都做完。重點是做出 2-3 條 production-grade flow：
+若未來真的啟動，面試用不需要 Kubernetes、不需要完整 service mesh、不需要完整商城與金流，也不需要把所有 gameplay 都做完。重點是做出 2-3 條 production-grade flow：
 
 1. 玩家戰鬥結算：action -> battle result -> reward -> wallet / inventory transaction。
 2. 放置收益領取：offline earning -> claim -> idempotency -> reward transaction。
@@ -315,7 +328,7 @@ ops
 ## 面試講法
 
 ```text
-如果是面試用 side project，我不會一開始做成大而全的微服務。我會先用 Spring Boot 3 做 modular monolith，把 game-api、wallet-ledger、combat-engine、game-job、admin-api 分清楚，並做 2-3 條 production-grade flow：戰鬥結算、放置收益領取、admin config projection。這樣可以講 source of truth、idempotency、MQ projection、manual repair 和 observability。
+如果面試官問我怎麼從 0 到 1 設計一個遊戲後端 demo，我不會一開始做成大而全的微服務。我會先用 Spring Boot 3 做 modular monolith，把 game-api、wallet-ledger、combat-engine、game-job、admin-api 分清楚，並設計 2-3 條 production-grade flow：戰鬥結算、放置收益領取、admin config projection。這樣可以講 source of truth、idempotency、MQ projection、manual repair 和 observability。
 
 如果是商業用遊戲，我會依遊戲類型拆 runtime。卡牌養成、回合制、放置類通常不是毫秒級 realtime action，第一版重點是資產、戰鬥結果、獎勵與訂單狀態正確，所以會保守把 wallet / inventory / billing 放在 source of truth，Redis 只作 projection / cache。等流量或 realtime 需求出現，再把 battle runtime 或 gateway 拆出去。
 
@@ -334,6 +347,6 @@ ops
 ## 後續維護規則
 
 - 若 Nick 問 side project、商業化遊戲、遊戲服務器重構、單體 vs 微服務、iwin / antplay / ugsoft / DevOps 如何整合，優先讀本檔。
-- 若要變成正式 side project spec，先從本檔收斂成一份 project README / architecture plan，不直接寫 code。
+- 目前 side project 暫不做。若 Nick 明確要求啟動，才從本檔收斂成一份 project README / architecture plan，不直接寫 code。
 - 若要真的商業上架，必須另做 policy / legal / Google Play Billing / privacy / security check，本檔只當架構起點。
 - 本檔不新增履歷 claim；若要放履歷，只能寫成「具備從既有 production flow 抽象 system design / side project 架構的能力」或作面試口說素材。

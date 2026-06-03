@@ -231,6 +231,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 15. `math-workspace / platform-mock / buffer-id contribution claim consolidation`：已完成 rolling 收口；只作 supporting / learning，不作正式主成果。
 16. `domain-level system map`：2026-05-28 已完成 `iwin system map v1`、`AntPlay system map v1` 與 `UGSoft system map v1`，新增三個 domain 的 `architecture-map.md` / `integration-map.md` / `career-interview.md`。DevOps 目前維持 learning-only / supporting，不建立正式 system map，避免把非 Nick direct evidence 包裝成履歷主線。
 17. `0 到 1 system design template`：若 Nick 想補完整系統架構能力，應從已完成的 payment / wallet / bet-settle / MQ / batch / math flows 萃取 template，而不是重掃全部 repo。此項是可選加強，用於 Platform / Lead 候選面試，不是目前投遞前必做。建議只做 4 份：主力 3 份是 `Provider Integration template`、`Wallet / Bet-Settle template`、`MQ / Batch / Projection template`；備用差異化 1 份是 `Slot Math / RTP Validation template`。它們的價值是展示從 production flow 抽象成 system design 的能力，不是宣稱 Nick 主導過完整 0 到 1 大系統。四份 template v1 均已完成，位置是 `senior-owner-playbook/18-system-design-templates.md`；Slot Math / RTP Validation 仍是可選差異化，不是新必做。四份模板只代表 Senior / Platform 面試的 production thinking，不是可直接上線的完整 production spec；真正落地仍要依公司 infra、流量、SLA、資安、法規、team ownership 補詳細設計、POC、壓測、review、runbook。選型要從 failure mode 出發，不是從技術名詞出發。
+18. `side project`：目前明確暫不做。它有加分價值，但不是投遞 Senior Backend 或談 10 萬以上薪資的必要條件；不要把雲端 demo、試玩、後台展示變成新主線。`20-game-backend-architecture-selection.md` 只保留為架構選型備忘與面試問答素材。除非 Nick 明確說要啟動 side project，否則 AI 不主動產 project spec、不寫 code、不部署雲端、不新增 side project backlog。
 
 ### 1. 收斂後狀態
 
@@ -252,7 +253,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 - 2026-05-27 rolling resume package、104 投遞欄位檢查與 `04 / 面試 case 對齊檢查` 已完成，`08 / 17` 已先調整為通用 Senior Java Backend / Platform Backend 投遞版。
 - 目前已不是「履歷能不能寫」或「case 能不能對上」，三條主力 case 的 90 秒 / 3 分鐘草稿也已完成；下一個缺口是 Nick 能不能實際講出來並抗追問。
 - 轉職月份與面試題準備規則已收進 KB。後續若 Nick 問「要不要補 Java / SQL / LeetCode」，預設回答是：只保留最小檢查表與遇到再補，不取代 70% production case 主線。
-- 但練習線先暫停。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態：目前沒有預設下一步，可以自由提問或彈性指定；`iwin system map v1` 已完成，後續架構視角只在 Nick 明確要 Level 3 架構審計、0 到 1 system design template 或 JD-specific system design 時再補。
+- 但練習線先暫停，side project 也先不做。Nick 暫時沒有特定 JD 時，AI 不再大規模補資料，也不要求貼 JD；除非 Nick 明確說要開始練，AI 不主動進入互動式口說問答。若 Nick 問下一步，先回答收斂狀態：目前沒有預設下一步，可以自由提問或彈性指定；`iwin system map v1` 已完成，後續架構視角只在 Nick 明確要 Level 3 架構審計、0 到 1 system design template、JD-specific system design 或明確啟動 side project 時再補。
 
 ### 2. 各 project 局部收斂狀態
 
