@@ -10,6 +10,7 @@
 - 掃描深度：Level 2 萃取。必要時才回 code 補查關鍵邊界；不做全 repo Level 3 重掃。
 - 面試定位：展示從 production flow 抽象出 API、state、DB、MQ、idempotency、reconciliation、observability 與 rollout plan 的能力。
 - 履歷邊界：不新增正式履歷 claim；正式履歷仍以 `05 / 08` 與 project-level contribution consolidation 為準。
+- 若問題是「我要做一個遊戲 side project / 商業化卡牌、回合制、放置遊戲 / 新遊戲服務器怎麼選型」，先讀 `20-game-backend-architecture-selection.md`，再回到本檔挑 Provider Integration、Wallet / Bet-Settle、MQ / Batch / Projection 或 Slot Math / RTP template。
 
 ## Production Readiness 邊界
 

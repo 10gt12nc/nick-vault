@@ -57,6 +57,8 @@ projects/{domain}/career-interview.md
 
 大地圖不是履歷 claim 自動升級器。沒有 project-level consolidation 或本人 / commit evidence，不得因為畫在 system map 上就寫成 Nick 主導整個系統。
 
+若 Nick 問的是 side project、商業化遊戲、單體 vs 微服務、或要把 `iwin` / `antplay` / `ugsoft` / `DevOps` 的優點整合成新的遊戲服務器，優先讀 `20-game-backend-architecture-selection.md`。那份文件是跨 domain 架構選型與整合策略，不取代 `projects/{domain}/architecture-map.md`，也不新增履歷 claim。
+
 目前已知缺口例子：
 
 - `projects/iwin/` 已有 README，但尚未建立 domain-level `architecture-map.md` / `integration-map.md`；之後若 Nick 要 iwin 整體架構視角，或代表 project 收斂後要總結，建議補 `iwin system map v1`。
