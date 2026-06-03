@@ -2,6 +2,7 @@
 
 日期: 2026-05-20
 Refresh: 2026-05-21（五條代表 flow 全部 Step 5 後的 project-level claim refresh）
+Workspace alignment: 2026-06-03（對齊 `/Users/nick/Git/antplay/math-workspace` 最新開發 / 驗證 KB）
 
 ## 結論
 
@@ -16,6 +17,8 @@ Refresh: 2026-05-21（五條代表 flow 全部 Step 5 後的 project-level claim
 - `special-wild-feature-state-transform`
 
 這讓 `*-math` 的 project-level claim 從「rolling / grouped」升級為「本批代表 flows 已回填的 refreshed grouped consolidation」。它仍不是 71 個 repo 全量 Level 3 final consolidation，也不是完整遊戲數學 owner 結論。
+
+2026-06-03 對齊 `math-workspace` 後，結論不變但驗證口徑更清楚：`projects/antplay/star-math/flows/*` 是履歷 / 面試 flow 主體；`math-workspace` 是 cross-math KB / validation workflow supporting source。它補強的是 GDD / 規格書、相似成熟底包、固定盤面驗算、result contract、RTP / reel strip / optimizer / final valid 交互驗證、child repo commit 與 workspace KB 回填方法，不反向升級為完整 math platform、完整 simulator / certification 或完整 RTP 策略 owner。
 
 履歷可保守寫:
 
@@ -78,6 +81,34 @@ Refresh: 2026-05-21（五條代表 flow 全部 Step 5 後的 project-level claim
 | `antplay-slot-game-api` | `develop` | `079aa66` | `origin/develop` = `079aa66` | `0 / 0` | fetch 失敗，依本地 refs；只作 runtime caller context |
 
 本輪沒有修改 source repo。fetch 失敗代表未確認最新遠端；依 KB 不反覆重試，也不把內網 remote 細節寫入 vault。
+
+## 2026-06-03 math-workspace Alignment
+
+已重新 fetch `/Users/nick/Git/antplay/math-workspace`，local `main` 與 `origin/main` 均為 `43d520dc9954a946a2a671e0f82f147a3dc3aabb`，ahead / behind `0 / 0`；本輪只讀 workspace，未 pull / checkout / merge / 改外部 repo。
+
+已重讀：
+
+- `README.md`
+- `INDEX.md`
+- `docs/INDEX.md`
+- `docs/AI-OPERATING-PROTOCOL.md`
+- `docs/projects/NEW-GAME-EVALUATION.md`
+- `docs/relations/all-math-code-kb-audit.md`
+
+可採 / 轉譯到 `star-math` 的重點：
+
+- `math-workspace` 的新遊戲流程可作五條 representative flows 的驗證背景：先讀 GDD / 規格書與外層 KB，再選 3-5 個相似成熟底包，接著用固定盤面 / debug RNG / TestNew / result JSON 驗玩法，最後才跑 RTP / reel strip / optimizer / final valid。
+- `fixed-multi-bet-currency-math-core-compatibility` 要對齊 `math-workspace` 的 contract 檢查：core method、module input、operator service、calculation、result output、debug path 與 jackpot scaling 必須吃同一組下注上下文。
+- `rtp-reel-strip-simulation-validation` 要對齊 workspace 的兩段驗證：optimizer / `Simulate` 看 Base RTP、FG trigger、Free multiplier；production final valid / `TestNew` 看 `valid -> doRound -> processGameSpinResult` 的真實 result。兩段差太多時先查 code flow，不先調 ratio。
+- `buy-free-scatter-rtp3-result-contract` 要對齊 workspace 的 routing / result contract 檢查：buy free odds、`RTP_3` routing、free result、scatter state、`RoundResult` / `FreeBetResult` / result JSON 必須一致。
+- `jackpot-symbol-hit-and-prize-scaling` 要對齊 workspace 的分層驗證：先用固定盤面強制 trigger 驗 jackpot show / type / reward list，再到 factory / wrapper 驗 jackpot amount 是否進最終 result；不能用偶發 JP 或 debug-only state 當 production evidence。
+- `special-wild-feature-state-transform` 要對齊 workspace 的 transform 檢查：停輪原盤、算分盤、ExtraData / parent-child position、FG state 都要能說清楚；只看金額會漏前端演出與 result contract 風險。
+
+不可採 / 不升級的重點：
+
+- `math-workspace` 的 `docs/agent-roles/` 與 Karpathy guidelines 是 guardrail / checkpoint，不是 `nick-vault` 的新 flow Step，也不取代五條 `star-math` flow。
+- `sdt-lab-math` 的安全補強、debug gate、fixed board property gate、單元測試與重構節奏只能作 lab / testing reference；不能自動套用到所有 `*-math` module，也不能寫成 Nick 建立完整 math testing platform。
+- `math-workspace` 仍不是 production runtime service；正式履歷主成果仍回到 `math-core` / `*-math` source repo direct evidence 與本檔五條代表 flow。
 
 ## Source Scan Record
 

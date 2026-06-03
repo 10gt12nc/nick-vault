@@ -45,7 +45,7 @@
 
 > 2026-05-20 舊 104 PDF 履歷補讀：可補入「缺乏完整交接文件時，協助主管梳理兩套既有平台並恢復可維護 / 可交接狀態」的 legacy takeover / system reconstruction 口徑。舊 PDF 中對主管、流程、PM / QA 缺位、假敏捷等負面描述不得放入正式投遞稿；Kafka 架構建置、後台 API 架構、RTP 工具、效能改善等較強 claim 仍需依目前 project consolidation / commit evidence 保守降調。
 
-> 2026-05-20 AI-assisted workspace 補充，2026-05-28 深掃 `iwin-workspace` / `math-workspace` 後補強：`*-workspace` 經驗可作工程方法加分項，保守寫成 AI-assisted engineering workflow / knowledge-base driven development。`iwin-workspace` 的 payment 相關 workspace 與 `math-workspace` 已形成開發 / 驗證閉環：用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、驗證檢查、commit 收斂與 KB 回填。2026-05-28 已重讀 source workspace KB、git log、payment related code、math child repo code facts 與 validation KB；正式投遞可放在專長 / 自我推薦，不建議作工作經驗主 bullet；不得寫成 AI 自動完成 production 開發、Nick 主導完整 AI 平台，或不需工程判斷即可自動上線。
+> 2026-05-20 AI-assisted workspace 補充，2026-06-03 重掃 `iwin-workspace` / `math-workspace` 後補強：`*-workspace` 經驗可作工程方法加分項，保守寫成 AI-assisted engineering workflow / knowledge-base driven development。`iwin-workspace` 的 payment 相關 workspace 與 `math-workspace` 已形成開發 / 驗證閉環：用 Codex 類工具輔助 code reading、需求拆解、diff review、文件同步、驗證檢查、commit 收斂與 KB 回填。`iwin-workspace` 補 payment 的 SIT / simulator / app_bi / center / DB / log / balance 檢查；`math-workspace` 補 slot math 的 GDD / 相似底包 / 固定盤面 / result contract / RTP 長測 / optimizer / final valid 驗證鏈。正式投遞可放在專長 / 自我推薦，不建議作工作經驗主 bullet；不得寫成 AI 自動完成 production 開發、Nick 主導完整 AI 平台，或不需工程判斷即可自動上線。
 
 ## 使用原則
 

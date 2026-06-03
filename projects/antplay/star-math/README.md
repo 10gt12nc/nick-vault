@@ -8,6 +8,7 @@
 | --- | --- |
 | contribution claim consolidation | 已完成 / refreshed grouped / 2026-05-21；本批五條代表 flows 已全 Step 5 並已回填 project-level claim |
 | Flow Track | `fixed-multi-bet-currency-math-core-compatibility` Step 5 已完成；`rtp-reel-strip-simulation-validation` Step 5 已完成；`buy-free-scatter-rtp3-result-contract` Step 5 已完成；`jackpot-symbol-hit-and-prize-scaling` Step 5 已完成；`special-wild-feature-state-transform` Step 5 已完成 |
+| math-workspace 對齊 | 2026-06-03 已重查 `/Users/nick/Git/antplay/math-workspace`；workspace 補強 GDD / 相似底包 / 固定盤面 / result contract / RTP 長測 / optimizer / final valid / KB 回填驗證鏈，作 supporting evidence，不取代本資料夾五條 flow |
 | 履歷判斷 | 多個 module 有 Nick / `10gt12nc` direct commits；可保守放 slot math core / math module 維護、RTP / reel strip、debug / fixedMultiBet / currency、buy free、jackpot / symbol、特殊 feature result contract |
 | 下一步 | 已收斂；沒有預設下一步 |
 
@@ -24,6 +25,7 @@
 - 不寫完整遊戲數學 / RTP 策略 owner。
 - 不寫完整 math release / certification / simulator owner。
 - 不寫完整 jackpot pool、buy free、Special Wild 或單一遊戲 feature owner。
+- 不把 `math-workspace` 的 `sdt-lab-math` 安全 / 重構 / 單測 lab 經驗，直接升級成所有 `*-math` flow 的預設開發規則；它只能作測試設計與 guardrail 參考，正式 flow 仍以 GDD、相似成熟包、source code、commit history、固定盤面與長測證據為準。
 
 ## Files
 
@@ -40,3 +42,4 @@
 - [step2-flow-comparison.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step2-flow-comparison.md)
 - [step1-candidate-flows.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/step1-candidate-flows.md)
 - [contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/star-math/contribution-claim-consolidation.md)
+- [../math-workspace/contribution-claim-consolidation.md](/Users/nick/Git/nick/nick-vault/projects/antplay/math-workspace/contribution-claim-consolidation.md)
