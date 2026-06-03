@@ -48,6 +48,63 @@ engineering ROI / interview / maintainability: antplay + ugsoft-style wins
 commercial production: hybrid wins
 ```
 
+## 流量承載與 Infra 判斷
+
+這段是教學型 KB，不是履歷 claim。架構設計能在面試加分，因為它展示的是「能分清瓶頸與風險」；但不能直接說「這套架構能扛百萬流量」，除非有明確流量定義、壓測資料、機器規格與 production evidence。
+
+### 百萬流量要先定義
+
+`百萬流量` 必須拆開講：
+
+| 說法 | 意義 | 難度 |
+| --- | --- | --- |
+| 百萬 MAU | 月活百萬 | 偏產品規模，後端壓力不一定高 |
+| 百萬 DAU | 日活百萬 | 需要穩定 API、DB、cache、job 與監控 |
+| 百萬 CCU | 同時在線百萬 | 需要 gateway、連線管理、分區、容量規劃與專門 infra |
+| 百萬 QPS | 每秒百萬 request | 極高難度，需要完整 SRE、壓測、分片、成本與瓶頸治理 |
+| 每日百萬交易 / reward | 高交易量 | 交易正確性、idempotency、DB / MQ / job 更重要 |
+
+卡牌經營養成、回合制、放置類遊戲如果是百萬 DAU，第一版可以用 modular monolith + 水平擴展 + DB / Redis / MQ / projection 的方式設計到合理方向；如果是百萬 CCU 或百萬 QPS，就是另一個等級，不應在面試或履歷中誇大。
+
+### 不是多開機器就好
+
+多開機器 / 多開 container 主要解決無狀態 API 層 throughput，不會自動解決所有瓶頸。
+
+| 層級 | 能不能靠加 replica | 主要風險 |
+| --- | --- | --- |
+| API / controller | 通常可以 | 仍受 thread pool、connection pool、DB / Redis / MQ 下游限制 |
+| Battle runtime | 視是否有狀態 | room / session / battle state 不能亂飄，要設計 routing / sticky / state store |
+| Wallet / inventory | 不能只靠加機器 | transaction、lock、idempotency、duplicate reward |
+| DB | 不能單純靠 API 擴 | index、lock、partition、read/write split、connection pool |
+| Redis | 不能單純靠 API 擴 | hot key、big key、cache stampede、memory / eviction |
+| MQ / job | 需要 partition / consumer group / idempotency | lag、duplicate consume、DLQ、replay |
+| External provider / billing | 不受自己加機器控制 | rate limit、timeout、callback 重送、query / repair |
+
+正確口徑：
+
+```text
+API 層可以水平擴展；狀態層要靠資料模型、分區、鎖、冪等、cache、MQ、projection、壓測與監控一起設計。
+```
+
+### 商業用最小 Infra 知識
+
+Senior Backend 不必一開始變 SRE，但至少要懂：
+
+- Load balancer 如何把流量分到 API replica。
+- Container replica 只適合無狀態服務；有狀態 runtime 要處理 session / room routing。
+- DB 可能先爆：slow query、index、lock wait、deadlock、connection pool。
+- Redis 可能先爆：hot key、big key、cache miss、TTL / rebuild。
+- MQ 可能先爆：consumer lag、retry storm、DLQ、partition key。
+- JVM 可能先爆：thread pool、heap、GC、CPU、connection pool。
+- Observability 要能看：QPS、latency、error rate、DB slow query、Redis ops、MQ lag、job result、business error。
+- 壓測不是只打 API，要觀察 downstream bottleneck 和資料正確性。
+
+### 面試講法
+
+```text
+我不會把扛流量簡化成多開幾台機器。多開 container 主要解決 API 層 throughput，但真正的瓶頸通常在 DB、Redis、MQ、外部 provider 或 transaction boundary。我的設計會先把主交易、cache、projection、job 分清楚：API 盡量無狀態化，wallet / inventory 用 DB transaction 和 idempotency 保護，報表與排行榜走 MQ / projection，Redis 做 cache 但不當資產 source of truth。流量上來後再用 metrics 和壓測找瓶頸，決定是加 replica、拆 service、分表、調 index、加 consumer，還是改資料流。
+```
+
 ## 面試用 Side Project 選型
 
 ### 目標
