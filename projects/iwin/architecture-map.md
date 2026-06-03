@@ -26,7 +26,7 @@
 | `app_bi` | `main...origin/main [behind 4]` |
 | `k3s-deploy` | `main...origin/main [behind 37]`，有既有 `.idea/` untracked |
 | `bi_share` | `main...origin/main` |
-| `iwin-workspace` | `arnold...origin/arnold [behind 1]` |
+| `iwin-workspace` | `arnold...origin/arnold`；2026-06-03 payment workflow recheck 時已確認 local / remote HEAD 一致 |
 | `payment-thirdparty-simulator` | `feature/goldenpay-dev...origin/feature/goldenpay-dev` |
 
 以上只作 map 校準。若未來要把某條新 flow 升級成履歷 claim，仍要回到該 repo 做對應 Step / flow 深掃與 evidence。

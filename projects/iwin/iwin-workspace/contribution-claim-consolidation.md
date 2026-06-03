@@ -1,6 +1,6 @@
 # iwin-workspace Contribution Claim Consolidation
 
-更新時間：2026-05-28
+更新時間：2026-06-03
 掃描等級：Level 2 / Level 3-oriented rolling consolidation
 證據層級：真實做過 KB / docs / workspace 維護；不等於業務 service 開發
 
@@ -38,16 +38,25 @@
 
 2026-05-26 code / KB recheck:
 
-- 重新 fetch 後，local `arnold` 落後 `origin/arnold` 1 commit；工作樹乾淨。本檔未 pull / checkout / merge，只記錄 source 狀態限制。
+- 當時重新 fetch 後，local `arnold` 落後 `origin/arnold` 1 commit；工作樹乾淨。本檔未 pull / checkout / merge，只記錄 source 狀態限制。此狀態已由 2026-06-03 recheck 取代，最新 local / remote HEAD 已一致。
 - 結論不變：`iwin-workspace` 只作跨 repo KB / docs / environment index 與 system reconstruction supporting evidence，不作 standalone production service 或子 repo 業務開發 claim。
 
 2026-05-28 workspace / code recheck:
 
-- 已重新 `git fetch --all --prune`，成功；local `arnold` 仍落後 `origin/arnold` 1 commit，工作樹乾淨，未 pull / checkout / merge。
+- 當時已重新 `git fetch --all --prune`，成功；local `arnold` 仍落後 `origin/arnold` 1 commit，工作樹乾淨，未 pull / checkout / merge。此為歷史 source 狀態，已由 2026-06-03 recheck 更新為 local / remote HEAD 一致。
 - 讀取 workspace KB：`CLAUDE.md`、`.work/README.md`、`docs/INDEX.md`、`docs/README.md`、`docs/專案分析/payment/kb/INDEX.md`、`development-workflow.md`、`merchant-goldenpay.md`。
 - 讀取 related code / refs：`.work/payment` `main`、`Projects/payment` `feature/nimtestpay-dev`、payment Controller / Service path、Nick / `10gt12nc` path-specific log。
 - code / KB 對照結果：payment workspace 已具備「讀 KB / 規格 / 同型商戶 -> 掃 Controller / Service / sign / callback / mapper / config -> feature branch -> 本地 / SIT / simulator 驗證 -> DB / log / app_bi / center 對照 -> KB 回填」的閉環規則與 GoldenPay / NimTestPay evidence。
 - 限制：GoldenPay code 本體不在目前 `.work/payment main`；GoldenPay evidence 主要來自 workspace KB、deployment / verification records 與本人確認。`Projects/payment` 的 NimTestPay branch 可作 payment 開發閉環佐證，但不反向證明 GoldenPay production code 已在此 workspace source tree。
+
+2026-06-03 payment workflow alignment recheck:
+
+- 已重新 `git fetch --all --prune`，成功；local `arnold` 與 `origin/arnold` 均為 `b8610e304dbd31930a95338990ce312cbe33743c`，ahead / behind `0 / 0`，工作樹乾淨。
+- 最新相關 commit 包含 `docs(payment): optimize payment workflow checks`、`docs: clarify payment deployment workflow routing`、`docs: add shared payment workflow handoff reminder`、GoldenPay deployment / verification / logging 類 KB 更新。本輪只讀 workspace，未 pull / checkout / merge / 改外部 repo。
+- 已重讀 payment KB catalog：`docs/專案分析/payment/kb/INDEX.md`、`docs/專案分析/payment/kb/catalog/development-workflow.md`、`merchant-goldenpay.md`、`merchant-nimtestpay.md`、`merchant-reference-scan-2026-05-14.md`，以及 `docs/跨專案關聯/payment-flow-appbi-ai-analysis.md`。
+- 對 `nick-vault` payment flow 的對齊結果：workspace KB 是開發 / 驗證 SOP source，`projects/iwin/payment/flows/*` 是 production flow / 面試分析 source。兩者互補；workspace 不能取代 flow 深掃，也不能反向升級成完整 production service claim。
+- payment workflow 可採重點：新商戶 / provider 先讀 KB、規格與 1-3 個相似商戶；request / callback / query / withdraw 要檢查 sign、amount unit、provider order id、response parsing、ACK、timeout unknown、query fallback；SIT / simulator 驗證要看 payment order final state、third-party / simulator order、app_bi / admin、center、DB、log 與 player balance；API success 或 MQ consumer log 不能單獨當成功證據。
+- claim 邊界：可說 Nick 有 payment workspace 開發 / 驗證閉環與 AI-assisted KB 回填方法；不可寫成 workspace 自動完成 production 開發、完整金流 owner、完整 DevOps owner、完整上線驗收 owner，且不得搬入敏感環境、internal URL、credential 或機器資訊。
 
 ## 掃描範圍
 
