@@ -35,6 +35,8 @@
 - 若 Nick 要求參考 `iwin-workspace`、`math-workspace` 或其他 workspace 的新流程，AI 必須先輸出或內化 `可採 / 不採 / 轉譯` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、baseline / evidence 分層等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / deploy / child repo 規則搬進 `nick-vault`。若 Nick 只是問「要不要跟進」，先回答採用建議；若 Nick 說「維護 KB / 幫優化 / 幫改」，才把結論轉成最小規則更新，優先改 `00`、`09`、`06`，不要新增長期資料夾。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
+- Flow 後可以補 SQL / Spring / Kafka / Redis / transaction 教學，但必須是 `flow-first teaching`：先完成 code-backed flow 深掃，再從本 flow 的實際 code path 補 3-5 個必要技術點。不得把每條 flow 寫成完整 SQL / Spring / Kafka 課本。
+- `materials/teaching-notes.md` 只在本 flow 真的需要教學補洞時建立；內容必須回答「哪段 code 觸發、production 會壞在哪、面試怎麼白話講、最小要補什麼基本功」。沒有 local code evidence 的內容標成 `外部通用模式 / non-local`。
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
 - `flow.md` 必須先有初階 / 中階可讀區，包含白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才進 Senior / Owner 的 consistency、failure window、trade-off、owner decision。不要讓 Nick 需要自己從附錄拼出主報告。
 - flow、履歷、自傳、面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`、`待確認`。
@@ -406,6 +408,7 @@ push 前只做乾淨確認：
 - resume conservative bullet
 - claim boundary
 - evidence
+- flow-specific teaching notes（只有本 flow 需要補 SQL / Spring / Kafka / Redis / transaction 等教學時才建立）
 - claim source label：真實開發過 / 專案存在 / 分析素材 / 外部案例 / 待確認
 - related files
 - 本次實際掃描範圍
@@ -422,6 +425,7 @@ push 前只做乾淨確認：
 - 誇大 Nick 實際貢獻
 - 寫 secret / token / internal IP / production URL
 - 把 class summary 當成 flow analysis
+- 把 teaching-notes 寫成泛用技術大全；只能補本 flow 直接相關的 3-5 個技術點
 - 直接跳進 failure / consistency，卻沒有先寫清楚這條 flow 是什麼功能、誰用、入口、Controller / Service / Model / SQL / Redis / MQ / Log 對照
 
 完成後請自動補：
@@ -479,6 +483,46 @@ push 前只做乾淨確認：
 
 請輸出到：
 projects/{domain}/{project}/flows/{flow-name}/materials/decision-notes.md
+```
+
+## 補充 A2：Teaching Notes Flow 後補教學
+
+用途：Nick 已經看懂一條 flow，但卡在 SQL / Spring / Kafka / Redis / transaction 等基本功時使用。
+
+注意：這是 Step 3 的補充文件，不是新的 Step。它服務本 flow 的口說與追問，不取代 `flow.md`、不取代 `decision-notes.md`、也不建立泛用題庫。
+
+```text
+請針對這條 flow 補 teaching-notes.md。
+
+請先重讀：
+- flow.md
+- career-interview.md
+- materials/evidence.md
+- materials/claim-boundary.md
+- materials/decision-notes.md（若存在）
+- 相關 code path
+
+請不要重寫 flow。
+請不要更新履歷。
+請不要寫成 SQL / Spring / Kafka / Redis 完整課本。
+
+請只補本 flow 直接相關的 3-5 個技術點，例如：
+- SQL index / lock / EXPLAIN / slow query
+- Spring transaction / AOP proxy / rollback
+- Kafka / MQ retry / duplicate consume / ordering / offset
+- Redis cache / lock / consistency
+- idempotency / retry / compensation
+
+每個技術點請輸出：
+1. 對應 code path / method / SQL / topic / key
+2. 為什麼本 flow 需要懂它
+3. production 可能壞在哪
+4. Nick 面試怎麼白話講
+5. 最小補強範圍
+6. 證據層級：local code-backed / 外部通用模式 / 待確認
+
+請輸出到：
+projects/{domain}/{project}/flows/{flow-name}/materials/teaching-notes.md
 ```
 
 ## 補充 B：Architecture Map 大專案 / 子專案地圖
