@@ -14,6 +14,41 @@
 
 AI 都必須套用同一套規則。
 
+### `讀kb / 下一步` 自動化模式
+
+Nick 可以只貼：
+
+```text
+讀kb
+下一步
+```
+
+AI 必須把它視為 `KB Readiness + Next Action Automation`，自動完成以下判斷，不需要 Nick 自己知道目前有多少 flow、哪些檔案要補、哪些 career / map / teaching notes 還缺。
+
+固定動作：
+
+1. 重讀 KB 權威檔：`AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`、`03-flow-learning-package-template.md`、`06-todo.md`、`01-senior-owner-flow-inventory.md`、`README.md`。
+2. 掃 `projects/` 的 domain / project / flow 狀態，至少判斷 Flow Track、Career Track、Domain Map、Teaching Notes / Decision Notes 是否有明顯缺口。
+3. 更新或校正 `06-todo.md` 的已完成 / 未完成 / 候選缺口；必要時同步 `01-senior-owner-flow-inventory.md` 或 project README。若只是讀狀態且沒有事實變更，不硬改檔。
+4. 回答時只推薦一件最值得做的下一步；若沒有必做收口，改用 `必做收口 / 可選加強 / 暫不建議` 小儀表板。
+5. 下一步要附上 Nick 可直接複製的一行 prompt，用 fenced code block 包起來；但如果目前已收斂且只適合自由提問，就不要硬塞 prompt。
+
+自動判斷優先順序：
+
+1. 已開始但未收口的 active flow：先完成同一條 flow 到 Step 5。
+2. 某 project 本批代表 flows 已 Step 5，但尚未 contribution consolidation：先做 project-level consolidation。
+3. `05 / 08 / 04 / 17` 與最新 consolidation 不一致：先做 rolling resume package / final check。
+4. 缺 Step 1 / Step 2 的高價值 project：先補 Step 1 / Step 2，不直接跳 Step 3。
+5. 已有 flow 但缺 `materials/teaching-notes.md`、`decision-notes.md` 或口說材料：只有在該缺口會影響面試追問時才推薦，不把教學補洞變成主線。
+6. 若已達 Senior 投遞證據包收斂：停止大規模整理，轉為閱讀、口說練習、JD-specific 客製或自由提問。
+
+禁止事項：
+
+- 不得因 `讀kb / 下一步` 就自動開工多個 flow。
+- 不得把所有候選缺口包裝成必做 backlog。
+- 不得只看 `06-todo.md` 的文字就下結論；要交叉檢查 `projects/`、README、flow files 與 contribution consolidation。
+- 不得把 `teaching-notes.md`、system map、side project 或泛用基本功補洞插隊到 active flow 前面。
+
 ### Flow Track vs Career Track
 
 本 vault 同時有兩條線，AI 必須分清楚：
