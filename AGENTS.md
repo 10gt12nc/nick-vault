@@ -25,6 +25,7 @@
 - `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
 - `flow.md` 必須先讓初階 / 中階讀者看懂這條 flow 在做什麼，再進 Senior / Owner 分析。前半必須有白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才寫 consistency、failure window、owner decision、interview / resume boundary。
 - `materials/evidence.md`、`materials/decision-notes.md`、`materials/interview.md`、`materials/claim-boundary.md` 是附錄 / 輔助文件，不是要 Nick 自己拼成報告；舊平鋪格式的同名檔先視為待遷移舊格式。
+- `materials/teaching-notes.md` 是可選附錄，只在某條 flow 真的需要補 SQL / Spring / Kafka / Redis / transaction 等基本功時建立。教學必須從該 flow 的 code path 長出來，每條 flow 最多補 3-5 個技術點；沒有 local code evidence 的內容標成 `外部通用模式 / non-local`，不得寫成泛用課本或題庫。
 - 新建或重整後的 flow 資料夾，預設只讓 Nick 直接讀 `flow.md` 與該 flow 的 `career-interview.md`；其他 evidence、decision、interview、claim 邊界要收在 `materials/`，避免主閱讀面混亂。既有 `iwin` 舊資料夾這輪先不搬，等 Nick 明確要求再遷移。
 - flow、履歷、自傳與面試素材都要標註證據層級：`真實開發過`、`專案存在 / code-backed`、`分析素材 / learning-only`、`外部案例 / non-local`。沒有 Nick 本人 MR / ticket / commit / production issue / 本人確認，不得標成真實開發過。
 - Nick 本人明確說「我做過 / 我開發很多 / 這是我負責或參與的」時，屬於 `本人確認` evidence，不能被 AI 當成沒有 evidence。AI 必須把它和 commit / MR / ticket 一起納入 claim 判斷，但仍要保守標示為「本人確認，待 commit / ticket 補強」或「本人確認 + code-backed」，不得反過來把 Nick 的經驗抹掉。
@@ -96,6 +97,7 @@
 - 若 Nick 沒指定深度，AI 要依目標自動建議：找 flow 用 Level 1、單條 flow 深挖用 Level 2、要寫成強 evidence 或追 bug history 才建議 Level 3。
 - 若 AI 判斷目前不值得 Level 3，要大方說明原因，例如後台只是入口、下游未定位、履歷 claim 不足、或先讀後端 repo 更有價值。
 - 每次完成 Step 或 flow 更新後，若該 flow / project 尚未收口，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。若已達收斂狀態或本輪是 KB / 履歷 / 狀態整理，則不要硬塞下一步，改回報「目前可自由提問 / 可彈性指定下一件事」。
+- Nick 可以只貼 `讀kb`、`下一步` 作為省字入口。這不是取代既有 Step 指令，而是新增 `KB Readiness + Next Action Automation`：AI 要自動重讀 KB、掃 `projects/` 的 Flow Track / Career Track / Domain Map / teaching notes 狀態、校正已完成與未完成，再只推薦一件最值得做的事。若 Nick 明確指定 `某 project / flow Step N`，仍照原本 Step 主線執行。
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 若 Nick 問的是「還有多少 step / 會不會一直建議 / 何時結束 / 對標資深是否夠了」，AI 要先回答收斂狀態與終點，不要直接丟下一個 flow。回答必須說明：最小必做剩多少、可選加強有哪些、哪些暫不建議做，以及做完後是否轉為投遞 / 面試練習。

@@ -10,6 +10,7 @@
 
 ## 已完成
 
+- 2026-06-05：已完成 `讀kb / 下一步` 入口一致性深掃與補強。`AGENTS.md`、`senior-owner-playbook/README.md`、`projects/README.md` 已同步標明：這是新增省字入口，不覆蓋既有 `project / flow / Step N` 指令；明確 Step 仍照原主線做，只有 Nick 只貼 `讀kb / 下一步` 時，AI 才自動判斷 Flow Track / Career Track / Resume / Domain Map / Teaching Notes 或自由提問狀態。
 - 2026-06-05：已補 `讀kb / 下一步` 自動化規則。Nick 之後可以只貼兩行，AI 必須自動重讀 KB、掃 `projects/` 的 Flow Track / Career Track / Domain Map / teaching notes 狀態，校正已完成與未完成，再只推薦一件最值得做的下一步；不得自動開工多個 flow、不得把候選缺口包裝成必做 backlog、不得讓 teaching notes / system map / side project 插隊 active flow。
 - 2026-06-05：已補 `flow-first teaching` 規則：flow 本身必須 code-backed 深掃；SQL / Spring / Kafka / Redis / transaction 等教學只能從該 flow 的實際 code path 長出來，每條 flow 最多補 3-5 個必要技術點。新增 `materials/teaching-notes.md` 定位，專門放本 flow 的最小基本功補洞；共用技術原則回收進 `14-technical-decision-hard-skills.md`，避免每條 flow 變成教科書或泛用題庫。
 - 2026-06-01：已深掃 `/Users/nick/Git/antplay/math-workspace` 新流程作參考。結論是部分跟進，不整套搬：可吸收入口索引、狀態儀表板、source / KB / git log 分層、non-goals、scope、success criteria、handoff / reviewer gate、先 baseline 再變更、不留流水帳；不採用 `math-workspace` 的多 agent 目錄、per-project `CLAUDE.md`、`docs/projects/{module}/kb/catalog/` 長期開發結構、GDD / RTP / JAR / optimizer / deploy / child repo 規則。已回填 `00-operating-rules.md` 與 `09-ai-prompt-manual.md`，之後參考外部 workspace 新流程時一律先做 `可採 / 不採 / 轉譯` 判斷；若只是評估先不改規格，若 Nick 要維護 KB 才更新最小必要規則檔，避免又把 `nick-vault` 變成開發 workspace。
