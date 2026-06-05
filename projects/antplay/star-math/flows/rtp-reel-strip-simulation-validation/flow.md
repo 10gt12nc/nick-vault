@@ -229,8 +229,6 @@ sequenceDiagram
 - 可面試講：用 high-risk domain validation case 展開 target / tolerance、runtime path、state reset、sample size 與 release gate。
 - 不可誇大：不寫主導完整 RTP 策略、完整遊戲數學模型、certification 或 full simulator platform。
 
-## 15. 下一步
+## 15. 後續狀態
 
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+後續 Rank 3 到 Rank 5、`*-math` contribution claim consolidation refresh 與 rolling resume package 都已完成；目前沒有預設下一步。

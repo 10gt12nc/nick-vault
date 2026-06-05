@@ -160,9 +160,7 @@ Step 3 不做:
 
 2026-05-21 更新: `slot-bet-settle-rollback` 已完成 Step 5，Rank 2 `transfer-wallet-money-in-out` 已完成 Step 5，Rank 3 `request-log-rabbitmq-async` 已完成 Step 5，Rank 4 `bet-record-sharding-schema-route` 已完成 Step 5，Rank 5 `runtime-rtp-darkpool-player-control` 已完成 Step 5，project-level contribution claim consolidation refresh 也已完成。本批代表 flows 已全部收斂；當時下一步建議做 rolling resume package:
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。
 
 預期產出:
 

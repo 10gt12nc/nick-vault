@@ -299,6 +299,4 @@ Step 5 已完成 claim gate。本 flow 可回填 `antplay-slot-game-api` project
 
 建議下一步:
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

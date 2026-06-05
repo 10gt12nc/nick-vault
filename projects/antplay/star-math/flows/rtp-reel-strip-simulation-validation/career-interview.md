@@ -78,10 +78,6 @@
 - 不寫「我完整負責全部 `*-math` repo」。
 - 不寫改善百分比，除非後續補 GDD、validation report、ticket 或監控 evidence。
 
-### 5.4 下一步
+### 5.4 後續狀態
 
-`fixed-multi-bet-currency-math-core-compatibility` 與本 flow 都已完成 Step 5。下一步回到 Step 2 ranking，做 Rank 3：
-
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+`fixed-multi-bet-currency-math-core-compatibility` 與本 flow 都已完成 Step 5。後續 Rank 3 到 Rank 5、`*-math` contribution claim consolidation refresh 與 rolling resume package 也已完成；目前沒有預設下一步。

@@ -49,6 +49,4 @@ Step 5 完成。這份是單條 flow claim gate，仍不直接代表整個 proje
 
 ## 7. 下一步
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

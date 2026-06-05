@@ -396,6 +396,4 @@ Step 5 重新確認後，claim boundary 維持保守：
 
 Rank 5 `db-partition-job-report-routing Step 5` 已完成，project-level `contribution claim consolidation refresh` 也已完成。若 Nick 要把這批 job repo 素材回填到通用履歷 / 自傳，下一步做 `rolling resume package`；目前已完成的 job project-level consolidation 可沿用。
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

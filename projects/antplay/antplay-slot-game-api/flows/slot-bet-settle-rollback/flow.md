@@ -282,6 +282,4 @@ CREATE / DEAL
 
 本 flow 已完成 Step 5。依 Step 2 ranking，後續同 project 第二條候選 flow `transfer-wallet-money-in-out`、第三條 `request-log-rabbitmq-async`、第四條 `bet-record-sharding-schema-route`、Rank 5 `runtime-rtp-darkpool-player-control` 與 project-level contribution claim consolidation refresh 都已完成；後續 rolling resume package 已完成。
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

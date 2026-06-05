@@ -246,10 +246,6 @@ Source repo:
 4. `bet-record-sharding-schema-route`
 5. `runtime-rtp-darkpool-player-control`
 
-下一步應做 Step 2，比較這 5 條 candidate flows 的面試價值、Nick direct evidence、掃描成本、履歷風險，並決定第一條進 Step 3 的代表 flow。
+歷史建議：當時下一步應做 Step 2，比較這 5 條 candidate flows 的面試價值、Nick direct evidence、掃描成本、履歷風險，並決定第一條進 Step 3 的代表 flow。
 
-建議下一步:
-
-```text
-antplay antplay-slot-game-api Step 2
-```
+2026-06-05 檢查：本 project 的 Step 2、五條代表 flows Step 5、project-level contribution claim consolidation refresh 與後續 rolling resume package 都已完成；本檔只保留 Step 1 candidate 歷史，不再作下一步 prompt。

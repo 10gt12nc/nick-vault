@@ -99,10 +99,6 @@ Step 4 已把以下問題整理成正式 Senior / Lead 追問：
 - Runtime decision evaluator 是比較務實的第一步。
 - Game-api 不等於 math owner，履歷與面試要守住這條邊界。
 
-## 7. 下一步
+## 7. 後續狀態
 
-Step 5 已確認本 flow 可回填 project-level runtime decision claim，但不可升級為完整 RTP / math / player-control / jackpot owner。下一步做 project-level consolidation refresh。
-
-```text
-rolling resume package
-```
+Step 5 已確認本 flow 可回填 project-level runtime decision claim，但不可升級為完整 RTP / math / player-control / jackpot owner。後續 project-level consolidation refresh 與 rolling resume package 都已完成；目前沒有預設下一步。

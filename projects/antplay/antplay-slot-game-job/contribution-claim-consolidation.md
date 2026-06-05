@@ -255,6 +255,4 @@ Project-level claim:
 
 歷史下一步紀錄:
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

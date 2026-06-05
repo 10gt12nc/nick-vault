@@ -116,6 +116,4 @@ Step 5 結論：不把這條 flow 單獨寫進正式履歷。
 
 ## 下一步
 
-```text
-iwin third_games_api gsc-transfer-bet-settle-rollback Step 5
-```
+本 flow 已完成 Step 5。後續同 project 的 `game-spin-settlement-log-reel`、`bet-target-set-query`，以及當時排入 queue 的 `third_games_api` 代表 flows 都已完成到 Step 5；目前沒有預設下一步。若要使用本檔，直接把它當作 interview-only 的 gameserver wallet boundary case，不要再依舊 prompt 開工。

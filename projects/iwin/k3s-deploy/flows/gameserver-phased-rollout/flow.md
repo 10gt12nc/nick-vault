@@ -346,9 +346,7 @@ Step 4 的收斂重點：
 
 Step 5 已完成，claim gate 結論維持 interview-only：這條 flow 只保留為 rollout / rollback / observability 面試案例，不整理成正式履歷或 project-level career claim。
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。
 
 ## 履歷 claim 分層（2026-05-18 KB 對齊）
 

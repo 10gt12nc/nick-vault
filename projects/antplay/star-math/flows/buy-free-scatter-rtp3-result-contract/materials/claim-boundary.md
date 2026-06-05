@@ -69,8 +69,4 @@ Step 5 gate 結論:
 - 不升級為完整 `*-math` final consolidation。
 - 不把 game-api / wallet / darkpool 說成 Nick 主導完整開發。
 
-下一步:
-
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+後續狀態：後續 Rank 4、Rank 5、`*-math` contribution claim consolidation refresh 與 rolling resume package 都已完成；目前沒有預設下一步。

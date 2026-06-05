@@ -64,8 +64,4 @@
 
 ## Step 5 後續判斷
 
-這條 flow 已完成 Step 5。依 KB，單條 flow 完成不代表整個 `*-math` Flow Track 完成；下一步應回 Step 2 ranking，做第二條代表 flow：
-
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+這條 flow 已完成 Step 5。依 KB，單條 flow 完成不代表整個 `*-math` Flow Track 完成；後續本批代表 flows、`*-math` contribution claim consolidation refresh 與 rolling resume package 都已完成。目前沒有預設下一步。

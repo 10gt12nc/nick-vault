@@ -256,8 +256,6 @@ Step 5 判定：這條 flow 可作為 `*-math` grouped 履歷 bullet 的強化 e
 
 完整 wallet mutation、bet record DB schema、前端展示與 darkpool 報表仍未深掃；因此本 Step 5 是單條 flow claim gate，不代表完整 `*-math` final consolidation。
 
-## 15. 下一步
+## 15. 後續狀態
 
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+後續 `jackpot-symbol-hit-and-prize-scaling`、`special-wild-feature-state-transform` 都已完成到 Step 5，`*-math` contribution claim consolidation refresh 與 rolling resume package 也已完成；目前沒有預設下一步。

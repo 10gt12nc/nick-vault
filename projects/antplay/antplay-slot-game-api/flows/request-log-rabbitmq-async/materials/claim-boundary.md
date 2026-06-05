@@ -46,6 +46,4 @@
 
 ## 7. 下一步
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

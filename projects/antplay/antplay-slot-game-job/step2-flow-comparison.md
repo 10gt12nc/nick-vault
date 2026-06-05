@@ -210,11 +210,9 @@ proxy-user-data-report-projection
 - 可形成 Senior Backend 面試中清楚的 state / consistency / retry / compensation 題。
 - 與目前通用履歷主軸的 `MQ / batch / report projection / legacy flow` 對齊，但 Step 2 不直接更新履歷。
 
-下一步:
+歷史建議：當時下一步是進入 Rank 1 `proxy-user-data-report-projection Step 3`。
 
-```text
-antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
-```
+2026-06-05 檢查：Rank 1 到 Rank 5 都已完成 Step 5，project-level contribution claim consolidation refresh 與後續 rolling resume package 也已完成；本段不再作下一步 prompt。
 
 ## 11. 2026-05-25 Progress Update
 
@@ -224,19 +222,13 @@ antplay antplay-slot-game-job proxy-user-data-report-projection Step 3
 - Rank 4 `settle-pool-monitor-darkpool-sync` Step 5 已完成。
 - Rank 5 `db-partition-job-report-routing` Step 5 已完成。本 Step 已把 `@UseSchema` / `SchemaRouteAspect` / `SchemaContextHolder`、`pt_bet_record` / `pt_request_log` partition query、`ag_report_player` report path repair，以及 `b754dae feat: db_partition v2`、`38b74bd fix`、`6866866 fix ag_report_player` direct evidence，整理成 claim gate。結論是可作 project-level 分表 / report path supporting evidence；不單獨更新 `05 / 08`，不寫完整 DB sharding / schema routing owner，G3 data source mapping 未確認。
 
-下一步:
+歷史建議：當時下一步是把五條代表 flows 回填到 rolling resume package。
 
-```text
-rolling resume package
-```
+2026-06-05 檢查：rolling resume package 已完成；本段只保留當時收斂脈絡，不再作下一步 prompt。
 
 - `proxy-user-data-report-projection` 已完成 Step 5，已回填 project-level report projection / Quartz summary evidence。
 - Rank 2 `activity-accumulated-bet-voucher` 已完成 Step 5，定位為 code-backed reward correctness 面試素材與 project-level supporting evidence；Nick 只有 merge evidence，current implementation 主要是 Gill / Arnold / Eliot context，不升級正式履歷 claim。
 - Step 5 已補查 `BetVoucherService#addVoucher` 下游 idempotency / unique key；本 repo 沒有下游 implementation / DB unique key evidence，`refId` 每次 UUID 只能保守視為 trace id。
 - Rank 3 `big-win-notification` 已完成 Step 5，確認 `#303` direct commits、current consumer / producer / translation path、後續多人修改與 derived notification failure windows，並補 `_id` / bet id 去重、`BetIdPersistence`、下游 `antplay-push` bridge / privacy 邊界。結論是可作 project-level supporting evidence，不單獨更新 `05 / 08`。
 - Rank 4 `settle-pool-monitor-darkpool-sync` 已完成 Step 5，建立 Kafka `settled_bets` -> pool grouping -> `settled_pool` increment -> Redis reset snapshot -> alert 的正式面試 case 與 claim gate。結論是 code-backed / analysis-first，未找到 Nick / `10gt12nc` direct path-specific evidence，不作 Nick 主導 settle pool / risk owner，不更新 `05 / 08`。
-- `antplay-slot-game-job contribution claim consolidation refresh` 已完成。五條代表 flows 的 Step 5 結論已收斂成 project-level claim；下一步若要把這些結論回填到通用履歷 / 自傳，做 `rolling resume package`。
-
-```text
-rolling resume package
-```
+- `antplay-slot-game-job contribution claim consolidation refresh` 已完成。五條代表 flows 的 Step 5 結論已收斂成 project-level claim；後續 rolling resume package 也已完成。若未來有新 evidence 或特定 JD，再另行指定 `05 / 08` refresh。

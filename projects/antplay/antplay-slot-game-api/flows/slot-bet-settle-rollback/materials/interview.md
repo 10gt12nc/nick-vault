@@ -177,6 +177,4 @@ single wallet 主要靠 provider API 做 balance / settle / rollback；transfer 
 
 下一步:
 
-```text
-rolling resume package
-```
+後續 rolling resume package 已完成；目前沒有預設下一步。

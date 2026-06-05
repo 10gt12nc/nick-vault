@@ -96,8 +96,4 @@ Step 5 判定：
 - 不更新 05 / 08：本輪不直接更新，後續由 project-level consolidation / rolling resume package 回填。
 - 不可誇大：不寫成完整 buy free / RTP / wallet / darkpool owner。
 
-後續 Rank 4 與 Rank 5 已完成到 Step 5；目前沒有預設下一步。
-
-```text
-antplay *-math jackpot-symbol-hit-and-prize-scaling Step 4
-```
+後續 Rank 4 與 Rank 5 已完成到 Step 5，`*-math` contribution claim consolidation refresh 與 rolling resume package 也已完成；目前沒有預設下一步。
