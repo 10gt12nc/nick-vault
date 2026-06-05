@@ -198,7 +198,7 @@ AI 必須自動：
 - 自動判斷是否要維護 project README、Step 文件、flow evidence、claim boundary、todo 或共用 KB。
 - 自動給下一步建議。
 
-`讀kb / 下一步` 是省字入口，不是覆蓋舊指令。Nick 明確下 `project / flow / Step N` 時照 Step 主線做；Nick 只貼 `讀kb / 下一步` 時，AI 才自己判斷應走 Flow Track、Career Track、Resume / 104、Domain Map、Teaching Notes，或是否已收斂只需自由提問。
+`讀kb / 下一步` 是省字入口，不是覆蓋舊指令。Nick 明確下 `project / flow / Step N` 時照 Step 主線做；Nick 只貼 `讀kb / 下一步` 時，AI 才自己判斷應走 Flow Track、Career Track、Resume / 104、Domain Map、Decision Notes / 口說材料，或是否已收斂只需自由提問。Teaching Notes 預設先不補，只有 Nick 讀某條 flow 卡住、面試回饋指出基本功缺口，或 Nick 明確要求補教學時才補。
 
 若 Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」，本輪視為 KB-only 維護：AI 只修正規則 / 索引 / todo / readiness 的一致性，完成後不附 project flow 下一步 prompt，也不自動執行 todo 中的任何 flow。
 

@@ -28,7 +28,7 @@
 - 做新 flow 前，先檢查 `projects/**/flows/` 是否已有同名或相近 flow。
 - 尚未完成 evidence 的 flow，不更新履歷 master。
 - 新建或重整後，Nick 預設只讀 `flow.md`；該 flow 的履歷 / 面試素材放 `career-interview.md`，其他素材放 `materials/`。
-- `materials/teaching-notes.md` 只在該 flow 需要補 SQL / Spring / Kafka / Redis / transaction 等基本功時建立；不得把它變成泛用課本。
+- `materials/teaching-notes.md` 預設先不補；只在 Nick 讀該 flow 卡住、面試回饋指出基本功缺口，或 Nick 明確要求補教學時建立。不得因 flow 沒有 teaching notes 就列缺口，也不得把它變成泛用課本。
 
 建議結構：
 

@@ -91,17 +91,19 @@ AI 需要主動判斷深度：
 
 ## Flow 後補教學規則
 
-可以在 flow 後面補 SQL / Spring / Kafka / Redis / transaction 等教學，但不能讓每條 flow 變成一門完整課。
+可以在 flow 後面補 SQL / Spring / Kafka / Redis / transaction 等教學，但目前預設先不補、也不批量補。先把主力 flow 和履歷 case 讀熟、講順；只有 Nick 讀某條 flow 卡住、面試追問暴露基本功缺口，或 Nick 明確要求補該 flow 教學時，才建立 `materials/teaching-notes.md`。
 
 固定原則：
 
 ```text
 flow 本身：一定要 code-backed 深掃。
-教學補充：只補這條 flow 需要的技術點。
+教學補充：預設先不補；真的卡住才補這條 flow 需要的技術點。
 ```
 
 教學補充的取捨：
 
+- 不因既有 flow 沒有 `materials/teaching-notes.md` 就列為缺口。
+- 不對 49 條已完成 flow 批量補 teaching notes。
 - 每條 flow 最多補 3-5 個技術點。
 - 只補與本 flow 的 failure window、consistency、idempotency、performance、observability 直接相關的內容。
 - SQL 教學要從本 flow 的 mapper / repository / SQL / table / query / update / transaction 長出來，再補 index、EXPLAIN、lock、slow query。

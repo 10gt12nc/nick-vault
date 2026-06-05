@@ -26,8 +26,8 @@
 - 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
 - Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」時，本輪是 `KB-only` 模式。完成後不要給 project flow 下一步 prompt，也不要自動開工 todo 裡的收口項目；只回報 KB 修正、檢查結果、commit / push 狀態。
 - 每次完成後，若 flow / project / Career Track 尚未收口，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
-- Nick 若只貼 `讀kb`、`下一步`，AI 要進入 `KB Readiness + Next Action Automation`：自動重讀 KB、掃 `projects/` 狀態、校正已完成 / 未完成 / 候選缺口，再只給一個最值得做的下一步。Nick 不需要自己知道目前有多少 flow、哪些檔案要補、哪些 teaching notes / decision notes / resume / map 相關檔案缺。
-- `讀kb / 下一步` 的優先順序固定是：active flow 收口 -> project contribution consolidation -> 05 / 08 / 04 / 17 對齊 -> 高價值 project Step 1 / Step 2 -> 會影響面試追問的 teaching / decision notes -> 若已收斂則轉自由提問 / 口說 / JD-specific。不得自動開工多個 flow，也不得把候選缺口包裝成必做 backlog。
+- Nick 若只貼 `讀kb`、`下一步`，AI 要進入 `KB Readiness + Next Action Automation`：自動重讀 KB、掃 `projects/` 狀態、校正已完成 / 未完成 / 候選缺口，再只給一個最值得做的下一步。Nick 不需要自己知道目前有多少 flow、哪些檔案要補、哪些 decision notes / resume / map 相關檔案缺；teaching notes 預設不列為缺口。
+- `讀kb / 下一步` 的優先順序固定是：active flow 收口 -> project contribution consolidation -> 05 / 08 / 04 / 17 對齊 -> 高價值 project Step 1 / Step 2 -> 會影響面試追問的 decision notes / 口說材料 -> 若已收斂則轉自由提問 / 口說 / JD-specific。不得自動開工多個 flow，也不得把候選缺口包裝成必做 backlog。Teaching notes 只有 Nick 讀 flow 卡住、面試回饋暴露基本功缺口，或 Nick 明確要求「補教學」時才補。
 - 若目前已收斂、沒有 active flow、沒有特定 JD、Nick 也沒有指定下一個任務，AI 不要硬塞下一步；改成回報「沒有預設下一步，可以自由提問或彈性指定」。此時不要輸出 fenced prompt，也不要把可選方向包裝成必做 backlog。
 - 若 Nick 追問「這種下一步建議不錯 / 幫記 KB」，保留的格式是：先判斷 `必做收口` 是否存在，再列少數 `可選加強`（廣度延伸、深度延伸、架構視角、投遞準備），最後列 `暫不建議`。可選加強是選單，不是授權開工；不建議事項要明確，避免 AI 用 backlog 製造壓力。
 - 下一步建議若需要輸出 prompt，必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，格式固定為 ` ```text ... ``` `；code block 內只放下一句 prompt。
@@ -37,7 +37,7 @@
 - 若 Nick 要求參考 `iwin-workspace`、`math-workspace` 或其他 workspace 的新流程，AI 必須先輸出或內化 `可採 / 不採 / 轉譯` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、baseline / evidence 分層等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / deploy / child repo 規則搬進 `nick-vault`。若 Nick 只是問「要不要跟進」，先回答採用建議；若 Nick 說「維護 KB / 幫優化 / 幫改」，才把結論轉成最小規則更新，優先改 `00`、`09`、`06`，不要新增長期資料夾。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
-- Flow 後可以補 SQL / Spring / Kafka / Redis / transaction 教學，但必須是 `flow-first teaching`：先完成 code-backed flow 深掃，再從本 flow 的實際 code path 補 3-5 個必要技術點。不得把每條 flow 寫成完整 SQL / Spring / Kafka 課本。
+- Flow 後可以補 SQL / Spring / Kafka / Redis / transaction 教學，但目前預設先不補。只有 Nick 讀該 flow 卡住、面試追問暴露基本功缺口，或 Nick 明確要求補教學時，才用 `flow-first teaching`：先完成 code-backed flow 深掃，再從本 flow 的實際 code path 補 3-5 個必要技術點。不得把每條 flow 寫成完整 SQL / Spring / Kafka 課本。
 - `materials/teaching-notes.md` 只在本 flow 真的需要教學補洞時建立；內容必須回答「哪段 code 觸發、production 會壞在哪、面試怎麼白話講、最小要補什麼基本功」。沒有 local code evidence 的內容標成 `外部通用模式 / non-local`。
 - 新建或重整後的 flow，預設閱讀入口只有 `flow.md`；該 flow 的保守履歷 / 面試素材放 `career-interview.md`，其他 evidence / decision / interview / claim 邊界收在 `materials/`。
 - `flow.md` 必須先有初階 / 中階可讀區，包含白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才進 Senior / Owner 的 consistency、failure window、trade-off、owner decision。不要讓 Nick 需要自己從附錄拼出主報告。

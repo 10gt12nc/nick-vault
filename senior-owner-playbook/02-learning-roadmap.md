@@ -20,10 +20,11 @@
 - 面試講法
 - 履歷保守寫法
 
-輔助層只在需要時補：
+輔助層只在需要時補；若目標是先投遞 / market check，先不要補教學。
 
 - 大專案 / 子專案地圖：不知道 repo 關係或 flow 入口時才補。
-- `decision-notes.md`：flow 讀懂後，針對這條 flow 補技術硬底子。
+- `decision-notes.md`：flow 讀懂後，且真的遇到面試追問 / owner decision / 技術取捨缺口時才補。
+- `teaching-notes.md`：預設先不補；只有讀該 flow 卡住、面試回饋指出基本功缺口，或 Nick 明確要求補教學時才補。
 - 職涯能力矩陣：每完成 1-2 條 flow 後，用來檢查缺口。
 
 不要先把所有輔助層讀完。每天真正推進的仍然是一條 production flow。
