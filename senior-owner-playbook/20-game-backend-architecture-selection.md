@@ -10,6 +10,8 @@
 
 它不是新的 flow Step，也不是履歷 claim 自動升級器。正式履歷仍以 `05 / 08` 與 project-level contribution consolidation 為準。
 
+2026-06-05 ROI 判斷：即使 Nick 可以在本地用 k3s、既有 DB、既有專案做整合優化，也不代表現在應該實作。以目前目標來看，最高 CP 值仍是把真實 production flows 讀熟、講熟、能抗追問、能工作、能面試；side project / 架構 lab 只在市場回饋明確需要 0 到 1 作品、主力 case 已經練順、且有 4-6 週可控空檔時才啟動。不要因為「能做」就把自己拉回一人硬扛大系統。
+
 ## Evidence Scope
 
 | 項目 | 結論 |
@@ -115,8 +117,10 @@ Senior Backend 不必一開始變 SRE，但至少要懂：
 
 - 已有真實 production flow、project contribution consolidation、履歷 / 自傳 / 面試 case，可先支撐投遞與 market check。
 - side project 是加分展示，不是 Senior Backend 必備證明。
+- 目前短板不是「沒有作品」，而是「真實 flows 還需要讀熟、講順、抗追問並轉成面試戰力」。
 - 若為了證明自己才開始做，很容易變成焦慮型大工程，拖慢投遞與面試準備。
 - 雲端 demo / 後台試玩 / 免費部署雖然漂亮，但維護、資安、資料、帳號、成本與展示穩定性都會增加額外負擔。
+- 直接接既有 DB、既有專案或本地 k3s 整合，會引入敏感資料、環境依賴、權限、維護與履歷邊界風險；若未來真的做，也應先用 scrubbed / seed data 與乾淨重構版。
 
 正確使用方式：面試官若追問「你會怎麼從 0 到 1 設計一個遊戲後端」，用本節口說架構；不要把它當成立即開工的 project spec。
 

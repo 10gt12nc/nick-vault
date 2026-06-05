@@ -512,6 +512,23 @@ backend/
 - 你現在最大瓶頸比較像「講清楚、抗追問、穩住信心」，不是缺一個新 repo。
 - 大型 side project 會把焦慮轉成工程量，而且很容易拖過市場測試節奏。
 
+更直接的 ROI 判斷：
+
+```text
+現在實作 side project 的 CP 值偏低。
+讀熟 flows、會講、能工作、能面試，已經足夠支撐目前 2-3 個月 market check。
+```
+
+不是 side project 沒價值，而是它目前不是最短路徑。Nick 已經有真實 production evidence；如果再開一個新專案，很可能是在補「我是不是還不夠」的焦慮，而不是補市場真正要求的缺口。現階段最該做的是把主力 8-10 條 case 講到 3 分鐘，能回答 transaction、idempotency、MQ、DB、Redis、failure window 與 claim boundary。
+
+本地 k3s、既有 DB、既有專案整合的判斷：
+
+- 可以作為未來技術 lab 的素材，但現在不建議直接開工。
+- 既有 DB 不應直接接進 side project；第一版若真的做，也要用 scrubbed schema、seed data 或仿真資料。
+- 既有公司專案只能作 reference，不建議直接重構成個人作品或商業產品。
+- k3s 應放第二階段；第一階段即使啟動，也先用 Docker Compose 跑通 API、worker、DB、Redis、MQ、provider simulator。
+- 真正有價值的是抽象後的乾淨版本：provider adapter、callback inbox、wallet transaction、bet-settle state machine、MQ projection、admin repair、observability。
+
 ### 可以做的最小準備
 
 只保留一個可選出口：
