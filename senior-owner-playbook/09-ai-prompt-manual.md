@@ -34,7 +34,8 @@
 - 每次 Step 都要寫清楚實際掃描範圍；沒看其他分支、沒看下游 code、沒看後端 repo，就要明確寫未掃 / 待確認。
 - 每次 Step 也要寫清楚 code repo 遠端最新性：是否已 fetch、local HEAD、remote HEAD、是否 ahead / behind；若未 fetch 或本機落後遠端，必須標示「未確認最新 code」。
 - 若來源 repo remote 是內網 GitLab 或當下網路不可達，fetch 失敗一次後不要反覆重試；用本地 refs / 本地工作樹保守分析，並標示「fetch 失敗 / 未確認最新遠端 / 依本地 refs 判斷」。不要把內網 URL、IP 或敏感 remote 細節寫入 vault。
-- 若 Nick 要求參考 `iwin-workspace`、`math-workspace` 或其他 workspace 的新流程，AI 必須先輸出或內化 `可採 / 不採 / 轉譯` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、baseline / evidence 分層等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / deploy / child repo 規則搬進 `nick-vault`。若 Nick 只是問「要不要跟進」，先回答採用建議；若 Nick 說「維護 KB / 幫優化 / 幫改」，才把結論轉成最小規則更新，優先改 `00`、`09`、`06`，不要新增長期資料夾。
+- 若 Nick 要求參考 `iwin-workspace`、`math-workspace`、`test001_unity` 或其他 workspace 的新流程，AI 必須先輸出或內化 `值得導入 / 只作參考 / 不採用 / 仍需驗證` 判斷。只吸收入口索引、non-goals、scope、success criteria、handoff / reviewer gate、Producer / Scope gate、baseline / evidence 分層、source / KB 分離、relation map 與 generated / curated 分離等防超做方法；不得把開發型 `docs/agent-roles/`、`kb/catalog/`、per-project `CLAUDE.md`、GDD / RTP / Unity / deploy / child repo 規則搬進 `nick-vault`。若 Nick 說「維護 KB / 幫優化 / 幫改 / 值得學的抄過來」，只能把結論重寫成最小 vault 規則，優先改 `00`、`09`、`06` 或 `projects/CONVENTIONS.md`，不要新增長期資料夾。
+- 參考 workspace 的角色只能轉譯成 `nick-vault` 的四個 role lens：`Producer / Scope Gate`、`Flow / Technical Reviewer`、`Career Claim Reviewer`、`KB Curator`。這些只是任務前後的思考與交付檢查，不是新的 Step，也不取代 Flow Track / Career Track / Completeness Audit。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - Flow 後可以補 SQL / Spring / Kafka / Redis / transaction 教學，但目前預設先不補。只有 Nick 讀該 flow 卡住、面試追問暴露基本功缺口，或 Nick 明確要求補教學時，才用 `flow-first teaching`：先完成 code-backed flow 深掃，再從本 flow 的實際 code path 補 3-5 個必要技術點。不得把每條 flow 寫成完整 SQL / Spring / Kafka 課本。

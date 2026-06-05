@@ -317,6 +317,26 @@ Log / Audit：
 - 寫進履歷 bullet
 - 當成本地系統 evidence
 
+## 參考 workspace 工作法規則
+
+`/Users/nick/Git/antplay/math-workspace`、`/Users/nick/Git/nick/test001_unity`、`/Users/nick/Git/iwin/iwin-workspace` 可以作為工作法參考，但只能萃取成 `nick-vault` 的治理規則。
+
+值得導入：
+
+- 角色 gate：Producer / Scope、Technical Reviewer、Career Claim Reviewer、KB Curator。
+- Handoff 檢查：需求邊界、non-goals、success criteria、可改範圍、Reviewer verdict。
+- Source / KB 分離：公司 repo 只讀，vault 只留整理後的 evidence / flow / claim。
+- Cross-project relation：需要時補 architecture / integration map，但不得插隊 active flow。
+- Evidence 分層：confirmed / inferred / todo 對應本 vault 的已確認 / 推測 / 待確認。
+
+不採用：
+
+- 外部 workspace 的 `docs/` / `kb/` / `.work` 目錄結構。
+- GDD、RTP、Unity、DLsite、k3s、JumpServer、deploy tag、child repo push 等 domain-specific 規則。
+- AI session records、operation logs、work reports 或 `ai-notes/` 復活區。
+
+輸出結論時要分成：`值得導入`、`只作參考`、`不採用`、`仍需驗證`。
+
 ## 對標職缺標籤
 
 每條 flow 至少標一個：

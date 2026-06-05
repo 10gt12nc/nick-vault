@@ -41,7 +41,14 @@
 - 參考 workspace 正確路徑：
   - `/Users/nick/Git/iwin/iwin-workspace`
   - `/Users/nick/Git/antplay/math-workspace`
-- 參考其他 workspace 只能用來學防呆、索引、KB 治理與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo 規則到 `nick-vault`。
+  - `/Users/nick/Git/nick/test001_unity`
+- 參考 workspace 角色定位：
+  - `nick-vault`：Senior / Owner 學習、flow evidence、履歷 / 面試 claim gate 的個人知識庫。
+  - `math-workspace`：AI-assisted math 開發 / 驗證工作台；可學 Architect / Planner / Coder / Reviewer handoff、source / KB 分離、GDD / 相似包 / result validation 交叉驗證。
+  - `test001_unity`：0 到 1 遊戲產品工作台；可學 Producer / Design / Engineering / Art / QA / Release 的角色分工、gate、scope cut 與「值得導入 / 只作參考 / 不採用 / 仍需驗證」分類。
+  - `iwin-workspace`：大型既有系統復原 / 運維 / 跨 repo 關聯工作台；可學 source repo inventory、relation map、generated / curated 分離、唯讀 source cache、敏感資訊遮蔽與 cross-project reconstruction。
+- 參考其他 workspace 只能用來學防呆、索引、KB 治理、角色 gate、scope / non-goals、success criteria、evidence 分層與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo / GDD / RTP / Unity / k3s / JumpServer 規則到 `nick-vault`。
+- `nick-vault` 可以吸收角色 lens，但只作思考與交付檢查，不新增部門式流程：`Producer / Scope Gate` 判斷是否該做與停止點；`Flow / Technical Reviewer` 檢查 code path、資料流與 failure；`Career Claim Reviewer` 檢查履歷可寫 / 可講 / 不可誇大；`KB Curator` 檢查索引、Relationship Check 與不留流水帳。
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
 - 新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2：比較 candidate flows、技術點、風險、module / repo / service 邊界。不得在沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / multi repo / monorepo 類專案，Step 1 / Step 2 必須先整理 module / submodule / service instance / upstream-downstream 邊界。不能只挑一條看起來高價值的 flow 就跳過子模組地圖；也不能平均做 class summary。架構圖只作定位，Step 2 才決定哪條 flow 進 Step 3。
