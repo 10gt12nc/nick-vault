@@ -10,6 +10,7 @@
 
 ## 已完成
 
+- 2026-06-05：已確認 `/Users/nick/Git` 底下不再保留 `ai-notes/`。先前 `/Users/nick/Git/antplay/ai-notes` 只是本地 AI session notes / logs，已依 Nick 指示刪除；`nick-vault` 規則維持不新增 `ai-notes/`、不保留流水帳、不把外部 workspace notes 搬進 `projects/`。
 - 2026-06-05：已修正 `teaching-notes` 策略為「先不補 / 不批量補」。目前 49 條既有 flow 不因沒有 `materials/teaching-notes.md` 就列為缺口；只有 Nick 讀某條 flow 卡住、面試回饋暴露基本功缺口，或 Nick 明確要求補該 flow 教學時，才建立 teaching notes。投遞前主線仍是讀熟主力 flows、履歷 case、口說與 JD-specific 補洞。
 - 2026-06-05：已完成 `讀kb / 下一步` 入口一致性深掃與補強。`AGENTS.md`、`senior-owner-playbook/README.md`、`projects/README.md` 已同步標明：這是新增省字入口，不覆蓋既有 `project / flow / Step N` 指令；明確 Step 仍照原主線做，只有 Nick 只貼 `讀kb / 下一步` 時，AI 才自動判斷 Flow Track / Career Track / Resume / Domain Map / Decision Notes / 口說材料或自由提問狀態。Teaching Notes 不列預設下一步，只在卡住、面試回饋或明確要求時補。
 - 2026-06-05：已補 `讀kb / 下一步` 自動化規則。Nick 之後可以只貼兩行，AI 必須自動重讀 KB、掃 `projects/` 的 Flow Track / Career Track / Domain Map / Decision Notes / 口說材料狀態，校正已完成與未完成，再只推薦一件最值得做的下一步；不得自動開工多個 flow、不得把候選缺口包裝成必做 backlog、不得讓 teaching notes / system map / side project 插隊 active flow。

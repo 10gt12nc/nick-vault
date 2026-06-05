@@ -65,7 +65,7 @@ Step 5：整理履歷 / 自傳邊界
 它不是：
 
 - 公司 code 備份區
-- 舊 ai-notes 搬運區
+- 舊 `ai-notes/` 搬運區或復活區；`ai-notes/` 若只是本地 AI session notes / logs，應刪除或忽略，不搬進 `projects/`
 - 大量 class summary
 - 履歷誇大素材庫
 
