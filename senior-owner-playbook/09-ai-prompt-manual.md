@@ -10,7 +10,7 @@
 - 不要叫 AI 平均整理全部 class。
 - 每次只跑一個 step。
 - 每次只完成一條 flow。
-- 每次 Step 開始前，AI 必須自動重讀 KB、該 project 既有文件與相關 code 最新狀態；Nick 不需要每次提醒。
+- 每次任務開始前，AI 必須先判斷 `輕量問答 / 快速狀態 / 中量維護 / 重度深掃`。只有 Step / flow / contribution consolidation / 履歷 claim / Completeness Audit 才需要自動重讀 KB、該 project 既有文件與相關 code 最新狀態；一般問答和收斂狀態的下一步不全量掃。
 - 每次掃公司 / 來源 code repo 前，AI 必須先 `git fetch --all --prune` 或用等效方式確認 remote refs 最新，並記錄 local HEAD、remote HEAD、是否 ahead / behind；不得自動 `pull`、merge、checkout、rebase 或改公司 repo 工作樹。
 - 每次重讀後，AI 必須自己檢查舊 Step / 舊 flow 文件是否符合目前 KB；若不符合，要主動建議重整或直接補 evidence，不能等 Nick 追問。
 - 不確定就標示「已確認 / 推測 / 待確認」。
@@ -26,7 +26,7 @@
 - 待辦事項 / KB 維護 / 缺口清單 / 優先順序是 Planning / KB Governance Track，優先於一般 Flow Step 慣性。Nick 要 AI「先做待辦」、「說缺啥」、「維護 KB」時，AI 只能更新 todo / KB / index 與列出候選下一步，不能自行把缺口開工成 Step 4 / Step 5。
 - Nick 明確說「專案先不下一步」、「先只更新 KB」、「先不要推 project / flow」時，本輪是 `KB-only` 模式。完成後不要給 project flow 下一步 prompt，也不要自動開工 todo 裡的收口項目；只回報 KB 修正、檢查結果、commit / push 狀態。
 - 每次完成後，若 flow / project / Career Track 尚未收口，AI 要自動給下一步建議，而且只推薦一件最值得做的事。
-- Nick 若只貼 `讀kb`、`下一步`，AI 要進入 `KB Readiness + Next Action Automation`：自動重讀 KB、掃 `projects/` 狀態、校正已完成 / 未完成 / 候選缺口，再只給一個最值得做的下一步。Nick 不需要自己知道目前有多少 flow、哪些檔案要補、哪些 decision notes / resume / map 相關檔案缺；teaching notes 預設不列為缺口。
+- Nick 若只貼 `讀kb`、`下一步`，AI 要進入 `KB Readiness + Next Action Automation`，但預設先用 `快速狀態`：讀 `README / 06 / 01` 與必要 git 狀態；只有發現 active flow、待收口 consolidation、履歷 / 面試輸出不一致，或 Nick 指定 project / flow / JD，才升級掃 `projects/` 狀態。Nick 不需要自己知道目前有多少 flow、哪些檔案要補、哪些 decision notes / resume / map 相關檔案缺；teaching notes 預設不列為缺口。
 - `讀kb / 下一步` 的優先順序固定是：active flow 收口 -> project contribution consolidation -> 05 / 08 / 04 / 17 對齊 -> 高價值 project Step 1 / Step 2 -> 會影響面試追問的 decision notes / 口說材料 -> 若已收斂則轉自由提問 / 口說 / JD-specific。不得自動開工多個 flow，也不得把候選缺口包裝成必做 backlog。Teaching notes 只有 Nick 讀 flow 卡住、面試回饋暴露基本功缺口，或 Nick 明確要求「補教學」時才補。
 - 若目前已收斂、沒有 active flow、沒有特定 JD、Nick 也沒有指定下一個任務，AI 不要硬塞下一步；改成回報「沒有預設下一步，可以自由提問或彈性指定」。此時不要輸出 fenced prompt，也不要把可選方向包裝成必做 backlog。
 - 若 Nick 追問「這種下一步建議不錯 / 幫記 KB」，保留的格式是：先判斷 `必做收口` 是否存在，再列少數 `可選加強`（廣度延伸、深度延伸、架構視角、投遞準備），最後列 `暫不建議`。可選加強是選單，不是授權開工；不建議事項要明確，避免 AI 用 backlog 製造壓力。
@@ -84,7 +84,7 @@
 - 公司專案只能讀，不能改。
 - 掃公司 code 前先 fetch remote refs 確認最新性；只允許更新 remote refs，不自動 pull / merge / checkout / rebase 或改公司 repo 工作樹。
 - `archive/` 目前已清空，只保留 `.gitkeep`；不再當必要參考來源。
-- 每次 Step / flow 任務開始前，請自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不要等 Nick 說「重讀」。
+- 每次任務開始前先判斷模式：輕量問答 / 快速狀態不全量掃；Step / flow / claim / Completeness Audit 才自動重讀 KB、既有 project 文件與相關 code repo 最新狀態，不要等 Nick 說「重讀」。
 - 新內容要重新整理、去重、結合、優化，不要複製舊檔。
 - 不要產生 code。
 - 不要寫 secret、token、內網 IP、production URL、客戶資料。
@@ -101,10 +101,30 @@
 把專案 code、`projects/` 既有整理與 KB 素材，整理成 Senior Java Backend / Platform Backend / System Owner 可讀、可面試、可轉履歷的學習資料。
 ```
 
-## 0.1 每次任務的自動重讀 Checklist
+## 0.1 模式化自動重讀 Checklist
 
 ```text
-開始前請自動重讀，不需要 Nick 另外提醒。此規則適用所有 project / flow / Step：
+開始前先判斷任務模式，不需要 Nick 另外提醒。
+
+輕量問答：
+- 只讀必要入口或已知狀態。
+- 不掃 code / git log / projects 全量。
+
+快速狀態：
+- README.md
+- senior-owner-playbook/06-todo.md
+- senior-owner-playbook/01-senior-owner-flow-inventory.md
+- 必要時看 git status。
+
+中量維護：
+- AGENTS.md
+- senior-owner-playbook/00-operating-rules.md
+- senior-owner-playbook/09-ai-prompt-manual.md
+- 受影響權威檔
+- Relationship Check
+- git diff --check
+
+以下 Checklist 只適用 project / flow / Step / claim / Completeness Audit 等重度任務：
 
 KB:
 - AGENTS.md

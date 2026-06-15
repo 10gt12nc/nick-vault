@@ -6,7 +6,7 @@
 
 ## 自動維護共用規則
 
-Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。
+Nick 不需要每次提醒「重讀 KB / 重讀 code / 維護 README」。但 AI 必須先判斷任務模式；只有 project / flow / Step / claim / Completeness Audit 需要完整重讀 code 與 git history，輕量問答或快速下一步不做全量掃。
 
 每次處理任何 project / flow / Step 前，AI 必須自動：
 

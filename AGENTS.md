@@ -21,6 +21,12 @@
 
 ## 近期排查防錯紀錄
 
+- Token / 掃描成本優先用「模式分級」控管，不是每次都全套深掃：
+  - `輕量問答`：概念討論、焦慮校正、閱讀策略、一般下一步；只讀必要入口或已知狀態，不掃 code、不跑 git history、不改檔。
+  - `中量維護`：KB 規則、索引、todo、閱讀順序、小型一致性修正；讀 `AGENTS.md`、`00`、`09` 與受影響檔案，做 Relationship Check。
+  - `重度深掃`：flow Step、contribution consolidation、履歷 / 自傳正式 claim、Completeness Audit、Nick 明確要求逐行 / 極限深掃；才讀 code、git log、重要 diff、path-specific history。
+  - `快速狀態`：Nick 問「下一步 / 還要幹嘛 / 都好了嗎」且目前收斂時，只查 `README / 06 / 01 / git status` 或等價狀態入口，不得重新全掃全部 KB / projects。
+- 模式分級不降低安全標準：涉及履歷 claim、flow evidence、公司 code、push / commit 或跨檔規則變更時，必須升級到中量或重度；但純問答不得用重度流程製造 token 浪費與焦慮 backlog。
 - 「不要維護流水帳」的意思是：不要建立或保留「今天做什麼、昨天做什麼、某次操作紀錄、records、operation-log、work-report」這類時間序列工作日誌。不是要改掉現有 `flow.md / evidence.md / interview.md / claim-boundary.md` 的分析結構。
 - `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
 - `flow.md` 必須先讓初階 / 中階讀者看懂這條 flow 在做什麼，再進 Senior / Owner 分析。前半必須有白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才寫 consistency、failure window、owner decision、interview / resume boundary。
@@ -87,8 +93,8 @@
 - 不要平均整理所有功能。
 - 優先整理 production flow。
 - 每次只做一條 flow。
-- 每次 Nick 下 `project stepN`、`某 flow Step N`、`下一步`、`繼續` 時，AI 必須自動重讀本 vault KB、既有專案文件與相關 code 最新狀態，不需要 Nick 另外提醒「重讀 KB / 重讀 code」。
-- 自動重讀至少包含：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、該 project 既有 README / Step 文件 / flow 文件、相關 code repo 的 branch / log / 關鍵入口。
+- 每次 Nick 下 `project stepN`、`某 flow Step N`、`下一步`、`繼續` 時，AI 必須先判斷本輪是輕量問答、中量維護、重度深掃或快速狀態，再依模式重讀本 vault KB、既有專案文件與相關 code 最新狀態；Nick 不需要另外提醒「重讀 KB / 重讀 code」，但 AI 也不得在輕量問題上默認全量深掃。
+- 若升級到 project / flow / Step 重讀，至少包含：`AGENTS.md`、`senior-owner-playbook/00-operating-rules.md`、`senior-owner-playbook/09-ai-prompt-manual.md`、`senior-owner-playbook/03-flow-learning-package-template.md`、該 project 既有 README / Step 文件 / flow 文件、相關 code repo 的 branch / log / 關鍵入口。
 - 掃公司 / 來源 code repo 前，必須先確認遠端 refs 是否最新：預設執行 `git fetch --all --prune` 或等效方式更新 remote refs，然後記錄 local HEAD、`origin/{branch}` HEAD、是否 ahead / behind。公司 repo 只能讀，不得自動 `pull`、merge、checkout、rebase 或改工作樹；若本機落後遠端，要標示「本機未更新 / 待 Nick 確認」，除非 Nick 明確同意才更新工作樹。
 - 若公司 / 來源 repo 的 remote 是內網 GitLab 或當下網路不可達，`git fetch` 失敗一次後不要反覆重試；改用本地 refs / 本地工作樹繼續保守分析，並在 evidence 標示「fetch 失敗 / 未確認最新遠端 / 依本地 refs 判斷」。不要把內網 URL、IP 或敏感 remote 細節寫入 vault。
 - 自動重讀後，AI 必須主動檢查既有 Step / flow 文件是否是舊規則、舊格式、舊 evidence 或不符合目前 KB；如果發現不一致，要先標出「需重整 / 需補 evidence / 可沿用」，不能等 Nick 追問。
@@ -104,7 +110,7 @@
 - 若 Nick 沒指定深度，AI 要依目標自動建議：找 flow 用 Level 1、單條 flow 深挖用 Level 2、要寫成強 evidence 或追 bug history 才建議 Level 3。
 - 若 AI 判斷目前不值得 Level 3，要大方說明原因，例如後台只是入口、下游未定位、履歷 claim 不足、或先讀後端 repo 更有價值。
 - 每次完成 Step 或 flow 更新後，若該 flow / project 尚未收口，必須自動給 Nick「下一步建議」，且只推薦一件最值得做的事。若已達收斂狀態或本輪是 KB / 履歷 / 狀態整理，則不要硬塞下一步，改回報「目前可自由提問 / 可彈性指定下一件事」。
-- Nick 可以只貼 `讀kb`、`下一步` 作為省字入口。這不是取代既有 Step 指令，而是新增 `KB Readiness + Next Action Automation`：AI 要自動重讀 KB、掃 `projects/` 的 Flow Track / Career Track / Domain Map 狀態、校正已完成與未完成，再只推薦一件最值得做的事。若 Nick 明確指定 `某 project / flow Step N`，仍照原本 Step 主線執行。Teaching notes 不列為預設下一步；只有讀 flow 卡住或 Nick 明確要求時才補。
+- Nick 可以只貼 `讀kb`、`下一步` 作為省字入口。這不是取代既有 Step 指令，而是新增 `KB Readiness + Next Action Automation`：AI 要先走 `快速狀態`，讀 README / todo / flow inventory 與必要 git status，校正目前最值得做的一件事；只有發現 active flow、待收口 consolidation、05 / 08 / 04 / 17 明顯不一致，或 Nick 指定 project / flow / JD 時，才升級為完整 KB / projects / code 深掃。若 Nick 明確指定 `某 project / flow Step N`，仍照原本 Step 主線執行。Teaching notes 不列為預設下一步；只有讀 flow 卡住或 Nick 明確要求時才補。
 - 下一步建議要說明：為什麼現在做它、會產出什麼、是否會更新履歷、是否需要 commit / push。
 - 下一步建議必須附上 Nick 可直接複製的短 prompt，並用 fenced code block 包起來，例如 ` ```text ... ``` `；不要只寫在一般段落或句子裡。
 - 若 Nick 問的是「還有多少 step / 會不會一直建議 / 何時結束 / 對標資深是否夠了」，AI 要先回答收斂狀態與終點，不要直接丟下一個 flow。回答必須說明：最小必做剩多少、可選加強有哪些、哪些暫不建議做，以及做完後是否轉為投遞 / 面試練習。
@@ -164,7 +170,7 @@ projects/{domain}/{project}/
 
 更新後檢查：
 
-- 是否已自動重讀 KB、既有文件與相關 code 最新狀態？
+- 是否已依任務模式完成必要重讀，並在需要時重讀 KB、既有文件與相關 code 最新狀態？
 - 是否已檢查既有 Step / flow 是否過舊、缺 evidence 或不符合目前 KB？
 - 是否只動 `nick-vault`？
 - 是否沒有動公司專案？
