@@ -27,6 +27,7 @@
   - `重度深掃`：flow Step、contribution consolidation、履歷 / 自傳正式 claim、Completeness Audit、Nick 明確要求逐行 / 極限深掃；才讀 code、git log、重要 diff、path-specific history。
   - `快速狀態`：Nick 問「下一步 / 還要幹嘛 / 都好了嗎」且目前收斂時，只查 `README / 06 / 01 / git status` 或等價狀態入口，不得重新全掃全部 KB / projects。
 - 模式分級不降低安全標準：涉及履歷 claim、flow evidence、公司 code、push / commit 或跨檔規則變更時，必須升級到中量或重度；但純問答不得用重度流程製造 token 浪費與焦慮 backlog。
+- KB 優化採觸發式維護，不主動全面重構。只有當文件造成誤判、重複讀取、重複踩坑、交接失敗、履歷 / flow claim 風險，或 Nick 明確要求調整時才改；若只是「還能更完整 / 還能更漂亮」，先停止，回到投遞、讀 flow、面試練習或當下任務。
 - 「不要維護流水帳」的意思是：不要建立或保留「今天做什麼、昨天做什麼、某次操作紀錄、records、operation-log、work-report」這類時間序列工作日誌。不是要改掉現有 `flow.md / evidence.md / interview.md / claim-boundary.md` 的分析結構。
 - `flow.md` 就是單條 flow 的研究分析報告。不要另創 `research-analysis-report.md`、額外 README 或重複總覽檔，除非 Nick 明確要求。
 - `flow.md` 必須先讓初階 / 中階讀者看懂這條 flow 在做什麼，再進 Senior / Owner 分析。前半必須有白話導讀、Code 分層對照、最小架構圖、正常流程圖與逐步說明；後半才寫 consistency、failure window、owner decision、interview / resume boundary。
