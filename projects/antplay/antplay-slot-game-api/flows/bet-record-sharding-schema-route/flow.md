@@ -2,6 +2,14 @@
 
 ## 1. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Component / Data Governance Flow
+- 所屬大系統: AntPlay high-traffic bet record / schema routing
+- 面試用途: 主力加強 case / high-traffic data
+- 閱讀方式: 先看 schema routing 與分表查詢邊界，再掛回 bet-settle / report 查詢的大系統。
+- 不要期待: 這不是單一業務閉環，也不能直接講成完整分散式分庫平台。
+
 - 日期: 2026-05-21
 - 專案: `antplay-slot-game-api`
 - source repo: `/Users/nick/Git/antplay/antplay-slot-game-api`

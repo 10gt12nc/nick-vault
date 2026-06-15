@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: iwin third_games_api AntPlay bet / settle / rollback
+- 面試用途: 主力輔助 case / provider adapter
+- 閱讀方式: 先看 provider 三段式 callback 與 gameserver dispatch，再看 duplicate、wallet mutation 與上下游邊界。
+- 不要期待: 這不是 third_games_api project 的 Nick direct development claim，也不是完整 provider platform owner。
+
 Flow 中文名稱：Antplay 投注 / 結算 / rollback 三段式流程。
 
 Flow slug：`antplay-bet-settle-rollback`。

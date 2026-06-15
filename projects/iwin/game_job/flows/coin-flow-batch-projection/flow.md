@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Batch Projection Flow
+- 所屬大系統: iwin game_job coin flow projection
+- 面試用途: 輔助 case / batch projection
+- 閱讀方式: 先看 batch 如何投影 coin flow，再看重跑、資料可信度與報表口徑。
+- 不要期待: 這不是線上交易入口。
+
 本文件是 `iwin game_job coin-flow-batch-projection Step 3` 主報告；Step 4 / Step 5 已完成。
 
 中文名稱：金幣流水清算 / 遊戲行為投影。

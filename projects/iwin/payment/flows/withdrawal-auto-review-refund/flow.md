@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Recovery Flow
+- 所屬大系統: iwin payment withdrawal auto review / refund
+- 面試用途: 主力輔助 case / withdrawal recovery
+- 閱讀方式: 先看提款建單、扣分、自動出款與失敗退款，再看重複退款與卡單。
+- 不要期待: 這不是完整代付平台 owner。
+
 - Flow 中文名稱：玩家提款、自動審核 / 自動出款與失敗退款。
 - Flow slug：`withdrawal-auto-review-refund`。
 - 專案：`/Users/nick/Git/iwin/payment`。

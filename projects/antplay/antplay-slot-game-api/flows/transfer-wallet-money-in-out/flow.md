@@ -4,6 +4,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: AntPlay transfer wallet in / out / query
+- 面試用途: 主力 case
+- 閱讀方式: 先看 wallet transaction API 與 balance mutation，再看 duplicate、partial success、lookup。
+- 不要期待: 這不是完整 ledger system，也不是完整 transfer wallet owner。
+
 - Flow 中文名稱: Transfer wallet 轉入 / 轉出 / 全額轉出 / 單筆查詢
 - Flow slug: `transfer-wallet-money-in-out`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成

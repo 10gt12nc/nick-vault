@@ -7,6 +7,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: iwin_gameserver third-party transfer in / out
+- 面試用途: 主力 case
+- 閱讀方式: 先看第三方 provider command 到 wallet mutation 的閉環，再看 idempotency、rollback、reconciliation。
+- 不要期待: 這不是完整第三方遊戲平台，只是 wallet transfer 核心 flow。
+
 這份 `flow.md` 是 `iwin_gameserver` 的單條 flow 主報告。它不是 class summary，也不是第三方遊戲平台總覽；重點是追一筆第三方遊戲投注 / 派彩 / 退款 callback 進入 gameserver 後，玩家餘額、戰績、打碼與 log 會怎麼變。
 
 本輪已確認的主線在 `iwin_gameserver`：

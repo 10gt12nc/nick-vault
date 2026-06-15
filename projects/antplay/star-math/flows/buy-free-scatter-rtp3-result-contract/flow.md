@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Math Contract Flow
+- 所屬大系統: AntPlay slot buy-free / scatter / RTP_3 result contract
+- 面試用途: 差異化 case / game math
+- 閱讀方式: 先看 buy-free bet 如何影響 RTP routing、free spin state 與 result contract。
+- 不要期待: 這不是後端交易閉環，也不是完整遊戲數學 owner。
+
 - Domain / Project: `antplay *-math`
 - Flow slug: `buy-free-scatter-rtp3-result-contract`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成

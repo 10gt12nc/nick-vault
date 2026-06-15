@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / MQ Ingestion Flow
+- 所屬大系統: UGSoft admin bet record MQ ingestion
+- 面試用途: 主力輔助 case / MQ ingestion
+- 閱讀方式: 先看 RabbitMQ consumer 如何查重與入庫，再看 quota update side effect。
+- 不要期待: 這不是完整 provider callback flow；上游 connector 只作 context。
+
 - Flow 中文名稱：Connector BetRecord MQ 入庫與 quota update
 - Flow slug：`connect-bet-record-mq-ingestion`
 - Project：`ugsoft-admin-api`

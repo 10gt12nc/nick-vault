@@ -8,6 +8,14 @@ Step：5
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Money-Adjacent Flow
+- 所屬大系統: iwin game_api agent bonus receive / transfer
+- 面試用途: 主力或輔助 case / wallet-adjacent
+- 閱讀方式: 先看 bonus receive / transfer 的狀態與上下游，再看 money correctness 邊界。
+- 不要期待: 這不是完整金流或完整錢包系統。
+
 這條 flow 是 `game_api` 的代理佣金操作入口：玩家成為代理後，可以查可領佣金、把佣金轉給下級，或把可領佣金領到遊戲錢包。
 
 它不是單純查詢頁。它跨了 `game_api` API、Mongo `agent_money`、Mongo 轉帳 / 領取紀錄、Redis `GameAgent:{rid}` projection、`game_job` 佣金計算 / 結算 job，以及 gameserver GM 上分。Step 5 已把 code path、資料狀態與 failure window 收斂成面試案例；目前不更新正式履歷 / 自傳。

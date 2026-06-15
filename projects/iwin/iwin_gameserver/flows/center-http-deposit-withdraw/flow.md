@@ -7,6 +7,14 @@ Step：5
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Money Flow
+- 所屬大系統: iwin_gameserver center HTTP deposit / withdraw
+- 面試用途: 主力 case / wallet integration
+- 閱讀方式: 先看 center command 如何引發 deposit / withdraw，再看 wallet mutation、冪等與錯誤處理。
+- 不要期待: 這不是完整金流 provider owner。
+
 這條 flow 不是「完整金流訂單系統」，而是 `iwin_gameserver` 在 center_http 收到上游指令後，真正改玩家 runtime 錢包的路徑。
 
 白話說：

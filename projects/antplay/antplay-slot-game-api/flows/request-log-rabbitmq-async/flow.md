@@ -4,6 +4,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Observability Flow
+- 所屬大系統: AntPlay request log async audit pipeline
+- 面試用途: 輔助 case / MQ audit supporting evidence
+- 閱讀方式: 先看 request log 從 runtime 轉成 MQ，再看 admin consumer 如何落地與查詢。
+- 不要期待: 這不是下注結算主流程，也不是交易資料的 source of truth。
+
 - Flow 中文名稱: Request log RabbitMQ 非同步化
 - Flow slug: `request-log-rabbitmq-async`
 - 完成狀態: Step 5 / Level 2 Flow 深掃 + claim gate 已完成

@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: iwin third_games_api GSC transfer bet / settle / rollback
+- 面試用途: 主力輔助 case / provider adapter
+- 閱讀方式: 先看 provider callback 到 gameserver wallet mutation 的路徑，再看 idempotency 與 audit 邊界。
+- 不要期待: 這不是完整 third-party provider platform。
+
 本文件是 `iwin third_games_api gsc-transfer-bet-settle-rollback` 的主報告。
 
 Flow 中文名稱：GSC transfer 投注 / 派彩 / rollback 整合回調。

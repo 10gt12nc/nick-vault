@@ -4,6 +4,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Component / Event Consumer Flow
+- 所屬大系統: AntPlay activity voucher issuing projection
+- 面試用途: 輔助 case / event-driven activity
+- 閱讀方式: 先看 settlement event 如何累積 Redis，再看 voucher issuing 與外部 service 邊界。
+- 不要期待: 這不是完整 activity platform，也不是玩家錢包主流程。
+
 - Flow 中文名稱: 活動累計投注送 voucher / free spin。
 - Flow slug: `activity-accumulated-bet-voucher`。
 - 完成狀態: Step 5 claim gate 完成。

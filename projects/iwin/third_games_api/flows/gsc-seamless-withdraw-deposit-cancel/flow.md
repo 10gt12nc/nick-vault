@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Recovery Flow
+- 所屬大系統: iwin third_games_api GSC seamless withdraw / deposit / cancel
+- 面試用途: 主力輔助 case / provider adapter
+- 閱讀方式: 先看 split endpoint 如何 dispatch gameserver wallet command，再看 rollback / cancel / duplicate guard。
+- 不要期待: 這不是完整 GSC provider owner，也不是完整 gameserver wallet claim。
+
 Flow 中文名稱：GSC seamless 分離式 withdraw / deposit / rollback / cancel。
 
 Flow slug：`gsc-seamless-withdraw-deposit-cancel`。

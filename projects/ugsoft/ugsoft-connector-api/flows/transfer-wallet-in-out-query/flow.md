@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: UGSoft connector transfer wallet in / out / query
+- 面試用途: 主力 case / provider wallet integration
+- 閱讀方式: 先看轉入 / 轉出 / 查詢閉環，再看 duplicate guard、final lookup 與 provider adapter。
+- 不要期待: 這不是完整 ledger owner，也不是所有 provider adapter owner。
+
 - Flow 中文名稱：商戶轉帳錢包轉入 / 轉出 / 全額轉出 / 單筆交易查詢
 - Flow slug：`transfer-wallet-in-out-query`
 - Project：`ugsoft-connector-api`

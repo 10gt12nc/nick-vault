@@ -8,6 +8,14 @@ Step：5
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Reward Flow
+- 所屬大系統: iwin game_api coupon redeem / credit grant
+- 面試用途: 輔助 case / reward money-adjacent
+- 閱讀方式: 先看 coupon redeem 如何觸發 credit grant，再看冪等、狀態與人工補償。
+- 不要期待: 這不是完整 promotion platform 或 wallet ledger owner。
+
 這條 flow 是玩家使用優惠券兌換碼後，由 `game_api` 驗證登入與資格，再呼叫遊戲中心 GM command 幫玩家上分，並設定對應打碼要求。
 
 本 flow 已完成 Step 5。Nick / `10gt12nc` 在 `game_api` coupon 入口 / service / DAO / mapper / entity 以及 `iwin_gameserver` bet target handler 有 path-specific commits，因此可作「真實開發過」候選 evidence；正式 05 / 08 仍需 project-level consolidation；但仍不可寫成 Nick 主導完整 coupon 系統、完整 reward owner、Redis lock 設計者或 production 雙領事故修復者。

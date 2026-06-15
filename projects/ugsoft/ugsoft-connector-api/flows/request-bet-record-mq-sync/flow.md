@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Recovery / Batch Sync Flow
+- 所屬大系統: UGSoft connector provider bet record job sync
+- 面試用途: 主力輔助 case / late data recovery
+- 閱讀方式: 先看 Quartz job、provider pull、watermark 與 MQ handoff，再看補資料 / 去重邊界。
+- 不要期待: 這不是完整 reconciliation platform。
+
 - Flow 中文名稱：Provider bet record job sync / late data 補資料到 MQ
 - Flow slug：`request-bet-record-mq-sync`
 - Project：`ugsoft-connector-api`

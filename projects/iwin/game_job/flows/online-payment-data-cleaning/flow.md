@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Maintenance / Data Cleaning Flow
+- 所屬大系統: iwin game_job online payment data cleaning
+- 面試用途: 輔助 case / maintenance
+- 閱讀方式: 先看清理條件與資料來源，再看錯刪風險、可追溯與回復邊界。
+- 不要期待: 這不是 payment 主交易 flow。
+
 本文件是 `iwin game_job online-payment-data-cleaning Step 3` 主報告；Step 4 已完成正式面試 case，Step 5 已完成 claim gate。
 
 中文名稱：充值 / 提現資料清洗與每日經濟資料。

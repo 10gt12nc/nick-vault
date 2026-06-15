@@ -538,11 +538,20 @@ flow.md = 研究分析報告主文
 `flow.md` 不是只給 Senior reviewer 看的風險分析，也必須是 Nick 第一次讀這條 flow 時能看懂的學習入口。正確閱讀層次是：
 
 ```text
-先讀懂功能與 code 分層
+先用 Flow 類型與閱讀定位判斷這是完整業務閉環、元件 / 服務流程、後台控制點、報表 / 投影、補償 / 維運流程、部署流程或 math contract / validation
+-> 再讀懂功能與 code 分層
 -> 再理解正常資料流
 -> 再分析 failure / consistency / owner decision
 -> 最後轉面試與履歷邊界
 ```
+
+`flow.md` 開頭的「Flow 類型與閱讀定位」必須固定寫：
+
+- Flow 類型。
+- 所屬大系統。
+- 面試用途。
+- 閱讀方式。
+- 不要期待。
 
 新建或重整後，其他檔案要收在同一條 flow 的 `materials/`，避免主閱讀面混亂：
 

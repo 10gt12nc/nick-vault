@@ -51,6 +51,11 @@ Nick 不需要每次提醒「重讀 KB / 重讀 code」。
 
 第一層要回答：
 
+- Flow 類型與閱讀定位：先標清這條是完整業務閉環、元件 / 服務流程、後台控制點、報表 / 投影、補償 / 維運流程、部署流程或 math contract / validation。
+- 所屬大系統：這條 flow 掛在哪個更大的 domain，例如 payment provider、wallet / bet-settle、MQ projection、admin control、slot math。
+- 面試用途：主 case、輔助 case、背景素材或 interview-only 加分。
+- 閱讀方式：先看哪個入口與正常路徑，再看哪些 failure / consistency / claim boundary。
+- 不要期待：明確說這不是完整系統設計、完整平台 owner，或不是交易 source of truth。
 - 這是什麼功能。
 - 誰會用。
 - 什麼情境觸發。

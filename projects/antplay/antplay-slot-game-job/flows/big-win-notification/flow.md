@@ -8,6 +8,14 @@ Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Component / Notification Flow
+- 所屬大系統: AntPlay big-win event notification
+- 面試用途: 輔助 case / async notification
+- 閱讀方式: 先看 settlement event 如何轉成 user message，再看 push bridge 與觀測邊界。
+- 不要期待: 這不是完整 push platform，也不是交易 source of truth。
+
 - Flow 中文名稱: 中大獎通知 / push user message。
 - Flow slug: `big-win-notification`。
 - 完成狀態: Step 5 claim gate 完成。

@@ -4,6 +4,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Control Plane Flow
+- 所屬大系統: AntPlay admin access-control / game-api whitelist
+- 面試用途: 輔助 case / access-control supporting evidence
+- 閱讀方式: 先看後台設定如何寫 DB / Redis，再看 runtime filter 怎麼消費設定。
+- 不要期待: 這不是完整 security platform，只是白名單控制面的 production 切面。
+
 - Flow 中文名稱: Game API 白名單控制面 / DB + Redis 同步
 - Flow slug: `game-api-whitelist-sync`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成；Level 2 Flow 深掃沿用 Step 3 / Step 4 evidence

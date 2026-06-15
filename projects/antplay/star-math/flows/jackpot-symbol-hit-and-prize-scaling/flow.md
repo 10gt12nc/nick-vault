@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Math Contract Flow
+- 所屬大系統: AntPlay jackpot symbol / prize scaling result contract
+- 面試用途: 差異化 case / game math money-risk
+- 閱讀方式: 先看 symbol hit、balance scaling、result contract，再看上下游不負責的 wallet / pool 邊界。
+- 不要期待: 這不是完整 jackpot pool、wallet settlement 或風控 owner。
+
 - Domain / Project: `antplay *-math`
 - Flow slug: `jackpot-symbol-hit-and-prize-scaling`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成

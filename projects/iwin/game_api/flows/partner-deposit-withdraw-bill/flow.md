@@ -8,6 +8,14 @@ Step：5
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Integration Flow
+- 所屬大系統: iwin game_api partner deposit / withdraw bill
+- 面試用途: 主力輔助 case / partner integration
+- 閱讀方式: 先看 partner bill 如何串上下游，再看查單、狀態與 reconciliation 邊界。
+- 不要期待: 這不是完整 payment owner。
+
 這條 flow 是 `game_api` 對 partner 暴露的 money API：partner 可以呼叫 `NewPay` 幫玩家上分、呼叫 `Withdraw` 從玩家帳上扣分，並用 `BillInfo` / `BillList` 查詢訂單狀態。
 
 它不是一般查詢 API。它同時碰到 partner 簽章、玩家帳號定位、金額倍率換算、Mongo 訂單分日表、GM command、玩家錢包副作用與查單 reconciliation。

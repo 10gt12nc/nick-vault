@@ -6,6 +6,14 @@ Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Component / Data Governance Flow
+- 所屬大系統: AntPlay partition job / report schema routing
+- 面試用途: 主力加強 case / partition and routing
+- 閱讀方式: 先看 table partition / schema routing，再掛回 report / high-traffic data 大系統。
+- 不要期待: 這不是完整 DB platform，只是高流量資料治理切面。
+
 - Flow 中文名稱: DB partition / report schema routing。
 - Flow slug: `db-partition-job-report-routing`。
 - 完成狀態: Step 5 claim gate 完成。

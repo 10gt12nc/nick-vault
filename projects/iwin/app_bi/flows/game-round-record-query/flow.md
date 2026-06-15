@@ -8,6 +8,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Query Flow
+- 所屬大系統: iwin app_bi game round record query
+- 面試用途: 輔助 case / operations query
+- 閱讀方式: 先看查詢條件、資料來源與使用者，再看效能與資料可信度。
+- 不要期待: 這不是下注 / 派彩閉環，只是營運查詢切面。
+
 - Flow 中文名稱：遊戲局紀錄查詢 / 玩家申訴排查入口
 - Flow slug：`game-round-record-query`
 - 完成狀態：Step 5 已完成

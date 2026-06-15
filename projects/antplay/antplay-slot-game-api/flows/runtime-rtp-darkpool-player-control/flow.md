@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Runtime Decision Flow
+- 所屬大系統: AntPlay slot runtime RTP / dark pool / player control
+- 面試用途: 輔助差異化 case / runtime risk decision
+- 閱讀方式: 先看 bet runtime 如何組合 RTP、dark pool、player control 與 math result，再看 owner decision。
+- 不要期待: 這不是完整 RTP 策略 owner，也不是 jackpot pool / wallet settlement owner。
+
 | 項目 | 內容 |
 | --- | --- |
 | Flow 中文名稱 | RTP / dark pool / player control runtime decision |

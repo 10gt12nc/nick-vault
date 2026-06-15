@@ -4,6 +4,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Observability Flow
+- 所屬大系統: UGSoft admin request log MQ consumer
+- 面試用途: 輔助 case / MQ audit
+- 閱讀方式: 先看 request log consumer 如何落地與供後台查詢，再看 duplicate / observability。
+- 不要期待: 這不是交易 source of truth。
+
 這條 flow 是 `ugsoft-admin-api` 的第二條代表 flow，主題是 RequestLog 從同步寫入改為 RabbitMQ 非同步入庫後，後台 consumer 如何把 request / response log 寫入 `pt_request_log`，再供 admin `/request_log` 查詢。
 
 目前完成到 Step 5: 已建立 flow learning package、code 分層、正常流程、主要 failure window、正式面試稿與單條 flow claim gate。本 flow 可作 `ugsoft-admin-api` project-level 「RabbitMQ / request log 非同步資料處理」的 supporting evidence，但不直接回填 `05 / 08`；履歷 master 仍要等 project contribution refresh 或 rolling resume package 統一處理。

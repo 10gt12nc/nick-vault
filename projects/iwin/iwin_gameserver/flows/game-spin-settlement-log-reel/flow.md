@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Runtime / Logging Flow
+- 所屬大系統: iwin_gameserver game spin settlement / reel log
+- 面試用途: 輔助 case / game runtime evidence
+- 閱讀方式: 先看 spin settlement 後如何寫 reel / log side effect，再看可觀測與資料追溯。
+- 不要期待: 這不是完整遊戲數學或 wallet owner。
+
 - Flow 中文名稱：遊戲 spin / 結算 / 投注流水寫入
 - Flow slug：`game-spin-settlement-log-reel`
 - 完成狀態：Step 5 completed

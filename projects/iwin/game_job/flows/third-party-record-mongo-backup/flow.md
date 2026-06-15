@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Maintenance / Backup Flow
+- 所屬大系統: iwin game_job third-party record Mongo backup
+- 面試用途: 輔助 case / data retention
+- 閱讀方式: 先看 Mongo record 如何備份 / 同步，再看資料完整性與重跑邊界。
+- 不要期待: 這不是 provider 主交易入口。
+
 本文件是 `iwin game_job third-party-record-mongo-backup Step 3` 主報告；Step 4 面試 case 與 Step 5 claim gate 已整理於 `career-interview.md` 與 `materials/claim-boundary.md`。
 
 中文名稱：第三方遊戲紀錄 Mongo 備份與清理。

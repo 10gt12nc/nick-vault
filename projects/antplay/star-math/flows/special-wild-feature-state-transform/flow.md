@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Math State Contract Flow
+- 所屬大系統: AntPlay special wild / feature state result contract
+- 面試用途: 差異化 case / game math state
+- 閱讀方式: 先看 feature state 如何從 math result 帶到前端 / 上游 contract。
+- 不要期待: 這不是完整 game session state owner，也不是 wallet flow。
+
 - Domain / Project: `antplay *-math`
 - Flow: `special-wild-feature-state-transform`
 - 中文名稱: Special Wild / symbol state transform

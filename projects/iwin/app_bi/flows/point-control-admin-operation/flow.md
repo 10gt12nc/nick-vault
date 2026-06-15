@@ -9,6 +9,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Control Plane Flow
+- 所屬大系統: iwin app_bi point control admin operation
+- 面試用途: 輔助 case / admin operation
+- 閱讀方式: 先看後台操作如何改變 point control 狀態，再看權限、audit、風險邊界。
+- 不要期待: 這不是完整 wallet / ledger owner。
+
 - Flow 中文名稱：單點控制 / 營運控制操作
 - Flow slug：`point-control-admin-operation`
 - 完成狀態：Step 5 已完成

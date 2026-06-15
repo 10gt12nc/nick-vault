@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: iwin payment provider request / order query
+- 面試用途: 主力 case
+- 閱讀方式: 先看建單、provider request、timeout unknown 與查單，再看 consistency / reconciliation。
+- 不要期待: 這不是完整金流 owner，只是 provider request / query production flow。
+
 - Flow 中文名稱：充值建單與 provider request。
 - Flow slug：`payment-order-provider-request`。
 - 專案：`/Users/nick/Git/iwin/payment`。

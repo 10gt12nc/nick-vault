@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / MQ Handoff Flow
+- 所屬大系統: UGSoft connector provider callback -> bet record MQ
+- 面試用途: 主力 case / provider integration
+- 閱讀方式: 先看 provider callback normalization 與 MQ handoff，再看 downstream admin ingestion。
+- 不要期待: 這不是完整 exactly-once / outbox platform owner。
+
 - Flow 中文名稱：Provider callback 下注結算到 MQ 入庫
 - Flow slug：`provider-callback-bet-settle-to-mq`
 - Project：`ugsoft-connector-api`

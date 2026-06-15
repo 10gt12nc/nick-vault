@@ -10,6 +10,14 @@
 
 ## 1. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Control Plane Flow
+- 所屬大系統: iwin payment channel config / selection
+- 面試用途: 輔助 case / payment routing control
+- 閱讀方式: 先看 channel config 如何影響 provider routing，再看 cache / consistency / fallback。
+- 不要期待: 這不是實際扣款 callback 主流程。
+
 這條 flow 不是金流扣款 / 上分主線，而是金流入口前的 eligibility / runtime config selection。
 
 | 層次 | 代表 code | 本 flow 判斷 |

@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Maintenance / Data Governance Flow
+- 所屬大系統: iwin game_job partition table creation
+- 面試用途: 輔助加強 case / table governance
+- 閱讀方式: 先看 partition 建表策略，再看 job timing、失敗補救與高流量資料治理。
+- 不要期待: 這不是單一業務流程，也不是完整 DBA owner。
+
 本文件是 `iwin game_job partition-table-creation Step 3` 主報告；Step 4 已把本 flow 轉成正式面試 case，Step 5 已完成 claim gate。
 
 中文名稱：每日 / 每月分表建立。

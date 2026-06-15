@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System / Recovery Flow
+- 所屬大系統: iwin payment provider callback
+- 面試用途: 主力 case
+- 閱讀方式: 先看 callback 如何轉內部 order state 與副作用，再看 duplicate callback、MQ retry、人工補償。
+- 不要期待: 這不是完整金流 owner，也不能假設完整對帳已確認。
+
 - Flow 中文名稱：三方金流 provider callback。
 - Flow slug：`payment-provider-callback`。
 - 專案：`/Users/nick/Git/iwin/payment`。

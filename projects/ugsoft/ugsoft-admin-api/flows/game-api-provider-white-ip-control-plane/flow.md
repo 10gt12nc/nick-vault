@@ -4,6 +4,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Control Plane Flow
+- 所屬大系統: UGSoft admin game-api / provider white IP control
+- 面試用途: 輔助 case / access-control control plane
+- 閱讀方式: 先看後台 DB / Redis / MQ fanout 如何影響 connector runtime access control。
+- 不要期待: 這不是完整 security platform owner。
+
 - Flow 中文名稱: Game API / provider white IP 後台控制面
 - Flow slug: `game-api-provider-white-ip-control-plane`
 - Project: `ugsoft-admin-api`

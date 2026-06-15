@@ -6,6 +6,14 @@ Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Report Flow
+- 所屬大系統: AntPlay Kafka / Quartz report projection
+- 面試用途: 主力 case
+- 閱讀方式: 先看 event -> projection -> summary / cleanup，再看重跑、可信度、資料修復。
+- 不要期待: 這不是玩家交易入口，而是報表投影與營運資料可信度 flow。
+
 - Flow 中文名稱: 代理玩家報表 projection / summary。
 - Flow slug: `proxy-user-data-report-projection`。
 - 完成狀態: Step 5 claim gate 完成。

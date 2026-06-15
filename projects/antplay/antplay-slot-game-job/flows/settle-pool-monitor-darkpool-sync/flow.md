@@ -6,6 +6,14 @@ Step 5 補充日期: 2026-05-25
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Risk Projection Flow
+- 所屬大系統: AntPlay dark pool / settle pool monitor sync
+- 面試用途: 輔助差異化 case / risk projection
+- 閱讀方式: 先看 settlement event 如何同步 risk / dark pool state，再看 DB / alert 邊界。
+- 不要期待: 這不是完整風控平台，也不是 Nick direct development claim。
+
 - Flow 中文名稱: settle pool monitor / dark pool Redis -> DB sync。
 - Flow slug: `settle-pool-monitor-darkpool-sync`。
 - 完成狀態: Step 5 claim gate 完成。

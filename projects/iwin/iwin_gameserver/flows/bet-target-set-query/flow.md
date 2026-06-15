@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Query / Runtime Support Flow
+- 所屬大系統: iwin_gameserver bet target set query
+- 面試用途: 輔助 case / runtime query
+- 閱讀方式: 先看查詢目標與資料來源，再掛回遊戲 runtime / 營運控制情境。
+- 不要期待: 這不是完整下注結算閉環。
+
 - Flow 中文名稱：打碼目標設定 / 查詢 / 投注扣減
 - Flow slug：`bet-target-set-query`
 - 完成狀態：Step 5 completed

@@ -4,6 +4,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: AntPlay wallet / bet-settle / rollback
+- 面試用途: 主力 case
+- 閱讀方式: 先讀正常下注與結算閉環，再看 rollback、idempotency、failure window。
+- 不要期待: 這不是完整遊戲平台，只是 slot bet-settle 這條核心 production flow。
+
 - Flow 中文名稱: Slot 下注 / 開獎 / 結算 / rollback
 - Flow slug: `slot-bet-settle-rollback`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成

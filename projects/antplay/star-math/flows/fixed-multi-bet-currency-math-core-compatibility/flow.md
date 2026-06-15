@@ -2,6 +2,14 @@
 
 ## 1. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Math Contract Flow
+- 所屬大系統: AntPlay math-core compatibility / currency / fixedMultiBet
+- 面試用途: 差異化 case / game math contract
+- 閱讀方式: 先看 math-core contract 如何兼容 currency 與 fixedMultiBet，再看 module migration 風險。
+- 不要期待: 這不是玩家錢包 flow，也不是完整 math-core owner。
+
 - Project: `antplay *-math`
 - Flow: `fixed-multi-bet-currency-math-core-compatibility`
 - Step: Step 5

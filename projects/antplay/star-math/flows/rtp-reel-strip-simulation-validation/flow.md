@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Math Validation Flow
+- 所屬大系統: AntPlay RTP / reel strip simulation validation
+- 面試用途: 差異化 case / validation
+- 閱讀方式: 先看離線模擬如何驗證長期 RTP，再看上線前 validation 與 result correctness。
+- 不要期待: 這不是線上 API / DB transaction，也不是完整 game runtime flow。
+
 - Domain / Project: `antplay *-math`
 - Flow slug: `rtp-reel-strip-simulation-validation`
 - 完成狀態: Step 5 / 單條 flow claim gate 已完成

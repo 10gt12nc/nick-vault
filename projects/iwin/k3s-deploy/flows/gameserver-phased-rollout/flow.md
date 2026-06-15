@@ -2,6 +2,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Deployment / Operation Flow
+- 所屬大系統: iwin k3s gameserver phased rollout
+- 面試用途: interview-only 加分 case
+- 閱讀方式: 先看 rollout / rollback / observability 步驟，再看風險控制與人工 gate。
+- 不要期待: 這不是 DevOps / SRE owner claim，也不是 production code flow。
+
 - Flow 中文名稱：iwin-gameserver 分階段部署與服務註冊
 - Flow slug：`gameserver-phased-rollout`
 - 完成狀態：Step 5 已完成，已完成單條 flow claim gate

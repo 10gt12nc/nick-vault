@@ -7,6 +7,14 @@ Step：5
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Report Flow
+- 所屬大系統: iwin game_job daily game data summary
+- 面試用途: 主力 case / batch projection
+- 閱讀方式: 先看日彙總資料來源、job 範圍與落地表，再看重跑、修復、可信度。
+- 不要期待: 這不是玩家交易 source of truth，而是報表 / BI projection。
+
 這條 flow 是 `game_job` 的「每日遊戲資料彙總」批次：從遊戲投注 log 的日分表讀取玩家每日下注 / 贏分資料，整理成 BI 查詢用的 `log_game_daily_record` projection，並補上新增玩家、留存、歷史資料備份與清理。
 
 本文件先讓初階 / 中階讀者看懂「它在做什麼、資料怎麼走、code 在哪裡」，後半才進入 Senior / Owner 角度的 consistency、重跑、failure window、observability 與面試邊界。

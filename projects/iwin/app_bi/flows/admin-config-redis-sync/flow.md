@@ -9,6 +9,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Control Plane Flow
+- 所屬大系統: iwin app_bi admin config / Redis sync
+- 面試用途: 輔助 case / backend control plane
+- 閱讀方式: 先看後台設定如何影響 Redis / runtime config，再看一致性與回滾邊界。
+- 不要期待: 這不是玩家交易主流程，也不是完整設定平台 owner。
+
 - Flow 中文名稱：後台設定同步 Redis
 - Flow slug：`admin-config-redis-sync`
 - 完成狀態：Step 5 已完成

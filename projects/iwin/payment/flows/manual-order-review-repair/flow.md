@@ -10,6 +10,14 @@
 
 ## 1. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Recovery / Control Plane Flow
+- 所屬大系統: iwin payment manual order review / repair
+- 面試用途: 主力輔助 case / payment recovery
+- 閱讀方式: 先看人工審核 / 修單如何改變 order state，再看權限、audit、重複副作用。
+- 不要期待: 這不是完整 payment platform owner。
+
 先分清楚三件事：
 
 | 層次 | 代表 code | 本 flow 判斷 |

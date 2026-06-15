@@ -8,6 +8,14 @@
 
 ## 0. 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: Data / Report Flow
+- 所屬大系統: iwin app_bi daily game record summary
+- 面試用途: 輔助 case / BI report
+- 閱讀方式: 先看資料彙總與查詢口徑，再看報表可信度與重算邊界。
+- 不要期待: 這不是線上交易 source of truth。
+
 - Flow 中文名稱：每日遊戲資料彙總 / 報表查詢
 - Flow slug：`daily-game-record-summary`
 - 完成狀態：Step 5 已完成

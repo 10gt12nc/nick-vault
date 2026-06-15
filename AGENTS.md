@@ -162,7 +162,7 @@ projects/{domain}/{project}/
 
 `flow.md` 內部建議順序：
 
-1. 閱讀定位與 evidence 層級。
+1. 閱讀定位與 evidence 層級。開頭必須先補「Flow 類型與閱讀定位」：Flow 類型、所屬大系統、面試用途、閱讀方式、不要期待，避免把完整業務閉環、元件流程、後台控制點、報表投影、補償維運、部署流程或 math contract 全部混成同一種 flow。
 2. 初階 / 中階可讀區：白話導讀、Code 分層對照、最小架構圖、正常流程圖、正常流程逐步說明。
 3. Senior / Owner 深度區：資料狀態、transaction boundary、consistency、idempotency、failure window、retry / compensation、observability、owner decision。
 4. 面試 / 履歷邊界摘要，詳細材料放 `career-interview.md` 與 `materials/`。

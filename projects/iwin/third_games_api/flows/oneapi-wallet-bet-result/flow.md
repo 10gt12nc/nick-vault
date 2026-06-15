@@ -2,6 +2,14 @@
 
 ## 閱讀定位
 
+### Flow 類型與閱讀定位
+
+- Flow 類型: System Flow
+- 所屬大系統: iwin third_games_api OneAPI / PG wallet bet result
+- 面試用途: 主力輔助 case / provider adapter
+- 閱讀方式: 先看 provider bet_result callback、驗簽、Mongo duplicate 與 gameserver dispatch。
+- 不要期待: 這不是 third_games_api direct contribution claim，也不是完整 provider spec owner。
+
 Flow 中文名稱：OneAPI / PG bet_result 投派 callback。
 
 Flow slug：`oneapi-wallet-bet-result`。
