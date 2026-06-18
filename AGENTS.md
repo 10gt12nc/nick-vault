@@ -60,8 +60,8 @@
 - `Agent Workflow` 只導入 Lite 版。非小事任務在心智上走四個 gate，不必產生實體 JSON 或流水帳：
   - `Scope Gate`：確認本輪要解決的問題、non-goals、是否真的值得改 KB / 掃 code / 開 flow。
   - `Evidence Gate`：確認本輪依據哪些 KB、source code、git history、Nick 本人確認；哪些仍是推測 / 待確認。
-  - `Output Gate`：確認交付物是規則、flow、career claim、閱讀順序、面試素材或純回答；避免把可選想法變成必做 backlog。
-  - `Review Gate`：交付前檢查是否最小修改、未誇大履歷、未混入外部 workspace 規格、Relationship Check 是否收口。
+  - `Claim Gate`：確認內容能不能放履歷、能不能面試講、是不是只能當 learning-only；避免把 code-backed / 分析素材誇大成真實開發 owner。
+  - `Review Gate`：交付前檢查是否最小修改、交付物類型是否清楚、未誇大履歷、未混入外部 workspace 規格、Relationship Check 是否收口。
 - Lite 版補強三條：`ESCALATE` 是正確行為，不確定或上游規格矛盾時要停下來標示 / 回問；`files_in_scope` 是改檔圍牆，不能順手改 scope 外檔案；`success criteria` 要能被檢查，例如文件位置、diff check、Relationship Check、claim boundary 或可重現的讀法，而不是「感覺整理好了」。
 - 只有當任務真的涉及 source code 修改、跨 repo 實作、測試策略、重構或安全修正時，才可參考 `math-workspace` 的完整 `Architect -> Planner -> Coder -> Reviewer` 模式；`nick-vault` 日常 flow / 履歷 / KB 任務預設使用 Lite 版。
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。

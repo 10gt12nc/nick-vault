@@ -141,8 +141,8 @@ Karpathy-style 在本 vault 的落地規則：
 | --- | --- | --- |
 | `Scope Gate` | 判斷本輪做什麼、不做什麼、是否值得升級深掃或改 KB | 任務模式、scope、non-goals |
 | `Evidence Gate` | 判斷依據來自 KB、code、git history、Nick 本人確認或外部參考 | 已確認 / 推測 / 待確認 |
-| `Output Gate` | 判斷本輪交付是 flow、career claim、規則、閱讀順序、面試素材或純回答 | 交付物與是否影響履歷 / todo |
-| `Review Gate` | 交付前檢查最小修改、無誇大、無外部規格混入、關聯檔同步 | Relationship Check / diff check / commit 狀態 |
+| `Claim Gate` | 判斷本輪內容可放履歷、可面試講、不可誇大或只是 learning-only | claim 邊界與是否影響履歷 / 面試 |
+| `Review Gate` | 交付前檢查最小修改、交付物類型清楚、無誇大、無外部規格混入、關聯檔同步 | Relationship Check / diff check / commit 狀態 |
 
 補強規則：
 
@@ -154,7 +154,7 @@ Karpathy-style 在本 vault 的落地規則：
 啟用規則：
 
 - `輕量問答` 可以只內化，不需要逐條展開 gate。
-- `中量維護` 必須至少走 Scope / Output / Review Gate。
+- `中量維護` 必須至少走 Scope / Claim / Review Gate；若只是純規則或索引，不影響履歷 claim，也要明確說明不需更新 05 / 08 / 04 / 17。
 - `重度深掃`、flow Step、contribution consolidation、履歷正式 claim 必須走四個 gate，並在 evidence / final 中保留等價資訊。
 - 只有真正要改 source code、做跨 repo 實作、測試、重構或安全修正時，才參考完整 `Architect -> Planner -> Coder -> Reviewer`；一般 flow / 履歷 / KB 維護不搬完整流程。
 
