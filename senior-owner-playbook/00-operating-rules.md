@@ -133,6 +133,7 @@ Karpathy-style 在本 vault 的落地規則：
 - `簡單優先`：只做能降低誤判、補 evidence、改善閱讀或支撐投遞 / 面試的最小修改；不因為「還能更完整」就新增結構。
 - `精準改動`：只動本輪必要檔案；不要順手重構鄰近規則、搬目錄、批量格式化或改其他 workspace。
 - `可驗證完成`：每輪交付前確認本輪輸出、Relationship Check、`git diff --check`、履歷 claim 邊界與下一步是否收斂。
+- `該升級就升級`：若需求矛盾、scope 不清、success criteria 無法驗證、需要改 scope 外檔案，或同一阻礙反覆卡住，不要硬做；必須標示 `ESCALATE / 待 Nick 確認 / 回上游規則修正`。
 
 非小事任務套用四個 gate，但不需要建立實體 handoff JSON：
 
@@ -142,6 +143,13 @@ Karpathy-style 在本 vault 的落地規則：
 | `Evidence Gate` | 判斷依據來自 KB、code、git history、Nick 本人確認或外部參考 | 已確認 / 推測 / 待確認 |
 | `Output Gate` | 判斷本輪交付是 flow、career claim、規則、閱讀順序、面試素材或純回答 | 交付物與是否影響履歷 / todo |
 | `Review Gate` | 交付前檢查最小修改、無誇大、無外部規格混入、關聯檔同步 | Relationship Check / diff check / commit 狀態 |
+
+補強規則：
+
+- `files_in_scope` 是圍牆：中量 / 重度任務開工前要心中列出本輪可改檔案；實際需要改 scope 外檔案時，先停下來說明原因，不能順手改。
+- `success criteria` 要具體可驗：文件維護至少要能用已改檔案位置、Relationship Check、`git diff --check`、git status / staged 清單驗證；flow / claim 任務至少要能用掃描範圍、evidence 層級、claim boundary 與已掃 / 未掃清單驗證。
+- `ESCALATE` 不是失敗：當問題其實出在上游需求、KB 規則衝突、證據不足或 scope 需要擴張時，正確動作是回報阻塞與建議路徑，不是繼續編內容。
+- Reviewer 心態要保留：交付前要能說 `APPROVE / REQUEST_CHANGES / ESCALATE` 的等價判斷；不能因為已經花時間就宣稱完成。
 
 啟用規則：
 

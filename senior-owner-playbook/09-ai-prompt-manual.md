@@ -39,6 +39,7 @@
 - 參考 workspace 的角色只能轉譯成 `nick-vault` 的四個 role lens：`Producer / Scope Gate`、`Flow / Technical Reviewer`、`Career Claim Reviewer`、`KB Curator`。這些只是任務前後的思考與交付檢查，不是新的 Step，也不取代 Flow Track / Career Track / Completeness Audit。
 - Karpathy-style 必須內化為行為底線：先釐清假設與 non-goals、選最小可行修改、只動本輪必要檔案、每輪用可驗證條件收口。它不是新的資料夾、不是新 Step，也不是要求每次都輸出長計畫。
 - Agent Workflow 在 `nick-vault` 預設只用 Lite 版：`Scope Gate -> Evidence Gate -> Output Gate -> Review Gate`。中量維護至少走 Scope / Output / Review；重度深掃、flow Step、contribution consolidation、履歷正式 claim 必須四個都走。只有真正涉及 source code 實作、跨 repo 改動、測試、重構或安全修正時，才參考 `math-workspace` 的完整 `Architect -> Planner -> Coder -> Reviewer`。
+- Lite 版也要保留 multi-agent 的三個硬規矩：`files_in_scope` 是改檔圍牆、`success criteria` 必須可驗證、`ESCALATE` 是一等公民。當 scope 需要擴張、criteria 太弱、規則互相衝突、evidence 不足或卡住反覆發生時，AI 要停下來標示阻塞 / 請 Nick 決策，而不是硬做或腦補。
 - 沒有 evidence 的技術點可以略過或標外部補讀，不要為了湊格式腦補。
 - Flow 讀懂後，若需要補技術硬底子，要用 `materials/decision-notes.md` 整理技術選型、差異比較、trade-off 與 owner decision，不要只停在資料流。
 - Flow 後可以補 SQL / Spring / Kafka / Redis / transaction 教學，但目前預設先不補。只有 Nick 讀該 flow 卡住、面試追問暴露基本功缺口，或 Nick 明確要求補教學時，才用 `flow-first teaching`：先完成 code-backed flow 深掃，再從本 flow 的實際 code path 補 3-5 個必要技術點。不得把每條 flow 寫成完整 SQL / Spring / Kafka 課本。
