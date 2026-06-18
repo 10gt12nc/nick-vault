@@ -56,6 +56,13 @@
   - `iwin-workspace`：大型既有系統復原 / 運維 / 跨 repo 關聯工作台；可學 source repo inventory、relation map、generated / curated 分離、唯讀 source cache、敏感資訊遮蔽與 cross-project reconstruction。
 - 參考其他 workspace 只能用來學防呆、索引、KB 治理、角色 gate、scope / non-goals、success criteria、evidence 分層與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo / GDD / RTP / Unity / k3s / JumpServer 規則到 `nick-vault`。
 - `nick-vault` 可以吸收角色 lens，但只作思考與交付檢查，不新增部門式流程：`Producer / Scope Gate` 判斷是否該做與停止點；`Flow / Technical Reviewer` 檢查 code path、資料流與 failure；`Career Claim Reviewer` 檢查履歷可寫 / 可講 / 不可誇大；`KB Curator` 檢查索引、Relationship Check 與不留流水帳。
+- `Karpathy-style` 在本 vault 的意思是：先想清楚再改、最小可行、只動必要範圍、每步有可驗證完成標準。它是所有中量 / 重度任務的行為底線，不是新增一套文件目錄或開發流程。
+- `Agent Workflow` 只導入 Lite 版。非小事任務在心智上走四個 gate，不必產生實體 JSON 或流水帳：
+  - `Scope Gate`：確認本輪要解決的問題、non-goals、是否真的值得改 KB / 掃 code / 開 flow。
+  - `Evidence Gate`：確認本輪依據哪些 KB、source code、git history、Nick 本人確認；哪些仍是推測 / 待確認。
+  - `Output Gate`：確認交付物是規則、flow、career claim、閱讀順序、面試素材或純回答；避免把可選想法變成必做 backlog。
+  - `Review Gate`：交付前檢查是否最小修改、未誇大履歷、未混入外部 workspace 規格、Relationship Check 是否收口。
+- 只有當任務真的涉及 source code 修改、跨 repo 實作、測試策略、重構或安全修正時，才可參考 `math-workspace` 的完整 `Architect -> Planner -> Coder -> Reviewer` 模式；`nick-vault` 日常 flow / 履歷 / KB 任務預設使用 Lite 版。
 - 規格不可隨意改。若只是「評估一下」，AI 只能提出建議與理由；未經 Nick 明確要求，不得改既有目錄規格、Step 主線、檔案責任或新增替代結構。
 - 新 project 第一次完成 Step 1 後，下一步必須是 project-level Step 2：比較 candidate flows、技術點、風險、module / repo / service 邊界。不得在沒有 `step2-flow-comparison.md` 或等價 Step 2 文件時，直接建議或建立單條 flow Step 3，除非 Nick 明確指定跳過 Step 2。
 - 多 module / multi repo / monorepo 類專案，Step 1 / Step 2 必須先整理 module / submodule / service instance / upstream-downstream 邊界。不能只挑一條看起來高價值的 flow 就跳過子模組地圖；也不能平均做 class summary。架構圖只作定位，Step 2 才決定哪條 flow 進 Step 3。

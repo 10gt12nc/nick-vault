@@ -123,6 +123,33 @@ Nick 要 AI 深掃 `/Users/nick/Git/antplay/math-workspace`、`/Users/nick/Git/n
 3. `Career Claim Reviewer`：檢查哪些可放履歷、可面試講、不可誇大；不得把 workspace / supporting evidence 包成 production service owner。
 4. `KB Curator`：檢查索引、Relationship Check、source repo inventory、relation map、動態 / 衍生檔與不留流水帳。
 
+#### Karpathy-style / Agent Workflow Lite
+
+`math-workspace` 的完整 `Architect -> Planner -> Coder -> Reviewer` 適合開發型工作，因為它會讀 GDD、改 source、跑 RTP / optimizer、做跨 module 驗證。`nick-vault` 是個人知識庫，主風險是 scope 發散、evidence 不清、履歷 claim 誇大、下一步誤判與 token 浪費，因此只導入 Lite 版。
+
+Karpathy-style 在本 vault 的落地規則：
+
+- `先想清楚`：開工前先說明任務模式、假設、non-goals；遇到不確定要標示，不把推測寫成事實。
+- `簡單優先`：只做能降低誤判、補 evidence、改善閱讀或支撐投遞 / 面試的最小修改；不因為「還能更完整」就新增結構。
+- `精準改動`：只動本輪必要檔案；不要順手重構鄰近規則、搬目錄、批量格式化或改其他 workspace。
+- `可驗證完成`：每輪交付前確認本輪輸出、Relationship Check、`git diff --check`、履歷 claim 邊界與下一步是否收斂。
+
+非小事任務套用四個 gate，但不需要建立實體 handoff JSON：
+
+| Gate | 用途 | 最小輸出 |
+| --- | --- | --- |
+| `Scope Gate` | 判斷本輪做什麼、不做什麼、是否值得升級深掃或改 KB | 任務模式、scope、non-goals |
+| `Evidence Gate` | 判斷依據來自 KB、code、git history、Nick 本人確認或外部參考 | 已確認 / 推測 / 待確認 |
+| `Output Gate` | 判斷本輪交付是 flow、career claim、規則、閱讀順序、面試素材或純回答 | 交付物與是否影響履歷 / todo |
+| `Review Gate` | 交付前檢查最小修改、無誇大、無外部規格混入、關聯檔同步 | Relationship Check / diff check / commit 狀態 |
+
+啟用規則：
+
+- `輕量問答` 可以只內化，不需要逐條展開 gate。
+- `中量維護` 必須至少走 Scope / Output / Review Gate。
+- `重度深掃`、flow Step、contribution consolidation、履歷正式 claim 必須走四個 gate，並在 evidence / final 中保留等價資訊。
+- 只有真正要改 source code、做跨 repo 實作、測試、重構或安全修正時，才參考完整 `Architect -> Planner -> Coder -> Reviewer`；一般 flow / 履歷 / KB 維護不搬完整流程。
+
 深掃外部 workspace 後，結論必須分成：
 
 - `值得導入`：已轉成 `nick-vault` 最小規則或明確待辦。
