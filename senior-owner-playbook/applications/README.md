@@ -7,6 +7,7 @@
 | 日期 | 公司 / 職缺 | 資料夾 | 狀態 |
 | --- | --- | --- | --- |
 | 2026-06-19 | 糖蛙線上娛樂股份有限公司 / JAVA後端組長 / Backend Team Lead (Java) | [tangfrog-backend-team-lead-java-2026-06-18](tangfrog-backend-team-lead-java-2026-06-18/) | JD-specific 客製完成；建議以 `Senior Java Backend / Hands-on Backend Tech Lead Candidate` 投遞，不誇大正式管理 3-8 人 |
+| 2026-06-19 | 糖蛙線上娛樂股份有限公司 / 資深JAVA後端工程師 | [tangfrog-senior-java-backend-2026-06-18](tangfrog-senior-java-backend-2026-06-18/) | JD-specific 客製完成；建議以 `Senior Java Backend / Game Backend Engineer` 投遞，偏 market check / 保底機會，不套 Team Lead 管理說法 |
 | 2026-06-01 | 微達軟體 / 資深 Java 後端工程師【擴編】 | [weida-senior-java-backend-2026-05-26](weida-senior-java-backend-2026-05-26/) | JD-specific 客製完成 |
 
 原則：
