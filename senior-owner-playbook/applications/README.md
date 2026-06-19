@@ -2,6 +2,13 @@
 
 這個資料夾放特定職缺的投遞 / 面試客製包。
 
+## 目前客製包
+
+| 日期 | 公司 / 職缺 | 資料夾 | 狀態 |
+| --- | --- | --- | --- |
+| 2026-06-19 | 糖蛙線上娛樂股份有限公司 / JAVA後端組長 / Backend Team Lead (Java) | [tangfrog-backend-team-lead-java-2026-06-18](tangfrog-backend-team-lead-java-2026-06-18/) | JD-specific 客製完成；建議以 `Senior Java Backend / Hands-on Backend Tech Lead Candidate` 投遞，不誇大正式管理 3-8 人 |
+| 2026-06-01 | 微達軟體 / 資深 Java 後端工程師【擴編】 | [weida-senior-java-backend-2026-05-26](weida-senior-java-backend-2026-05-26/) | JD-specific 客製完成 |
+
 原則：
 
 - 一個公司 / 一個 JD / 一個資料夾。

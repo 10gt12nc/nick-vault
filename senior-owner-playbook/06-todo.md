@@ -10,6 +10,7 @@
 
 ## 已完成
 
+- 2026-06-19：已建立 `applications/tangfrog-backend-team-lead-java-2026-06-18/`，針對糖蛙線上娛樂股份有限公司「JAVA後端組長 / Backend Team Lead (Java)」產出 JD fit analysis、104 客製工作經驗 / 專長 / 自傳 / 自我推薦、HR / Team Lead / AI / 技術問答與 JD-specific 基本功最小複習清單。此包是 JD-specific，不覆蓋通用 `05 / 08 / 17 / 04`；投遞定位為 `Senior Java Backend / Hands-on Backend Tech Lead Candidate`，主打遊戲 / 博弈 provider、wallet / bet-settle、MQ / batch、legacy takeover、AI-assisted workflow 與 Code Review / 技術帶人潛力；不得誇大成已正式管理 3-8 人 2 年、完整架構師、完整 DevOps / K8s owner 或完整金流 / wallet / MQ platform owner。
 - 2026-06-05：已確認 `/Users/nick/Git` 底下不再保留 `ai-notes/`。先前 `/Users/nick/Git/antplay/ai-notes` 只是本地 AI session notes / logs，已依 Nick 指示刪除；`nick-vault` 規則維持不新增 `ai-notes/`、不保留流水帳、不把外部 workspace notes 搬進 `projects/`。
 - 2026-06-05：已修正 `teaching-notes` 策略為「先不補 / 不批量補」。目前 49 條既有 flow 不因沒有 `materials/teaching-notes.md` 就列為缺口；只有 Nick 讀某條 flow 卡住、面試回饋暴露基本功缺口，或 Nick 明確要求補該 flow 教學時，才建立 teaching notes。投遞前主線仍是讀熟主力 flows、履歷 case、口說與 JD-specific 補洞。
 - 2026-06-05：已完成 `讀kb / 下一步` 入口一致性深掃與補強。`AGENTS.md`、`senior-owner-playbook/README.md`、`projects/README.md` 已同步標明：這是新增省字入口，不覆蓋既有 `project / flow / Step N` 指令；明確 Step 仍照原主線做，只有 Nick 只貼 `讀kb / 下一步` 時，AI 才自動判斷 Flow Track / Career Track / Resume / Domain Map / Decision Notes / 口說材料或自由提問狀態。Teaching Notes 不列預設下一步，只在卡住、面試回饋或明確要求時補。
