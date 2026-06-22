@@ -16,11 +16,17 @@
 
 我深挖過 AntPlay slot game API 的下注結算主線。它不是單純 `/game/bet` 回一個開獎結果，而是同時串起 bet record state、single / transfer wallet、provider settle / rollback、request log MQ 與補通知 job。這個 case 我會拿來講 money correctness、state transition、failure window 和 owner boundary；但我不會誇大成完整 wallet / ledger owner。
 
-## 2. 90 秒講法
+## 2. 90 秒人話版
 
-這條 flow 從 `/game/bet` 進來，`GameFacade#bet` 先做玩家、game、currency、voucher / buy free 與 runtime decision 驗證，再算 bet amount。接著依 wallet type 分成兩種路徑：single wallet 主要靠 provider API 做 balance / bet / settle / rollback；transfer wallet 則由 Game API 在本地 DB / Redis wallet 先扣 bet amount，開獎後再加回 total win。
+這條 flow 我會用「玩家按下一次 slot 下注後，系統怎麼扣款、開獎、派彩，失敗時又怎麼 rollback」來講。
 
-資料狀態的核心是 `pt_bet_record`，狀態從 DEAL 走到 RESULT，成功 settle 後更新 notify success；如果取消，會走 CANCEL 再 call rollback。面試時我會強調幾個風險：transfer wallet 已扣款但 bet record 或 RESULT 失敗、RESULT 已寫但 provider settle 失敗、request log MQ 失敗但不該影響主交易，以及 deadlock catch 目前看到補償呼叫被註解，不能把它講成完整補償。
+玩家打 `/game/bet` 進來後，`GameFacade#bet` 不只是算一個結果，它會先檢查玩家、遊戲、幣別、voucher 或 buy free 這些條件，再算這一局要扣多少錢。接著要看 wallet type：如果是 single wallet，很多餘額和 settle 會靠 provider API；如果是 transfer wallet，Game API 會先在本地 DB / Redis wallet 扣掉 bet amount，開獎後再把 total win 加回去。
+
+整條 flow 的核心狀態是 `pt_bet_record`。一局 bet 會從下注成立走到 RESULT；成功後再 call settle，失敗或取消時會走 CANCEL / rollback。這代表它不是單純的一個 API，而是一條 money flow：wallet、bet record、provider settle、request log MQ 和補通知 job 都會牽在一起。
+
+我會特別看幾個 failure window。第一，transfer wallet 已經扣款，但 bet record 或後面的 RESULT 失敗。第二，RESULT 已經寫入，但 provider settle 失敗，這時只能靠補通知 job 去 retry。第三，request log MQ 失敗不應該 rollback 主交易，但會造成 audit 缺口。第四，deadlock catch 裡雖然看得到 refund amount 的計算，但實際補償呼叫有被註解，所以不能把它講成完整補償已經落地。
+
+所以我會保守講成：我參與 / 深挖過 AntPlay slot game API 的下注結算主線，能說清楚 bet record state、single / transfer wallet、provider settle / rollback、MQ audit 與 failure window；但我不會講成我主導完整 wallet / ledger / reconciliation。
 
 ## 3. 3 分鐘講法
 
