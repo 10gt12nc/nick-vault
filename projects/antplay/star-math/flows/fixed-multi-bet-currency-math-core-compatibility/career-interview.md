@@ -15,6 +15,18 @@
 
 我參與過 AntPlay slot math core 與多個 math module 維護，其中一個代表案例是 fixedMultiBet / currency 相容。這類調整表面上是加參數，但實際上要確保 core contract、debug bet、module input、totalBet、jackpot scaling 和結果欄位都用同一組下注上下文，否則前端顯示、測試工具、派彩或 jackpot 會出現金額語意不一致。
 
+## 90 秒人話版
+
+這條 flow 我會用「slot math 不是只算有沒有中獎，還要確保下注金額的語意在不同 module 裡一致」來講。
+
+AntPlay 有很多 `*-math` module，不可能一次把所有遊戲都改成新介面。所以 `math-core` 在支援 `currency` 和 `fixedMultiBet` 時，採用比較保守的相容方式：新的 method 可以帶幣別和固定倍數，但舊 module 如果還沒改，也能透過 default fallback 繼續跑，不會因為 core interface 變動一次打壞全部遊戲。
+
+真正的風險不是 compile error，而是金額語意不一致。比如玩家這一局的下注其實是 `lineBet x currency multiplier x fixedMultiBet`，那這組上下文就要一路帶到 module input、totalBet、totalWin、jackpot scaling、debug bet 和前端 result。只要有一層漏掉，就可能出現正式下注和 debug 測試不一致，或 totalBet 有乘倍數但 jackpot 沒乘，最後變成看起來能跑，但金額語意錯。
+
+我看這條 flow 時，會把它當成 money-like correctness。它本身不是 DB transaction，也不處理 wallet rollback；但它的輸出會被上游拿去扣款、派彩、顯示和驗證，所以同一筆 spin 的 `currency`、`fixedMultiBet`、`totalBet`、`totalWin` 和 jackpot reward 必須一致、可重算、可測試。
+
+所以我會保守講成：我參與過 slot math core / module 的相容性維護，能說明 core contract、default fallback、module input、debug bet、jackpot scaling 與 result contract 的一致性風險；但不會講成我主導完整 slot math 平台、完整 RTP 策略或全部 math module。
+
 ## 2 分鐘回答
 
 AntPlay 的 slot math module 很多，不可能一次強制所有 module 都改新介面，所以 `math-core` 採 default fallback：新的 `currency` / `fixedMultiBet` method 先保持舊 module 可編譯、可運行，再由有需求的 module 逐步 override。
