@@ -17,6 +17,18 @@
 
 我會把這條 flow 當成 payment provider callback 狀態風險案例來講：三方 provider callback 進來後，payment 先做白名單與簽章驗證，再把 provider 狀態轉成內部訂單狀態，透過 XXL-MQ 非同步交給 consumer 處理。consumer 端會再做訂單狀態 guard，避免重複 callback 或 MQ retry 導致重複處理；payment 也會把 `billNo` 傳到 game lobby / center 作為跨系統追蹤鍵。提現失敗退款是最高風險分支，因為退款成功後如果再 retry，可能造成重複退款，所以 code 裡有針對退款例外後回 SUCCESS 的防護。
 
+## 90 秒人話版
+
+這條 flow 我會用「三方金流 callback 不是收到成功就結束，而是要讓 provider 狀態、內部訂單狀態和玩家餘額副作用安全收斂」來講。
+
+provider callback 進來時，第一層先處理 trust boundary：確認來源 IP、驗簽、解析 provider 狀態，再找到內部的 `payment_order`。如果訂單已經是成功、拒絕、退回或異常這類終態，就直接回 provider ack，不再往下做，避免 provider 重送造成重複處理。
+
+驗證通過後，payment 不會在 controller 裡一次做完所有副作用，而是把狀態更新丟到 XXL-MQ，交給 consumer 後續處理。consumer 端會再做一次訂單狀態 guard；充值成功會往 game lobby / center 做上分，提現成功會更新訂單和通知，提現失敗則會把錢退回玩家。這裡 `billNo` 會被一路帶到下游，作為跨系統追蹤和查問題的 key。
+
+這條最危險的是提現失敗退款。因為如果退款已經成功，但後面更新訂單或通知失敗，MQ retry 又跑一次，就可能變成重複退款。所以我看這條 flow 時，會特別看終態 guard、MQ retry、退款例外處理、callback ack 時機，以及有沒有對帳或人工補償邊界。
+
+但我會保守講：這是我 code-backed 分析過的 payment callback 狀態一致性案例，可以拿來說明我懂三方 callback、冪等、retry 和補償風險；目前不會講成我主導完整金流 callback 架構，也不會說整套已經達到 exactly-once。
+
 ## 3 分鐘版本
 
 這條 flow 的核心不是單純接 provider API，而是 provider callback、payment order 與玩家餘額副作用要能被追蹤並收斂；它不是完整 wallet / ledger 設計。
