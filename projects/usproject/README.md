@@ -24,12 +24,15 @@
 
 2026-06-22 `ugsoft-apidoc Step 4` 已完成：已評估 `05 / 08` 是否需要最小 supporting claim 回填。結論是不回填；既有 `05 / 08` 已有更強的 UGSoft / AntPlay project-level code-backed claim，`ugsoft-apidoc` 目前只保留為 API contract / 面試口說 supporting material。
 
+2026-06-22 `nbt overview` 已完成：新增 [nbt-overview.md](nbt-overview.md)，把 `/Users/nick/Git/usproject/nbt` 定位為 active migration / AI-assisted reconstruction / local validation 素材。它目前未標成已上線 production flow，也不新增正式履歷 claim；`/Users/nick/Git/nick/*` 只作 personal reference，不當公司專案 evidence。
+
 ## 讀檔順序
 
 1. [ugsoft-apidoc-source-notes.md](ugsoft-apidoc-source-notes.md)：先看 API doc mirror 的安全邊界、可引用內容、不可搬入 vault 的內容，以及和 usproject repo 的初步對應。
-2. [career-interview.md](career-interview.md)：需要把 API contract 轉成面試口說時讀；只能當 supporting cases，不是正式履歷 claim。
-3. `projects/source-repo-inventory.md`：確認 `/Users/nick/Git/usproject` 只是來源索引，不是 evidence 或履歷 claim。
-4. 若後續 Nick 指定做 usproject Flow Track，再補 `step1-candidate-flows.md` 與 `step2-flow-comparison.md`；沒有 Step 2 前不得直接建立單條 flow Step 3。
+2. [nbt-overview.md](nbt-overview.md)：需要判斷 `nbt` / AI-assisted migration / personal reference 邊界時讀；目前只能當 learning / supporting evidence，不是已上線 production claim。
+3. [career-interview.md](career-interview.md)：需要把 API contract 轉成面試口說時讀；只能當 supporting cases，不是正式履歷 claim。
+4. `projects/source-repo-inventory.md`：確認 `/Users/nick/Git/usproject` 只是來源索引，不是 evidence 或履歷 claim。
+5. 若後續 Nick 指定做 usproject Flow Track，再補 `step1-candidate-flows.md` 與 `step2-flow-comparison.md`；沒有 Step 2 前不得直接建立單條 flow Step 3。
 
 ## 初步 module 對應
 
@@ -40,7 +43,7 @@
 | `game-job` | Job / retry / async notification candidate | README 多為模板；可和 `game-api` README 的下注通知 / 取消注單 / Quartz 補償脈絡對照，尚未深掃 code |
 | `game-web` / `admin-web` | 前端入口 | 只作 runtime / admin 操作入口，不當 Backend 主履歷主線 |
 | `game-push` | Push / notification candidate | 本輪未深掃；只列為待確認 supporting repo |
-| `nbt` / `nbt-playground` | 可能的 game / math / playground related repo | 本輪未深掃；不作 claim |
+| `nbt` / `nbt-playground` | Active migration / AI-assisted reconstruction / local validation candidate | 已補 overview；目前只作 learning / supporting evidence，不作已上線 production claim |
 | `usproject-deploy` / `usproject-deploy-template` | Deploy / environment template | 只作部署脈絡；不搬內部環境資訊，不作 DevOps claim |
 | `usproject-workspace` | Workspace / documentation / reconstruction support | 只作 source navigation / KB supporting；不作 production service claim |
 
@@ -49,9 +52,13 @@
 - 可安全說：`ugsoft-apidoc` 能作為 usproject 的 API contract / integration learning source，幫助理解 wallet mode、bet / settle / cancel、transfer order、bonus / free spin、signature、currency / language 等外部行為邊界。
 - 暫不可說：Nick 主導 usproject、主導 UGSoft API、主導完整 wallet / reconciliation、完整 game platform owner、完整 provider integration owner。
 - 暫不可寫進 `05 / 08`：本輪沒有掃 code branch / git history / Nick direct evidence，也沒有本人確認。
+- `nbt` 目前不可寫成已上線 production flow 或正式 company claim；若未來要升級，必須另補 Nick direct evidence、commit / ticket / 上線狀態與 code-backed Flow Track。
+- `/Users/nick/Git/nick/*` 只作 personal reference / AI workflow / side project 方法論參考，不得當公司專案 evidence。
 
 ## 下一步邊界
 
 同一份 API doc 目前已完成 Step 1 到 Step 4，沒有預設下一步；除非 Nick 明確要把 `/Users/nick/Git/usproject` 正式納入 Flow Track，否則不繼續往履歷或 code claim 推。
 
 若 Nick 要正式建立 usproject Flow Track，必須先做 project-level `Step 1 -> Step 2`，並在掃 code repo 前確認 remote refs / local HEAD / branch 狀態；不能從 API doc 直接跳到單條 flow Step 3。
+
+`nbt` 目前只完成概述與防誤判邊界；不因本檔存在就自動開完整 Step 1-5，也不自動更新 `05 / 08`。

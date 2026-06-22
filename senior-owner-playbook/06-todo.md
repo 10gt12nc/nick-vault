@@ -195,6 +195,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-22：已完成 `nick-vault KB 最小防誤判補丁`。新增 `projects/usproject/nbt-overview.md`，並同步 `projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`：`nbt` 只定位為 active migration / AI-assisted reconstruction / local validation 素材，目前未標成已上線 production flow，不新增正式履歷 claim；`/Users/nick/Git/nick/*` 只作 personal reference / AI workflow / side project 方法論參考，不當公司專案 evidence。本輪不做完整 Step 1-5、不改 `05 / 08 / 04 / 17`。
 - 2026-06-22：已依 Nick 指示把原分散待辦資料夾內的星期一重掃候選清單整併回本檔，避免待辦分散；後續不再另設待辦資料夾作長期資料位置。
 - 2026-06-20：已建立星期一重掃候選清單，內容已保留在本檔「候選待辦：2026-06-22 星期一重掃清單」。此清單不是流水帳，也不是自動開工授權；執行前需先看 HR / 面試回覆，再決定是否進入口說練習、基本功補洞或最小 KB 回填。
 - 2026-06-19：已建立 `applications/tangfrog-senior-java-backend-2026-06-18/`，針對糖蛙線上娛樂股份有限公司「資深JAVA後端工程師」產出 JD fit analysis、104 客製工作經驗 / 專長 / 自傳 / 自我推薦、HR / 技術 / AI / 維運監控問答與 JD-specific 基本功最小複習清單。此包是 JD-specific，不覆蓋通用 `05 / 08 / 17 / 04`；投遞定位為 `Senior Java Backend / Game Backend Engineer`，主打遊戲 / 博弈 provider、wallet / bet-settle、RabbitMQ / Redis / MySQL、legacy takeover、技術文件與 AI-assisted workflow；不得套用 Team Lead 管理說法，也不得誇大成完整架構師、完整 DevOps / SRE、完整遊戲平台 owner 或完整 payment / wallet / MQ platform owner。此職缺薪資上限 `100,000` 偏保守，優先順序低於同公司 Backend Team Lead 缺，可作 market check / 保底機會。

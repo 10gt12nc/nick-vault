@@ -13,6 +13,7 @@
 - 2026-05-26 UGSoft re-audit / 2026-05-27 flow closure + refresh：重新掃 `/Users/nick/Git/ugsoft` 各 repo 的 remote refs、Nick / `10gt12nc` commits、主要 module / path history 與既有 KB 後，結論是 UGSoft Flow Track 已完成目前兩個高價值方向的本批收口；`ugsoft-connector-api` 本批三條代表 flow 已完成 Step 5 並已完成 `contribution claim consolidation refresh`。`ugsoft-admin-api Step 1 / Step 2` 已完成，`connect-bet-record-mq-ingestion Step 5`、`request-log-rabbitmq-admin-consumer Step 5`、`game-api-provider-white-ip-control-plane Step 5` 均已完成，且 `contribution claim consolidation refresh` 已完成；官網、前端、workspace 不列主待辦。
 - 2026-05-26 DevOps re-audit：重新掃 `/Users/nick/Git/DevOps/primestar` 各 repo 的 remote refs、Nick / `10gt12nc` / `arnold` commits、manifests / docker-compose / CI / observability docs 與 path history 後，結論是 DevOps 沒有 Senior Backend 主履歷 Flow Track 必做缺口。Nick 已確認 `arnold` 是主管帳號，不是 Nick direct evidence；`antplay-docker-deploys` 只能作主管 / 團隊 deployment context 或 learning / supporting，不作 Nick 履歷 claim；`openobserve` / `kafka` 是 learning-only。
 - 2026-06-22 usproject source triage：已新增 `projects/usproject/README.md` 與 `projects/usproject/ugsoft-apidoc-source-notes.md`。`/Users/nick/Git/antplay/ugsoft-apidoc` 被定位為 `/Users/nick/Git/usproject` 的 external API contract / supporting source，可用於理解 wallet mode、game entry、bet / settle / cancel、transfer order、bonus / free spin、signature、language / currency 邊界；不作 Nick direct evidence、不更新 `05 / 08`。
+- 2026-06-22 usproject nbt overview：已新增 `projects/usproject/nbt-overview.md`。`/Users/nick/Git/usproject/nbt` 只定位為 active migration / AI-assisted reconstruction / local validation 素材；目前未標成已上線 production flow，不新增正式履歷 claim。`/Users/nick/Git/nick/*` 只能作 personal reference / workflow reference，不當公司專案 evidence。
 
 ## 使用規則
 
@@ -173,9 +174,32 @@ Git repo:
 整理狀態:
 
 - 2026-06-22 `ugsoft-apidoc Step 1 + Step 2` 已完成：`projects/usproject/ugsoft-apidoc-source-notes.md` 已整理 source safety boundary 與 usproject repo 對應。這只是 source triage，不是 code-backed Flow Track、不代表已掃 usproject 最新 code，也不新增正式履歷 claim。
+- 2026-06-22 `nbt overview` 已完成：`projects/usproject/nbt-overview.md` 已整理 `nbt` 作為 active migration / AI-assisted reconstruction / local validation 的定位與 claim boundary。這不是完整 Step 1 / Step 2，不代表已上線 production service，也不更新 `05 / 08`。
 - `game-api` README 顯示它是 slot game runtime，包含 math jar loading、game init / bet、本地加解密測試、player / guest token session、錯誤處理、下注通知與 Quartz 補償 memo；可優先和 API doc 的進入遊戲、單一錢包、bet / settle / cancel flow 對照。
 - `admin-api` / `game-job` README 多為模板或 conventions，本輪只列為後續 candidate，不作 claim。
+- `nbt` / `nbt-playground` 目前只作 migration / validation / AI workflow supporting source；若要升級成正式 Career Track 或 Flow Track，必須另做 source boundary、remote refs / branch / commit 檢查、Nick direct evidence 與上線狀態確認。
 - 若後續要正式納入 Flow Track，必須先做 usproject project-level Step 1 / Step 2，並在掃 code repo 前確認 remote refs / local HEAD / branch 狀態；不得從 API doc 直接跳單條 flow Step 3。
+
+## Personal Reference
+
+來源路徑:
+
+```text
+/Users/nick/Git/nick
+```
+
+初步用途:
+
+- personal lab / side project / AI collaboration reference。
+- `test001_RenPy`、`test001_unity` 可參考 0 到 1 產品工作台、角色 gate、scope control、AI 協作與驗證節奏。
+- 其他 personal repos 只在 Nick 明確指定時整理。
+
+Claim boundary:
+
+- 不是公司專案 source。
+- 不是 production / company evidence。
+- 不得回填成 `05 / 08` 的公司經驗或 Senior Backend 主 claim。
+- 可被抽象成工作方法、AI workflow、side project strategy 或面試輔助說法；正式使用前仍需另做 source boundary。
 
 ## DevOps / primestar
 

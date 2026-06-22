@@ -9,6 +9,7 @@
 - [AntPlay system map v1](antplay/architecture-map.md)：2026-05-28 已補 AntPlay runtime / job / admin / math contract domain map；不新增履歷 claim。
 - [UGSoft system map v1](ugsoft/architecture-map.md)：2026-05-28 已補 UGSoft connector / admin control plane domain map；不新增履歷 claim。
 - [usproject ugsoft-apidoc source notes](usproject/ugsoft-apidoc-source-notes.md)：2026-06-22 已補 `/Users/nick/Git/antplay/ugsoft-apidoc` 作為 `/Users/nick/Git/usproject` external API contract / supporting source 的安全邊界與初步 repo 對應；不新增履歷 claim。
+- [usproject nbt overview](usproject/nbt-overview.md)：2026-06-22 已補 `/Users/nick/Git/usproject/nbt` 作為 active migration / AI-assisted reconstruction / local validation 素材的概述與 claim boundary；目前未上線、不新增正式履歷 claim。`/Users/nick/Git/nick/*` 只作 personal reference，不當公司 evidence。
 
 所有 project 都套用同一套共用維護規則，不需要 Nick 每次重複提醒「重讀 KB / 重讀 code」。
 
