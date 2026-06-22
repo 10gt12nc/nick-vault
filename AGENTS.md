@@ -76,6 +76,7 @@
 - 面試準備比例固定以 `70 / 20 / 10` 收斂：70% 放 production case / system design / claim boundary；20% Java / SQL / transaction / Redis / MQ 基本判斷只做最小檢查表、遇到 case 或面試回饋再補；10% LeetCode / coding test 只作投遞前保險，不得變成新主線。
 - AI 時代 coding 準備重點不是手刻所有題，而是能 review AI 產物是否能進 production：BigDecimal、transaction boundary、callback idempotency、Redis lock、SQL index、MQ retry、null / race condition、重複副作用等風險要能判斷。
 - 面試題 / 複習包只能從主力 production case 長出來，不建立泛用 Java / SQL / LeetCode 300 題題庫。第一輪只圍繞 payment provider、wallet / bet-settle、Kafka / report projection 產 90 秒版、3 分鐘版、追問題庫、回答要點、誇大陷阱與 case-specific 基本功。
+- 實際面試問答練習要回填 `senior-owner-playbook/interview-practice/`。它不是聊天逐字稿或流水帳；每輪只萃取題目、Nick 原答摘要、評分、會被追問打穿的點、修正版回答、下次追問與是否要回填 `04 / 19 / flow career-interview`。之後 Nick 說「以後都要記」時，預設就是記到這個資料夾，而不是新增分散 notes。
 - 台灣轉職月份策略維護在 `17-salary-negotiation.md`：一般主旺季是 2-4 月，2026 因春節較晚與轉職季拉長可延到 4-5 月；9-10 月是第二波，11-1 月適合準備 / 卡位。月份只影響投遞節奏，不取代 case 準備與市場回饋。
 - 當 Nick 問「flow 都完整嗎 / map 夠完整嗎 / 真的夠扛資深嗎 / 能不能 0 到 1 架完整系統 / 我是不是方向歪了」時，AI 要先處理收斂與焦慮，不得直接加新 backlog。回答必須區分：`履歷 / 面試證據包已足夠`、`全公司大系統不可能也不需要一人完整掌握`、`domain-level 大地圖若缺是可選架構補強，不是投遞前必做`。
 - `System Owner` 在本 vault 的意思是能對「一條核心 production flow」理解結果、風險、failure window、補償、觀測與交接邊界；不是一個人負責整個公司、完整金流、完整遊戲平台、完整 DevOps 或完整架構決策。履歷、面試與 KB 都不得把「能 owner flow」擴張成「全系統 owner」。

@@ -14,6 +14,7 @@
   - `能力判斷`：能不能講清楚、能不能抗追問、是否有誇大風險。
   - `補強主題`：需要補 transaction、MQ、SQL、Redis、JVM、system design 或某條 flow。
   - `可回填素材`：若 Nick 的回答形成更好的 90 秒 / 3 分鐘說法，再回填 `04` 或對應 flow。
+- 每次實際問答練習後，要把有價值的診斷結果整理到 `interview-practice/`；不保留逐字稿，只保留題目、Nick 原答摘要、評分、修正版、下次追問與可回填素材。
 - 題目必須從 Senior Java Backend / Platform Backend 的 production case 長出來，不建立泛用八股題海。
 - AI 可以依 Nick 回答深度切換模式：
   - `診斷模式`：追問、打分、指出漏洞。
