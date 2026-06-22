@@ -13,11 +13,19 @@
 
 Transfer wallet 不是單純加減 balance。這條 flow 入口會先驗簽與轉換 sub-agent，接著用 `transferReferenceId` 做防重與查單 key，再寫 transaction、lookup、DB wallet 與 Redis hot balance。真正的風險在於這些資料不是同一個 atomic unit，所以面試重點是 idempotency、DB / Redis source of truth、併發扣款，以及失敗後怎麼 repair / reconciliation。
 
-## 2. 90 秒講法
+## 2. 90 秒人話版
 
-我會把 transfer wallet 拆成四層看。第一層是入口安全：固定 sign string、digest key 驗簽、sub-agent 轉成實際寫入的 agent。第二層是防重：短時間用 Redis `ReferenceLock` 擋連續重送，但它只有 3 秒，所以不能當完整 idempotency，長期還要靠 `transferReferenceId` 查 transaction。第三層是 money state：先寫 `pt_transfer_player_wallet_transaction` 和 `ag_transfer_order_lookup`，再更新 `ag_transfer_player_wallet`，最後同步 Redis balance。第四層是 audit：request log 記錄 request / response。
+這條 flow 我會用「外部平台把玩家的錢轉進或轉出遊戲錢包時，Game API 怎麼防重、記錄交易、更新餘額」來講。
 
-這裡最大的 owner 問題是 failure window。比如 transaction 已經寫 `SUCCESS`，但 wallet update 或 Redis increment 失敗，查單會看到成功，餘額卻可能沒對齊；transfer-out 先讀 balance 再扣款，也要考慮不同 reference 併發扣成負數。保守改善方向會是 DB unique key、conditional update、PENDING -> SUCCESS / FAILED 狀態流、repair job，以及明確宣告 DB 是 source of truth、Redis 是 cache。
+這條不是 slot 下注本身，而是 transfer wallet API。外部平台會呼叫 transfer-in、transfer-out、transfer-out-all 或查單。入口會先做驗簽，確認 request 真的來自合法 agent；如果有 sub-agent，也會轉成實際寫入的 agent。接著系統會用外部傳進來的 `transferReferenceId` 當防重和查單 key。
+
+防重這裡有兩層。短時間內會用 Redis `ReferenceLock` 擋連續重送，但它只有幾秒，所以不能當成完整 idempotency。長期還是要靠 DB 裡的 transaction record 和 lookup，用同一個 `transferReferenceId` 查到之前那筆交易，決定要回既有結果，還是拒絕重複操作。
+
+真正改錢時，系統會寫 `pt_transfer_player_wallet_transaction`，記錄 before / after balance、amount 和狀態；再寫 `ag_transfer_order_lookup`，讓後續查單可以從 reference id 找回實際 transaction；最後更新 `ag_transfer_player_wallet` 的 DB 餘額，並同步 Redis hot balance。
+
+這裡我會特別看 failure window。比如 transaction 已經寫成功，但 wallet update 或 Redis 同步失敗，查單看到成功但餘額可能沒對齊；或者 transfer-out 先讀 balance 再扣款，不同 reference 併發時可能扣成負數。我的 owner 判斷會是：DB 應該是 source of truth，Redis 只是 cache；要靠 DB unique key、conditional update、PENDING -> SUCCESS / FAILED 狀態流和 repair job 讓資料能收斂。
+
+所以我會保守講成：我能拆解 transfer wallet 的驗簽、防重、transaction、lookup、DB / Redis balance 和 failure window；但不會講成我主導完整 transfer wallet 或完整 ledger / reconciliation。
 
 ## 3. 3 分鐘完整講法
 
