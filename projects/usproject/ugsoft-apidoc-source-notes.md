@@ -88,10 +88,12 @@
 
 ## 後續步驟建議
 
-若只沿用剛剛 `notion-export` 的方式，下一步是 Step 3：
+2026-06-22 更新：Step 3 已完成，面試素材整理在 [career-interview.md](career-interview.md)。已補 4 個 API contract supporting cases：game entry / wallet mode、single wallet bet / settle / cancel、transfer wallet order / query、Bonus / FreeSpin / contract boundary。這只作口說補強，不新增正式履歷 claim。
+
+若只沿用剛剛 `notion-export` 的方式，下一步是 Step 4：
 
 ```text
-做 usproject ugsoft-apidoc Step 3，補 API contract 面試素材，只整理可講 case，不改履歷 / 自傳，不新增正式 claim。完成後做 Relationship Check 並 commit。
+做 usproject ugsoft-apidoc Step 4，評估是否需要對 05 / 08 做最小 supporting claim 回填；若不適合就只記錄不改。不得新增正式主 claim，完成後 Relationship Check 並 commit。
 ```
 
 若 Nick 要把 `usproject` 正式納入 Flow Track，則應另開 project-level Step 1 + Step 2：
@@ -106,9 +108,9 @@
 
 影響判斷：
 
-- `projects/usproject/README.md`：需要新增，作為 usproject domain 候選入口。
-- `projects/source-repo-inventory.md`：需要加入 `/Users/nick/Git/usproject` 與 `ugsoft-apidoc` 的來源索引。
-- `projects/README.md`：需要加入 usproject source notes 入口。
+- `projects/usproject/README.md`：Step 1 + Step 2 已新增 usproject domain 候選入口；Step 3 需要更新狀態、讀檔順序與下一步邊界。
+- `projects/source-repo-inventory.md`：Step 1 + Step 2 已加入 `/Users/nick/Git/usproject` 與 `ugsoft-apidoc` 的來源索引；Step 3 不新增 source repo 事實，不需更新。
+- `projects/README.md`：Step 1 + Step 2 已加入 usproject source notes 入口；Step 3 只更新 usproject domain 內部讀法，不需更新。
 - `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪不新增正式 claim，不更新。
-- `04-interview-casebook.md` / `17-salary-negotiation.md`：本輪只做 source boundary 與 project 對應，不更新。
-- `06-todo.md`：本輪是 Nick 明確指定的 Step 1 + Step 2 並已收口；不新增長期待辦。
+- `04-interview-casebook.md` / `17-salary-negotiation.md`：Step 3 只補 usproject domain 內的 supporting cases，未升級成全域主力 case，不更新。
+- `06-todo.md`：本輪是 Nick 明確指定的 Step 3 並已收口；不新增長期待辦。

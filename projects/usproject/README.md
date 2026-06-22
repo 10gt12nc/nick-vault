@@ -2,7 +2,7 @@
 
 用途: 整理 `/Users/nick/Git/usproject` 相關 repo 與外部 API contract 文件的 Senior Backend / Platform Backend 學習價值與安全邊界。
 
-本 domain 目前是候選 source domain。2026-06-22 只完成 `ugsoft-apidoc Step 1 + Step 2`，尚未建立正式 Flow Track，也未做履歷 / 自傳 claim gate。
+本 domain 目前是候選 source domain。2026-06-22 已完成 `ugsoft-apidoc Step 1 + Step 2 + Step 3` 的 source triage、repo 對應與面試素材整理；尚未建立正式 Flow Track，也未做履歷 / 自傳 claim gate。
 
 來源 repo:
 
@@ -20,11 +20,14 @@
 
 2026-06-22 `ugsoft-apidoc Step 1 + Step 2` 已完成：新增 [ugsoft-apidoc-source-notes.md](ugsoft-apidoc-source-notes.md)，把本機 API doc mirror 定位成 `/Users/nick/Git/usproject` 的 external API contract / supporting source，整理可用範圍、安全邊界與 usproject repo 對應關係。這不新增正式履歷 claim，也不更新 `05 / 08`。
 
+2026-06-22 `ugsoft-apidoc Step 3` 已完成：新增 [career-interview.md](career-interview.md)，把 API contract 轉成 4 個可面試講的 supporting cases：game entry / wallet mode、single wallet bet / settle / cancel、transfer wallet order / query、Bonus / FreeSpin / contract boundary。這只作口說補強，不新增正式履歷 claim，也不更新 `05 / 08`。
+
 ## 讀檔順序
 
 1. [ugsoft-apidoc-source-notes.md](ugsoft-apidoc-source-notes.md)：先看 API doc mirror 的安全邊界、可引用內容、不可搬入 vault 的內容，以及和 usproject repo 的初步對應。
-2. `projects/source-repo-inventory.md`：確認 `/Users/nick/Git/usproject` 只是來源索引，不是 evidence 或履歷 claim。
-3. 若後續 Nick 指定做 usproject Flow Track，再補 `step1-candidate-flows.md` 與 `step2-flow-comparison.md`；沒有 Step 2 前不得直接建立單條 flow Step 3。
+2. [career-interview.md](career-interview.md)：需要把 API contract 轉成面試口說時讀；只能當 supporting cases，不是正式履歷 claim。
+3. `projects/source-repo-inventory.md`：確認 `/Users/nick/Git/usproject` 只是來源索引，不是 evidence 或履歷 claim。
+4. 若後續 Nick 指定做 usproject Flow Track，再補 `step1-candidate-flows.md` 與 `step2-flow-comparison.md`；沒有 Step 2 前不得直接建立單條 flow Step 3。
 
 ## 初步 module 對應
 
@@ -47,6 +50,6 @@
 
 ## 下一步邊界
 
-若 Nick 後續要繼續，下一步應是 `usproject ugsoft-apidoc Step 3`：只補 API contract 可講 case，不改履歷 / 自傳，不新增正式 claim。
+若 Nick 後續要繼續同一份 API doc，下一步應是 `usproject ugsoft-apidoc Step 4`：評估是否需要對 `05 / 08` 做最小 supporting claim 回填；若不適合就只記錄不改。
 
 若 Nick 要正式建立 usproject Flow Track，必須先做 project-level `Step 1 -> Step 2`，並在掃 code repo 前確認 remote refs / local HEAD / branch 狀態；不能從 API doc 直接跳到單條 flow Step 3。
