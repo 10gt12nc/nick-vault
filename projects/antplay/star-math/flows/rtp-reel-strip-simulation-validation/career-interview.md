@@ -14,6 +14,16 @@
 
 > 我參與過 AntPlay 多個 slot math module 的維護與驗證，其中一類是 RTP / reel strip simulation validation。這類不是線上交易 API，但會影響長期派彩正確性。我會看 target / tolerance、symbol ratio、candidate reel strip、simulation rounds，並拆 Base RTP、free trigger、Free RTP 和 Jackpot hit rate，確認 simulation 走的是實際 `math.spin` path。
 
+90 秒人話版：
+
+> 這條 flow 我會用「slot math 的驗證，不是看單局有沒有中獎，而是看長期跑出來的機率和派彩是不是接近設計目標」來講。
+>
+> 在 slot game 裡，reel strip 也就是每一輪有哪些 symbol、比例怎麼排，會直接影響 RTP、免費局觸發率、Jackpot hit rate 和玩家體感。所以這類調整不能只靠人工看幾局結果，也不能只看最後一個總 RTP 數字，而是要用 simulation 跑大量 rounds，再拆成 Base RTP、Free trigger、Free RTP、Jackpot hit rate 這些指標，看它們有沒有落在 target 和 tolerance 內。
+>
+> 這條 flow 的重點，是 simulation 要走實際 runtime 的 `math.spin` path。也就是測試用的模擬，不能另外寫一套和正式遊戲不同的算法，否則數字看起來漂亮，上線後行為卻可能不一樣。我也會特別注意 feature state，例如某些遊戲會有跨 spin 的 symbol 或狀態，如果 simulation 沒有正確 reset 或 carry，就會讓統計結果失真。
+>
+> 所以我會把這條講成 high-risk domain validation：我參與過 slot math module 的 RTP / reel strip 模擬驗證，能說明 target、tolerance、candidate reel strip、simulation rounds、runtime path consistency 和 state reset 的風險。但我不會誇大成我設計完整 RTP 策略、主導遊戲數學模型或負責 certification。
+
 3 分鐘版本：
 
 > Slot math 的輪帶調整不能只看單次結果，因為一個 symbol ratio 或 scatter plan 會同時影響 Base RTP、免費局觸發率、Free RTP、buy free 體感和 Jackpot hit rate。以 `sph-math` 為例，模擬流程會從 `RTPConstants` 讀目標與 tolerance，再從 `Ratio_RTP_*` 產候選輪帶，放到 `RTP_REEL_STRIP_OPTIMIZER`，用 `P21008SlotMath` 的 `spin` 跑大量 rounds。結果會拆成 Base RTP、FG trigger、Free RTP、JP hit rate 和目標區間比對，不在範圍內就繼續嘗試下一組。
