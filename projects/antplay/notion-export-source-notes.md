@@ -95,3 +95,28 @@
 - `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪不新增正式 claim，不更新。
 - `04-interview-casebook.md` / `17-salary-negotiation.md`：本輪只做 source boundary，不更新。
 - `06-todo.md`：本輪是指定 Step 1 + Step 2 並收口，不新增長期待辦。
+
+## Step 4 resume / autobiography evaluation
+
+更新日期：2026-06-22
+
+結論：不回填 `05 / 08`。
+
+評估依據：
+
+- `05-resume-master-zh.md` 已有 AntPlay project-level claim：`antplay-slot-admin-api`、`antplay-slot-game-api`、`antplay-slot-game-job`、`math-core` / `*-math` 的 refreshed / grouped consolidation 已回填，且已包含商戶控制面、Game API 白名單、request log / bet record、RTP / 暗池 / 風控監控、transfer wallet、bet / settle / rollback、schema routing 與 slot math module。
+- `08-application-autobiography-zh.md` 已有通用投遞版與 B 版遊戲 / Slot / Provider Backend 版，已涵蓋 provider connector、seamless / transfer wallet、bet-settle callback、request log / bet record MQ、後台白名單、風控監控與 slot math module。
+- Notion export 的新增價值是「營運 / 對接 / 排查 / 口說」脈絡，不是新的 direct commit / ticket / production issue evidence。
+- 若再把 Notion export supporting cases 寫進 `05 / 08`，會和既有 project-level claim 重複，且容易把 operational docs 誤升級成「主導商戶開通 / 完整 wallet migration / 完整風控平台」。
+
+本輪保留方式：
+
+- 正式履歷 / 自傳：不改。
+- 面試口說：已回填 [career-interview.md](career-interview.md) 的 `Notion export supporting cases`。
+- 後續若遇到 JD 明確要求 merchant onboarding、Game API integration support、production troubleshooting 或 operator-facing support，可在 JD-specific package 中引用這些 supporting cases，仍不得寫成正式主 claim。
+
+Relationship Check 補充：
+
+- `projects/antplay/README.md`：需要標示 Step 4 已評估且不回填 `05 / 08`。
+- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：已檢查，既有內容足夠承接，不更新。
+- `04-interview-casebook.md` / `17-salary-negotiation.md` / `06-todo.md`：本輪不新增正式 claim、不新增長期待辦，不更新。

@@ -16,6 +16,8 @@
 
 2026-06-22 `notion-export Step 3` 已完成：已在 [career-interview.md](career-interview.md) 補 4 個面試 supporting cases：Game API 對接模式、request log 排查、RTP / risk monitor、wallet / connector 切換。這只作口說補強，不新增正式履歷 claim，也不更新 `05 / 08`。
 
+2026-06-22 `notion-export Step 4` 已完成：已評估 `05 / 08` 是否需要最小 supporting claim 回填。結論是不回填；既有 AntPlay project-level claim 已涵蓋商戶控制面、Game API、request log、RTP / 風控監控、transfer wallet 與 bet / settle / rollback，Notion export 只保留為面試口說 / troubleshooting supporting cases。
+
 ## 讀檔順序
 
 1. [architecture-map.md](architecture-map.md)：先建立 AntPlay runtime / job / admin / math 的 domain-level 大圖。
