@@ -14,6 +14,8 @@
 
 2026-06-22 `notion-export Step 1 + Step 2` 已完成：新增 [notion-export-source-notes.md](notion-export-source-notes.md)，把 `/Users/nick/Git/antplay/notion-export` 分成可整理、只可參考、不得寫入 vault 三類，並對照到 Game API contract、merchant onboarding、request log 排查、RTP / risk monitor、wallet / connector 切換等 supporting / learning evidence。這不新增正式履歷 claim，也不更新 `05 / 08`。
 
+2026-06-22 `notion-export Step 3` 已完成：已在 [career-interview.md](career-interview.md) 補 4 個面試 supporting cases：Game API 對接模式、request log 排查、RTP / risk monitor、wallet / connector 切換。這只作口說補強，不新增正式履歷 claim，也不更新 `05 / 08`。
+
 ## 讀檔順序
 
 1. [architecture-map.md](architecture-map.md)：先建立 AntPlay runtime / job / admin / math 的 domain-level 大圖。

@@ -32,6 +32,90 @@
 | `buffer-id` | ID generator learning-only | learning-only |
 | `antplay-push` | push encryption / message delivery 小型 supporting case | optional supporting，不主打 |
 
+## Notion export supporting cases
+
+來源：[notion-export-source-notes.md](notion-export-source-notes.md)。以下只作面試口說補強，不新增正式履歷 claim；不得搬入帳密、IP、正式環境 URL、key、token、商戶實例或可直接操作環境的指令。
+
+### Case 1：Game API 對接模式怎麼講
+
+30 秒版：
+
+```text
+AntPlay 的 Game API 對接我會先分清楚錢包與投派模式：單一錢包、轉帳錢包，以及投派整合 / 投派分離。這會影響 balance、bet、settle、rollback 或 bet-settle callback 怎麼走，也會影響問題排查時要先看 merchant callback、game-api runtime，還是 transfer transaction / bet record。
+```
+
+追問時怎麼接：
+
+- 先說 `單一錢包` 偏向遊戲端即時向商戶查餘額與投派 callback；`轉帳錢包` 偏向先轉入 / 轉出，再由平台內部錢包承接遊戲流程。
+- `投派分離` 要分開看 bet、settle、rollback；`投派整合` 則看 bet-settle callback 的 request / response 與錯誤處理。
+- 排查時不只看 API status code，也要看簽章、timestamp、金額格式、JSON header、callback response contract 與 runtime source of truth。
+
+不要這樣講：
+
+- 不說自己主導完整 Game API 對接規格。
+- 不把 API 文件理解包裝成完整 provider integration owner。
+- 不把 Notion export 當成 direct commit / ticket evidence。
+
+### Case 2：request log 排查怎麼講
+
+30 秒版：
+
+```text
+遇到 merchant integration 或 callback 異常時，我不會只看畫面錯誤。我會先用 request log 定位 target、step、request / response、error_message 和時間窗口，再判斷問題是在 game-api 呼叫商戶、商戶回傳格式、下游 provider timeout，還是後台 / report 顯示延遲。
+```
+
+追問時怎麼接：
+
+- 若看到 deserialization / response format 類錯誤，先比對 response body 是否符合 callback contract，不急著判定交易狀態錯。
+- 若是 timeout，先切出 timeout window，再追商戶 API 到第三方 API 的往返時間，避免只怪單一 service。
+- request log / async audit 是排查線索，不等於交易帳本；真正狀態仍要回到 runtime state、wallet state、bet record 或 transaction record。
+
+不要這樣講：
+
+- 不說完整 observability platform owner。
+- 不說 request log 就是 source of truth。
+- 不把單次營運排查流程誇大成已建立完整監控平台。
+
+### Case 3：RTP / risk monitor 怎麼講
+
+30 秒版：
+
+```text
+AntPlay 的風控素材可以用來說明我理解 slot platform 不只看單筆下注成功，也會看一段時間內 merchant 或 player 的 RTP 是否異常。這類 monitor 通常有時間窗口、最低投注量或筆數門檻，重點是幫營運與技術判斷是否需要進一步檢查遊戲結果、商戶狀態或 runtime 設定。
+```
+
+追問時怎麼接：
+
+- Merchant RTP exceed 偏向看商戶整體是否在某個時間窗口內 RTP 異常，可能牽涉商戶虧損、放水狀態或遊戲設定。
+- Player RTP exceed 偏向看單一玩家投注量與 RTP 是否異常，適合當作疑似遊戲異常或高風險玩家的觀測入口。
+- 風控 monitor 是觀測與告警入口，不代表它直接決定派彩或交易狀態；runtime source of truth 與 math result contract 要分開看。
+
+不要這樣講：
+
+- 不說完整 RTP 策略 owner。
+- 不說完整風控平台 owner。
+- 不把風控條件理解包裝成主導遊戲數學模型。
+
+### Case 4：wallet / connector 切換怎麼講
+
+30 秒版：
+
+```text
+像 AntPlay 切到 UGSoft 單一錢包這類 connector / wallet mode 切換，我會把它當成營運風險流程看：切換前先進維護、記錄原 callback 配置，切換時確認 info、balance、bet-settle 等 callback 指向，切換後再解除維護並觀察 request log / runtime 行為，確保失敗時能回復。
+```
+
+追問時怎麼接：
+
+- 重點不是「改 URL」而已，而是要知道哪些 callback 是玩家資訊、餘額、投派整合，哪些設定失誤會造成登入、餘額或下注派彩異常。
+- 切換前要保留原配置，因為 provider / connector 切換失敗時需要快速 rollback。
+- 切換後要用 request log、callback response、merchant / player 行為與後台查詢一起確認，不只看設定頁是否儲存成功。
+
+不要這樣講：
+
+- 不說主導完整 AntPlay / UGSoft wallet migration。
+- 不說完整 wallet / ledger / reconciliation owner。
+- 不把操作流程包裝成 DevOps / SRE rollout owner。
+
 ## 面試大圖回答
 
 ```text
