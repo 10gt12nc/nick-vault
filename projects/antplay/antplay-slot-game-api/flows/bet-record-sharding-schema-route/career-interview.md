@@ -11,11 +11,19 @@
 
 我有參與 AntPlay game-api 裡高流量交易明細表的分流與查寫治理，像 bet record、request log、transfer wallet transaction 這些資料不能只靠單張大表撐。這套 code 透過 `@UseSchema` 依 `agentId` 切 schema，SQL 也要求帶 `pt_day`、`agent_id`、`time`、`id` 收斂查詢範圍。我會特別看 AOP route 有沒有真的生效、跨日時區會不會漏查、建表流程會不會漏，以及 logical table 到實體分表的映射是否有足夠證據。
 
-## 90 秒講法
+## 90 秒人話版
 
-這條 flow 可以分兩層講。第一層是 schema route：method 用 `@UseSchema` 標記，AOP 會從參數或物件裡找 `agentId`，再決定 schema group 與 master / read-only datasource。第二層是 high-traffic table partition key：bet record、transfer wallet transaction、transfer request log 這些查寫都會帶 `pt_day`、`agent_id`、`time`、`id`，避免全表掃描。
+這條 flow 我會用「高流量下注明細不能一直塞同一張大表，所以系統怎麼用 agent 和日期把資料切開」來講。
 
-我會把它當成 production data governance 題，而不是單純 CRUD。因為真正的 failure window 在邊界：AOP self-call 可能繞過 route、缺 `agentId` 可能寫錯 schema、UTC `pt_day` 跟業務日界線可能造成漏查、table creator job 停用可能讓 physical table 漏建。current code 能確認建表 service 與 `tool_create_table` registry，但 logical `pt_*` table 到 physical table 的 live mapping 還需要 DB / migration 補證，所以面試時我會保守講成參與分表 / schema route 維護，不講成完整 sharding 平台 owner。
+AntPlay slot runtime 會產生很多交易明細，例如 bet record、request log、transfer wallet transaction。這些資料寫入量高，查詢通常也會帶代理和時間。如果全部放在單張大表，後面客服查單、報表查詢或補償查詢都會很重，所以這條 flow 主要是在處理 schema routing 和 partition key。
+
+第一層是 schema route。程式會在 method 上標 `@UseSchema`，AOP 會從參數或物件裡找 `agentId`，再決定要切到哪個 schema group，甚至是 master 或 read-only datasource。這裡的重點是 route 要真的生效；如果是 self-call 沒有經過 Spring proxy，AOP 可能就不會跑。
+
+第二層是查寫邊界。像 `pt_bet_record` 這類表，SQL 會要求帶 `pt_day`、`agent_id`、`time`、`id` 這些 key，讓查詢不要變成全表掃描，也避免查錯 agent 或查錯日期。
+
+我看這條 flow 時，會特別注意幾個風險：缺 `agentId` 可能 route 到錯 schema；UTC `pt_day` 跟業務日界線不同，跨日附近可能漏查；read-only route 可能遇到 replica lag；建表 service 雖然存在，但 current create-table job 有停用線索，所以不能直接說 production 自動建表一定完整。
+
+所以我會保守講成：我參與過 high-traffic bet record / request log / transfer transaction 的 schema route 和 partition key 維護，能說清楚 AOP route、`agentId`、`pt_day`、table creator 和 failure window；但不會講成我主導完整 sharding platform。
 
 ## 3 分鐘講法
 
