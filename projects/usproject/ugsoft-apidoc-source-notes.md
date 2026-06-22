@@ -90,11 +90,20 @@
 
 2026-06-22 更新：Step 3 已完成，面試素材整理在 [career-interview.md](career-interview.md)。已補 4 個 API contract supporting cases：game entry / wallet mode、single wallet bet / settle / cancel、transfer wallet order / query、Bonus / FreeSpin / contract boundary。這只作口說補強，不新增正式履歷 claim。
 
-若只沿用剛剛 `notion-export` 的方式，下一步是 Step 4：
+2026-06-22 Step 4 resume / autobiography evaluation：結論是不回填 `05 / 08`。
 
-```text
-做 usproject ugsoft-apidoc Step 4，評估是否需要對 05 / 08 做最小 supporting claim 回填；若不適合就只記錄不改。不得新增正式主 claim，完成後 Relationship Check 並 commit。
-```
+評估依據：
+
+- `05-resume-master-zh.md` 與 `08-application-autobiography-zh.md` 已有更強的 UGSoft / AntPlay project-level claim，涵蓋 provider connector / gateway、transfer wallet、bet / settle / rollback、request / bet record MQ、game init、schema routing、Quartz / report job、後台 control plane 與白名單。
+- 既有 `05 / 08` 的相關內容來自 contribution consolidation、已完成代表 flows 與 code-backed evidence；`ugsoft-apidoc` 目前只是一份 API contract mirror，沒有 code branch / git history / Nick direct evidence / 本人確認。
+- 若把 `ugsoft-apidoc` 寫進 `05 / 08`，會和既有 claim 重複，且容易把 API 文件理解誤升級成「真實開發過 usproject / 主導 UGSoft API / 完整 wallet owner」。
+- 本輪可保留的價值是面試時的 contract reasoning：wallet mode、bet / settle / cancel、transfer order、query-after-timeout、Bonus / FreeSpin、signature / currency / language boundary。
+
+本輪保留方式：
+
+- 正式履歷 / 自傳：不改。
+- 面試口說：已保留在 [career-interview.md](career-interview.md)。
+- 後續若 Nick 明確要正式研究 `/Users/nick/Git/usproject`，必須另做 project-level Step 1 / Step 2 與 code-backed evidence，不得直接從本 API doc 回填履歷。
 
 若 Nick 要把 `usproject` 正式納入 Flow Track，則應另開 project-level Step 1 + Step 2：
 
@@ -104,13 +113,13 @@
 
 ## Relationship Check
 
-本輪事實變更是：`ugsoft-apidoc` 已被歸類為 `/Users/nick/Git/usproject` 的 external API contract / supporting source，並建立 source safety boundary 與初步 repo 對應。
+本輪事實變更是：`ugsoft-apidoc` Step 4 已評估 `05 / 08` 是否需要最小 supporting claim 回填，結論是不回填，只保留為 API contract / 面試口說 supporting material。
 
 影響判斷：
 
-- `projects/usproject/README.md`：Step 1 + Step 2 已新增 usproject domain 候選入口；Step 3 需要更新狀態、讀檔順序與下一步邊界。
+- `projects/usproject/README.md`：需要更新 Step 4 狀態與下一步邊界，標示同一份 API doc 已收口。
 - `projects/source-repo-inventory.md`：Step 1 + Step 2 已加入 `/Users/nick/Git/usproject` 與 `ugsoft-apidoc` 的來源索引；Step 3 不新增 source repo 事實，不需更新。
-- `projects/README.md`：Step 1 + Step 2 已加入 usproject source notes 入口；Step 3 只更新 usproject domain 內部讀法，不需更新。
-- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：本輪不新增正式 claim，不更新。
-- `04-interview-casebook.md` / `17-salary-negotiation.md`：Step 3 只補 usproject domain 內的 supporting cases，未升級成全域主力 case，不更新。
-- `06-todo.md`：本輪是 Nick 明確指定的 Step 3 並已收口；不新增長期待辦。
+- `projects/README.md`：Step 1 + Step 2 已加入 usproject source notes 入口；Step 4 只更新 usproject domain 內部決策，不需更新。
+- `05-resume-master-zh.md` / `08-application-autobiography-zh.md`：已檢查，既有 project-level code-backed claim 更強；本輪不新增正式 claim，不更新。
+- `04-interview-casebook.md` / `17-salary-negotiation.md`：Step 4 不新增全域主力 case、不影響談薪，不更新。
+- `06-todo.md`：本輪是 Nick 明確指定的 Step 4 並已收口；不新增長期待辦。
