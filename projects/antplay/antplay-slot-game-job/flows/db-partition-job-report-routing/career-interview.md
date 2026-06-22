@@ -16,13 +16,17 @@ Step 5 補充日期: 2026-05-25
 
 我在 AntPlay job repo 看過並參與過 bet record、request log、report 這類高流量表的分區與 schema routing 維護。這類改動不只是改表名，而是要確保 `agentId` 可以穩定 route 到正確 schema，SQL 還要帶 `pt_day`、`agent_id`、currency 等必要條件，避免跨代理或跨日資料污染。我的實際 evidence 包含 `db_partition v2` 與 `ag_report_player` 修正；完整 schema route framework 是多人接續完成，所以我會保守講成參與維護與 code-backed analysis。
 
-## 90 秒說法
+## 90 秒人話版
 
-這條 flow 的背景是 AntPlay 的投注紀錄、request log、代理玩家報表資料量都很大，早期 code 曾用動態表名，例如依日期和 agent 拼出不同表。後來 current code 走向固定表名加 partition key，再用 `@UseSchema` 依 agent 的 `dbGroupNum` 切 logical schema。
+這條 flow 我會用「job repo 裡的高流量報表和交易明細，怎麼從動態表名走向比較可治理的分區和 schema routing」來講。
 
-我會從三個風險看這件事。第一是 route key，Aspect 一定要拿到正確 `agentId`，否則可能查錯 schema。第二是 SQL 條件，固定表名後必須帶 `pt_day`、`agent_id`，report 還要帶 currency / player 條件，不然會跨 agent 污染。第三是 context restore，schema context 是 ThreadLocal，method 結束或 exception 時要 restore，否則同 thread 後續 query 會被污染。
+AntPlay job repo 裡有幾類資料量很大的表，例如 bet record、request log、代理玩家報表。早期有些路徑會用日期和 agent 去拼動態表名，直覺上可以切資料，但缺點是每個 repository 都要自己拼表名，後續要改 DDL、index、migration 或查詢條件時，很容易漏掉某條 path。
 
-我實際能講的 evidence 是 `db_partition v2` 和 `fix ag_report_player` 這類 path-specific commit；current `@UseSchema` 框架是多人後續完成，所以正式履歷我只會寫參與分表 / report path 維護，不會誇大成完整 sharding architecture owner。
+後來 current code 的方向比較像固定表名加 route。像 `pt_bet_record`、`pt_request_log` 會用固定 logical table，再靠 `pt_day`、`agent_id` 這些條件收斂查詢；代理玩家報表則從 `report_agent_player_{agentId}` 這種 per-agent table，改往固定 `ag_report_player`，再補 `agent_id` 條件。schema 層則透過 `@UseSchema`，讓 Aspect 從 method 參數或物件裡找到 `agentId`，再依 agent 的 `dbGroupNum` 切到對應 schema。
+
+我看這條 flow 時，會特別注意幾個風險。第一，Aspect 一定要拿到正確 `agentId`，不然可能打到錯 schema。第二，schema route 不能取代 SQL 條件，固定表名後還是要帶 `pt_day`、`agent_id`、currency、player 這些條件，不然會跨代理或跨日污染。第三，schema context 是 ThreadLocal，method 結束或 exception 時要 restore，否則同一條 thread 後續 query 可能被污染。第四，report summary / backup / delete 是 derived data，要考慮重跑和 partial failure。
+
+我的 direct evidence 是 `db_partition v2`、`fix`、`fix ag_report_player` 這類 path-specific commit；current `@UseSchema` framework 是多人後續完成，所以我會保守講成參與分表 / report path 維護和 code-backed analysis，不會講成我主導完整 sharding architecture。
 
 ## 3 分鐘說法
 
