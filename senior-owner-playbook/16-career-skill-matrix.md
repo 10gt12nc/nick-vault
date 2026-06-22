@@ -232,6 +232,211 @@ Java / Spring 基礎
 -> 回填 90 秒 / 3 分鐘口說與追問題庫
 ```
 
+## Senior Java Backend JD 技術關鍵字去重清單
+
+這段彙整目前三份 JD 客製包（微達 Senior Java Backend、糖蛙 Backend Team Lead Java、糖蛙 Senior Java Backend）與一般資深 Java Backend JD 常見要求。它是投遞前檢查表，不是新的學習主線；真正準備仍以主力 production flow、JD-specific 補洞與 `70 / 20 / 10` 為準。
+
+### Java / Spring 主幹
+
+- Java 8+；Java 11 / 17 加分。
+- OOP、Collection、Stream / Lambda / Optional。
+- Exception handling、Thread / Executor / CompletableFuture。
+- Spring Boot、Spring MVC、Spring AOP、Spring Transaction、Spring Security。
+- RESTful API、Validation、DTO / VO / Entity 分層。
+- Global Exception Handler、Error Code、Logging。
+
+### Spring Cloud / 微服務架構
+
+Spring Cloud 不只背元件名，重點是能講清楚服務怎麼拆、怎麼呼叫、失敗怎麼辦、怎麼觀測。
+
+常見技術：
+
+- Spring Cloud Gateway。
+- Spring Cloud OpenFeign。
+- Spring Cloud LoadBalancer。
+- Spring Cloud Config / Bus。
+- Spring Cloud CircuitBreaker / Resilience4j。
+- Eureka / Nacos / Consul。
+- Sleuth / Micrometer Tracing、Zipkin / Jaeger。
+- Spring Cloud Stream。
+- Spring Cloud Kubernetes 加分。
+
+微服務核心：
+
+- Service boundary / bounded context。
+- API Gateway、Service discovery、Load balancing。
+- Config management、Inter-service communication。
+- Synchronous call vs Asynchronous event。
+- Timeout、Retry、Circuit breaker、Fallback、Bulkhead、Rate limit。
+- Distributed transaction、Eventual consistency、Saga / compensation、Outbox pattern。
+- Idempotency、Correlation ID / Trace ID、Observability。
+- Deployment、rollout、rollback。
+
+面試口徑：
+
+```text
+我主要實務是在既有 Java / Spring 系統中處理跨服務與 provider integration 的 production flow。雖然不會把自己包裝成完整 Spring Cloud 平台 owner，但我熟悉微服務場景下的 timeout、retry、idempotency、MQ async、state consistency、observability 與 source of truth 判斷。這些是 Spring Cloud 元件背後真正要解決的問題。
+```
+
+### Persistence / ORM
+
+- MyBatis、dynamic SQL。
+- MyBatis Plus 加分。
+- JPA / Hibernate 加分。
+- DAO / Repository pattern。
+- Transaction boundary。
+- Batch insert / update。
+- N+1 query。
+
+### Database
+
+- MySQL、PostgreSQL。
+- MongoDB。
+- SQL tuning、Index design、Composite index、Covering index。
+- EXPLAIN、Slow query。
+- Transaction、Isolation level。
+- Lock / Deadlock、Optimistic lock / Pessimistic lock。
+- Pagination、Large table query。
+- Partition、Sharding / schema routing。
+- Unique key for idempotency。
+
+### Redis / Cache
+
+- Redis。
+- Cache aside、TTL strategy。
+- Cache penetration / breakdown / avalanche。
+- Hot key / Big key。
+- Distributed lock。
+- Rate limit、Session / token cache。
+- Runtime projection / quota / whitelist cache。
+- Redis + DB consistency。
+- Source of truth 判斷。
+
+### MQ / Async
+
+- RabbitMQ、Kafka；ActiveMQ 加分。
+- Producer / Consumer。
+- Exchange / Queue / Routing key。
+- Topic / Partition、Consumer group。
+- Ack / Nack、Retry / Backoff。
+- DLQ / DLT。
+- At-least-once。
+- Duplicate message handling。
+- Message ordering。
+- Event-driven flow。
+- MQ + DB consistency。
+- Projection replay / rebuild。
+
+### Distributed / High Transaction
+
+- Provider integration。
+- Payment callback / query。
+- Wallet / Bet-settle / Rollback。
+- Idempotency key、Request deduplication。
+- Compensation、Reconciliation。
+- State transition、Failure recovery。
+- Source of truth。
+- Timeout unknown / query fallback。
+
+### Game / Provider Domain
+
+- Game backend、gaming / gambling platform。
+- Third-party provider integration。
+- Provider request / callback / query。
+- Wallet transfer。
+- Bet / settle / rollback。
+- Slot job / report projection。
+- Runtime RTP / player control 加分。
+- Slot math / RTP validation 加分。
+- Netty、Elasticsearch 加分；目前只列可補強，不當主軸。
+
+### Batch / Report / Data Flow
+
+- Quartz / scheduled job。
+- Batch processing。
+- Report projection、Daily summary。
+- Request log async、Bet record sync。
+- Replay / rebuild、Data repair。
+- Audit log、Statement / reconciliation。
+
+### DevOps / Runtime
+
+- Linux。
+- Git、Maven。
+- Docker、Docker Compose。
+- Kubernetes / K8s / K3s。
+- Nginx。
+- CI/CD、GitLab CI / GitHub Actions。
+- JVM basic、GC、OOM、Thread dump、Heap dump。
+- Connection pool。
+- Graceful shutdown、Health check。
+
+### Observability / Production
+
+- Production troubleshooting。
+- Structured logging。
+- Trace ID / Request ID。
+- Metrics、Alert、Dashboard。
+- Slow query log。
+- MQ lag monitoring。
+- Error tracking。
+- Incident handling / Incident review。
+- Performance monitoring。
+- Log tracing。
+
+### Architecture / Design
+
+- System design。
+- API contract。
+- Module boundary。
+- Clean Architecture / DDD 加分。
+- Design patterns。
+- Scalability、High availability、Maintainability。
+- Security basic。
+- Performance optimization。
+- Technical decision / trade-off。
+
+### Quality / Team
+
+- Code Review。
+- Unit test、Integration test。
+- JUnit、Mockito、API testing。
+- Automated testing。
+- Refactoring、Clean Code。
+- Technical documentation、Development standards。
+- Technical mentoring、Task breakdown。
+- Engineering workflow。
+
+### AI-assisted Engineering
+
+- Claude Code、Codex。
+- AI-assisted code reading。
+- AI-assisted diff review。
+- AI-assisted documentation。
+- AI-generated code review。
+- Production risk checklist。
+- KB / flow / evidence 回填。
+- 不讓 AI 取代 transaction / idempotency / consistency 判斷。
+
+### 投遞前最優先穩住的核心
+
+```text
+Java / Spring Boot
+MyBatis
+MySQL
+Redis
+RabbitMQ / Kafka
+Spring Cloud / 微服務失敗處理概念
+Transaction
+Idempotency
+Provider Integration
+Wallet / Bet-settle
+Batch / Projection
+Production Troubleshooting
+Code Review
+AI-assisted Engineering Workflow
+```
+
 ## Level 1：初階 Backend
 
 定位：
