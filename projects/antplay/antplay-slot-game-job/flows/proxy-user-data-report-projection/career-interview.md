@@ -39,11 +39,17 @@ Step 5 補充日期: 2026-05-25
 
 我有參與 AntPlay slot job 裡代理玩家報表的 event projection。這條 flow 會消費 `settled_bets` Kafka event，把 bet record 依代理、玩家、日期、幣別聚合到 `ag_report_player`，再由每天 02:00 的 Quartz job 把三天前以前的日資料彙總、備份、刪除。這裡我會特別注意 report key、currency、batch insert / update、以及 summary 重跑時可能重複加總的 failure window。
 
-## 90 秒壓縮版
+## 90 秒人話版
 
-我可以講一個 AntPlay slot job 的 Kafka 報表 projection。上游遊戲結算後會發 `settled_bets` event，job service 消費後把 bet records 依 `agentId + playerId + dataDay + currency` 聚合成代理玩家日報表，寫到 `ag_report_player`。後續每天 02:00 的 Quartz job 會把三天前以前的日資料彙總成 `dataDay = 0` 的 summary row，然後 backup / delete 舊資料。
+這條 flow 我會用「遊戲結算後，系統怎麼把下注資料整理成代理和玩家報表」來講。
 
-這個 case 的重點不是單純消費 Kafka，而是 report correctness。像 currency 拆分如果沒有一起改 query、update、summary，報表就會把不同幣別混算；`#702` key 重複修正則是把 agentId 納入 oldMap / key 判斷，避免不同代理資料 collision。另外，這張表是 derived report，不是下注或 wallet 的 source of truth，所以 owner 要思考 replay / rebuild / reconciliation。尤其 summary -> backup -> delete 若中途失敗，下次重跑可能重複加總或漏備份，這就是我會在設計上補 job execution log、處理筆數、唯一鍵 / upsert 與重跑 runbook 的地方。
+上游遊戲結算完成後，會把一批 bet record 包成 `settled_bets` Kafka event。job service 消費這個 event 後，不是直接一筆一筆丟報表，而是依 `agentId + playerId + dataDay + currency` 聚合，算出下注筆數、下注額、總贏分和 profit，最後寫進 `ag_report_player`。這張表主要服務後台、營運或代理報表查詢，不是玩家錢包或下注交易的 source of truth。
+
+後面還有一段 Quartz job。每天 02:00，它會把三天前以前的日報表彙總成 `dataDay = 0` 的 summary row，然後把舊日資料 backup，再從主表 delete。這樣可以降低主表資料量，但也帶來重跑和 partial failure 的問題。
+
+我看這條 flow 時，重點不是「用了 Kafka」而已，而是 report correctness。像 currency 如果沒有放進 key，報表就會把不同幣別混算；agentId 如果沒有放進 key，也可能讓不同代理資料 collision。這些都有 direct evidence，例如 currency 維度修正、key 重複修正。
+
+owner 角度我會特別看三件事：第一，report table 是 derived projection，數字有問題時要能回到 source event 或 bet record 重建；第二，summary、backup、delete 如果中途失敗，不能讓下次重跑重複加總；第三，要有 job execution log、處理筆數、唯一鍵 / upsert 和重跑 runbook。保守講法是：我參與過 Kafka / Quartz 報表 projection 維護，能說清楚 report identity、derived data、重跑與 partial failure；但不會講成完整 Kafka platform 或完整 BI owner。
 
 ## 90 秒說法
 
