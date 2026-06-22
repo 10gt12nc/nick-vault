@@ -26,6 +26,18 @@
 
 這條 flow 最值得談的是：錢包成功後會先回 HTTP OK，後續才送戰績與打碼 log，所以要定義 OK 語意、防重 key、重試與對帳補償。
 
+## 90 秒人話版
+
+這條 flow 我會用「第三方遊戲平台通知玩家下注、派彩或退款後，gameserver 怎麼更新玩家錢包和戰績」來講。
+
+上游不是直接改玩家資料，而是先由 adapter 把不同 provider 的 callback 轉成 gameserver command，例如 `PGTRANSFERINOUT`、`ANTPLAYTRANSFERINOUT`、`GSC_BET`、`GSC_SETTLE`、`GSC_REFUND`。gameserver 收到後，會先查玩家，再把實際處理工作放進以 account 為 key 的 game pool，讓同一個玩家的錢包變更可以比較有順序地處理。
+
+真正的核心在 money job。job 會檢查玩家狀態和餘額，然後呼叫 `PlayerData.modifyAndGetCoinPG/AP/GSC` 去改玩家 `coins`，同時產生 currency log、玩家統計、打碼和戰績相關資料。錢包變更成功後，gameserver 會先回 HTTP OK 給上游，後面才繼續送在線玩家通知、戰績 log 和打碼 log。
+
+所以我看這條 flow 時，不會只看 HTTP 回應成功，而是會拆三個風險。第一是 wallet correctness：不能重複扣款或重複加錢。第二是 idempotency：provider timeout 或 duplicate callback 時，要在 wallet mutation 前用 `transactionId` / `betId` 類 key 防重。第三是 log consistency：因為戰績和打碼是後續 side effect，可能發生錢包已成功、但 log 或報表缺漏的狀況。
+
+我會保守講成：我參與過第三方遊戲 provider 投派整合與 gameserver 錢包 / 投注流水串接，也能說清楚 wallet mutation、HTTP OK 語意、log projection、failure window 和 reconciliation 邊界；但我不會講成我主導完整 gameserver wallet 或完整防重架構。
+
 ## 2 分鐘版本
 
 這條 flow 是第三方遊戲投注 / 派彩 / 退款進 gameserver 的 runtime money flow。上游 adapter 先把 provider callback 轉成 gameserver command，例如 `PGTRANSFERINOUT`、`ANTPLAYTRANSFERINOUT`、`GSC_BET`、`GSC_SETTLE`、`GSC_REFUND`。gameserver 在 `slots-center` 解析 command，查玩家資料，再把實際 money job 放進以 account 為 key 的 game pool。
