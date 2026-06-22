@@ -8,6 +8,18 @@
 - 目前用途：Senior Backend / Platform Backend / System Owner 面試素材；可作為正式履歷的保守素材來源。
 - Step 5 結論：已完成 claim gate。可升級為「參與多個 payment provider request / callback / query 對接與維護」，但不能寫主導完整金流、不能寫全部 provider owner。
 
+## 90 秒人話版
+
+這條 flow 我會用「玩家發起充值後，系統怎麼把本地訂單和第三方 provider 訂單接起來」來講。
+
+玩家先在前端選支付方式、商戶和金額，payment 會依玩家、device、支付類型和 Redis 裡的 merchant config 回可用選項。玩家確認後，會打到對應 provider 的 `/newPay`。這時 payment 不是直接相信三方，而是先在本地建立一筆 `payment_order`，狀態是 `WAIT`，並產生本地訂單號 `billNo`。
+
+這個 `billNo` 很重要，因為它會被放進 provider request，成為三方那邊的 merchant order id。後面 callback、查單、人工補償，都要靠這個 key 把三方結果對回本地訂單。
+
+接著每家 provider 會依自己的規格組 request，例如商戶號、金額單位、notify URL、支付產品碼和簽章。provider 如果回 accepted，payment 會把 QR code 或 pay URL 回給前端；但這不代表玩家已經付款成功，也不代表可以上分。真正的充值成功，要等 provider callback 或查單確認後，才會進後面的上分流程。
+
+這裡我會特別注意幾個風險：本地訂單已經建立，但 provider request timeout；provider 回 accepted，但 callback 沒來；金額單位從元轉分轉錯；簽章或 notify URL 配錯；以及同一個玩家重複送出造成多筆訂單。我的判斷是，這種 flow 不能只看 API 成功失敗，要把本地訂單、provider 訂單、callback 和查單一起看，才知道資料最後能不能收斂。
+
 ## 3 分鐘講法
 
 我會把 provider request flow 拆成三段：商戶選擇、本地建單、三方下單。
