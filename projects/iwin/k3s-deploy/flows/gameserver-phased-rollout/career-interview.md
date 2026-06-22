@@ -29,11 +29,17 @@ Step 5 不更新正式履歷 / 自傳。`k3s-deploy` 全分支未掃到 Nick / `
 
 這個 case 我會保守定位成 code-backed analysis。如果要寫進正式履歷，還要補 Nick 本人的 MR、ticket、deploy log 或 incident evidence，否則只能在面試中當分析案例。
 
-## 90 秒版本
+## 90 秒人話版
 
-我會把這個 case 講成 Kubernetes rollout 跟 application runtime state 對齊的問題。`iwin-gameserver` 不是單一 stateless API，而是同一個 image 啟多種 game runtime 角色，並透過 Zookeeper 註冊 server id 與 peer address。部署上不能只看 Pod Ready，所以 manifests 需要 phase rollout：先 stateless，再 center，再 gate，最後 games。
+這條 flow 我會用「把 legacy gameserver 放到 K3s 時，不能只看 Pod 有沒有起來，還要看遊戲 runtime 真的有沒有 ready」來講。
 
-關鍵取捨是 `Recreate`、phase gate 和 config externalization。`Recreate` 是為了降低同 server id 新舊 pod 雙跑的 ZK registration 風險；ConfigMap / Secret 拆出 image 讓 config 更透明，但 rollback 也必須同時管 image 和 config version。這目前是 code-backed analysis，不是我主導 production rollout 的 claim。
+`iwin-gameserver` 不是一個單純的 stateless API。它是同一個 image 跑出不同角色，例如 dbproxy、log、center、gate 和多個 game service。每個 pod 會依 appid、apptype、main class 和 properties 決定自己是誰。更麻煩的是，服務發現不是只靠 Kubernetes Service，而是 runtime 會把自己的 server id 和 address 註冊到 Zookeeper，也會 watch 其他服務的 ZK path 去建立連線。
+
+所以這種部署不能只看 Pod Ready。Pod Ready 只代表 container 起來，不一定代表 runtime 已經完成 ZK registration，也不代表其他服務已經能連到它。這就是為什麼 manifests 要分 phase：先起 stateless 類服務，再起 center，再起 gate，最後起 games，避免依賴還沒 ready 就亂序啟動。
+
+另一個取捨是 rollout strategy。一般 Kubernetes 可能會直覺用 RollingUpdate，但這類 legacy gameserver 有 server id 和 znode registration 語意，如果新舊 pod 同時存在，可能出現同一 server id 短暫雙註冊或連線混亂。所以使用 `Recreate` 是比較保守的取捨，犧牲一點連續性，換取 runtime 狀態比較乾淨。
+
+ConfigMap / Secret 外掛也有代價。config 從 image 拆出來後，rollback 不能只回 image，也要對齊 config version、zookeeper properties 和 env secret。這個 case 我會明確講成 code-backed analysis / interview-only，用來說明我能分析 rollout、runtime registration、config rollback 和 observability gate；但不會說成我主導 production K3s migration。
 
 ## 30 秒版本
 
