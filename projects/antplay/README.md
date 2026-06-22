@@ -12,12 +12,15 @@
 
 2026-05-28 `AntPlay system map v1` 已完成：新增 [architecture-map.md](architecture-map.md)、[integration-map.md](integration-map.md) 與 [career-interview.md](career-interview.md)，把 runtime、job、admin control plane、math contract 與 supporting repos 收成 domain-level 架構視角。這不新增履歷 claim，也不代表全 AntPlay 全量 code audit。
 
+2026-06-22 `notion-export Step 1 + Step 2` 已完成：新增 [notion-export-source-notes.md](notion-export-source-notes.md)，把 `/Users/nick/Git/antplay/notion-export` 分成可整理、只可參考、不得寫入 vault 三類，並對照到 Game API contract、merchant onboarding、request log 排查、RTP / risk monitor、wallet / connector 切換等 supporting / learning evidence。這不新增正式履歷 claim，也不更新 `05 / 08`。
+
 ## 讀檔順序
 
 1. [architecture-map.md](architecture-map.md)：先建立 AntPlay runtime / job / admin / math 的 domain-level 大圖。
 2. [integration-map.md](integration-map.md)：再看下注結算、錢包、MQ、報表、風控與 math contract 的跨 repo 邊界。
 3. [career-interview.md](career-interview.md)：最後把大圖轉成保守履歷 / 面試口徑。
-4. 各 project 的 `contribution-claim-consolidation.md` 與單條 flow：需要證據或追問時再回讀。
+4. [notion-export-source-notes.md](notion-export-source-notes.md)：需要使用 `/Users/nick/Git/antplay/notion-export` 時先看安全邊界；只可抽象成 supporting / learning evidence，不得搬敏感原文。
+5. 各 project 的 `contribution-claim-consolidation.md` 與單條 flow：需要證據或追問時再回讀。
 
 | Project | 類型 | 狀態 | 履歷判斷 | 下一步 |
 | --- | --- | --- | --- | --- |
