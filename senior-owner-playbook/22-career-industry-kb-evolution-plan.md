@@ -2,6 +2,15 @@
 
 狀態：草案，待 Nick 調整；目前結論是先不升級 v2。
 
+落地狀態：
+
+- Backend weekly learning 的 KB 支撐檔已建立在 `senior-owner-playbook/`：
+  - `backend-weekly-plan.md`
+  - `backend-learning-log.md`
+  - `backend-weekly-template.md`
+- 第一版只做 Senior Backend / Platform Backend 每週輕量學習 checkpoint；日語暫不排入主學習排程。
+- automation 若正式啟用，預設只維護上述 weekly 檔案，不改 `04 / 05 / 08 / 17`、三個故事稿或 production flow 文件，除非 Nick 明確要求。
+
 本檔先記錄兩個想法：
 
 1. 用 Codex automation 定期推送少量高品質材料，降低 Nick 主動找資料的成本。
