@@ -416,6 +416,115 @@ Payment Callback -> Wallet / Bet-Settle / Rollback -> MQ / Projection -> Legacy 
 14. BigDecimal 在金額計算有哪些 production 風險？
 15. 你會怎麼設計一個 retry-safe 的 provider callback handler？
 
+### 第三層 90 秒草稿：Consistency / Idempotency 講法
+
+> 2026-06-23 補充：這段是「看稿練習草稿」，用來把高交易 flow 的追問收斂成一致性思考。回答時先講 `風險在哪 -> 怎麼避免 -> 出事怎麼補救`。可以用 Outbox、retry、compensation、reconciliation 作設計選項，但不要說成 Nick 已主導完整 outbox / reconciliation platform。
+
+通用模板：
+
+```text
+這題我會先看不一致風險在哪裡。
+如果只在同一個 DB transaction 裡，transaction 可以解一部分問題；但只要跨 MQ、Redis、provider、gameserver 或其他 service，就要把狀態拆成已確認、未知、待補償。
+避免方式通常是 idempotency、狀態機 guard、唯一 key、終態保護、retry policy 或 outbox / repair table。
+出事後則靠 audit log、query、補償 job、reconciliation 或人工修復收斂，不能假裝一次 API response 就代表最終真相。
+```
+
+1. 只靠 `@Transactional` 不夠的情境
+
+   ```text
+   `@Transactional` 只能保證同一個 DB transaction 內的操作一致。只要流程跨到 MQ、Redis、第三方 provider、gameserver 或其他 service，就已經超出單一 transaction 邊界。例如本地 DB commit 成功，但 MQ publish 失敗，或 provider request 已送出但本地 timeout，DB transaction 都不能自動把外部副作用回滾。這時需要把狀態設計成可恢復，例如 retry、補償 job、outbox / repair table、查單、callback audit 或 reconciliation。我的回答重點會放在 transaction boundary，而不是只說加 `@Transactional`。
+   ```
+
+2. DB 成功，但 MQ publish 失敗
+
+   ```text
+   這是典型半成功狀態：DB 已經 commit，但後續 event 沒送出去，consumer、報表或通知就不會發生。第一步要承認系統已經不一致，不能假裝 MQ 一定成功。常見做法是 outbox pattern，把要發的 event 先和 business state 一起落 DB，再由 background publisher 發送；或至少要有 retry / repair job 掃描 pending event。實務上我會特別關心這種半成功能不能被觀測，例如 event status、publish error log、補送次數與告警，讓它能被重送或人工處理。
+   ```
+
+3. MQ publish 成功，但 consumer 失敗
+
+   ```text
+   MQ publish 成功但 consumer 失敗時，通常要用 at-least-once 的心態設計。重點不是幻想訊息只會被處理一次，而是讓 consumer 可以 retry 且具備 idempotency。失敗可以透過 retry queue、DLQ、backoff 或 job replay 收斂；但 consumer 寫 DB、發通知、補資料這些副作用要用 event id、business key 或 unique constraint 避免重複。面試時我會說，真正要保護的是重試不造成二次副作用，而不是完全避免重送。
+   ```
+
+4. Provider timeout 不能直接當失敗
+
+   ```text
+   Provider timeout 只代表本地沒有在時間內收到結果，不代表對方沒有執行成功。以 payment 或 transfer request 來說，request 送出後 provider 可能已經扣款或受理，只是 response 沒回來；如果本地直接當失敗並讓使用者重送，可能造成重複訂單、重複扣款或狀態不一致。所以 timeout 應該視為 unknown / pending state，後續透過 provider query、callback、statement 或人工補償收斂。這題我會特別強調：unknown 是一種狀態，不是失敗的同義詞。
+   ```
+
+5. Callback 重送避免二次入帳 / 扣款
+
+   ```text
+   Callback 不能假設只來一次，所以處理前一定要先做 idempotency 與狀態檢查。通常會用 internal order id、merchant order id 或 provider transaction id 找到本地訂單，再確認目前狀態是否允許轉換。如果訂單已經是成功、失敗、退款完成或人工補單後的終態，就應該只記錄 audit log 或直接回 provider success，不再執行入帳、扣款、派彩或通知副作用。真正的關鍵是：終態保護要在副作用之前，而不是副作用做完才檢查。
+   ```
+
+6. Idempotency key 放哪裡
+
+   ```text
+   Idempotency key 要看業務邊界。Request id 偏技術追蹤，一次 HTTP request 可能有一個，但不一定代表業務唯一性；order id 或 merchant order id 比較適合代表一筆本地業務訂單；provider transaction id 則是第三方世界的唯一識別，適合 callback 去重、查單與對帳。provider integration 裡常常要同時保存 internal order id 和 provider transaction id，因為本地狀態機和外部 statement 需要靠 mapping 收斂。不能只用 trace id 這類技術 id 當 money flow 的 idempotency key。
+   ```
+
+7. 終態訂單能不能覆蓋
+
+   ```text
+   一般情況下，成功、失敗、退款完成、rollback 完成這類終態不應被普通 callback 或 retry 覆蓋，否則容易造成重複副作用或狀態倒退。例外是 reconciliation、人工補單、人工修正或特殊錯帳修復，但這些應該走明確流程，有 audit log、操作人、原因、前後狀態與可追蹤 evidence。我的原則是：自動流程不能隨意覆蓋終態；如果業務真的需要修正終態，就要把它當作人工 / 對帳修復，而不是一般 callback state transition。
+   ```
+
+8. Rollback / refund / compensation / reconciliation 差別
+
+   ```text
+   Rollback 通常是撤銷同一筆交易或回復同一個業務動作，例如 bet rollback；refund 是資金退回，常常是一筆新的資金動作；compensation 是為了修復跨系統不一致而做的補償行為，可能是補發 MQ、補寫 projection、補退款或補狀態；reconciliation 則是對帳，用多方資料比對出最終真相。面試時我會把它們分開講，因為 rollback 不等於 reconciliation，refund 也不一定代表原交易不存在。
+   ```
+
+9. Optimistic lock vs pessimistic lock
+
+   ```text
+   我會先看衝突頻率和業務風險。讀多寫少、衝突可接受、失敗可 retry 的場景，我傾向 optimistic lock，例如 version 欄位或 update rows check；如果是 wallet balance、庫存、同一筆訂單狀態轉移這類衝突成本很高的場景，可能考慮 pessimistic lock 或更嚴格的 serial execution。但 lock 不是唯一答案，還要搭配 idempotency、狀態機與 unique key；否則只加 lock 可能降低併發，卻沒有解決重送或外部副作用。
+   ```
+
+10. Isolation level 實務關注
+
+    ```text
+    我不會只背四種 isolation level，而會先講業務會遇到什麼讀寫異常。實務上我會關心 dirty read、non-repeatable read、phantom read、lost update 或併發下重複處理同一筆狀態。大部分系統會先用預設 isolation level 搭配 row lock、unique constraint、version、狀態條件 update 來控制風險；只有當業務真的需要更強一致性，才評估提高 isolation level，因為它會影響 lock、throughput 和 deadlock 風險。
+    ```
+
+11. Wallet 扣款成功，但 bet record 寫入失敗
+
+    ```text
+    這是 money flow 裡很嚴重的不一致：玩家餘額已改，但交易紀錄不完整。第一步要先確認 wallet 是否是 source of truth，以及扣款是否真的成功，不能只補 bet record 或只看報表。如果 wallet mutation 和 bet record 不在同一個 transaction，就需要補償或 repair 流程，例如用 wallet log、provider transaction、round id 或 request log 重建狀態，再決定補寫 bet record、退款、rollback 或標記人工處理。這題我會強調：先確認錢的真相，再修衍生紀錄。
+    ```
+
+12. Bet settle 成功，但 projection 沒更新
+
+    ```text
+    如果 projection 只是報表或查詢用資料，bet settle 成功代表交易主線已完成，source of truth 仍然是 bet record、wallet transaction 或 provider transaction，而不是 projection。這時不應該為了報表落後去回滾交易，而是補 projection，例如重送 MQ、重跑 consumer、用 batch 補資料或掃 source table rebuild derived table。這題的重點是分清交易 truth 和報表 truth：報表落後是可補資料問題，不一定是交易失敗。
+    ```
+
+13. 人工補單後 callback 又進來
+
+    ```text
+    人工補單和 callback 必須共用同一套終態檢查與 idempotency 規則，否則人工修正後 callback 又進來，可能造成重複入帳或狀態覆蓋。我的做法會是：人工補單時把訂單推進明確終態，留下 audit log、操作人與原因；後續 callback 進來先查狀態，如果已終態就只補 callback evidence 或回 provider success，不再執行上分、扣款、派彩等副作用。這樣才能讓人工修復和自動 callback 不互相打架。
+    ```
+
+14. BigDecimal production 風險
+
+    ```text
+    金額計算不能用 double，因為會有精度問題；BigDecimal 也不是用了就安全。常見風險包括 scale 不一致、rounding mode 不一致、`equals` 和 `compareTo` 行為不同、中途轉 double、不同 provider 的金額單位不同，例如元、分或不同幣別 precision。production 裡需要統一金額單位、scale、rounding mode 和比較方式，provider request / callback / DB 儲存也要一致。這題我會把 BigDecimal 連回 payment provider amount unit 和 money correctness，而不是只背 API。
+    ```
+
+15. Retry-safe callback handler
+
+    ```text
+    Retry-safe callback handler 我會分幾步設計。第一，先驗簽和檢查 provider trust boundary；第二，用 internal order id、merchant order id 或 provider transaction id 找到本地訂單；第三，在任何副作用前先做終態與 idempotency 檢查；第四，用狀態機限制 allowed transition，避免終態被覆蓋；第五，更新狀態時保留 callback audit log；第六，後續 MQ、通知或 projection 要能 retry 且 idempotent。即使 provider 重送多次，結果也應該是同一筆訂單只被收斂一次，不造成重複入帳或重複扣款。
+    ```
+
+優先看稿練習順序：
+
+```text
+Provider Timeout -> Callback Idempotency -> Wallet 扣款成功 / Bet Record 失敗 -> Projection 落後 -> Retry-safe Callback Handler
+```
+
 ## 第四層：MQ / Kafka / RabbitMQ / Batch
 
 這一層看你能不能處理 event-driven 與非同步一致性。
