@@ -1143,6 +1143,80 @@ Provider Integration Design -> Wallet / Bet-Settle / Rollback -> MQ / Projection
 14. 如果對方問你未來 2-3 年想成為什麼，你怎麼講？
 15. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
 
+### 第十層 90 秒草稿：Behavior / HR / 談薪 / 團隊協作 講法
+
+這段是看稿練習草稿。這區最容易失分的不是技術，而是 Nick 如何描述自己。原則是不要講不爽主管、公司很爛、沒調薪、同事很雷，即使它們有部分真實。面試官要聽的是 `你在追求什麼`，不是 `你在逃離什麼`。主軸固定成：具備 Provider Integration、Production Flow 與 Legacy Takeover 經驗，正在往 Senior Backend / Platform Backend 成長的工程師。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先承認現況，不把自己包裝過頭；接著說明近幾年工作內容已經從功能開發延伸到 provider integration、wallet、MQ、projection、legacy takeover 與 production troubleshooting；最後把動機放在成長、職責、系統規模與市場驗證，而不是抱怨原公司。
+
+#### 1. 你為什麼想換工作？
+
+> 我目前的工作其實有不少優點，例如工時穩定，也讓我有機會接觸 Provider Integration、Wallet、MQ、Projection 與既有系統維護。不過近幾年我開始希望往 Senior Backend 或 Platform Backend 發展，希望接觸更大的系統規模、更完整的 ownership 與更高複雜度的問題。因此我想透過市場機會，看看下一個成長階段。
+
+#### 2. 你現在薪資 8 萬，為什麼期待 10 萬以上？
+
+> 我不會單純用年資談薪資，而是看工作內容、職責與市場價值。近幾年的工作內容已經不只是功能開發，而是開始接觸 Provider Integration、Wallet Flow、MQ、Projection、Legacy Takeover 與 Production Troubleshooting。如果職缺責任符合 Senior Backend 或 Platform Backend 的期待，我認為 10 萬以上是合理區間，也希望用市場標準重新驗證自己的價值。
+
+#### 3. 如果對方問你是不是管理職，你怎麼回答？
+
+> 不是。我目前主要還是 Individual Contributor，工作重心在系統分析、開發、維護與問題排查。不過在一些專案裡，我會協助釐清流程、整理脈絡、讓同事理解系統，也開始接觸部分 owner-like 的責任。但我不會把自己包裝成正式管理職或 Tech Lead。
+
+#### 4. 你怎麼描述自己不是正式資深，但具備資深潛力與 ownership？
+
+> 我知道自己不是正式資深職稱，也沒有完整帶團隊經驗。不過近幾年的工作內容已經逐漸從功能開發，延伸到 Provider Integration、交易流程、MQ、Legacy Takeover 與 Production Troubleshooting。我目前最強的是能理解 production flow、分析資料狀態與排查風險，所以希望透過市場驗證確認自己是否已經具備 Senior Backend 所需要的能力。
+
+#### 5. 你怎麼處理 code review disagreement？
+
+> 我通常會先討論問題，而不是討論人。如果只是程式風格，我會尊重團隊規範。如果涉及效能、可維護性、一致性或 production 風險，我會提出具體理由、案例或替代方案。最後還是以團隊共識與系統利益為優先，不會把 code review 變成個人輸贏。
+
+#### 6. 你怎麼帶 junior 或協助同事？
+
+> 我沒有正式帶人的職稱，但有協助同事理解系統與 flow 的經驗。我的方式通常不是直接叫對方背 API，而是先說明業務目的、資料流、狀態轉換與常見風險，再帶他看程式碼。因為我覺得理解 flow 後，才比較能安全修改既有系統。
+
+#### 7. 你怎麼向主管說明技術債風險？
+
+> 我不會只說技術債很醜或程式很難看，而是把它轉成業務風險。例如目前沒有 idempotency、retry、對帳或足夠 log，未來可能造成重複入帳、訂單卡住、資料不一致或排查時間過長。讓主管知道成本、風險與影響範圍後，再一起討論優先順序。
+
+#### 8. 你怎麼在不加班文化和職涯成長之間取捨？
+
+> 我認為兩者不一定衝突。我很重視工作與生活平衡，因為長期穩定輸出比短期燃燒更重要。不過我也會利用工作外時間整理經驗、補技術觀念、準備面試與回顧 production case。我追求的是長期穩定成長，而不是只靠長時間加班累積經驗。
+
+#### 9. 公司縮編、你想跳但不捨，面試時要怎麼講？
+
+> 我會說目前公司有不少值得感謝的地方，例如讓我接觸複雜系統，也累積很多實務經驗。但我也開始希望看看市場上更大的挑戰與成長空間，所以才開始了解新的機會。這樣講的重點是保留感謝與專業，不把轉職原因講成情緒或抱怨。
+
+#### 10. 如果獵頭問期望薪資，你怎麼講？
+
+> 我目前主要看職責、系統規模與成長空間。如果職缺內容符合 Senior Backend 或 Platform Backend 的期待，我希望落在 10 萬以上的區間。不過我也會綜合考量工作內容、團隊成熟度、技術挑戰與長期發展，而不是只看單一數字。
+
+#### 11. 如果 HR 壓薪，你怎麼守底線？
+
+> 我理解每家公司都有預算考量，也願意理解職缺的實際責任。不過我也會根據目前工作內容、市場行情與職缺要求評估。如果差距過大，我可能會優先考慮更符合預期的機會。語氣上我會保持禮貌，但不把自己的價值講低。
+
+#### 12. 如果對方說你沒完整主導經驗，你怎麼回？
+
+> 如果是完整平台層級的 Owner，我確實還沒有，這點我不會誇大。不過在 Provider Integration、Wallet Flow、MQ Projection 與 Legacy Takeover 等主題上，我有從需求理解、流程分析、實作、驗證到排查的完整參與經驗。我目前正在累積更多 owner 視角與決策能力。
+
+#### 13. 如果對方問你最大的弱點，你怎麼講？
+
+> 我過去有點偏向過度準備，會希望把很多東西都搞懂才開始行動。近幾年我在調整這件事，開始透過實際交付、市場驗證與面試回饋來校準能力，而不是一直停留在準備階段。這也讓我更重視把複雜問題整理成可行的下一步。
+
+#### 14. 如果對方問你未來 2-3 年想成為什麼，你怎麼講？
+
+> 我希望往 Senior Backend / Platform Backend 發展，持續累積高交易系統、Provider Integration、MQ、Consistency、Production Troubleshooting 與 System Design 經驗。短期目標是成為能獨立負責核心 production flow 的工程師；中長期希望具備更完整的 owner 能力，可以判斷風險、設計邊界並協助團隊穩定交付。
+
+#### 15. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
+
+> 我會問和系統、ownership、incident、legacy 與 senior 定義相關的問題。例如：目前團隊最核心的 production flow 是什麼？這個職位預期負責到什麼程度？新人加入後最難理解的系統是哪一塊？最近一年最大的線上事故是什麼？團隊如何定義 Senior Backend？這些問題比只問福利更能判斷職缺是否適合我。
+
+這區優先練的 5 題是：
+
+```text
+為什麼換工作 -> 為什麼不是資深還投資深 -> 沒完整主導經驗怎麼回答 -> 最大弱點 -> 未來 2-3 年規劃
+```
+
 ## 第十一層：Provider Integration
 
 這是 Nick 的主戰場專題，不是新必刷題庫。比起空泛微服務題，payment / game provider integration 更能展現你對 timeout、callback、query、routing、settlement、reconciliation 與 trust boundary 的判斷；但第一輪仍要先證明 Java Backend 基本盤穩。
