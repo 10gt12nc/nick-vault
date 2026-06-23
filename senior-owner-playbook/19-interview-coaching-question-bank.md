@@ -1651,6 +1651,85 @@ A 到 N 的所有題目，本質上都在反覆確認五件事：
 最後講價值：我學到什麼 / 讓系統變得更可維護
 ```
 
+## 面試準備閱讀順序
+
+不要一開始就 QA，也不要從 A-N 題庫硬背。正確順序是先讀出主線，再用題目驗證主線。
+
+完整層級：
+
+1. `定位`：先讀本檔「最終敘事總結」，確認自己是 `Senior Java Backend / Platform Backend`，主軸是 `Provider Integration`、`Wallet / Transaction Flow`、`MQ / Projection`、`Legacy Takeover`。
+2. `履歷自傳`：先讀 `08-application-autobiography-zh.md` A 版，再讀 `05-resume-master-zh.md` 的 claim / evidence / 不可誇大邊界，最後視需要讀 `17-salary-negotiation.md` 的談薪與換工作說法。
+3. `三個 Story`：依 `Legacy Takeover / Troubleshooting` -> `Wallet / Bet-Settle / MQ` -> `Provider Integration` 讀；先讀 30 秒版，再讀 90 秒版，最後看 3 分鐘版，不必逐字硬背。
+4. `12 條 Flow`：分批讀，不是一口氣全部背完。先讀主力 7 條，再補到 10 條抗追問，最後依 JD 補到 12 條。
+5. `30 題核心`：先看題目，自己想 20 秒，再看 90 秒草稿；每題都問自己能不能接回三個 Story 或 12 條 Flow。
+6. `A-N 題庫`：只作補洞，不作從頭刷題。先讀定位、production flow、consistency、incident / legacy、troubleshooting、provider，再補 MQ / DB / Java / Redis / System Design / HR / Security / Architecture。
+7. `QA`：至少讀完 `08 A 版`、本檔最終敘事總結、三個 Story 的 30 秒與 90 秒、主力 7 條 Flow 摘要、30 題核心標題後，再開始一次 3-5 題 QA。
+8. `市場驗證`：投履歷、面試、收集追問；之後只依 JD 或真實面試回饋補洞。
+
+12 條 Flow 閱讀順序：
+
+```text
+主力 7 條：
+1. payment-order-provider-request
+2. payment-provider-callback
+3. third-party-transfer-in-out
+4. slot-bet-settle-rollback
+5. transfer-wallet-money-in-out
+6. proxy-user-data-report-projection
+7. daily-game-data-summary
+
+補到 10 條，抗 Senior / Platform 追問：
+8. bet-record-sharding-schema-route
+9. db-partition-job-report-routing
+10. gameserver-phased-rollout
+
+補到 12 條，遊戲 / slot / provider / math JD 加分：
+11. fixed-multi-bet-currency-math-core-compatibility
+12. rtp-reel-strip-simulation-validation
+```
+
+每條 Flow 不逐字背 `flow.md`，只抓六件事：
+
+```text
+業務目的
+正常資料流
+Source of Truth
+Failure window
+出事怎麼查
+不可誇大邊界
+```
+
+最小版閱讀順序：
+
+```text
+1. 本檔最終敘事總結
+2. 08 A 版
+3. 三個 Story 30 秒版
+4. 三個 Story 90 秒版
+5. 主力 7 條 Flow 每條抓六點
+6. 30 題核心題標題
+7. 開始 QA
+```
+
+完整版閱讀順序：
+
+```text
+1. 本檔最終敘事總結
+2. 08 A 版
+3. 05 claim / boundary
+4. 17 談薪與換工作
+5. 三個 Story：30 秒
+6. 三個 Story：90 秒
+7. 三個 Story：3 分鐘
+8. 主力 7 條 Flow
+9. 補到 10 條 Flow
+10. 視 JD 補到 12 條 Flow
+11. 30 題核心
+12. A-N 題庫補洞
+13. QA，一次 3-5 題
+14. 投遞 / 面試 / 回填追問
+```
+
 ## 三個專案故事稿
 
 這三個故事是目前比繼續補題更高價值的口說材料。使用原則：
