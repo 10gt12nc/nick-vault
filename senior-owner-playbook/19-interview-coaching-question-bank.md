@@ -1422,6 +1422,76 @@ RBAC -> JWT 風險 -> Provider Callback 驗簽 -> API Replay Attack -> PII 與 L
 11. provider 故障怎麼切流？
 12. 線上事故你怎麼定優先順序？
 
+### 第十三層 90 秒草稿：Real Troubleshooting 講法
+
+這段是看稿練習草稿。Nick 這區的強項不是背 Kafka API、Redis 指令或 JVM 參數，而是線上出事時知道怎麼縮小範圍、證明根因、保護服務與補資料。回答重點是 `先確認影響範圍 -> 找瓶頸在哪一層 -> 用證據證明根因 -> 決定修復方式`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我不會一開始就猜原因或直接看程式碼，而是先確認影響範圍，是全部服務、單一 API、單一 provider、單一商戶，還是單一玩家。接著定位瓶頸在 API、DB、Redis、MQ、Provider、Batch 或 Projection。再用 log、trace、metrics、DB 狀態、MQ lag、provider response 與 transaction record 證明。最後決定先止血、切流、重跑、補償，還是修 code。
+
+#### 1. API latency 突然變高怎麼查？
+
+> 我不會直接看程式碼，而是先確認影響範圍，是全部 API、某個服務、某支 API，還是特定商戶 / provider。接著看 response time、error rate、DB、Redis、MQ、外部 provider 是否異常。如果只有某支 API，我會從 trace、log、SQL、外部呼叫耗時與 thread pool 開始定位。重點是先找瓶頸在哪一層，不是直接猜原因。
+
+#### 2. CPU 100% 怎麼查？
+
+> 我會先確認是哪個 process，再找高 CPU thread，透過 thread dump 對照 stack trace。接著判斷是無限迴圈、頻繁 retry、鎖競爭、大量序列化、加密簽章、資料轉換還是計算邏輯造成。CPU 問題通常不是 CPU 本身，而是某段程式或某種流量把成本放大，所以要回到當時流量與近期變更一起看。
+
+#### 3. JVM memory 持續上升怎麼查？
+
+> 我會先看 GC 是否正常回收，以及是 heap、metaspace、direct memory 還是 container memory 壓力。如果記憶體持續上升，就抓 heap dump 看哪些物件或集合持續累積。常見原因包括 cache 沒清、collection 持續累積、ThreadLocal 未釋放、大量 byte array 或物件引用沒斷。重點是找出哪種物件在長大，而不是只調大 memory。
+
+#### 4. MQ backlog 怎麼查？
+
+> 我會先確認是 producer 突然暴增，還是 consumer 變慢。接著看 consumer error rate、DB query、provider 呼叫、thread pool、單筆處理耗時與 retry 數量。MQ backlog 本身通常是結果，代表下游處理速度跟不上。處理時要先判斷能不能水平擴容、是否有 poison message、是否需要 DLQ 或暫停部分低優先級事件。
+
+#### 5. Redis QPS 爆掉怎麼查？
+
+> 我會先確認是整體流量暴增、hot key、cache breakdown，還是大量 cache miss 回源造成。接著看哪些 key 或哪些 API 存取最多、TTL 是否同時失效、最近是否有活動或版本變更。Redis QPS 爆掉不一定是 Redis 問題，也可能是 cache 設計或流量保護失效。修復方向可能是拆 key、加本地 cache、打散 TTL、限流或回源保護。
+
+#### 6. DB connection pool 滿了怎麼查？
+
+> 我會先確認是不是慢 SQL 導致 connection 長時間占用，再看 transaction 是否太長、connection 是否沒釋放、外部呼叫是否包在 transaction 裡，或流量突然變大。Connection pool 滿通常是結果，不是根因。處理上要先找出哪些 query 或 request 佔用時間最長，再考慮優化 SQL、縮短 transaction、加 timeout 或做流量保護。
+
+#### 7. 某個商戶或 provider 一直 timeout 怎麼查？
+
+> 我會先確認是單一 provider、單一商戶、單一 API，還是所有外部呼叫都 timeout。接著看 provider response time、network、timeout 分布、retry 數量、callback 是否正常回來、query 是否能查到結果。如果只是一個 provider，我會確認對方狀態、近期 schema 或規則變更，以及我方 routing / config 是否異常。Timeout 要先視為 unknown，不直接當成功或失敗。
+
+#### 8. callback 大量失敗怎麼查？
+
+> 我會先分類失敗原因，例如驗簽失敗、payload 格式錯誤、欄位不一致、狀態轉移不允許、idempotency 命中、DB 錯誤或系統 exception。接著看失敗比例、影響 provider / merchant 範圍與是否從某個時間點開始。這樣才能判斷是 provider 端變更、我方驗簽規則錯、資料 mapping 問題，還是 production bug。
+
+#### 9. 某玩家說少錢怎麼查？
+
+> 我第一步一定是找交易真相，而不是先相信畫面、報表或玩家說法。我會查 wallet transaction、order、bet record、settle record、provider record 與相關 log。目標先回答「錢到底有沒有動過」，再回答差異來自扣款、派彩、rollback、projection 延遲，還是前端顯示問題。這類問題最重要的是 source of truth。
+
+#### 10. 某筆訂單卡 Pending 怎麼查？
+
+> 我會先拿 order id 查目前狀態、最後更新時間與最後一筆 log。接著往後追 provider request 是否送出、callback 是否進來、query 是否有結果、MQ / batch / projection 是否有處理。Pending 通常代表某個狀態沒有成功收斂，所以要先定位卡在哪個節點，再決定 query fallback、補償、人工處理或修復程式。
+
+#### 11. provider 故障怎麼切流？
+
+> 我會先確認哪些流量可以切，哪些不能切。查詢、報表或非交易流量通常比較容易切換或降級；payment、wallet、transfer、bet-settle 這類交易流量要先確認狀態是否收斂、pending 訂單怎麼處理、callback 是否還會回來，以及新舊 provider mapping 是否清楚。切流的重點不是速度，而是不製造更多不一致。
+
+#### 12. 線上事故你怎麼定優先順序？
+
+> 我通常先看影響範圍與業務風險。資金錯誤高於報表延遲，交易中斷高於後台查詢異常，資料持續錯誤高於一次性錯誤。接著看是否有暫時繞過方案，例如切流、降級、暫停低優先級 job、關閉功能或人工處理。順序通常是先止血與保護資料，再恢復服務，最後做根因分析與預防。
+
+這區優先練的 5 題是：
+
+```text
+玩家說少錢怎麼查 -> 訂單卡 Pending 怎麼查 -> Provider Timeout 怎麼查 -> Callback 大量失敗怎麼查 -> 線上事故怎麼排優先順序
+```
+
+常見追問可以收斂成三條查詢路徑：
+
+```text
+訂單卡住：Order -> Log -> Provider -> MQ -> Batch
+玩家少錢：Wallet Transaction -> Bet Record -> Settle Record -> Provider Record -> Log
+報表錯：Source of Truth -> MQ -> Projection -> Batch
+```
+
 ## 第十四層：Architecture Evolution
 
 這是 Senior 到 Staff / Architect 過渡區，放第二輪加分，不列第一輪主戰場。不是背流行詞，而是判斷什麼該做、什麼不要做、第一階段先改哪裡。
