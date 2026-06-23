@@ -27,7 +27,7 @@
 
 本題庫目前設計成 `14 個主題 / 診斷池`。前 10 層涵蓋 Senior Backend 通用面試，後 4 層補 Nick 背景最相關的 provider integration、security、troubleshooting 與 architecture evolution。
 
-重點不是把題庫從 150 題擴成 300 題。這份是診斷池，不是全刷清單；實際準備時先用「30 題核心題」收斂，只有遇到 JD、面試追問或回答卡住時才抽對應主題補強。
+重點不是把題庫從 150 題擴成 300 題。這份是診斷池，不是全刷清單；實際準備時先用「30 題核心題」收斂，且 30 題要避免太偏 Payment / Provider。Provider Integration 是 Nick 的主戰場專題，Architecture Evolution 是第二輪加分題，Real Troubleshooting 併入 Incident / Legacy Takeover 練習，不作第一輪獨立支線。
 
 14 個主題：
 
@@ -43,23 +43,33 @@
 | Observability / Incident / Legacy Takeover | 15 | 檢查排查、log、trace、交接文件與系統救援能力 |
 | System Design / Owner Decision | 15 | 檢查從 flow 抽象成架構、選型與 trade-off |
 | Behavior / HR / 談薪 / 團隊協作 | 15 | 檢查資深定位、薪資、弱點、合作與主管溝通 |
-| Provider Integration | 15 | Nick 主戰場：三方 provider、callback、query、routing、reconciliation |
+| Provider Integration | 15 | Nick 主戰場專題：三方 provider、callback、query、routing、reconciliation；不是新必刷題庫 |
 | Security / Auth | 15 | 檢查 API trust boundary、JWT / RBAC、callback 驗簽、PII / log 安全 |
-| Real Troubleshooting | 12 | 練真正線上問題排查：latency、CPU、MQ backlog、DB pool、pending order |
-| Architecture Evolution | 12 | 練 Senior -> Staff 過渡題：拆服務、migration、技術債、CQRS / sharding 取捨 |
+| Real Troubleshooting | 12 | 第八層延伸：練真正線上問題排查，不獨立插隊第一輪 |
+| Architecture Evolution | 12 | 第二輪加分：Senior -> Staff 過渡題，不列第一輪主戰場 |
 
-建議輪次：
+建議練習順序：
 
-1. `第 1 輪：5 題診斷主力市場定位`
-   先看 Nick 是否能講出 Senior 主軸、payment、wallet、MQ 與 ownership 邊界。
-2. `第 2 輪：10-15 題 production deep dive`
-   從第 1 輪卡住的地方追，例如 payment callback、transaction、MQ retry。
-3. `第 3 輪：10-15 題基本功補洞`
-   只補被追問打穿的 Spring transaction、SQL index、Redis、MQ、JVM。
-4. `第 4 輪：5-10 題 system design / owner decision`
-   練從 production flow 抽象成設計，不背空泛架構詞。
-5. `第 5 輪：5-10 題 HR / 談薪 / 弱點`
-   練不是完整 owner 但有資深潛力、為什麼 10 萬以上、如何保守但有力。
+1. `30 題核心`
+   先把 1 分鐘版與 3 分鐘版練到能講。
+2. `履歷與定位`
+   確認市場主軸、claim boundary、ownership 口徑。
+3. `Production Flow`
+   把會做的事講成 Senior case。
+4. `Transaction / Consistency`
+   補高交易系統的失敗邊界與冪等。
+5. `Incident / Troubleshooting`
+   合併第八層與第十三層，練線上問題怎麼查。
+6. `DB / MQ / Spring 基本功`
+   只補 30 題或面試追問打穿的部分。
+7. `Provider Integration 專題`
+   當差異化武器，不取代基本盤。
+8. `System Design`
+   從已完成 flows 抽象，不背空泛架構詞。
+9. `談薪 / HR`
+   練市場定位、弱點、薪資與離職原因。
+10. `Architecture Evolution`
+    第二輪加分，面 Lead / Staff / Architect 候選再加深。
 
 判斷規則：
 
@@ -96,11 +106,11 @@
 14. rollback、refund、compensation、reconciliation 差在哪？
 15. 你會怎麼設計一個 retry-safe 的 provider callback handler？
 
-### D. Provider Integration
+### D. Backend 基本盤 + Provider 差異化
 
-16. Provider 接進來時流程是什麼？
-17. Provider callback 不可信怎麼辦？
-18. Provider callback 和 query 結果不同怎麼辦？
+16. slow query 出現時，你會怎麼排查？
+17. consumer lag 變高，你會怎麼排查？
+18. Spring transaction 什麼情境會失效？
 19. 多 provider 共用介面怎麼設計？Adapter Pattern 怎麼落地？
 20. provider settlement 和平台 settlement 不一致怎麼辦？
 
@@ -120,7 +130,7 @@
 29. 如果對方問你最大的弱點，你怎麼講？
 30. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
 
-優先練這五區：履歷與定位、Production Flow、Transaction / Consistency、Incident / Legacy Takeover、Behavior / 談薪。Java / SQL / Redis / MQ / Security / Architecture 題只有在這五區被追問打穿、JD 明確要求，或 Nick 主動想補時才深入。
+優先練這五區：履歷與定位、Production Flow、Transaction / Consistency、Incident / Troubleshooting、Behavior / 談薪。Java / SQL / Redis / MQ / Security / Architecture 題只有在這五區被追問打穿、JD 明確要求，或 Nick 主動想補時才深入。
 
 ## 評分方式
 
@@ -358,7 +368,7 @@ AI 回覆格式：
 
 ## 第十一層：Provider Integration
 
-這是 Nick 的主戰場。比起空泛微服務題，payment / game provider integration 更能展現你對 timeout、callback、query、routing、settlement、reconciliation 與 trust boundary 的判斷。
+這是 Nick 的主戰場專題，不是新必刷題庫。比起空泛微服務題，payment / game provider integration 更能展現你對 timeout、callback、query、routing、settlement、reconciliation 與 trust boundary 的判斷；但第一輪仍要先證明 Java Backend 基本盤穩。
 
 1. Provider 接進來時，從 request、callback、query 到 reconciliation 的完整流程是什麼？
 2. Provider callback 不可信時，你會做哪些 trust boundary 檢查？
@@ -396,9 +406,9 @@ AI 回覆格式：
 14. 什麼資料不能進 log？
 15. PII 怎麼處理？正式履歷或面試講內部資料時要注意什麼？
 
-## 第十三層：Real Troubleshooting
+## 第十三層：Real Troubleshooting（第八層延伸）
 
-這層貼近實務工作。回答重點不是背工具，而是能說出先看什麼、怎麼縮小範圍、如何保護線上、怎麼補資料。
+這層併入第八層一起練，不獨立插隊第一輪。回答重點不是背工具，而是能說出先看什麼、怎麼縮小範圍、如何保護線上、怎麼補資料。
 
 1. API latency 突然變高怎麼查？
 2. CPU 100% 怎麼查？
@@ -415,7 +425,7 @@ AI 回覆格式：
 
 ## 第十四層：Architecture Evolution
 
-這是 Senior 到 Staff / Architect 過渡區。不是背流行詞，而是判斷什麼該做、什麼不要做、第一階段先改哪裡。
+這是 Senior 到 Staff / Architect 過渡區，放第二輪加分，不列第一輪主戰場。不是背流行詞，而是判斷什麼該做、什麼不要做、第一階段先改哪裡。
 
 1. Monolith 什麼時候該拆？
 2. 為什麼不要亂拆微服務？
