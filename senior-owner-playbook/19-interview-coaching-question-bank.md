@@ -1049,6 +1049,80 @@ Spring Transaction 失效 -> Self Invocation -> Thread Pool -> OOM -> CPU 100%
 14. 如果 PM 要快上線，但你看到 consistency 風險，你怎麼溝通？
 15. 如果重新設計現有系統，你第一階段只改哪裡，為什麼？
 
+### 第九層 90 秒草稿：System Design / Owner Decision 講法
+
+這段是看稿練習草稿。這區最容易答太滿，Nick 目前不能把自己包裝成完整架構師、從零設計大型平台的人，或完整 Wallet Ledger Owner。回答原則是用看過、維護過、分析過的 production flow 抽象回答，不發明 Google 級架構。核心固定看四件事：`Source of Truth 在哪 -> State Transition 怎麼走 -> Failure 怎麼收斂 -> 怎麼觀測`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先定義 Source of Truth，例如 order、wallet transaction、bet / settle record 或交易資料。接著說狀態怎麼轉，例如 pending、success、failed、rollback。然後處理 failure：timeout、duplicate callback、MQ failure、projection delay、provider mismatch。最後補觀測與 owner decision：哪些 log / dashboard / retry / compensation / reconciliation 可以讓風險被發現與收斂。
+
+#### 1. 請設計一個 provider integration 系統，包含 request、callback、query、timeout、retry、compensation。
+
+> 我會把 Provider Integration 拆成 Request、Callback、Query 三條路徑。Request 先建立內部 order，再呼叫 provider；Callback 是主要狀態更新來源，但不能直接相信，要先驗簽、驗證 order mapping 與狀態轉移；Query 是 fallback，用在 timeout 或狀態不確定時收斂結果。Timeout 我會視為 Unknown State，不直接當成功或失敗。整體核心是 Order State Machine、Idempotency、Retry、Compensation 與完整 audit log。
+
+#### 2. 請設計一個 wallet / bet-settle / rollback 系統，說明 source of truth 與 transaction boundary。
+
+> 我會先定義 Wallet Transaction Record 或交易紀錄作為 Source of Truth。Bet 階段驗證玩家狀態與餘額，扣款並建立 bet record；Settle 階段依遊戲結果派彩；Rollback 則依原 transaction id 做反向或取消操作。DB Transaction 可以保證單系統內的一致性，但跨 provider、MQ 或 projection 時，需要靠 idempotency、補償與對帳收斂。最重要的是避免重複 settle、重複 rollback 或 wallet 和 bet record 不一致。
+
+#### 3. 請設計一個 MQ / batch / projection 系統，支援重跑、補資料、DLQ 與 observability。
+
+> 我會把 Transaction System 和 Projection 分開，交易資料是 Source of Truth，Projection 只是查詢模型。交易完成後送 event 到 MQ，Projection Service 消費後更新報表。每個 event 需要唯一識別，consumer 要 idempotent，失敗時進 retry 或 DLQ。Batch 或 replay 要能依時間或 event id 補資料。觀測上要看 lag、error rate、DLQ、projection delay 與重跑結果。
+
+#### 4. 請設計一個 slot math / RTP validation flow，說明 result contract 與 simulation validation。
+
+> 我不會把自己定位成 Math Owner，但如果設計驗證流程，我會把 Math Module 與 Runtime 分開。Math Module 負責輸出穩定的 result contract，例如盤面、獎項、倍數與必要 metadata；Runtime 依 contract 執行遊戲流程與資料落地。RTP 驗證則透過大量 simulation 檢查結果分布是否符合預期。重點是 contract 穩定、可驗證、可回溯，而不是讓 Runtime 混入過多數學細節。
+
+#### 5. 同步 API 和非同步 event 你怎麼選？
+
+> 如果業務需要立即結果或立即一致性，例如支付建單、查詢餘額、交易狀態確認，我會偏向同步 API。如果是報表、通知、audit log、projection 更新或後續非核心流程，我傾向非同步 event。核心考量不是技術喜好，而是使用者或業務是否需要當下知道結果，以及失敗時能不能接受 eventual consistency。
+
+#### 6. 什麼時候拆服務？什麼時候不要拆？
+
+> 我不會因為技術潮流就拆服務。通常會看業務邊界是否清楚、部署節奏是否不同、團隊是否能獨立維護、資料 ownership 是否能切開，以及擴展需求是否真的存在。如果系統高度耦合、團隊規模不大、資料一致性要求高，我反而會傾向先維持 monolith 或 modular monolith，把 flow 和邊界整理清楚再談拆分。
+
+#### 7. 什麼時候用 DB transaction？什麼時候接受 eventual consistency？
+
+> 資金、訂單狀態、wallet transaction 這類核心交易，我會優先用 DB transaction 或明確的狀態機保證一致性。報表、通知、projection、audit log 這類可以延遲的資料，可以接受 eventual consistency。重點是先確認業務風險和 source of truth，而不是所有資料都追求強一致，也不是所有流程都丟 MQ。
+
+#### 8. 什麼時候用 cache？什麼時候寧可打 DB？
+
+> 讀多寫少、允許短暫不一致的資料適合 cache，例如 provider config、白名單、商戶設定或部分查詢結果。交易真相、wallet transaction、order state 這類資料應該以 DB 或交易紀錄為主。Cache 可以加速，但不能取代 Source of Truth。如果 cache 掛掉或不一致，系統要能安全回源或降級。
+
+#### 9. 什麼時候 retry？什麼時候人工補償？
+
+> 暫時性錯誤適合 retry，例如網路抖動、provider timeout、MQ publish 短暫失敗。資料錯誤、狀態不允許、簽章錯誤或業務規則衝突，retry 通常沒有意義，應該進 DLQ、異常清單或人工補償。關鍵是判斷錯誤是否可能自行恢復，並避免 retry 造成重複副作用。
+
+#### 10. 你怎麼設計 reconciliation？
+
+> 我會先定義要比對的資料來源，例如內部 order、wallet transaction、provider record 或 bet / settle record，並確認哪邊是 Source of Truth。接著定期比對金額、狀態、transaction id、完成時間等欄位，產生差異清單。Reconciliation 本身不是直接修資料，而是找出不一致，再依規則決定自動修復、補償或人工確認。
+
+#### 11. 你怎麼設計 callback query fallback？
+
+> Callback 是主要狀態更新路徑，但 timeout、callback 遺失或 callback 不可信時，需要 query fallback 收斂狀態。Request timeout 後我會把訂單保留在 unknown 或 pending 狀態，再透過 query 或後續 callback 更新終態。如果 callback 和 query 結果不同，會回到 provider transaction id、internal order id、狀態機與 audit log 交叉驗證，避免只相信單一來源。
+
+#### 12. 你怎麼設計可灰度、可 rollback 的 rollout？
+
+> 我會透過 feature flag、白名單商戶、指定 provider、指定幣別或部分流量逐步放量。Rollback 要能快速切回舊路徑、舊 provider 或關閉新功能。上線前要確認 log、dashboard、告警與回退操作都準備好。比起只追求快速上線，我更在意出問題時能不能快速縮小影響範圍。
+
+#### 13. 你怎麼設計 system owner 的 dashboard？
+
+> 我會優先看業務健康度，而不是只看 CPU。像 payment / provider flow，我會看訂單成功率、provider timeout rate、callback failure、unknown order 數量、MQ lag、projection delay、DLQ、異常訂單數量與人工補單數量。System Owner Dashboard 的目標是讓風險早點浮出來，而不是等使用者回報才知道。
+
+#### 14. 如果 PM 要快上線，但你看到 consistency 風險，你怎麼溝通？
+
+> 我不會只說不行，而是把風險具體化。例如目前缺少 idempotency、retry、reconciliation 或 rollback path，上線後可能造成重複入帳、訂單卡 unknown、報表不一致或需要大量人工補單。我會提出最小必要保護和可接受的 scope cut，讓 PM 做知情決策，而不是把技術風險藏在工程端。
+
+#### 15. 如果重新設計現有系統，你第一階段只改哪裡，為什麼？
+
+> 我通常不會第一階段就說全部重寫。對 legacy system，我會先改善觀測能力與資料流可見度，例如補 log、補 dashboard、補 flow 文件、整理 source of truth 與狀態轉移。因為如果系統看不清楚，重寫也可能只是重新製造問題。先讓系統可觀測、可排查，再決定是否拆服務、改架構或重構核心流程。
+
+這區優先練的 5 題是：
+
+```text
+Provider Integration Design -> Wallet / Bet-Settle / Rollback -> MQ / Projection -> Reconciliation -> 重設計現有系統先改什麼
+```
+
 ## 第十層：Behavior / HR / 談薪 / 團隊協作
 
 這一層確認能不能被 Senior 職缺接受，不只技術。
