@@ -25,6 +25,8 @@
 
 ## 題庫規模與使用輪次
 
+狀態：`v1.0 定稿`。接下來不要再編題目、加題或重排題庫；只有遇到實際 JD、面試回饋或題目明顯錯誤時才做最小修正。
+
 本題庫目前設計成 `14 個主題 / 診斷池`。前 10 層涵蓋 Senior Backend 通用面試，後 4 層補 Nick 背景最相關的 provider integration、security、troubleshooting 與 architecture evolution。
 
 重點不是把題庫從 150 題擴成 300 題。這份是診斷池，不是全刷清單；實際準備時先用「30 題核心題」收斂，且 30 題要避免太偏 Payment / Provider。Provider Integration 是 Nick 的主戰場專題，Architecture Evolution 是第二輪加分題，Real Troubleshooting 併入 Incident / Legacy Takeover 練習，不作第一輪獨立支線。
@@ -73,6 +75,7 @@
 
 判斷規則：
 
+- 題庫 v1.0 完成後，最高 ROI 不是繼續整理題目，而是開始做 `30 題核心答案草稿`、`30 題錄音自講`、`最強 3 個 project story 3 分鐘版`，並找機會投遞、面試驗證。
 - 第 1 輪若卡住，不往下刷題，先教學、畫圖、代碼演示或打磨回答。
 - 第 1 輪若穩，才進入第 2 輪 deep dive。
 - 基本功題只補被 production case 打穿的部分，不變成泛用八股題海。
