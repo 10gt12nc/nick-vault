@@ -1331,6 +1331,80 @@ Provider Integration Design -> Wallet / Bet-Settle / Rollback -> MQ / Projection
 14. 什麼資料不能進 log？
 15. PII 怎麼處理？正式履歷或面試講內部資料時要注意什麼？
 
+### 第十二層 90 秒草稿：Security / Auth 講法
+
+這段是看稿練習草稿。Nick 的定位不是 IAM Engineer、Security Engineer 或 OAuth Expert，而是做過 RBAC、JWT、Provider Callback 驗簽、白名單控制面與 Auth Flow 維護的 Backend Engineer。回答到 `Backend 實務 + 風險意識` 就夠，不需要講成資安架構師。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先說要保護什麼，例如身份、權限、交易狀態、callback payload、token 或個資。接著說攻擊者可能怎麼搞，例如 token 竊取、偽造 callback、重放請求、暴力破解或 log 洩漏。最後說怎麼降低風險，例如驗簽、TTL、rate limit、RBAC、hash、masking、idempotency 與最小揭露。
+
+#### 1. JWT 是什麼？適合解決什麼問題？
+
+> JWT 是一種 self-contained token，登入後可以攜帶使用者身份、權限或其他 claims，讓後端在驗證 token 後知道請求者是誰。它適合分散式系統、多服務或 stateless API 場景，因為不一定每次都要查 session。但 JWT 一旦發出去，在過期前就可能被使用，所以 token 保護、過期時間和撤銷策略很重要。
+
+#### 2. JWT 有什麼風險？token 洩漏後怎麼辦？
+
+> JWT 最大風險是 token 洩漏。一旦被取得，在過期前攻擊者可能都能使用。因此我會控制 access token 有效期限、使用 HTTPS、避免放敏感資料，必要時搭配 refresh token、黑名單或 token version 讓 token 可以失效。如果是高風險系統，也要有異常登入或異常使用監控。
+
+#### 3. refresh token 怎麼設計？要不要 rotating refresh token？
+
+> Access Token 通常較短，Refresh Token 較長。Access Token 過期後，用 Refresh Token 換新的 Access Token。Rotating Refresh Token 可以降低被盜用風險，因為每次刷新後舊 token 就失效；如果舊 token 又被使用，就可能代表 token 被竊取。是否需要 rotating 要看安全需求、系統複雜度與使用者體驗。
+
+#### 4. RBAC 怎麼設計？
+
+> RBAC 是 Role-Based Access Control，使用者不直接綁一堆 permission，而是先綁 role，再由 role 對應 permission。這樣管理成本比較低，也比較容易維護。實務上要注意 role 不要設得太粗，否則容易過度授權；也不要太細，否則維護成本會很高。
+
+#### 5. 權限表怎麼拆？role、permission、user-role、role-permission 怎麼看？
+
+> 常見會拆成 user、role、permission、user_role、role_permission。User 與 Role 是多對多，Role 與 Permission 也是多對多。User 代表人，Role 代表職責或身份群組，Permission 代表具體操作權限。這樣可以讓權限管理比較彈性，也方便後台做授權與審計。
+
+#### 6. API 怎麼防重放攻擊？
+
+> 常見做法是 signature、timestamp、nonce 與 idempotency。Signature 確認內容沒有被竄改，timestamp 限制請求有效時間，nonce 避免同一請求被重複使用，idempotency 則確保即使請求被重送，也不會產生重複副作用。Provider Callback 就很適合用這套思路。
+
+#### 7. API 怎麼防暴力破解？
+
+> 我通常會用 rate limit、IP 限制、帳號鎖定、驗證碼、密碼錯誤次數限制與異常登入監控來降低風險。重點不是只擋一次攻擊，而是提高攻擊成本，同時避免正常使用者被大量誤傷。對登入、OTP 或敏感操作 API，這些保護尤其重要。
+
+#### 8. 密碼怎麼存？為什麼不能明文或可逆加密？
+
+> 密碼不應明文保存，也不應使用可逆加密。通常會用 bcrypt、Argon2 這類單向 hash。登入時重新計算 hash 後比對，不需要也不應該把原密碼解出來。這樣即使資料庫洩漏，攻擊者也不能直接拿到使用者原始密碼。
+
+#### 9. bcrypt 為什麼不能解密？salt / cost 大概在解決什麼？
+
+> bcrypt 是單向 hash，不是加密，所以沒有解密概念。Salt 可以讓相同密碼產生不同 hash，降低彩虹表攻擊風險；cost 則控制計算成本，讓暴力破解變慢。重點是讓攻擊者即使拿到 hash，也要付出很高成本才可能猜出密碼。
+
+#### 10. Session 和 JWT 怎麼選？
+
+> Session 比較集中管理，伺服器端可以直接讓 session 失效，適合需要強控制的系統。JWT 比較適合分散式、多服務或 stateless API，但撤銷與外洩處理會比較麻煩。選擇不是看誰比較新，而是看系統規模、失效需求、安全風險與維護成本。
+
+#### 11. SSO 流程大概怎麼走？
+
+> SSO 的核心是一次登入、多系統共用身份。使用者先登入 Identity Provider，其他系統透過 token、session 或授權流程確認身份，不需要每個系統各自登入。實務上要注意 token 有效期、登出同步、權限同步與不同系統之間的 trust boundary。
+
+#### 12. OAuth2 Authorization Code Flow 大概在做什麼？
+
+> Authorization Code Flow 的核心是把登入與授權交給 Identity Provider。使用者在 IdP 登入後，前端拿到 authorization code，再由後端用 code 換 token。這樣 access token 不需要直接暴露在前端，也比較適合 server-side application。面試時我會講流程目的，不會假裝自己是 OAuth 規格專家。
+
+#### 13. 金流 callback 為什麼一定要驗簽？
+
+> 因為 callback 來自外部系統。如果不驗簽，任何人都可能偽造請求，觸發入帳、扣款或訂單狀態更新。驗簽的目的就是確認來源可信、payload 沒被竄改，尤其是 merchant id、order id、amount、currency、timestamp 這些關鍵欄位。驗簽失敗不能更新交易狀態。
+
+#### 14. 什麼資料不能進 log？
+
+> 密碼、token、secret key、完整身份證號、信用卡資訊、完整個資、內部憑證與真實敏感交易資料都不應直接進 log。必要時要 mask 或只保留部分資訊。Log 的目的是排查問題，不是保存機密資料；如果 log 洩漏，不能讓它變成第二個資料庫洩漏事件。
+
+#### 15. PII 怎麼處理？正式履歷或面試講內部資料時要注意什麼？
+
+> PII 要遵守最小揭露原則。開發、log、文件和排查資料都只保留必要資訊。正式履歷與面試也一樣，不會透露商戶名稱、客戶資料、真實交易資訊、內部產品代號或敏感系統細節，而是用泛化方式描述經驗，例如 payment provider、gaming platform、wallet flow 或 provider callback。
+
+這區優先練的 5 題是：
+
+```text
+RBAC -> JWT 風險 -> Provider Callback 驗簽 -> API Replay Attack -> PII 與 Log
+```
+
 ## 第十三層：Real Troubleshooting（第八層延伸）
 
 這層併入第八層一起練，不獨立插隊第一輪。回答重點不是背工具，而是能說出先看什麼、怎麼縮小範圍、如何保護線上、怎麼補資料。
