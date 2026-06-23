@@ -673,6 +673,80 @@ At-Least-Once -> Consumer Lag -> Projection vs Source of Truth -> Request Log As
 14. 如果查單 API 被 provider 或商戶高頻打，你怎麼保護 DB？
 15. 你怎麼設計 bet record sharding / routing 的查詢邊界？
 
+### 第五層 90 秒草稿：Database / SQL / Performance 講法
+
+這段是看稿練習草稿。Nick 的定位不是 DBA、MySQL Expert 或 Sharding Architect，而是能在高交易 Backend Flow 中處理 Bet Record、Request Log、Report Projection、Partition Table 與查詢風險的 Backend Engineer。回答重點不是資料庫理論背誦，而是 `Production Risk + 排查思路`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先看為什麼會有這個問題：資料量、查詢模式、索引、鎖、分表路由或報表 / 線上混用。接著看怎麼發現：Slow Query Log、EXPLAIN、rows、DB Metrics、Error Log、Timeout、使用者或營運回報。然後說怎麼處理：加或調整 Index、改 Query Pattern、分批、Cursor Pagination、Projection、Rate Limit、Partition / Routing、Batch Size 或重跑策略。最後補風險：Index 寫入成本、Route Miss、跨表漏查、交易主線被報表拖垮、Batch 重複或漏資料。
+
+#### 1. 怎麼判斷一個查詢需要 index？
+
+> 我通常不會一開始就直接加 Index，而是先看這支 Query 的使用頻率、資料量、執行時間與是否在高流量 API 上。如果 Slow Query 或 EXPLAIN 顯示掃描 rows 很大、沒有命中合適 Index，而且查詢條件相對固定，才會考慮新增或調整 Index。不過 Index 不是越多越好，它會增加寫入成本與維護成本，所以我會先確認 Query Pattern 與 production 風險，再決定是否加。
+
+#### 2. composite index 欄位順序怎麼決定？
+
+> Composite Index 我會先回到實際 Query Pattern，看 Where 條件、排序、範圍查詢與查詢頻率。一般會優先考慮常出現在條件裡、選擇性較高、能縮小掃描範圍的欄位，同時確認排序或覆蓋索引是否有幫助。重點不是背固定公式，而是用 EXPLAIN 驗證 Index 是否真的降低 rows 與排序成本。
+
+#### 3. `EXPLAIN` 你最先看哪幾個欄位？
+
+> 我通常先看 type、key、rows 與 Extra。type 可以判斷查詢型態是否太差，例如接近全表掃描；key 看有沒有命中預期 Index；rows 看資料庫估計要掃多少資料；Extra 則會留意 Using Filesort、Using Temporary 這類可能造成成本升高的訊號。看完後還要回到實際資料量與查詢頻率判斷，不是只看一個欄位就下結論。
+
+#### 4. 大分頁查詢為什麼危險？
+
+> Offset 很大時，資料庫通常還是要先掃過前面大量資料，再丟掉不需要的部分，所以 page 越後面成本越高。這在 Bet Record、Request Log 或後台報表查詢特別容易出問題。高流量或大資料量場景下，我會考慮 Cursor Pagination、依 ID 範圍查詢，或限制可查時間區間，避免把 DB 拖進大範圍掃描。
+
+#### 5. 大 `IN` query 有什麼風險？
+
+> IN 條件太大時，SQL 會變長，執行計畫可能變差，也可能增加記憶體與解析成本。即使有 Index，也不代表一定有效率。我會先看資料量與 EXPLAIN，如果風險高，可能改成分批查詢、暫存表或 Join，並控制每批大小，避免一次把 DB 壓力打滿。
+
+#### 6. join、subquery、分批查詢你會怎麼取捨？
+
+> 我不會固定說哪一種一定最好，主要看資料量、Index、查詢模式與線上風險。Join 在資料庫層處理通常有效率，但複雜 Join 或大表 Join 可能成本很高；Subquery 要看 optimizer 實際怎麼處理；如果資料量大或風險不確定，分批查詢有時比較可控。Production 上我會用 EXPLAIN 和實際資料量來決定。
+
+#### 7. slow query 出現時，你會怎麼排查？
+
+> 我會先確認是哪一支 SQL、從哪個 API 或 Job 來、執行時間多長、資料量多大，以及最近是否有版本或資料量變化。接著用 EXPLAIN 看是否沒命中 Index、掃描 rows 過大、Join 不合理、排序或 temporary table 成本太高。如果 SQL 本身看起來合理，再看 DB 資源、鎖等待、連線池或下游壓力。重點是先定位瓶頸，不會只靠直覺加 Index。
+
+#### 8. deadlock 發生時，你會看什麼？
+
+> 我會先拿 Deadlock Log，確認是哪幾個 Transaction、哪些 SQL、哪些資料列互相等待。Deadlock 通常不是單一 SQL 慢，而是兩邊更新順序或鎖範圍產生循環等待。處理方向可能是統一更新順序、縮小 Transaction Scope、減少不必要的查詢與更新，或調整 Lock 策略。
+
+#### 9. lock wait timeout 跟 deadlock 差在哪？
+
+> Lock Wait Timeout 是某個 Transaction 一直等不到鎖，等到超時後失敗；Deadlock 是兩個或多個 Transaction 形成循環等待，資料庫偵測後會主動中止其中一方。Deadlock 通常代表更新順序或交易設計需要檢查；Lock Wait Timeout 可能是鎖競爭太高、Transaction 太長，或某個慢操作卡住資源。
+
+#### 10. online query 和 report query 為什麼要分離？
+
+> Online Query 直接影響交易流程，例如 payment、wallet、bet-settle 這類流程，要求低延遲與穩定性。Report Query 通常資料量大、條件複雜，目標是查詢與分析。我的判斷會是交易資料作為 Source of Truth，報表盡量透過 Projection、Batch 或獨立查詢路徑處理，避免報表查詢拖垮線上交易。
+
+#### 11. 分表 / partition 解決什麼問題？不能解決什麼問題？
+
+> Partition 主要解決單表資料量過大後的查詢與維護問題，例如 Bet Record、Request Log、Transaction Log 這類高成長資料。它可以讓查詢依時間或路由條件縮小掃描範圍，也讓維護、清理或補資料更可控。但 Partition 不是萬能，如果 Query Pattern 不合理，或查詢條件沒有打到 partition key，一樣可能很慢。
+
+#### 12. 每日 / 每月分表建立 job 有哪些風險？
+
+> 這類 Job 的風險主要是建表失敗、路由規則錯誤、程式和實際資料表不同步，以及跨表查詢時漏查。尤其在日期切換或月切時，錯誤容易被放大。我會關心建表監控、失敗告警、路由規則是否集中管理、查詢範圍是否正確，以及補資料或重跑時會不會漏表。
+
+#### 13. batch insert / batch update 有哪些 transaction 與 memory 風險？
+
+> Batch 可以減少 DB round trip，提高處理效率，但 Batch 太大會讓 Transaction 變長，增加 Lock 時間、Rollback 成本與記憶體壓力。如果是 Projection 或報表類資料，我會特別注意可重跑性、唯一鍵或 Upsert 規則；如果涉及交易狀態，就要更小心 Idempotency 與重複副作用。
+
+#### 14. 如果查單 API 被 provider 或商戶高頻打，你怎麼保護 DB？
+
+> 我會先確認這個查單是否真的需要每次直接打 Source of Truth。如果可以接受短暫延遲，可能透過 Cache、Projection 或 Rate Limit 降低 DB 壓力；如果一定要查 DB，就要確認 Index、查詢條件、時間範圍與流量保護。Provider Query 或訂單查詢尤其要注意 timeout、重試放大與高頻查詢造成的 DB 壓力。
+
+#### 15. 你怎麼設計 bet record sharding / routing 的查詢邊界？
+
+> 我會先看資料成長速度、主要查詢條件與保留週期。像 Bet Record 通常會依時間，例如日或月，或依業務 routing key 做分表。寫入時要有一致的 routing rule，查詢時則依時間區間或條件決定要查哪些表。最大風險是路由錯誤、跨表漏查與查詢範圍過大，所以 routing rule、查詢邊界與補資料機制都要清楚。
+
+這區優先練的 5 題是：
+
+```text
+Slow Query 怎麼查 -> Online Query vs Report Query -> Partition 解決什麼 -> 查單 API 高頻 -> Bet Record Sharding / Routing
+```
+
 ## 第六層：Redis / Cache / Distributed Lock
 
 這一層確認你不會把 Redis 當萬能解。
