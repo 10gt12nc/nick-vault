@@ -955,6 +955,80 @@ Spring Transaction 失效 -> Self Invocation -> Thread Pool -> OOM -> CPU 100%
 14. 如果主管要你救一個沒交接的系統，你怎麼拆第一週工作？
 15. 這類 legacy takeover 經驗你要怎麼講才不像抱怨前人？
 
+### 第八層 90 秒草稿：Observability / Incident / Legacy Takeover 講法
+
+這段是看稿練習草稿。Nick 這區的差異化不是自稱最懂 Payment、Kafka 或 Redis，而是能在 Legacy Takeover、Production Troubleshooting 與 Flow Reconstruction 裡，把問題定位、證明、整理成下一個人能接手的系統理解。回答重點是 `怎麼發現 -> 怎麼定位 -> 怎麼證明 -> 怎麼避免下次再發生`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先說問題怎麼被發現，例如告警、使用者回報、營運回報或報表異常。接著定位卡在哪一層：API、DB、Provider、MQ、Batch、Projection 或人工流程。再用資料證明，例如 OrderId、TraceId、Log、DB 狀態、MQ 消費結果與 Git History。最後補預防方式，例如補 log、補監控、補重跑能力、補交接文件或把 Flow 邊界整理清楚。
+
+#### 1. 一條重要 production flow 上線前，你會加哪些 log？
+
+> 我會優先記錄 Flow 的關鍵節點，而不是每一行程式。通常會包含 request entry、外部 Provider request / response、重要狀態轉換、MQ publish、consumer 處理結果、exception 與最終結果。重點是讓我可以透過 log 還原整條 flow，知道資料卡在哪一段，而不是單純堆很多看不懂的 log。
+
+#### 2. trace id / request id / order id / provider transaction id 怎麼串？
+
+> TraceId 用來串整條請求鏈路，RequestId 代表一次 API 請求，OrderId 是內部業務識別，Provider Transaction Id 是第三方世界的識別。我希望重要 log 裡能同時看到這些欄位，這樣從玩家回報、營運查單，到 Provider 對帳或 callback 排查，都能串回同一筆業務。
+
+#### 3. callback failure log 要記什麼？
+
+> 我至少會記錄 callback payload、order id、provider transaction id、驗簽結果、目前訂單狀態、錯誤訊息、stack trace、處理耗時與回應結果。重點不是只記 exception，而是讓後續能重建當時發生什麼事，判斷是資料錯誤、簽章錯誤、狀態不允許，還是系統處理失敗。
+
+#### 4. batch job result 要記什麼？
+
+> 我會記錄 job 開始時間、結束時間、處理資料範圍、處理筆數、成功數、失敗數、錯誤原因與執行耗時。如果是 Projection 或補資料類 Job，還要記最後處理位置、是否可重跑，以及重跑時如何避免重複副作用。這樣失敗時才知道該補哪一段。
+
+#### 5. Kafka lag / MQ backlog 要怎麼告警？
+
+> 我不會只看 lag 數字，而是看業務影響。通常會監控 lag / backlog 數量、consumer error rate、處理延遲、DLQ 數量與 projection 落後時間。如果 lag 持續上升，或超過業務可接受的同步延遲，就應該告警。因為報表延遲和交易卡住的嚴重度不一樣，要先分清楚影響層級。
+
+#### 6. 如果線上發生訂單卡住，你第一步查什麼？
+
+> 我第一步不會直接看程式碼，而是先拿 OrderId 查目前訂單狀態、最後更新時間與最近 log。接著判斷 flow 卡在哪個節點：Provider request、callback、query、MQ、batch、projection 還是人工流程。先定位卡點，再往下查原因，避免一開始就迷失在整個 codebase 裡。
+
+#### 7. 如果玩家說錢不見了，你會怎麼查？
+
+> 我會先確認交易真相，也就是 wallet transaction、order 或 bet / settle record。接著比對玩家餘額、扣款紀錄、派彩紀錄、provider 回傳、callback / query log 與相關 trace。目標是先回答「錢到底有沒有動過」，再回答「為什麼玩家看到的結果不一致」。這類問題不能先相信報表或畫面，要先回到 Source of Truth。
+
+#### 8. 如果報表和實際交易不一致，你會怎麼查？
+
+> 我會先確認哪邊是 Source of Truth。通常交易資料才是真相，報表只是 Projection。接著檢查 MQ 是否延遲、consumer 是否失敗、batch 是否漏跑、projection 是否落後或查詢範圍是否錯誤。如果交易資料正確而報表錯，我會優先修復 projection 或重跑資料，而不是改交易資料。
+
+#### 9. legacy system 沒文件，你會從哪裡開始反推？
+
+> 我通常會從 API entry 開始找，先確認 Controller、Service、主要 DB table、MQ topic、batch job 與外部 provider 邊界。接著透過 log、資料流、git history 和實際資料狀態，把整條 production flow 串起來。我不會一開始平均讀所有 class，而是先建立系統地圖和關鍵 flow。
+
+#### 10. 從 API entry、DB table、log、MQ topic、batch job 反推 flow 的順序是什麼？
+
+> 我通常從入口開始追。先看 API entry 和 request 參數，再看主要 DB table 的狀態如何改變，接著用 log 對應每個狀態轉換。如果有 MQ，就追 event publish 與 consumer；如果有 batch 或 projection，就確認它們怎麼讀資料、更新報表或補資料。目標是建立完整資料流，而不是理解每個 class 的細節。
+
+#### 11. 你怎麼補一份交接文件，讓下一個人能維護？
+
+> 我不會只寫 API 文件，而是先寫系統地圖。內容會包含核心 flow、資料表、MQ topic、重要 batch job、source of truth、狀態轉換、常見異常、排查入口與不能誇大的邊界。好的交接文件應該讓下一個人知道出問題時從哪裡開始查，而不是只知道有哪些 endpoint。
+
+#### 12. 你怎麼區分「系統真的壞了」和「報表 projection 還沒同步」？
+
+> 我會先確認交易資料是否正確。如果 order、wallet transaction 或 bet / settle record 正確，只是報表沒更新，那比較像 projection 延遲或失敗。如果交易本身缺資料、狀態錯誤或金額不一致，才是核心交易系統問題。先分清楚出錯層級，才不會把報表問題誤判成交易壞掉。
+
+#### 13. incident review 你會寫哪些項目？
+
+> 我會寫事件時間線、影響範圍、發現方式、根因、處理過程、資料修復方式、使用者或業務影響，以及後續預防措施。重點不是找誰犯錯，而是讓團隊下次更快發現、更快定位、更安全修復。對我來說 incident review 也是把 production knowledge 留下來的一種方式。
+
+#### 14. 如果主管要你救一個沒交接的系統，你怎麼拆第一週工作？
+
+> 第一週我不會急著改功能。我會先盤點 service、DB、Redis、MQ、batch、外部 provider 與部署方式，建立最小系統地圖。接著挑最重要的 production flow，確認 source of truth、主要資料流、常見異常和排查入口。目標是先恢復可理解性與基本可維護性，再決定哪些地方需要補強。
+
+#### 15. 這類 legacy takeover 經驗你要怎麼講才不像抱怨前人？
+
+> 我會避免說前人沒寫文件，而是說當時系統文件相對不足，所以我花比較多時間透過 code reading、log、DB、MQ、git history 與資料流整理系統脈絡。這段經驗讓我學到如何在資訊不完整的情況下建立可靠的系統理解，也讓後續排查和交接更穩定。
+
+這區優先練的 5 題是：
+
+```text
+訂單卡住怎麼查 -> 玩家說錢不見了怎麼查 -> 報表與交易不一致 -> Legacy System 沒文件怎麼反推 -> 第一週接手沒交接系統
+```
+
 ## 第九層：System Design / Owner Decision
 
 這一層用來練 0 到 1 或架構追問，但仍要從現有 flow 抽象，不亂喊業界標準。
