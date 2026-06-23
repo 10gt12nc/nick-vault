@@ -16,6 +16,8 @@
 
 > 2026-05-28 Resume / 104 final check：`08` 的 A 版通用高交易 Senior Java Backend / Platform Backend 仍是公開主版本；B / C 只作 JD-specific 排序調整。iwin / AntPlay / UGSoft system maps 只補架構與跨 project 敘事，不新增履歷主 claim；本檔 8-10 條 production case 排序仍可支撐 104 主打 bullet。
 
+> 2026-06-23 interview story closeout：`19-interview-coaching-question-bank.md` 已完成三個 project story 口說稿，建議口說排序是 `Legacy Takeover / Troubleshooting` -> `Wallet / Bet-Settle / MQ` -> `Provider Integration`。這是「敘事開場與差異化」排序，不取代本檔 8-10 條 production flow case 的技術深挖排序。後續不要再擴題庫；優先練三個 story、四條核心 flow，並透過投遞 / 面試回饋補洞。
+
 ## 104 主打 bullet 對齊表
 
 用途：面試時不要背整份履歷。先用 30 秒定位，再依面試官追問從下表抽 1-3 條 case 講深。

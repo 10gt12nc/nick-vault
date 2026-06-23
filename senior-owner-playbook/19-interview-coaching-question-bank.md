@@ -1599,21 +1599,57 @@ Source of Truth 在哪？
 
 除非 Nick 提供實際 JD、面試回饋，或指出題目明顯錯誤，否則不要再新增新分類或擴張題庫。再補題會變成整理題庫，不是在準備面試。
 
-目前唯一值得補的不是新分類，而是三個專案故事稿：
+三個專案故事稿已完成，後續不要再用「補題庫」延伸新分類。接下來只做三件事：
 
-1. Provider Integration Story
-2. Wallet / Bet-Settle / MQ Story
-3. Legacy Takeover / Troubleshooting Story
+1. 把三個 Story 練成 `30 秒 / 90 秒 / 3 分鐘`。
+2. 把四條核心 Flow 練熟：`Payment Callback`、`Provider Integration`、`Wallet / Bet-Settle`、`MQ / Projection`。
+3. 開始市場驗證：投履歷、面試、收集追問，再依回饋補洞。
 
-每個故事只準備三種長度：
+這三個故事稿從既有 `05 / 08 / 04 / 19` 與已完成 flow / contribution consolidation 萃取，不新增誇大 claim，不包裝成完整平台 owner。
+
+## 最終敘事總結
+
+這份題庫整理後，Nick 的準備重點不是背 Java 題庫，而是建立 Senior Backend 的敘事能力。最終市場定位應該是：
 
 ```text
-30 秒版
-90 秒版
-3 分鐘版
+Senior Java Backend / Platform Backend
+具 Provider Integration、Wallet / Transaction Flow、MQ / Projection 與 Legacy Takeover 經驗。
 ```
 
-這三個故事稿應該從既有 `05 / 08 / 04 / 19` 與已完成 flow / contribution consolidation 萃取，不新增誇大 claim，不包裝成完整平台 owner。
+一句話版：
+
+> 我主要處理高交易遊戲平台與第三方 Provider 整合，工作內容涵蓋 Payment、Wallet、MQ、Batch、Projection 與既有系統接手，並逐步累積 Production Flow 分析、Troubleshooting 與 Owner 思維。
+
+三個核心 claim：
+
+1. `Provider Integration`：payment provider、game provider、callback、query、timeout、signature、reconciliation。核心能力是理解跨系統交易流程與狀態收斂。
+2. `Wallet / Bet-Settle / MQ`：wallet、bet、settle、rollback、request log、bet record、projection。核心能力是理解 transaction consistency、idempotency 與 source of truth。
+3. `Legacy Takeover`：code reading、flow reconstruction、incident、troubleshooting、knowledge transfer。核心能力是在資訊不足的情況下重建系統理解，這是目前最有差異化的地方。
+
+三個故事的主題要刻意切開：
+
+1. `Provider Story` 主打 `Trust Boundary`：callback、timeout、query、signature、reconciliation。不要只講「我串過 API」，要講「我怎麼讓狀態收斂」。
+2. `Wallet Story` 主打 `Money Flow`：wallet、bet-settle、rollback、projection、source of truth。不要只講「API 扣款」，要講「狀態一致性」。
+3. `Legacy Story` 主打 `System Reconstruction`：log、DB、Redis、MQ、git history。不要講「沒文件很痛苦」，要講「我怎麼建立系統地圖」。
+
+A 到 N 的所有題目，本質上都在反覆確認五件事：
+
+1. `Source of Truth 在哪`：Wallet、Order、Transaction。
+2. `State 怎麼轉`：Pending、Success、Failed、Rollback。
+3. `Failure 怎麼收斂`：timeout、callback、retry、compensation、reconciliation。
+4. `出事怎麼查`：order id、transaction id、MQ、log、projection。
+5. `怎麼讓下一個人維護`：文件、dashboard、observability、system map。
+
+面試官真正想確認的不是 Nick 會不會背 Kafka、Redis 或 isolation level，而是能不能接手複雜系統、理解 production flow、排查事故、理解一致性風險，並獨立負責一塊系統。
+
+未來回答都用同一個順序收斂：
+
+```text
+先講結論：我在解決什麼問題
+再講 Flow：資料怎麼流
+再講風險：哪裡最容易出事
+最後講價值：我學到什麼 / 讓系統變得更可維護
+```
 
 ## 三個專案故事稿
 
