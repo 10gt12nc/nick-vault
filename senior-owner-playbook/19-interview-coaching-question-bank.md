@@ -1615,6 +1615,99 @@ Source of Truth 在哪？
 
 這三個故事稿應該從既有 `05 / 08 / 04 / 19` 與已完成 flow / contribution consolidation 萃取，不新增誇大 claim，不包裝成完整平台 owner。
 
+## 三個專案故事稿
+
+這三個故事是目前比繼續補題更高價值的口說材料。使用原則：
+
+- 先用 `30 秒版` 回答「你做過什麼」。
+- 面試官有興趣時，展開成 `90 秒版`。
+- 技術面深入追問時，再講 `3 分鐘版`。
+- 全程避免說成完整平台 owner、完整架構師、完整 wallet ledger owner、完整 MQ / Kafka platform owner。
+
+### Story 1：Provider Integration Story
+
+#### 30 秒版
+
+> 我過去幾年的後端經驗，很大一部分集中在第三方 provider integration，包含 payment provider 與遊戲 provider。實務上我處理的不只是呼叫 API，而是 request、callback、query、timeout、簽章驗證、訂單 mapping 與狀態收斂。這讓我比較熟悉外部系統不可靠時，內部 order state、idempotency 與 audit log 要怎麼設計與排查。
+
+#### 90 秒版
+
+> Provider Integration 是我目前最能代表自己後端經驗的一條線。以 payment 或遊戲 provider 來說，我通常會先看 internal order 或 transaction record 怎麼建立，再看 provider request 怎麼組參數、簽章與送出。Callback 進來時不能直接相信外部結果，要驗簽、驗 merchant / order / amount / currency / provider transaction id，也要確認目前狀態允不允許轉移。
+>
+> Timeout 我會視為 unknown state，因為沒收到結果不代表 provider 沒有成功執行，所以後續要靠 callback、query 或 reconciliation 收斂。多 provider 場景下，我也會把 provider 特殊格式包在 adapter 裡，上層盡量看 internal request / response。這段經驗讓我在面對第三方系統時，不只看 API 能不能通，而是會先想 order、state、trust boundary、failure window 與 source of truth。
+
+#### 3 分鐘版
+
+> 我可以用 Provider Integration 這條線代表我過去幾年的核心經驗。這裡包含兩類場景：一類是 payment provider，例如 request、callback、query、withdraw 這些金流相關流程；另一類是遊戲 provider 或 connector，例如 login、balance、transfer in / out、bet-settle、callback 與 bet record sync。
+>
+> 我在理解這類系統時，第一步不是直接看某個 API，而是先找 internal order 或 transaction record。因為只要牽涉外部 provider，就一定會遇到 timeout、callback 重送、provider transaction id 和 internal order id mapping、狀態不一致、簽章驗證與查單 fallback。Request 階段要確認內部訂單建立、provider request 欄位、簽章與金額單位；callback 階段要確認來源可信、欄位一致、狀態轉移合法，還要避免重複 callback 造成重複副作用；query 則通常用來處理 timeout 或狀態不確定的訂單。
+>
+> 多 provider 的部分，我會用 adapter 的方式理解：不同 provider 的欄位、錯誤碼、金額單位、狀態碼與簽章規則都不同，但系統內部需要盡量轉成一致的 internal model。這樣上層業務不用到處知道 provider 細節。
+>
+> 這段經驗最重要的不是「我串過 API」，而是我開始用 production flow 的角度看第三方整合：order 在哪裡、狀態怎麼轉、callback 能不能信、timeout 怎麼收斂、source of truth 是什麼、出問題時 audit log 能不能還原。我的邊界是，我不會把自己說成完整 payment architect 或整個 provider gateway owner；比較準確的說法是，我是有實際 provider integration、維護與排查經驗的 Java Backend Engineer。
+
+不要這樣講：
+
+```text
+我主導整個金流平台 / 我是完整 provider gateway owner / 我設計完整 reconciliation platform
+```
+
+### Story 2：Wallet / Bet-Settle / MQ Story
+
+#### 30 秒版
+
+> 我另一條主力經驗是遊戲 wallet、bet-settle、rollback 與 MQ / projection flow。這類流程的重點不是單一 API，而是玩家餘額、bet record、settle record、provider transaction、request log 與報表 projection 之間的一致性。我會特別關心 source of truth、transaction boundary、重複 settle / rollback、MQ duplicate message 與 projection 延遲。
+
+#### 90 秒版
+
+> Wallet / Bet-Settle / MQ 這條線，是我用來支撐 Senior Backend 面試的主力 case。以遊戲下注結算來說，bet 階段要驗玩家狀態與餘額，建立 bet record，必要時處理 wallet 扣款；settle 階段依結果派彩；rollback 則要依原 transaction id 或 bet id 處理反向操作。這裡最怕的是重複 settle、重複 rollback，或 wallet transaction 和 bet record 不一致。
+>
+> MQ / projection 的部分，我會把交易資料和報表資料分開看。交易資料才是 source of truth，request log、bet record MQ、report projection 或 admin query 通常是 audit / 查詢 / 報表用途。MQ 可能重送，consumer 要 idempotent；projection 可能延遲或失敗，但不應反過來影響交易主線。這段經驗讓我能把 transaction consistency、idempotency、async audit 與 report projection 串成同一條 production flow 來講。
+
+#### 3 分鐘版
+
+> Wallet / Bet-Settle / MQ 是我另一個很重要的故事。它不是單純的遊戲 API，而是一條 money-like correctness flow。玩家下注時，系統要檢查玩家狀態、下注條件與餘額，建立 bet record，並依錢包模式處理扣款或 provider wallet mutation。遊戲結果產生後進入 settle flow，依結果寫入派彩、更新狀態與相關紀錄。如果中間有 rollback 或 refund，就要回到原始 transaction / bet id，確認是否已經 settle、是否已 rollback、是否允許狀態轉移。
+>
+> 這類 flow 的風險在於資料常常分散在幾層：wallet transaction、bet record、settle record、provider transaction、request log、MQ event、projection / report。Senior 面試時不能只說「API 會扣錢和派彩」，而要說清楚哪一層是 source of truth，哪一層只是 audit 或 projection。
+>
+> MQ 的部分也很關鍵。像 request log 或 bet record 透過 MQ 非同步落庫，可以降低主流程延遲，也能讓 admin query 或報表查詢和交易主線解耦。但 MQ 通常是 at-least-once，所以要假設 duplicate message 會發生；consumer 要用 order id、bet id、provider bet id 或 event id 做去重。Projection 失敗或 lag 變高時，交易不一定錯，可能只是報表尚未同步。這時要先查 source of truth，再補 projection，而不是回滾交易。
+>
+> 這段故事我會保守地講成：我參與過 gameserver / provider connector / slot game API 相關的 wallet、bet-settle、rollback、request log MQ、bet record MQ、report projection 與分表 / routing 維護。我不會說自己是完整 wallet ledger owner，也不會說自己設計完整 MQ platform；我的強項是能理解這條 production flow 的狀態、一致性風險、failure window 與排查方式。
+
+不要這樣講：
+
+```text
+我主導完整 wallet architecture / 我保證 exactly-once / 我是完整 RabbitMQ 或 Kafka platform owner
+```
+
+### Story 3：Legacy Takeover / Troubleshooting Story
+
+#### 30 秒版
+
+> 我比較有特色的一點，是接手文件不足、服務邊界複雜的既有系統時，能透過 code reading、log、DB、Redis、MQ 與 git history 重建 production flow。我的重點不是抱怨沒文件，而是把系統恢復到可理解、可排查、可交接的狀態，尤其在訂單卡住、玩家少錢、報表不一致這類問題上，先找 source of truth 再定位原因。
+
+#### 90 秒版
+
+> Legacy Takeover / Troubleshooting 是我目前最有差異化的經驗之一。接手既有系統時，我不會一開始平均讀所有 class，而是先找 API entry、主要 DB table、log、MQ topic、batch job 與外部 provider 邊界，建立最小系統地圖。之後再用 git history 和重要 diff 看這段邏輯過去為什麼修改，是處理 timeout、idempotency、資料一致性，還是 production bug。
+>
+> 排查線上問題時，我習慣先確認影響範圍，再找瓶頸在哪一層。像訂單卡 pending，我會從 order id、狀態、最後更新時間、provider callback / query、MQ、batch 一路查；玩家說少錢，我會先查 wallet transaction、bet record、settle record、provider record 和 log，先回答錢到底有沒有動過。這類經驗讓我不是只會寫功能，而是能把 production flow 重建成可維護、可追蹤、可交接的知識。
+
+#### 3 分鐘版
+
+> 我覺得自己和一般中階 backend 比較不同的地方，是我不只做新功能，也花很多時間在 legacy takeover、production troubleshooting 和 flow reconstruction。很多既有系統一開始文件不完整，服務邊界也不一定清楚。如果直接平均讀 code，很容易迷失。所以我通常會先找入口：API controller、service、主要 DB table、log 關鍵字、MQ topic、batch job、Redis key、外部 provider callback 或 query path。
+>
+> 建立第一版系統地圖後，我會再用資料流和狀態轉移去驗證。例如某筆訂單卡 pending，我會先用 order id 查目前狀態和最後更新時間，再看 provider request 是否送出、callback 是否進來、query 是否有結果、MQ 或 batch 是否有後續處理。玩家說少錢時，我不會先相信畫面或報表，而是先找 wallet transaction、bet record、settle record、provider transaction 和 log，確認錢到底有沒有動過。報表和交易不一致時，我會先分清交易資料是 source of truth，還是 projection 延遲或 consumer 失敗。
+>
+> 另外，我也會用 git history 和重要 diff 重建風險脈絡。不是只看 current code，而是看這段邏輯過去為什麼改過，是修 bug、補 idempotency、處理 provider timeout、修分表 routing，還是修資料一致性問題。這有助於避免只看現在程式碼卻誤判修改風險。
+>
+> 這段故事我面試時會避免抱怨「前人沒文件」，而是說「當時文件相對不足，所以我透過 code reading、log、DB、MQ、Redis 和 git history 重建系統理解」。我的價值是讓系統從難以理解，逐步變成可排查、可交接、可維護。這也符合我現在往 Senior Backend / Platform Backend 發展的方向：不只是完成功能，而是能理解 production flow、風險與 owner decision。
+
+不要這樣講：
+
+```text
+前人都沒寫文件 / 我一個人救完整平台 / 我完全 owner 公司所有系統
+```
+
 ## 第一輪建議題組
 
 第一輪不要從 Java 八股開始。先用這 5 題診斷主力市場定位：
