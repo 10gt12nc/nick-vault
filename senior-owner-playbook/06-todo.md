@@ -439,7 +439,7 @@ Nick 若先問「缺啥、待辦、優先順序、KB 要不要補」，AI 必須
 通用投遞包可用；沒有預設下一步；可以自由提問或彈性指定
 ```
 
-可選加強：若 Nick 想降低焦慮、確認自己是否真的能面 Senior，不要再開全 repo 深掃；改走 `Interview Coaching Track`。位置是 `senior-owner-playbook/19-interview-coaching-question-bank.md`。題庫 v1.0 已定稿，接下來不要再編題目、加題或重排題庫；目前題庫是 14 個主題的診斷池，並收斂成 30 題核心題。最高 ROI 下一步是：`30 題核心答案草稿`、`30 題錄音自講`、`最強 3 個 project story 練到能講 3 分鐘`、`找機會投遞 / 面試驗證`。30 題核心已補入 slow query、consumer lag、Spring transaction 失效，避免太偏 Payment / Provider。實務練習順序是：30 題核心 -> 履歷與定位 -> Production Flow -> Transaction / Consistency -> Incident / Troubleshooting -> DB / MQ / Spring 基本功 -> Provider Integration 專題 -> System Design -> 談薪 / HR -> Architecture Evolution。Provider Integration 是主戰場專題但不取代基本盤；Real Troubleshooting 併入 Incident，不獨立插隊第一輪；Architecture Evolution 是第二輪加分。AI 每輪只問 3-5 題，依回答做評估、追問、教學、畫圖、代碼演示或口說打磨；問答不記流水帳，只把能力判斷、補強主題與可回填素材整理進 KB。
+可選加強：若 Nick 想降低焦慮、確認自己是否真的能面 Senior，不要再開全 repo 深掃；改走 `Interview Coaching Track`。位置是 `senior-owner-playbook/19-interview-coaching-question-bank.md`。題庫 v1.0 已定稿，接下來不要再編題目、加題或重排題庫；目前題庫是 14 個主題的診斷池，並收斂成 30 題核心題。最高 ROI 下一步是：`30 題核心答案草稿`、`30 題錄音自講`、`最強 3 個 project story 練到能講 3 分鐘`、`四條核心 flow 白板講法`、`找機會投遞 / 面試驗證`。30 題核心已補入 slow query、consumer lag、Spring transaction 失效，避免太偏 Payment / Provider。實務練習順序是：30 題核心 -> 履歷與定位 -> Production Flow -> Transaction / Consistency -> Incident / Troubleshooting -> DB / MQ / Spring 基本功 -> Provider Integration 專題 -> System Design -> 談薪 / HR -> Architecture Evolution。Provider Integration 是主戰場專題但不取代基本盤；Real Troubleshooting 併入 Incident，不獨立插隊第一輪；Architecture Evolution 是第二輪加分。AI 每輪只問 3-5 題，依回答做評估、追問、教學、畫圖、代碼演示或口說打磨；問答不記流水帳，只把能力判斷、補強主題與可回填素材整理進 KB。
 
 原因：
 

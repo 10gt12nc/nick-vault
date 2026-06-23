@@ -27,6 +27,8 @@
 
 狀態：`v1.0 定稿`。接下來不要再編題目、加題或重排題庫；只有遇到實際 JD、面試回饋或題目明顯錯誤時才做最小修正。
 
+最終結論：Nick 目前的問題已經不是題目不夠、知識點不夠、還缺哪個技術主題；真正要解決的是能不能把做過的事講清楚、能不能講出 Senior 層級思考、能不能讓面試官相信自己有 ownership。
+
 本題庫目前設計成 `14 個主題 / 診斷池`。前 10 層涵蓋 Senior Backend 通用面試，後 4 層補 Nick 背景最相關的 provider integration、security、troubleshooting 與 architecture evolution。
 
 重點不是把題庫從 150 題擴成 300 題。這份是診斷池，不是全刷清單；實際準備時先用「30 題核心題」收斂，且 30 題要避免太偏 Payment / Provider。Provider Integration 是 Nick 的主戰場專題，Architecture Evolution 是第二輪加分題，Real Troubleshooting 併入 Incident / Legacy Takeover 練習，不作第一輪獨立支線。
@@ -134,6 +136,47 @@
 30. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
 
 優先練這五區：履歷與定位、Production Flow、Transaction / Consistency、Incident / Troubleshooting、Behavior / 談薪。Java / SQL / Redis / MQ / Security / Architecture 題只有在這五區被追問打穿、JD 明確要求，或 Nick 主動想補時才深入。
+
+## 主戰場梯隊
+
+### 第一梯隊：最重要
+
+1. 履歷與自我定位。
+2. Production Flow。
+3. Transaction / Consistency。
+4. Observability / Incident。
+5. Behavior / 談薪。
+
+### 第二梯隊：加分與基本盤補強
+
+1. MQ。
+2. Database。
+3. Spring。
+4. Provider Integration。
+
+### 第三梯隊：進階追問
+
+1. System Design。
+2. Security。
+3. Architecture Evolution。
+
+## 面試官真正想知道
+
+面試官真正想知道的不是 Kafka API 背多少、Redis 指令背多少、JVM 參數背多少，而是：
+
+- 有沒有能力理解 production flow。
+- 出事時能不能查。
+- 能不能分析風險。
+- 能不能獨立負責一塊系統。
+- 能不能接手沒文件的系統。
+- 能不能跟 PM、QA、商戶或 provider 溝通。
+
+## 對 Nick 最重要的 4 件事
+
+1. 三個 Project Story：例如 Payment Integration、MQ / Projection、Legacy Takeover / Incident。每個都要能講背景、問題、角色、方案、風險、結果，控制在 3-5 分鐘。
+2. 四條核心 Flow：Payment Request、Payment Callback、Wallet / Bet / Settle、MQ Projection。要能白板講 source of truth、transaction boundary、retry、idempotency、compensation。
+3. Ownership 故事：重點不是說自己是正式 Tech Lead，而是能說「雖然不是正式 owner，但我負責分析 flow、釐清問題、評估風險、推進修復與驗證結果」。
+4. 為什麼值 10 萬以上：核心不是工作很多年，而是已經能獨立理解複雜系統、處理 provider 整合、分析交易流程、排查 production 問題，並承擔部分 owner 型責任。
 
 ## 評分方式
 
