@@ -209,6 +209,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-23：已吸收外部 GPT 對 `nick-vault` 的 review 建議，補強「可投遞成果優先」與 v2 延後規則。結論：目前 `nick-vault` 維持 v1 `Job Search Vault`，不新增 `career/`、`incident/`、`decision-log/`、`industry-kb` 或 skill library；automation 只能作每週篩選器 / 提醒器，不是主線學習系統，也不自動改 KB。新增大量待辦、候選 flow、知識整理、system design、skill、automation 或新目錄前，必須先判斷是否直接提升面試勝率、履歷品質或薪資談判能力；若否，列為可選加強或暫不建議。
 - 2026-06-23：已建立 `senior-owner-playbook/22-career-industry-kb-evolution-plan.md` 草案，先記錄 Codex automation 每週 Backend / 面試 / 日語輕量週報、`nick-vault` 未來升級成職涯證據庫 / 工作復盤 / 產業 KB / skill source 的規劃、安全線與明天決策問題。此檔只是候選規劃，不代表已建立 automation、不代表新增 `career/` 目錄，也不自動把新公司工作內容寫進 KB；若後續正式啟用 automation 或新增長期目錄，需 Nick 再確認。
 - 2026-06-23：已完成第一輪 `market calibration` 投遞準備。檢查 `05 / 08 / 17 / 06` 後，結論是 `08` 的 A 版 104 欄位可直接作第一輪通用投遞稿；本輪不改正式履歷主 claim、不新增大型 KB、不重掃 flow。已在 `17-salary-negotiation.md` 補「第一輪 Market Calibration 投遞策略」，整理 5 類第一批適合投的職缺：Senior Java Backend / 高交易後端、Platform Backend / B2B 內部平台、Payment / Wallet / Provider Gateway Backend、Game Backend / Slot / Provider Backend、Hands-on Backend Tech Lead / Senior IC Plus；並同步 `08` 標明第一輪只做最小客製，投後依市場回饋補洞。
 - 2026-06-23：已完成 `nbt / personal reference boundary` 一致性檢查。重讀 `projects/usproject/nbt-overview.md`、`projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`、`00 / 09 / AGENTS` 後，未發現會把 `nbt` 誤升級成已上線 production claim 的矛盾；只補齊 `test001_RenPy` 與 `/Users/nick/Git/nick/*` personal reference 規則到 `AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`。本輪不更新 `05 / 08 / 04 / 17`，也不新增正式履歷 claim。

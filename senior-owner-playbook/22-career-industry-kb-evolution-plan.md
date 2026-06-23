@@ -1,6 +1,6 @@
 # Career / Industry KB Evolution Plan
 
-狀態：草案，待 Nick 調整。
+狀態：草案，待 Nick 調整；目前結論是先不升級 v2。
 
 本檔先記錄兩個想法：
 
@@ -11,17 +11,40 @@
 
 ## 一句話結論
 
-可以做，但要守住三條線：
+可以做，但要守住四條線：
 
 1. 自動化只推少量材料，不製造資訊焦慮。
 2. Vault 可以升級，但不要變成每日流水帳。
 3. 新公司工作內容只能抽象化、去識別化、證據分層，不放公司機密。
+4. 在拿到下一份工作前，`nick-vault` 維持 v1 `Job Search Vault`；v2 結構只保留為到職後候選，不現在開工。
+
+目前優先順序：
+
+1. `nick-vault` 收口，不再大改結構。
+2. 三個故事熟悉。
+3. 12 條 flow 熟悉。
+4. 30 題核心面試題。
+5. 開始投遞，取得市場回饋。
+
+任何新建議都要先問：
+
+- 是否直接提升面試勝率？
+- 是否直接提升履歷品質？
+- 是否直接提升薪資談判能力？
+
+若否，預設列為可選加強或暫不建議，不得自動升級為必做事項。
 
 ## Part A：自動化推送規劃
 
 ### 目標
 
 自動化的目標不是讓 AI 每週產大量文件，而是讓 Nick 週期性收到「少量、可讀、可行動」的材料。
+
+更精準地說，automation 是：
+
+```text
+每週篩選器 / 提醒器，不是主線學習系統。
+```
 
 合格的推送應該能回答：
 
@@ -58,6 +81,21 @@
 - 5-10 個日語工作句。
 - 1 個本週建議行動。
 - 1 個明確「本週不做」。
+
+消化規則：
+
+- 每週最多吸收 1-2 個主題。
+- 沒讀完不用補，不累積債務。
+- 不把未讀項目滾成下一週 backlog。
+- 不自動改 KB，除非 Nick 明確要求「這點記 KB」。
+
+建議輸出三分法：
+
+```text
+本週必看：最多 3 個
+可選補充：最多 5 個
+暫不建議：避免分心
+```
 
 ### 推送內容模組
 
@@ -165,6 +203,12 @@
 
 ```text
 Senior Java Backend / Platform Backend 求職、履歷、自傳、production flow、面試 evidence package。
+```
+
+換句話說，現在它是：
+
+```text
+Job Search Vault
 ```
 
 它的價值是：
@@ -284,6 +328,32 @@ Skill 化條件：
 - 還沒穩定的個人想法。
 - 只用過一次的 prompt。
 - 含公司內部流程或敏感細節的方法。
+- 只是因為 prompt 看起來可重用，但沒有高品質 evidence 或判斷框架。
+
+長期更有價值的不是 1000 個 skill，而是少數高品質 framework：
+
+- Flow Analysis Framework
+- Incident Analysis Framework
+- Provider Integration Framework
+- Resume Claim Framework
+- System Design Framework
+
+候選 skill 只有當它已經能抽象成 framework、且 input / output / safety boundary 清楚時才整理。
+
+### v1 / v2 時間線
+
+| 時間點 | Vault 目標 | 建議 |
+| --- | --- | --- |
+| 現在到拿到下一份工作 | 求職 Vault | 維持現狀，收口、投遞、面試、市場驗證 |
+| 到職後 3-6 個月 | Incident Library 候選 | 只有累積新公司去識別化 incident / 排查 evidence 後才考慮 |
+| 到職後 6-12 個月 | Decision Library / Ownership Evidence 候選 | 只有有實際 technical decision / ownership case 後才考慮 |
+| 到職後 1-2 年 | Career / Industry KB 候選 | 累積足夠高品質案例後再升級 |
+
+結論：
+
+```text
+下一家公司不是先升級 KB，而是先累積新的 evidence。
+```
 
 ## Part C：新公司資料安全線
 
@@ -339,6 +409,15 @@ career/
 
 但 `career/` 不要現在建立。只有當 Nick 到新公司後，真的開始累積抽象化工作復盤與產業 KB，再決定是否新增。
 
+目前明確不建立：
+
+- `career/`
+- `incident/`
+- `decision-log/`
+- `architecture/`
+- `industry-kb/`
+- `skill-library/`
+
 如果新增 `career/`，它的責任應該是：
 
 - `work-retrospectives/`：去識別化工作復盤，不是每日流水帳。
@@ -376,6 +455,15 @@ career/
 只推送在 Codex thread，不自動寫 KB。
 等新公司或實際工作復盤需求出現，再新增 career/。
 第一個 skill source 候選先放 Git History Debugging / Risk Reconstruction。
+```
+
+若只看目前求職階段，更保守的建議答案是：
+
+```text
+先不建立 automation。
+先不新增 career/。
+先不新增 skill library。
+先把三個故事、12 條 flow、30 題核心題和投遞節奏跑起來。
 ```
 
 ## Part F：最小下一步

@@ -12,6 +12,7 @@
 - 每次只完成一條 flow。
 - 每次任務開始前，AI 必須先判斷 `輕量問答 / 快速狀態 / 中量維護 / 重度深掃`。只有 Step / flow / contribution consolidation / 履歷 claim / Completeness Audit 才需要自動重讀 KB、該 project 既有文件與相關 code 最新狀態；一般問答和收斂狀態的下一步不全量掃。
 - KB 優化採觸發式維護：只有文件造成誤判、重複讀取、重複踩坑、交接失敗、履歷 / flow claim 風險，或 Nick 明確要求時才改。不要因為「還能更完整」就主動全面重構；若無觸發條件，應回到投遞、讀 flow、面試練習或當下任務。
+- 優先產出可投遞成果：新增大量待辦、候選 flow、知識整理、system design、skill、automation 或新目錄前，先判斷是否直接提升面試勝率、履歷品質或薪資談判能力；若否，列為可選加強或暫不建議，不得升級為必做。`nick-vault` 目前維持 v1 `Job Search Vault`，在拿到下一份工作前不新增 `career/`、`incident/`、`decision-log/`、`industry-kb` 或 skill library。
 - 每次掃公司 / 來源 code repo 前，AI 必須先 `git fetch --all --prune` 或用等效方式確認 remote refs 最新，並記錄 local HEAD、remote HEAD、是否 ahead / behind；不得自動 `pull`、merge、checkout、rebase 或改公司 repo 工作樹。
 - 每次重讀後，AI 必須自己檢查舊 Step / 舊 flow 文件是否符合目前 KB；若不符合，要主動建議重整或直接補 evidence，不能等 Nick 追問。
 - 不確定就標示「已確認 / 推測 / 待確認」。
