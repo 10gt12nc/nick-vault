@@ -237,6 +237,70 @@ AI 回覆格式：
 9. 如果面試官問「你現在職稱不是資深，為什麼投資深？」你怎麼回答？
 10. 如果面試官問「你主導過什麼？」你怎麼保守但有力地回答？
 
+### 第一層 90 秒草稿：定位主線
+
+> 2026-06-23 補充：這段是「看稿練習草稿」，不是新的標準答案，也不新增履歷 claim。正式投遞仍以 `08-application-autobiography-zh.md` 的 A 版為主；面試回答只用來維持定位一致：`Java Backend -> Provider Integration -> Production Flow -> Legacy Takeover -> Owner-like production thinking`。不要把 `Owner-like thinking` 說成正式 Tech Lead、Architect 或完整系統 owner。
+
+1. 主軸一句話
+
+   ```text
+   我目前主要定位是 Java Backend Engineer，過去幾年工作內容集中在遊戲平台、第三方 provider integration 與高交易 production flow，包含 payment provider、遊戲 provider、wallet / bet-settle、MQ、batch 與 report projection。我比較擅長接手既有系統，透過 code reading、log、DB、MQ 與 git history 理解資料流與狀態轉換，分析線上風險並協助把流程整理到可維護、可追問的狀態；所以目前希望往 Senior Java Backend / Platform Backend 發展。
+   ```
+
+2. Ownership 口徑
+
+   ```text
+   我目前不是正式 Tech Lead，也不是完整系統 owner，所以我不會把自己包裝成完整平台負責人。不過在幾個專案裡，我做的事情不只是單點功能實作，而是需要先理解整條 flow、釐清需求、分析資料流與狀態轉換、評估修改風險，再協助驗證結果。很多時候我會透過 code reading、log、DB、MQ 與 git history 還原系統行為；所以比較準確的說法是，我已經開始用 owner-like 的角度處理 production flow，但不誇大成正式 owner title。
+   ```
+
+3. 三個最強 project-level claim
+
+   ```text
+   我目前最有代表性的經驗會收斂成三塊。第一是第三方 provider integration，包含 payment provider 與遊戲 provider 的 request、callback、query、withdraw 或 transfer 類流程。第二是 wallet / bet-settle / MQ / projection 相關資料流，重點是交易狀態、source of truth、非同步投影與補償邊界。第三是 legacy takeover / system reconstruction，在缺乏完整文件時，透過 code reading、log、DB、MQ 與 git history 重建 production flow。這三塊支撐我投 Senior Backend / Platform Backend，而不是靠單一工具或職稱。
+   ```
+
+4. 履歷 / 面試 / 不可誇大邊界
+
+   ```text
+   我會把能被追問到底、且有本人確認、commit、flow evidence 或 project-level consolidation 支撐的內容放履歷，例如 payment provider integration、遊戲 provider / wallet flow、MQ / projection、legacy system reconstruction。面試時可以補更多脈絡，例如 callback 重送、timeout unknown、compensation、slot math contract 或 system map。但沒有完整拍板、完整架構 owner 或完整平台責任的部分，我不會寫成主導，例如完整 wallet architecture、完整 reconciliation platform、完整 Kafka platform 或完整 DevOps / SRE owner。
+   ```
+
+5. Payment 能講與不能講
+
+   ```text
+   Payment 我可以講的是第三方金流 provider / 商戶對接，包含 request、callback、query、withdraw、merchant order id、signature、response parsing、timeout unknown 與 order consistency 類問題。不能講的是完整 ledger、完整 accounting、完整 reconciliation owner 或完整金流平台 owner。如果被問到 reconciliation，我會說我有接觸相關風險與流程，也理解查單、callback evidence 與人工補償邊界，但我沒有擔任完整 reconciliation owner。
+   ```
+
+6. game_job / MQ / projection 能講與不能講
+
+   ```text
+   MQ / projection 我可以講的是 request log、bet record、Kafka / RabbitMQ consumer、Quartz job、report projection、batch summary、重跑與補資料。回答時我會把重點放在資料如何進 MQ、如何被消費、如何更新 projection，以及資料不一致時怎麼排查 source of truth。不能講的是完整 Kafka cluster owner、完整 MQ platform owner、exactly-once 保證或完整 BI platform owner；我會把它定位成參與 job / event processing 與報表 projection 維護。
+   ```
+
+7. AntPlay slot / math 差異化
+
+   ```text
+   Slot math 不是我的主要職責，所以我不會把自己定位成完整 Slot Math Engineer。但我有參與 slot math core / 多個 math module 的維護與驗證，也接觸過 fixedMultiBet、RTP / reel strip、buy free、jackpot / symbol 與 feature result contract。這讓我在處理遊戲平台時，不只理解 API、wallet、bet-settle 與資料流，也能理解部分遊戲結果產生與驗證機制。它是我的 domain 差異化，不是取代 Java Backend 主線。
+   ```
+
+8. 內部產品名處理
+
+   ```text
+   正式履歷、104、LinkedIn 或給獵頭的版本，我不會直接堆內部產品名或 repo 名，而會改成泛稱，例如遊戲平台 / gameserver、Slot 遊戲平台、provider connector / 後台控制面平台、第三方遊戲 provider。KB 裡可以保留 iwin、AntPlay、UGSoft 等名稱方便 evidence 回查；真正對外時，除非確認是公開品牌且沒有保密風險，否則用泛稱會比較安全。
+   ```
+
+9. 職稱不是資深，為什麼投資深
+
+   ```text
+   我知道自己目前職稱不一定是正式 Senior，也沒有正式帶團隊的 title。不過近幾年的工作內容已經不只是單純功能開發，而是開始接觸 provider integration、交易流程、MQ / batch、既有系統接手與 production troubleshooting。我希望透過市場驗證，確認自己在 production flow 理解、風險判斷、跨系統資料流與 owner-like 思考上，是否已經符合 Senior Java Backend / Platform Backend 的要求。
+   ```
+
+10. 主導過什麼
+
+    ```text
+    如果是整個平台層級的主導，我目前不會說自己有完整 owner 經驗。但在幾個專案裡，我有負責或參與從需求理解、流程分析、實作、驗證到上線支援的完整交付，例如 provider integration、callback flow、MQ projection、wallet / bet-settle 相關維護，以及既有系統的 flow reconstruction。比較準確的說法是，我能 owner 一條 production flow 的理解、風險分析與交付驗證，但不把它擴張成完整平台 owner。
+    ```
+
 ## 第二層：Production Flow 表達
 
 這一層確認「會開發」能不能轉成「講得清楚」。
