@@ -49,6 +49,46 @@ Senior Java Backend / Platform Backend
 
 三版不是同等強度。A 是主身份，B 是 domain 差異化，C 是工作方法與平台視角。談薪時也以 A 的 provider integration、遊戲 wallet / bet-settle、MQ / batch、partition / high-traffic data 與 legacy takeover 作主軸；payment 只作 provider 對接證據，不單獨拿來抬成完整金流 owner。B / C 只在對方職務吃得到時用來拉高匹配度。
 
+## 第一輪 Market Calibration 投遞策略
+
+> 2026-06-23 更新：目前 `08` 的 A 版 104 欄位已可作第一輪通用投遞稿。第一輪目標不是裸辭、不是一次拿 dream offer，也不是再把履歷整理到完美；目標是用低壓投遞與面試取得市場回饋，確認外部是否願意用 Senior Java Backend / Platform Backend 價格看待 Nick。
+
+第一輪原則：
+
+- 保留目前工作作安全基地，不因焦慮裸辭。
+- 直接使用 `08` 的 A 版通用履歷 / 自傳 / 自我推薦；正式外投前把內部產品 / repo / provider 名稱替換成泛稱。
+- 不再為第一輪重掃 flow 或重寫履歷；除非 JD 明確需要或發現履歷風險，只做最小客製。
+- 第一輪先投 `6-10` 個職缺或分兩週投完，每類至少 `1-2` 個，觀察履歷開啟率、面試邀約、追問主題與薪資落點。
+- 面試後再依回饋補洞：若被技術打穿，補對應 production case / 基本功；若沒面試，修履歷定位與職缺選擇；若薪資壓低，檢查談薪錨點與職務匹配。
+
+第一批適合投的 `3-5` 類：
+
+| 類型 | 目標 | 為什麼適合 | 使用版本 | 第一輪判斷點 |
+| --- | --- | --- | --- | --- |
+| Senior Java Backend / 高交易後端 | 測主市場定位 | 吃 Java / Spring Boot、provider integration、payment / wallet、MQ / batch、DB / Redis consistency | A 版 | 能否拿到 Senior 面試；是否追問 transaction、MQ、Redis、SQL、idempotency |
+| Platform Backend / B2B 內部平台 | 測 legacy takeover 與系統整理價值 | 吃既有系統接手、cross-repo reconstruction、MQ / batch、營運後台、可維護性 | A 版 + C 角度 | 對方是否重視 system reconstruction、文件 / runbook、owner decision |
+| Payment / Wallet / Provider Gateway Backend | 測高價值 domain | 吃第三方 provider、callback / query / withdraw、transfer wallet、bet-settle、timeout unknown、compensation | A 版 | 是否願意把 provider / wallet / bet-settle 當高交易經驗定價 |
+| Game Backend / Slot / Provider Backend | 測領域差異化 | 吃遊戲 provider、slot runtime、bet / settle / rollback、slot job、math module | B 版客製 | 對方是否需要遊戲 domain；是否追問 RTP / wallet / provider boundary |
+| Hands-on Backend Tech Lead / Senior IC Plus | 測上限，不當保底 | 吃 code review、legacy takeover、AI-assisted workflow、technical coordination，但不能誇大正式帶 3-8 人 | A 版 + C 角度 | 面試官是否接受「hands-on lead candidate」定位；薪資上限是否明顯高於 IC |
+
+第一輪暫不優先：
+
+- 純 CRUD / 低交易內部系統，且薪資上限低於 `100,000`。
+- 純前端、純 DevOps / SRE、純 K8s infra owner。
+- 明確要求正式管理多人多年、完整架構師 title 或完整 0 到 1 平台 owner 的職缺。
+- 只看 LeetCode / 演算法、幾乎不吃 production case 的職缺，除非 Nick 想練手感。
+
+第一輪回饋紀錄只需保留決策訊號，不做流水帳：
+
+```text
+公司 / 職缺類型：
+是否有面試：
+面試官追問：
+薪資區間 / HR 口徑：
+卡點：
+下一步只補一件事：
+```
+
 ## 市場錨點
 
 2026-05-20 快照，已依補讀舊 104 PDF 後的 legacy takeover / 兩套平台恢復可維護 claim 重新校正：

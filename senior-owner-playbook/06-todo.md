@@ -195,6 +195,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-23：已完成第一輪 `market calibration` 投遞準備。檢查 `05 / 08 / 17 / 06` 後，結論是 `08` 的 A 版 104 欄位可直接作第一輪通用投遞稿；本輪不改正式履歷主 claim、不新增大型 KB、不重掃 flow。已在 `17-salary-negotiation.md` 補「第一輪 Market Calibration 投遞策略」，整理 5 類第一批適合投的職缺：Senior Java Backend / 高交易後端、Platform Backend / B2B 內部平台、Payment / Wallet / Provider Gateway Backend、Game Backend / Slot / Provider Backend、Hands-on Backend Tech Lead / Senior IC Plus；並同步 `08` 標明第一輪只做最小客製，投後依市場回饋補洞。
 - 2026-06-23：已完成 `nbt / personal reference boundary` 一致性檢查。重讀 `projects/usproject/nbt-overview.md`、`projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`、`00 / 09 / AGENTS` 後，未發現會把 `nbt` 誤升級成已上線 production claim 的矛盾；只補齊 `test001_RenPy` 與 `/Users/nick/Git/nick/*` personal reference 規則到 `AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`。本輪不更新 `05 / 08 / 04 / 17`，也不新增正式履歷 claim。
 - 2026-06-22：已完成 `nick-vault KB 最小防誤判補丁`。新增 `projects/usproject/nbt-overview.md`，並同步 `projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`：`nbt` 只定位為 active migration / AI-assisted reconstruction / local validation 素材，目前未標成已上線 production flow，不新增正式履歷 claim；`/Users/nick/Git/nick/*` 只作 personal reference / AI workflow / side project 方法論參考，不當公司專案 evidence。本輪不做完整 Step 1-5、不改 `05 / 08 / 04 / 17`。
 - 2026-06-22：已依 Nick 指示把原分散待辦資料夾內的星期一重掃候選清單整併回本檔，避免待辦分散；後續不再另設待辦資料夾作長期資料位置。

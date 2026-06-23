@@ -65,6 +65,8 @@
 
 > 104 欄位檢查結果：工作經驗可貼目前 7 + 4 bullets；專長可貼目前 6 bullets；自傳建議使用「一般投遞版：700-1200 字」；自我推薦可貼本節 `自我推薦`。目前沒有加入主導、完整 owner、量化改善或未證實事故修復；若投純後台 / 純 DevOps / 純管理職，再另做 JD-specific 降調。
 
+> 2026-06-23 first-round market calibration 判定：本檔 A 版可直接作第一輪 104 / LinkedIn / 獵頭投遞稿。第一輪只做最小客製，優先投 Senior Java Backend / Platform Backend / Payment-Wallet-Provider Gateway / Game Backend / Hands-on Senior IC 類職缺；不要因為 `nbt`、personal side project 或尚未上線素材新增正式履歷 claim。投遞策略與薪資錨點看 `17-salary-negotiation.md` 的「第一輪 Market Calibration 投遞策略」。
+
 > 公開版本策略：104 / LinkedIn / 獵頭公開履歷只使用一份主版本，定位為「通用高交易 Senior Java Backend / Platform Backend」。遊戲 / Slot / Provider 版與 Platform / Legacy Takeover 版只作 JD-specific 客製角度，不三份同時公開。原因是目前 A 版 evidence 最強；B 版是領域差異化，C 版是工作方法與平台視角，兩者都應支援 A，而不是取代 A。
 
 > 欄位分工補充：`工作經驗` 可以放廣，完整呈現 A + B + C 的真實經驗與證據，包含高交易 / provider / wallet / MQ / batch、缺交接文件下重建系統可維護脈絡、遊戲平台 / slot runtime / slot math、後台 control plane。`自傳 / 自我推薦` 必須收斂，主打 A 版「高交易 Java Backend / Platform Backend」定位；B / C 只作亮點補充，不要把 slot math、RTP、jackpot、RBAC、白名單等細節全部展開。救活系統與遊戲邏輯都可以進 A 版，但要用來支撐 A，不要把 A 改成純遊戲版或純 legacy takeover 版。
