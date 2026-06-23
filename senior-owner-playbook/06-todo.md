@@ -209,6 +209,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-23：已確認 Backend weekly automation 的裝置分工：公司電腦才是工作學習與 KB 維護主機，家裡電腦不跑工作學習 automation；家裡已建立過的 `backend-weekly-learning` heartbeat automation 已暫停。公司電腦之後需另外建立每週一 08:00 automation，prompt 與限制已記錄在 `22-career-industry-kb-evolution-plan.md`；預設只維護 `backend-learning-log.md` / `backend-weekly-plan.md`，可 commit，不 push，且不得改履歷 / 自傳 / 故事稿 / 正式 flow，除非 Nick 明確要求。
 - 2026-06-23：已建立 Backend weekly automation 的 KB 支撐檔：`backend-weekly-plan.md`、`backend-learning-log.md`、`backend-weekly-template.md`，並產出 Week 01 `Spring Transaction` 內容。此線只作每週輕量學習 checkpoint，不處理日文、不建立巨大 backlog、不改履歷 / 自傳 / 三個故事稿；每週最多 1 個主題、5 個排程項目、1 個 30 分鐘任務，並先做重複內容檢查。
 - 2026-06-23：已吸收外部 GPT 對 `nick-vault` 的 review 建議，補強「可投遞成果優先」與 v2 延後規則。結論：目前 `nick-vault` 維持 v1 `Job Search Vault`，不新增 `career/`、`incident/`、`decision-log/`、`industry-kb` 或 skill library；automation 只能作每週篩選器 / 提醒器，不是主線學習系統，也不自動改 KB。新增大量待辦、候選 flow、知識整理、system design、skill、automation 或新目錄前，必須先判斷是否直接提升面試勝率、履歷品質或薪資談判能力；若否，列為可選加強或暫不建議。
 - 2026-06-23：已建立 `senior-owner-playbook/22-career-industry-kb-evolution-plan.md` 草案，先記錄 Codex automation 每週 Backend / 面試 / 日語輕量週報、`nick-vault` 未來升級成職涯證據庫 / 工作復盤 / 產業 KB / skill source 的規劃、安全線與明天決策問題。此檔只是候選規劃，不代表已建立 automation、不代表新增 `career/` 目錄，也不自動把新公司工作內容寫進 KB；若後續正式啟用 automation 或新增長期目錄，需 Nick 再確認。

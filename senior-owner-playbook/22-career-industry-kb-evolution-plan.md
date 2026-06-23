@@ -10,6 +10,8 @@
   - `backend-weekly-template.md`
 - 第一版只做 Senior Backend / Platform Backend 每週輕量學習 checkpoint；日語暫不排入主學習排程。
 - automation 若正式啟用，預設只維護上述 weekly 檔案，不改 `04 / 05 / 08 / 17`、三個故事稿或 production flow 文件，除非 Nick 明確要求。
+- 2026-06-23 決策：公司電腦才是工作學習與 KB 維護主機；家裡電腦不跑工作學習 automation，避免休息時間被工作排程打斷。
+- 家裡這台已建立過 `backend-weekly-learning` heartbeat automation，但已暫停；公司電腦若要使用，需在公司電腦的 Codex app 另外建立 automation。
 
 本檔先記錄兩個想法：
 
@@ -202,6 +204,54 @@
 
 ```text
 每週一早上，推送 Backend + 面試 + 日語輕量週報；只回在 Codex thread，不自動寫入 KB。
+```
+
+### 公司電腦 automation 建議
+
+Nick 已決定：
+
+- 公司電腦是 KB 維護與工作學習主機。
+- 家裡電腦不跑工作學習 automation。
+- 公司電腦每週一 08:00 執行 backend weekly learning checkpoint。
+- 公司電腦可以維護 `backend-learning-log.md` 與 `backend-weekly-plan.md`，但仍不得碰履歷、自傳、故事稿、正式 flow 或 project 文件，除非 Nick 明確要求。
+- 預設可以 commit，但不 push；push 仍由 Nick 明確要求。
+
+公司電腦建立 automation 時可貼：
+
+```text
+每週一 08:00 執行 Nick 的 backend weekly learning checkpoint，並維護 nick-vault KB。
+
+先讀：
+- AGENTS.md
+- senior-owner-playbook/README.md
+- senior-owner-playbook/backend-weekly-template.md
+- senior-owner-playbook/backend-weekly-plan.md
+- senior-owner-playbook/backend-learning-log.md
+- senior-owner-playbook/19-interview-coaching-question-bank.md
+- senior-owner-playbook/22-career-industry-kb-evolution-plan.md
+
+依 template 產出一週一主題的 Senior Java Backend / Platform Backend 學習週報。
+
+規則：
+- 每週只聚焦 1 個主題
+- 最多 3 篇高品質來源
+- 不處理日文
+- 不建立巨大 backlog
+- 不改履歷、自傳、故事稿、正式 flow 或 project 文件，除非 Nick 明確要求
+- 所有內容標註：已做過 / 參與過 / 分析過 / 可作為目標 / 待驗證
+- 只在安全且符合 KB 規則時，更新 backend-learning-log.md 與 backend-weekly-plan.md
+- 更新後執行 Relationship Check 與 git diff --check
+- 可以 commit
+- 不 push，除非 Nick 明確要求
+
+輸出：
+- 本週摘要
+- 最多 3 篇必看來源
+- Senior 面試題
+- 30 分鐘任務
+- 更新了哪些 KB 檔案
+- 下一週主題
+- 本週不建議做什麼
 ```
 
 ## Part B：Vault 升級方向
