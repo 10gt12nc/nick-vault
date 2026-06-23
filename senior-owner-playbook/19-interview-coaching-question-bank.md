@@ -545,6 +545,114 @@ Provider Timeout -> Callback Idempotency -> Wallet 扣款成功 / Bet Record 失
 14. bet record 從 API 進 MQ 再進 admin query，中間可能有哪些資料落差？
 15. 你怎麼設計一個可補資料、可重跑、可觀測的 projection flow？
 
+### 第四層 90 秒草稿：MQ / Batch 講法
+
+> 2026-06-23 補充：這段是「看稿練習草稿」。Nick 的定位不是 Kafka expert 或 MQ platform owner，而是在高交易系統中使用 MQ 處理 request log、bet record、projection、batch flow，因此重點要放在資料一致性、重試、補資料與觀測性。不要說成完整 Kafka / RabbitMQ platform、exactly-once 或完整 replay / DLQ governance owner。
+
+通用模板：
+
+```text
+我會先說為什麼用 MQ：解耦主流程、降低同步延遲、隔離報表 / audit / 通知或支援補資料。
+接著講風險：duplicate message、ordering、consumer failure、lag、DLQ、schema 不相容、projection 落後。
+最後講補救：consumer idempotency、retry / DLQ、replay / backfill、unique key / upsert、lag alert、error log 與可重跑 runbook。
+```
+
+1. At-least-once
+
+   ```text
+   At-least-once 代表訊息至少會送達一次，但可能送達多次。它選擇的是不要輕易丟資料，但代價是 consumer 不能假設只處理一次。實務上我會把 consumer 設計成 idempotent，例如用 order id、transaction id、event id、provider bet id 或 projection key 判斷是否已處理過；如果已處理，就直接忽略或回成功。這題我會連回 request log、bet record、report projection：MQ 重送是正常風險，重點是重送不能造成重複入帳、重複報表累加或重複通知。
+   ```
+
+2. Duplicate message
+
+   ```text
+   Duplicate message 不應該只靠 MQ 保證不發生，而要由 consumer 和業務 key 防守。常見做法是用 event id、business id、order id、transaction id 或 provider bet id 查重，搭配 DB unique key、processed table、upsert 或狀態機 guard。如果是 report projection，要避免重複累加；如果是 request log，要避免同一筆 audit 重複污染查詢；如果是 money-like side effect，更要先做 idempotency 再執行副作用。我的口徑會是：可以接受重送，但不能接受重複副作用。
+   ```
+
+3. Message ordering
+
+   ```text
+   不是所有訊息都需要強排序。若事件之間有狀態依賴，例如同一筆 bet 的 bet -> settle -> rollback，或同一 wallet / order 的狀態轉移，ordering 就很重要；通常會用同一個 partition key 或同一條序列處理。相反地，request log、audit log、部分通知或可重建 projection，通常不需要全域強排序。強排序會犧牲吞吐與擴展性，所以我會先問：這個業務真的需要排序嗎？需要的是同一實體內排序，還是全系統排序？
+   ```
+
+4. Kafka partition key
+
+   ```text
+   Partition key 要依業務邊界選，不只是為了平均分散。若同一個 wallet、order、player、round 或 provider transaction 的事件需要保持相對順序，就應該用能代表該實體的 key，讓相關事件進同一 partition。若目標是 report projection，key 可能是 playerId、agentId、dataDay、currency 或 bet id，取決於更新粒度。選錯 key 可能造成同一筆業務被多個 consumer 併發更新，也可能造成 hot partition，所以要在 ordering 和 load distribution 間取捨。
+   ```
+
+5. Consumer lag 變高
+
+   ```text
+   Consumer lag 變高時，我會先分三類看：producer 突然變多、consumer 變慢、下游依賴異常。接著看 consumer processing time、error rate、retry 次數、DB slow query、外部 API timeout、thread pool、connection pool、CPU / memory 和 partition 分布。如果只是短期尖峰，可以先水平擴容或加快批次；如果是單筆處理慢，就要找 DB / provider / lock / serialization bottleneck；如果是 poison message，一直 retry 反而會拖垮整個 consumer，要進 DLQ 或隔離處理。
+   ```
+
+6. DLQ
+
+   ```text
+   DLQ 是 Dead Letter Queue，用來保存多次重試仍無法正常處理、或不適合繼續阻塞主 consumer 的訊息。資料格式錯、必填欄位缺失、mapping 找不到、業務狀態不允許、重試多次仍失敗，都可能進 DLQ。暫時性錯誤，例如 DB 短暫 timeout 或 network jitter，通常先 retry，不一定直接進 DLQ。DLQ 不是垃圾桶，還需要告警、查詢、修資料、replay / skip 流程，否則只是把問題藏起來。
+   ```
+
+7. Retry 放哪裡
+
+   ```text
+   Retry 要看錯誤類型和副作用邊界。Producer retry 適合處理 publish MQ 失敗，但要避免重複 publish 造成 duplicate；consumer retry 適合暫時性錯誤，例如 DB timeout，但 consumer 必須 idempotent；queue-level retry / DLQ 適合集中管理重試與隔離壞訊息；batch job retry 適合補資料、重建 projection 或修復時間窗資料。資料錯誤或 schema 不相容時，盲目 retry 沒意義，應該進 DLQ 或人工修正。
+   ```
+
+8. Batch job 重跑避免重複寫入
+
+   ```text
+   Batch job 一開始就要設計可重跑性，不能假設只會成功跑一次。常見方式是用 deterministic key、unique constraint、upsert、先標記批次範圍、staging table、versioned snapshot，或在可接受的 report projection 場景中先刪除指定範圍再重建。最大風險是重複寫入、漏資料或半批次成功。重跑前要清楚 source range、data day、currency、商戶 / provider 維度與 processed count；重跑後要能對 expected count / actual count。
+   ```
+
+9. Projection 跟 online transaction 分開
+
+   ```text
+   Online transaction 追求交易正確性和快速回應，projection 追求查詢效率和營運分析。交易資料、wallet、order、bet record 才是 source of truth；report projection 可以延遲、可以補、可以重建。如果把報表寫入綁死在主交易裡，報表 DB 慢、consumer 失敗或統計邏輯錯，都可能拖垮交易主流程。比較安全的做法是透過 MQ 或 batch 非同步更新 projection，但要有 lag / error / DLQ / replay 觀測，避免 projection 落後變成 silent failure。
+   ```
+
+10. Quartz job 跑到一半失敗
+
+    ```text
+    我會先問這個 job 是否可重跑，以及它有沒有 checkpoint。如果是 projection / summary / backup 類 job，通常可以根據時間窗、batch id 或 source range 重跑；如果它涉及資金、狀態轉移或外部副作用，就要先確認執行到哪個階段，是否已寫 DB、是否已發 MQ、是否已呼叫 provider，避免重跑造成重複副作用。比較好的設計是記錄 start / end / processed / failed count、batch status、checkpoint 和錯誤明細，讓重跑有邊界。
+    ```
+
+11. MQ schema 改版
+
+    ```text
+    MQ schema 改版最大的風險是 producer 和 consumer 不相容。例如新增欄位、改欄位語意、改 enum、移除欄位或金額單位改變，都可能讓舊 consumer parse 失敗或誤解資料。安全做法是向後相容，先讓 consumer 能接受新舊格式，再切 producer；新增欄位要有 default，移除欄位要分階段，語意改變要版本化。高交易資料尤其要注意 amount、currency、provider transaction id、data day 這類欄位的 contract。
+    ```
+
+12. Consumer 水平擴容與 race condition
+
+    ```text
+    Consumer 水平擴容可能提升吞吐，但也可能造成 race condition。若同一個 order、wallet、player 或 projection key 的事件被不同 consumer 同時處理，就可能發生重複更新、狀態覆蓋或累加錯誤。常見防守方式是選好 partition key，讓同一實體事件進同一 partition；或在 DB 層用 unique key、version、狀態條件 update、lock 或 idempotency table 控制。不能只說加 consumer，還要確認資料競爭邊界。
+    ```
+
+13. Request log async 化
+
+    ```text
+    Request log async 化的好處，是把 audit log 寫入從主交易同步路徑拆出來，降低線上 request latency，也避免 log DB 抖動直接拖慢 provider API。但它的風險是 MQ publish failure、consumer lag、duplicate log、routing mismatch 或 log 延遲出現。這類 request log 應定位成 audit / observability data，不是交易 source of truth；主流程不應因 audit log 失敗就 rollback，但要有 publisher failure log、DLQ / retry、queue lag alert 和補寫策略，否則事故排查時會缺 evidence。
+   ```
+
+14. Bet record 從 API 進 MQ 再進 admin query 的落差
+
+   ```text
+   Bet record 從 API 進 MQ 再到 admin query，中間可能有 MQ 延遲、consumer failure、projection 落後、batch 尚未完成、schema routing 錯誤或查詢時間窗不一致。因此玩家交易可能已成功，但後台暫時查不到或報表還沒更新。這時不能直接判斷交易失敗，要先回 source of truth 查 wallet / bet record / provider transaction，再看 MQ offset、consumer log、projection table、DLQ 和 batch status。面試時我會強調：admin query 是查詢面，不一定是交易真相。
+   ```
+
+15. 可補資料、可重跑、可觀測 projection flow
+
+   ```text
+   我會把交易資料和 projection 明確分離，交易資料是 source of truth，projection 是可重建的 derived state。event 進 MQ 時要有 event id、business key、source range 或 data day；consumer 更新 projection 時要用 upsert、unique key 或 deterministic projection key 保證 idempotency。失敗時可以 retry、進 DLQ、replay 特定時間窗或用 batch rebuild。觀測上要看 consumer lag、error rate、DLQ 數量、processed count、projection delay、replay result 和資料對帳差異，確保資料落差能被發現與補救。
+   ```
+
+優先看稿練習順序：
+
+```text
+At-Least-Once -> Consumer Lag -> Projection vs Source of Truth -> Request Log Async 化 -> 可補資料 / 可重跑 / 可觀測 Projection Flow
+```
+
 ## 第五層：Database / SQL / Performance
 
 這一層不求 DBA 等級，但要能判斷線上會不會炸。
