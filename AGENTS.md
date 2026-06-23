@@ -49,11 +49,14 @@
   - `/Users/nick/Git/iwin/iwin-workspace`
   - `/Users/nick/Git/antplay/math-workspace`
   - `/Users/nick/Git/nick/test001_unity`
+  - `/Users/nick/Git/nick/test001_RenPy`
 - 參考 workspace 角色定位：
   - `nick-vault`：Senior / Owner 學習、flow evidence、履歷 / 面試 claim gate 的個人知識庫。
   - `math-workspace`：AI-assisted math 開發 / 驗證工作台；可學 Architect / Planner / Coder / Reviewer handoff、source / KB 分離、GDD / 相似包 / result validation 交叉驗證。
   - `test001_unity`：0 到 1 遊戲產品工作台；可學 Producer / Design / Engineering / Art / QA / Release 的角色分工、gate、scope cut 與「值得導入 / 只作參考 / 不採用 / 仍需驗證」分類。
+  - `test001_RenPy`：個人 side project / Ren'Py 評估工作台；可學 AI-assisted product evaluation、scope cut、文件入口與 migration decision，不是公司專案 evidence。
   - `iwin-workspace`：大型既有系統復原 / 運維 / 跨 repo 關聯工作台；可學 source repo inventory、relation map、generated / curated 分離、唯讀 source cache、敏感資訊遮蔽與 cross-project reconstruction。
+- `/Users/nick/Git/nick/*` 是 personal reference，只能作 AI workflow、side project strategy 或工作法參考，不得當公司專案 source、production evidence 或 Senior Backend 主履歷 claim。
 - 參考其他 workspace 只能用來學防呆、索引、KB 治理、角色 gate、scope / non-goals、success criteria、evidence 分層與「不留流水帳」原則；不能直接照搬其開發型 docs / deploy / `.work` / 子 repo / GDD / RTP / Unity / k3s / JumpServer 規則到 `nick-vault`。
 - `nick-vault` 可以吸收角色 lens，但只作思考與交付檢查，不新增部門式流程：`Producer / Scope Gate` 判斷是否該做與停止點；`Flow / Technical Reviewer` 檢查 code path、資料流與 failure；`Career Claim Reviewer` 檢查履歷可寫 / 可講 / 不可誇大；`KB Curator` 檢查索引、Relationship Check 與不留流水帳。
 - `Karpathy-style` 在本 vault 的意思是：先想清楚再改、最小可行、只動必要範圍、每步有可驗證完成標準。它是所有中量 / 重度任務的行為底線，不是新增一套文件目錄或開發流程。

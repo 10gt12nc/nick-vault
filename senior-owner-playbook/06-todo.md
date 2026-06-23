@@ -195,6 +195,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-23：已完成 `nbt / personal reference boundary` 一致性檢查。重讀 `projects/usproject/nbt-overview.md`、`projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`、`00 / 09 / AGENTS` 後，未發現會把 `nbt` 誤升級成已上線 production claim 的矛盾；只補齊 `test001_RenPy` 與 `/Users/nick/Git/nick/*` personal reference 規則到 `AGENTS.md`、`00-operating-rules.md`、`09-ai-prompt-manual.md`。本輪不更新 `05 / 08 / 04 / 17`，也不新增正式履歷 claim。
 - 2026-06-22：已完成 `nick-vault KB 最小防誤判補丁`。新增 `projects/usproject/nbt-overview.md`，並同步 `projects/usproject/README.md`、`projects/source-repo-inventory.md`、`projects/README.md`、`projects/CONVENTIONS.md`：`nbt` 只定位為 active migration / AI-assisted reconstruction / local validation 素材，目前未標成已上線 production flow，不新增正式履歷 claim；`/Users/nick/Git/nick/*` 只作 personal reference / AI workflow / side project 方法論參考，不當公司專案 evidence。本輪不做完整 Step 1-5、不改 `05 / 08 / 04 / 17`。
 - 2026-06-22：已依 Nick 指示把原分散待辦資料夾內的星期一重掃候選清單整併回本檔，避免待辦分散；後續不再另設待辦資料夾作長期資料位置。
 - 2026-06-20：已建立星期一重掃候選清單，內容已保留在本檔「候選待辦：2026-06-22 星期一重掃清單」。此清單不是流水帳，也不是自動開工授權；執行前需先看 HR / 面試回覆，再決定是否進入口說練習、基本功補洞或最小 KB 回填。

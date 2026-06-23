@@ -105,7 +105,7 @@ AI 必須把它視為 `KB Readiness + Next Action Automation`，但先用上方 
 
 ### 參考 workspace 工作法吸收規則
 
-Nick 要 AI 深掃 `/Users/nick/Git/antplay/math-workspace`、`/Users/nick/Git/nick/test001_unity`、`/Users/nick/Git/iwin/iwin-workspace` 或類似 workspace 來「學做事方式」時，本輪屬於 `Reference Workspace Method Extraction`。目標是萃取可重用的治理方法，不是把外部 workspace 的目錄、GDD、部署、工具輸出或子 repo 規則整套搬進 `nick-vault`。
+Nick 要 AI 深掃 `/Users/nick/Git/antplay/math-workspace`、`/Users/nick/Git/nick/test001_unity`、`/Users/nick/Git/nick/test001_RenPy`、`/Users/nick/Git/iwin/iwin-workspace` 或類似 workspace 來「學做事方式」時，本輪屬於 `Reference Workspace Method Extraction`。目標是萃取可重用的治理方法，不是把外部 workspace 的目錄、GDD、部署、工具輸出或子 repo 規則整套搬進 `nick-vault`。`/Users/nick/Git/nick/*` 是 personal reference，不是公司專案 source、production evidence 或 Senior Backend 主履歷 claim。
 
 四個 workspace 的角色定位：
 
@@ -114,6 +114,7 @@ Nick 要 AI 深掃 `/Users/nick/Git/antplay/math-workspace`、`/Users/nick/Git/n
 | `nick-vault` | Senior / Owner 學習、flow evidence、履歷 / 面試 claim gate | Flow Track / Career Track 分離、claim boundary、Relationship Check、投遞收斂 | 不變成開發 repo、不新增工程式流水帳 |
 | `math-workspace` | AI-assisted math 開發 / 驗證工作台 | Architect / Planner / Coder / Reviewer handoff、source / KB 分離、GDD / 相似包 / result validation 交叉驗證 | `docs/projects/` module catalog、RTP / GDD / optimizer、child repo push / deploy 規則 |
 | `test001_unity` | 0 到 1 遊戲產品工作台 | Producer / Design / Engineering / Art / QA / Release 角色分工、scope cut、gate、值得導入 / 只作參考 / 不採用 / 仍需驗證分類 | Unity docs / kb 雙層目錄、素材 / 外包 / DLsite / Play Mode 專案流程 |
+| `test001_RenPy` | 個人 side project / Ren'Py 評估工作台 | AI-assisted product evaluation、scope cut、文件入口、migration decision | Ren'Py / visual novel domain-specific 規則、商業題材、個人 side project 素材、任何 production claim |
 | `iwin-workspace` | 大型既有系統復原 / 運維 / 跨 repo 關聯工作台 | source repo inventory、relation map、generated / curated 分離、唯讀 source cache、敏感資訊遮蔽、cross-project reconstruction | k3s / JumpServer / deploy tag / hostPath / `.work` 實作與內部環境規則 |
 
 可吸收到 `nick-vault` 的角色 lens 只有四個，且只是思考與交付檢查，不是新 Step：
@@ -771,7 +772,7 @@ Step 5 只判斷該 flow 是否能作履歷 / 面試素材，並輸出 claim bou
 
 可參考：approval / 防呆、secrets redaction、docs / KB 導航、role gate / handoff / reviewer gate、source / KB 分離、relation map、generated / curated 分離、scope、non-goals、success criteria、baseline / evidence 分層、不留流水帳、以 git log 保留操作歷史。
 
-不可照搬：iwin 的 deploy / JumpServer / k3s / Harbor / `.work` 規則、math 的新遊戲開發 / GDD / RTP / JAR / optimizer 規則、test001_unity 的 Unity docs / kb 雙層結構 / 素材 / 外包 / DLsite / Play Mode 流程、任何公司 workspace 的複雜開發型 docs 結構、個人路徑、內部 host、token、密碼或環境細節。
+不可照搬：iwin 的 deploy / JumpServer / k3s / Harbor / `.work` 規則、math 的新遊戲開發 / GDD / RTP / JAR / optimizer 規則、test001_unity 的 Unity docs / kb 雙層結構 / 素材 / 外包 / DLsite / Play Mode 流程、test001_RenPy 的 Ren'Py / visual novel domain-specific 規則與個人 side project 素材、任何公司 workspace 的複雜開發型 docs 結構、個人路徑、內部 host、token、密碼或環境細節。
 
 採用判斷的執行順序：
 
