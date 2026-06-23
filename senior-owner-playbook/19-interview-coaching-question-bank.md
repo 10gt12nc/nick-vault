@@ -767,6 +767,80 @@ Slow Query 怎麼查 -> Online Query vs Report Query -> Partition 解決什麼 -
 14. 如果 Redis 掛了，系統要 fail open 還是 fail close？
 15. 你怎麼把 Redis 風險講成 owner decision？
 
+### 第六層 90 秒草稿：Redis / Cache / Distributed Lock 講法
+
+這段是看稿練習草稿。Nick 的定位不是 Redis Expert、Distributed Lock Expert 或 Cache Architect，而是在 Payment、Provider、Wallet、Request Log、Projection 場景中使用 Redis，並理解快取、一致性與分散式風險的 Backend Engineer。回答重點是先問 `Source of Truth 是誰`，再談效能、降 DB 壓力與失效風險。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先說 Redis 為什麼存在：提升效能、降低 DB 壓力、降低延遲或做短期狀態控制。接著看最大風險：Cache 不一致、Hot Key、Big Key、Cache Miss、Redis 掛掉或 Lock 失效。最後一定要問 Source of Truth 是 Redis 還是 DB / 交易資料，因為交易正確性不能只靠 Cache 或 Lock 保證。
+
+#### 1. 什麼資料可以 cache？什麼資料不應只信 cache？
+
+> 我通常會快取讀多寫少、允許短時間不一致的資料，例如 Provider Config、白名單、商戶設定或部分查詢結果。交易訂單、Wallet Balance 這類高一致性資料可以快取來加速查詢，但不應只信 Cache，真正 Source of Truth 還是 DB、交易紀錄或狀態機。面試時我會把 Cache 定位成加速層，不會把它講成交易真相。
+
+#### 2. cache aside 是什麼？更新 DB 後 cache 怎麼處理？
+
+> Cache Aside 是先查 Cache，沒有命中再查 DB，查到後回填 Cache。更新時通常先更新 DB，再刪除或更新 Cache，讓下一次查詢重新回源。這種模式比較容易維護，但仍可能有短暫不一致，所以要看業務能不能接受 Eventual Consistency；如果是交易核心狀態，就不能只靠 Cache 結果做決策。
+
+#### 3. cache penetration、breakdown、avalanche 差在哪？
+
+> Penetration 是一直查不存在的資料，導致請求穿透 Cache 打到 DB；Breakdown 是熱門 Key 過期，瞬間大量請求回源；Avalanche 是大量 Key 同時失效，造成整體 DB 壓力暴增。三者本質都是 Cache 保護層失效，但觸發原因不同，所以處理方式也不同，例如空值快取、互斥回源、過期時間打散或限流。
+
+#### 4. hot key / big key 會造成什麼問題？
+
+> Hot Key 是單一 Key 流量過大，容易形成 Redis 熱點，讓延遲上升或打爆單點資源。Big Key 是單一 Key 資料量太大，會影響記憶體、網路傳輸與操作耗時。兩者都不只是效能問題，也會影響穩定性，所以要透過監控、拆分 Key、限制資料大小或調整資料模型處理。
+
+#### 5. Redis distributed lock 什麼情境適合？什麼情境不適合？
+
+> 我認為 Redis Distributed Lock 適合控制少量高價值、短時間的競爭操作，例如避免排程重複執行、特殊資源競爭或補單流程。不適合拿來解決所有併發問題。像 Wallet、Order 這類核心交易，我會更傾向依賴 DB Transaction、唯一鍵、狀態機與 Idempotency，而不是把正確性完全壓在 Redis Lock 上。
+
+#### 6. lock 過期時間怎麼設？
+
+> Lock 過期時間要大於正常執行時間，並保留一些 buffer，但也不能太長，避免任務異常後鎖長時間不釋放。若任務耗時不固定，就要考慮續約機制或把任務拆小。更重要的是，即使有 Lock，業務層也要有狀態檢查與 Idempotency，不能只靠過期時間保證正確性。
+
+#### 7. 如果 lock 還沒處理完就過期，會怎樣？
+
+> 如果 Lock 已經過期，但原本任務還在執行，新的執行緒或節點可能再次取得 Lock，導致同一個業務被執行兩次。這會造成重複扣款、重複補單或重複更新的風險。所以 Lock 只是併發控制的一層保護，真正避免副作用還要靠 Idempotency、狀態機與終態檢查。
+
+#### 8. wallet balance 能不能放 Redis？為什麼？
+
+> 可以放，但不能只信 Redis。Redis 可以用來提升查詢效能或降低 DB 壓力，但 Wallet Balance 屬於高一致性資料，真正 Source of Truth 應該是交易紀錄、DB 或錢包狀態。若 Redis 與 DB 不一致，應該回到交易真相判斷，而不是用 Cache 覆蓋真實餘額。
+
+#### 9. Redis 和 DB 不一致時怎麼處理？
+
+> 第一件事是確認 Source of Truth。如果 DB 或交易資料才是真相，就應該以 DB 為準，重新回填或刪除 Cache。如果 Redis 被設計成主資料來源，問題會複雜很多，也會增加恢復風險。因此我通常傾向把 Redis 當加速層，讓不一致時可以安全回源修復。
+
+#### 10. provider routing / config 放 Redis 有什麼風險？
+
+> 好處是查詢快、切換快，可以降低 DB 壓力，也適合 Provider Routing 或商戶配置這類讀多寫少資料。風險是 Cache 與 DB 不一致、Redis 更新失敗、版本不一致或路由錯誤。比較安全的做法是保留配置版本、Reload 機制、Audit Log 與回退能力，避免錯誤配置直接影響交易路由。
+
+#### 11. rate limit 你會怎麼設計？
+
+> 常見做法是用 Redis Counter、Sliding Window 或 Token Bucket。重點不是只背演算法，而是先定義限制邊界，例如依 User、IP、Merchant、Provider 或 API 類型限制，避免單一來源打爆系統。對 payment query 或 provider callback 這類流量，也要區分正常重試和異常流量，避免誤傷主流程。
+
+#### 12. session / token / auth state 放 Redis 要注意什麼？
+
+> Redis 很適合管理 Session、Token 或 Auth State，因為查詢快，也方便設定過期時間。但要注意 TTL、登出同步、主從切換、大量 Session 回收與 Redis 掛掉後的使用者影響。如果 Redis 不可用，要先決定登入服務是 fail open、fail close，還是降級處理。
+
+#### 13. Redis cluster 或主從切換時，lock / cache 可能有什麼問題？
+
+> 主從切換期間可能出現資料尚未同步完成的情況。對一般 Cache 來說，最多可能是短暫 miss 或資料變舊，通常可以回源修復；但對 Distributed Lock 風險比較高，因為鎖資訊可能遺失或被重複取得。所以核心交易正確性不能只靠 Redis Lock，要有業務層 Idempotency 和狀態保護。
+
+#### 14. 如果 Redis 掛了，系統要 fail open 還是 fail close？
+
+> 要看業務風險。像 Config Cache、報表查詢或一般查詢，可以考慮 Fail Open，讓系統回源 DB，但要保護 DB 不被打爆。像風控、登入、限流或可能影響資金安全的流程，可能需要 Fail Close 或降級。重點不是固定答案，而是判斷業務是寧可慢、寧可不服務，還是寧可承擔短暫不一致。
+
+#### 15. 你怎麼把 Redis 風險講成 owner decision？
+
+> 我不會只討論 Redis 技術，而是先確認業務風險。例如 Redis 掛掉後，系統是寧可慢一點回源 DB，還是停止某些高風險操作？Wallet Balance 能不能接受短暫不一致？Provider Routing 配置錯誤時能不能回退？這些都是 Owner Decision，因為它們牽涉交易正確性、可用性與風險承擔，不只是 Cache 實作問題。
+
+這區優先練的 5 題是：
+
+```text
+Wallet Balance 能不能放 Redis -> Redis 與 DB 不一致 -> Provider Routing Config 放 Redis -> Redis 掛掉 Fail Open / Fail Close -> Redis 風險如何講成 Owner Decision
+```
+
 ## 第七層：Java / Spring / Runtime 基本功
 
 這是 20% 基本功，不取代 production case，但面試會被抽問。
