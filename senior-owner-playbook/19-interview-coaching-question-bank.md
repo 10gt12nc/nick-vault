@@ -1509,6 +1509,77 @@ RBAC -> JWT 風險 -> Provider Callback 驗簽 -> API Replay Attack -> PII 與 L
 11. 技術債怎麼排優先順序？
 12. 你會怎麼做 migration plan？
 
+### 第十四層 90 秒草稿：Architecture Evolution 講法
+
+這段是看稿練習草稿。這區很容易吹過頭，Nick 目前不能把自己包裝成從零設計大型微服務平台的人、Kafka Platform Owner、DB Sharding Owner 或正式架構師。回答原則是：用維護複雜系統、整理 production flow、處理 provider / wallet / MQ / projection / legacy takeover 的經驗，說明自己如何思考取捨。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先問問題是什麼，再看成本、風險與為什麼值得做。架構演進不是套流行詞，而是判斷現有痛點是否真的需要解決、解法會不會引入更大的複雜度、出事時能不能觀測與 rollback。我的回答會偏向 production trade-off，不會把自己包裝成完整架構師。
+
+#### 1. Monolith 什麼時候該拆？
+
+> 我不會因為系統變大就拆。通常會看業務邊界是否清楚、部署是否互相影響、團隊是否能獨立開發、資料 ownership 是否能切開，以及流量或擴展需求是否明顯不同。如果只是程式碼變多，但團隊仍能有效維護，我不一定會急著拆。先把 module boundary 和 production flow 整理清楚，通常比立刻拆服務更重要。
+
+#### 2. 為什麼不要亂拆微服務？
+
+> 微服務解決的是組織邊界、部署節奏與擴展問題，不是單純解決程式碼變多。拆開之後會增加網路呼叫、版本管理、監控、部署、資料一致性與故障排查成本。如果團隊規模不大、業務邊界不清楚，或 transaction boundary 還沒想清楚，拆了可能比不拆更複雜。
+
+#### 3. Redis 要不要上？什麼資料不該上？
+
+> 我會先問效能問題是否真的存在，以及資料能不能接受短暫不一致。如果只是預防性優化，我不一定會先上 Redis。適合放 Redis 的通常是讀多寫少、允許短暫不一致的資料，例如 provider config、白名單、商戶設定或查詢結果。Wallet、Order State、交易真相這類資料可以快取，但不應只信 Redis。
+
+#### 4. Kafka 要不要上？什麼情境 RabbitMQ / DB job 反而比較簡單？
+
+> 如果只是單一服務的背景任務、低吞吐量、簡單非同步處理，DB Job 或 RabbitMQ 可能就夠了。Kafka 比較適合高吞吐、多 consumer、event replay、事件流分析或多系統資料同步需求。重點不是 Kafka 比較潮，而是業務是否真的需要 event streaming，以及團隊是否承擔得起維運與觀測成本。
+
+#### 5. Event Sourcing 值不值得？
+
+> Event Sourcing 可以保留完整事件歷史，對審計、回放與狀態重建很有幫助，但也會增加設計、查詢、資料修正與心智成本。我認為只有在事件本身有長期價值、審計需求很高，或狀態重建是核心需求時才值得。很多系統用交易表加 audit log 就已經足夠。
+
+#### 6. CQRS 值不值得？
+
+> 如果讀寫模型差異很大，例如線上交易重視正確性，而報表查詢重視查詢效率，CQRS 或 projection 會有價值。但如果系統規模不大，硬維護兩套模型反而增加同步、補資料與一致性成本。所以我會先確認讀寫痛點是否真的不同，再決定是否拆 read model。
+
+#### 7. DB Sharding 值不值得？
+
+> Sharding 可以解決單表資料量過大、寫入壓力或查詢範圍過大的問題，但它會增加 routing、跨表查詢、補資料、對帳、migration 與維運成本。我不會把 sharding 當預設解法。通常要等資料量、流量或維護成本真的碰到瓶頸，並且 partition / index / query optimization 已經不夠時，才值得考慮。
+
+#### 8. 什麼時候接受 eventual consistency？
+
+> 報表、通知、audit log、projection、後台查詢這類流程通常可以接受 eventual consistency，前提是業務能接受短暫延遲，而且系統有補資料、重跑與觀測能力。重點是使用者或營運是否需要立即看到一致結果。如果業務允許，就不需要讓所有流程都同步完成，避免核心交易被非核心流程拖垮。
+
+#### 9. 哪些系統一定要 strong consistency？
+
+> 涉及資金、訂單終態、wallet balance、wallet transaction、bet-settle 狀態或核心交易狀態時，我會優先考慮 strong consistency 或至少明確的狀態機保護。因為這類錯誤成本很高，可能造成重複扣款、重複入帳或玩家資金不一致。效能重要，但不能犧牲交易正確性。
+
+#### 10. 什麼情況不要做 abstraction？
+
+> 如果只有一種實作，需求也沒有明顯變化，我不會急著抽象化。過早抽象會增加理解成本，讓簡單問題變複雜。比較好的時機是看到第二種、第三種 provider、流程或實作真的出現重複模式時，再抽出共用 interface。Provider integration 也一樣，不能為了設計模式而抽象。
+
+#### 11. 技術債怎麼排優先順序？
+
+> 我不會用程式碼好不好看來排優先順序，而是看業務風險。會優先處理可能造成資金錯誤、資料不一致、重複副作用、線上事故、排查困難或效能瓶頸的技術債。純粹風格問題或低風險重構，通常排在後面。Senior 的判斷重點是技術債對 production 風險的影響。
+
+#### 12. 你會怎麼做 migration plan？
+
+> 我通常不會一次切全部流量。會先建立新舊系統共存機制，確認 source of truth、資料同步方式與 rollback path。接著用 feature flag、白名單、指定商戶或部分流量灰度驗證，觀測成功率、錯誤率、資料一致性與人工補單量。最重要的是保留快速 rollback 能力，讓 migration 出問題時可以縮小影響範圍。
+
+這區優先練的 5 題是：
+
+```text
+Monolith 什麼時候拆 -> 不要亂拆微服務 -> Kafka 要不要上 -> Eventual Consistency vs Strong Consistency -> Migration Plan
+```
+
+常見追問可以收斂成四個判斷：
+
+```text
+Source of Truth 在哪？
+強一致還是最終一致？
+成本是否值得？
+出事怎麼 rollback？
+```
+
 ## 第一輪建議題組
 
 第一輪不要從 Java 八股開始。先用這 5 題診斷主力市場定位：
