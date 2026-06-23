@@ -1580,6 +1580,41 @@ Source of Truth 在哪？
 出事怎麼 rollback？
 ```
 
+## 題庫封版與下一步
+
+`A ~ N` 目前已覆蓋第一輪 Senior Java Backend / Platform Backend 面試核心範圍：
+
+- 定位 / 履歷
+- Production Flow
+- Transaction / Consistency
+- MQ / DB / Redis
+- Java / Spring
+- Incident / Legacy
+- System Design
+- Provider Integration
+- Security
+- Troubleshooting
+- Architecture
+- HR / 談薪
+
+除非 Nick 提供實際 JD、面試回饋，或指出題目明顯錯誤，否則不要再新增新分類或擴張題庫。再補題會變成整理題庫，不是在準備面試。
+
+目前唯一值得補的不是新分類，而是三個專案故事稿：
+
+1. Provider Integration Story
+2. Wallet / Bet-Settle / MQ Story
+3. Legacy Takeover / Troubleshooting Story
+
+每個故事只準備三種長度：
+
+```text
+30 秒版
+90 秒版
+3 分鐘版
+```
+
+這三個故事稿應該從既有 `05 / 08 / 04 / 19` 與已完成 flow / contribution consolidation 萃取，不新增誇大 claim，不包裝成完整平台 owner。
+
 ## 第一輪建議題組
 
 第一輪不要從 Java 八股開始。先用這 5 題診斷主力市場定位：

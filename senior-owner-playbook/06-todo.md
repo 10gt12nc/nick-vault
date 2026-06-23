@@ -72,7 +72,9 @@
 
 - `flow.md` 是研究報告與 evidence，不是面試聊天稿。
 - `career-interview.md` 已有面試素材，但仍可能偏整理稿。
-- 不建議新增每條 flow 的新檔，先在主力 flow 的 `career-interview.md` 補 `面試聊天版` 區塊即可。
+- `19-interview-coaching-question-bank.md` 的 `A ~ N` 題庫已封版；除非有實際 JD、面試回饋或明顯錯誤，不再新增分類或擴題。
+- 現在最缺的不是新題，而是三個可口說的專案故事稿：`Provider Integration Story`、`Wallet / Bet-Settle / MQ Story`、`Legacy Takeover / Troubleshooting Story`。
+- 不建議新增每條 flow 的新檔，也不建議繼續擴張題庫；先做三個故事稿，每個只準備 `30 秒版 / 90 秒版 / 3 分鐘版`。
 
 建議格式：
 
@@ -86,14 +88,14 @@
 
 優先檢查三條：
 
-1. `payment-provider-callback` / `payment-order-provider-request`
-2. `slot-bet-settle-rollback` 或 `third-party-transfer-in-out`
-3. `proxy-user-data-report-projection` 或 `request-log-rabbitmq-async`
+1. Provider Integration Story：`payment-provider-callback` / `payment-order-provider-request` / provider connector 經驗。
+2. Wallet / Bet-Settle / MQ Story：`slot-bet-settle-rollback` / `third-party-transfer-in-out` / MQ projection 經驗。
+3. Legacy Takeover / Troubleshooting Story：legacy reconstruction、production troubleshooting、flow reconstruction、git history / log / DB / MQ 排查經驗。
 
 判斷方式：
 
-- 若 Nick 覺得示範口吻可用，再挑 1 條正式補進對應 `career-interview.md`。
-- 若覺得太長，先只補 `30 秒版 + 90 秒版 + 不要這樣講`。
+- 若 Nick 覺得故事稿口吻可用，再決定是否回填 `04-interview-casebook.md` 或對應 flow 的 `career-interview.md`。
+- 若覺得太長，先只保留 `30 秒版 + 90 秒版 + 不要這樣講`。
 
 ### Git Log / Diff 風險重建
 
