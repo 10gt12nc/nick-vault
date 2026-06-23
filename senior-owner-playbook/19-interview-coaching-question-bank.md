@@ -861,6 +861,80 @@ Wallet Balance 能不能放 Redis -> Redis 與 DB 不一致 -> Provider Routing 
 14. CPU 100% 你會怎麼排查？
 15. thread dump / heap dump 你會看什麼？
 
+### 第七層 90 秒草稿：Java / Spring / Runtime 講法
+
+這段是看稿練習草稿。Nick 的定位不是 JVM Expert，也不是 Spring Framework Contributor，而是理解 Spring Transaction、AOP、Exception Handling、Thread Pool 與 Runtime 問題在 Production 上會造成什麼影響的 Java Backend Engineer。這區不要背八股到太深，回答重點是 `是什麼 -> 為什麼 -> Production 會怎麼壞 / 怎麼查`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先用一句話說這個機制是什麼，再說它為什麼會這樣運作，最後一定補 production 風險。例如 transaction 沒生效會造成資料沒 rollback、thread pool queue 太大會造成延遲堆積、exception 被吃掉會讓錯誤不可觀測。面試官通常不是要我背原始碼，而是要確認我遇到 production 問題時知道往哪裡查。
+
+#### 1. Spring transaction 什麼情境會失效？
+
+> `@Transactional` 通常是透過 Spring Proxy 生效，所以如果呼叫沒有經過 Proxy，就可能失效。常見情況包括 self-invocation、private method、final method、物件不是 Spring Bean，或直接 new 出來的物件。另外如果 Exception 被 catch 掉沒有往外拋，也可能導致預期中的 rollback 沒發生。Production 上風險就是你以為有 transaction，但其實資料已經部分寫入。
+
+#### 2. self-invocation 為什麼會讓 transaction / AOP 失效？
+
+> 因為 Spring Transaction 和 AOP 主要是透過 Proxy 攔截方法呼叫。如果同一個 class 裡面直接呼叫自己的另一個方法，實際上是 this.method，不會經過 Proxy，所以 AOP advice 和 Transaction 都不會被觸發。Production 上最容易踩到的是把交易邏輯拆成內部方法後，以為加了 `@Transactional`，但 rollback 沒有生效。
+
+#### 3. checked exception / runtime exception 對 rollback 有什麼影響？
+
+> Spring 預設對 RuntimeException 和 Error rollback，Checked Exception 預設不 rollback。如果業務需要 Checked Exception 也 rollback，要用 `rollbackFor` 明確指定。Production 上要注意的是，不同 Exception 類型會影響 transaction 結果，不能只看有沒有 throw exception，還要看它是否符合 rollback rule。
+
+#### 4. `@Transactional` 放在 private method 有用嗎？
+
+> 通常沒有用。因為 Spring Proxy 無法攔截 private method，private method 也不是外部透過 Proxy 呼叫的入口，所以 transaction 不會照預期生效。比較安全的做法是把 transaction boundary 放在 public service method 上，並讓呼叫路徑經過 Spring 管理的 Bean。
+
+#### 5. AOP 大致怎麼攔截？JDK proxy 和 CGLIB 差在哪？
+
+> AOP 本質上是在方法前後插入額外邏輯，例如 Transaction、Log、權限驗證或監控。JDK Proxy 依賴 interface 產生 proxy，CGLIB 則透過繼承產生子類 proxy。實務上最重要的是理解 Spring 很多功能依賴 Proxy，只要呼叫沒有經過 Proxy，AOP 就不會生效。
+
+#### 6. filter、interceptor、AOP 的差別是什麼？
+
+> Filter 在 Servlet 層，最靠近 HTTP request / response，適合處理跨框架的請求過濾。Interceptor 在 Spring MVC 層，常用於權限、登入狀態、request context。AOP 在 method 層，通常關注 service method，例如 transaction、log、監控或共用業務切面。三者作用層級不同，所以要依問題位置選工具。
+
+#### 7. DTO / VO / Entity / BO 你怎麼分？
+
+> DTO 主要用於跨層或跨服務傳輸資料，Entity 對應資料庫結構，BO 偏業務處理中的物件，VO 常用於回傳給前端或呈現層。實務上我最在意的是不要把 DB Entity 直接暴露給外部 API，避免資料欄位外洩、耦合 DB schema，也避免更新 API 時影響 persistence model。
+
+#### 8. Global exception handler 要注意什麼？
+
+> Global Exception Handler 的好處是統一錯誤格式、錯誤碼與 log。要注意不要把所有 Exception 都吃掉，也不要把內部 stack trace 或敏感訊息直接回給前端。另外要保留 trace id、request id、order id 這類排查線索，讓 production 問題能追回實際請求。
+
+#### 9. thread pool 參數怎麼看？queue 太大有什麼風險？
+
+> 我主要會看 core size、max size、queue size、keep alive 和 rejection policy。Queue 太大看起來可以吸收流量，但也可能把問題藏起來，造成請求延遲持續累積，甚至 OOM。Production 上我會關心任務耗時、流量尖峰、是否有 timeout、拒絕策略是否明確，以及監控能不能看到 queue backlog。
+
+#### 10. Future / CompletableFuture 使用時要注意什麼？
+
+> 我會注意它使用哪個 Thread Pool、Exception 怎麼處理、Timeout 有沒有設，以及結果是否真的被等待或觀測。CompletableFuture 很方便，但如果大量使用預設 common pool，或 exception 沒有處理，production 問題會很難查。非同步不是免費的，還是要考慮資源、timeout 與失敗邊界。
+
+#### 11. Java Stream 什麼情境不適合？
+
+> Stream 適合資料轉換和簡單 pipeline，但不適合複雜流程控制、大量副作用、需要清楚 debug 的交易流程，或資料量很大但沒有控制記憶體的情境。過度使用 Stream 可能讓程式可讀性變差。Production code 我會優先選擇可讀、可排查、錯誤邊界清楚的寫法。
+
+#### 12. Optional 什麼情境會被濫用？
+
+> Optional 適合表示 method return value 可能為空，提醒呼叫端處理空值。不太建議放在 Entity 欄位、DTO 欄位，或大量巢狀使用，因為會讓序列化、ORM 或可讀性變複雜。Optional 的目的不是消滅所有 null，而是讓重要邊界的空值語意更清楚。
+
+#### 13. OOM 你會怎麼排查？
+
+> 我會先確認是 Java Heap、Metaspace、Direct Memory 還是 container memory 問題，再看 GC log、記憶體使用趨勢與發生時間點。接著透過 heap dump 分析物件分佈，找是否有大量集合、cache 未清、ThreadLocal、byte array 或物件引用未釋放。Production 上重點是先止血，再找出是流量、資料量、程式 leak 還是設定問題。
+
+#### 14. CPU 100% 你會怎麼排查？
+
+> 我會先確認是哪個 process，再找高 CPU thread，透過 thread dump 對照 stack trace，看是否有無限迴圈、頻繁重試、鎖競爭、大量序列化、加密簽章或計算邏輯。接著回到對應程式碼與近期變更確認原因。CPU 100% 不一定是機器不夠，也可能是程式進入錯誤重試或 hot path 寫壞。
+
+#### 15. thread dump / heap dump 你會看什麼？
+
+> Thread Dump 主要看 thread state、blocked / waiting、deadlock、高 CPU thread 對應的 stack，以及 thread pool 是否塞滿。Heap Dump 則看物件數量、占用大小、引用鏈與是否有異常集合或 cache。實務上我不會從頭看所有內容，而是先根據 production symptom 找最異常的 thread 或物件。
+
+這區優先練的 5 題是：
+
+```text
+Spring Transaction 失效 -> Self Invocation -> Thread Pool -> OOM -> CPU 100%
+```
+
 ## 第八層：Observability / Incident / Legacy Takeover
 
 這是把你從功能工程師拉到 Senior 訊號的區域。
