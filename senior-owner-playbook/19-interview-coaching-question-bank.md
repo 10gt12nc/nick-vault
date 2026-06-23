@@ -25,9 +25,11 @@
 
 ## 題庫規模與使用輪次
 
-本題庫目前設計成 `10 個大主題 / 145 題`，但實務上不是 145 題全刷。它是診斷池，AI 依 Nick 的回答狀態挑題、追問、教學或打磨。
+本題庫目前設計成 `14 個主題 / 診斷池`。前 10 層涵蓋 Senior Backend 通用面試，後 4 層補 Nick 背景最相關的 provider integration、security、troubleshooting 與 architecture evolution。
 
-10 個大主題：
+重點不是把題庫從 150 題擴成 300 題。這份是診斷池，不是全刷清單；實際準備時先用「30 題核心題」收斂，只有遇到 JD、面試追問或回答卡住時才抽對應主題補強。
+
+14 個主題：
 
 | 主題 | 題數 | 目的 |
 | --- | ---: | --- |
@@ -41,6 +43,10 @@
 | Observability / Incident / Legacy Takeover | 15 | 檢查排查、log、trace、交接文件與系統救援能力 |
 | System Design / Owner Decision | 15 | 檢查從 flow 抽象成架構、選型與 trade-off |
 | Behavior / HR / 談薪 / 團隊協作 | 15 | 檢查資深定位、薪資、弱點、合作與主管溝通 |
+| Provider Integration | 15 | Nick 主戰場：三方 provider、callback、query、routing、reconciliation |
+| Security / Auth | 15 | 檢查 API trust boundary、JWT / RBAC、callback 驗簽、PII / log 安全 |
+| Real Troubleshooting | 12 | 練真正線上問題排查：latency、CPU、MQ backlog、DB pool、pending order |
+| Architecture Evolution | 12 | 練 Senior -> Staff 過渡題：拆服務、migration、技術債、CQRS / sharding 取捨 |
 
 建議輪次：
 
@@ -61,6 +67,60 @@
 - 第 1 輪若穩，才進入第 2 輪 deep dive。
 - 基本功題只補被 production case 打穿的部分，不變成泛用八股題海。
 - 若某輪回答形成更好的履歷 / 面試說法，再回填 `04`、對應 flow `career-interview.md` 或 `05 / 08` 的保守素材。
+
+## 30 題核心收斂版
+
+若目標是 8 萬到 10-12 萬的 Senior Java Backend / Platform Backend market check，先不要全刷。優先練這 30 題；它們最貼近 Nick 目前的履歷主軸與常見追問。
+
+### A. 履歷與定位
+
+1. 你現在投 Senior Java Backend / Platform Backend，主軸一句話怎麼講？
+2. 你不是正式 Tech Lead，也不是完整系統 owner，那你要怎麼講 ownership 才不失分？
+3. 你的三個最強 project-level claim 是什麼？每個 claim 的 evidence 是什麼？
+4. 如果面試官問「你現在職稱不是資深，為什麼投資深？」你怎麼回答？
+5. 如果面試官問「你主導過什麼？」你怎麼保守但有力地回答？
+
+### B. Production Flow
+
+6. 請用 3 分鐘講一條 payment provider request flow。
+7. 請用 3 分鐘講一條 payment callback flow。
+8. 請用 3 分鐘講一條 wallet / bet-settle / rollback flow。
+9. 請用 3 分鐘講一條 MQ / report projection flow。
+10. 你怎麼把 flow 從「功能描述」升級成「Senior 風險分析」？
+
+### C. Consistency / Idempotency
+
+11. DB transaction 成功，但 MQ publish 失敗怎麼辦？
+12. callback 重送時，怎麼避免二次入帳或二次扣款？
+13. provider timeout 後，為什麼不能直接當失敗？
+14. rollback、refund、compensation、reconciliation 差在哪？
+15. 你會怎麼設計一個 retry-safe 的 provider callback handler？
+
+### D. Provider Integration
+
+16. Provider 接進來時流程是什麼？
+17. Provider callback 不可信怎麼辦？
+18. Provider callback 和 query 結果不同怎麼辦？
+19. 多 provider 共用介面怎麼設計？Adapter Pattern 怎麼落地？
+20. provider settlement 和平台 settlement 不一致怎麼辦？
+
+### E. Incident / Legacy Takeover
+
+21. 如果線上發生訂單卡住，你第一步查什麼？
+22. 如果玩家說錢不見了，你會怎麼查？
+23. 如果 callback 大量失敗，你會怎麼查？
+24. legacy system 沒文件，你會從哪裡開始反推？
+25. 你怎麼補一份交接文件，讓下一個人能維護？
+
+### F. Behavior / 談薪
+
+26. 你為什麼想換工作？
+27. 你現在薪資 8 萬，為什麼期待 10 萬以上？
+28. 如果對方說你沒完整主導經驗，你怎麼回？
+29. 如果對方問你最大的弱點，你怎麼講？
+30. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
+
+優先練這五區：履歷與定位、Production Flow、Transaction / Consistency、Incident / Legacy Takeover、Behavior / 談薪。Java / SQL / Redis / MQ / Security / Architecture 題只有在這五區被追問打穿、JD 明確要求，或 Nick 主動想補時才深入。
 
 ## 評分方式
 
@@ -295,6 +355,80 @@ AI 回覆格式：
 13. 如果對方問你最大的弱點，你怎麼講？
 14. 如果對方問你未來 2-3 年想成為什麼，你怎麼講？
 15. 你有什麼問題想問主管，來判斷這個職缺是不是值得去？
+
+## 第十一層：Provider Integration
+
+這是 Nick 的主戰場。比起空泛微服務題，payment / game provider integration 更能展現你對 timeout、callback、query、routing、settlement、reconciliation 與 trust boundary 的判斷。
+
+1. Provider 接進來時，從 request、callback、query 到 reconciliation 的完整流程是什麼？
+2. Provider callback 不可信時，你會做哪些 trust boundary 檢查？
+3. Provider callback 和 query 結果不同時，你相信哪邊？怎麼收斂？
+4. Provider timeout 怎麼處理？為什麼不能直接當成功或失敗？
+5. Provider API rate limit 怎麼辦？
+6. Provider schema 改版時，你怎麼兼容新舊版本？
+7. 多 provider 共用介面怎麼設計？
+8. Adapter Pattern 在 provider integration 裡怎麼落地？不要只講設計模式名詞。
+9. Provider 故障時怎麼切流？哪些流量不能亂切？
+10. Provider routing 規則怎麼設計？要不要放 Redis？
+11. provider settlement 和平台 settlement 不一致怎麼辦？
+12. reconciliation 怎麼做？source of truth 怎麼選？
+13. provider replay attack 怎麼防？
+14. signature 驗證怎麼做？哪些欄位一定要參與簽名？
+15. provider transaction id 和 internal order id 怎麼 mapping？哪個可以當 idempotency key？
+
+## 第十二層：Security / Auth
+
+這層不是要變資安專家，而是 Senior Backend 不能忽略 API trust boundary、身分驗證、權限、敏感資訊與金流 callback 安全。
+
+1. JWT 是什麼？適合解決什麼問題？
+2. JWT 有什麼風險？token 洩漏後怎麼辦？
+3. refresh token 怎麼設計？要不要 rotating refresh token？
+4. RBAC 怎麼設計？
+5. 權限表怎麼拆？role、permission、user-role、role-permission 怎麼看？
+6. API 怎麼防重放攻擊？
+7. API 怎麼防暴力破解？
+8. 密碼怎麼存？為什麼不能明文或可逆加密？
+9. bcrypt 為什麼不能解密？salt / cost 大概在解決什麼？
+10. Session 和 JWT 怎麼選？
+11. SSO 流程大概怎麼走？
+12. OAuth2 Authorization Code Flow 大概在做什麼？
+13. 金流 callback 為什麼一定要驗簽？
+14. 什麼資料不能進 log？
+15. PII 怎麼處理？正式履歷或面試講內部資料時要注意什麼？
+
+## 第十三層：Real Troubleshooting
+
+這層貼近實務工作。回答重點不是背工具，而是能說出先看什麼、怎麼縮小範圍、如何保護線上、怎麼補資料。
+
+1. API latency 突然變高怎麼查？
+2. CPU 100% 怎麼查？
+3. JVM memory 持續上升怎麼查？
+4. MQ backlog 怎麼查？
+5. Redis QPS 爆掉怎麼查？
+6. DB connection pool 滿了怎麼查？
+7. 某個商戶或 provider 一直 timeout 怎麼查？
+8. callback 大量失敗怎麼查？
+9. 某玩家說少錢怎麼查？
+10. 某筆訂單卡 Pending 怎麼查？
+11. provider 故障怎麼切流？
+12. 線上事故你怎麼定優先順序？
+
+## 第十四層：Architecture Evolution
+
+這是 Senior 到 Staff / Architect 過渡區。不是背流行詞，而是判斷什麼該做、什麼不要做、第一階段先改哪裡。
+
+1. Monolith 什麼時候該拆？
+2. 為什麼不要亂拆微服務？
+3. Redis 要不要上？什麼資料不該上？
+4. Kafka 要不要上？什麼情境 RabbitMQ / DB job 反而比較簡單？
+5. Event Sourcing 值不值得？
+6. CQRS 值不值得？
+7. DB Sharding 值不值得？
+8. 什麼時候接受 eventual consistency？
+9. 哪些系統一定要 strong consistency？
+10. 什麼情況不要做 abstraction？
+11. 技術債怎麼排優先順序？
+12. 你會怎麼做 migration plan？
 
 ## 第一輪建議題組
 
