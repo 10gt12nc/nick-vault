@@ -1237,6 +1237,80 @@ Provider Integration Design -> Wallet / Bet-Settle / Rollback -> MQ / Projection
 14. signature 驗證怎麼做？哪些欄位一定要參與簽名？
 15. provider transaction id 和 internal order id 怎麼 mapping？哪個可以當 idempotency key？
 
+### 第十一層 90 秒草稿：Provider Integration 講法
+
+這段是看稿練習草稿。Provider Integration 是 Nick 的主戰場之一，但回答邊界要穩：Nick 是做過 Provider Integration 的 Backend Engineer，不是完整 Payment Architect，也不是整個金流平台 Owner。回答時固定抓五件事：`Order 在哪 -> State 怎麼流 -> Trust Boundary 相信誰 -> Failure 怎麼收斂 -> Source of Truth 在哪`。
+
+回答這區題目時，先固定用這個順序：
+
+> 我會先建立 internal order 或 transaction record，確認內部業務識別。接著說狀態如何從 pending 走到 success、failed 或 unknown。Provider callback 不能直接相信，要驗簽、驗證欄位與狀態轉移。Timeout 或不一致時透過 query、retry、compensation 或 reconciliation 收斂。最後一定回到 source of truth 與 idempotency，避免重複副作用。
+
+#### 1. Provider 接進來時，從 request、callback、query 到 reconciliation 的完整流程是什麼？
+
+> 我通常把 Provider Flow 分成 Request、Callback、Query 與 Reconciliation 四條路徑。Request 階段先建立 internal order，再組 provider request 並送出；Callback 是主要狀態更新來源，但要驗簽、驗證欄位與狀態轉移；Query 用於 timeout 或狀態不確定時收斂結果；Reconciliation 則定期比對 internal order 與 provider record，找出不一致訂單。整體核心是 state machine、idempotency 與最終一致性。
+
+#### 2. Provider callback 不可信時，你會做哪些 trust boundary 檢查？
+
+> 我不會直接相信 callback。第一步是驗簽，確認來源可信；接著驗證 merchant id、internal order id、provider transaction id、amount、currency、timestamp 等關鍵欄位；再確認目前訂單狀態是否允許轉移。如果欄位不符、簽章錯誤或狀態不允許，我不會直接更新訂單結果，只會記錄 audit log 並進入異常處理。
+
+#### 3. Provider callback 和 query 結果不同時，你相信哪邊？怎麼收斂？
+
+> 我不會簡單說永遠相信其中一邊，而是先看系統定義的收斂規則與 source of truth。通常會比對 internal order、provider transaction id、金額、狀態與時間順序。有些系統會把 query 視為最終確認來源，但仍要受狀態機保護。重點是規則要一致、可追溯，不要每次靠人工直覺判斷。
+
+#### 4. Provider timeout 怎麼處理？為什麼不能直接當成功或失敗？
+
+> Timeout 只代表我沒有收到結果，不代表 provider 沒有執行成功。如果直接當失敗，可能重送造成重複訂單或重複扣款；如果直接當成功，也可能造成內部狀態錯誤。所以我會把 timeout 視為 unknown state，保留訂單並透過 callback、query 或 reconciliation 收斂終態。
+
+#### 5. Provider API rate limit 怎麼辦？
+
+> 如果 provider 有 rate limit，我會控制 query 頻率、retry 策略與流量分配，避免大量重試把問題放大。必要時可以透過 queue、batch 或 backoff 平滑流量。重點是區分哪些請求可以延後，哪些交易狀態需要優先收斂，同時要有告警讓團隊知道 provider 已接近限制。
+
+#### 6. Provider schema 改版時，你怎麼兼容新舊版本？
+
+> 我會優先追求向後相容，例如新增欄位而不是直接改變欄位意義。Consumer 先能接受新舊格式，再逐步切換 producer 或 provider 設定。對外部 provider 來說，最怕一方改版造成另一方解析失敗，所以我會保留版本標記、相容 parser、測試樣本與 rollback plan。
+
+#### 7. 多 provider 共用介面怎麼設計？
+
+> 我會先定義內部 domain interface，例如 login、balance、transfer、bet、settle、rollback 或 payment request / callback / query。Provider 差異封裝在 adapter 裡，上層業務只看 internal request / response，不直接依賴 provider 特殊格式。這樣可以降低 provider 差異對核心流程的影響，但也不能抽象過頭，把真的不同的業務語意硬塞成同一種。
+
+#### 8. Adapter Pattern 在 provider integration 裡怎麼落地？不要只講設計模式名詞。
+
+> 具體來說，A Provider 可能用 amount，B Provider 用 coin；A 回 success code，B 回 status；簽章欄位和錯誤碼也不同。Adapter 的工作是把不同 provider 的 request / response、錯誤碼、狀態與金額單位轉成系統內部統一格式。上層 service 不需要知道 provider 細節，只處理 internal model 和 state transition。
+
+#### 9. Provider 故障時怎麼切流？哪些流量不能亂切？
+
+> Query 或查詢類流量通常比較容易切換或降級；資金流、transfer、wallet、bet-settle 這類流量要非常小心，因為切流可能造成交易狀態不一致。切流前要先確認既有交易是否已收斂、pending 訂單如何處理、callback 是否還會回來，以及新舊 provider 的 order mapping 是否清楚。不能只看 provider 掛了就立刻切所有流量。
+
+#### 10. Provider routing 規則怎麼設計？要不要放 Redis？
+
+> Routing 規則可以依 merchant、幣別、provider health、流量比例或白名單決定。Redis 可以作為 routing config 的快取，因為讀取頻率高、延遲低；但 source of truth 應該在 DB 或 config service。需要版本、reload、audit log 與 fallback，避免 Redis 異常或錯誤配置讓交易路由失控。
+
+#### 11. provider settlement 和平台 settlement 不一致怎麼辦？
+
+> 我會先確認 internal order、wallet transaction、bet / settle record 與 provider settlement record，再比對 amount、currency、status、transaction id 與完成時間。差異來源可能是 callback 遺失、query 延遲、retry 重複執行、provider 延遲或人工補單。最後透過 reconciliation 產生差異清單，再依規則自動修復或人工處理。
+
+#### 12. reconciliation 怎麼做？source of truth 怎麼選？
+
+> Reconciliation 的本質是找出不一致，不是直接修資料。首先要定義內部資料與 provider record 各自代表什麼，並確認哪個欄位是業務真相。接著定期比對 order id、provider transaction id、amount、currency、status 與完成時間。發現差異後產生異常清單，再決定自動補償、人工確認或等待下一輪資料收斂。
+
+#### 13. provider replay attack 怎麼防？
+
+> 常見做法是 signature 驗證、timestamp 驗證、nonce 或 idempotency 檢查。即使 callback 被重送，也不能產生重複副作用。實務上我會讓 callback handler 先檢查簽章與時間，再依 order id 或 provider transaction id 做終態與 idempotency 檢查，確保重送只會被安全忽略或回傳成功。
+
+#### 14. signature 驗證怎麼做？哪些欄位一定要參與簽名？
+
+> 我會依 provider 約定組簽名字串，通常會包含 merchant id、order id、provider transaction id、amount、currency、timestamp 與 secret key 相關規則。重點不是只驗證格式，而是確保 payload 沒被竄改，尤其是金額、幣別、訂單與商戶識別。驗簽失敗不能更新訂單狀態，只能記錄並拒絕或進異常流程。
+
+#### 15. provider transaction id 和 internal order id 怎麼 mapping？哪個可以當 idempotency key？
+
+> Internal Order Id 是系統內部業務識別，Provider Transaction Id 是 provider 世界的識別，兩者需要明確 mapping。Idempotency 要看處理邊界：內部訂單狀態轉移通常以 internal order id 為主；callback 去重和 provider 對帳會同時看 provider transaction id。重點是唯一性規則要清楚，避免同一筆 provider transaction 被錯誤對到多筆內部訂單。
+
+這區優先練的 5 題是：
+
+```text
+完整 Provider Flow -> Timeout -> Callback vs Query -> Reconciliation -> 多 Provider Adapter
+```
+
 ## 第十二層：Security / Auth
 
 這層不是要變資安專家，而是 Senior Backend 不能忽略 API trust boundary、身分驗證、權限、敏感資訊與金流 callback 安全。
