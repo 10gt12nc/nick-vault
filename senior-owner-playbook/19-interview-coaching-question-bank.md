@@ -316,6 +316,86 @@ AI 回覆格式：
 9. 如果 flow 是 code-backed 但不是你直接開發，你要怎麼講？
 10. 你怎麼把 flow 從「功能描述」升級成「Senior 風險分析」？
 
+### 第二層 90 秒草稿：Production Flow 講法
+
+> 2026-06-23 補充：這段是「看稿練習草稿」，用來把 flow 從功能描述升級成 Senior 面試說法。回答時固定沿著 `業務目的 -> 主要資料流 -> 狀態轉換 -> failure window -> 觀測 / 排查 -> claim boundary` 講；不要只背 Controller / API / Kafka 名詞，也不要把 code-backed 或 analysis-only 的 flow 說成自己完整主導。
+
+通用模板：
+
+```text
+這條 flow 的業務目的，是解決什麼 production 問題。
+正常路徑上，request / event 從哪裡進來，經過哪些 service、DB、Redis、MQ 或 external provider。
+接著要說清楚狀態在哪裡改變，哪裡是 source of truth，哪裡只是 cache、projection 或 audit log。
+再補 failure window：timeout、retry、callback 重送、MQ duplicate、projection 落後、rollback 重複執行或下游失敗。
+最後補觀測與邊界：出事時用哪些 log / id / DB / MQ / provider evidence 查；我實際參與、維護或分析到哪裡，哪些不能誇大。
+```
+
+1. Payment provider request flow
+
+   ```text
+   以充值或 provider request 為例，這條 flow 的目的不是單純呼叫 API，而是建立一筆可追蹤、可查單、可補償的 payment order。正常路徑會先驗證參數、商戶與 provider 設定，建立本地 payment order，產生 internal order id 或 merchant order id，再透過 provider adapter 組 request、做簽章與金額單位轉換，送到第三方 provider。provider 回應後，本地通常只能先判斷 request 是否受理或是否進入未知狀態，不能把單次 HTTP response 當成交易最終真相。我會特別看 order 是否成功建立、provider request 是否送出、timeout 要如何標示，以及 provider transaction id 和 internal order id 的 mapping 是否能支撐後續 callback / query / 補償。
+   ```
+
+2. Payment callback flow
+
+   ```text
+   Payment callback 的核心是 idempotency 和 order consistency。provider 完成支付後會 callback，本地收到後要先驗簽與檢查來源，再用 merchant order id 或 provider transaction id 找到本地訂單，確認目前狀態是否允許轉換。若訂單已經是成功、失敗或人工補單後的終態，就不能因為 provider 重送 callback 而重複入帳或覆蓋舊狀態。這類 flow 最常見的 failure window 是 callback 重送、timeout unknown、人工補單後 callback 又進來、DB 成功但下游副作用失敗。所以我會優先講終態保護、idempotency key、callback audit log、查單與人工補償邊界；但不把它誇大成完整 reconciliation owner。
+   ```
+
+3. Wallet / bet-settle / rollback flow
+
+   ```text
+   Wallet / bet-settle / rollback flow 的重點是 money correctness，而不是 API 有沒有回傳成功。玩家下注時，系統會驗證玩家狀態與餘額，建立 bet record，執行扣款或 transfer wallet 動作；遊戲結果產生後，settle flow 會依結果計算派彩、更新 wallet / transaction record，並寫入後續 report 或 log。若 provider 回傳 rollback，或中途發生 timeout / partial failure，就要依 transaction id、round id 或 provider action key 判斷能不能回滾。這裡最怕的是重複 settle、重複 rollback、扣款成功但 bet record 寫失敗、report projection 和 wallet truth 不一致。所以我會先拆清楚 wallet / bet record 是交易真相，request log / report 多半是 audit 或 projection，再講 idempotency、狀態機與補償。
+   ```
+
+4. MQ / report projection flow
+
+   ```text
+   MQ / report projection flow 的目的，是把線上交易和報表查詢解耦。線上交易完成後，系統透過 Kafka、RabbitMQ 或 job event 發送資料，consumer 或 projection service 消費後更新報表表、統計表或查詢用資料。這裡要先講清楚 source of truth：交易系統、wallet、order 或 bet record 才是主資料，report projection 只是查詢與營運分析用的衍生資料。風險主要是 MQ 延遲、duplicate message、consumer failure、DLQ、projection 落後或 batch 重跑造成重複寫入。所以我會關心 event identity、consumer idempotency、重跑範圍、補資料方式、lag / backlog 告警，以及報表和交易真相不一致時怎麼查。
+   ```
+
+5. Partition / high-traffic data flow
+
+   ```text
+   像 bet record、request log、transaction log 這類高流量資料，問題通常不是單筆寫入，而是資料量成長後查詢、報表、備份與維運會變慢。常見做法是依時間、schema、table suffix 或 routing key 做 partition / sharding。寫入時要先決定 routing rule，寫到正確的實體表；查詢時則依時間區間、商戶、玩家或業務條件縮小查詢範圍。這類 flow 的風險是 route miss、ThreadLocal / schema context 沒還原、跨表查詢效能差、補資料漏表、migration / backfill 不完整。所以我會把重點放在統一路由規則、query boundary、migration / backfill 檢查與監控，而不是只說「有分表」。
+   ```
+
+6. Controller -> DB / Redis / MQ / external provider 拆層
+
+   ```text
+   我會從 request 入口開始拆，而不是一開始就跳到工具。Controller 負責接 request、做基本 validation 與轉交；Service 負責業務判斷與流程編排；transaction boundary 內處理必須一致提交的 DB 狀態；Redis 通常只作 cache、config、routing 或 lock，不應取代交易 source of truth；MQ 用來處理 async audit、projection、notification 或補資料；external provider 則是外部副作用，必須保留 request / response / callback / query evidence。這樣拆可以說清楚狀態在哪裡改變、哪裡可能失敗，以及失敗時要從 DB、log、MQ 還是 provider evidence 查。
+   ```
+
+7. Source of truth / cache / projection / audit log
+
+   ```text
+   Source of truth 是業務真相，例如 payment order、wallet transaction、bet record 或 provider transaction mapping；Cache 是為了效能或快速讀設定，例如 Redis config / routing cache；Projection 是為了查詢和報表效率，例如 report table、summary table；Audit log 是為了追蹤與排查，例如 request log、callback log、MQ consume log。這四者用途不同，不能混用。面試時如果報表和交易不一致，我會先回 source of truth 查 order / wallet / bet record，再看 projection 是否延遲或 consumer 失敗，而不是直接相信報表。
+   ```
+
+8. 下游 service 沒掃過怎麼講
+
+   ```text
+   如果下游 service 不是我負責或沒有完整掃過，我會明確切邊界。我可以描述我確認過的入口、輸入輸出契約、request / response、DB evidence、MQ topic 或 callback evidence，也可以說明資料會往下游流動以及可能的 failure window；但下游內部實作如果我沒有讀過，就不會包裝成我完整掌握。這樣回答不是扣分，反而比較符合 Senior 的 trust boundary：我知道系統邊界在哪，也知道哪些是已確認、哪些是待確認。
+   ```
+
+9. Code-backed 但不是直接開發
+
+   ```text
+   如果一段 flow 不是我直接開發，但我因為維護、排查或交接需要讀過，我會說它是 code-backed analysis，而不是我的 direct implementation。我可以透過 code reading、log、DB、MQ、git history 和重要 diff 描述資料流、狀態轉換與風險點；但不會把它寫成我主導或獨立完成。比較安全的說法是：這段流程我有分析與維護脈絡，能講清楚風險與改善方向；若要放履歷，仍要回到 project-level contribution evidence。
+   ```
+
+10. 從功能描述升級成 Senior 風險分析
+
+    ```text
+    我會要求自己每講完一條 flow，都補一句「這條 flow 最大風險是什麼」。Junior 說法可能只停在這個 API 會寫 DB、發 MQ；Senior 說法要能指出 callback 重送、provider timeout、DB 成功但 MQ 失敗、MQ duplicate、projection 落後、wallet 不一致、rollback 重複執行或補資料漏資料。接著要能說怎麼降低風險，例如 idempotency、狀態機 guard、retry policy、DLQ、reconciliation、alert、runbook 或人工補償。這樣才會從功能描述變成 production risk analysis。
+    ```
+
+優先看稿練習順序：
+
+```text
+Payment Callback -> Wallet / Bet-Settle / Rollback -> MQ / Projection -> Legacy Takeover / flow reconstruction
+```
+
 ## 第三層：Transaction / Consistency / Idempotency
 
 這是高交易後端的核心追問區。
