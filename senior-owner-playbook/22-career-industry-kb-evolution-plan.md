@@ -124,6 +124,68 @@
 
 目前仍以 `Senior Java Backend -> Platform Backend` 為主。Engineering Manager、Business Owner、組織管理與高階商業決策只作長期方向，不排入近期週排程。Personal Finance 與健康屬於長期穩定性，會影響 20 年競爭力，但不放進 backend weekly 主線。
 
+### 學習型能力 vs 責任型能力
+
+30 年能力樹裡有兩種能力，準備方式不同。
+
+第一種是可以靠學習補到 `70-80%` 的能力，例如：
+
+- Java。
+- JVM。
+- Spring Transaction。
+- MySQL。
+- Redis。
+- Kafka。
+- OAuth2。
+- OpenTelemetry。
+- Outbox Pattern。
+- Saga。
+- K8s 基礎。
+
+這類能力可以透過 `讀書 -> 文章 -> Lab -> Side Project` 補強，適合放進 weekly learning。
+
+第二種是不做過永遠只有理論的能力，例如：
+
+- Incident Handling。
+- Ownership。
+- Decision Making。
+- Risk Communication。
+- Cross-team Collaboration。
+- Leadership。
+- Business Thinking。
+
+這類能力需要真實責任，不能只靠讀文章補完。可以先記、先看、先建立 vocabulary，但不能把它包裝成已具備成熟 owner 能力。真正成長路徑是：
+
+```text
+做過
+↓
+踩坑
+↓
+整理
+↓
+面試表達
+↓
+市場驗證
+```
+
+職級越高，經驗比重越高：
+
+| 階段 | 學習 | 經驗 |
+| --- | --- | --- |
+| Junior | 70% | 30% |
+| Mid | 50% | 50% |
+| Senior | 30% | 70% |
+| Owner | 20% | 80% |
+
+因此近期最有價值的不是再擴主題清單，而是把現有經驗整理成四種輸出：
+
+1. Story。
+2. Flow。
+3. Incident。
+4. Decision。
+
+然後拿去市場驗證。這比多學一個框架更能往 Senior Backend / Platform Backend 前進。
+
 ## Part A：自動化推送規劃
 
 ### 目標
