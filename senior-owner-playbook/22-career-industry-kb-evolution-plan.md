@@ -45,6 +45,85 @@
 
 若否，預設列為可選加強或暫不建議，不得自動升級為必做事項。
 
+## Part 0：30 年能力主幹
+
+這份能力樹是長期羅盤，不是新增待辦。未來 20-30 年不要一直替能力樹加枝葉；原則是反覆深化主幹，把知識轉成 production case、文件、決策與面試表達。
+
+### 終身底層能力
+
+這些能力不分職級，會長期累積：
+
+- Learning System：KB、Learning Log、Weekly Review、技術文章篩選、不累積學習債務、能把知識轉成案例與回答。
+- AI 協作：Prompt Engineering、Context Engineering、Harness Engineering、Agent Workflow、AI Code Review、AI Risk Review、AI-assisted Documentation / Debugging / Testing。
+- Writing：ADR、Design Doc、Incident Report、Handover、Runbook、Proposal、Decision Memo。
+- 個人穩定性：健康、睡眠、財務穩定、緊急預備金、長期投資、情緒韌性、長期職涯節奏。
+
+### 30 年能力主幹
+
+濃縮成 12 條：
+
+1. Backend Core。
+2. Database / Cache / MQ。
+3. Transaction / Consistency。
+4. Production Flow。
+5. Incident / Troubleshooting。
+6. Observability / Reliability。
+7. Distributed System。
+8. Architecture / Migration。
+9. Security。
+10. AI-assisted Engineering。
+11. Communication / Ownership / Decision Making。
+12. Business Thinking / Personal Stability。
+
+### 分階段方向
+
+2026-2027：
+
+- Senior Backend 面試。
+- 三個故事。
+- 12 條 Flow。
+- Transaction / MQ / DB / Redis / Incident。
+- 市場驗證。
+- 緊急預備金。
+
+2028-2030：
+
+- Platform Backend。
+- System Design。
+- Observability。
+- Reliability。
+- Ownership。
+- Cross-team Impact。
+
+2030 以後：
+
+- System Owner。
+- Tech Lead。
+- Business Thinking。
+- Strategy。
+- Organization。
+- 更高階決策。
+
+### 不追的東西
+
+這些只能觀察，不得變成主線：
+
+- 每個新框架。
+- 每個新語言。
+- 每個 AI Model。
+- 每個雲端服務。
+- 每個熱門架構名詞。
+
+真正該追的是：
+
+- Backend 趨勢：Java LTS、Spring Boot、Kafka、OpenTelemetry、PostgreSQL / MySQL、Redis、K8s。
+- Architecture 趨勢：Modular Monolith、Event Driven、Platform Engineering。
+- AI Engineering 趨勢：Agent Workflow、Context Engineering、Harness Engineering、AI Code Review、AI Testing。
+
+### 近期邊界
+
+目前仍以 `Senior Java Backend -> Platform Backend` 為主。Engineering Manager、Business Owner、組織管理與高階商業決策只作長期方向，不排入近期週排程。Personal Finance 與健康屬於長期穩定性，會影響 20 年競爭力，但不放進 backend weekly 主線。
+
 ## Part A：自動化推送規劃
 
 ### 目標
