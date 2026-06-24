@@ -186,6 +186,54 @@
 
 然後拿去市場驗證。這比多學一個框架更能往 Senior Backend / Platform Backend 前進。
 
+### A / B / C 時間分層
+
+Nick 的盲點不是不努力，而是容易把 `未來 10 年需要的能力` 和 `未來 6 個月需要的能力` 混在一起。長期能力可以記，但近期時間要分層。
+
+#### A 級：80% 時間
+
+直接影響下一份工作，2026 下半年主力放這裡：
+
+- 面試：定位、履歷、自傳、三個故事、12 條 Flow、30 題核心。
+- Backend Core：Transaction、MySQL、Redis、Kafka、MQ、JVM。
+- Production：Callback、Wallet、Projection、Idempotency。
+- Incident：排查、止血、根因分析。
+- System Design：Trade-off、Boundary、Migration。
+
+#### B 級：15% 時間
+
+知道即可，作為 Platform Backend 加分：
+
+- Platform：Outbox、Saga、CDC、Contract Testing。
+- Observability：OpenTelemetry、Metrics、SLO。
+- AI 協作：Codex、Context Engineering、Agent Workflow。
+
+#### C 級：5% 時間
+
+現在不用投入大量時間，可以收藏與觀察：
+
+- Lead：Mentoring、Hiring、Code Review Strategy。
+- Manager：1:1、Performance Review、Budget。
+- Business：P&L、Pricing、Strategy。
+- GM：組織、文化、營運。
+
+這些有價值，但不是 2026-2027 Senior Backend 求職主線。可以記在能力樹，不要變成本月待辦。
+
+2026 下半年健康比例：
+
+```text
+80% Senior Backend / 面試 / Production / Incident / System Design
+15% Platform Backend / AI 協作
+5% Lead / Business / GM 能力
+```
+
+判斷句：
+
+```text
+想太遠不是問題。
+問題是把三年後、五年後、十年後要學的東西，全部搬到今天的待辦清單。
+```
+
 ## Part A：自動化推送規劃
 
 ### 目標
