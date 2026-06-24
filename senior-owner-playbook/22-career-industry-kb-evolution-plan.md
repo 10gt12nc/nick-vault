@@ -479,6 +479,8 @@ Produce one focused weekly learning packet with:
 9. 1 suggested 30-minute action
 10. 1 explicit non-goal
 
+Also paste the full weekly learning packet in the chat response, not only a summary.
+
 Respect the current priority rules:
 - A level 80%: Senior Backend, interview, Production, Incident, System Design
 - B level 15%: Platform Backend, Observability, AI-assisted Engineering
