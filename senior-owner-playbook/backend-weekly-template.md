@@ -62,6 +62,7 @@
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
 - 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
 - 實戰輸出補強：若主題涉及 Incident、Decision 或 Ownership，必須補一句它對 Technical Communication、Risk Communication、Decision Making 或 Ownership 的幫助。
+- AI-Assisted Engineering：若本週使用 AI 協助學習或產出，必須補一句 AI risk review，檢查 Transaction Boundary、Idempotency、BigDecimal、SQL Index、Redis Lock、MQ Retry、Race Condition 或 Security 是否被忽略。
 - KB 維護建議：只能提出建議，不大量自動改正式 KB。
 - 本週不建議做什麼：明確列出低 ROI 或焦慮型延伸。
 
@@ -122,7 +123,8 @@
 3. 對應哪類 30 題核心面試題
 4. 可以補強哪個面試弱點
 5. 對應哪個軟實力面向：Technical Communication / Risk Communication / Decision Making / Ownership
-6. 是否能講進自我介紹；若能，必須保守不誇大
+6. 是否涉及 AI-Assisted Engineering；若有，請說明它只是工作法 / review 能力，不能誇大成 AI Engineer 或 AI platform owner
+7. 是否能講進自我介紹；若能，必須保守不誇大
 
 ## 本週必看
 
