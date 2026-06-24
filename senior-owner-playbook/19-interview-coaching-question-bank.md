@@ -1653,82 +1653,257 @@ A 到 N 的所有題目，本質上都在反覆確認五件事：
 
 ## 面試準備閱讀順序
 
-不要一開始就 QA，也不要從 A-N 題庫硬背。正確順序是先讀出主線，再用題目驗證主線。
+不要一開始就 QA，也不要從 A-N 題庫硬背。正確順序是先讀出主線，再用題目驗證主線；缺什麼再回來補哪一層。
 
-完整層級：
-
-1. `定位`：先讀本檔「最終敘事總結」，確認自己是 `Senior Java Backend / Platform Backend`，主軸是 `Provider Integration`、`Wallet / Transaction Flow`、`MQ / Projection`、`Legacy Takeover`。
-2. `履歷自傳`：先讀 `08-application-autobiography-zh.md` A 版，再讀 `05-resume-master-zh.md` 的 claim / evidence / 不可誇大邊界，最後視需要讀 `17-salary-negotiation.md` 的談薪與換工作說法。
-3. `三個 Story`：依 `Legacy Takeover / Troubleshooting` -> `Wallet / Bet-Settle / MQ` -> `Provider Integration` 讀；先讀 30 秒版，再讀 90 秒版，最後看 3 分鐘版，不必逐字硬背。
-4. `12 條 Flow`：分批讀，不是一口氣全部背完。先讀主力 7 條，再補到 10 條抗追問，最後依 JD 補到 12 條。
-5. `30 題核心`：先看題目，自己想 20 秒，再看 90 秒草稿；每題都問自己能不能接回三個 Story 或 12 條 Flow。
-6. `A-N 題庫`：只作補洞，不作從頭刷題。先讀定位、production flow、consistency、incident / legacy、troubleshooting、provider，再補 MQ / DB / Java / Redis / System Design / HR / Security / Architecture。
-7. `QA`：至少讀完 `08 A 版`、本檔最終敘事總結、三個 Story 的 30 秒與 90 秒、主力 7 條 Flow 摘要、30 題核心標題後，再開始一次 3-5 題 QA。
-8. `市場驗證`：投履歷、面試、收集追問；之後只依 JD 或真實面試回饋補洞。
-
-12 條 Flow 閱讀順序：
+大順序固定為：
 
 ```text
-主力 7 條：
-1. payment-order-provider-request
-2. payment-provider-callback
-3. third-party-transfer-in-out
-4. slot-bet-settle-rollback
-5. transfer-wallet-money-in-out
-6. proxy-user-data-report-projection
-7. daily-game-data-summary
-
-補到 10 條，抗 Senior / Platform 追問：
-8. bet-record-sharding-schema-route
-9. db-partition-job-report-routing
-10. gameserver-phased-rollout
-
-補到 12 條，遊戲 / slot / provider / math JD 加分：
-11. fixed-multi-bet-currency-math-core-compatibility
-12. rtp-reel-strip-simulation-validation
+定位
+-> 履歷自傳
+-> 三個 Story
+-> 12 條 Flow
+-> 30 題核心
+-> A-N 題庫補洞
+-> QA
+-> 投遞 / 面試回饋
 ```
 
-每條 Flow 不逐字背 `flow.md`，只抓六件事：
+### 最小版閱讀順序
+
+如果想最快開始，先讀到能開口，不追求一次完整。
+
+1. 本檔 `最終敘事總結`：確認市場定位。
+2. `08-application-autobiography-zh.md`：讀 A 版。
+3. 本檔 `三個專案故事稿`：讀三個 Story 的 30 秒版。
+4. 本檔 `三個專案故事稿`：讀三個 Story 的 90 秒版。
+5. 主力 7 條 Flow：每條只抓六點。
+6. 本檔 `30 題核心收斂版`：先看題目標題。
+7. 開始 QA：一次 3-5 題。
+
+### 完整版閱讀順序
+
+1. 本檔 `最終敘事總結`。
+2. `08-application-autobiography-zh.md`：A 版。
+3. `05-resume-master-zh.md`：claim / evidence / 不可誇大邊界。
+4. `17-salary-negotiation.md`：談薪、換工作、投遞節奏。
+5. 本檔 `三個專案故事稿`：30 秒版。
+6. 本檔 `三個專案故事稿`：90 秒版。
+7. 本檔 `三個專案故事稿`：3 分鐘版。
+8. 主力 7 條 Flow。
+9. 補到 10 條 Flow。
+10. 視 JD 補到 12 條 Flow。
+11. 本檔 `30 題核心收斂版`。
+12. 本檔 A-N 題庫補洞。
+13. QA，一次 3-5 題。
+14. 投遞 / 面試 / 回填追問。
+
+### 入口檔案
+
+第 0 層先看 `README.md`，確認目前主入口仍是 `19-interview-coaching-question-bank.md`、題庫已封版、下一步是閱讀與練習。
+
+第 1 層讀本檔 `最終敘事總結`。只要先記住這句：
+
+> Senior Java Backend / Platform Backend，具 Provider Integration、Wallet / Transaction Flow、MQ / Projection、Legacy Takeover 經驗。
+
+第 2 層讀履歷自傳主線：
+
+- `senior-owner-playbook/08-application-autobiography-zh.md`：A 版與 104 欄位版。
+- `senior-owner-playbook/05-resume-master-zh.md`：版本表、Evidence、不可誇大。
+
+第 3 層讀談薪與換工作：
+
+- `senior-owner-playbook/17-salary-negotiation.md`：第一輪 Market Calibration 投遞策略。
+- `senior-owner-playbook/17-salary-negotiation.md`：台灣轉職月份策略。
+
+第 4 層讀三個 Story，順序固定：
+
+1. `Legacy Takeover / Troubleshooting Story`
+2. `Wallet / Bet-Settle / MQ Story`
+3. `Provider Integration Story`
+
+讀法固定：
+
+1. 第一輪：三個 Story 的 30 秒版。
+2. 第二輪：三個 Story 的 90 秒版。
+3. 第三輪：三個 Story 的 3 分鐘版。
+
+不要逐字背，目標是能自然講。
+
+### Flow 讀法
+
+每條 Flow 先讀 `career-interview.md`，再讀 `flow.md`。不要逐字背研究報告，只抓六點：
+
+1. 業務目的
+2. 正常資料流
+3. Source of Truth
+4. Failure window
+5. 出事怎麼查
+6. 不可誇大邊界
+
+### 主力 7 條 Flow
+
+投遞前優先讀熟。
+
+1. `payment-order-provider-request`
+   - `projects/iwin/payment/flows/payment-order-provider-request/career-interview.md`
+   - `projects/iwin/payment/flows/payment-order-provider-request/flow.md`
+2. `payment-provider-callback`
+   - `projects/iwin/payment/flows/payment-provider-callback/career-interview.md`
+   - `projects/iwin/payment/flows/payment-provider-callback/flow.md`
+3. `third-party-transfer-in-out`
+   - `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/career-interview.md`
+   - `projects/iwin/iwin_gameserver/flows/third-party-transfer-in-out/flow.md`
+4. `slot-bet-settle-rollback`
+   - `projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/career-interview.md`
+   - `projects/antplay/antplay-slot-game-api/flows/slot-bet-settle-rollback/flow.md`
+5. `transfer-wallet-money-in-out`
+   - `projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/career-interview.md`
+   - `projects/antplay/antplay-slot-game-api/flows/transfer-wallet-money-in-out/flow.md`
+6. `proxy-user-data-report-projection`
+   - `projects/antplay/antplay-slot-game-job/flows/proxy-user-data-report-projection/career-interview.md`
+   - `projects/antplay/antplay-slot-game-job/flows/proxy-user-data-report-projection/flow.md`
+7. `daily-game-data-summary`
+   - `projects/iwin/game_job/flows/daily-game-data-summary/career-interview.md`
+   - `projects/iwin/game_job/flows/daily-game-data-summary/flow.md`
+
+### 補到 10 條 Flow
+
+Senior / Platform 抗追問用。
+
+8. `bet-record-sharding-schema-route`
+   - `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/career-interview.md`
+   - `projects/antplay/antplay-slot-game-api/flows/bet-record-sharding-schema-route/flow.md`
+9. `db-partition-job-report-routing`
+   - `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/career-interview.md`
+   - `projects/antplay/antplay-slot-game-job/flows/db-partition-job-report-routing/flow.md`
+10. `gameserver-phased-rollout`
+    - `projects/iwin/k3s-deploy/flows/gameserver-phased-rollout/career-interview.md`
+    - `projects/iwin/k3s-deploy/flows/gameserver-phased-rollout/flow.md`
+
+### 視 JD 補到 12 條 Flow
+
+遊戲 / slot / provider / math 類職缺加分。
+
+11. `fixed-multi-bet-currency-math-core-compatibility`
+    - `projects/antplay/star-math/flows/fixed-multi-bet-currency-math-core-compatibility/career-interview.md`
+    - `projects/antplay/star-math/flows/fixed-multi-bet-currency-math-core-compatibility/flow.md`
+12. `rtp-reel-strip-simulation-validation`
+    - `projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/career-interview.md`
+    - `projects/antplay/star-math/flows/rtp-reel-strip-simulation-validation/flow.md`
+
+### 30 題核心讀法
+
+讀本檔 `30 題核心收斂版`：
+
+1. 先看題目。
+2. 自己想 20 秒。
+3. 再看 90 秒草稿。
+4. 問自己：這題能不能接回 Story 或 Flow？
+
+如果接不回 Story 或 Flow，那題先標記，不要硬背。
+
+### A-N 題庫補洞順序
+
+A-N 不是從頭背到尾，是補洞用。
+
+第一輪主線：
+
+1. A. 履歷與定位
+2. B. Production Flow
+3. C. Transaction / Consistency / Idempotency
+4. H. Observability / Incident / Legacy
+5. M. Real Troubleshooting
+6. K. Provider Integration
+
+第二輪補強：
+
+1. D. MQ / Kafka / RabbitMQ / Batch
+2. E. Database / SQL / Performance
+3. G. Java / Spring / Runtime
+4. F. Redis / Cache / Distributed Lock
+5. I. System Design / Owner Decision
+6. J. Behavior / HR / 談薪 / 團隊協作
+7. L. Security / Auth
+8. N. Architecture Evolution
+
+前 6 個是主線；D / E / G / F 是基本盤；I / J 是面試包裝；L / N 是補強，不是第一輪主線。
+
+### QA 開始條件
+
+至少讀完這些再 QA：
+
+1. 本檔 `最終敘事總結`。
+2. `08-application-autobiography-zh.md` A 版。
+3. 三個 Story 的 30 秒與 90 秒。
+4. 主力 7 條 Flow，每條六點。
+5. 30 題核心標題。
+
+QA 規則：
+
+- 一次只做 3-5 題。
+- 答完再修。
+- 不新增題庫。
+- 不重開整理。
+
+這樣 QA 才是在測能力，不是在製造焦慮。
+
+### 時間節奏
+
+這是準備節奏，不是全部都是市場旺季。
 
 ```text
-業務目的
-正常資料流
-Source of Truth
-Failure window
-出事怎麼查
-不可誇大邊界
+2026/07
+整理履歷、自我介紹、三個專案故事
+
+2026/08
+Production Flow、技術複習、模擬面試
+
+2026/09-10
+第一波正式市場驗證，目標是面試、拿回饋、爭取 offer
+
+2026/11-2027/01
+整理第一波面試回饋與補洞
+
+2027/02-05
+第二波擴大投遞，吃最大招聘季
+
+之後
+每季面試 3-5 間，持續 market check
 ```
 
-最小版閱讀順序：
+外部市場節奏另外記：
 
 ```text
-1. 本檔最終敘事總結
-2. 08 A 版
-3. 三個 Story 30 秒版
-4. 三個 Story 90 秒版
-5. 主力 7 條 Flow 每條抓六點
-6. 30 題核心題標題
-7. 開始 QA
+Tier 1：2-5 月，最大波
+Tier 2：9-10 月，第二波
+Tier 3：全年其他月份，仍有職缺
 ```
 
-完整版閱讀順序：
+真正該記的是：
 
 ```text
-1. 本檔最終敘事總結
-2. 08 A 版
-3. 05 claim / boundary
-4. 17 談薪與換工作
-5. 三個 Story：30 秒
-6. 三個 Story：90 秒
-7. 三個 Story：3 分鐘
-8. 主力 7 條 Flow
-9. 補到 10 條 Flow
-10. 視 JD 補到 12 條 Flow
-11. 30 題核心
-12. A-N 題庫補洞
-13. QA，一次 3-5 題
-14. 投遞 / 面試 / 回填追問
+2026/09-10
+第一波正式市場驗證
+
+2027/02-05
+第二波擴大投遞 / 最大招聘季
 ```
+
+### 現在真正要做的事
+
+不要直接刷完整 A-N 題庫。不要直接讀 12 條 Flow。不要現在就開始 QA。
+
+現在只做最小版：
+
+1. 讀本檔 `最終敘事總結`。
+2. 讀 `08-application-autobiography-zh.md` A 版。
+3. 讀三個 Story 30 秒版。
+4. 讀三個 Story 90 秒版。
+5. 讀主力 7 條 Flow，每條抓六點。
+6. 看 30 題核心題標題。
+7. 開始 QA。
+
+先讀到能開口，再用 QA 找洞。缺什麼，再補哪一層。
 
 ## 三個專案故事稿
 

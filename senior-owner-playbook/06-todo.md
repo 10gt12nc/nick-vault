@@ -209,6 +209,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-24：已把面試準備閱讀順序在 `19-interview-coaching-question-bank.md` 去重、整併並重排成正式入口。現在以 `定位 -> 履歷自傳 -> 三個 Story -> 12 條 Flow -> 30 題核心 -> A-N 題庫補洞 -> QA -> 投遞 / 面試回饋` 為唯一大順序，並補齊最小版 / 完整版讀法、入口檔案、主力 7 條 Flow、補到 10 / 12 條 Flow、A-N 補洞順序、QA 開始條件、2026/07-2027/05 時間節奏與市場旺季區分。這是閱讀策略收口，不代表新增題庫或新增 flow backlog。
 - 2026-06-24：已補強 Backend weekly template 與 automation prompt 邊界：weekly automation 不是只產 6 點短 checkpoint，而是依 `backend-weekly-template.md` 產一週一主題 learning packet；每週仍保持小而可行動，但要包含最多 3 篇高品質來源、Beginner-to-Senior 解釋、1 個小型 code / pseudo-code 範例、1 個簡單 Mermaid 架構 / flow 圖、Senior 面試題與 30 分鐘任務。仍不得改履歷 / 自傳 / story / 正式 flow / `04 / 05 / 08 / 17 / 19`，除非 Nick 明確要求。
 - 2026-06-24：已補上 `A / B / C 時間分層` 到 `22-career-industry-kb-evolution-plan.md` 與 `backend-weekly-plan.md`。2026 下半年比例固定為：A 級 80% 放 Senior Backend、面試、Production、Incident、System Design；B 級 15% 放 Platform Backend、Observability、AI 協作；C 級 5% 放 Lead / Manager / Business / GM 能力。Hiring、Budget、P&L、Org Design、Culture、Business Strategy 可收藏與觀察，但不得搬成本月待辦，也不得搶走 Transaction、MQ、DB、Incident、故事與 Flow 的時間。
 - 2026-06-24：已補上 `學習型能力 vs 責任型能力` 的比例規則到 `22-career-industry-kb-evolution-plan.md`，並同步 `backend-weekly-plan.md` 防過度準備規則。結論：Java / Spring / DB / Redis / MQ / Security / Observability / K8s 基礎可以靠學習補到一定程度；Ownership、Decision Making、Incident Handling、Risk Communication、Business Thinking 需要真實責任，近期只能先建立 vocabulary 與回答框架，主力仍是把現有經驗整理成 Story / Flow / Incident / Decision 並市場驗證。
