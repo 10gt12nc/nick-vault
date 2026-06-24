@@ -54,6 +54,16 @@
 4. 本週 Incident / Troubleshooting 思考。
 5. 本週 KB / 學習紀錄維護。
 
+## 每週必要檢查清單
+
+每週輸出前必須確認：
+
+- 避免重複檢查：先看 `backend-learning-log.md` 是否已跑過相同主題；若跑過，要加深 incident、production、trade-off 或 interview depth。
+- 本週可執行任務：最多 1 項，30 分鐘內完成。
+- 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
+- KB 維護建議：只能提出建議，不大量自動改正式 KB。
+- 本週不建議做什麼：明確列出低 ROI 或焦慮型延伸。
+
 ## 每週輸出格式
 
 ```text
