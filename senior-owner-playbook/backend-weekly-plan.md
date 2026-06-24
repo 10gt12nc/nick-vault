@@ -35,7 +35,8 @@ Next topic: Week 02 Propagation / Isolation / Rollback Rule
 
 1. `每週固定產出`：每週固定 5 件事，避免 automation 變成文章摘要或題庫擴張器。
 2. `48 週核心輪詢`：涵蓋 Senior Backend Core、Platform / Distributed、Incident / Architecture / Leadership。
-3. `補足主題池`：Security、K8s / DevOps、Architecture、Communication / Leadership，只在第二輪 / 第三輪或面試回饋需要時插入。
+3. `實戰輸出補強`：Troubleshooting Playbook、Ownership / Decision、軟實力主題，用來把知識轉成面試可講的 owner 表達。
+4. `補足主題池`：Security、K8s / DevOps、Architecture、Communication / Leadership，只在第二輪 / 第三輪或面試回饋需要時插入。
 
 ## 每週固定產出
 
@@ -119,6 +120,65 @@ Next topic: Week 02 Propagation / Isolation / Rollback Rule
 | 46 | Migration Strategy / Legacy Takeover | Legacy / rollout | Legacy Takeover Story |
 | 47 | Architecture Trade-off / ADR | Owner decision | 18-system-design-templates |
 | 48 | Risk Communication / Technical Decision Making | Leadership | PM 快上線、技術債排序 |
+
+## 實戰輸出補強
+
+這份排程目前對 `Senior Java Backend` 與 `Platform Backend` 已經足夠，不需要再擴新框架或新題庫。若往 `System Owner` 前進，真正缺口不是主題數量，而是把知識轉成可被追問的實戰輸出：
+
+- Incident：出事時如何定位、證明、修復與避免重發。
+- Trade-off：為什麼選 A 不選 B，以及成本與風險是什麼。
+- Ownership：如何定義問題、成功條件、驗證方式與風險溝通。
+
+因此第二輪 / 第三輪若要插入補強，優先用下面三組，不再另開大型學習線。
+
+### Troubleshooting Playbook
+
+反覆輪詢，但不排成新的長期主線：
+
+- CPU 100%。
+- OOM。
+- GC 問題。
+- Thread Pool 滿。
+- DB Connection Pool 滿。
+- Slow Query。
+- Deadlock。
+- Redis Timeout。
+- Kafka Lag。
+- Consumer 卡死。
+
+輸出要求：每題都要能回答 `影響範圍 -> 卡在哪一層 -> 如何證明根因 -> 如何修復 / 避免重發`，並盡量接回 Payment Callback、Wallet / Bet-Settle、MQ / Projection 或 Legacy Takeover。
+
+### Ownership / Decision
+
+這是從 Senior Backend 往 System Owner 的橋樑：
+
+- 需求不合理怎麼辦。
+- 如何評估風險。
+- 如何拆任務。
+- 如何寫 ADR。
+- 如何寫 Incident Review。
+- 如何做技術決策。
+- 如何和 PM 討論取捨。
+
+輸出要求：不要只講技術名詞，要能說出 `問題、成本、風險、驗證方式、rollback plan`。
+
+### 軟實力主題池
+
+目前排程比例維持 `硬實力 80% / 軟實力 20%`。因為 Nick 目前目標是 Senior Java Backend / Platform Backend / 10 萬以上，不是 Engineering Manager、Director 或 VP Engineering。
+
+優先補：
+
+1. Technical Communication：技術說明、文件撰寫、Incident Communication。
+2. Risk Communication：風險分析、風險回報、Escalation。
+3. Decision Making：Trade-off、ADR、Architecture Decision。
+4. Ownership：Requirement Clarification、Success Criteria、Validation Plan。
+
+排後面：
+
+5. Mentoring：Code Review、Knowledge Sharing。
+6. Stakeholder Management：PM、QA、Other Teams。
+
+Mentoring、Hiring、People Management 先不當主線；等面試回饋或職缺明確要求 Lead / Manager 再補。
 
 ## 補足主題池
 
