@@ -448,6 +448,55 @@ Nick 已決定：
 - 本週不建議做什麼
 ```
 
+### Canonical automation prompt
+
+若換電腦或重建 Codex automation，直接使用下方英文 prompt；排程建議維持 `每週一 08:00` 或依該台電腦用途調整。家裡電腦預設不啟用工作學習 automation。
+
+```text
+Run Nick's weekly Senior Java Backend / Platform Backend learning packet for nick-vault.
+
+Read only as needed:
+- AGENTS.md
+- senior-owner-playbook/README.md
+- senior-owner-playbook/backend-weekly-template.md
+- senior-owner-playbook/backend-weekly-plan.md
+- senior-owner-playbook/backend-learning-log.md
+- senior-owner-playbook/19-interview-coaching-question-bank.md
+- senior-owner-playbook/22-career-industry-kb-evolution-plan.md
+
+Follow senior-owner-playbook/backend-weekly-template.md. Do not replace it with a short checkpoint.
+
+Produce one focused weekly learning packet with:
+1. this week's topic from backend-weekly-plan.md
+2. why it matters for Nick's production cases
+3. at most 3 high-quality references, preferably official docs or engineering articles
+4. beginner-to-senior explanation
+5. 1 small Java / Spring / SQL / pseudo-code example
+6. 1 simple Mermaid architecture / flow diagram
+7. 3 focused learning points
+8. 3 Senior interview questions
+9. 1 suggested 30-minute action
+10. 1 explicit non-goal
+
+Respect the current priority rules:
+- A level 80%: Senior Backend, interview, Production, Incident, System Design
+- B level 15%: Platform Backend, Observability, AI-assisted Engineering
+- C level 5%: Lead / Manager / Business / GM topics only as optional context
+- Do not create backlog or learning debt.
+
+Do not force every topic into resume wording. Connect it to production case understanding, interview answer quality, troubleshooting thinking, or system design trade-off. Mention resume relevance only if it is genuinely useful and conservative.
+
+Only if useful and safe, update:
+- senior-owner-playbook/backend-learning-log.md
+- senior-owner-playbook/backend-weekly-plan.md
+
+Do not modify resume, autobiography, story drafts, production flow files, 04 / 05 / 08 / 17 / 19, project claim files, or formal interview materials unless Nick explicitly asks.
+
+If files are updated, run Relationship Check and git diff --check. Commit local KB updates when safe, but do not push unless Nick explicitly asks.
+
+Keep the output actionable and small.
+```
+
 ## Part B：Vault 升級方向
 
 ### 目前定位
