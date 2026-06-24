@@ -83,6 +83,27 @@
 
 控制在 10-15 分鐘可讀完。
 
+## Beginner-to-Senior 解釋
+
+用三層講清楚：
+- Beginner：這個技術是什麼、解決什麼基本問題。
+- Mid：實作時最常踩的坑。
+- Senior：production flow、failure window、trade-off、observability 怎麼看。
+
+## 小型 code / pseudo-code 範例
+
+提供 1 個短範例即可：
+- 優先用 Java / Spring / SQL / pseudo-code。
+- 範例只示範核心概念，不建立完整專案。
+- 若主題不適合 code，改用資料流 pseudo-code。
+
+## 架構 / Flow 圖
+
+提供 1 個簡單 Mermaid 圖即可：
+- 用來說明 request flow、transaction boundary、MQ / retry / projection、incident 排查路徑。
+- 不畫大型系統圖。
+- 不把未做過的架構畫成 Nick 已經 owner 的系統。
+
 ## Production 情境
 
 優先連結：

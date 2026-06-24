@@ -424,6 +424,8 @@ Nick 已決定：
 規則：
 - 每週只聚焦 1 個主題
 - 最多 3 篇高品質來源
+- 依 `backend-weekly-template.md` 輸出，不要用極短 checkpoint 覆蓋 template
+- 包含 beginner-to-senior 解釋、1 個小型 code / pseudo-code 範例、1 個簡單 Mermaid 架構 / flow 圖
 - 不處理日文
 - 不建立巨大 backlog
 - 不改履歷、自傳、故事稿、正式 flow 或 project 文件，除非 Nick 明確要求
@@ -436,6 +438,9 @@ Nick 已決定：
 輸出：
 - 本週摘要
 - 最多 3 篇必看來源
+- Beginner-to-Senior 解釋
+- 小型 code / pseudo-code 範例
+- Mermaid 架構 / flow 圖
 - Senior 面試題
 - 30 分鐘任務
 - 更新了哪些 KB 檔案
