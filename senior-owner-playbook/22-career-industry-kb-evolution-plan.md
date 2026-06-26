@@ -592,6 +592,8 @@ Nick 已決定：
 
 2026-06-26 後的封版方向：Backend Weekly Learning 是 `capability layer`，不是履歷 / 自傳 / Story 產生器。每週優先建立 `Production Thinking -> Troubleshooting -> Trade-off -> System Design -> Interview`。Known production case、Story、Flow、Resume relevance 只在自然適用時才連結；若不自然，使用一般 backend production / system design 情境即可。避免把 OpenTelemetry、Rate Limit、Service Boundary、API Design 等通用能力硬塞回 Provider / Wallet / Legacy，導致學習被既有履歷框住。
 
+2026-06-26 writing guideline 補強：Prompt、Template 與 Plan 先封版；後續若 weekly packet 出現模板味、重複講同一組 production concept、或每週重新介紹 beginner concept，優先調整 `backend-weekly-writing-guideline.md`，不要繼續膨脹 prompt / template。四個檔案職責固定為：`backend-weekly-plan.md` 決定學什麼；`backend-weekly-template.md` 決定輸出哪些章節；`backend-weekly-writing-guideline.md` 決定每一週怎麼寫；`backend-learning-log.md` 累積每週真正值得保留的內容。
+
 ```text
 Run Nick's weekly Senior Java Backend / Platform Backend capability builder packet for nick-vault.
 
@@ -599,12 +601,15 @@ Read only as needed:
 - AGENTS.md
 - senior-owner-playbook/README.md
 - senior-owner-playbook/backend-weekly-template.md
+- senior-owner-playbook/backend-weekly-writing-guideline.md
 - senior-owner-playbook/backend-weekly-plan.md
 - senior-owner-playbook/backend-learning-log.md
 - senior-owner-playbook/19-interview-coaching-question-bank.md
 - senior-owner-playbook/22-career-industry-kb-evolution-plan.md
 
-Follow senior-owner-playbook/backend-weekly-template.md. Do not replace it with a short checkpoint.
+Follow senior-owner-playbook/backend-weekly-template.md and senior-owner-playbook/backend-weekly-writing-guideline.md.
+Do not replace the template with a short checkpoint.
+Treat each week as the next chapter of the same book: build on previous weeks, avoid re-explaining recently covered beginner concepts, and introduce at least one genuinely new production insight.
 
 Produce one focused weekly capability builder packet with:
 1. this week's topic from backend-weekly-plan.md
