@@ -8,6 +8,7 @@
   - `backend-weekly-plan.md`
   - `backend-learning-log.md`
   - `backend-weekly-template.md`
+  - `backend-weekly-writing-guideline.md`
 - 第一版只做 Senior Backend / Platform Backend 每週 capability builder；日語暫不排入主學習排程。
 - automation 若正式啟用，預設只維護上述 weekly 檔案，不改 `04 / 05 / 08 / 17`、三個故事稿或 production flow 文件，除非 Nick 明確要求。
 - 2026-06-23 決策：公司電腦才是工作學習與 KB 維護主機；家裡電腦原則上不跑工作學習 automation，避免休息時間被工作排程打斷。
