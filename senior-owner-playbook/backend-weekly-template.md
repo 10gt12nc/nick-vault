@@ -69,6 +69,7 @@ Weekly Senior Backend Capability Builder
 - 本週輸出類型：依主題選 1 個 weekly mode：`Concept Mode`、`Troubleshooting Mode`、`Trade-off Mode`、`Interview Mode`，避免每週都變成同一種文章包。
 - 避免重複檢查：先看 `backend-learning-log.md` 是否已跑過相同主題；若跑過，要加深 incident、production、trade-off 或 interview depth。
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
+- 閱讀體驗：最前面必須有 `Executive Summary`，最後必須有 Nick 自填的 `Reflection`；章節用 `Core / Deep Dive / Reference` 標示閱讀層級。
 - 能力優先順序：Production Thinking -> Troubleshooting -> Trade-off -> System Design -> Interview -> Known Case（if naturally applicable）-> Resume（optional）。
 - 與面試材料關聯：若本週主題自然連到三個 Story、12 條 Flow 或 30 題核心，才做保守連結；若不自然，改連到一般 backend production / system design 場景，不硬貼履歷或 Story。
 - Known Production Case Lens：最多 5 bullets；若自然適用，才用既有 notes 連到 Nick 已知 cases；否則使用泛化 production analogy。不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
@@ -87,10 +88,26 @@ Weekly Senior Backend Capability Builder
 
 ## 每週輸出格式
 
-```text
-## 本週主題
+閱讀層級：
 
-## Weekly Mode
+- `Core`：每週一定要看；忙的時候只讀這層，也要能掌握本週最重要觀念。
+- `Deep Dive`：需要深入時看；用來建立 Senior 思維與面試可追問能力。
+- `Reference`：長期累積；有價值，但不是每週都一定要細讀。
+
+```text
+## Executive Summary（Core）
+
+一句話 Takeaway：
+
+Production Mindset：
+
+Interview Mindset：
+
+預估閱讀時間：
+
+## 本週主題（Core）
+
+## Weekly Mode（Core）
 
 選 1 個：
 - Concept Mode：核心概念 / 機制。
@@ -98,7 +115,7 @@ Weekly Senior Backend Capability Builder
 - Trade-off Mode：design choice / migration / comparison。
 - Interview Mode：answer structure / senior judgment。
 
-## 為什麼這週學這個
+## 為什麼這週學這個（Core）
 
 請優先說明：
 - production 上解決什麼問題
@@ -107,32 +124,18 @@ Weekly Senior Backend Capability Builder
 - Senior Backend 面試為什麼會問
 - Nick 既有 Story / Flow：only if naturally applicable，不硬連
 
-## 核心概念
+## 核心概念（Core）
 
 控制在 10-15 分鐘可讀完。
 
-## Beginner-to-Senior 解釋
+## Beginner-to-Senior 解釋（Core）
 
 用三層講清楚：
 - Beginner：這個技術是什麼、解決什麼基本問題。
 - Mid：實作時最常踩的坑。
 - Senior：production flow、failure window、trade-off、observability 怎麼看。
 
-## 小型 code / pseudo-code 範例
-
-提供 1 個短範例即可：
-- 優先用 Java / Spring / SQL / pseudo-code。
-- 範例只示範核心概念，不建立完整專案。
-- 若主題不適合 code，改用資料流 pseudo-code。
-
-## 架構 / Flow 圖
-
-提供 1 個簡單 Mermaid 圖即可：
-- 用來說明 request flow、transaction boundary、MQ / retry / projection、incident 排查路徑。
-- 不畫大型系統圖。
-- 不把未做過的架構畫成 Nick 已經 owner 的系統。
-
-## Production 情境
+## Production 情境（Core）
 
 優先從一般 backend production 情境說明。
 
@@ -145,7 +148,96 @@ Weekly Senior Backend Capability Builder
 
 若不自然，不要硬連；改用常見 production / incident / system design 場景。
 
-## Known Production Case Lens
+## Technology Landscape（Core）
+
+For this topic:
+- Related technologies:
+- Current industry mainstream:
+- When each technology is a better fit:
+- Learn Now:
+- Learn Later:
+- Awareness Only:
+- Why:
+
+不要建議把所有相關技術都學完。
+
+## 本週可執行任務（Core）
+
+最多 1 項：
+- 30 分鐘內完成
+- 不建立大型專案
+- 不新增複雜 backlog
+- 可直接用於面試或 KB
+
+## Learning Check（Core）
+
+學完本週 packet 後，Nick 應該能：
+1. 用 60 秒說明這個主題。
+2. 說出 1 個 production failure mode。
+3. 回答 1 題 Senior interview question。
+4. 判斷什麼時候不該用這個 approach。
+
+## 小型 code / pseudo-code 範例（Deep Dive）
+
+提供 1 個短範例即可：
+- 優先用 Java / Spring / SQL / pseudo-code。
+- 範例只示範核心概念，不建立完整專案。
+- 若主題不適合 code，改用資料流 pseudo-code。
+
+## 架構 / Flow 圖（Deep Dive）
+
+提供 1 個簡單 Mermaid 圖即可：
+- 用來說明 request flow、transaction boundary、MQ / retry / projection、incident 排查路徑。
+- 不畫大型系統圖。
+- 不把未做過的架構畫成 Nick 已經 owner 的系統。
+
+## 常見錯誤（Deep Dive）
+
+## Incident / Troubleshooting（Deep Dive）
+
+至少提供一個 production 角度排查思路。
+
+## Observability Anchor（Deep Dive）
+
+For this topic:
+- 1 useful log:
+- 1 useful metric:
+- 1 useful trace/span:
+- 1 alert condition:
+- 1 thing that should not alert:
+
+## Senior 面試怎麼問（Deep Dive）
+
+提供 3 題。
+
+## Senior 面試怎麼回答（Deep Dive）
+
+回答要保守，並區分：
+- 已做過
+- 參與過
+- 分析過
+- 可作為目標
+- 待驗證
+
+## System Design 延伸思考（Deep Dive）
+
+說明這個主題牽涉哪些 trade-off。
+
+## Mini ADR（Deep Dive）
+
+- Context:
+- Decision:
+- Alternatives:
+- Consequences:
+- When this decision becomes wrong:
+
+## One Common Misconception（Deep Dive）
+
+- Misconception:
+- Correction:
+- Why it matters in production / interview:
+
+## Known Production Case Lens（Reference）
 
 最多 5 bullets：
 - 這個主題是否自然連到 Nick 已知 case？
@@ -162,60 +254,7 @@ Clearly distinguish:
 
 Never present assumptions as facts.
 
-## 常見錯誤
-
-## Incident / Troubleshooting
-
-至少提供一個 production 角度排查思路。
-
-## Observability Anchor
-
-For this topic:
-- 1 useful log:
-- 1 useful metric:
-- 1 useful trace/span:
-- 1 alert condition:
-- 1 thing that should not alert:
-
-## Senior 面試怎麼問
-
-提供 3 題。
-
-## Senior 面試怎麼回答
-
-回答要保守，並區分：
-- 已做過
-- 參與過
-- 分析過
-- 可作為目標
-- 待驗證
-
-## System Design 延伸思考
-
-說明這個主題牽涉哪些 trade-off。
-
-## Mini ADR
-
-- Context:
-- Decision:
-- Alternatives:
-- Consequences:
-- When this decision becomes wrong:
-
-## Technology Landscape
-
-For this topic:
-- Related technologies:
-- Current industry mainstream:
-- When each technology is a better fit:
-- Learn Now:
-- Learn Later:
-- Awareness Only:
-- Why:
-
-不要建議把所有相關技術都學完。
-
-## Knowledge Boundary
+## Knowledge Boundary（Reference）
 
 - Must Understand:
 - Should Understand:
@@ -223,13 +262,7 @@ For this topic:
 
 Explain why each item belongs in that category.
 
-## One Common Misconception
-
-- Misconception:
-- Correction:
-- Why it matters in production / interview:
-
-## Future Direction
+## Future Direction（Reference）
 
 只有有意義時才放；不要每週硬湊 Architect 方向。
 
@@ -240,7 +273,7 @@ If Nick later becomes:
 
 每層最多 1 個重點，並說明它是 current priority 還是 future-only topic；不形成近期 backlog。
 
-## 與我的面試材料如何連結（Only if naturally applicable）
+## 與我的面試材料如何連結（Reference / Only if naturally applicable）
 
 若自然適用，請說明：
 1. 對應哪個 Story：Provider Integration / Wallet / Bet-Settle / Legacy Takeover
@@ -251,13 +284,9 @@ If Nick later becomes:
 6. 是否涉及 AI-Assisted Engineering；若有，請說明它只是工作法 / review 能力，不能誇大成 AI Engineer 或 AI platform owner
 7. 是否能講進自我介紹；若能，必須保守不誇大
 
-若不自然，直接寫：
+若不自然，直接寫：`本週主題主要補強通用 backend production capability，不硬連履歷 / Story / Flow。`
 
-```text
-本週主題主要補強通用 backend production capability，不硬連履歷 / Story / Flow。
-```
-
-## 本週必看
+## 本週必看（Reference）
 
 最多 2 篇。優先 1 篇官方文件；第 2 篇只有在提供明顯 practical value 時才放。
 
@@ -270,30 +299,14 @@ If Nick later becomes:
 - 為什麼值得看
 - 對應哪個面試 / Production Flow
 
-## 本週可執行任務
-
-最多 1 項：
-- 30 分鐘內完成
-- 不建立大型專案
-- 不新增複雜 backlog
-- 可直接用於面試或 KB
-
-## Learning Check
-
-學完本週 packet 後，Nick 應該能：
-1. 用 60 秒說明這個主題。
-2. 說出 1 個 production failure mode。
-3. 回答 1 題 Senior interview question。
-4. 判斷什麼時候不該用這個 approach。
-
-## 本週 KB 維護建議
+## 本週 KB 維護建議（Reference）
 
 只能提出建議，不大量自動改 KB：
 1. 建議新增
 2. 建議補強
 3. 建議暫不處理
 
-## 本週不建議做什麼
+## 本週不建議做什麼（Reference）
 
 指出本週應避免的低 ROI 行為。
 
@@ -304,6 +317,14 @@ If Nick later becomes:
 4. interview
 
 犧牲 exhaustive technical detail。
+
+## Reflection（Reference / Nick 自填）
+
+今天最大的收穫：
+
+最不懂的是：
+
+工作上可以觀察：
 ```
 
 ## 每週資料搜尋規則
