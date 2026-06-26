@@ -38,9 +38,9 @@ Weekly Senior Backend Capability Builder
 
 ```text
 Current cycle: Round 1 / 48 weeks
-Current week: Week 02
-Current topic: Propagation / Isolation / Rollback Rule
-Next topic: Week 03 Self Invocation / AOP Proxy
+Current week: Week 03
+Current topic: Self Invocation / AOP Proxy
+Next topic: Week 04 Async / Thread Pool
 ```
 
 ## 三層排程結構

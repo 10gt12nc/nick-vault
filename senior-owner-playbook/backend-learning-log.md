@@ -634,3 +634,344 @@ flowchart TD
 最不懂的是：
 
 工作上可以觀察：
+
+## Week 03：Self Invocation / AOP Proxy
+
+狀態：已依 weekly template / writing guideline 產出。本週承接 Week 01 local transaction boundary 與 Week 02 propagation / rollback rule，往前推進到「annotation 寫了但根本沒有經過 Spring proxy」這個 production 失效點。
+
+### Executive Summary（Core）
+
+一句話 Takeaway：`@Transactional`、`@Cacheable`、`@Async` 這類 Spring AOP 能力，只有在呼叫有經過 Spring proxy 時才會套用；self-invocation 是 legacy code review 與 production debugging 很常見的盲點。
+
+Production Mindset：我會先確認 transaction 是否真的啟動，而不是看到 annotation 就假設 production 行為正確。
+
+Interview Mindset：回答 Spring transaction 失效時，要先講 proxy boundary，再講 self-invocation、private method、non-Spring bean、exception handling。
+
+預估閱讀時間：15 分鐘讀 Core；30 分鐘含 Deep Dive。
+
+### 本週主題（Core）
+
+Self Invocation / AOP Proxy：Spring 宣告式能力為什麼會失效、如何在 code review / incident 中確認 method 是否真的經過 proxy，以及如何選擇修正方式。
+
+### Weekly Mode（Core）
+
+Concept Mode。
+
+理由：這週是 Spring core mechanism 週。重點不是背 AOP 名詞，而是建立一個 production reviewer reflex：annotation 只是設計意圖，不是執行保證。
+
+### 為什麼這週學這個（Core）
+
+Week 01 / Week 02 已經建立 transaction boundary、propagation、rollback rule。Week 03 的新 production insight 是：如果 method call 沒有進入 Spring proxy，前兩週討論的 propagation / rollback rule 根本不會生效。
+
+production 上常見情境：
+
+- service 裡的 public method A 呼叫同 class 的 `@Transactional` method B。
+- 開發者以為 B 會開新 transaction，但實際只是 `this.b()`，沒有經過 proxy。
+- exception 發生後，DB commit / rollback 行為和預期不同。
+- incident 排查時，大家被 annotation 誤導，花很多時間查錯方向。
+
+明確 engineering judgment：我會拒絕用「同 class 內部呼叫 `@Transactional` method」作為核心交易流程的 transaction boundary。若它是 correctness-critical path，我會要求拆成另一個 Spring bean、調整入口 method 的 transaction boundary，或改用明確的 `TransactionTemplate`。
+
+### 核心概念（Core）
+
+- Spring 宣告式 transaction 通常透過 AOP proxy 在 method call 前後插入 transaction interceptor。
+- 外部 bean 呼叫 proxied bean method，才會進入 proxy。
+- self-invocation 是同一個 object 內部用 `this.method()` 呼叫另一個 method；這種呼叫不會繞過 proxy 入口，因此 proxy advice 不會套用。
+- private / final method、非 Spring bean、手動 new 出來的 object，也常讓 annotation 沒有效果。
+- `@Transactional`、`@Cacheable`、`@Async` 都可能受 proxy boundary 影響；不只是 transaction 題。
+
+### Beginner-to-Senior 解釋（Core）
+
+Beginner：`@Transactional` 看起來像貼在 method 上就會生效，但 Spring 實際上是用代理物件包住 method 呼叫。
+
+Mid：最常踩的坑是同一個 class 裡 method 呼叫 method。你以為呼叫的是 proxy，其實呼叫的是原本物件自己的 method，所以 transaction / cache / async 都可能沒套到。
+
+Senior：production 排查不能只看 annotation。要追 request 入口、bean boundary、proxy boundary、exception path、DB state 與 log。對 money correctness 或 state transition 來說，「以為有 transaction」比「明確沒有 transaction」更危險，因為 code review 和 incident runbook 都會被誤導。
+
+### Production 情境（Core）
+
+常見錯誤 flow：
+
+```text
+HTTP request
+ -> OrderService.placeOrder()
+ -> this.persistOrderWithTransaction()
+ -> @Transactional expected, but self-invocation bypasses proxy
+ -> DB writes execute without expected transaction boundary
+```
+
+正確思考不是「把 annotation 再貼一次」，而是問：
+
+1. 這個 method 是從哪個 bean 入口被呼叫？
+2. 呼叫是否經過 Spring proxy？
+3. transaction 應該包外層 command，還是只包內層 DB mutation？
+4. 如果 rollback 沒發生，哪些資料會 partial commit？
+5. 觀測上能不能看出 transaction 開始、commit、rollback？
+
+### Technology Landscape（Core）
+
+- Related technologies：Spring AOP proxy、JDK dynamic proxy、CGLIB proxy、AspectJ weaving、`TransactionTemplate`、Spring Cache、Spring Async。
+- Current industry mainstream：一般 Spring Boot 專案多數使用 proxy-based AOP；transaction / cache / async 都是常見 annotation-driven style。
+- When each technology is a better fit：
+  - Proxy-based AOP：大多數 service-layer cross-cutting concern，簡單、主流、維護成本低。
+  - `TransactionTemplate`：需要明確控制 transaction scope，或 proxy boundary 太容易誤導時。
+  - AspectJ weaving：需要攔截 self-invocation 或更細粒度 join point；成本較高，通常不是一般 backend 首選。
+  - 拆 bean / 調整 service boundary：最常見、最容易 code review 的修正方式。
+- Learn Now：proxy boundary、self-invocation、annotation 不生效的常見原因。
+- Learn Later：JDK proxy vs CGLIB 差異、`TransactionTemplate` 實務用法。
+- Awareness Only：AspectJ load-time weaving、Spring AOP internals。
+- Why：Senior 面試和 production review 最需要的是能找出 annotation 失效點，不是背完整 AOP 實作。
+
+### 本週可執行任務（Core）
+
+30 分鐘內完成：
+
+```text
+用 90 秒回答：Spring transaction 什麼情境會失效？
+```
+
+回答骨架：
+
+1. 先講 Spring declarative transaction 依賴 proxy。
+2. self-invocation、private method、non-Spring bean、手動 new object 都可能沒經過 proxy。
+3. exception 被 catch 掉、checked exception 沒設定 rollback rule，也會讓 rollback 不如預期。
+4. 修正時優先調整 service boundary 或讓外層 command method 成為 transaction boundary。
+5. 如果真的需要明確控制，可考慮 `TransactionTemplate`，但不要把它當預設。
+
+### Learning Check（Core）
+
+學完本週 packet 後，Nick 應該能：
+
+1. 用 60 秒說明：Spring AOP annotation 需要經過 proxy，self-invocation 不會套用 advice。
+2. 說出 1 個 production failure mode：內部呼叫的 `@Transactional` method 沒生效，導致預期 rollback 的多筆 DB update partial commit。
+3. 回答 1 題 Senior interview question：Spring transaction 什麼情境會失效？
+4. 判斷何時不該用這個 approach：不要用同 class self-invocation 來承擔核心交易 transaction boundary。
+
+### 小型 code / pseudo-code 範例（Deep Dive）
+
+```java
+@Service
+class PaymentService {
+
+    public void handleCallback(CallbackRequest request) {
+        validateSignature(request);
+
+        // Pitfall: this call does not go through the Spring proxy.
+        // The @Transactional annotation on persistCallbackResult is not applied.
+        persistCallbackResult(request);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void persistCallbackResult(CallbackRequest request) {
+        PaymentOrder order = orderRepo.findByProviderTxIdForUpdate(request.providerTxId());
+
+        if (order.isTerminal()) {
+            return;
+        }
+
+        order.markPaid();
+        ledgerRepo.insertPaymentLedger(order.id(), order.amount());
+    }
+}
+```
+
+較穩的修正：
+
+```java
+@Service
+class PaymentCallbackHandler {
+
+    private final PaymentMutationService mutationService;
+
+    public void handleCallback(CallbackRequest request) {
+        validateSignature(request);
+        mutationService.persistCallbackResult(request);
+    }
+}
+
+@Service
+class PaymentMutationService {
+
+    @Transactional(rollbackFor = Exception.class)
+    public void persistCallbackResult(CallbackRequest request) {
+        // state guard + source-of-truth mutation
+    }
+}
+```
+
+重點：拆 bean 不是為了好看，而是讓 call path 明確經過 proxy，並讓 transaction boundary 在 code review 中可見。
+
+### 架構 / Flow 圖（Deep Dive）
+
+```mermaid
+flowchart TD
+  A["Controller / MQ Consumer"] --> B["Spring proxy: PaymentCallbackHandler"]
+  B --> C["handleCallback() validate signature"]
+  C --> D["Spring proxy: PaymentMutationService"]
+  D --> E["Transaction interceptor begins"]
+  E --> F["Lock order + check terminal state"]
+  F --> G["Update order + ledger"]
+  G --> H{"Exception?"}
+  H -- "yes" --> I["Rollback DB transaction"]
+  H -- "no" --> J["Commit DB transaction"]
+  J --> K["Publish event / projection repair path"]
+```
+
+### 常見錯誤（Deep Dive）
+
+- 看到 `@Transactional` 就假設 transaction 一定存在。
+- 同 class 內部呼叫 `@Transactional` method，卻期待 propagation / rollback rule 生效。
+- 把 method 改成 private，annotation 還留著，讓 reviewer 以為有效。
+- 在 non-Spring object 或手動 `new` 出來的 helper 上貼 Spring annotation。
+- `@Async` 同樣 self-invocation，結果沒有切 thread。
+- `@Cacheable` 同樣 self-invocation，結果 cache 沒命中或沒寫入。
+- 用 self-injection 或 expose proxy 做 workaround，卻沒有說明為什麼不拆 service boundary。
+
+### Engineering Judgment（Deep Dive）
+
+我會接受：
+
+- 將核心 DB mutation 拆到另一個 Spring service，讓外部 bean call 明確經過 proxy。
+- 讓外層 command method 自己承擔 transaction boundary，內層 method 只做 private helper，不假裝有獨立 transaction。
+- 在少數需要精準 transaction scope 的地方使用 `TransactionTemplate`，並寫清楚原因。
+
+我會拒絕：
+
+- correctness-critical flow 依賴同 class self-invocation 的 `@Transactional` method。
+- 用 self-injection / `AopContext.currentProxy()` 當一般修正方式，卻沒有交代維護成本。
+- 只因為「annotation 沒生效」就盲目把 method 拆很細，造成 service 邊界混亂。
+
+我會要求補設計：
+
+- 說清楚 transaction boundary 是 command-level 還是 mutation-level。
+- 在 incident runbook 裡不要只寫「看 annotation」，要能查 DB state、rollback log、transaction manager log 或 trace。
+- 若修正會改變 transaction scope，要補 idempotency、terminal-state guard 與 partial success 風險評估。
+
+### Incident / Troubleshooting（Deep Dive）
+
+情境：callback handler 報錯，但 DB 裡有一部分資料已更新，另一部分沒更新；團隊以為 `@Transactional` 會 rollback。
+
+排查順序：
+
+1. 先找 request 入口：Controller、consumer、job 到底呼叫哪個 bean。
+2. 確認被標註的 method 是否由外部 bean 經過 proxy 呼叫，還是同 class self-invocation。
+3. 看 method visibility、bean lifecycle、是否手動 `new` object。
+4. 查 exception 是否向外拋出，還是被 catch 後只記 log。
+5. 查 checked exception 是否有 `rollbackFor`。
+6. 查 DB 最終狀態：source-of-truth、ledger / detail、event / projection 是否 partial success。
+7. 修正後補一個最小 integration test 或 transaction 行為驗證，避免 annotation 看起來有效但實際沒套用。
+
+### Observability Anchor（Deep Dive）
+
+- 1 useful log：`businessId`, `entryBean`, `targetMethod`, `expectedTransactional`, `actualTxActive`, `exceptionClass`, `rollbackExpected`。
+- 1 useful metric：`transaction_expected_but_inactive_total` 或更務實的 `partial_state_detected_total`。
+- 1 useful trace/span：`callback.handle -> mutation.persist[tx.active=true] -> db.update_order -> db.insert_ledger`。
+- 1 alert condition：核心金流 / wallet flow 出現 partial state repair count 上升，或 transaction inactive warning 在 production 出現。
+- 1 thing that should not alert：duplicate callback 被 terminal-state guard 擋下且沒有副作用；這是正常 idempotency 行為，不是 transaction failure。
+
+### Senior 面試怎麼問（Deep Dive）
+
+1. Spring transaction 什麼情境會失效？self-invocation 為什麼會失效？
+2. 如果 code 上有 `@Transactional`，但 production 沒 rollback，你會怎麼排查？
+3. 你會怎麼修 self-invocation？拆 service、self-injection、AspectJ、`TransactionTemplate` 各有什麼取捨？
+
+### Senior 面試怎麼回答（Deep Dive）
+
+1. `分析過`：Spring declarative transaction 通常依賴 AOP proxy。外部 bean 呼叫 proxied method 才會進入 transaction interceptor；同 class self-invocation、private method、non-Spring bean、手動 new object 都可能讓 annotation 沒生效。
+2. `分析過`：我會先從入口 call path 查起，確認是否經過 proxy，再看 exception 是否被 catch、checked exception 是否有 rollback rule，最後對 DB state 看是否 partial commit。不能只看 annotation 下結論。
+3. `可作為目標`：最可維護的修正通常是調整 service boundary 或讓外層 command method 承擔 transaction。self-injection / expose proxy 可以用但維護性差；AspectJ 成本較高；`TransactionTemplate` 適合需要明確控制 transaction scope 的少數場景。
+
+### System Design 延伸思考（Deep Dive）
+
+- Annotation-driven style：寫起來乾淨，但容易讓人忽略 proxy boundary。
+- Programmatic transaction：邊界明確，但程式碼較囉嗦，容易散落 transaction 操作。
+- 拆 service：最容易 code review，但如果拆得太碎，domain boundary 會變亂。
+- AspectJ：可以處理 self-invocation，但導入成本、build/runtime 複雜度和團隊理解成本較高。
+
+### Mini ADR（Deep Dive）
+
+- Context：Payment callback / wallet mutation 需要可靠 transaction boundary，但 legacy service 內已有 self-invocation 的 `@Transactional` method。
+- Decision：將核心 DB mutation 移到獨立 Spring service，由 handler 透過 bean dependency 呼叫，確保經過 proxy；保留外層 handler 做 validation、signature、idempotency routing。
+- Alternatives：維持 self-invocation、self-injection、`AopContext.currentProxy()`、AspectJ weaving、`TransactionTemplate`。
+- Consequences：service boundary 更清楚，transaction 行為更容易 review；但會增加一個 service class，需要避免拆成 class summary 式碎片。
+- When this decision becomes wrong：如果 transaction scope 必須非常細、跨多段 callback decision，或團隊明確採用 programmatic transaction standard，拆 service 可能不是最佳解。
+
+### One Common Misconception（Deep Dive）
+
+- Misconception：method 上有 `@Transactional`，就一定有 transaction。
+- Correction：annotation 只是 metadata；proxy-based AOP 要在呼叫經過 proxy 時才會套用 advice。
+- Why it matters in production / interview：production 上最危險的是「以為 rollback 會發生」但實際 partial commit。面試時若能指出 proxy boundary，會比只背 propagation enum 更像 Senior。
+
+### Known Production Case Lens（Reference）
+
+- verified from Nick's documented experience：Nick 的已知材料包含 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover；這些都是 transaction / state transition 題會自然出現的背景。
+- inferred from general engineering practice：legacy service 常見大 class、內部 method 互 call，self-invocation 是很合理的 code review 檢查點。
+- inferred from general engineering practice：payment callback、wallet mutation、report projection 如果 transaction 沒套到，可能造成 partial state、重複副作用或 repair 成本。
+- speculative ideas for future improvement：未來整理 flow 或做 code review 時，可把「是否真的經過 proxy」列為 transaction checklist；這不是已導入的正式流程。
+- 不做履歷連結：本週是 Spring 基本盤能力，不寫成 Nick 直接 owner 某個 transaction architecture。
+
+### Knowledge Boundary（Reference）
+
+- Must Understand：
+  - proxy-based AOP 心智。
+  - self-invocation 為什麼不會套用 `@Transactional`。
+  - Spring transaction 失效排查順序。
+- Should Understand：
+  - JDK dynamic proxy vs CGLIB 的基本差異。
+  - `@Cacheable`、`@Async` 也可能遇到 proxy boundary。
+  - `TransactionTemplate` 是可選修正工具。
+- Can Ignore For Now：
+  - AspectJ weaving 深層配置。
+  - Spring AOP 原始碼。
+  - 所有 proxy optimization 細節。
+
+### Future Direction（Reference）
+
+- Senior Backend：current priority。能在面試與 code review 中指出 self-invocation、rollback rule、exception path，是 Java Backend 基本盤。
+- Platform Backend：future-only topic。當你設計共用 framework / starter / transaction standard 時，才需要更深入 proxy mode、observability hook 與 team guideline。
+- Architect：future-only topic。大型 legacy migration 可能需要制定 annotation-driven vs programmatic transaction 的團隊準則，目前只需知道取捨語言。
+
+### 與我的面試材料如何連結（Reference / Only if naturally applicable）
+
+本週自然連到 `19-interview-coaching-question-bank.md` 的 30 題核心第 18 題：「Spring transaction 什麼情境會失效？」但不需要改 19，因為題庫已定稿。
+
+- 可自然連到：Transaction / Consistency / Idempotency、Java / Spring / Runtime 基本功、Legacy Takeover。
+- 可講進面試：遇到 transaction 失效題時，用「proxy boundary -> self-invocation -> exception / rollback rule -> DB state verification」作答。
+- 不建議講進履歷：不要把 AOP proxy 學習內容包裝成 production ownership。
+- 不可誇大：不要說已導入公司 transaction standard；只能說這是分析過 / 可作為 code review checklist 的能力。
+
+### 本週必看（Reference）
+
+1. [Using `@Transactional`](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)
+   - 來源：Spring Framework 官方文件。
+   - 為什麼值得看：官方明確說明 proxy mode 下 self-invocation 不會觸發 transaction，這是本週核心。
+
+2. [Proxying Mechanisms](https://docs.spring.io/spring-framework/reference/core/aop/proxying.html)
+   - 來源：Spring Framework 官方文件。
+   - 為什麼值得看：補足 Spring AOP proxy 心智，理解為什麼 self-invocation 會繞過 advice。
+
+### 本週 KB 維護建議（Reference）
+
+- 已維護：追加 Week 03 到 `backend-learning-log.md`，並更新 `backend-weekly-plan.md` 目前進度到 Week 03 / next Week 04。
+- 建議暫不處理：不改 `04 / 05 / 08 / 17`、不改 `19`、不新增 flow 文件、不掃公司 repo。
+- 若之後 Nick 練第 18 題回答不穩，再把本週 90 秒骨架整理成 `interview-practice/` 的練習結果；本輪不主動回填正式面試材料。
+
+### 本週不建議做什麼（Reference）
+
+- 不要深入 Spring AOP 原始碼。
+- 不要把 AspectJ weaving 當本月必學。
+- 不要為了練 proxy 開 side project。
+- 不要把所有 service 都拆成小 class；只修 correctness-critical boundary。
+- 不要把本週內容寫進履歷或自傳。
+
+### 本週 explicit non-goal（Reference）
+
+本週不學完整 Spring AOP internals、AspectJ weaving、JDK proxy / CGLIB 的全部細節；只把 proxy boundary 與 self-invocation 講到能支撐 production transaction 排查與 Senior 面試回答。
+
+### Reflection（Reference / Nick 自填）
+
+今天最大的收穫：
+
+最不懂的是：
+
+工作上可以觀察：
