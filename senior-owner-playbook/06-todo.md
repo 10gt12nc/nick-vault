@@ -209,6 +209,7 @@ Git History Debugging / Risk Reconstruction
 
 ## 已完成
 
+- 2026-06-26：已補上「懂很多 vs 能扛系統」校正到 `22-career-industry-kb-evolution-plan.md` 與 `16-career-skill-matrix.md`。結論：Senior Backend / Platform Backend 的市場訊號不是背熟所有公司 code、私下把單體改 Spring Cloud 或本地跑完整微服務，而是能扛 3 條代表性 production flow：Provider Integration、Wallet / Bet-Settle / MQ、Legacy Takeover / Troubleshooting。架構 / microservice / deployment lab 可做，但只能作 10% 加分練習，不得取代 `08 A 版定位`、三個 Story、Flow 六點、30 題 QA 與市場驗證。
 - 2026-06-24：已更新 `backend-weekly-learning` automation 與 `22-career-industry-kb-evolution-plan.md` 的 canonical prompt，新增 `Also paste the full weekly learning packet in the chat response, not only a summary.`。後續每週排程除了維護 `backend-learning-log.md` / `backend-weekly-plan.md` 外，也應在聊天視窗直接貼完整 weekly learning packet，方便 Nick 當場閱讀與追問；有價值的追問仍只沉澱到 learning log / KB 建議，不自動改履歷、自傳、story、flow 或正式面試材料。
 - 2026-06-24：已把面試準備閱讀順序在 `19-interview-coaching-question-bank.md` 去重、整併並重排成正式入口。現在以 `定位 -> 履歷自傳 -> 三個 Story -> 12 條 Flow -> 30 題核心 -> A-N 題庫補洞 -> QA -> 投遞 / 面試回饋` 為唯一大順序，並補齊最小版 / 完整版讀法、入口檔案、主力 7 條 Flow、補到 10 / 12 條 Flow、A-N 補洞順序、QA 開始條件、2026/07-2027/05 時間節奏與市場旺季區分。這是閱讀策略收口，不代表新增題庫或新增 flow backlog。
 - 2026-06-24：已補強 Backend weekly template 與 automation prompt 邊界：weekly automation 不是只產 6 點短 checkpoint，而是依 `backend-weekly-template.md` 產一週一主題 learning packet；每週仍保持小而可行動，但要包含最多 3 篇高品質來源、Beginner-to-Senior 解釋、1 個小型 code / pseudo-code 範例、1 個簡單 Mermaid 架構 / flow 圖、Senior 面試題與 30 分鐘任務。仍不得改履歷 / 自傳 / story / 正式 flow / `04 / 05 / 08 / 17 / 19`，除非 Nick 明確要求。

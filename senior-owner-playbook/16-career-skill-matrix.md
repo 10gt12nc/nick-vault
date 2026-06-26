@@ -596,6 +596,7 @@ AI-assisted Engineering Workflow
 - 能扛一條 production flow。
 - 能理解 state、failure、consistency。
 - 能做技術取捨，而不是只寫功能。
+- 資深不是「懂很多技術名詞」，而是能讓一條 flow 穩定、可理解、可排查、可補償、可交接。
 
 硬實力：
 
