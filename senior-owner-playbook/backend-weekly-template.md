@@ -4,6 +4,14 @@
 
 用途：讓每週學習排程固定輸出少量、高品質、可行動的內容。這不是題庫擴張器、文章剪貼簿，也不是履歷 / 自傳自動改寫工具。
 
+核心定位：
+
+```text
+Weekly Senior Backend Capability Builder
+```
+
+每週不是單純學一個技術名詞，而是利用該主題訓練 Senior Java Backend / Platform Backend 的 production thinking、trade-off、incident、system design、decision making 與 interview expression。
+
 ## 固定規則
 
 - 每週跑一次。
@@ -11,7 +19,7 @@
 - 每週最多 5 個排程項目。
 - 每週最多吸收 1-2 個重點；沒讀完不用補，不累積債務。
 - 不自動改 `04 / 05 / 08 / 17`、三個故事稿或 flow claim。
-- 不把文章全文貼入 KB，只保留核心概念、production 觀點、面試表達、與 Nick 經驗的關聯、待驗證問題。
+- 不把文章全文貼入 KB，只保留核心概念、production 觀點、面試表達、technology landscape、future direction、與 Nick 經驗的關聯、待驗證問題。
 - 不處理日文，除非 Nick 明確要求。
 - 所有新增說法要標註：`已做過`、`參與過`、`分析過`、`可作為目標`、`待驗證`。
 
@@ -65,6 +73,8 @@
 - Known Production Case Lens：最多 5 分鐘，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
 - Mini ADR：至少練一個 decision angle，包含 Context、Decision、Alternatives、Consequences、When this decision becomes wrong。
 - Observability Anchor：為本週主題定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
+- Technology Landscape：建立本週主題的技術地圖，分成 Learn Now、Learn Later、Awareness Only；不得建議把所有相關技術都學完。
+- Future Direction：用 Senior Backend、Platform Backend、Architect 三層說明未來可能補什麼，每層最多 1 個重點，不能變成新待辦。
 - Learning Check：學完後 Nick 至少要能 60 秒說明、說出 1 個 production failure mode、回答 1 題 Senior interview question、判斷何時不該用這個 approach。
 - 實戰輸出補強：若主題涉及 Incident、Decision 或 Ownership，必須補一句它對 Technical Communication、Risk Communication、Decision Making 或 Ownership 的幫助。
 - AI-Assisted Engineering：若本週使用 AI 協助學習或產出，必須補一句 AI risk review，檢查 Transaction Boundary、Idempotency、BigDecimal、SQL Index、Redis Lock、MQ Retry、Race Condition 或 Security 是否被忽略。
@@ -174,6 +184,27 @@ For this topic:
 - Consequences:
 - When this decision becomes wrong:
 
+## Technology Landscape
+
+For this topic:
+- Related technologies:
+- Current industry mainstream:
+- Learn Now:
+- Learn Later:
+- Awareness Only:
+- Why:
+
+不要建議把所有相關技術都學完。
+
+## Future Direction
+
+If Nick later becomes:
+- Senior Backend:
+- Platform Backend:
+- Architect:
+
+每層最多 1 個重點，不形成近期 backlog。
+
 ## 與我的面試材料如何連結
 
 請說明：
@@ -187,7 +218,9 @@ For this topic:
 
 ## 本週必看
 
-最多 3 篇。每篇包含：
+最多 2 篇。優先 1 篇官方文件；第 2 篇只有在提供明顯 practical value 時才放。
+
+每篇包含：
 - 標題
 - 來源
 - 連結
