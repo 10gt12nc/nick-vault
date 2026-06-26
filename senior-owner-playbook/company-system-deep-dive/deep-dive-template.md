@@ -4,6 +4,7 @@
 
 ## 1. Topic
 
+- Universal capability:
 - Project:
 - Local path:
 - Topic:
@@ -163,7 +164,14 @@ Senior interview questions this topic supports:
 2.
 3.
 
-## 12. New Findings
+## 12. Transferable Pattern
+
+- What is local-specific:
+- What transfers to another company:
+- How to recognize the same pattern elsewhere:
+- What not to overfit:
+
+## 13. New Findings
 
 List 0-3 genuinely new findings from code / git / system notes.
 
@@ -181,7 +189,7 @@ No new A-level finding this run.
 - Why it matters:
 - KB action:
 
-## 13. KB Update
+## 14. KB Update
 
 - Save this deep dive? Yes / No
 - Update deep-dive-log? Yes / No

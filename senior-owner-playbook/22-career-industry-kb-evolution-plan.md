@@ -13,7 +13,7 @@
 - 2026-06-23 決策：公司電腦才是工作學習與 KB 維護主機；家裡電腦原則上不跑工作學習 automation，避免休息時間被工作排程打斷。
 - `backend-weekly-learning` 的實際啟用狀態以該台電腦的 Codex app / `~/.codex/automations/.../automation.toml` 為準；換電腦時用本檔 `Canonical automation prompt` 重建，不假設舊電腦狀態會同步。
 - 2026-06-24 確認：目前這台是公司電腦，`backend-weekly-learning` 可保持 `ACTIVE`；目前本機設定為每週一 09:00 執行。
-- 2026-06-26 新增候選第二條排程 `Company System Deep Dive`，資料夾在 `company-system-deep-dive/`。它不是外部技術學習，也不是只做 discovery，而是用公司真實系統當教材，按照 `curriculum.md` 與 `project-value-map.md` 先判斷各 project 底下高 / 中 / 低學習價值，再每次研究一個 topic，固定輸出 System Context、Runtime Flow、Code Reading Map、Data Flow、Engineering Thinking、Production Risk、Technology Comparison、Redesign、Learning Level、Interview Value 與 0-3 個 New Findings。此線目前只建立課綱、價值地圖、清單與規則，尚未設定 automation；不得全掃公司 repo、不得記公司機密、不得預設把分析素材回填履歷 / 自傳。
+- 2026-06-26 候選第二條排程暫停推進。前面曾收斂出 `Company System Deep Dive`，資料夾在 `company-system-deep-dive/`，但最新結論是先不要設定第二排程，也不要再沿著 project inventory 擴張。若未來重啟，方向應調整為 `System Capability Deep Dive`：topic-first、company-code-second。也就是先選通用系統能力，例如 transaction boundary、idempotency、MQ retry、projection rebuild、cache consistency、service discovery、rollout、observability、slow query、auth / RBAC、legacy refactor，再用 iwin / antplay / ugsoft / DevOps / usproject 的 code 或 legacy system 當案例，最後抽象成下間公司也能用的 transferable pattern。`project-value-map.md` 只保留為案例池 / learning value map，不是完整 inventory、不是必讀清單、不是履歷 claim map、不是待辦 backlog。
 
 本檔先記錄兩個想法：
 

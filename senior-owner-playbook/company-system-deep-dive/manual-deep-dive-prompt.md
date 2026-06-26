@@ -1,6 +1,6 @@
 # Manual Deep Dive Prompt
 
-狀態：手動執行用 prompt，不是 automation prompt。
+狀態：手動執行用 prompt，不是 automation prompt；目前第二排程已暫停推進，本 prompt 僅作未來重啟參考。
 
 ## Prompt
 
@@ -9,6 +9,11 @@ Run Nick's Company System Deep Dive for nick-vault.
 
 Goal:
 Use real company systems/code as learning material to understand production flows, architecture, data flow, integration design, failure handling, technology trade-offs, and possible future refactoring paths.
+
+Important:
+This run must be topic-first, company-code-second.
+Do not start from "what can I find in this repo?"
+Start from a universal system capability, then use one company code case to validate it, then extract a transferable pattern.
 
 This is NOT an external learning packet.
 This is NOT a summary of existing KB.

@@ -1,6 +1,6 @@
 # Company System Deep Dive Log
 
-狀態：尚未開始有效 deep dive。
+狀態：尚未開始有效 deep dive；第二排程目前暫停推進。
 
 本檔只記完成後摘要，不保存聊天逐字稿，也不建立待辦債務。
 

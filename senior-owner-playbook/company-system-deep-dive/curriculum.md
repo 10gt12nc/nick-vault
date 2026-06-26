@@ -10,7 +10,15 @@
 未來一年，我希望透過公司專案學會哪些能力？
 ```
 
-Prompt 只是執行器。每次 deep dive 都應該回到本課綱，確認本週學的是哪一種能力，而不是隨機挖 code。
+Prompt 只是執行器。每次 deep dive 都應該回到本課綱，確認本週學的是哪一種通用能力，而不是隨機挖 code。
+
+最新收斂：若未來重啟第二排程，本課綱要採 `topic-first, company-code-second`：
+
+```text
+先選通用能力
+再找公司案例
+最後抽象成 transferable pattern
+```
 
 ## Year-1 Core Curriculum
 

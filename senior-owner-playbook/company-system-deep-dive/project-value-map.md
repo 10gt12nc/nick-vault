@@ -1,10 +1,28 @@
 # Company System Deep Dive Project Value Map
 
-狀態：候選學習價值地圖，不是履歷 claim map，也不是自動開工授權。
+狀態：候選案例池 / 學習價值地圖，不是完整 inventory、不是履歷 claim map、不是自動開工授權。
 
 ## 使用方式
 
-Deep Dive 選題先看本檔，再看 `project-index.md` 與 `topic-list.md`。
+本檔只保留目前已知的 project-level 案例來源。它不是要求把五個 repo 都掃完，也不是要求補齊每個 project 的高 / 中 / 低清單。
+
+若未來重啟第二排程，主軸應該是：
+
+```text
+通用系統能力 topic
+↓
+本檔找公司案例
+↓
+抽象成 transferable pattern
+```
+
+而不是：
+
+```text
+project inventory
+↓
+把每個 project 全部盤完
+```
 
 高 / 中 / 低價值只代表：
 
@@ -22,6 +40,15 @@ Nick direct owner
 ```
 
 若某題要回填履歷 / 自傳 / 面試正式材料，必須另走 evidence boundary / claim gate。
+
+## 防發散規則
+
+- 不追求完整清單。
+- 不追求掃完五個 repo。
+- 不要求每個 project 都補齊高 / 中 / 低。
+- 不為了填表而硬讀低價值區。
+- 不把 legacy 細節當成主線。
+- 每次只用一個公司案例訓練一種可遷移能力。
 
 ## 評分維度
 

@@ -1,12 +1,39 @@
 # Company System Deep Dive
 
-狀態：候選第二個 weekly automation；先建立課綱、資料夾、清單與輸出規則，尚未設定排程。
+狀態：候選第二個 weekly automation 已暫停推進；目前只保留為未來可重啟的學習設計草案，尚未設定排程。
 
 ## 一句話定位
 
-`Backend Weekly Learning` 是外部技術學習；`Company System Deep Dive` 是用公司真實系統當教材，系統性學會 production flow、code reading、data flow、architecture、engineering decision、替代方案、重構思維與面試表達。
+`Backend Weekly Learning` 是外部技術學習；本資料夾原本設計為 `Company System Deep Dive`，用公司真實系統當教材，系統性學會 production flow、code reading、data flow、architecture、engineering decision、替代方案、重構思維與面試表達。
 
 這條線不是只做 discovery，也不是整理漂亮文章。Discovery 是最後一節；主體是 deep dive。
+
+最新收斂：先不要推進第二排程。若未來重啟，主軸應從 `Company System Deep Dive` 再修正為更不發散的：
+
+```text
+System Capability Deep Dive
+通用系統能力深度研究
+```
+
+也就是：
+
+```text
+通用能力主題
+↓
+公司 code / legacy system 當案例
+↓
+抽象成可遷移能力
+↓
+下間公司也看得懂
+```
+
+不要變成：
+
+```text
+iwin 有什麼就學什麼
+antplay 有什麼就學什麼
+五個 repo 都盤完
+```
 
 ```text
 公司系統 / code / git / DB / MQ
@@ -96,9 +123,23 @@
 
 ## 選題方式
 
-選題先不跟履歷 / 自傳掛鉤，避免把公司系統學習侷限成求職素材。第一層先看學習價值，再決定是否需要 claim gate。
+選題先不跟履歷 / 自傳掛鉤，避免把公司系統學習侷限成求職素材。第一層先看通用能力，再找公司案例，最後才決定是否需要 claim gate。
 
-優先順序：
+若未來重啟，優先順序應是：
+
+```text
+Universal Capability Curriculum
+↓
+Company Case Pool
+↓
+Transferable Pattern
+↓
+Deep Dive Template
+```
+
+目前資料夾裡的 `project-value-map.md` 只作案例池，不作完整 inventory。
+
+舊版 project-first 順序如下，保留作參考但不作主線：
 
 ```text
 Project Value Map
@@ -110,7 +151,7 @@ Topic List
 Deep Dive Template
 ```
 
-先看 [project-value-map.md](project-value-map.md)，判斷每個 project 底下哪些系統 / 功能 / 架構是高、中、低學習價值。
+先看 [project-value-map.md](project-value-map.md)，判斷每個 project 底下哪些系統 / 功能 / 架構可能作案例來源；不要把它當五個 repo 的完整清單。
 
 再做二維選題：
 
