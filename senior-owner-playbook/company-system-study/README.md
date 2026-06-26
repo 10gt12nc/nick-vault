@@ -15,6 +15,8 @@
 
 專案清單看 [project-index.md](project-index.md)，主題清單看 [topic-list.md](topic-list.md)。
 
+啟用前資料結構看 [structure.md](structure.md)。手動跑一次用 [manual-run-prompt.md](manual-run-prompt.md)。每週輸出格式看 [packet-template.md](packet-template.md)。
+
 這條線不是要把公司系統完整背熟，也不是要私下重寫公司架構。它的價值是訓練 Nick 從既有系統讀出：
 
 - production flow 怎麼跑。
@@ -146,4 +148,4 @@ Platform Backend 加分，但不能搶主線：
 
 ## 目前下一步
 
-先不用設定 automation。先檢查 `topic-list.md` 是否符合 Nick 想要的第二條週排程；確認後再建立 template / learning log / automation prompt。
+先不用設定 automation。先用 `manual-run-prompt.md` 手動跑 1-2 次，確認 packet 大小、深度與安全邊界都符合需求，再決定是否設定排程。
