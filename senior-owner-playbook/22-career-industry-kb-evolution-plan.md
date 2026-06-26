@@ -484,6 +484,8 @@ Nick 已決定：
 
 若換電腦或重建 Codex automation，直接使用下方英文 prompt；排程時間依該台電腦用途調整，目前公司電腦可用 `每週一 09:00`。家裡電腦預設不啟用工作學習 automation；實際是否 ACTIVE / PAUSED 以該台電腦的 Codex app 狀態為準。
 
+2026-06-26 後的封版方向：Backend Weekly Learning 是 `capability layer`，不是履歷 / 自傳 / Story 產生器。每週優先建立 `Production Thinking -> Troubleshooting -> Trade-off -> System Design -> Interview`。Known production case、Story、Flow、Resume relevance 只在自然適用時才連結；若不自然，使用一般 backend production / system design 情境即可。避免把 OpenTelemetry、Rate Limit、Service Boundary、API Design 等通用能力硬塞回 Provider / Wallet / Legacy，導致學習被既有履歷框住。
+
 ```text
 Run Nick's weekly Senior Java Backend / Platform Backend capability builder packet for nick-vault.
 
@@ -500,7 +502,7 @@ Follow senior-owner-playbook/backend-weekly-template.md. Do not replace it with 
 
 Produce one focused weekly capability builder packet with:
 1. this week's topic from backend-weekly-plan.md
-2. why it matters for Nick's production cases
+2. why this matters in production
 3. at most 2 high-quality references
    - Prefer one official document.
    - The second may be an engineering blog or conference talk only if it adds significant practical value.
@@ -526,7 +528,9 @@ Add these sections to the weekly packet:
 
 1. Known Production Case Lens
 Keep this section concise, maximum 5 bullet points.
-Connect this topic to Nick's known production cases or a generalized production analogy.
+If this topic naturally connects to Nick's documented production experience, explain the connection.
+Otherwise, connect it to general backend production scenarios or common system design situations.
+Do not force a resume, Story, Flow, or known-case connection.
 Do not scan company repo.
 Do not turn this into company-system deep dive.
 Do not invent direct ownership.
@@ -599,7 +603,16 @@ Respect the current priority rules:
 - C level 5%: Lead / Manager / Business / GM topics only as optional context
 - Do not create backlog or learning debt.
 
-Do not force every topic into resume wording. Connect it to production case understanding, interview answer quality, troubleshooting thinking, or system design trade-off. Mention resume relevance only if it is genuinely useful and conservative.
+Backend Weekly Learning is the capability layer, not the resume/story layer.
+Do not force every topic into resume wording, autobiography, Story, Flow, or Nick-specific production cases.
+Prioritize:
+- production thinking
+- troubleshooting
+- trade-off
+- system design
+- interview answer quality
+- known case connection only when naturally applicable
+- resume relevance only when genuinely useful and conservative
 
 Only if useful and safe, update:
 - senior-owner-playbook/backend-learning-log.md

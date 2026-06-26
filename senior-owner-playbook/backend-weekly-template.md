@@ -19,7 +19,7 @@ Weekly Senior Backend Capability Builder
 - 每週最多 5 個排程項目。
 - 每週最多吸收 1-2 個重點；沒讀完不用補，不累積債務。
 - 不自動改 `04 / 05 / 08 / 17`、三個故事稿或 flow claim。
-- 不把文章全文貼入 KB，只保留核心概念、production 觀點、面試表達、technology landscape、future direction、與 Nick 經驗的關聯、待驗證問題。
+- 不把文章全文貼入 KB，只保留核心概念、production 觀點、面試表達、technology landscape、future direction、自然適用時與 Nick 經驗的關聯、待驗證問題。
 - 不處理日文，除非 Nick 明確要求。
 - 所有新增說法要標註：`已做過`、`參與過`、`分析過`、`可作為目標`、`待驗證`。
 
@@ -69,8 +69,9 @@ Weekly Senior Backend Capability Builder
 - 本週輸出類型：依主題選 1 個 weekly mode：`Concept Mode`、`Troubleshooting Mode`、`Trade-off Mode`、`Interview Mode`，避免每週都變成同一種文章包。
 - 避免重複檢查：先看 `backend-learning-log.md` 是否已跑過相同主題；若跑過，要加深 incident、production、trade-off 或 interview depth。
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
-- 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
-- Known Production Case Lens：最多 5 bullets，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
+- 能力優先順序：Production Thinking -> Troubleshooting -> Trade-off -> System Design -> Interview -> Known Case（if naturally applicable）-> Resume（optional）。
+- 與面試材料關聯：若本週主題自然連到三個 Story、12 條 Flow 或 30 題核心，才做保守連結；若不自然，改連到一般 backend production / system design 場景，不硬貼履歷或 Story。
+- Known Production Case Lens：最多 5 bullets；若自然適用，才用既有 notes 連到 Nick 已知 cases；否則使用泛化 production analogy。不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
 - Avoid Hallucination：討論 Nick production cases 時，必須區分 `verified from Nick's documented experience`、`inferred from general engineering practice`、`speculative ideas for future improvement`；不得把 assumption 寫成 fact。
 - Mini ADR：至少練一個 decision angle，包含 Context、Decision、Alternatives、Consequences、When this decision becomes wrong。
 - Observability Anchor：為本週主題定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
@@ -99,11 +100,12 @@ Weekly Senior Backend Capability Builder
 
 ## 為什麼這週學這個
 
-請連結到：
-- Senior Backend 面試
-- Production
-- System Design
-- Nick 既有 Story / Flow
+請優先說明：
+- production 上解決什麼問題
+- troubleshooting 時會怎麼用
+- trade-off / system design 判斷在哪裡
+- Senior Backend 面試為什麼會問
+- Nick 既有 Story / Flow：only if naturally applicable，不硬連
 
 ## 核心概念
 
@@ -132,17 +134,23 @@ Weekly Senior Backend Capability Builder
 
 ## Production 情境
 
-優先連結：
+優先從一般 backend production 情境說明。
+
+若自然適用，再連結：
 - Provider Integration
 - Payment Callback
 - Wallet / Bet-Settle
 - MQ / Projection
 - Legacy Takeover
 
+若不自然，不要硬連；改用常見 production / incident / system design 場景。
+
 ## Known Production Case Lens
 
 最多 5 bullets：
-- 這個主題可連到哪個 Nick 已知 case 或泛化 production 情境？
+- 這個主題是否自然連到 Nick 已知 case？
+- 若自然連到，說明連到哪個 case。
+- 若不自然，改用泛化 production 情境，不硬貼 Story / Flow / resume。
 - 不掃公司 repo。
 - 不新增公司系統 deep dive。
 - 不發明 direct ownership。
@@ -232,9 +240,9 @@ If Nick later becomes:
 
 每層最多 1 個重點，並說明它是 current priority 還是 future-only topic；不形成近期 backlog。
 
-## 與我的面試材料如何連結
+## 與我的面試材料如何連結（Only if naturally applicable）
 
-請說明：
+若自然適用，請說明：
 1. 對應哪個 Story：Provider Integration / Wallet / Bet-Settle / Legacy Takeover
 2. 對應哪條 Flow
 3. 對應哪類 30 題核心面試題
@@ -242,6 +250,12 @@ If Nick later becomes:
 5. 對應哪個軟實力面向：Technical Communication / Risk Communication / Decision Making / Ownership
 6. 是否涉及 AI-Assisted Engineering；若有，請說明它只是工作法 / review 能力，不能誇大成 AI Engineer 或 AI platform owner
 7. 是否能講進自我介紹；若能，必須保守不誇大
+
+若不自然，直接寫：
+
+```text
+本週主題主要補強通用 backend production capability，不硬連履歷 / Story / Flow。
+```
 
 ## 本週必看
 
