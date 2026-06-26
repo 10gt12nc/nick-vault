@@ -14,50 +14,156 @@
 
 ## Week 01：Spring Transaction
 
-狀態：已建立第一週內容。
+狀態：已用封版 `Weekly Senior Backend Capability Builder` 格式重跑。
 
 ### 本週主題
 
-Spring Transaction：transaction boundary、rollback rule、AOP proxy / self-invocation、DB 成功但外部副作用失敗的風險。
+Spring Transaction：local DB transaction boundary、rollback rule、AOP proxy、business flow boundary 與 cross-system failure window。
+
+### Weekly Mode
+
+Concept Mode + Trade-off Mode。
+
+理由：Week 01 是基礎心智建立週。重點不是背 `@Transactional`，而是建立 Senior Backend 看 transaction 的方式：它保護什麼、不保護什麼、哪些 production failure 不能靠 local transaction 解。
 
 ### 為什麼這週學這個
 
-Spring Transaction 是 Senior Java Backend 面試的基本盤，也直接連到 Nick 的主力 cases：
+Spring Transaction 是 Senior Java Backend 面試基本盤，也直接連到 Nick 的主力 cases：
 
-- Provider Integration：callback / query / timeout unknown 不能只靠一個 method transaction 解決。
-- Wallet / Bet-Settle：狀態轉移與錢包 mutation 要有明確 transaction boundary。
-- MQ / Projection：DB 成功但 MQ publish 失敗是典型 dual-write 風險。
-- Legacy Takeover：看舊系統時，要先找 transaction 邊界與非交易副作用。
+- Provider Integration：callback / query / timeout unknown 不能只靠一個 local DB transaction 解決。
+- Wallet / Bet-Settle：wallet mutation、bet / settle / rollback 需要明確 state transition 與 transaction boundary。
+- MQ / Projection：DB commit 成功但 MQ publish 失敗是典型 dual-write failure window。
+- Legacy Takeover：讀舊系統時，要先辨識 transaction boundary、proxy 是否生效、外部副作用是否在 transaction 內。
 
 ### 核心概念
 
-- `@Transactional` 通常透過 Spring AOP proxy 套用；同一個物件內部 self-invocation 可能繞過 proxy，導致 transaction advice 沒有生效。
-- 預設 rollback 心智：runtime exception / error 常見會 rollback；checked exception 需要明確設定 rollback rule，不能靠感覺。
-- transaction boundary 不等於 business flow boundary。一條 payment / wallet flow 可能橫跨 DB、Redis、MQ、external provider，DB transaction 只保護單一資料庫資源。
-- transaction 內不要放不可控外部呼叫或長時間操作，否則 lock time、timeout、重試副作用都會變難處理。
-- DB commit 成功後，MQ / callback / external notification 失敗，不能靠同一個 local transaction 自動解決；需要 outbox、補償、重試或 reconciliation 思考。
+控制在 10-15 分鐘可讀完：
+
+- `@Transactional` 是宣告式 transaction 管理，Spring 會透過 transaction interceptor / AOP proxy 在 method 前後處理 begin、commit、rollback。
+- 預設 rollback 心智：runtime exception / error 會觸發 rollback；checked exception 通常要明確設定 `rollbackFor`，不能靠感覺。
+- transaction boundary 不等於 business flow boundary。一條 payment / wallet / MQ flow 可能橫跨 DB、Redis、MQ、external provider；local transaction 只保護 local resource。
+- transaction 內不要放慢外部 API、不可控 provider call 或長時間工作，否則會拉長 lock time、增加 timeout 與重試副作用。
+- DB commit 成功後，MQ publish、callback notification、projection update 失敗，不能靠同一個 local transaction 自動回滾；要靠 retry、outbox、compensation 或 reconciliation 收斂。
+
+### Beginner-to-Senior 解釋
+
+Beginner：
+
+`@Transactional` 讓 Spring 幫你管理資料庫 transaction，讓一段 DB 操作要嘛 commit，要嘛 rollback。
+
+Mid：
+
+常見坑不是「忘記加 annotation」而已，而是：
+
+- method 沒有經過 Spring proxy。
+- exception 被 catch 掉，沒有往外拋。
+- checked exception 沒有設定 rollback rule。
+- transaction scope 太大，把外部 API 或慢操作包進去。
+
+Senior：
+
+要能分清楚三件事：
+
+- Local DB transaction：保護單一資料庫內的 mutation。
+- Business flow：可能橫跨 provider、MQ、Redis、wallet、projection。
+- Failure recovery：跨系統不一致時靠 idempotency、retry、outbox、compensation、reconciliation，而不是幻想一個 annotation 解掉全部問題。
+
+### 小型 code / pseudo-code 範例
+
+```java
+@Service
+class PaymentCallbackHandler {
+
+    private final PaymentStateService paymentStateService;
+    private final EventPublisher eventPublisher;
+
+    PaymentCallbackHandler(PaymentStateService paymentStateService,
+                           EventPublisher eventPublisher) {
+        this.paymentStateService = paymentStateService;
+        this.eventPublisher = eventPublisher;
+    }
+
+    public void handleCallback(Callback callback) throws CallbackException {
+        paymentStateService.markOrderPaid(callback);
+
+        // This is outside the DB transaction boundary.
+        // If publish fails after DB commit, use retry / outbox / reconciliation.
+        eventPublisher.publishPaymentPaid(callback.orderId());
+    }
+}
+
+@Service
+class PaymentStateService {
+
+    private final OrderRepo orderRepo;
+    private final WalletService walletService;
+
+    PaymentStateService(OrderRepo orderRepo, WalletService walletService) {
+        this.orderRepo = orderRepo;
+        this.walletService = walletService;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void markOrderPaid(Callback callback) throws CallbackException {
+        Order order = orderRepo.findByOrderIdForUpdate(callback.orderId());
+
+        if (order.isTerminal()) {
+            return; // idempotency guard: do not credit wallet twice
+        }
+
+        order.markPaid(callback.providerTxnId());
+        orderRepo.save(order);
+        walletService.credit(order); // local DB work if same transaction boundary
+    }
+}
+```
+
+重點：`markOrderPaid` 要經過 Spring bean proxy 才能套用 transaction；DB mutation 和 `publishPaymentPaid` 的 external side effect 要分開思考。若需要更可靠地保證 event 不遺失，才考慮 outbox pattern。
+
+### 架構 / Flow 圖
+
+```mermaid
+flowchart TD
+  A["Provider Callback"] --> B["Verify signature / amount / order"]
+  B --> C["DB Transaction Boundary"]
+  C --> D["Check terminal state"]
+  D --> E["Update order / wallet records"]
+  E --> F["Commit DB"]
+  F --> G["Publish MQ / update projection / notify"]
+  G --> H{"Publish failed?"}
+  H -->|Yes| I["Retry / Outbox / Reconciliation"]
+  H -->|No| J["Downstream flow continues"]
+```
 
 ### Production 情境
 
-在 payment callback 中，常見流程是：
+以 payment callback 為例：
 
 ```text
 callback received
 -> verify signature / amount / order
--> check current order state
--> update order success
--> trigger wallet / MQ / projection / notify
+-> check terminal state
+-> update order / wallet transaction in DB transaction
+-> commit
+-> publish event / projection / notification
 ```
 
-transaction 只應該保護「狀態檢查 + 狀態更新」這段核心 DB mutation。外部通知或 MQ publish 若放在同一個思考框架裡，就會出現 DB 成功但外部副作用失敗的 failure window。
+Senior 觀點：transaction 只保護「狀態檢查 + 狀態更新」這段核心 DB mutation。MQ / projection / notify 是 transaction 外的副作用。若 DB 成功但 MQ 失敗，交易資料不能隨便 rollback；應該補 event、補 projection 或跑 reconciliation。
+
+### Known Production Case Lens
+
+- verified from Nick's documented experience：Nick 的面試材料主軸包含 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover。
+- inferred from general engineering practice：payment callback / wallet flow 常見風險是 DB 狀態已更新，但 MQ / projection / notify 沒成功。
+- verified from Nick's documented experience：Nick 目前定位是能分析 production flow / failure window，不把自己包裝成完整 payment architect。
+- speculative ideas for future improvement：Outbox 是可作為目標的 pattern，不應講成已完整導入或 owner。
 
 ### 常見錯誤
 
 - 以為 method 標 `@Transactional` 就一定有 transaction。
-- 忽略 self-invocation。
-- catch exception 後吞掉，導致應 rollback 卻 commit。
+- 以為 transaction 可以包住 DB + MQ + provider call 的所有一致性。
+- catch exception 後吞掉，導致應 rollback 的 DB mutation 反而 commit。
 - 在 transaction 裡呼叫慢外部 API，拉長 lock time。
-- 把 MQ publish 當成跟 DB update 同一個 atomic operation。
+- 把 MQ publish 當成和 DB update 同一個 atomic operation。
 - 用 transaction 掩蓋 idempotency 設計不足。
 
 ### Incident / Troubleshooting
@@ -66,12 +172,20 @@ transaction 只應該保護「狀態檢查 + 狀態更新」這段核心 DB muta
 
 排查順序：
 
-1. 查 provider callback 是否進來：request log / signature / provider transaction id。
-2. 查 order state transition：pending -> success 是否有 DB update。
-3. 查 transaction rollback log：是否丟 exception、是否被 catch。
-4. 查是否 self-invocation 或 private method 導致 transaction 沒生效。
-5. 查 DB commit 成功後的下游副作用：wallet、MQ、projection 是否有缺。
-6. 若 DB success / MQ failed，先補 projection 或 outbox / retry，不要直接重跑整個 callback 造成二次副作用。
+1. 查 callback 是否進來：request log、signature result、provider transaction id。
+2. 查 order state：目前是 pending、success、failed，最後更新時間是什麼。
+3. 查 DB mutation 是否 commit：order / wallet transaction / bet record 是否一致。
+4. 查 exception path：是否丟出 exception、是否被 catch、rollback rule 是否符合預期。
+5. 查 transaction 外副作用：MQ event、projection、notification 是否缺失。
+6. 若 DB success / MQ failed，優先補 event / projection 或跑 reconciliation，不要直接重跑整個 callback 造成二次入帳。
+
+### Observability Anchor
+
+- 1 useful log：`orderId`, `providerTxnId`, `currentStatus`, `targetStatus`, `transactionStep`, `exceptionClass`。
+- 1 useful metric：`payment_callback_db_update_fail_total` 或 `payment_event_publish_fail_total`。
+- 1 useful trace/span：`callback.verify -> order.update.transaction -> event.publish`。
+- 1 alert condition：callback success rate 突然下降，或 DB success 但 event publish failure 持續增加。
+- 1 thing that should not alert：單筆 duplicate callback 被 terminal-state guard 擋下，這是正常 idempotency 行為。
 
 ### Senior 面試怎麼問
 
@@ -81,9 +195,9 @@ transaction 只應該保護「狀態檢查 + 狀態更新」這段核心 DB muta
 
 ### Senior 面試怎麼回答
 
-1. `分析過`：我會先確認 transaction 是否真的經過 Spring proxy，例如 self-invocation、private method、非 Spring bean、異常被 catch 掉，都可能讓預期中的 rollback 沒發生。面試時我不會只說加 annotation，而會先確認 proxy、exception propagation 與 rollback rule。
-2. `分析過 / 可作為目標`：DB 成功但 MQ 失敗屬於 dual-write 風險。短期要有補償或人工修復方式，長期可以考慮 outbox pattern，讓 DB update 與 event record 在同一個 transaction 裡提交，再由 relay 發送 MQ。
-3. `分析過`：local DB transaction 只能保護 DB mutation，不能保證 external provider、Redis、MQ、callback notification 全部一起 atomic。Senior 要能把 DB transaction、idempotency、retry、compensation、reconciliation 分開講。
+1. `分析過`：我會先確認 transaction 是否真的經過 Spring proxy，例如 self-invocation、private method、非 Spring bean、exception 被 catch 掉，都可能讓預期中的 rollback 沒發生。面試時我不會只說加 annotation，而會確認 proxy、exception propagation 與 rollback rule。
+2. `分析過 / 可作為目標`：DB 成功但 MQ 失敗是 dual-write 風險。短期要能觀測與補償，例如補 event、補 projection 或人工修復；長期可考慮 outbox，讓 DB mutation 與 event record 在同一個 transaction 裡提交，再由 relay 發送 MQ。
+3. `分析過`：local DB transaction 只能保護 DB mutation，不能保證 external provider、Redis、MQ、callback notification 全部 atomic。Senior 要把 DB transaction、idempotency、retry、compensation、reconciliation 分開講。
 
 ### System Design 延伸思考
 
@@ -93,6 +207,55 @@ Trade-off：
 - `transaction + outbox`：增加 table / relay / retry 複雜度，但 failure window 更可控。
 - `distributed transaction`：理論上更強，但成本、複雜度與可用性風險通常很高，不是高交易系統的預設答案。
 - `補償 / reconciliation`：適合 provider timeout、callback 重送、projection lag 等不可避免的不確定狀態。
+
+### Mini ADR
+
+- Context：payment / wallet 類 flow 需要保護核心 DB state transition，但同時又要觸發 MQ / projection / notification。
+- Decision：local transaction 只包核心 DB mutation；transaction 外副作用要用 retry、outbox、compensation 或 reconciliation 收斂。
+- Alternatives：把外部 call 放 transaction 內、使用 distributed transaction、或只靠人工補資料。
+- Consequences：系統要接受 eventual consistency，並補足 idempotency、observability 與 repair path。
+- When this decision becomes wrong：如果法規或業務要求跨資源強一致，或事件遺失成本極高且無法補償，就要重新評估 outbox / stronger consistency mechanism。
+
+### Technology Landscape
+
+- Related technologies：Spring declarative transaction、programmatic transaction、JPA transaction、Outbox Pattern、Saga、distributed transaction / XA。
+- Current industry mainstream：Java backend 多數以 local transaction + idempotency + retry / compensation / reconciliation 處理高交易系統，不會預設使用 distributed transaction。
+- When each technology is a better fit：
+  - Spring local transaction：單服務 / 單 DB mutation。
+  - Outbox：DB commit 後必須可靠送出 event。
+  - Saga / compensation：跨多服務長流程，需要可補償步驟。
+  - XA / distributed transaction：強一致需求非常高，但成本與可用性可接受。
+- Learn Now：Spring transaction boundary、rollback rule、proxy 心智。
+- Learn Later：Outbox / Saga 的實作細節。
+- Awareness Only：XA / JTA 深層配置與 transaction manager internals。
+- Why：目前 Senior Backend 面試最常問的是 boundary、failure window 與補償思路，不是 transaction manager 原始碼。
+
+### Knowledge Boundary
+
+- Must Understand：
+  - `@Transactional` 只保護 local transaction boundary。因為 production flow 常跨 DB / MQ / provider。
+  - rollback rule 與 exception propagation。因為 exception 被吞掉會讓資料 commit。
+  - DB success / MQ failed 是 dual-write 風險。因為這是 payment / projection 常見追問。
+- Should Understand：
+  - self-invocation / proxy limitation。因為 Week 03 會深入，但 Week 01 要先知道風險存在。
+  - Outbox / compensation / reconciliation 的用途。因為這是跨系統 failure recovery 的語言。
+- Can Ignore For Now：
+  - Spring transaction manager 原始碼。因為面試與 production 排查先看 boundary、log、state。
+  - JTA / XA 詳細配置。因為目前不是主線，且容易過度準備。
+
+### One Common Misconception
+
+- Misconception：`@Transactional` 可以保證整條 payment / wallet flow 一致。
+- Correction：它只能保證 local transaction 內的 resource，一旦牽涉 MQ、Redis、external provider、notification，就超出 local transaction boundary。
+- Why it matters in production / interview：Senior 面試官會追問 timeout、callback 重送、DB success / MQ failed；如果把 transaction 當魔法，會被打穿。
+
+### Future Direction
+
+只有有意義時才放：
+
+- Senior Backend：current priority。能在 code review / incident 中找出 transaction boundary 與外部副作用。
+- Platform Backend：future-only topic。Outbox / inbox / event relay 設計會變重要，但不需要 Week 01 全部學完。
+- Architect：future-only topic。跨服務 consistency strategy、Saga、distributed transaction trade-off 會變重要，但目前只需知道取捨語言。
 
 ### 與我的面試材料如何連結
 
@@ -114,11 +277,6 @@ Trade-off：
    - 為什麼值得看：釐清 rollback rule，避免面試時把 checked / unchecked exception 講錯。
    - 對應：callback exception、wallet mutation、batch partial failure。
 
-3. [Proxying Mechanisms](https://docs.spring.io/spring-framework/reference/core/aop/proxying.html)
-   - 來源：Spring Framework 官方文件。
-   - 為什麼值得看：理解 self-invocation 為什麼會繞過 proxy。
-   - 對應：Spring transaction 失效、legacy code review、AI code review。
-
 ### 本週可執行任務
 
 30 分鐘內完成：
@@ -133,6 +291,15 @@ Trade-off：
 2. 短期如何查與補。
 3. 長期如何用 outbox / retry / reconciliation 降低風險。
 4. 保守連回自己的經驗：分析過 payment / wallet / MQ flow，不誇大成完整 outbox owner。
+
+### Learning Check
+
+學完本週 packet 後，Nick 應該能：
+
+1. 用 60 秒說明：`@Transactional` 保護 local DB transaction，但不等於整條 business flow atomic。
+2. 說出 1 個 production failure mode：DB commit 成功，但 MQ publish 失敗，導致 projection 沒更新。
+3. 回答 1 題 Senior interview question：DB success / MQ failed 怎麼處理。
+4. 判斷什麼時候不該用這個 approach：不要用 local transaction 去包慢 provider call 或幻想它能解 distributed consistency。
 
 ### 本週 KB 維護建議
 
@@ -157,6 +324,7 @@ Trade-off：
 - 不要把 outbox 寫成已做過。
 - 不要追日文。
 - 不要開新 side project 來練 transaction。
+- 不要因為 Week 01 學 transaction，就把所有 consistency pattern 都塞進本週。
 
 ## Week 02：Propagation / Isolation / Rollback Rule
 
