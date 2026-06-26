@@ -1,4 +1,4 @@
-# ugsoft Discovery Scope
+# ugsoft Deep Dive Scope
 
 Local path: `/Users/nick/Git/ugsoft`
 
