@@ -5,6 +5,7 @@
 ## 使用規則
 
 - 每次必須先依 `project-index.md` 選 1 個 project，再選 1 個 topic。
+- 每次選題前先看 `project-value-map.md`，避免只因履歷 / 自傳或既有 KB 熟悉度而重複選 Payment。
 - 每次只研究 1 個 topic。
 - 每次都要對應 `curriculum.md` 的至少 1 個 curriculum area。
 - 目標是理解系統與工程判斷；不是只找 discovery，也不是只 summary existing KB。
@@ -13,13 +14,13 @@
 
 ## 第一輪：A 級 Production / Money Flow
 
-1. Payment callback。
-2. Payment request / timeout unknown。
-3. Provider query / reconciliation。
-4. Wallet transfer。
-5. Bet / settle / rollback。
-6. MQ projection。
-7. Report batch / rebuild。
+1. Bet / settle / rollback。
+2. Wallet transfer。
+3. MQ projection。
+4. Report batch / rebuild。
+5. Third-party transfer in-out。
+6. Runtime architecture / service communication inventory。
+7. Payment request / callback / query，僅在要補 code / DB / git history 新 evidence 時優先。
 8. Request log / audit log。
 
 ## 第二輪：A 級 Consistency / Incident

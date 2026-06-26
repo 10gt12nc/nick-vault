@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-每次 deep dive 必須先選 `一個專案`，再選 `一個 topic`。
+每次 deep dive 必須先看 `project-value-map.md`，再選 `一個專案` 與 `一個 topic`。
 
 格式：
 
@@ -19,11 +19,11 @@ Non-goal
 例如：
 
 ```text
-Project: iwin
-Topic: Payment callback
-Scope: payment callback controller / MQ producer / consumer / order state
-Curriculum area: Provider Integration + Transaction / Consistency + MQ / Async
-Non-goal: 不整理整個 iwin 大系統
+Project: antplay
+Topic: Slot bet-settle-rollback
+Scope: bet / settle / rollback runtime flow, wallet mutation, state transition
+Curriculum area: Production Flow + Transaction / Consistency + Code Reading
+Non-goal: 不整理整個 antplay 大系統，不回填履歷 claim
 ```
 
 ## 專案清單
@@ -36,20 +36,22 @@ Non-goal: 不整理整個 iwin 大系統
 | `usproject` | `/Users/nick/Git/usproject` | 先確認專案性質，再決定是否有可用 deep dive | 可作補充系統閱讀或 side context | 未確認前不當公司專案 evidence |
 | `DevOps` | `/Users/nick/Git/DevOps` | rollout、health check、monitoring、config / secret boundary 的 production thinking | Deployment / rollback / health check / monitoring decision | 不包裝成 DevOps owner，不全掃 infra |
 
+高 / 中 / 低價值明細以 [project-value-map.md](project-value-map.md) 為準。本檔只放 project-level 索引與輪詢規則。
+
 ## 專案輪詢規則
 
 第一輪優先順序：
 
-1. `iwin`：最貼近 Provider Integration、payment callback、wallet / transfer、legacy。
-2. `antplay`：最貼近 Wallet / Bet-Settle / MQ、projection、slot domain。
-3. `ugsoft`：補 Provider Connector、Admin、Auth、RBAC、JWT 類經驗。
+1. `antplay`：slot bet-settle、wallet、MQ projection、partition，學習 ROI 最高。
+2. `iwin`：third-party transfer、game_job、service communication inventory、legacy reconstruction；payment callback 已很熟，不預設第一順位。
+3. `ugsoft`：補 Provider Connector、Admin、Auth、RBAC、JWT 類經驗，但需先盤點。
 4. `DevOps`：只作 rollout / observability / deployment decision 加分。
 5. `usproject`：先確認定位；未確認前只作 optional context。
 
 預設輪詢：
 
 ```text
-iwin -> antplay -> ugsoft -> iwin -> antplay -> DevOps -> iwin -> antplay -> usproject
+antplay -> iwin -> antplay -> ugsoft -> iwin -> DevOps -> antplay -> iwin -> usproject
 ```
 
 若當週 Nick 正在準備某個 JD 或面試，就依 JD / 面試追問調整。

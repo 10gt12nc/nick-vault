@@ -21,6 +21,7 @@ Read only as needed:
 - senior-owner-playbook/22-career-industry-kb-evolution-plan.md
 - senior-owner-playbook/company-system-deep-dive/README.md
 - senior-owner-playbook/company-system-deep-dive/curriculum.md
+- senior-owner-playbook/company-system-deep-dive/project-value-map.md
 - senior-owner-playbook/company-system-deep-dive/project-index.md
 - senior-owner-playbook/company-system-deep-dive/topic-list.md
 - senior-owner-playbook/company-system-deep-dive/deep-dive-template.md
@@ -29,6 +30,8 @@ Read only as needed:
 - relevant local code / git history only for the selected topic
 
 Scope:
+Before selecting a topic, read project-value-map.md.
+Pick by learning value first, not by resume/autobiography usefulness.
 Pick ONE high-value target only:
 - production flow
 - module
@@ -91,8 +94,10 @@ Rules:
 - Do not scan all modules.
 - Do not produce only a discovery list.
 - Do not merely repackage existing flow / interview KB.
+- Do not default to Payment callback just because existing KB is rich; choose it only when this run will add code / DB / git / architecture evidence.
 - If an existing KB already explains a section, summarize it briefly and add code map, data structure, alternatives, redesign thinking, or learning-level assessment.
 - Do not modify resume, autobiography, story drafts, production flow files, 04 / 05 / 08 / 17 / 19, or project claim files.
+- Do not treat the deep dive as resume material unless Nick explicitly asks for claim gate/backfill.
 - Do not store company secrets, merchants, tokens, internal URLs, or real transaction data.
 - Do not turn code-backed / team-context / learning-only material into Nick direct owner claim.
 - Do not create backlog or learning debt.
@@ -120,16 +125,17 @@ Do not push unless Nick explicitly asks.
 
 ```text
 用 Company System Deep Dive 跑一次。
-Project: iwin
-Topic: Payment callback
+Project: antplay
+Topic: Slot bet-settle-rollback
 照 manual-deep-dive-prompt.md。
-不要只做 discovery，也不要只重包既有 KB。
+先看 project-value-map.md。
+不要只做 discovery，也不要只重包既有 KB，也不要預設回填履歷。
 ```
 
 讓 Codex 自己選：
 
 ```text
 用 Company System Deep Dive 跑一次。
-照 curriculum.md 和 project-index.md 的優先順序，選一個最值得學 production / architecture / refactor thinking 的 project/topic。
+照 curriculum.md、project-value-map.md 和 project-index.md 的優先順序，選一個最值得學 production / architecture / refactor thinking 的 project/topic。
 不要全掃，不要改正式面試材料。
 ```

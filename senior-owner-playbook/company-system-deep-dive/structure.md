@@ -8,6 +8,7 @@
 senior-owner-playbook/company-system-deep-dive/
 ├── README.md
 ├── curriculum.md
+├── project-value-map.md
 ├── project-index.md
 ├── topic-list.md
 ├── deep-dive-template.md
@@ -33,6 +34,7 @@ senior-owner-playbook/company-system-deep-dive/
 | --- | --- |
 | `README.md` | Deep Dive 線的定位、章節、學習層級、邊界 |
 | `curriculum.md` | 一年公司系統深度研究課綱 |
+| `project-value-map.md` | 每個 project 下高 / 中 / 低價值系統、功能、架構候選；不等於履歷 claim |
 | `project-index.md` | 五個 project 的 local path、價值、邊界與輪詢順序 |
 | `topic-list.md` | deep dive topic 清單 |
 | `deep-dive-template.md` | 每次 deep dive 的固定輸出格式 |

@@ -96,7 +96,23 @@
 
 ## 選題方式
 
-仍然採二維選題：
+選題先不跟履歷 / 自傳掛鉤，避免把公司系統學習侷限成求職素材。第一層先看學習價值，再決定是否需要 claim gate。
+
+優先順序：
+
+```text
+Project Value Map
+↓
+Project Index
+↓
+Topic List
+↓
+Deep Dive Template
+```
+
+先看 [project-value-map.md](project-value-map.md)，判斷每個 project 底下哪些系統 / 功能 / 架構是高、中、低學習價值。
+
+再做二維選題：
 
 ```text
 先選一個 Project
@@ -134,7 +150,7 @@ No new A-level finding this run.
 - 不全掃公司 repo。
 - 不平均掃所有 module。
 - 不保存公司機密、商戶、token、內部 URL、真實交易資料。
-- 不改正式履歷、自傳、Story、Flow、`04 / 05 / 08 / 17 / 19`，除非 Nick 明確要求。
+- 不把 Deep Dive 預設掛到履歷、自傳、Story、Flow、`04 / 05 / 08 / 17 / 19`；只有 Nick 明確要求回填時才做 claim gate。
 - 不把 code-backed / team-context / learning-only 包裝成 Nick direct owner。
 - 不把 Spring Cloud / Kafka / K8s / 微服務現代化想像變成自動改造任務。
 

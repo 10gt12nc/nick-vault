@@ -10,6 +10,7 @@
 - Scope:
 - Why it is worth studying now:
 - A/B/C value ranking:
+- Resume/autobiography linkage: Not evaluated by default
 
 ## 2. System Context
 
@@ -185,4 +186,5 @@ No new A-level finding this run.
 - Save this deep dive? Yes / No
 - Update deep-dive-log? Yes / No
 - Backfill formal interview materials? No by default
+- Resume / autobiography / claim gate needed? No by default
 - Relationship Check result:
