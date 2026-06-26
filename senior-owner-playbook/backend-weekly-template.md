@@ -70,7 +70,8 @@ Weekly Senior Backend Capability Builder
 - 避免重複檢查：先看 `backend-learning-log.md` 是否已跑過相同主題；若跑過，要加深 incident、production、trade-off 或 interview depth。
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
 - 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
-- Known Production Case Lens：最多 5 分鐘，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
+- Known Production Case Lens：最多 5 bullets，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
+- Avoid Hallucination：討論 Nick production cases 時，必須區分 `verified from Nick's documented experience`、`inferred from general engineering practice`、`speculative ideas for future improvement`；不得把 assumption 寫成 fact。
 - Mini ADR：至少練一個 decision angle，包含 Context、Decision、Alternatives、Consequences、When this decision becomes wrong。
 - Observability Anchor：為本週主題定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
 - Technology Landscape：建立本週主題的技術地圖，分成 Learn Now、Learn Later、Awareness Only，並說明各技術在什麼情境更適合；不得建議把所有相關技術都學完。
@@ -140,11 +141,18 @@ Weekly Senior Backend Capability Builder
 
 ## Known Production Case Lens
 
-最多 5 分鐘：
+最多 5 bullets：
 - 這個主題可連到哪個 Nick 已知 case 或泛化 production 情境？
 - 不掃公司 repo。
 - 不新增公司系統 deep dive。
 - 不發明 direct ownership。
+
+Clearly distinguish:
+- verified from Nick's documented experience
+- inferred from general engineering practice
+- speculative ideas for future improvement
+
+Never present assumptions as facts.
 
 ## 常見錯誤
 
@@ -239,6 +247,8 @@ If Nick later becomes:
 
 最多 2 篇。優先 1 篇官方文件；第 2 篇只有在提供明顯 practical value 時才放。
 
+優先 stable references。若已有等價官方文件，避免使用低品質 blog。
+
 每篇包含：
 - 標題
 - 來源
@@ -272,6 +282,14 @@ If Nick later becomes:
 ## 本週不建議做什麼
 
 指出本週應避免的低 ROI 行為。
+
+如果 packet 變得太長，優先保留：
+1. production thinking
+2. decision making
+3. trade-off
+4. interview
+
+犧牲 exhaustive technical detail。
 ```
 
 ## 每週資料搜尋規則

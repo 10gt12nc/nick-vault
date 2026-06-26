@@ -32,7 +32,7 @@ Weekly Senior Backend Capability Builder
 - 不建立巨大 backlog。
 - 不把尚未做過的架構寫成既成事實。
 - 不把每週未完成內容累積成學習債務。
-- 不固定加入 company code deep dive；每週可有一個最多 5 分鐘的 Known Production Case Lens，但只能用既有 notes 或泛化 production analogy，不掃公司 repo、不新增第二排程、不創造 direct ownership。
+- 不固定加入 company code deep dive；每週可有一個最多 5 bullets 的 Known Production Case Lens，但只能用既有 notes 或泛化 production analogy，不掃公司 repo、不新增第二排程、不創造 direct ownership。
 
 ## 目前進度
 
@@ -135,7 +135,8 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 - 避免重複檢查：先讀 `backend-learning-log.md`，若主題重複，必須加深 incident、production、trade-off 或 interview depth。
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
 - 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
-- Known Production Case Lens：最多 5 分鐘，用既有 notes 或泛化 production analogy 連到已知 cases；不掃公司 repo、不做公司系統深讀。
+- Known Production Case Lens：最多 5 bullets，用既有 notes 或泛化 production analogy 連到已知 cases；不掃公司 repo、不做公司系統深讀。
+- Avoid Hallucination：討論 production cases 時要區分 documented experience、general engineering inference、future improvement speculation，不得把 assumptions 寫成 facts。
 - Mini ADR：用 Context、Decision、Alternatives、Consequences、When this decision becomes wrong 練決策思維。
 - Observability Anchor：定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
 - Technology Landscape：列出相關技術、生態主流、各技術更適合的情境，分成 Learn Now、Learn Later、Awareness Only，避免因公司沒有某技術就完全沒概念，也避免把所有技術都搬進待辦。
@@ -145,6 +146,7 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 - Learning Check：確認 Nick 能 60 秒說明、講 1 個 failure mode、答 1 題 Senior interview question、判斷何時不該用。
 - KB 維護建議：只能提出建議，不自動改 `04 / 05 / 08 / 17`、三個故事稿或 flow 文件。
 - 本週不建議做什麼：明確列低 ROI 或焦慮型延伸。
+- 若 packet 過長，優先保留 production thinking、decision making、trade-off、interview，犧牲 exhaustive technical detail。
 
 ## 48 週核心輪詢
 
