@@ -328,58 +328,105 @@ Trade-off：
 
 ## Week 02：Propagation / Isolation / Rollback Rule
 
-狀態：已建立第二週內容。
+狀態：已用封版 `Weekly Senior Backend Capability Builder` 格式重跑。
 
 ### 本週主題
 
-Spring transaction propagation、isolation 與 rollback rule。這週不重講 `@Transactional` 基礎，而是把 Week 01 的 transaction boundary 往 production failure window 推深一層。
+Spring transaction propagation、isolation、rollback rule：從「transaction 有沒有生效」推進到「transaction 邊界怎麼切、rollback 何時發生、isolation 成本怎麼判斷」。
+
+### Weekly Mode
+
+Trade-off Mode + Troubleshooting Mode。
+
+理由：Week 02 不該變成背 enum。這週重點是判斷：哪些操作要在同一個 transaction、哪些要拆出去、哪些錯誤會 rollback、哪些 isolation 選擇會換來 lock / deadlock / throughput 成本。
 
 ### 為什麼這週學這個
 
-這是 Senior Java Backend 面試最常追問的 transaction 細節，也直接連到 Nick 的主力 cases：
+這是 Senior Java Backend 面試很常追問的 transaction 第二層，也直接連到 Nick 的 production cases：
 
 - Provider Integration：callback handler 若吞 exception、rollback rule 設錯，可能讓 order state commit 到錯誤狀態。
 - Wallet / Bet-Settle：wallet mutation、bet record、settle / rollback 需要清楚決定哪些操作共用同一個 transaction，哪些只能補償。
-- MQ / Projection：event log、audit log 或 outbox 類記錄若用 `REQUIRES_NEW`，要知道它和外層 business transaction 的成功 / 失敗關係。
-- Legacy Takeover：讀舊系統時，看到 `REQUIRES_NEW`、`NESTED`、`rollbackFor`、`isolation` 不能只背定義，要能判斷當初是在保 audit、拆 failure window，還是無意中製造不一致。
+- MQ / Projection：audit log、event log 或 outbox 類記錄如果獨立 commit，要知道它和 business transaction 的成功 / 失敗關係。
+- Legacy Takeover：讀舊系統時看到 `REQUIRES_NEW`、`NESTED`、`rollbackFor`、`isolation`，要能判斷它是在拆風險，還是在製造不一致。
 
 ### 核心概念
 
+控制在 10-15 分鐘可讀完：
+
 - Propagation 決定「內層 method 要加入外層 transaction，還是另開一個 transaction」。
-- Isolation 決定同時多筆交易讀寫資料時能看到什麼；它不是越高越好，因為 lock、deadlock、throughput 都會受影響。
-- Rollback rule 決定哪些 exception 會讓 transaction rollback；checked exception 預設不一定 rollback，catch 後吞掉更可能讓 transaction commit。
-- `REQUIRES_NEW` 不是萬用保險。它會讓內層 transaction 獨立 commit / rollback，也會額外拿 DB connection；高併發下可能造成 connection pool 壓力。
-- `NESTED` 偏向同一個 physical transaction 裡的 savepoint / partial rollback，語意和 `REQUIRES_NEW` 不同。
+- Isolation 決定 concurrent transaction 互相能看到什麼；它不是越高越好，因為 lock、deadlock、throughput 都會受影響。
+- Rollback rule 決定哪些 exception 會讓 transaction rollback；runtime exception / error 是常見預設心智，checked exception 通常要明確設定 `rollbackFor`。
+- `REQUIRES_NEW` 會讓內層 transaction 獨立 commit / rollback，也會多拿 DB connection；它不是「更安全」的同義詞。
+- `NESTED` 比較像同一個 physical transaction 裡用 savepoint 做 partial rollback，語意和 `REQUIRES_NEW` 不同。
+- catch exception 後只記 log 不往外丟，是 production 事故裡很常見的 rollback 失效原因。
 
 ### Beginner-to-Senior 解釋
 
-- Beginner：`@Transactional` 不是「全部成功或全部失敗」魔法；它只保護目前 transaction 內的 DB 操作。
-- Mid：最常踩坑是 inner method propagation 沒想清楚、checked exception 沒 rollback、catch exception 後沒有重新丟出、isolation 調高卻不知道 lock 成本。
-- Senior：要能把 propagation / isolation / rollback rule 放回 production flow：哪裡是 money correctness，哪裡是 audit / outbox，哪裡需要終態保護，哪裡不能靠 DB transaction 處理 provider timeout、MQ duplicate 或 projection lag。
+Beginner：
+
+Propagation、isolation、rollback rule 是 `@Transactional` 的重要參數。它們決定 transaction 怎麼加入、資料怎麼隔離、什麼 exception 會 rollback。
+
+Mid：
+
+常見坑不是不會背定義，而是：
+
+- `REQUIRES_NEW` 用太多造成 connection pool 壓力。
+- audit log 獨立 commit，卻被誤解成 business transaction 成功。
+- checked exception 沒設 `rollbackFor`，資料意外 commit。
+- catch exception 後只記 log，rollback 根本沒發生。
+- isolation 調高，但沒有估 lock wait / deadlock 成本。
+
+Senior：
+
+要把這些參數放回 production flow。Payment callback、wallet mutation、bet-settle rollback 這類流程，核心不是「用哪個 enum」，而是回答：
+
+- 這段資料是否必須一起成功或一起失敗？
+- 哪些紀錄可以獨立保存，例如 audit？
+- 哪些異常會讓錢或訂單狀態錯掉？
+- 哪些不一致不能靠 DB transaction 解，只能靠 idempotency、compensation 或 reconciliation 收斂？
 
 ### 小型 code / pseudo-code 範例
 
 ```java
 @Service
 class PaymentCallbackService {
+
+    private final OrderRepo orderRepo;
+    private final WalletService walletService;
+    private final CallbackAuditService auditService;
+
+    PaymentCallbackService(OrderRepo orderRepo,
+                           WalletService walletService,
+                           CallbackAuditService auditService) {
+        this.orderRepo = orderRepo;
+        this.walletService = walletService;
+        this.auditService = auditService;
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public void handleCallback(CallbackRequest req) throws CallbackException {
         Order order = orderRepo.findForUpdate(req.orderId());
+
         if (order.isTerminal()) {
-            auditService.recordDuplicateCallback(req); // 獨立 audit，不重複入帳
+            auditService.recordDuplicateCallback(req);
             return;
         }
 
         order.markSuccess(req.providerTxnId());
         orderRepo.save(order);
-
-        // 若這裡丟 checked exception，沒有 rollbackFor 時可能不 rollback。
         walletService.credit(order);
     }
 }
 
 @Service
 class CallbackAuditService {
+
+    private final AuditRepo auditRepo;
+
+    CallbackAuditService(AuditRepo auditRepo) {
+        this.auditRepo = auditRepo;
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void recordDuplicateCallback(CallbackRequest req) {
         auditRepo.insert(req.orderId(), req.providerTxnId(), "DUPLICATE_CALLBACK");
@@ -387,7 +434,11 @@ class CallbackAuditService {
 }
 ```
 
-重點不是照抄 `REQUIRES_NEW`，而是回答：audit 是否真的應該即使外層 rollback 也保留？connection pool 是否承受得住？如果 audit commit 但 business rollback，排查時會不會誤判？
+重點不是照抄 `REQUIRES_NEW`，而是回答三件事：
+
+1. duplicate callback audit 是否真的應該獨立保存？
+2. audit commit 但 business transaction rollback 時，排查者會不會誤判？
+3. 高併發 callback 下，額外 transaction 會不會造成 connection pool 壓力？
 
 ### 架構 / Flow 圖
 
@@ -407,13 +458,21 @@ flowchart TD
 
 ### Production 情境
 
-Payment callback 的 transaction design 不能只問「要不要加 `@Transactional`」。更好的問法是：
+Payment callback 的 transaction design 不能只問「要不要加 `@Transactional`」。比較 Senior 的問法是：
 
 1. order state guard 和 wallet mutation 是否應在同一個 transaction？
-2. duplicate callback audit 是否要獨立 commit？
-3. checked business exception 是否會 rollback？
-4. isolation 是否真的要調高，還是用 row lock / unique constraint / idempotency key 比較清楚？
-5. DB commit 後的 MQ / projection failure 是否有 retry、repair 或 reconciliation？
+2. duplicate callback audit 要不要獨立 commit？
+3. checked exception、business exception、provider exception 哪些要 rollback？
+4. isolation 是真的要調高，還是用 row lock、unique constraint、idempotency key 比較清楚？
+5. DB commit 後的 MQ / projection failure 是否有 retry、repair 或 reconciliation path？
+
+### Known Production Case Lens
+
+- verified from Nick's documented experience：Nick 的主力材料包含 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover。
+- inferred from general engineering practice：payment callback / wallet flow 常見問題是 audit 成功、business mutation 失敗，或 DB 成功但 projection 沒更新。
+- inferred from general engineering practice：`REQUIRES_NEW` 可以保留 audit，但會增加 connection 使用與 partial success 解讀成本。
+- verified from Nick's documented experience：Nick 要保守講「分析過 transaction boundary / failure window」，不要講成完整 transaction architecture owner。
+- speculative ideas for future improvement：Outbox / stronger consistency mechanism 是 future improvement，不是目前已導入成果。
 
 ### 常見錯誤
 
@@ -437,6 +496,14 @@ Payment callback 的 transaction design 不能只問「要不要加 `@Transactio
 5. 查 isolation / lock wait / deadlock，確認是否因 row lock 或 gap lock 造成 timeout。
 6. 若 order success 但 projection / MQ 沒到，先補 projection，不要重跑 callback 造成二次入帳。
 
+### Observability Anchor
+
+- 1 useful log：`orderId`, `providerTxnId`, `outerTx`, `innerTx`, `propagation`, `exceptionClass`, `rollbackDecision`。
+- 1 useful metric：`callback_business_rollback_total`、`callback_audit_requires_new_total` 或 `db_connection_pool_wait_seconds`。
+- 1 useful trace/span：`callback.handle -> order.lock -> wallet.credit -> audit.record_requires_new`。
+- 1 alert condition：callback DB rollback rate 上升，或 connection pool wait time / active connection 長時間偏高。
+- 1 thing that should not alert：duplicate callback 被 terminal-state guard 擋下並記 audit，若比例正常，這是預期 idempotency 行為。
+
 ### 3 個學習重點
 
 1. Propagation 是在切 transaction 邊界，不是背 enum；要先說清楚外層和內層誰可以獨立成功。
@@ -453,7 +520,7 @@ Payment callback 的 transaction design 不能只問「要不要加 `@Transactio
 
 1. `分析過`：`REQUIRES_NEW` 是獨立 transaction，適合非常明確要和外層成功 / 失敗切開的紀錄，例如某些 audit；但它會多拿 connection，也可能讓 audit 成功、business rollback。`NESTED` 比較像同一個 physical transaction 裡用 savepoint 做局部 rollback，不能把兩者混成一樣。
 2. `分析過`：Spring 預設常見是 runtime exception / error rollback，checked exception 需要明確設定 `rollbackFor`。我會同時檢查 exception 是否被 catch 掉、是否有 no-rollback rule、以及 method 是否真的經過 proxy。
-3. `分析過 / 待驗證`：money correctness 的核心 mutation 通常要明確狀態機、row lock 或 unique constraint 保護；報表 / projection 查詢可能接受較鬆一致性。MySQL 預設 `REPEATABLE READ` 提供較強一致性，但 lock 行為和 gap lock 需要理解；`READ COMMITTED` 可降低部分 lock 壓力，但要接受每次讀到新 snapshot 和 phantom 類問題。
+3. `分析過 / 待驗證`：money correctness 的核心 mutation 通常要明確狀態機、row lock 或 unique constraint 保護；報表 / projection 查詢可能接受較鬆一致性。Isolation level 不是越高越好，要看讀寫衝突、lock cost、deadlock risk 與 business correctness。
 
 ### System Design 延伸思考
 
@@ -463,6 +530,58 @@ Payment callback 的 transaction design 不能只問「要不要加 `@Transactio
 - 切太小：partial commit、audit / business state 不一致、補償成本高。
 - isolation 太高：一致性較強，但吞吐與 lock 成本上升。
 - isolation 太低：效能較好，但要用 idempotency、unique key、狀態機與 reconciliation 補強。
+
+### Mini ADR
+
+- Context：callback / wallet 類 flow 需要同時保護核心 business state，又希望保留 audit / duplicate request 記錄。
+- Decision：核心 money mutation 優先放在同一個 local transaction；audit 是否使用 `REQUIRES_NEW` 必須逐 case 判斷，不能當預設。
+- Alternatives：全部放同一 transaction、audit 永遠 `REQUIRES_NEW`、只記 log 不寫 DB、或把 event / audit 改成 outbox。
+- Consequences：拆 transaction 可保留更多排查資訊，但會引入 partial success 解讀成本與 connection pool 壓力。
+- When this decision becomes wrong：如果 audit volume 很高、connection pool 已經吃緊、或 audit 成功會讓營運誤判 business 成功，就要改設計。
+
+### Technology Landscape
+
+- Related technologies：Spring propagation、rollback rule、database isolation level、row lock、optimistic lock、pessimistic lock、unique constraint、outbox。
+- Current industry mainstream：核心交易多用 local transaction + row lock / unique constraint / idempotency；跨系統狀態再用 retry / compensation / reconciliation，不會預設靠 distributed transaction。
+- When each technology is a better fit：
+  - `REQUIRED`：大多數 service method 預設，適合同一段 business mutation。
+  - `REQUIRES_NEW`：適合確定要和外層成功 / 失敗切開的 audit 或 outbox-like 記錄，但要估資源成本。
+  - `NESTED`：適合同一 transaction 中希望局部 rollback 的場景，但依資料庫與 transaction manager 支援而定。
+  - Higher isolation：適合讀寫衝突造成 correctness 風險很高的場景，但要承擔 lock / throughput 成本。
+  - Unique constraint / idempotency key：適合防 duplicate callback、duplicate settle、duplicate rollback。
+- Learn Now：`REQUIRED`、`REQUIRES_NEW`、rollback rule、catch exception 的風險。
+- Learn Later：isolation level 的細節、lock wait / deadlock analysis、outbox implementation。
+- Awareness Only：完整 JTA / XA、transaction manager internals。
+- Why：現階段面試最需要你能判斷 transaction 邊界與 production failure，不是背所有 propagation enum。
+
+### Knowledge Boundary
+
+- Must Understand：
+  - `REQUIRED` vs `REQUIRES_NEW`。因為這直接影響 business state 和 audit 是否一起 commit。
+  - checked exception / `rollbackFor` / catch block。因為這是資料意外 commit 的常見原因。
+  - isolation 有成本。因為高交易系統要在 correctness 和 throughput 間取捨。
+- Should Understand：
+  - `NESTED` / savepoint 心智。因為面試可能追問，但實務使用要看支援情況。
+  - row lock、unique constraint、idempotency key 如何配合 transaction。因為 wallet / callback 不只靠 isolation。
+  - connection pool 壓力。因為 `REQUIRES_NEW` 會額外拿 connection。
+- Can Ignore For Now：
+  - 所有 propagation enum 的冷門細節。因為 Week 02 目標是能用於 production 判斷。
+  - JTA / XA 設定。因為目前不是求職主線，容易過度準備。
+  - InnoDB MVCC 原始碼。因為先能排查 lock wait / deadlock 與 query behavior 即可。
+
+### One Common Misconception
+
+- Misconception：`REQUIRES_NEW` 比 `REQUIRED` 更安全。
+- Correction：它只是把 inner transaction 獨立出來，不代表更安全；它可能造成 partial commit、connection pool 壓力、排查誤判。
+- Why it matters in production / interview：面試官常用 audit log、outbox、callback duplicate 追問。如果只說「用 `REQUIRES_NEW` 保證記錄成功」，但講不出副作用，就不像 Senior。
+
+### Future Direction
+
+只有有意義時才放：
+
+- Senior Backend：current priority。能判斷 transaction propagation、rollback rule、isolation trade-off 是面試和 code review 基本盤。
+- Platform Backend：future-only topic。Outbox / inbox、event relay、cross-service consistency 會更重要，但 Week 02 不需要完整實作。
+- Architect：future-only topic。跨服務 consistency strategy、distributed transaction trade-off、event governance 是未來責任，不是現在要全部塞進本週。
 
 ### 與我的面試材料如何連結
 
@@ -486,11 +605,6 @@ Payment callback 的 transaction design 不能只問「要不要加 `@Transactio
    - 為什麼值得看：釐清 checked exception、rollback rule 與 pattern rule 風險。
    - 對應：callback exception、wallet mutation、batch partial failure。
 
-3. [MySQL InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
-   - 來源：MySQL 8.4 官方文件。
-   - 為什麼值得看：理解 `REPEATABLE READ` / `READ COMMITTED` 的 snapshot、locking 與 phantom trade-off。
-   - 對應：wallet / bet-settle consistency、report query、high-traffic table。
-
 ### 本週可執行任務
 
 30 分鐘內完成：
@@ -505,6 +619,15 @@ Payment callback 的 transaction design 不能只問「要不要加 `@Transactio
 2. audit / duplicate callback log 是否拆出去，要明確說明原因與副作用。
 3. 外部 provider / MQ / projection 不能假設和 DB transaction atomic。
 4. 補一句 rollback rule：checked exception、catch block、`REQUIRES_NEW` 都要 review。
+
+### Learning Check
+
+學完本週 packet 後，Nick 應該能：
+
+1. 用 60 秒說明：propagation 是 transaction 邊界選擇，不是 enum 背誦。
+2. 說出 1 個 production failure mode：audit log 用 `REQUIRES_NEW` 成功，但 business transaction rollback，排查者誤判為 callback 成功。
+3. 回答 1 題 Senior interview question：`REQUIRES_NEW` 和 `NESTED` 差在哪，何時不用。
+4. 判斷什麼時候不該用這個 approach：高併發核心 callback 不應無腦使用 `REQUIRES_NEW`，也不應用高 isolation 掩蓋 idempotency 設計不足。
 
 ### 本週 KB 維護建議
 
