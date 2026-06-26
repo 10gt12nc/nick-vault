@@ -153,6 +153,13 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 
 目前不改 48 週主題，也不新增第 2 條排程。先讓現有 48 週跑 8-12 週，再回頭檢查能力覆蓋是否失衡。
 
+定位：
+
+- 這是 `Capability Coverage Checklist`，不是新的 backlog。
+- 用途是每 3-6 個月檢查一次能力覆蓋，不是每週新增任務。
+- 48 週課綱目前大方向完整，約覆蓋 Senior Backend 能力模型的 `90-92%`。
+- 剩下缺口不靠再塞一堆技術名詞，而是看是否需要補 `Security`、`API Design`、`Performance Methodology` 這三個能力面向。
+
 觀察清單：
 
 | 能力 | 狀態 | 暫定處理 |
@@ -168,12 +175,34 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 | Cloud | Awareness | 必要理解即可，不做 AWS / Azure 系列 |
 | AI | 5% | 維持 AI-assisted engineering 作為 review / context / workflow 槓桿 |
 
+目前 48 週覆蓋評估：
+
+| 能力 | 覆蓋 | 評價 |
+| --- | --- | --- |
+| Java / Spring | 完整 | Backend core 夠用 |
+| Transaction | 完整 | Week 01-03 已成主軸 |
+| MySQL | 完整 | Index / Explain / Lock / Batch 已覆蓋 |
+| Redis | 完整 | Cache / consistency / lock / hot key 已覆蓋 |
+| Kafka / MQ | 完整 | Producer / consumer / retry / DLQ / lag / ordering 已覆蓋 |
+| Distributed | 高 | consistency、outbox、saga、service boundary 已覆蓋 |
+| System Design | 高 | boundary、migration、ADR、trade-off 已覆蓋 |
+| Incident | 完整 | troubleshooting / postmortem / SLO 已覆蓋 |
+| Observability | 高 | tracing / logging / metrics / alert 已覆蓋 |
+| Architecture | 高 | evolution / migration / trade-off 已覆蓋 |
+| Legacy | 高 | takeover / migration / code reading 已覆蓋 |
+| Communication | 有 | risk communication / decision making 已覆蓋 |
+| AI 協作 | 有 | 固定 5% 作為槓桿 |
+| Security | 不足 | 建議未來補 1 週或融入 API / provider / auth 題 |
+| API Design | 不足 | 建議未來補 1 週或融入 validation / pagination / compatibility 題 |
+| Performance Methodology | 不足 | JVM / DB / Redis 已有，但缺 CPU / memory / IO / thread / network 的分析框架 |
+
 判斷規則：
 
 - 先看實際跑出的 weekly packet 是否已有自然覆蓋，不因焦慮提前大改課綱。
 - 若 8-12 週後發現 Security、API Design、Performance Thinking 幾乎沒出現，再調整 `backend-weekly-plan.md`。
 - 調整方式優先是替換 / 合併既有週次，不把 48 週擴成 60 / 80 週。
 - Weekly Learning 是 capability layer；履歷、自傳、三個 Story 是 validation layer。能力變強後，再看是否自然強化面試素材，不反過來讓履歷限制每週學習。
+- 若真的要調整，優先加 tag 或替換既有週次，不立刻增加週數。Tag 可用於日後檢查 coverage，例如 `Core`、`Production`、`Consistency`、`Security`、`API`、`Performance`、`Incident`、`Platform`。
 
 ## 48 週核心輪詢
 

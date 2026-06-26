@@ -128,6 +128,112 @@
 
 目前仍以 `Senior Java Backend -> Platform Backend` 為主。Engineering Manager、Business Owner、組織管理與高階商業決策只作長期方向，不排入近期週排程。Personal Finance 與健康屬於長期穩定性，會影響 20 年競爭力，但不放進 backend weekly 主線。
 
+### Capability Tree by Level
+
+這份能力樹是 `Capability Coverage`，不是新的學習 backlog。用途是每 3-6 個月檢查一次長期能力是否偏科，不是看到缺口就立刻重寫 48 週課綱。
+
+#### Level 1：Junior Backend
+
+目標：把功能做好，不拖累團隊。
+
+- Java 基礎：Java Language、OOP、Collection、Exception、IO / NIO、JUC 基礎、Lambda / Stream、Reflection、Generics。
+- Spring 生態：Spring Core、Spring Boot、Spring MVC、Spring AOP、Spring Transaction、Validation、Spring Security 基礎。
+- Database：SQL、Index、Transaction、Lock、MVCC、Explain、Query Optimization。
+- Redis：Data Structure、Cache Aside、Expire、Hot Key、Cache Penetration、Cache Breakdown、Cache Avalanche。
+- MQ：RabbitMQ / Kafka 基礎、Producer、Consumer、Retry、DLQ、Ordering、Idempotency。
+- API：REST、Versioning、Pagination、Error Code、DTO、Validation、OpenAPI。
+- Git：Branch、Merge、Rebase 理解、PR。
+- Testing：Unit Test、Integration Test、Mock。
+- Linux：基本指令、Log、Process、Network。
+- 基本軟實力：溝通、問問題、Code Review、文件閱讀。
+
+#### Level 2：Senior Backend
+
+目標：負責一個核心服務，能處理 production。這是 Nick 目前主線。
+
+- Production Thinking：Transaction Boundary、State Machine、Idempotency、Retry、Compensation、Failure Window、Reconciliation、Timeout、Circuit Breaker。
+- System Design：High Availability、Scalability、Consistency、CAP 理解、CQRS 理解、Outbox、Inbox、Saga 理解、Service Boundary。
+- Distributed System：Service Discovery、Config、Load Balance、Cache Cluster、DB Replication、Partition、Sharding。
+- Observability：Logging、Metrics、Tracing、Alert、SLI / SLO 理解、OpenTelemetry 理解與基本使用。
+- Performance：JVM、GC、Thread Pool、CPU、Memory、IO、DB Performance、Redis Performance。
+- Incident：RCA、Postmortem、Debugging、Production Troubleshooting、Monitoring。
+- Architecture：Layered、Hexagonal 理解、Event Driven、Modular Monolith、Microservice Trade-off。
+- Security：Authentication、Authorization、JWT、OAuth2 理解、Signature、Replay Attack、Secret Management。
+- Code Quality：Refactoring、Legacy Takeover、Technical Debt、ADR、Design Pattern 適度。
+- AI 協作：Prompt、Context、Spec、AI Review、AI Pair Programming。
+- 軟實力：Ownership、Decision Making、Risk Communication、Technical Writing、Cross-team Communication、Estimation。
+
+#### Level 3：Staff / Lead
+
+目標：跨 team 影響力。
+
+- 技術：Architecture Evolution、Migration、Platform、Standards、Engineering Productivity、Developer Experience。
+- 組織：Mentoring、Technical Review、Hiring、Planning、Roadmap。
+- 決策：Trade-off、Cost、ROI、Buy vs Build、Technical Strategy。
+
+#### Level 4：Engineering Manager / 技術主管
+
+目標：把團隊做好。
+
+- 人：Coaching、Feedback、Hiring、Performance Review、Conflict Resolution。
+- 團隊：Team Topology、Delivery、Priority、Risk Management、Process Improvement。
+- 商業：Product Thinking、Cost Awareness、Budget、Stakeholder Management。
+
+#### 全職涯硬實力
+
+```text
+Java
+Spring
+Database
+Redis
+MQ
+Linux
+API
+Transaction
+Distributed System
+System Design
+Observability
+Performance
+Security
+Testing
+CI/CD
+Container（Docker / Kubernetes 必要理解）
+Architecture
+AI-assisted Engineering
+```
+
+#### 全職涯軟實力
+
+```text
+Communication
+Writing
+Reading
+Ownership
+Decision Making
+Risk Thinking
+Troubleshooting
+Prioritization
+Learning Ability
+Business Thinking
+Mentoring
+Leadership
+```
+
+#### Nick 每天看的 8 大能力版
+
+完整清單只作 coverage，不作日常焦慮來源。日常只看 8 大能力：
+
+| 能力 | 目前優先 |
+| --- | --- |
+| Java / Spring | 最高 |
+| Database / Redis / MQ | 最高 |
+| Production & Incident | 最高 |
+| System Design & Distributed | 高 |
+| Observability & Performance | 高 |
+| Security & API | 中 |
+| AI-assisted Engineering | 中 |
+| Communication / Ownership | 高 |
+
 ### 學習型能力 vs 責任型能力
 
 30 年能力樹裡有兩種能力，準備方式不同。
