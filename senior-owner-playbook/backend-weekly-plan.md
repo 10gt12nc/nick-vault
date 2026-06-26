@@ -138,8 +138,10 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 - Known Production Case Lens：最多 5 分鐘，用既有 notes 或泛化 production analogy 連到已知 cases；不掃公司 repo、不做公司系統深讀。
 - Mini ADR：用 Context、Decision、Alternatives、Consequences、When this decision becomes wrong 練決策思維。
 - Observability Anchor：定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
-- Technology Landscape：列出相關技術、生態主流，分成 Learn Now、Learn Later、Awareness Only，避免因公司沒有某技術就完全沒概念，也避免把所有技術都搬進待辦。
-- Future Direction：用 Senior Backend、Platform Backend、Architect 三層標出未來可能補的能力，每層最多 1 個重點，不能變成本月學習債。
+- Technology Landscape：列出相關技術、生態主流、各技術更適合的情境，分成 Learn Now、Learn Later、Awareness Only，避免因公司沒有某技術就完全沒概念，也避免把所有技術都搬進待辦。
+- Knowledge Boundary：用 Must Understand、Should Understand、Can Ignore For Now 收斂學習邊界。
+- One Common Misconception：列 1 個最容易誤解的點，強化記憶與面試避坑。
+- Future Direction：只有有意義時才放；用 Senior Backend、Platform Backend、Architect 三層標出未來可能補的能力，每層最多 1 個重點，且說明為什麼不是目前優先，不能變成本月學習債。
 - Learning Check：確認 Nick 能 60 秒說明、講 1 個 failure mode、答 1 題 Senior interview question、判斷何時不該用。
 - KB 維護建議：只能提出建議，不自動改 `04 / 05 / 08 / 17`、三個故事稿或 flow 文件。
 - 本週不建議做什麼：明確列低 ROI 或焦慮型延伸。

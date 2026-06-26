@@ -73,8 +73,10 @@ Weekly Senior Backend Capability Builder
 - Known Production Case Lens：最多 5 分鐘，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
 - Mini ADR：至少練一個 decision angle，包含 Context、Decision、Alternatives、Consequences、When this decision becomes wrong。
 - Observability Anchor：為本週主題定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
-- Technology Landscape：建立本週主題的技術地圖，分成 Learn Now、Learn Later、Awareness Only；不得建議把所有相關技術都學完。
-- Future Direction：用 Senior Backend、Platform Backend、Architect 三層說明未來可能補什麼，每層最多 1 個重點，不能變成新待辦。
+- Technology Landscape：建立本週主題的技術地圖，分成 Learn Now、Learn Later、Awareness Only，並說明各技術在什麼情境更適合；不得建議把所有相關技術都學完。
+- Knowledge Boundary：用 Must Understand、Should Understand、Can Ignore For Now 收斂本週學習邊界。
+- One Common Misconception：列 1 個最容易誤解的點，用來幫 Nick 記憶與面試避坑。
+- Future Direction：只有有意義時才放；用 Senior Backend、Platform Backend、Architect 三層說明未來可能補什麼，每層最多 1 個重點，且必須說明為什麼不是目前優先。
 - Learning Check：學完後 Nick 至少要能 60 秒說明、說出 1 個 production failure mode、回答 1 題 Senior interview question、判斷何時不該用這個 approach。
 - 實戰輸出補強：若主題涉及 Incident、Decision 或 Ownership，必須補一句它對 Technical Communication、Risk Communication、Decision Making 或 Ownership 的幫助。
 - AI-Assisted Engineering：若本週使用 AI 協助學習或產出，必須補一句 AI risk review，檢查 Transaction Boundary、Idempotency、BigDecimal、SQL Index、Redis Lock、MQ Retry、Race Condition 或 Security 是否被忽略。
@@ -189,6 +191,7 @@ For this topic:
 For this topic:
 - Related technologies:
 - Current industry mainstream:
+- When each technology is a better fit:
 - Learn Now:
 - Learn Later:
 - Awareness Only:
@@ -196,14 +199,28 @@ For this topic:
 
 不要建議把所有相關技術都學完。
 
+## Knowledge Boundary
+
+- Must Understand:
+- Should Understand:
+- Can Ignore For Now:
+
+## One Common Misconception
+
+- Misconception:
+- Correction:
+- Why it matters in production / interview:
+
 ## Future Direction
+
+只有有意義時才放；不要每週硬湊 Architect 方向。
 
 If Nick later becomes:
 - Senior Backend:
 - Platform Backend:
 - Architect:
 
-每層最多 1 個重點，不形成近期 backlog。
+每層最多 1 個重點，並說明為什麼不是目前優先；不形成近期 backlog。
 
 ## 與我的面試材料如何連結
 
@@ -223,7 +240,7 @@ If Nick later becomes:
 每篇包含：
 - 標題
 - 來源
-- 連結
+- 實際連結，不能只放佔位文字
 - 為什麼值得看
 - 對應哪個面試 / Production Flow
 

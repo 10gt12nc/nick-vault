@@ -15,7 +15,7 @@
 - 2026-06-24 確認：目前這台是公司電腦，`backend-weekly-learning` 可保持 `ACTIVE`；目前本機設定為每週一 09:00 執行。
 - 2026-06-26 候選第二條排程暫停推進。前面曾收斂出 `Company System Deep Dive`，資料夾在 `company-system-deep-dive/`，但最新結論是先不要設定第二排程，也不要再沿著 project inventory 擴張。若未來重啟，方向應調整為 `System Capability Deep Dive`：topic-first、company-code-second。也就是先選通用系統能力，例如 transaction boundary、idempotency、MQ retry、projection rebuild、cache consistency、service discovery、rollout、observability、slow query、auth / RBAC、legacy refactor，再用 iwin / antplay / ugsoft / DevOps / usproject 的 code 或 legacy system 當案例，最後抽象成下間公司也能用的 transferable pattern。`project-value-map.md` 只保留為案例池 / learning value map，不是完整 inventory、不是必讀清單、不是履歷 claim map、不是待辦 backlog。
 - 2026-06-26 後續決策：目前不把 `company-system-deep-dive` 併入 `Backend Weekly Learning`，也不做固定 company code deep dive。`Backend Weekly Learning` 維持外部通用技術 + production / interview 的小型 weekly capability builder，但可加入最多 5 分鐘的 `Known Production Case Lens`：只用既有 notes 或泛化 production analogy，不掃公司 repo、不創造 direct ownership、不形成每週必做項目。`company-system-deep-dive/` 不刪、不移到 archive，只保留在原位作 paused reference，避免未來重新討論一次。
-- 2026-06-26 補強：`Backend Weekly Learning` 的真正目標不是技術快訊，而是 `Weekly Senior Backend Capability Builder`。每週用單一主題練 production、trade-off、incident、system design、decision making 與 interview expression。來源數量從最多 3 篇收斂到最多 2 篇：優先 1 篇官方文件，第 2 篇只有在提供明顯 practical value 時才放。新增 `Technology Landscape` 與 `Future Direction`，用 Learn Now / Learn Later / Awareness Only 管住廣度，避免公司沒有 Kafka / Nacos / K8s 就完全沒概念，也避免把所有相關技術都變成本月待辦。
+- 2026-06-26 補強：`Backend Weekly Learning` 的真正目標不是技術快訊，而是 `Weekly Senior Backend Capability Builder`。每週用單一主題練 production、trade-off、incident、system design、decision making 與 interview expression。來源數量從最多 3 篇收斂到最多 2 篇：優先 1 篇官方文件，第 2 篇只有在提供明顯 practical value 時才放，且正式輸出必須有實際連結，不得只放佔位文字。新增 `Technology Landscape`、`Knowledge Boundary`、`One Common Misconception` 與條件式 `Future Direction`；用 Learn Now / Learn Later / Awareness Only 和 Must / Should / Ignore 管住廣度，避免公司沒有 Kafka / Nacos / K8s 就完全沒概念，也避免把所有相關技術都變成本月待辦。
 
 本檔先記錄兩個想法：
 
@@ -548,21 +548,36 @@ For this topic, define:
 For this topic:
 - related technologies
 - current industry mainstream
+- when each technology is a better fit
 - Learn Now
 - Learn Later
 - Awareness Only
 Explain why.
 Never recommend learning every related technology.
 
-5. Future Direction
+5. Knowledge Boundary
+For this topic:
+- Must Understand
+- Should Understand
+- Can Ignore For Now
+
+6. One Common Misconception
+For this topic:
+- one common misconception
+- correction
+- why it matters in production or interviews
+
+7. Future Direction
+Only include this section if meaningful.
 If Nick later becomes:
 - Senior Backend
 - Platform Backend
 - Architect
 What additional knowledge would become useful?
 Limit to at most three items.
+Explain why this is NOT a current priority.
 
-6. Learning Check
+8. Learning Check
 After this packet, Nick should be able to:
 - explain the topic in 60 seconds
 - name one production failure mode
