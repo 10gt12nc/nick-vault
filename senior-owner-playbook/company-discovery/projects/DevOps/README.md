@@ -1,4 +1,4 @@
-# DevOps Study Scope
+# DevOps Discovery Scope
 
 Local path: `/Users/nick/Git/DevOps`
 

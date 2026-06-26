@@ -1,4 +1,4 @@
-# usproject Study Scope
+# usproject Discovery Scope
 
 Local path: `/Users/nick/Git/usproject`
 

@@ -1,4 +1,4 @@
-# iwin Study Scope
+# iwin Discovery Scope
 
 Local path: `/Users/nick/Git/iwin`
 

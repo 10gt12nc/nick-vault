@@ -1,4 +1,4 @@
-# antplay Study Scope
+# antplay Discovery Scope
 
 Local path: `/Users/nick/Git/antplay`
 

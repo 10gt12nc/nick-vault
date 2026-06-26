@@ -1,4 +1,4 @@
-# ugsoft Study Scope
+# ugsoft Discovery Scope
 
 Local path: `/Users/nick/Git/ugsoft`
 
