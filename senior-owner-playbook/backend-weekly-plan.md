@@ -22,6 +22,7 @@
 - 不建立巨大 backlog。
 - 不把尚未做過的架構寫成既成事實。
 - 不把每週未完成內容累積成學習債務。
+- 不固定加入 company code case lens；公司案例只在 Nick 明確要求或本週主題真的需要 production 對照時使用，避免把 weekly learning 變成公司 repo 深掃。
 
 ## 目前進度
 

@@ -1,6 +1,6 @@
 # Company System Deep Dive
 
-狀態：候選第二個 weekly automation 已暫停推進；目前只保留為未來可重啟的學習設計草案，尚未設定排程。
+狀態：候選第二個 weekly automation 已暫停推進；目前只保留為未來可重啟的學習設計草案，尚未設定排程，也不併入 `Backend Weekly Learning` 當固定 company case lens。
 
 ## 一句話定位
 
@@ -61,12 +61,15 @@ antplay 有什麼就學什麼
 | 新發現 | 可有可無 | 最後列 0-3 個 new findings，不硬湊 |
 | 禁止 | 學習債務 | 重複整理既有 KB、全掃 repo、誇大履歷 claim |
 
-建議頻率：
+目前決策：
 
 ```text
-平時：每兩週一次 Company System Deep Dive
-面試期：可調整為每週一次，但每次仍只研究一個主題
+Backend Weekly Learning = active
+Company System Deep Dive = paused reference
+第二排程 = 不做
 ```
+
+不刪除本資料夾，因為刪掉容易讓未來重新討論一次；也不移到 `archive/`，因為 `archive/` 不是長期資料位置。最乾淨的狀態是留在原處並明確標示暫停。
 
 ## 固定章節
 

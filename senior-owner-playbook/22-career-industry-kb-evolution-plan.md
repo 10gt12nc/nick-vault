@@ -14,6 +14,7 @@
 - `backend-weekly-learning` 的實際啟用狀態以該台電腦的 Codex app / `~/.codex/automations/.../automation.toml` 為準；換電腦時用本檔 `Canonical automation prompt` 重建，不假設舊電腦狀態會同步。
 - 2026-06-24 確認：目前這台是公司電腦，`backend-weekly-learning` 可保持 `ACTIVE`；目前本機設定為每週一 09:00 執行。
 - 2026-06-26 候選第二條排程暫停推進。前面曾收斂出 `Company System Deep Dive`，資料夾在 `company-system-deep-dive/`，但最新結論是先不要設定第二排程，也不要再沿著 project inventory 擴張。若未來重啟，方向應調整為 `System Capability Deep Dive`：topic-first、company-code-second。也就是先選通用系統能力，例如 transaction boundary、idempotency、MQ retry、projection rebuild、cache consistency、service discovery、rollout、observability、slow query、auth / RBAC、legacy refactor，再用 iwin / antplay / ugsoft / DevOps / usproject 的 code 或 legacy system 當案例，最後抽象成下間公司也能用的 transferable pattern。`project-value-map.md` 只保留為案例池 / learning value map，不是完整 inventory、不是必讀清單、不是履歷 claim map、不是待辦 backlog。
+- 2026-06-26 後續決策：目前也不把 `company-system-deep-dive` 併入 `Backend Weekly Learning` 當固定 company case lens。`Backend Weekly Learning` 維持外部通用技術 + production / interview 的小型 weekly packet；公司 code case 只有 Nick 明確要求、或某週主題真的需要 production 對照時才臨時引用，不形成每週必做項目。`company-system-deep-dive/` 不刪、不移到 archive，只保留在原位作 paused reference，避免未來重新討論一次。
 
 本檔先記錄兩個想法：
 
