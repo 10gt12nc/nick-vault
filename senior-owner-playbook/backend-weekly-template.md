@@ -193,6 +193,15 @@ For this topic:
 
 ## 常見錯誤（Deep Dive）
 
+## Engineering Judgment（Deep Dive）
+
+至少提供 1 個明確工程判斷：
+- I would accept:
+- I would reject:
+- I would ask the team to improve:
+
+判斷要具體，優先落到 code review、incident review 或 design review；不要只介紹技術。
+
 ## Incident / Troubleshooting（Deep Dive）
 
 至少提供一個 production 角度排查思路。
