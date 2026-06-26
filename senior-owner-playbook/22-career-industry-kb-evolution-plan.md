@@ -561,6 +561,7 @@ For this topic:
 - Must Understand
 - Should Understand
 - Can Ignore For Now
+Explain why each item belongs in that category.
 
 6. One Common Misconception
 For this topic:
@@ -576,7 +577,7 @@ If Nick later becomes:
 - Architect
 What additional knowledge would become useful?
 Limit to at most three items.
-Explain why this is NOT a current priority.
+Explain whether each item is a current priority or a future-only topic.
 
 8. Learning Check
 After this packet, Nick should be able to:
