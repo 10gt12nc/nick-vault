@@ -6,6 +6,15 @@
 
 `Backend Weekly Learning` 是每週學一個後端主題；`Company System Study` 是每週讀一小塊既有系統，把 code、git history、架構、資料流與痛點整理成可面試、可排查、可做 decision 的知識。
 
+這條線採用二維選題：
+
+```text
+先選一個 Project
+再選一個 Topic
+```
+
+專案清單看 [project-index.md](project-index.md)，主題清單看 [topic-list.md](topic-list.md)。
+
 這條線不是要把公司系統完整背熟，也不是要私下重寫公司架構。它的價值是訓練 Nick 從既有系統讀出：
 
 - production flow 怎麼跑。
@@ -30,16 +39,19 @@
 每次只做一個很小的 topic，不建立 backlog。
 
 ```text
-1. 本週系統切片
-2. 為什麼值得讀
-3. What：架構 / module / API / DB / MQ / cache / integration 事實
-4. Why：目前設計的推測原因與證據
-5. Pain：可能的 incident / performance / consistency 風險
-6. Decision：當時選擇、替代方案、trade-off、migration cost
-7. Git history signal：重要 commit / diff / rollback / hotfix 線索
-8. 如果今天重做：保守的改善方向，不假裝已經實作
-9. 面試可用 takeaway
-10. explicit non-goal
+1. Project：本週讀哪個專案
+2. Topic：本週系統切片
+3. Local path：本週只碰哪個路徑
+4. 為什麼值得讀
+5. What：架構 / module / API / DB / MQ / cache / integration 事實
+6. Why：目前設計的推測原因與證據
+7. Pain：可能的 incident / performance / consistency 風險
+8. Decision：當時選擇、替代方案、trade-off、migration cost
+9. Git history signal：重要 commit / diff / rollback / hotfix 線索
+10. 如果今天重做：保守的改善方向，不假裝已經實作
+11. 面試可用 takeaway
+12. Evidence boundary
+13. explicit non-goal
 ```
 
 必要時可以附：
@@ -123,7 +135,9 @@ Platform Backend 加分，但不能搶主線：
 未來若設定排程，prompt 應該要求：
 
 - 讀本資料夾與必要 KB。
+- 先讀 `project-index.md`，選一個 project；再讀 `topic-list.md`，選一個 topic。
 - 每週只選 topic-list 的一個 topic。
+- 每週只碰一個 project 的一小段 scope。
 - 不全掃公司 repo。
 - 不修改履歷、自傳、Story、正式 flow、`04 / 05 / 08 / 17 / 19`。
 - 若讀公司 code，必須去識別化、標 evidence level，避免 secret。

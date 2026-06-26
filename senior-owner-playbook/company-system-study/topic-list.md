@@ -5,6 +5,7 @@
 ## 使用規則
 
 - 每週最多選 1 個 topic。
+- 每週必須先依 `project-index.md` 選 1 個 project，再選 1 個 topic。
 - 每個 topic 只產 1 份小型 study packet。
 - 先看 production / interview / troubleshooting 價值，再決定要不要讀 code 或 git history。
 - 讀公司 code 時要去識別化，不寫 secret、商戶、真實交易資料。

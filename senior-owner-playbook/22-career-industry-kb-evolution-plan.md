@@ -13,7 +13,7 @@
 - 2026-06-23 決策：公司電腦才是工作學習與 KB 維護主機；家裡電腦原則上不跑工作學習 automation，避免休息時間被工作排程打斷。
 - `backend-weekly-learning` 的實際啟用狀態以該台電腦的 Codex app / `~/.codex/automations/.../automation.toml` 為準；換電腦時用本檔 `Canonical automation prompt` 重建，不假設舊電腦狀態會同步。
 - 2026-06-24 確認：目前這台是公司電腦，`backend-weekly-learning` 可保持 `ACTIVE`；目前本機設定為每週一 09:00 執行。
-- 2026-06-26 新增候選第二條排程 `Company System Study`，資料夾在 `company-system-study/`。它不是通用後端學習，而是每週讀一小塊既有系統，把 code、git history、架構、資料流、痛點與替代方案整理成 decision knowledge。此線目前只建立清單與規則，尚未設定 automation；不得全掃公司 repo、不得記公司機密、不得把分析素材直接回填履歷。
+- 2026-06-26 新增候選第二條排程 `Company System Study`，資料夾在 `company-system-study/`。它不是通用後端學習，而是每週先依 `project-index.md` 選一個 project，再依 `topic-list.md` 選一個系統切片，把 code、git history、架構、資料流、痛點與替代方案整理成 decision knowledge。此線目前只建立清單與規則，尚未設定 automation；不得全掃公司 repo、不得記公司機密、不得把分析素材直接回填履歷。
 
 本檔先記錄兩個想法：
 
