@@ -232,6 +232,70 @@ Java / Spring 基礎
 -> 回填 90 秒 / 3 分鐘口說與追問題庫
 ```
 
+## 學歷 / 證照 / 管理進修投資順序
+
+這段是 ROI 判斷規則，不是新的學習主線。Nick 目前目標仍是：
+
+```text
+Senior Java Backend
+-> Platform Backend
+-> System Owner / Tech Lead 候選
+```
+
+近期不要為了「履歷多一行」而考證照或讀學位。企業願意給 Senior Java Backend / Platform Backend 較高薪，主要看：
+
+- 做過或能講清楚哪些交易 / payment / wallet / MQ / projection / legacy production flow。
+- 解決過哪些 production 問題，或至少能用 code-backed / analysis-backed 方式拆出風險。
+- 系統設計、transaction boundary、idempotency、retry / compensation、observability 與 trade-off 判斷。
+- 是否能穩定溝通、寫文件、做技術決策與帶動團隊。
+
+### ROI 排序
+
+目前投資報酬率：
+
+1. 系統設計 / High Level Design。
+2. JVM / MySQL / Redis / Kafka / MQ。
+3. 分散式系統、交易一致性、可靠性。
+4. 英文閱讀與面試表達，至少能讀官方文件與回答 technical question。
+5. 真實 production 專案經驗與可面試故事。
+6. 雲端 AWS / GCP / Azure 基礎，依目標公司需求補。
+7. 架構 / 雲端證照，只在有工作需求或目標公司要求時補。
+8. PMP。
+9. MBA。
+
+### 各項判斷
+
+#### 資工碩士
+
+有幫助，但不是目前必要條件。若目標是大型外商、研究單位、補 CS 理論或補學歷，可以列為長期選項；但以 Nick 目前已有多年後端經驗來看，2-3 年時間通常優先拿去累積 production experience、跳槽驗證市場、補 system design 與分散式能力，回報更直接。
+
+#### MBA
+
+目前不建議。MBA 比較適合高階管理、創業、Product / Business、Director / VP / GM 路線。Nick 目前定位偏技術，對 Senior Java Backend / Platform Backend 薪資加成有限。等真正開始負責事業單位、P&L、預算、商業策略與組織管理，再評估。
+
+#### PMP
+
+目前不用。PMP 偏專案管理、時程、成本、風險與利害關係人。很多 Tech Lead 沒有 PMP。只有當工作大量變成跨部門 PM、帶 10 人以上、管理交付與預算時，再考慮。
+
+#### 架構師 / 雲端證照
+
+有些有價值，但價值主要來自準備過程學到的架構知識，不是證照本身。AWS Certified Solutions Architect、Google Professional Cloud Architect、CKA 這類證照，只有在公司使用雲端 / K8s、目標職缺明確要求、或要補雲端導向公司的缺口時才值得排入。TOGAF 這類架構證照目前只作 awareness，不列近期主線。
+
+### 判斷句
+
+```text
+不要為了有證照而考證照。
+只有當它能幫 Nick 拿下一份工作、符合目標公司要求，或補足當前職務缺口時，才值得投入時間和金錢。
+```
+
+近期仍優先把時間放在：
+
+- 跳槽作品與專案故事整理。
+- production flow 與面試口說。
+- 系統設計能力。
+- 分散式架構與交易一致性。
+- 真實 production 問題解決能力。
+
 ## Senior Java Backend JD 技術關鍵字去重清單
 
 這段彙整目前三份 JD 客製包（微達 Senior Java Backend、糖蛙 Backend Team Lead Java、糖蛙 Senior Java Backend）與一般資深 Java Backend JD 常見要求。它是投遞前檢查表，不是新的學習主線；真正準備仍以主力 production flow、JD-specific 補洞與 `70 / 20 / 10` 為準。

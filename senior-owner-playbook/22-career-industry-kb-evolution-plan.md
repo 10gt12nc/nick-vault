@@ -129,6 +129,29 @@
 
 目前仍以 `Senior Java Backend -> Platform Backend` 為主。Engineering Manager、Business Owner、組織管理與高階商業決策只作長期方向，不排入近期週排程。Personal Finance 與健康屬於長期穩定性，會影響 20 年競爭力，但不放進 backend weekly 主線。
 
+### 學位 / 證照 / 高階管理進修邊界
+
+2026-06-26 校正：Nick 近期不用把資工碩士、MBA、PMP 或架構師證照變成主線。它們可以是長期選項，但不能壓過 Senior Backend 的 production case、system design、incident 與 platform capability。
+
+分階段看：
+
+- 未來 3-5 年：先站穩 Senior Java Backend / Platform Backend。主投資放在 production flow、系統設計、分散式、一致性、JVM / MySQL / Redis / Kafka、英文文件閱讀與面試表達。
+- 5-10 年：若開始帶人、負責跨部門決策、預算、技術 roadmap，再補 Engineering Manager / Director 需要的管理能力。PMP 仍是可選，不是必要門票。
+- 10 年以上：若確定要走 GM / BU Head / 高階經營管理，再評估 MBA 或企業管理進修。此時重點會變成 P&L、商業策略、財務、法務風險、人才與組織管理。
+
+CTO 與 GM 的路線不同：
+
+- CTO / Architect 路線：技術深度、架構決策、團隊技術領導、系統穩定性是核心。MBA 通常不是必要。
+- Engineering Manager / VP Engineering 路線：招募、績效、預算、跨部門協作與組織規劃開始重要。
+- GM / 經營線：P&L、業務、行銷、財務、法務、組織與商業決策變成核心。MBA 的價值比技術線高，但仍不是決定性條件。
+
+判斷規則：
+
+```text
+證照 / 學位只有在能直接幫助下一份工作、符合目標公司要求、或補足正在承擔的職責時，才排入行動。
+否則只放在長期能力樹，不進本月待辦。
+```
+
 ### Capability Tree by Level
 
 這份能力樹是 `Capability Coverage`，不是新的學習 backlog。用途是每 3-6 個月檢查一次長期能力是否偏科，不是看到缺口就立刻重寫 48 週課綱。
