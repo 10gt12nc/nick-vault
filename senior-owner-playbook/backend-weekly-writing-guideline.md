@@ -37,7 +37,32 @@ source of truth
 
 這些可以引用，但每週要往前推進一層。
 
-### 3. Capability First
+### 3. Include Explicit Engineering Judgment
+
+Every weekly packet should contain at least one explicit engineering judgment.
+
+不要只介紹技術。要像資深工程師 / reviewer 一樣說清楚：
+
+- I would accept this design when...
+- I would reject this design when...
+- I consider this over-engineering because...
+- I would not invest in this now because...
+
+判斷要具體，最好能落到 code review、incident review 或 design review。
+
+例：
+
+```text
+I would reject calling an external provider inside a DB transaction.
+Reason: it increases lock time, timeout coupling, and rollback ambiguity.
+```
+
+```text
+I would not use REQUIRES_NEW as a default fix.
+It can preserve audit records, but it also creates partial-success states and extra connection pressure.
+```
+
+### 4. Capability First
 
 Teach capability, not isolated knowledge.
 
@@ -49,7 +74,7 @@ Teach capability, not isolated knowledge.
 - What can fail in production?
 - When should Nick NOT use this approach?
 
-### 4. Production Over Textbook
+### 5. Production Over Textbook
 
 定義要短，production reasoning 要長。
 
@@ -62,7 +87,7 @@ Teach capability, not isolated knowledge.
 5. interview answer quality
 6. textbook completeness
 
-### 5. Don't Over-explain Beginner Concepts
+### 6. Don't Over-explain Beginner Concepts
 
 如果前幾週已經講過 beginner concept，不要重新鋪陳。
 
@@ -72,7 +97,7 @@ Teach capability, not isolated knowledge.
 - state what is new this week
 - continue deeper
 
-### 6. Progressive Depth
+### 7. Progressive Depth
 
 每週要建立在前一週之上。
 
@@ -85,7 +110,7 @@ Week 03 Self Invocation / AOP Proxy -> why expected transaction may not apply
 Week 04 Async / Thread Pool -> transaction and thread boundary split
 ```
 
-### 7. Technology Landscape Is Not Encyclopedia
+### 8. Technology Landscape Is Not Encyclopedia
 
 `Technology Landscape` 不是百科列表。
 
@@ -99,7 +124,7 @@ Week 04 Async / Thread Pool -> transaction and thread boundary split
 
 Never recommend learning every related technology.
 
-### 8. Keep Examples Realistic
+### 9. Keep Examples Realistic
 
 不要把一般 backend 主題硬套成 Google / Netflix 級架構。
 
@@ -114,7 +139,7 @@ Never recommend learning every related technology.
 - admin operation
 - legacy troubleshooting
 
-### 9. Conservative Evidence
+### 10. Conservative Evidence
 
 不要把 Nick 沒做過的事情寫成做過。
 
@@ -124,7 +149,7 @@ Never recommend learning every related technology.
 - inferred from general engineering practice
 - speculative ideas for future improvement
 
-### 10. Long-term Consistency
+### 11. Long-term Consistency
 
 每週風格要一致，但語氣不要模板化。
 
@@ -140,10 +165,11 @@ Production 要...
 
 ## 檢查問題
 
-每週輸出前，用這 5 題自查：
+每週輸出前，用這 6 題自查：
 
 1. 這週是否建立在前幾週之上，而不是重新介紹？
 2. 這週是否至少有 1 個新的 production insight？
-3. 是否避免重複解釋已學過的 beginner concept？
-4. 是否把重點放在 production / troubleshooting / trade-off，而不是百科完整性？
-5. 是否沒有把 inference 或 future improvement 寫成 Nick 已做過？
+3. 這週是否至少有 1 個明確 engineering judgment，例如 accept / reject / over-engineering / not worth it now？
+4. 是否避免重複解釋已學過的 beginner concept？
+5. 是否把重點放在 production / troubleshooting / trade-off，而不是百科完整性？
+6. 是否沒有把 inference 或 future improvement 寫成 Nick 已做過？
