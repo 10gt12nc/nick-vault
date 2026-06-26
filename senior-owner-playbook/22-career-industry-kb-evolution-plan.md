@@ -14,7 +14,7 @@
 - `backend-weekly-learning` 的實際啟用狀態以該台電腦的 Codex app / `~/.codex/automations/.../automation.toml` 為準；換電腦時用本檔 `Canonical automation prompt` 重建，不假設舊電腦狀態會同步。
 - 2026-06-24 確認：目前這台是公司電腦，`backend-weekly-learning` 可保持 `ACTIVE`；目前本機設定為每週一 09:00 執行。
 - 2026-06-26 候選第二條排程暫停推進。前面曾收斂出 `Company System Deep Dive`，資料夾在 `company-system-deep-dive/`，但最新結論是先不要設定第二排程，也不要再沿著 project inventory 擴張。若未來重啟，方向應調整為 `System Capability Deep Dive`：topic-first、company-code-second。也就是先選通用系統能力，例如 transaction boundary、idempotency、MQ retry、projection rebuild、cache consistency、service discovery、rollout、observability、slow query、auth / RBAC、legacy refactor，再用 iwin / antplay / ugsoft / DevOps / usproject 的 code 或 legacy system 當案例，最後抽象成下間公司也能用的 transferable pattern。`project-value-map.md` 只保留為案例池 / learning value map，不是完整 inventory、不是必讀清單、不是履歷 claim map、不是待辦 backlog。
-- 2026-06-26 後續決策：目前也不把 `company-system-deep-dive` 併入 `Backend Weekly Learning` 當固定 company case lens。`Backend Weekly Learning` 維持外部通用技術 + production / interview 的小型 weekly packet；公司 code case 只有 Nick 明確要求、或某週主題真的需要 production 對照時才臨時引用，不形成每週必做項目。`company-system-deep-dive/` 不刪、不移到 archive，只保留在原位作 paused reference，避免未來重新討論一次。
+- 2026-06-26 後續決策：目前不把 `company-system-deep-dive` 併入 `Backend Weekly Learning`，也不做固定 company code deep dive。`Backend Weekly Learning` 維持外部通用技術 + production / interview 的小型 weekly packet，但可加入最多 5 分鐘的 `Known Production Case Lens`：只用既有 notes 或泛化 production analogy，不掃公司 repo、不創造 direct ownership、不形成每週必做項目。`company-system-deep-dive/` 不刪、不移到 archive，只保留在原位作 paused reference，避免未來重新討論一次。
 
 本檔先記錄兩個想法：
 
@@ -510,6 +510,43 @@ Produce one focused weekly learning packet with:
 10. 1 explicit non-goal
 
 Also paste the full weekly learning packet in the chat response, not only a summary.
+
+Before producing the packet, choose ONE weekly mode:
+- Concept Mode: core concept / mechanism
+- Troubleshooting Mode: incident diagnosis / production debugging
+- Trade-off Mode: design choice / migration / comparison
+- Interview Mode: answer structure / senior judgment
+
+Add these sections to the weekly packet:
+
+1. Known Production Case Lens
+Spend at most 5 minutes connecting this topic to Nick's known production cases or a generalized production analogy.
+Do not scan company repo.
+Do not turn this into company-system deep dive.
+Do not invent direct ownership.
+
+2. Mini ADR
+Summarize one decision angle:
+- Context
+- Decision
+- Alternatives
+- Consequences
+- When this decision becomes wrong
+
+3. Observability Anchor
+For this topic, define:
+- 1 useful log
+- 1 useful metric
+- 1 useful trace/span
+- 1 alert condition
+- 1 thing that should not alert
+
+4. Learning Check
+After this packet, Nick should be able to:
+- explain the topic in 60 seconds
+- name one production failure mode
+- answer one Senior interview question
+- decide when not to use this approach
 
 Respect the current priority rules:
 - A level 80%: Senior Backend, interview, Production, Incident, System Design

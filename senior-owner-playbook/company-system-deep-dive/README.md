@@ -1,6 +1,6 @@
 # Company System Deep Dive
 
-狀態：候選第二個 weekly automation 已暫停推進；目前只保留為未來可重啟的學習設計草案，尚未設定排程，也不併入 `Backend Weekly Learning` 當固定 company case lens。
+狀態：候選第二個 weekly automation 已暫停推進；目前只保留為未來可重啟的學習設計草案，尚未設定排程，也不併入 `Backend Weekly Learning` 當 company code deep dive。
 
 ## 一句話定位
 

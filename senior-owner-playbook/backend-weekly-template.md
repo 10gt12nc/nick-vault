@@ -58,9 +58,14 @@
 
 每週輸出前必須確認：
 
+- 本週輸出類型：依主題選 1 個 weekly mode：`Concept Mode`、`Troubleshooting Mode`、`Trade-off Mode`、`Interview Mode`，避免每週都變成同一種文章包。
 - 避免重複檢查：先看 `backend-learning-log.md` 是否已跑過相同主題；若跑過，要加深 incident、production、trade-off 或 interview depth。
 - 本週可執行任務：最多 1 項，30 分鐘內完成。
 - 與面試材料關聯：至少連到三個 Story、12 條 Flow 或 30 題核心之一。
+- Known Production Case Lens：最多 5 分鐘，只用既有 notes 或泛化 production analogy 連到 Nick 已知 cases；不掃公司 repo、不補公司系統深讀、不創造 direct ownership。
+- Mini ADR：至少練一個 decision angle，包含 Context、Decision、Alternatives、Consequences、When this decision becomes wrong。
+- Observability Anchor：為本週主題定義 1 個 log、1 個 metric、1 個 trace/span、1 個 alert condition、1 個不該 alert 的情況。
+- Learning Check：學完後 Nick 至少要能 60 秒說明、說出 1 個 production failure mode、回答 1 題 Senior interview question、判斷何時不該用這個 approach。
 - 實戰輸出補強：若主題涉及 Incident、Decision 或 Ownership，必須補一句它對 Technical Communication、Risk Communication、Decision Making 或 Ownership 的幫助。
 - AI-Assisted Engineering：若本週使用 AI 協助學習或產出，必須補一句 AI risk review，檢查 Transaction Boundary、Idempotency、BigDecimal、SQL Index、Redis Lock、MQ Retry、Race Condition 或 Security 是否被忽略。
 - KB 維護建議：只能提出建議，不大量自動改正式 KB。
@@ -70,6 +75,14 @@
 
 ```text
 ## 本週主題
+
+## Weekly Mode
+
+選 1 個：
+- Concept Mode：核心概念 / 機制。
+- Troubleshooting Mode：incident diagnosis / production debugging。
+- Trade-off Mode：design choice / migration / comparison。
+- Interview Mode：answer structure / senior judgment。
 
 ## 為什麼這週學這個
 
@@ -113,11 +126,28 @@
 - MQ / Projection
 - Legacy Takeover
 
+## Known Production Case Lens
+
+最多 5 分鐘：
+- 這個主題可連到哪個 Nick 已知 case 或泛化 production 情境？
+- 不掃公司 repo。
+- 不新增公司系統 deep dive。
+- 不發明 direct ownership。
+
 ## 常見錯誤
 
 ## Incident / Troubleshooting
 
 至少提供一個 production 角度排查思路。
+
+## Observability Anchor
+
+For this topic:
+- 1 useful log:
+- 1 useful metric:
+- 1 useful trace/span:
+- 1 alert condition:
+- 1 thing that should not alert:
 
 ## Senior 面試怎麼問
 
@@ -135,6 +165,14 @@
 ## System Design 延伸思考
 
 說明這個主題牽涉哪些 trade-off。
+
+## Mini ADR
+
+- Context:
+- Decision:
+- Alternatives:
+- Consequences:
+- When this decision becomes wrong:
 
 ## 與我的面試材料如何連結
 
@@ -163,6 +201,14 @@
 - 不建立大型專案
 - 不新增複雜 backlog
 - 可直接用於面試或 KB
+
+## Learning Check
+
+學完本週 packet 後，Nick 應該能：
+1. 用 60 秒說明這個主題。
+2. 說出 1 個 production failure mode。
+3. 回答 1 題 Senior interview question。
+4. 判斷什麼時候不該用這個 approach。
 
 ## 本週 KB 維護建議
 
