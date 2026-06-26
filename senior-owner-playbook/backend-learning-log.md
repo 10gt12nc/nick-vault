@@ -14,65 +14,111 @@
 
 ## Week 01：Spring Transaction
 
-狀態：已用新版 `Weekly Senior Backend Capability Builder` production-first prompt 重跑。
+狀態：已對齊新版 `backend-weekly-template.md`，改成 `Core -> Deep Dive -> Reference` 閱讀順序。
 
-### 本週主題
+### Executive Summary（Core）
+
+一句話 Takeaway：`@Transactional` 保護的是 local DB transaction，不是整條 business flow。
+
+Production Mindset：不要幻想 Spring transaction 能自動解決 DB + MQ + Redis + external provider 的跨系統一致性。
+
+Interview Mindset：先講 transaction boundary，再講 annotation；先講 failure window，再講 framework 細節。
+
+預估閱讀時間：15 分鐘讀 Core；30 分鐘含 Deep Dive。
+
+### 本週主題（Core）
 
 Spring Transaction：local DB transaction boundary、rollback rule、AOP proxy、business flow boundary 與 cross-system failure window。
 
-### Weekly Mode
+### Weekly Mode（Core）
 
 Concept Mode + Trade-off Mode。
 
 理由：Week 01 是基礎心智建立週。重點不是背 `@Transactional`，而是建立 Senior Backend 看 transaction 的方式：它保護什麼、不保護什麼、哪些 production failure 不能靠 local transaction 解。
 
-### 為什麼這週學這個
+### 為什麼這週學這個（Core）
 
 Spring Transaction 是 Java backend production correctness 的基本盤。很多線上事故不是因為完全不懂 transaction，而是把 local DB transaction 誤認成整條 business flow 的一致性保證。
 
-這週要先建立四個 production 判斷：
+這週要建立四個判斷：
 
-1. 哪些資料更新必須在同一個 local transaction 裡一起成功或一起失敗。
+1. 哪些資料更新必須在同一個 local transaction 裡一起成功或失敗。
 2. 哪些動作是 transaction 外的 side effect，例如 MQ publish、notification、external API。
 3. 哪些 exception 會 rollback，哪些 exception 被吞掉後會造成意外 commit。
-4. 當 DB commit 成功但 downstream 沒成功時，系統要怎麼觀測、補償或收斂。
+4. DB commit 成功但 downstream 沒成功時，系統要怎麼觀測、補償或收斂。
 
-面試時，這題常被包裝成 payment、wallet、order、inventory、report projection、audit log、batch job 等不同情境；本質都是 transaction boundary 與 failure window 判斷。
+### 核心概念（Core）
 
-### 核心概念
-
-控制在 10-15 分鐘可讀完：
-
-- `@Transactional` 是宣告式 transaction 管理，Spring 會透過 transaction interceptor / AOP proxy 在 method 前後處理 begin、commit、rollback。
+- `@Transactional` 是宣告式 transaction 管理，Spring 透過 transaction interceptor / AOP proxy 在 method 前後處理 begin、commit、rollback。
 - Local transaction 主要保護同一個 transaction resource 內的 DB mutation，不會自動保證 MQ、Redis、external provider、notification 也一起 atomic。
 - 預設 rollback 心智：runtime exception / error 會觸發 rollback；checked exception 通常要明確設定 `rollbackFor`。
 - transaction scope 太大會拉長 lock time；把慢外部 API 或不可控 I/O 放進 transaction，常會放大 timeout、deadlock、connection pool 壓力。
 - DB commit 成功後，event publish、projection update、notification 失敗，是常見 cross-system failure window；要靠 retry、outbox、compensation 或 reconciliation 收斂。
 
-### Beginner-to-Senior 解釋
+### Beginner-to-Senior 解釋（Core）
 
-Beginner：
+Beginner：`@Transactional` 讓 Spring 幫你管理資料庫 transaction，讓一段 DB 操作要嘛 commit，要嘛 rollback。
 
-`@Transactional` 讓 Spring 幫你管理資料庫 transaction，讓一段 DB 操作要嘛 commit，要嘛 rollback。
+Mid：常見坑不是只忘記加 annotation，而是 method 沒有經過 Spring proxy、exception 被 catch 掉、checked exception 沒設定 rollback rule、transaction scope 太大。
 
-Mid：
+Senior：要分清 local DB transaction、business flow、failure recovery。Local transaction 保護本地資料狀態轉換；business flow 可能橫跨 HTTP、DB、Redis、MQ、external service、batch、projection；跨系統不一致要靠 idempotency、retry、outbox、compensation、reconciliation。
 
-常見坑不是「忘記加 annotation」而已，而是：
+### Production 情境（Core）
 
-- method 沒有經過 Spring proxy。
-- exception 被 catch 掉，沒有往外拋。
-- checked exception 沒有設定 rollback rule。
-- transaction scope 太大，把外部 API、MQ publish、慢查詢或長時間工作包進去。
+常見 flow：
 
-Senior：
+```text
+request received
+-> validate input / permission / current state
+-> start DB transaction
+-> lock or load business record
+-> check terminal state / idempotency
+-> update source-of-truth tables
+-> commit DB
+-> publish event / update projection / notify downstream
+```
 
-要能分清楚三件事：
+Senior 觀點：transaction 只保護「狀態檢查 + source-of-truth 更新」這段核心 DB mutation。event、projection、notification、external call 是 transaction 外的副作用。若 DB 成功但 event 失敗，通常不應直接 rollback 已提交的業務狀態，而要補 event、補 projection、重跑 job 或 reconciliation。
 
-- Local DB transaction：保護本地資料狀態轉換。
-- Business flow：可能橫跨 HTTP request、DB、Redis、MQ、external service、batch、projection。
-- Failure recovery：跨系統不一致時靠 idempotency、retry、outbox、compensation、reconciliation，而不是幻想一個 annotation 解掉全部問題。
+### Technology Landscape（Core）
 
-### 小型 code / pseudo-code 範例
+- Related technologies：Spring declarative transaction、programmatic transaction、JPA transaction、Outbox Pattern、Saga、distributed transaction / XA。
+- Current industry mainstream：多數 backend system 以 local transaction + idempotency + retry / compensation / reconciliation 處理 production consistency，不會預設使用 distributed transaction。
+- When each technology is a better fit：
+  - Spring local transaction：單服務 / 單 DB mutation。
+  - Outbox：DB commit 後必須可靠送出 event。
+  - Saga / compensation：跨多服務長流程，需要可補償步驟。
+  - XA / distributed transaction：強一致需求非常高，且成本與可用性代價可接受。
+- Learn Now：Spring transaction boundary、rollback rule、proxy 心智。
+- Learn Later：Outbox / Saga 的實作細節。
+- Awareness Only：XA / JTA 深層配置與 transaction manager internals。
+
+### 本週可執行任務（Core）
+
+30 分鐘內完成：
+
+```text
+用 90 秒回答：DB transaction 成功，但 event / MQ publish 失敗怎麼辦？
+```
+
+回答骨架：
+
+1. 這是 dual-write / cross-system failure window。
+2. 先確認 source-of-truth DB 是否已 commit。
+3. 短期補 event / projection / job 或人工 repair。
+4. 長期依風險考慮 outbox、retry、reconciliation。
+5. 不要重跑整個 command 造成重複副作用。
+
+### Learning Check（Core）
+
+學完本週 packet 後，Nick 應該能：
+
+1. 用 60 秒說明：`@Transactional` 保護 local DB transaction，但不等於整條 business flow atomic。
+2. 說出 1 個 production failure mode：DB commit 成功，但 event publish 失敗，導致 projection 或 downstream 沒更新。
+3. 回答 1 題 Senior interview question：DB success / MQ failed 怎麼處理。
+4. 判斷什麼時候不該用這個 approach：不要用 local transaction 去包慢 external call，或幻想它能解 distributed consistency。
+
+### 小型 code / pseudo-code 範例（Deep Dive）
 
 ```java
 @Service
@@ -81,17 +127,11 @@ class OrderCommandHandler {
     private final OrderStateService orderStateService;
     private final EventPublisher eventPublisher;
 
-    OrderCommandHandler(OrderStateService orderStateService,
-                        EventPublisher eventPublisher) {
-        this.orderStateService = orderStateService;
-        this.eventPublisher = eventPublisher;
-    }
-
     public void completeOrder(CompleteOrderCommand command) throws BusinessException {
         orderStateService.markCompleted(command);
 
-        // This is outside the DB transaction boundary.
-        // If this publish fails after DB commit, local transaction cannot roll back the event loss.
+        // Outside DB transaction boundary.
+        // If publish fails after DB commit, local transaction cannot roll back event loss.
         eventPublisher.publishOrderCompleted(command.orderId());
     }
 }
@@ -99,20 +139,12 @@ class OrderCommandHandler {
 @Service
 class OrderStateService {
 
-    private final OrderRepo orderRepo;
-    private final LedgerRepo ledgerRepo;
-
-    OrderStateService(OrderRepo orderRepo, LedgerRepo ledgerRepo) {
-        this.orderRepo = orderRepo;
-        this.ledgerRepo = ledgerRepo;
-    }
-
     @Transactional(rollbackFor = Exception.class)
     public void markCompleted(CompleteOrderCommand command) throws BusinessException {
         Order order = orderRepo.findByIdForUpdate(command.orderId());
 
         if (order.isTerminal()) {
-            return; // idempotency guard: terminal state should not trigger side effects again
+            return; // idempotency guard
         }
 
         order.markCompleted();
@@ -124,7 +156,7 @@ class OrderStateService {
 
 重點：`markCompleted` 要經過 Spring bean proxy 才能套用 transaction；DB mutation 和 `publishOrderCompleted` 的 external side effect 要分開思考。若 event 不能遺失，要考慮 outbox 或可重送的 repair path。
 
-### 架構 / Flow 圖
+### 架構 / Flow 圖（Deep Dive）
 
 ```mermaid
 flowchart TD
@@ -140,32 +172,7 @@ flowchart TD
   I -->|No| K["Flow continues"]
 ```
 
-### Production 情境
-
-一個常見 backend production flow 會長這樣：
-
-```text
-request received
--> validate input / permission / current state
--> start DB transaction
--> lock or load business record
--> check terminal state / idempotency
--> update source-of-truth tables
--> commit DB
--> publish event / update projection / notify downstream
-```
-
-Senior 觀點：transaction 只保護「狀態檢查 + source-of-truth 更新」這段核心 DB mutation。event、projection、notification、external call 是 transaction 外的副作用。若 DB 成功但 event 失敗，通常不應直接 rollback 已提交的業務狀態，而要補 event、補 projection、重跑 job 或 reconciliation。
-
-### Known Production Case Lens
-
-- verified from Nick's documented experience：Nick 的材料裡有 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover，這些都會遇到 transaction boundary / failure window。
-- inferred from general engineering practice：任何 order / wallet / report projection 系統都可能遇到 DB commit 成功但 MQ / projection / notification 失敗。
-- inferred from general engineering practice：Spring transaction 的 proxy、rollback rule、exception propagation 是 legacy code review 常見檢查點。
-- speculative ideas for future improvement：Outbox 是可作為目標的 pattern，不應講成已完整導入或 owner。
-- 不硬連履歷：本週主要補強通用 backend production capability，不把 transaction 題包裝成某個完整平台 ownership。
-
-### 常見錯誤
+### 常見錯誤（Deep Dive）
 
 - 以為 method 標 `@Transactional` 就一定有 transaction。
 - 以為 transaction 可以包住 DB + MQ + external API 的所有一致性。
@@ -174,7 +181,7 @@ Senior 觀點：transaction 只保護「狀態檢查 + source-of-truth 更新」
 - 把 event publish 當成和 DB update 同一個 atomic operation。
 - 用 transaction 掩蓋 idempotency 或 terminal-state guard 設計不足。
 
-### Incident / Troubleshooting
+### Incident / Troubleshooting（Deep Dive）
 
 情境：使用者看到操作成功，但後台報表或下游狀態沒有更新。
 
@@ -187,7 +194,7 @@ Senior 觀點：transaction 只保護「狀態檢查 + source-of-truth 更新」
 5. 查是否把外部 I/O 放在 transaction 內，造成 lock wait、timeout 或 connection pool 壓力。
 6. 若 DB success / downstream failed，優先補 event / projection / job，而不是重跑整個 command 造成重複副作用。
 
-### Observability Anchor
+### Observability Anchor（Deep Dive）
 
 - 1 useful log：`businessId`, `currentStatus`, `targetStatus`, `transactionStep`, `exceptionClass`, `eventPublishResult`。
 - 1 useful metric：`db_transaction_rollback_total`、`event_publish_after_commit_fail_total`。
@@ -195,34 +202,26 @@ Senior 觀點：transaction 只保護「狀態檢查 + source-of-truth 更新」
 - 1 alert condition：DB commit 成功但 event publish failure 持續上升，或核心 command rollback rate 異常上升。
 - 1 thing that should not alert：duplicate request 被 terminal-state guard 擋下且沒有產生副作用，這是正常 idempotency 行為。
 
-### 3 個學習重點
-
-1. Transaction boundary 不等於 business flow boundary；local transaction 只保護本地資料狀態。
-2. Rollback 不是靠感覺；exception type、catch block、proxy 是否生效都會影響結果。
-3. DB success / downstream failed 是 production 常見 failure window，要能說出 retry、outbox、repair、reconciliation 的取捨。
-
-### Senior 面試怎麼問
+### Senior 面試怎麼問（Deep Dive）
 
 1. `@Transactional` 什麼情境會失效？
 2. DB update 成功，但 MQ / event publish 失敗，你怎麼處理？
 3. 為什麼 transaction boundary 不等於整條 business flow boundary？
 
-### Senior 面試怎麼回答
+### Senior 面試怎麼回答（Deep Dive）
 
-1. `分析過`：我會先確認 transaction 是否真的經過 Spring proxy，例如 self-invocation、private method、非 Spring bean、exception 被 catch 掉，都可能讓預期中的 rollback 沒發生。面試時我不會只說加 annotation，而會確認 proxy、exception propagation 與 rollback rule。
-2. `分析過 / 可作為目標`：DB 成功但 event publish 失敗是 dual-write 風險。短期要能觀測與補償，例如補 event、補 projection 或人工修復；長期可考慮 outbox，讓 DB mutation 與 event record 在同一個 transaction 裡提交，再由 relay 發送 MQ。
+1. `分析過`：先確認 transaction 是否真的經過 Spring proxy，例如 self-invocation、private method、非 Spring bean、exception 被 catch 掉，都可能讓預期中的 rollback 沒發生。
+2. `分析過 / 可作為目標`：DB 成功但 event publish 失敗是 dual-write 風險。短期要能觀測與補償，例如補 event、補 projection 或人工修復；長期可考慮 outbox。
 3. `分析過`：local DB transaction 只能保護本地 DB mutation，不能保證 Redis、MQ、external provider、notification 全部 atomic。Senior 要把 DB transaction、idempotency、retry、compensation、reconciliation 分開講。
 
-### System Design 延伸思考
-
-Trade-off：
+### System Design 延伸思考（Deep Dive）
 
 - `直接 transaction + publish event`：簡單，但 DB success / event failed 有風險。
 - `transaction + outbox`：增加 table / relay / retry 複雜度，但 event loss failure window 更可控。
-- `distributed transaction`：理論上更強，但成本、複雜度與可用性風險通常很高，不是一般 backend system 的預設答案。
+- `distributed transaction`：理論上更強，但成本、複雜度與可用性風險通常很高。
 - `補償 / reconciliation`：適合 timeout、duplicate request、projection lag、batch repair 等不可避免的不確定狀態。
 
-### Mini ADR
+### Mini ADR（Deep Dive）
 
 - Context：系統需要保護核心 source-of-truth state transition，同時觸發 event / projection / notification。
 - Decision：local transaction 只包核心 DB mutation；transaction 外副作用要用 retry、outbox、compensation 或 reconciliation 收斂。
@@ -230,48 +229,40 @@ Trade-off：
 - Consequences：系統要接受 eventual consistency，並補足 idempotency、observability 與 repair path。
 - When this decision becomes wrong：如果業務或法規要求跨資源強一致，或 event 遺失完全不可補償，就要重新評估 outbox / stronger consistency mechanism。
 
-### Technology Landscape
-
-- Related technologies：Spring declarative transaction、programmatic transaction、JPA transaction、Outbox Pattern、Saga、distributed transaction / XA。
-- Current industry mainstream：多數 backend system 以 local transaction + idempotency + retry / compensation / reconciliation 處理 production consistency，不會預設使用 distributed transaction。
-- When each technology is a better fit：
-  - Spring local transaction：單服務 / 單 DB mutation。
-  - Outbox：DB commit 後必須可靠送出 event。
-  - Saga / compensation：跨多服務長流程，需要可補償步驟。
-  - XA / distributed transaction：強一致需求非常高，且成本與可用性代價可接受。
-- Learn Now：Spring transaction boundary、rollback rule、proxy 心智。
-- Learn Later：Outbox / Saga 的實作細節。
-- Awareness Only：XA / JTA 深層配置與 transaction manager internals。
-- Why：目前 Senior Backend 面試最常問的是 boundary、failure window 與補償思路，不是 transaction manager 原始碼。
-
-### Knowledge Boundary
-
-- Must Understand：
-  - `@Transactional` 只保護 local transaction boundary。因為 production flow 常跨 DB / MQ / cache / external service。
-  - rollback rule 與 exception propagation。因為 exception 被吞掉會讓資料 commit。
-  - DB success / downstream failed 是 dual-write 風險。因為這是 order / payment / report / notification 類系統常見追問。
-- Should Understand：
-  - self-invocation / proxy limitation。因為 Week 03 會深入，但 Week 01 要先知道風險存在。
-  - Outbox / compensation / reconciliation 的用途。因為這是跨系統 failure recovery 的語言。
-- Can Ignore For Now：
-  - Spring transaction manager 原始碼。因為面試與 production 排查先看 boundary、log、state。
-  - JTA / XA 詳細配置。因為目前不是主線，且容易過度準備。
-
-### One Common Misconception
+### One Common Misconception（Deep Dive）
 
 - Misconception：`@Transactional` 可以保證整條 business flow 一致。
 - Correction：它只能保證 local transaction 內的 resource，一旦牽涉 MQ、Redis、external service、notification，就超出 local transaction boundary。
 - Why it matters in production / interview：Senior 面試官會追問 timeout、duplicate request、DB success / MQ failed；如果把 transaction 當魔法，會被打穿。
 
-### Future Direction
+### Known Production Case Lens（Reference）
 
-只有有意義時才放：
+- verified from Nick's documented experience：Nick 的材料裡有 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover，這些都會遇到 transaction boundary / failure window。
+- inferred from general engineering practice：任何 order / wallet / report projection 系統都可能遇到 DB commit 成功但 MQ / projection / notification 失敗。
+- inferred from general engineering practice：Spring transaction 的 proxy、rollback rule、exception propagation 是 legacy code review 常見檢查點。
+- speculative ideas for future improvement：Outbox 是可作為目標的 pattern，不應講成已完整導入或 owner。
+- 不硬連履歷：本週主要補強通用 backend production capability，不把 transaction 題包裝成某個完整平台 ownership。
+
+### Knowledge Boundary（Reference）
+
+- Must Understand：
+  - `@Transactional` 只保護 local transaction boundary。
+  - rollback rule 與 exception propagation。
+  - DB success / downstream failed 是 dual-write 風險。
+- Should Understand：
+  - self-invocation / proxy limitation。
+  - Outbox / compensation / reconciliation 的用途。
+- Can Ignore For Now：
+  - Spring transaction manager 原始碼。
+  - JTA / XA 詳細配置。
+
+### Future Direction（Reference）
 
 - Senior Backend：current priority。能在 code review / incident 中找出 transaction boundary 與外部副作用。
 - Platform Backend：future-only topic。Outbox / inbox / event relay 設計會變重要，但不需要 Week 01 全部學完。
 - Architect：future-only topic。跨服務 consistency strategy、Saga、distributed transaction trade-off 會變重要，但目前只需知道取捨語言。
 
-### 與我的面試材料如何連結（Only if naturally applicable）
+### 與我的面試材料如何連結（Reference / Only if naturally applicable）
 
 本週主題自然可連到 Nick 的 production flow 類經驗，但它本質是通用 backend capability，不硬包裝成履歷 claim。
 
@@ -281,85 +272,63 @@ Trade-off：
 - 不建議講進自我介紹：不要把 Week 01 學習內容硬塞成履歷賣點。
 - 不可誇大：不要說「我設計過完整交易平台 transaction architecture」或「我導入完整 outbox」。
 
-### 本週必看
+### 本週必看（Reference）
 
 1. [Declarative Transaction Management](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html)
    - 來源：Spring Framework 官方文件。
    - 為什麼值得看：建立 declarative transaction 的正確心智，不只背 `@Transactional`。
-   - 對應：local transaction boundary、proxy、business flow boundary。
 
 2. [Rolling Back a Declarative Transaction](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/rolling-back.html)
    - 來源：Spring Framework 官方文件。
    - 為什麼值得看：釐清 rollback rule，避免面試時把 checked / unchecked exception 講錯。
-   - 對應：exception propagation、catch-and-swallow、rollback decision。
 
-### 本週可執行任務
+### 本週 KB 維護建議（Reference）
 
-30 分鐘內完成：
+- 建議新增：暫無。Week 01 先記在本檔，不回填正式 casebook。
+- 建議補強：若之後 QA 發現 transaction 題回答不穩，再回填 `19-interview-coaching-question-bank.md` 的第 18 題回答。
+- 建議暫不處理：不改 `04 / 05 / 08 / 17`，不新增 outbox 專文，不重寫任何 production flow。
 
-```text
-用 90 秒回答：DB transaction 成功，但 event / MQ publish 失敗怎麼辦？
-```
-
-回答骨架：
-
-1. 先說這是 dual-write / cross-system failure window。
-2. 先確認 source-of-truth DB 是否已 commit。
-3. 短期補 event / projection / job 或人工 repair。
-4. 長期依風險考慮 outbox、retry、reconciliation。
-5. 補一句：不要重跑整個 command 造成重複副作用。
-
-### Learning Check
-
-學完本週 packet 後，Nick 應該能：
-
-1. 用 60 秒說明：`@Transactional` 保護 local DB transaction，但不等於整條 business flow atomic。
-2. 說出 1 個 production failure mode：DB commit 成功，但 event publish 失敗，導致 projection 或 downstream 沒更新。
-3. 回答 1 題 Senior interview question：DB success / MQ failed 怎麼處理。
-4. 判斷什麼時候不該用這個 approach：不要用 local transaction 去包慢 external call，或幻想它能解 distributed consistency。
-
-### 本週 KB 維護建議
-
-建議新增：
-
-- 暫無。Week 01 先記在本檔，不回填正式 casebook。
-
-建議補強：
-
-- 若之後 QA 發現 transaction 題回答不穩，再回填 `19-interview-coaching-question-bank.md` 的第 18 題回答。
-
-建議暫不處理：
-
-- 不改 `04 / 05 / 08 / 17`。
-- 不新增 outbox 專文。
-- 不重寫任何 production flow。
-
-### 本週不建議做什麼
+### 本週不建議做什麼（Reference）
 
 - 不要延伸學完整 JTA / distributed transaction。
 - 不要重構整個 KB。
 - 不要把 outbox 寫成已做過。
-- 不要追日文。
 - 不要開新 side project 來練 transaction。
 - 不要因為 Week 01 學 transaction，就把所有 consistency pattern 都塞進本週。
 
+### Reflection（Reference / Nick 自填）
+
+今天最大的收穫：
+
+最不懂的是：
+
+工作上可以觀察：
+
 ## Week 02：Propagation / Isolation / Rollback Rule
 
-狀態：已用新版 `Weekly Senior Backend Capability Builder` production-first prompt 重跑。
+狀態：已對齊新版 `backend-weekly-template.md`，改成 `Core -> Deep Dive -> Reference` 閱讀順序。
 
-### 本週主題
+### Executive Summary（Core）
+
+一句話 Takeaway：Propagation / Isolation / Rollback Rule 不是 enum 背誦，而是在決定 transaction 邊界、正確性成本與失敗時資料會不會收斂。
+
+Production Mindset：`REQUIRES_NEW`、higher isolation、`rollbackFor` 都是 trade-off，不是安全魔法。
+
+Interview Mindset：面試時先講「這段資料是否要一起成功 / 失敗」，再講 `REQUIRED`、`REQUIRES_NEW`、isolation level。
+
+預估閱讀時間：15 分鐘讀 Core；30 分鐘含 Deep Dive。
+
+### 本週主題（Core）
 
 Spring transaction propagation、isolation、rollback rule：從「transaction 有沒有生效」推進到「transaction 邊界怎麼切、rollback 何時發生、isolation 成本怎麼判斷」。
 
-### Weekly Mode
+### Weekly Mode（Core）
 
 Trade-off Mode + Troubleshooting Mode。
 
 理由：Week 02 不該變成背 enum。這週重點是判斷：哪些操作要在同一個 transaction、哪些要拆出去、哪些錯誤會 rollback、哪些 isolation 選擇會換來 lock / deadlock / throughput 成本。
 
-### 為什麼這週學這個
-
-這是 transaction 第二層：Week 01 先知道 local transaction 保護什麼，Week 02 要開始判斷 transaction 邊界怎麼切、rollback 何時發生、isolation 成本是否值得。
+### 為什麼這週學這個（Core）
 
 Production 裡常見的問題不是「有沒有 transaction」，而是：
 
@@ -368,11 +337,7 @@ Production 裡常見的問題不是「有沒有 transaction」，而是：
 3. 為了避免讀寫衝突而提高 isolation，是否換來 lock wait、deadlock 或 throughput 下降。
 4. inner transaction 獨立成功時，排查者是否會誤判整條 flow 成功。
 
-面試時它可能出現在 order、wallet、payment callback、inventory、report rebuild、batch job、audit log 等不同題型；本質都是 transaction propagation、rollback rule、isolation trade-off。
-
-### 核心概念
-
-控制在 10-15 分鐘可讀完：
+### 核心概念（Core）
 
 - Propagation 決定「內層 method 要加入外層 transaction，還是另開一個 transaction」。
 - Isolation 決定 concurrent transaction 互相能看到什麼；它不是越高越好，因為 lock、deadlock、throughput 都會受影響。
@@ -381,48 +346,67 @@ Production 裡常見的問題不是「有沒有 transaction」，而是：
 - `NESTED` 比較像同一個 physical transaction 裡用 savepoint 做 partial rollback，語意和 `REQUIRES_NEW` 不同。
 - catch exception 後只記 log 不往外丟，是 production 事故裡很常見的 rollback 失效原因。
 
-### Beginner-to-Senior 解釋
+### Beginner-to-Senior 解釋（Core）
 
-Beginner：
+Beginner：Propagation、isolation、rollback rule 是 `@Transactional` 的重要參數。它們決定 transaction 怎麼加入、資料怎麼隔離、什麼 exception 會 rollback。
 
-Propagation、isolation、rollback rule 是 `@Transactional` 的重要參數。它們決定 transaction 怎麼加入、資料怎麼隔離、什麼 exception 會 rollback。
+Mid：常見坑包括 `REQUIRES_NEW` 用太多造成 connection pool 壓力、checked exception 沒設 `rollbackFor`、catch exception 後只記 log、isolation 調高卻沒估 lock / deadlock 成本。
 
-Mid：
+Senior：要把參數放回 production flow，回答：這段資料是否必須一起成功或失敗？哪些紀錄可以獨立保存？哪些異常會讓 source-of-truth 狀態錯掉？哪些不一致不能靠 DB transaction 解？
 
-常見坑不是不會背定義，而是：
+### Production 情境（Core）
 
-- `REQUIRES_NEW` 用太多造成 connection pool 壓力。
-- audit log 獨立 commit，卻被誤解成 business transaction 成功。
-- checked exception 沒設 `rollbackFor`，資料意外 commit。
-- catch exception 後只記 log，rollback 根本沒發生。
-- isolation 調高，但沒有估 lock wait / deadlock 成本。
+一個 production command 的 transaction design 不能只問「要不要加 `@Transactional`」。比較 Senior 的問法是：
 
-Senior：
+1. source-of-truth state update 和 ledger / detail record 是否應在同一個 transaction？
+2. duplicate request audit 要不要獨立 commit？
+3. checked exception、business exception、downstream exception 哪些要 rollback？
+4. isolation 是真的要調高，還是用 row lock、unique constraint、idempotency key 比較清楚？
+5. DB commit 後的 event / projection failure 是否有 retry、repair 或 reconciliation path？
 
-要把這些參數放回 production flow。核心不是「用哪個 enum」，而是回答：
+### Technology Landscape（Core）
 
-- 這段資料是否必須一起成功或一起失敗？
-- 哪些紀錄可以獨立保存，例如 audit？
-- 哪些異常會讓 source-of-truth 狀態錯掉？
-- 哪些不一致不能靠 DB transaction 解，只能靠 idempotency、compensation 或 reconciliation 收斂？
+- Related technologies：Spring propagation、rollback rule、database isolation level、row lock、optimistic lock、pessimistic lock、unique constraint、outbox。
+- Current industry mainstream：核心交易多用 local transaction + row lock / unique constraint / idempotency；跨系統狀態再用 retry / compensation / reconciliation，不會預設靠 distributed transaction。
+- When each technology is a better fit：
+  - `REQUIRED`：大多數 service method 預設，適合同一段 business mutation。
+  - `REQUIRES_NEW`：適合確定要和外層成功 / 失敗切開的 audit 或 outbox-like 記錄，但要估資源成本。
+  - `NESTED`：適合同一 transaction 中希望局部 rollback 的場景，但依資料庫與 transaction manager 支援而定。
+  - Higher isolation：適合讀寫衝突造成 correctness 風險很高的場景，但要承擔 lock / throughput 成本。
+  - Unique constraint / idempotency key：適合防 duplicate request、duplicate command、duplicate event handling。
+- Learn Now：`REQUIRED`、`REQUIRES_NEW`、rollback rule、catch exception 的風險。
+- Learn Later：isolation level 的細節、lock wait / deadlock analysis、outbox implementation。
+- Awareness Only：完整 JTA / XA、transaction manager internals。
 
-### 小型 code / pseudo-code 範例
+### 本週可執行任務（Core）
+
+30 分鐘內完成：
+
+```text
+用 90 秒回答：production command 裡哪些東西應該跟 source-of-truth state 同 transaction，哪些東西應該拆出去？
+```
+
+回答骨架：
+
+1. state guard + 核心 business mutation 要放在一致性邊界內。
+2. audit / duplicate request log 是否拆出去，要明確說明原因與副作用。
+3. external API / event / projection 不能假設和 DB transaction atomic。
+4. 補一句 rollback rule：checked exception、catch block、`REQUIRES_NEW` 都要 review。
+
+### Learning Check（Core）
+
+學完本週 packet 後，Nick 應該能：
+
+1. 用 60 秒說明：propagation 是 transaction 邊界選擇，不是 enum 背誦。
+2. 說出 1 個 production failure mode：audit log 用 `REQUIRES_NEW` 成功，但 business transaction rollback，排查者誤判整條 command 成功。
+3. 回答 1 題 Senior interview question：`REQUIRES_NEW` 和 `NESTED` 差在哪，何時不用。
+4. 判斷什麼時候不該用這個 approach：高併發核心 command 不應無腦使用 `REQUIRES_NEW`，也不應用高 isolation 掩蓋 idempotency 設計不足。
+
+### 小型 code / pseudo-code 範例（Deep Dive）
 
 ```java
 @Service
 class OrderCommandService {
-
-    private final OrderRepo orderRepo;
-    private final LedgerRepo ledgerRepo;
-    private final AuditService auditService;
-
-    OrderCommandService(OrderRepo orderRepo,
-                        LedgerRepo ledgerRepo,
-                        AuditService auditService) {
-        this.orderRepo = orderRepo;
-        this.ledgerRepo = ledgerRepo;
-        this.auditService = auditService;
-    }
 
     @Transactional(rollbackFor = Exception.class)
     public void completeOrder(CompleteOrderCommand command) throws BusinessException {
@@ -442,12 +426,6 @@ class OrderCommandService {
 @Service
 class AuditService {
 
-    private final AuditRepo auditRepo;
-
-    AuditService(AuditRepo auditRepo) {
-        this.auditRepo = auditRepo;
-    }
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void recordDuplicateCommand(CompleteOrderCommand command) {
         auditRepo.insert(command.orderId(), "DUPLICATE_COMMAND");
@@ -455,13 +433,9 @@ class AuditService {
 }
 ```
 
-重點不是照抄 `REQUIRES_NEW`，而是回答三件事：
+重點不是照抄 `REQUIRES_NEW`，而是回答：duplicate command audit 是否真的應該獨立保存？audit commit 但 business transaction rollback 時，排查者會不會誤判？高併發下額外 transaction 會不會造成 connection pool 壓力？
 
-1. duplicate command audit 是否真的應該獨立保存？
-2. audit commit 但 business transaction rollback 時，排查者會不會誤判？
-3. 高併發請求下，額外 transaction 會不會造成 connection pool 壓力？
-
-### 架構 / Flow 圖
+### 架構 / Flow 圖（Deep Dive）
 
 ```mermaid
 flowchart TD
@@ -477,25 +451,7 @@ flowchart TD
   J --> K["Event / projection / reconciliation"]
 ```
 
-### Production 情境
-
-一個 production command 的 transaction design 不能只問「要不要加 `@Transactional`」。比較 Senior 的問法是：
-
-1. source-of-truth state update 和 ledger / detail record 是否應在同一個 transaction？
-2. duplicate request audit 要不要獨立 commit？
-3. checked exception、business exception、downstream exception 哪些要 rollback？
-4. isolation 是真的要調高，還是用 row lock、unique constraint、idempotency key 比較清楚？
-5. DB commit 後的 event / projection failure 是否有 retry、repair 或 reconciliation path？
-
-### Known Production Case Lens
-
-- verified from Nick's documented experience：Nick 的主力材料包含 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover。
-- inferred from general engineering practice：order / wallet / report / audit 類系統常見問題是 audit 成功、business mutation 失敗，或 DB 成功但 projection 沒更新。
-- inferred from general engineering practice：`REQUIRES_NEW` 可以保留 audit，但會增加 connection 使用與 partial success 解讀成本。
-- verified from Nick's documented experience：Nick 可以保守講「分析過 transaction boundary / failure window」，不要講成完整 transaction architecture owner。
-- speculative ideas for future improvement：Outbox / stronger consistency mechanism 是 future improvement，不是目前已導入成果。
-
-### 常見錯誤
+### 常見錯誤（Deep Dive）
 
 - 以為 `REQUIRES_NEW` 可以解所有一致性問題。
 - 在高併發 flow 裡大量使用 `REQUIRES_NEW`，但沒有估 connection pool。
@@ -504,7 +460,7 @@ flowchart TD
 - catch exception 只記 log 不丟出，導致交易 commit。
 - 把 audit log、business state、projection 都混在同一個 correctness 等級。
 
-### Incident / Troubleshooting
+### Incident / Troubleshooting（Deep Dive）
 
 情境：audit log 顯示收到請求，但使用者看到的狀態或後台 projection 沒更新。
 
@@ -517,7 +473,7 @@ flowchart TD
 5. 查 isolation / lock wait / deadlock，確認是否因 row lock 或 gap lock 造成 timeout。
 6. 若 source-of-truth 成功但 projection / event 沒到，先補 projection / event，不要重跑整個 command 造成重複副作用。
 
-### Observability Anchor
+### Observability Anchor（Deep Dive）
 
 - 1 useful log：`businessId`, `outerTx`, `innerTx`, `propagation`, `exceptionClass`, `rollbackDecision`, `auditResult`。
 - 1 useful metric：`business_transaction_rollback_total`、`requires_new_audit_total` 或 `db_connection_pool_wait_seconds`。
@@ -525,34 +481,26 @@ flowchart TD
 - 1 alert condition：business transaction rollback rate 上升，或 connection pool wait time / active connection 長時間偏高。
 - 1 thing that should not alert：duplicate request 被 terminal-state guard 擋下並記 audit，若比例正常，這是預期 idempotency 行為。
 
-### 3 個學習重點
-
-1. Propagation 是在切 transaction 邊界，不是背 enum；要先說清楚外層和內層誰可以獨立成功。
-2. Isolation 是 correctness 和 throughput 的取捨；核心狀態不能只追效能，report / projection 也不一定需要最高一致性。
-3. Rollback rule 要和 exception propagation 一起看；catch、checked exception、self-invocation 都可能讓面試官追問。
-
-### Senior 面試怎麼問
+### Senior 面試怎麼問（Deep Dive）
 
 1. `REQUIRES_NEW` 和 `NESTED` 差在哪？你會在哪些 audit / outbox / business flow 場景用，哪些不用？
 2. Spring transaction 什麼 exception 預設會 rollback？checked exception 要怎麼處理？
 3. Isolation level 調高可以解決什麼？又會引入什麼 production 風險？
 
-### Senior 面試怎麼回答
+### Senior 面試怎麼回答（Deep Dive）
 
-1. `分析過`：`REQUIRES_NEW` 是獨立 transaction，適合非常明確要和外層成功 / 失敗切開的紀錄，例如某些 audit；但它會多拿 connection，也可能讓 audit 成功、business rollback。`NESTED` 比較像同一個 physical transaction 裡用 savepoint 做局部 rollback，不能把兩者混成一樣。
+1. `分析過`：`REQUIRES_NEW` 是獨立 transaction，適合非常明確要和外層成功 / 失敗切開的紀錄，例如某些 audit；但它會多拿 connection，也可能讓 audit 成功、business rollback。`NESTED` 比較像同一個 physical transaction 裡用 savepoint 做局部 rollback。
 2. `分析過`：Spring 預設常見是 runtime exception / error rollback，checked exception 需要明確設定 `rollbackFor`。我會同時檢查 exception 是否被 catch 掉、是否有 no-rollback rule、以及 method 是否真的經過 proxy。
 3. `分析過 / 待驗證`：核心 state mutation 通常要明確狀態機、row lock 或 unique constraint 保護；報表 / projection 查詢可能接受較鬆一致性。Isolation level 不是越高越好，要看讀寫衝突、lock cost、deadlock risk 與 business correctness。
 
-### System Design 延伸思考
-
-這週的 trade-off 是「transaction 切小」和「狀態一致」之間的平衡：
+### System Design 延伸思考（Deep Dive）
 
 - 切太大：lock time 長、外部呼叫拖住 DB、deadlock / timeout 風險高。
 - 切太小：partial commit、audit / business state 不一致、補償成本高。
 - isolation 太高：一致性較強，但吞吐與 lock 成本上升。
 - isolation 太低：效能較好，但要用 idempotency、unique key、狀態機與 reconciliation 補強。
 
-### Mini ADR
+### Mini ADR（Deep Dive）
 
 - Context：production command 需要同時保護核心 business state，又希望保留 audit / duplicate request 記錄。
 - Decision：核心 source-of-truth mutation 優先放在同一個 local transaction；audit 是否使用 `REQUIRES_NEW` 必須逐 case 判斷，不能當預設。
@@ -560,51 +508,42 @@ flowchart TD
 - Consequences：拆 transaction 可保留更多排查資訊，但會引入 partial success 解讀成本與 connection pool 壓力。
 - When this decision becomes wrong：如果 audit volume 很高、connection pool 已經吃緊、或 audit 成功會讓營運誤判 business 成功，就要改設計。
 
-### Technology Landscape
-
-- Related technologies：Spring propagation、rollback rule、database isolation level、row lock、optimistic lock、pessimistic lock、unique constraint、outbox。
-- Current industry mainstream：核心交易多用 local transaction + row lock / unique constraint / idempotency；跨系統狀態再用 retry / compensation / reconciliation，不會預設靠 distributed transaction。
-- When each technology is a better fit：
-  - `REQUIRED`：大多數 service method 預設，適合同一段 business mutation。
-  - `REQUIRES_NEW`：適合確定要和外層成功 / 失敗切開的 audit 或 outbox-like 記錄，但要估資源成本。
-  - `NESTED`：適合同一 transaction 中希望局部 rollback 的場景，但依資料庫與 transaction manager 支援而定。
-  - Higher isolation：適合讀寫衝突造成 correctness 風險很高的場景，但要承擔 lock / throughput 成本。
-  - Unique constraint / idempotency key：適合防 duplicate request、duplicate command、duplicate event handling。
-- Learn Now：`REQUIRED`、`REQUIRES_NEW`、rollback rule、catch exception 的風險。
-- Learn Later：isolation level 的細節、lock wait / deadlock analysis、outbox implementation。
-- Awareness Only：完整 JTA / XA、transaction manager internals。
-- Why：現階段面試最需要你能判斷 transaction 邊界與 production failure，不是背所有 propagation enum。
-
-### Knowledge Boundary
-
-- Must Understand：
-  - `REQUIRED` vs `REQUIRES_NEW`。因為這直接影響 business state 和 audit 是否一起 commit。
-  - checked exception / `rollbackFor` / catch block。因為這是資料意外 commit 的常見原因。
-  - isolation 有成本。因為 production 系統要在 correctness 和 throughput 間取捨。
-- Should Understand：
-  - `NESTED` / savepoint 心智。因為面試可能追問，但實務使用要看支援情況。
-  - row lock、unique constraint、idempotency key 如何配合 transaction。因為核心狀態正確性不只靠 isolation。
-  - connection pool 壓力。因為 `REQUIRES_NEW` 會額外拿 connection。
-- Can Ignore For Now：
-  - 所有 propagation enum 的冷門細節。因為 Week 02 目標是能用於 production 判斷。
-  - JTA / XA 設定。因為目前不是求職主線，容易過度準備。
-  - InnoDB MVCC 原始碼。因為先能排查 lock wait / deadlock 與 query behavior 即可。
-
-### One Common Misconception
+### One Common Misconception（Deep Dive）
 
 - Misconception：`REQUIRES_NEW` 比 `REQUIRED` 更安全。
 - Correction：它只是把 inner transaction 獨立出來，不代表更安全；它可能造成 partial commit、connection pool 壓力、排查誤判。
 - Why it matters in production / interview：面試官常用 audit log、outbox、duplicate request 追問。如果只說「用 `REQUIRES_NEW` 保證記錄成功」，但講不出副作用，就不像 Senior。
 
-### Future Direction
+### Known Production Case Lens（Reference）
 
-只有有意義時才放：
+- verified from Nick's documented experience：Nick 的主力材料包含 Provider Integration、Wallet / Bet-Settle、MQ / Projection、Legacy Takeover。
+- inferred from general engineering practice：order / wallet / report / audit 類系統常見問題是 audit 成功、business mutation 失敗，或 DB 成功但 projection 沒更新。
+- inferred from general engineering practice：`REQUIRES_NEW` 可以保留 audit，但會增加 connection 使用與 partial success 解讀成本。
+- verified from Nick's documented experience：Nick 可以保守講「分析過 transaction boundary / failure window」，不要講成完整 transaction architecture owner。
+- speculative ideas for future improvement：Outbox / stronger consistency mechanism 是 future improvement，不是目前已導入成果。
+
+### Knowledge Boundary（Reference）
+
+- Must Understand：
+  - `REQUIRED` vs `REQUIRES_NEW`。
+  - checked exception / `rollbackFor` / catch block。
+  - isolation 有成本。
+- Should Understand：
+  - `NESTED` / savepoint 心智。
+  - row lock、unique constraint、idempotency key 如何配合 transaction。
+  - connection pool 壓力。
+- Can Ignore For Now：
+  - 所有 propagation enum 的冷門細節。
+  - JTA / XA 設定。
+  - InnoDB MVCC 原始碼。
+
+### Future Direction（Reference）
 
 - Senior Backend：current priority。能判斷 transaction propagation、rollback rule、isolation trade-off 是面試和 code review 基本盤。
 - Platform Backend：future-only topic。Outbox / inbox、event relay、cross-service consistency 會更重要，但 Week 02 不需要完整實作。
 - Architect：future-only topic。跨服務 consistency strategy、distributed transaction trade-off、event governance 是未來責任，不是現在要全部塞進本週。
 
-### 與我的面試材料如何連結（Only if naturally applicable）
+### 與我的面試材料如何連結（Reference / Only if naturally applicable）
 
 本週主題自然可連到 Nick 的 transaction / consistency 類經驗，但它本質是通用 backend capability，不硬包裝成履歷 claim。
 
@@ -614,59 +553,23 @@ flowchart TD
 - 可講進面試：被問 transaction 時，可保守說「我會從 production flow 的 transaction boundary、rollback rule 與 failure window 分析風險」。
 - 不建議講進自我介紹：不要把 propagation / isolation 題硬塞成履歷賣點。
 
-### 本週必看
+### 本週必看（Reference）
 
 1. [Transaction Propagation](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html)
    - 來源：Spring Framework 官方文件。
    - 為什麼值得看：釐清 `REQUIRED`、`REQUIRES_NEW`、`NESTED` 的語意與資源成本。
-   - 對應：audit、business mutation、legacy transaction review。
 
 2. [Rolling Back a Declarative Transaction](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/rolling-back.html)
    - 來源：Spring Framework 官方文件。
    - 為什麼值得看：釐清 checked exception、rollback rule 與 pattern rule 風險。
-   - 對應：business exception、batch partial failure、catch-and-swallow。
 
-### 本週可執行任務
+### 本週 KB 維護建議（Reference）
 
-30 分鐘內完成：
+- 建議新增：暫無。Week 02 先記在本檔，不回填正式 casebook。
+- 建議補強：若之後 Nick 練第 18 題答不穩，再把「Propagation / Isolation / Rollback Rule」摘要回填到 `19-interview-coaching-question-bank.md`，但本輪不改 19。
+- 建議暫不處理：不改 `04 / 05 / 08 / 17`，不新增 distributed transaction / JTA 專文，不重寫任何 production flow。
 
-```text
-用 90 秒回答：production command 裡哪些東西應該跟 source-of-truth state 同 transaction，哪些東西應該拆出去？
-```
-
-回答骨架：
-
-1. state guard + 核心 business mutation 要放在一致性邊界內。
-2. audit / duplicate request log 是否拆出去，要明確說明原因與副作用。
-3. external API / event / projection 不能假設和 DB transaction atomic。
-4. 補一句 rollback rule：checked exception、catch block、`REQUIRES_NEW` 都要 review。
-
-### Learning Check
-
-學完本週 packet 後，Nick 應該能：
-
-1. 用 60 秒說明：propagation 是 transaction 邊界選擇，不是 enum 背誦。
-2. 說出 1 個 production failure mode：audit log 用 `REQUIRES_NEW` 成功，但 business transaction rollback，排查者誤判整條 command 成功。
-3. 回答 1 題 Senior interview question：`REQUIRES_NEW` 和 `NESTED` 差在哪，何時不用。
-4. 判斷什麼時候不該用這個 approach：高併發核心 command 不應無腦使用 `REQUIRES_NEW`，也不應用高 isolation 掩蓋 idempotency 設計不足。
-
-### 本週 KB 維護建議
-
-建議新增：
-
-- 暫無。Week 02 先記在本檔，不回填正式 casebook。
-
-建議補強：
-
-- 若之後 Nick 練第 18 題答不穩，再把「Propagation / Isolation / Rollback Rule」摘要回填到 `19-interview-coaching-question-bank.md`，但本輪不改 19。
-
-建議暫不處理：
-
-- 不改 `04 / 05 / 08 / 17`。
-- 不新增 distributed transaction / JTA 專文。
-- 不重寫任何 production flow。
-
-### 本週不建議做什麼
+### 本週不建議做什麼（Reference）
 
 - 不要把 isolation level 全部背成考古題。
 - 不要為了練 `REQUIRES_NEW` 開 side project。
@@ -674,6 +577,14 @@ flowchart TD
 - 不要把本週內容寫進履歷。
 - 不要延伸到完整 Saga / Outbox；那是後面週次。
 
-### 本週 explicit non-goal
+### 本週 explicit non-goal（Reference）
 
 本週不學完整 distributed transaction、JTA、XA、Saga 或 Outbox；只把 Spring local transaction 的 propagation、isolation、rollback rule 講到能支撐 production command / audit / event / projection 類面試追問。
+
+### Reflection（Reference / Nick 自填）
+
+今天最大的收穫：
+
+最不懂的是：
+
+工作上可以觀察：
