@@ -485,7 +485,7 @@ Nick 已決定：
 若換電腦或重建 Codex automation，直接使用下方英文 prompt；排程時間依該台電腦用途調整，目前公司電腦可用 `每週一 09:00`。家裡電腦預設不啟用工作學習 automation；實際是否 ACTIVE / PAUSED 以該台電腦的 Codex app 狀態為準。
 
 ```text
-Run Nick's weekly Senior Java Backend / Platform Backend learning packet for nick-vault.
+Run Nick's weekly Senior Java Backend / Platform Backend capability builder packet for nick-vault.
 
 Read only as needed:
 - AGENTS.md
@@ -504,6 +504,7 @@ Produce one focused weekly capability builder packet with:
 3. at most 2 high-quality references
    - Prefer one official document.
    - The second may be an engineering blog or conference talk only if it adds significant practical value.
+   - Each reference must include a real URL, source name, and why it is worth reading.
 4. beginner-to-senior explanation
 5. 1 small Java / Spring / SQL / pseudo-code example
 6. 1 simple Mermaid architecture / flow diagram
@@ -600,7 +601,13 @@ Do not modify resume, autobiography, story drafts, production flow files, 04 / 0
 
 If files are updated, run Relationship Check and git diff --check. Commit local KB updates when safe, but do not push unless Nick explicitly asks.
 
-Keep the output actionable and small.
+Keep the output actionable, concise, focused, and suitable for long-term weekly learning.
+
+Whenever possible, explain not only "how", but also:
+- why this design exists
+- what production problem it solves
+- what new problems it introduces
+- when NOT to choose it
 ```
 
 ## Part B：Vault 升級方向
