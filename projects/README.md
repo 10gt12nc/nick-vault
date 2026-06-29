@@ -4,6 +4,7 @@
 
 最新完整性盤點：
 
+- [Repo Capability Audit](repo-capability-audit.md)：2026-06-29 重新以 capability-first 方式盤點 `/Users/nick/Git/usproject`、AntPlay、iwin、UGSoft、DevOps 與 `nick-vault`。這份不預設 Payment 最重要，也不改履歷 / 自傳 / Story / Flow；用途是找出 Senior Backend / Platform Backend 最值得深掃的 repo、system、architecture topics。
 - [Source Repo Flow Audit](source-repo-flow-audit.md)：盤點 AntPlay（排除 `*-math`）、iwin、UGSoft、DevOps / primestar 的 project folders，標記 `已有`、`缺 Flow Track 但值得補`、`可選加強`、`暫不建議`。這份只作待辦與優先順序入口，不代表要逐一開工。
 - [iwin system map v1](iwin/architecture-map.md)：2026-05-28 已補 iwin domain-level architecture / integration / career map，作為架構視角入口；不新增履歷 claim，也不代表全量 code audit。
 - [AntPlay system map v1](antplay/architecture-map.md)：2026-05-28 已補 AntPlay runtime / job / admin / math contract domain map；不新增履歷 claim。
