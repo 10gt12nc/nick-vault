@@ -180,7 +180,7 @@ C 級主題包含 Hiring、1:1、Performance Review、Budget、P&L、Pricing、O
 | 能力 | 覆蓋 | 評價 |
 | --- | --- | --- |
 | Java / Spring | 完整 | Backend core 夠用 |
-| Transaction | 完整 | Week 01-03 已成主軸 |
+| Transaction | 完整 | 規劃涵蓋 Week 01-03；目前正式 learning log 已清除並從 Week 01 重跑 |
 | MySQL | 完整 | Index / Explain / Lock / Batch 已覆蓋 |
 | Redis | 完整 | Cache / consistency / lock / hot key 已覆蓋 |
 | Kafka / MQ | 完整 | Producer / consumer / retry / DLQ / lag / ordering 已覆蓋 |

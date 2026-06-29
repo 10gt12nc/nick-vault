@@ -618,6 +618,8 @@ Nick 已決定：
 
 2026-06-26 writing guideline 補強：Prompt、Template 與 Plan 先封版；後續若 weekly packet 出現模板味、重複講同一組 production concept、或每週重新介紹 beginner concept，優先調整 `backend-weekly-writing-guideline.md`，不要繼續膨脹 prompt / template。四個檔案職責固定為：`backend-weekly-plan.md` 決定學什麼；`backend-weekly-template.md` 決定輸出哪些章節；`backend-weekly-writing-guideline.md` 決定每一週怎麼寫；`backend-learning-log.md` 累積每週真正值得保留的內容。
 
+2026-06-29 reset 補充：Week 01-04 的早期試跑 / 錯誤續跑內容全部視為已清除，不作為已學過紀錄。`backend-weekly-plan.md` 與 `backend-learning-log.md` 是唯一週次來源；若 repo 顯示 `Current week: Week 01`，automation 必須產 Week 01，不得依 automation memory、舊 commit、舊 thread history 或 prior trial packets 跳到 Week 04 / Week 05。
+
 ```text
 Run Nick's weekly Senior Java Backend / Platform Backend capability builder packet for nick-vault.
 
@@ -630,6 +632,12 @@ Read only as needed:
 - senior-owner-playbook/backend-learning-log.md
 - senior-owner-playbook/19-interview-coaching-question-bank.md
 - senior-owner-playbook/22-career-industry-kb-evolution-plan.md
+
+Progress source of truth:
+- Use senior-owner-playbook/backend-weekly-plan.md and senior-owner-playbook/backend-learning-log.md as the only source of truth for the current week.
+- Do NOT advance the week based on automation memory, previous automation runs, old commits, thread history, or prior trial packets.
+- If backend-learning-log.md says Week 01-04 trial packets were cleared and backend-weekly-plan.md says Current week: Week 01, then produce Week 01, even if automation memory mentions Week 02 / Week 03 / Week 04.
+- Automation memory is only historical context; it must not override repository state.
 
 Follow senior-owner-playbook/backend-weekly-template.md and senior-owner-playbook/backend-weekly-writing-guideline.md.
 Do not replace the template with a short checkpoint.

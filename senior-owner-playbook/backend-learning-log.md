@@ -14,6 +14,6 @@
 
 ## 目前狀態
 
-Week 01-03 試跑內容已清除。
+Week 01-04 試跑內容已清除。
 
-下一次 `Backend Weekly Learning` 排程會依目前 freeze 後的 prompt / template / writing guideline，從 Week 01 重新產出正式 learning packet。
+下一次 `Backend Weekly Learning` 排程會依目前 freeze 後的 prompt / template / writing guideline，從 Week 01 重新產出正式 learning packet。舊的 Week 01-04 automation run / commit / memory 都不作為已學過紀錄。
