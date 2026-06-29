@@ -4,6 +4,8 @@
 
 用途：記錄每週主題排程、目前跑到第幾週、下一週主題與排程規則。這不是大型 backlog，不放大量文章內容。
 
+Automation 狀態補充：2026-06-29 Nick 已手動暫停本機 `Backend Weekly Learning` automation。本檔仍是手動執行或未來重新啟用排程時的 canonical plan；是否自動執行以 Codex app / automation.toml 為準。
+
 核心定位：
 
 ```text

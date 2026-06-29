@@ -2,6 +2,8 @@
 
 日期：2026-06-29
 
+狀態：`Frozen reference`。這份只作 capability map、偏差校正、優缺點參考與下一步候選池；不是目前主線、不是待辦 backlog、不是履歷證據，也不代表要把列出的 repo 都掃完。
+
 範圍：
 
 ```text
