@@ -19,6 +19,7 @@
 - 2026-06-26 補強：`Backend Weekly Learning` 的真正目標不是技術快訊，而是 `Weekly Senior Backend Capability Builder`。每週用單一主題練 production、trade-off、incident、system design、decision making 與 interview expression。來源數量從最多 3 篇收斂到最多 2 篇：優先 1 篇官方文件，第 2 篇只有在提供明顯 practical value 時才放，且正式輸出必須有實際連結，不得只放佔位文字。新增 `Technology Landscape`、`Knowledge Boundary`、`One Common Misconception` 與條件式 `Future Direction`；用 Learn Now / Learn Later / Awareness Only 和 Must / Should / Ignore 管住廣度，避免公司沒有 Kafka / Nacos / K8s 就完全沒概念，也避免把所有相關技術都變成本月待辦。
 - 2026-06-29 補充：Nick 已手動暫停公司電腦的 `Backend Weekly Learning` automation。KB 仍保留 canonical prompt、template、plan、writing guideline 與 learning log，作為未來手動執行或重新啟用排程的來源；實際是否會自動跑仍以該台電腦 Codex app / automation.toml 狀態為準，不用因 KB 仍有 plan 就視為 active。
 - 2026-06-29 補充：`projects/repo-capability-audit.md` 已封版為 `Frozen reference`。用途是能力地圖、Payment / 履歷偏差校正與候選方向參考；不是新主線、不是待辦 backlog、不是履歷 evidence，也不代表要把所有 repo 都掃完。
+- 2026-06-29 補充：若未來重啟 `Backend Weekly Learning`，問題不只是 topic 太多，而是需要補 `prerequisite / backend map layer`。每週 learning packet 必須先說明本週主題在整張 Backend Map 的位置、需要哪些前置知識、如果前置不足先補哪個最小概念，以及這週會 unlock 什麼能力。避免讓 Nick 感覺像「沒讀 A 就被叫去讀 G」。
 
 本檔先記錄兩個想法：
 

@@ -14,6 +14,8 @@ Weekly Senior Backend Capability Builder
 
 每週不是技術快訊，而是用一個主題訓練 production thinking、trade-off、incident、system design、decision making 與 interview expression。
 
+若未來重啟排程，必須先補 learning path 的依賴層：每週都要回答 `這週在 Backend Map 的哪裡`、`前置知識是什麼`、`前置不足時先補哪個最小概念`、`這週解鎖什麼能力`。否則 weekly packet 容易變成平行主題跳讀，讓學習像直接翻到課本第 217 頁。
+
 ## 排程定位
 
 這份排程服務目前 v1 `Job Search Vault`。它不是要把 52 週全部塞滿，而是用 `48 週核心循環 + 實戰輸出補強池 + 補足主題池` 長期反覆深化：
