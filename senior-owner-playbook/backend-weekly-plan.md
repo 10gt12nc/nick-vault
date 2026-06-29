@@ -38,9 +38,9 @@ Weekly Senior Backend Capability Builder
 
 ```text
 Current cycle: Round 1 / 48 weeks
-Current week: Week 01
-Current topic: Spring Transaction
-Next topic: Week 02 Propagation / Isolation / Rollback Rule
+Current week: Week 02
+Current topic: Propagation / Isolation / Rollback Rule
+Next topic: Week 03 Self Invocation / AOP Proxy
 ```
 
 ## 三層排程結構
